@@ -7,7 +7,7 @@ class SizeSpec extends AnyFunSpec with Matchers {
   describe("The Size") {
     val siz = Size(70)
 
-    it("should have name Size") {
+    it("should have name SIZ") {
       siz.name shouldBe "SIZ"
     }
 

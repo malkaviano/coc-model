@@ -7,7 +7,7 @@ class DexteritySpec extends AnyFunSpec with Matchers {
   describe("The Dexterity") {
     val dex = Dexterity(80)
 
-    it("should have name Dexterity") {
+    it("should have name DEX") {
       dex.name shouldBe "DEX"
     }
 

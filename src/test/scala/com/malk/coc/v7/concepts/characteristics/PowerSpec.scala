@@ -7,7 +7,7 @@ class PowerSpec extends AnyFunSpec with Matchers {
   describe("The Power") {
     val pow = Power(70)
 
-    it("should have name Power") {
+    it("should have name PWR") {
       pow.name shouldBe "PWR"
     }
 

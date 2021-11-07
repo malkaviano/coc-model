@@ -7,7 +7,7 @@ class StrengthSpec extends AnyFunSpec with Matchers {
   describe("The Strength") {
     val str = Strength(60)
 
-    it("should have name Strength") {
+    it("should have name STR") {
       str.name shouldBe "STR"
     }
 

@@ -7,7 +7,7 @@ class ConstitutionSpec extends AnyFunSpec with Matchers {
   describe("The Constitution") {
     val con = Constitution(55)
 
-    it("should have name Constitution") {
+    it("should have name CON") {
       con.name shouldBe "CON"
     }
 

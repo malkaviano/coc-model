@@ -7,7 +7,7 @@ class IntelligenceSpec extends AnyFunSpec with Matchers {
   describe("The Intelligence") {
     val int = Intelligence(48)
 
-    it("should have name Intelligence") {
+    it("should have name INT") {
       int.name shouldBe "INT"
     }
 
