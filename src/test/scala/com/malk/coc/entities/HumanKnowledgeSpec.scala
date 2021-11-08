@@ -25,7 +25,7 @@ class HumanKnowledgeSpec extends AnyFunSpec with Matchers {
       con,
       app,
       edu
-    ) {}
+    )(_ => 0) {}
 
     describe("when Human Age is between 20 and 39") {
       it("should have base EDU not affected by Age") {
@@ -42,16 +42,10 @@ class HumanKnowledgeSpec extends AnyFunSpec with Matchers {
         con,
         app,
         edu
-      ) {}
+      )(_ => -10) {}
 
       it("should subtract 1D10 to the base EDU") {
-        val results = mutable.Set.empty[Int]
-
-        for (n <- 1 to 100000) {
-          results add human.EDU
-        }
-
-        results should contain theSameElementsAs (48 to 57)
+        human.EDU shouldBe 48
       }
     }
 
@@ -64,16 +58,10 @@ class HumanKnowledgeSpec extends AnyFunSpec with Matchers {
         con,
         app,
         edu
-      ) {}
+      )(_ => 6) {}
 
       it("should add 1D10 to the base EDU") {
-        val results = mutable.Set.empty[Int]
-
-        for (n <- 1 to 100000) {
-          results add human.EDU
-        }
-
-        results should contain theSameElementsAs (59 to 68)
+        human.EDU shouldBe 64
       }
     }
 
@@ -86,16 +74,10 @@ class HumanKnowledgeSpec extends AnyFunSpec with Matchers {
         con,
         app,
         edu
-      ) {}
+      )(_ => 11) {}
 
       it("should add 2D10 to the base EDU") {
-        val results = mutable.Set.empty[Int]
-
-        for (n <- 1 to 100000) {
-          results add human.EDU
-        }
-
-        results should contain theSameElementsAs (60 to 78)
+        human.EDU shouldBe 69
       }
     }
 
@@ -108,16 +90,10 @@ class HumanKnowledgeSpec extends AnyFunSpec with Matchers {
         con,
         app,
         edu
-      ) {}
+      )(_ => 23) {}
 
       it("should add 3D10 to the base EDU") {
-        val results = mutable.Set.empty[Int]
-
-        for (n <- 1 to 200000) {
-          results add human.EDU
-        }
-
-        results should contain theSameElementsAs (61 to 88)
+        human.EDU shouldBe 81
       }
     }
 
@@ -130,16 +106,10 @@ class HumanKnowledgeSpec extends AnyFunSpec with Matchers {
         con,
         app,
         edu
-      ) {}
+      )(_ => 32) {}
 
       it("should add 4D10 to the base EDU") {
-        val results = mutable.Set.empty[Int]
-
-        for (n <- 1 to 300000) {
-          results add human.EDU
-        }
-
-        results should contain theSameElementsAs (62 to 98)
+        human.EDU shouldBe 90
       }
     }
 
@@ -152,16 +122,10 @@ class HumanKnowledgeSpec extends AnyFunSpec with Matchers {
         con,
         app,
         edu
-      ) {}
+      )(_ => 45) {}
 
       it("should add 5D10 to the base EDU") {
-        val results = mutable.Set.empty[Int]
-
-        for (n <- 1 to 500000) {
-          results add human.EDU
-        }
-
-        results should contain theSameElementsAs (63 to 99)
+        human.EDU shouldBe 99
       }
     }
   }

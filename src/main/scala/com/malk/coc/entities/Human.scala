@@ -19,6 +19,7 @@ abstract class Human(
     with Charismatic
     with Knowledge {
   protected val mov: MovementRate = MovementRate(str, dex, siz)
+  protected val eduAgeModifier = eduImprover(age)
 
   override def MOV: Int = {
     val x = (age.value - 40)
@@ -48,7 +49,7 @@ abstract class Human(
   }
 
   def EDU: Int = {
-    val result = edu.value + eduImprover(age)
+    val result = edu.value + eduAgeModifier
     if (result > 99) 99 else result
   }
 
