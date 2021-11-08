@@ -6,7 +6,7 @@ import org.scalatest.matchers.should.Matchers
 import com.malk.coc.concepts.characteristics._
 
 class HumanMobilitySpec extends AnyFunSpec with Matchers {
-  describe("The Human mobility") {
+  describe("The Human MOV") {
     val str = Strength(50)
     val siz = Size(60)
     val dex = Dexterity(70)
@@ -36,7 +36,7 @@ class HumanMobilitySpec extends AnyFunSpec with Matchers {
         con
       ) {}
 
-      it("should deduce 1 from the base MOV") {
+      it("should reduce 1 from the base MOV") {
         human.MOV shouldBe baseMOV - 1
       }
     }
@@ -50,7 +50,7 @@ class HumanMobilitySpec extends AnyFunSpec with Matchers {
         con
       ) {}
 
-      it("should deduce 2 from the base MOV") {
+      it("should reduce 2 from the base MOV") {
         human.MOV shouldBe baseMOV - 2
       }
     }
@@ -64,7 +64,7 @@ class HumanMobilitySpec extends AnyFunSpec with Matchers {
         con
       ) {}
 
-      it("should deduce 3 from the base MOV") {
+      it("should reduce 3 from the base MOV") {
         human.MOV shouldBe baseMOV - 3
       }
     }
@@ -78,7 +78,7 @@ class HumanMobilitySpec extends AnyFunSpec with Matchers {
         con
       ) {}
 
-      it("should deduce 4 from the base MOV") {
+      it("should reduce 4 from the base MOV") {
         human.MOV shouldBe baseMOV - 4
       }
     }
@@ -92,7 +92,7 @@ class HumanMobilitySpec extends AnyFunSpec with Matchers {
         con
       ) {}
 
-      it("should deduce 5 from the base MOV") {
+      it("should reduce 5 from the base MOV") {
         human.MOV shouldBe baseMOV - 5
       }
     }
