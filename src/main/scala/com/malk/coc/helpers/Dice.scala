@@ -1,4 +1,4 @@
-package com.malk.coc.tools
+package com.malk.coc.helpers
 
 object Dice {
   import scala.util.Random

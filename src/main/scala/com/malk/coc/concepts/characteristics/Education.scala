@@ -1,3 +1,3 @@
-package com.malk.coc.v7.concepts.characteristics
+package com.malk.coc.concepts.characteristics
 
 case class Education(override val value: Int) extends Characteristic("EDU", value)

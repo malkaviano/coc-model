@@ -1,3 +1,3 @@
-package com.malk.coc.v7.concepts.characteristics
+package com.malk.coc.concepts.characteristics
 
 abstract class Characteristic(val name: String, val value: Int)
