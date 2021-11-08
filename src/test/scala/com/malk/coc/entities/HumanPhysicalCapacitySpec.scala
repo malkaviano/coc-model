@@ -5,13 +5,12 @@ import org.scalatest.matchers.should.Matchers
 
 import com.malk.coc.concepts.characteristics._
 
-class HumanMobilitySpec extends AnyFunSpec with Matchers {
-  describe("The Human mobility") {
+class HumanPhysicalCapacitySpec extends AnyFunSpec with Matchers {
+  describe("The Human physical capacity") {
     val str = Strength(50)
     val siz = Size(60)
     val dex = Dexterity(70)
     val con = Constitution(45)
-    val baseMOV = 8
 
     val human = new Human(
       Age(39),
@@ -22,8 +21,11 @@ class HumanMobilitySpec extends AnyFunSpec with Matchers {
     ) {}
 
     describe("when Human Age is bellow 40") {
-      it("should have base MOV not affected by Age") {
-        human.MOV shouldBe baseMOV
+      it("should return base values of STR, CON, DEX and SIZ") {
+        human.STR shouldBe 50
+        human.DEX shouldBe 70
+        human.CON shouldBe 45
+        human.SIZ shouldBe 60
       }
     }
 
@@ -36,8 +38,11 @@ class HumanMobilitySpec extends AnyFunSpec with Matchers {
         con
       ) {}
 
-      it("should deduce 1 from the base MOV") {
-        human.MOV shouldBe baseMOV - 1
+      it("should return base values of SIZ and 95% of STR, CON and DEX") {
+        human.STR shouldBe 47
+        human.DEX shouldBe 66
+        human.CON shouldBe 42
+        human.SIZ shouldBe 60
       }
     }
 
@@ -50,8 +55,11 @@ class HumanMobilitySpec extends AnyFunSpec with Matchers {
         con
       ) {}
 
-      it("should deduce 2 from the base MOV") {
-        human.MOV shouldBe baseMOV - 2
+      it("should return base values of SIZ and 90% of STR, CON and DEX") {
+        human.STR shouldBe 45
+        human.DEX shouldBe 63
+        human.CON shouldBe 40
+        human.SIZ shouldBe 60
       }
     }
 
@@ -64,8 +72,11 @@ class HumanMobilitySpec extends AnyFunSpec with Matchers {
         con
       ) {}
 
-      it("should deduce 3 from the base MOV") {
-        human.MOV shouldBe baseMOV - 3
+      it("should return base values of SIZ and 85% of STR, CON and DEX") {
+        human.STR shouldBe 42
+        human.DEX shouldBe 59
+        human.CON shouldBe 38
+        human.SIZ shouldBe 60
       }
     }
 
@@ -78,8 +89,11 @@ class HumanMobilitySpec extends AnyFunSpec with Matchers {
         con
       ) {}
 
-      it("should deduce 4 from the base MOV") {
-        human.MOV shouldBe baseMOV - 4
+      it("should return base values of SIZ and 65% of STR, CON and DEX") {
+        human.STR shouldBe 32
+        human.DEX shouldBe 45
+        human.CON shouldBe 29
+        human.SIZ shouldBe 60
       }
     }
 
@@ -92,8 +106,11 @@ class HumanMobilitySpec extends AnyFunSpec with Matchers {
         con
       ) {}
 
-      it("should deduce 5 from the base MOV") {
-        human.MOV shouldBe baseMOV - 5
+      it("should return base values of SIZ and 45% of STR, CON and DEX") {
+        human.STR shouldBe 22
+        human.DEX shouldBe 31
+        human.CON shouldBe 20
+        human.SIZ shouldBe 60
       }
     }
   }
