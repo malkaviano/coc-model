@@ -4,6 +4,7 @@ import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 
 import com.malk.coc.concepts.characteristics._
+import com.malk.coc.traits.EducationImprovement._
 
 class HumanCharismaticSpec extends AnyFunSpec with Matchers {
   describe("The Human APP") {
@@ -12,6 +13,7 @@ class HumanCharismaticSpec extends AnyFunSpec with Matchers {
     val dex = Dexterity(70)
     val con = Constitution(45)
     val app = Appearance(65)
+val edu = Education(48)
 
     val human = new Human(
       Age(39),
@@ -20,6 +22,7 @@ class HumanCharismaticSpec extends AnyFunSpec with Matchers {
       dex,
       con,
       app,
+      edu
     ) {}
 
     describe("when Human Age is bellow 40") {
@@ -35,7 +38,8 @@ class HumanCharismaticSpec extends AnyFunSpec with Matchers {
         siz,
         dex,
         con,
-        app
+        app,
+        edu
       ) {}
 
       it("should reduce 5 from the base APP") {
@@ -50,7 +54,8 @@ class HumanCharismaticSpec extends AnyFunSpec with Matchers {
         siz,
         dex,
         con,
-        app
+        app,
+        edu
       ) {}
 
       it("should reduce 10 from the base APP") {
@@ -65,7 +70,8 @@ class HumanCharismaticSpec extends AnyFunSpec with Matchers {
         siz,
         dex,
         con,
-        app
+        app,
+        edu
       ) {}
 
       it("should reduce 15 from the base APP") {
@@ -80,7 +86,8 @@ class HumanCharismaticSpec extends AnyFunSpec with Matchers {
         siz,
         dex,
         con,
-        app
+        app,
+        edu
       ) {}
 
       it("should reduce 20 from the base APP") {
@@ -95,7 +102,8 @@ class HumanCharismaticSpec extends AnyFunSpec with Matchers {
         siz,
         dex,
         con,
-        app
+        app,
+        edu
       ) {}
 
       it("should reduce 25 from the base APP") {

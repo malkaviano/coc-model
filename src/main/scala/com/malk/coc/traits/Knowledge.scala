@@ -9,7 +9,7 @@ trait Knowledge {
 
 object EducationImprovement {
   implicit def eduImprover(age: Age): Int = {
-    if(age.value < 20) {
+    if (age.value < 20) {
       Dice.roll10 * -1
     } else if (age.value >= 40) {
       val x = age.value - 40

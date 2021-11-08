@@ -4,6 +4,7 @@ import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 
 import com.malk.coc.concepts.characteristics._
+import com.malk.coc.traits.EducationImprovement._
 
 class HumanPhysicalCapacitySpec extends AnyFunSpec with Matchers {
   describe("The Human physical capacity") {
@@ -12,6 +13,7 @@ class HumanPhysicalCapacitySpec extends AnyFunSpec with Matchers {
     val dex = Dexterity(70)
     val con = Constitution(45)
     val app = Appearance(65)
+    val edu = Education(48)
 
     val human = new Human(
       Age(39),
@@ -19,7 +21,8 @@ class HumanPhysicalCapacitySpec extends AnyFunSpec with Matchers {
       siz,
       dex,
       con,
-      app
+      app,
+      edu
     ) {}
 
     describe("when Human Age is bellow 40") {
@@ -38,7 +41,8 @@ class HumanPhysicalCapacitySpec extends AnyFunSpec with Matchers {
         siz,
         dex,
         con,
-        app
+        app,
+        edu
       ) {}
 
       it("should return base values of SIZ and 95% of STR, CON and DEX") {
@@ -56,7 +60,8 @@ class HumanPhysicalCapacitySpec extends AnyFunSpec with Matchers {
         siz,
         dex,
         con,
-        app
+        app,
+        edu
       ) {}
 
       it("should return base values of SIZ and 90% of STR, CON and DEX") {
@@ -74,7 +79,8 @@ class HumanPhysicalCapacitySpec extends AnyFunSpec with Matchers {
         siz,
         dex,
         con,
-        app
+        app,
+        edu
       ) {}
 
       it("should return base values of SIZ and 85% of STR, CON and DEX") {
@@ -92,7 +98,8 @@ class HumanPhysicalCapacitySpec extends AnyFunSpec with Matchers {
         siz,
         dex,
         con,
-        app
+        app,
+        edu
       ) {}
 
       it("should return base values of SIZ and 65% of STR, CON and DEX") {
@@ -110,7 +117,8 @@ class HumanPhysicalCapacitySpec extends AnyFunSpec with Matchers {
         siz,
         dex,
         con,
-        app
+        app,
+        edu
       ) {}
 
       it("should return base values of SIZ and 45% of STR, CON and DEX") {

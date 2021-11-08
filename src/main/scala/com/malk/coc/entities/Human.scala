@@ -3,6 +3,7 @@ package com.malk.coc.entities
 import com.malk.coc.concepts.characteristics._
 import com.malk.coc.traits._
 import com.malk.coc.concepts.attributes.MovementRate
+import com.malk.coc.traits.EducationImprovement._
 
 abstract class Human(
     protected val age: Age,
@@ -10,10 +11,13 @@ abstract class Human(
     protected val siz: Size,
     protected val dex: Dexterity,
     protected val con: Constitution,
-    protected val app: Appearance
-) extends Mobility
+    protected val app: Appearance,
+    protected val edu: Education
+)(implicit eduImprover: Age => Int)
+    extends Mobility
     with PhysicalCapacity
-    with Charismatic {
+    with Charismatic
+    with Knowledge {
   protected val mov: MovementRate = MovementRate(str, dex, siz)
 
   override def MOV: Int = {
@@ -41,6 +45,11 @@ abstract class Human(
 
       app.value - ((x / 10) + 1) * 5
     }
+  }
+
+  def EDU: Int = {
+    val result = edu.value + eduImprover(age)
+    if (result > 99) 99 else result
   }
 
   private def ageInfluencePhysicalCapacity(char: Characteristic) =
