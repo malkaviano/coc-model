@@ -1,5 +1,5 @@
 package com.malk.coc.traits
 
-trait Education {
+trait Knowledge {
   def EDU: Int
 }
