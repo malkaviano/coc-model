@@ -5,14 +5,13 @@ import org.scalatest.matchers.should.Matchers
 
 import com.malk.coc.concepts.characteristics._
 
-class HumanMobilitySpec extends AnyFunSpec with Matchers {
-  describe("The Human MOV") {
+class HumanCharismaticSpec extends AnyFunSpec with Matchers {
+  describe("The Human APP") {
     val str = Strength(50)
     val siz = Size(60)
     val dex = Dexterity(70)
     val con = Constitution(45)
     val app = Appearance(65)
-    val baseMOV = 8
 
     val human = new Human(
       Age(39),
@@ -20,12 +19,12 @@ class HumanMobilitySpec extends AnyFunSpec with Matchers {
       siz,
       dex,
       con,
-      app
+      app,
     ) {}
 
     describe("when Human Age is bellow 40") {
-      it("should have base MOV not affected by Age") {
-        human.MOV shouldBe baseMOV
+      it("should have base APP not affected by Age") {
+        human.APP shouldBe 65
       }
     }
 
@@ -39,8 +38,8 @@ class HumanMobilitySpec extends AnyFunSpec with Matchers {
         app
       ) {}
 
-      it("should reduce 1 from the base MOV") {
-        human.MOV shouldBe baseMOV - 1
+      it("should reduce 5 from the base APP") {
+        human.APP shouldBe 60
       }
     }
 
@@ -54,8 +53,8 @@ class HumanMobilitySpec extends AnyFunSpec with Matchers {
         app
       ) {}
 
-      it("should reduce 2 from the base MOV") {
-        human.MOV shouldBe baseMOV - 2
+      it("should reduce 10 from the base APP") {
+        human.APP shouldBe 55
       }
     }
 
@@ -69,8 +68,8 @@ class HumanMobilitySpec extends AnyFunSpec with Matchers {
         app
       ) {}
 
-      it("should reduce 3 from the base MOV") {
-        human.MOV shouldBe baseMOV - 3
+      it("should reduce 15 from the base APP") {
+        human.APP shouldBe 50
       }
     }
 
@@ -84,8 +83,8 @@ class HumanMobilitySpec extends AnyFunSpec with Matchers {
         app
       ) {}
 
-      it("should reduce 4 from the base MOV") {
-        human.MOV shouldBe baseMOV - 4
+      it("should reduce 20 from the base APP") {
+        human.APP shouldBe 45
       }
     }
 
@@ -99,8 +98,8 @@ class HumanMobilitySpec extends AnyFunSpec with Matchers {
         app
       ) {}
 
-      it("should reduce 5 from the base MOV") {
-        human.MOV shouldBe baseMOV - 5
+      it("should reduce 25 from the base APP") {
+        human.APP shouldBe 40
       }
     }
   }

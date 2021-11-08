@@ -11,13 +11,15 @@ class HumanPhysicalCapacitySpec extends AnyFunSpec with Matchers {
     val siz = Size(60)
     val dex = Dexterity(70)
     val con = Constitution(45)
+    val app = Appearance(65)
 
     val human = new Human(
       Age(39),
       str,
       siz,
       dex,
-      con
+      con,
+      app
     ) {}
 
     describe("when Human Age is bellow 40") {
@@ -35,7 +37,8 @@ class HumanPhysicalCapacitySpec extends AnyFunSpec with Matchers {
         str,
         siz,
         dex,
-        con
+        con,
+        app
       ) {}
 
       it("should return base values of SIZ and 95% of STR, CON and DEX") {
@@ -52,7 +55,8 @@ class HumanPhysicalCapacitySpec extends AnyFunSpec with Matchers {
         str,
         siz,
         dex,
-        con
+        con,
+        app
       ) {}
 
       it("should return base values of SIZ and 90% of STR, CON and DEX") {
@@ -69,7 +73,8 @@ class HumanPhysicalCapacitySpec extends AnyFunSpec with Matchers {
         str,
         siz,
         dex,
-        con
+        con,
+        app
       ) {}
 
       it("should return base values of SIZ and 85% of STR, CON and DEX") {
@@ -86,7 +91,8 @@ class HumanPhysicalCapacitySpec extends AnyFunSpec with Matchers {
         str,
         siz,
         dex,
-        con
+        con,
+        app
       ) {}
 
       it("should return base values of SIZ and 65% of STR, CON and DEX") {
@@ -103,7 +109,8 @@ class HumanPhysicalCapacitySpec extends AnyFunSpec with Matchers {
         str,
         siz,
         dex,
-        con
+        con,
+        app
       ) {}
 
       it("should return base values of SIZ and 45% of STR, CON and DEX") {
