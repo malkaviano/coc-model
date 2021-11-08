@@ -1,4 +1,4 @@
-package com.malk.coc.behaviors
+package com.malk.coc.traits
 
 import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers

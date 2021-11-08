@@ -1,4 +1,4 @@
-package com.malk.coc.behaviors
+package com.malk.coc.traits
 
 trait Ageable {
   def Age: Int
