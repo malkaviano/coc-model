@@ -9,3 +9,12 @@ Rules:
 - Always test first;
 - To capture all business rules (book rules) to code;
 - Avoid to the maximum primitive types;
+
+Exceptions:
+- Age rule for Physical characteristics is so bad I'm going to change it (not because tech, but because it makes no sense);
+  - New Age rule:
+    - Age 80 - 45% of current value of STR, CON and DEX
+    - Age 70 - 65% of current value of STR, CON and DEX
+    - Age 60 - 85% of current value of STR, CON and DEX
+    - Age 50 - 90% of current value of STR, CON and DEX
+    - Age 40 - 95% of current value of STR, CON and DEX
