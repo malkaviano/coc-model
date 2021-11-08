@@ -1,5 +1,5 @@
 package com.malk.coc.behaviors
 
-trait Alive {
+trait Damageable {
   def HP: Int
 }
