@@ -4,7 +4,7 @@ import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 
 class AttributeSpec extends AnyFunSpec with Matchers {
-  describe("A attribute") {
+  describe("An attribute") {
     val attr = new Attribute("attr") {
       def value: Int = 0
     }
