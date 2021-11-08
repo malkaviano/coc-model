@@ -30,15 +30,15 @@ abstract class Human(
       mov.value - ((x / 10) + 1)
   }
 
-  def STR: Int = ageInfluencePhysicalCapacity(str)
+  override def STR: Int = ageInfluencePhysicalCapacity(str)
 
-  def CON: Int = ageInfluencePhysicalCapacity(con)
+  override def CON: Int = ageInfluencePhysicalCapacity(con)
 
-  def DEX: Int = ageInfluencePhysicalCapacity(dex)
+  override def DEX: Int = ageInfluencePhysicalCapacity(dex)
 
-  def SIZ: Int = siz.value
+  override def SIZ: Int = siz.value
 
-  def APP: Int = {
+  override def APP: Int = {
     if (age.value < 40) {
       app.value
     } else {
@@ -48,7 +48,7 @@ abstract class Human(
     }
   }
 
-  def EDU: Int = {
+  override def EDU: Int = {
     val result = edu.value + eduAgeModifier
     if (result > 99) 99 else result
   }
