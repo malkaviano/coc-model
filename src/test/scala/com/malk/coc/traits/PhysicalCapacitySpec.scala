@@ -5,10 +5,10 @@ import org.scalatest.matchers.should.Matchers
 
 class PhysicalCapacitySpec extends AnyFunSpec with Matchers {
   val pc = new PhysicalCapacity {
-    def STR: Int = 40
-    def CON: Int = 50
-    def SIZ: Int = 60
-    def DEX: Int = 70
+    override def STR: Int = 40
+    override def CON: Int = 50
+    override def SIZ: Int = 60
+    override def DEX: Int = 70
   }
 
   it("should have STR (Strength) value") {

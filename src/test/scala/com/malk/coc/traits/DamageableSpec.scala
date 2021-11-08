@@ -5,7 +5,7 @@ import org.scalatest.matchers.should.Matchers
 
 class DamageableSpec extends AnyFunSpec with Matchers {
   val damageable = new Damageable {
-    def HP: Int = 10
+    override def HP: Int = 10
   }
 
   it("should have HP (Hit Points) value") {

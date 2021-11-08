@@ -5,7 +5,7 @@ import org.scalatest.matchers.should.Matchers
 
 class ChanceSpec extends AnyFunSpec with Matchers {
   val chance = new Chance {
-    def Luck: Int = 40
+    override def Luck: Int = 40
   }
 
   it("should have Luck value") {

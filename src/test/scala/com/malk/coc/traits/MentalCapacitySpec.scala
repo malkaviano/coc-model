@@ -5,8 +5,8 @@ import org.scalatest.matchers.should.Matchers
 
 class MentalCapacitySpec extends AnyFunSpec with Matchers {
   val mc = new MentalCapacity {
-    def INT: Int = 80
-    def POW: Int = 75
+    override def INT: Int = 80
+    override def POW: Int = 75
   }
 
   it("should have INT (Intelligence) value") {
