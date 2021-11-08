@@ -1,5 +1,5 @@
 package com.malk.coc.traits
 
-trait Lore {
+trait Education {
   def EDU: Int
 }
