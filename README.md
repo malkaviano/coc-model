@@ -18,3 +18,12 @@ Exceptions:
     - Age 60 - 85% of the current value of STR, CON and DEX
     - Age 50 - 90% of the current value of STR, CON and DEX
     - Age 40 - 95% of the current value of STR, CON and DEX
+
+- New Age rule for EDU improvement (for reasons). Cannot go above 99 remains:
+  - Age 80's: +5D10
+  - Age 70's: +4D10
+  - Age 60's: +3D10
+  - Age 50's: +2D10
+  - Age 40's: +1D10
+  - Age 20-39: No change
+  - Age < 20: -1D10
