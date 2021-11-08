@@ -5,7 +5,7 @@ import org.scalatest.matchers.should.Matchers
 
 import com.malk.coc.concepts.characteristics._
 
-class HumanSpec extends AnyFunSpec with Matchers {
+class HumanMobilitySpec extends AnyFunSpec with Matchers {
   describe("The Human entity") {
     val str = Strength(50)
     val siz = Size(60)
