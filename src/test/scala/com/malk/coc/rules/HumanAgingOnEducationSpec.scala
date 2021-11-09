@@ -21,27 +21,26 @@ trait HumanAgingOnEducationBehaviors extends Matchers with MockFactory {
 
     describe(s"when rolls are ${rollsStr}") {
       describe(s"when increments are ${incrementsStr}") {
-        val expected = increments.reduce(_ + _)
+        val total = increments.reduce(_ + _)
+        val expected = edu.copy(edu.value + total)
 
-        it(s"should return new Education increased by ${expected}") {
-          val roll100 = mockFunction[Int]
+        it(s"should return ${expected} increased by ${total}") {
+          val success100 = mockFunction[Int]
 
-          rolls.foreach(roll => roll100.expects().returning(roll))
+          rolls.foreach(roll => success100.expects().returning(roll))
 
-          val roll10 = mockFunction[Int]
+          val success10 = mockFunction[Int]
 
           increments.foreach(increment =>
             if (increment == 0)
-              roll10.expects().returning(increment).never()
+              success10.expects().returning(increment).never()
             else
-              roll10.expects().returning(increment).once()
+              success10.expects().returning(increment).once()
           )
 
-          val hao = new HumanAgingOnEducation(roll100, roll10)
+          val hao = new HumanAgingOnEducation(success100, success10)
 
-          hao.modifiedEducation(age, edu) shouldBe edu.copy(value =
-            edu.value + expected
-          )
+          hao.modifiedEducation(age, edu) shouldBe expected
         }
       }
     }
@@ -50,13 +49,13 @@ trait HumanAgingOnEducationBehaviors extends Matchers with MockFactory {
 
 class HumanAgingOnEducationSpec
     extends AnyFunSpec
-    with Matchers
-    with MockFactory
     with HumanAgingOnEducationBehaviors {
   describe("Human aging effects on EDU") {
+    val edu = Education(67)
+
     describe("when age is bellow 20") {
       val age = Dice.randomAge(15, 19)
-      val edu = Education(67)
+
       val hao = new HumanAgingOnEducation
 
       it("should return new Education reduced in 5") {
@@ -66,536 +65,207 @@ class HumanAgingOnEducationSpec
 
     describe("when age is between 20 and 39") {
       val age = Dice.randomAge(20, 39)
-      val edu = Education(67)
 
       describe("when first EDU improvement check is superior to EDU") {
-        val roll1 = 90
-        val increment1 = 5
+        val firstImprovementCheckIsSuperior = true
+
+        val results = singleCheckResults(firstImprovementCheckIsSuperior)
 
         it should behave like humanAgingOnEducationIncrementCheck(
           age,
           edu,
-          Seq(roll1),
-          Seq(increment1)
+          results._1,
+          results._2
         )
       }
 
       describe("when first EDU improvement check is equal or inferior to EDU") {
-        val roll1 = 6
-        val increment1 = 0
+        val firstImprovementCheckIsSuperior = false
+
+        val results = singleCheckResults(firstImprovementCheckIsSuperior)
 
         it should behave like humanAgingOnEducationIncrementCheck(
           age,
           edu,
-          Seq(roll1),
-          Seq(increment1)
+          results._1,
+          results._2
         )
       }
     }
 
     describe("when age is in the 40s") {
       val age = Dice.randomAge(40, 49)
-      val edu = Education(67)
 
-      describe("when first EDU improvement check is superior to EDU") {
-        val roll1 = 90
-        val increment1 = 5
-
-        describe("and second EDU improvement check is superior to EDU") {
-          val roll2 = 80
-          val increment2 = 3
-
-          it should behave like humanAgingOnEducationIncrementCheck(
-            age,
-            edu,
-            Seq(roll1, roll2),
-            Seq(increment1, increment2)
-          )
-        }
+      Seq(true, false).foreach(firstImprovementCheckIsSuperior => {
 
         describe(
-          "and second EDU improvement check is equal or inferior to EDU"
+          s"when first EDU improvement check is ${text(firstImprovementCheckIsSuperior)} to EDU"
         ) {
-          val roll2 = 24
-          val increment2 = 0
 
-          it should behave like humanAgingOnEducationIncrementCheck(
-            age,
-            edu,
-            Seq(roll1, roll2),
-            Seq(increment1, increment2)
-          )
+          Seq(true, false).foreach(secondImprovementCheckIsSuperior => {
+
+            describe(
+              s"and second EDU improvement check is ${text(secondImprovementCheckIsSuperior)} to EDU"
+            ) {
+              val results = doubleCheckResults(
+                firstImprovementCheckIsSuperior,
+                secondImprovementCheckIsSuperior
+              )
+
+              it should behave like humanAgingOnEducationIncrementCheck(
+                age,
+                edu,
+                results._1,
+                results._2
+              )
+            }
+          })
         }
-      }
-
-      describe("when first EDU improvement check is equal or inferior to EDU") {
-        val roll1 = 40
-        val increment1 = 0
-
-        describe("and second EDU improvement check is superior to EDU") {
-          val roll2 = 80
-          val increment2 = 3
-
-          it should behave like humanAgingOnEducationIncrementCheck(
-            age,
-            edu,
-            Seq(roll1, roll2),
-            Seq(increment1, increment2)
-          )
-        }
-
-        describe(
-          "and second EDU improvement check is equal or inferior to EDU"
-        ) {
-          val roll2 = 24
-          val increment2 = 0
-
-          it should behave like humanAgingOnEducationIncrementCheck(
-            age,
-            edu,
-            Seq(roll1, roll2),
-            Seq(increment1, increment2)
-          )
-        }
-      }
+      })
     }
 
     describe("when age is in the 50s") {
       val age = Dice.randomAge(50, 59)
-      val edu = Education(67)
 
-      describe("when first EDU improvement check is superior to EDU") {
-        val roll1 = 80
-        val increment1 = 5
-
-        describe("and second EDU improvement check is superior to EDU") {
-          val roll2 = 85
-          val increment2 = 3
-
-          describe("and third EDU improvement check is superior to EDU") {
-            val roll3 = 90
-            val increment3 = 7
-
-            it should behave like humanAgingOnEducationIncrementCheck(
-              age,
-              edu,
-              Seq(roll1, roll2, roll3),
-              Seq(increment1, increment2, increment3)
-            )
-          }
-
-          describe(
-            "and third EDU improvement check is equal or inferior to EDU"
-          ) {
-            val roll3 = 10
-            val increment3 = 0
-
-            it should behave like humanAgingOnEducationIncrementCheck(
-              age,
-              edu,
-              Seq(roll1, roll2, roll3),
-              Seq(increment1, increment2, increment3)
-            )
-          }
-        }
+      Seq(true, false).foreach(firstImprovementCheckIsSuperior => {
 
         describe(
-          "and second EDU improvement check is equal or inferior to EDU"
+          s"when first EDU improvement check is ${text(firstImprovementCheckIsSuperior)} to EDU"
         ) {
-          val roll2 = 20
-          val increment2 = 0
 
-          describe("and third EDU improvement check is superior to EDU") {
-            val roll3 = 90
-            val increment3 = 7
+          Seq(true, false).foreach(secondImprovementCheckIsSuperior => {
 
-            it should behave like humanAgingOnEducationIncrementCheck(
-              age,
-              edu,
-              Seq(roll1, roll2, roll3),
-              Seq(increment1, increment2, increment3)
-            )
-          }
+            describe(
+              s"and second EDU improvement check is ${text(secondImprovementCheckIsSuperior)} to EDU"
+            ) {
 
-          describe(
-            "and third EDU improvement check is equal or inferior to EDU"
-          ) {
-            val roll3 = 10
-            val increment3 = 0
+              Seq(true, false).foreach(thirdImprovementCheckIsSuperior => {
 
-            it should behave like humanAgingOnEducationIncrementCheck(
-              age,
-              edu,
-              Seq(roll1, roll2, roll3),
-              Seq(increment1, increment2, increment3)
-            )
-          }
+                describe(
+                  s"and third EDU improvement check is ${text(thirdImprovementCheckIsSuperior)} to EDU"
+                ) {
+                  val results = tripleCheckResults(
+                    firstImprovementCheckIsSuperior,
+                    secondImprovementCheckIsSuperior,
+                    thirdImprovementCheckIsSuperior
+                  )
+
+                  it should behave like humanAgingOnEducationIncrementCheck(
+                    age,
+                    edu,
+                    results._1,
+                    results._2
+                  )
+                }
+              })
+            }
+          })
         }
-      }
-
-      describe("when first EDU improvement check is equal or inferior to EDU") {
-        val roll1 = 20
-        val increment1 = 0
-
-        describe("and second EDU improvement check is superior to EDU") {
-          val roll2 = 85
-          val increment2 = 3
-
-          describe("and third EDU improvement check is superior to EDU") {
-            val roll3 = 90
-            val increment3 = 7
-
-            it should behave like humanAgingOnEducationIncrementCheck(
-              age,
-              edu,
-              Seq(roll1, roll2, roll3),
-              Seq(increment1, increment2, increment3)
-            )
-          }
-
-          describe(
-            "and third EDU improvement check is equal or inferior to EDU"
-          ) {
-            val roll3 = 10
-            val increment3 = 0
-
-            it should behave like humanAgingOnEducationIncrementCheck(
-              age,
-              edu,
-              Seq(roll1, roll2, roll3),
-              Seq(increment1, increment2, increment3)
-            )
-          }
-        }
-
-        describe(
-          "and second EDU improvement check is equal or inferior to EDU"
-        ) {
-          val roll2 = 20
-          val increment2 = 0
-
-          describe("and third EDU improvement check is superior to EDU") {
-            val roll3 = 90
-            val increment3 = 7
-
-            it should behave like humanAgingOnEducationIncrementCheck(
-              age,
-              edu,
-              Seq(roll1, roll2, roll3),
-              Seq(increment1, increment2, increment3)
-            )
-          }
-
-          describe(
-            "and third EDU improvement check is equal or inferior to EDU"
-          ) {
-            val roll3 = 10
-            val increment3 = 0
-
-            it should behave like humanAgingOnEducationIncrementCheck(
-              age,
-              edu,
-              Seq(roll1, roll2, roll3),
-              Seq(increment1, increment2, increment3)
-            )
-          }
-        }
-      }
+      })
     }
 
     describe("when age is 60 or above") {
       val age = Dice.randomAge(60, 89)
-      val edu = Education(67)
 
-      describe("when first EDU improvement check is superior to EDU") {
-        val roll1 = 80
-        val increment1 = 5
-
-        describe("and second EDU improvement check is superior to EDU") {
-          val roll2 = 85
-          val increment2 = 3
-
-          describe("and third EDU improvement check is superior to EDU") {
-            val roll3 = 90
-            val increment3 = 7
-
-            describe("and forth EDU improvement check is superior to EDU") {
-              val roll4 = 96
-              val increment4 = 4
-
-              it should behave like humanAgingOnEducationIncrementCheck(
-                age,
-                edu,
-                Seq(roll1, roll2, roll3, roll4),
-                Seq(increment1, increment2, increment3, increment4)
-              )
-            }
-
-            describe(
-              "and forth EDU improvement check is equal or inferior to EDU"
-            ) {
-              val roll4 = 26
-              val increment4 = 0
-
-              it should behave like humanAgingOnEducationIncrementCheck(
-                age,
-                edu,
-                Seq(roll1, roll2, roll3, roll4),
-                Seq(increment1, increment2, increment3, increment4)
-              )
-            }
-          }
-
-          describe(
-            "and third EDU improvement check is equal or inferior to EDU"
-          ) {
-            val roll3 = 34
-            val increment3 = 0
-
-            describe("and forth EDU improvement check is superior to EDU") {
-              val roll4 = 96
-              val increment4 = 4
-
-              it should behave like humanAgingOnEducationIncrementCheck(
-                age,
-                edu,
-                Seq(roll1, roll2, roll3, roll4),
-                Seq(increment1, increment2, increment3, increment4)
-              )
-            }
-
-            describe(
-              "and forth EDU improvement check is equal or inferior to EDU"
-            ) {
-              val roll4 = 26
-              val increment4 = 0
-
-              it should behave like humanAgingOnEducationIncrementCheck(
-                age,
-                edu,
-                Seq(roll1, roll2, roll3, roll4),
-                Seq(increment1, increment2, increment3, increment4)
-              )
-            }
-          }
-        }
+      Seq(true, false).foreach(firstImprovementCheckIsSuperior => {
 
         describe(
-          "and second EDU improvement check is equal or inferior to EDU"
+          s"when first EDU improvement check is ${text(firstImprovementCheckIsSuperior)} to EDU"
         ) {
-          val roll2 = 17
-          val increment2 = 0
 
-          describe("and third EDU improvement check is superior to EDU") {
-            val roll3 = 90
-            val increment3 = 7
-
-            describe("and forth EDU improvement check is superior to EDU") {
-              val roll4 = 96
-              val increment4 = 4
-
-              it should behave like humanAgingOnEducationIncrementCheck(
-                age,
-                edu,
-                Seq(roll1, roll2, roll3, roll4),
-                Seq(increment1, increment2, increment3, increment4)
-              )
-            }
+          Seq(true, false).foreach(secondImprovementCheckIsSuperior => {
 
             describe(
-              "and forth EDU improvement check is equal or inferior to EDU"
+              s"and second EDU improvement check is ${text(secondImprovementCheckIsSuperior)} to EDU"
             ) {
-              val roll4 = 26
-              val increment4 = 0
 
-              it should behave like humanAgingOnEducationIncrementCheck(
-                age,
-                edu,
-                Seq(roll1, roll2, roll3, roll4),
-                Seq(increment1, increment2, increment3, increment4)
-              )
+              Seq(true, false).foreach(thirdImprovementCheckIsSuperior => {
+
+                describe(
+                  s"and third EDU improvement check is ${text(thirdImprovementCheckIsSuperior)} to EDU"
+                ) {
+
+                  Seq(true, false).foreach(fourthImprovementCheckIsSuperior => {
+
+                    describe(
+                      s"and fourth EDU improvement check is ${text(fourthImprovementCheckIsSuperior)} to EDU"
+                    ) {
+                      val results = quadrupleCheckResults(
+                        firstImprovementCheckIsSuperior,
+                        secondImprovementCheckIsSuperior,
+                        thirdImprovementCheckIsSuperior,
+                        fourthImprovementCheckIsSuperior
+                      )
+
+                      it should behave like humanAgingOnEducationIncrementCheck(
+                        age,
+                        edu,
+                        results._1,
+                        results._2
+                      )
+                    }
+                  })
+
+                }
+              })
             }
-          }
-
-          describe(
-            "and third EDU improvement check is equal or inferior to EDU"
-          ) {
-            val roll3 = 34
-            val increment3 = 0
-
-            describe("and forth EDU improvement check is superior to EDU") {
-              val roll4 = 96
-              val increment4 = 4
-
-              it should behave like humanAgingOnEducationIncrementCheck(
-                age,
-                edu,
-                Seq(roll1, roll2, roll3, roll4),
-                Seq(increment1, increment2, increment3, increment4)
-              )
-            }
-
-            describe(
-              "and forth EDU improvement check is equal or inferior to EDU"
-            ) {
-              val roll4 = 26
-              val increment4 = 0
-
-              it should behave like humanAgingOnEducationIncrementCheck(
-                age,
-                edu,
-                Seq(roll1, roll2, roll3, roll4),
-                Seq(increment1, increment2, increment3, increment4)
-              )
-            }
-          }
+          })
         }
-      }
-
-      describe("when first EDU improvement check is equal or inferior to EDU") {
-        val roll1 = 9
-        val increment1 = 0
-
-        describe("and second EDU improvement check is superior to EDU") {
-          val roll2 = 85
-          val increment2 = 3
-
-          describe("and third EDU improvement check is superior to EDU") {
-            val roll3 = 90
-            val increment3 = 7
-
-            describe("and forth EDU improvement check is superior to EDU") {
-              val roll4 = 96
-              val increment4 = 4
-
-              it should behave like humanAgingOnEducationIncrementCheck(
-                age,
-                edu,
-                Seq(roll1, roll2, roll3, roll4),
-                Seq(increment1, increment2, increment3, increment4)
-              )
-            }
-
-            describe(
-              "and forth EDU improvement check is equal or inferior to EDU"
-            ) {
-              val roll4 = 26
-              val increment4 = 0
-
-              it should behave like humanAgingOnEducationIncrementCheck(
-                age,
-                edu,
-                Seq(roll1, roll2, roll3, roll4),
-                Seq(increment1, increment2, increment3, increment4)
-              )
-            }
-          }
-
-          describe(
-            "and third EDU improvement check is equal or inferior to EDU"
-          ) {
-            val roll3 = 34
-            val increment3 = 0
-
-            describe("and forth EDU improvement check is superior to EDU") {
-              val roll4 = 96
-              val increment4 = 4
-
-              it should behave like humanAgingOnEducationIncrementCheck(
-                age,
-                edu,
-                Seq(roll1, roll2, roll3, roll4),
-                Seq(increment1, increment2, increment3, increment4)
-              )
-            }
-
-            describe(
-              "and forth EDU improvement check is equal or inferior to EDU"
-            ) {
-              val roll4 = 26
-              val increment4 = 0
-
-              it should behave like humanAgingOnEducationIncrementCheck(
-                age,
-                edu,
-                Seq(roll1, roll2, roll3, roll4),
-                Seq(increment1, increment2, increment3, increment4)
-              )
-            }
-          }
-        }
-
-        describe(
-          "and second EDU improvement check is equal or inferior to EDU"
-        ) {
-          val roll2 = 17
-          val increment2 = 0
-
-          describe("and third EDU improvement check is superior to EDU") {
-            val roll3 = 90
-            val increment3 = 7
-
-            describe("and forth EDU improvement check is superior to EDU") {
-              val roll4 = 96
-              val increment4 = 4
-
-              it should behave like humanAgingOnEducationIncrementCheck(
-                age,
-                edu,
-                Seq(roll1, roll2, roll3, roll4),
-                Seq(increment1, increment2, increment3, increment4)
-              )
-            }
-
-            describe(
-              "and forth EDU improvement check is equal or inferior to EDU"
-            ) {
-              val roll4 = 26
-              val increment4 = 0
-
-              it should behave like humanAgingOnEducationIncrementCheck(
-                age,
-                edu,
-                Seq(roll1, roll2, roll3, roll4),
-                Seq(increment1, increment2, increment3, increment4)
-              )
-            }
-          }
-
-          describe(
-            "and third EDU improvement check is equal or inferior to EDU"
-          ) {
-            val roll3 = 34
-            val increment3 = 0
-
-            describe("and forth EDU improvement check is superior to EDU") {
-              val roll4 = 96
-              val increment4 = 4
-
-              it should behave like humanAgingOnEducationIncrementCheck(
-                age,
-                edu,
-                Seq(roll1, roll2, roll3, roll4),
-                Seq(increment1, increment2, increment3, increment4)
-              )
-            }
-
-            describe(
-              "and forth EDU improvement check is equal or inferior to EDU"
-            ) {
-              val roll4 = 26
-              val increment4 = 0
-
-              it should behave like humanAgingOnEducationIncrementCheck(
-                age,
-                edu,
-                Seq(roll1, roll2, roll3, roll4),
-                Seq(increment1, increment2, increment3, increment4)
-              )
-            }
-          }
-        }
-      }
+      })
     }
   }
+
+  val rollSuccess4 = 96
+  val rollFailure4 = 34
+  val increment4 = 4
+
+  private def singleCheckResults(success1: Boolean): (Seq[Int], Seq[Int]) = {
+    (
+      Seq(if (success1) 90 else 9),
+      Seq(if (success1) 5 else 0)
+    )
+  }
+
+  private def doubleCheckResults(
+      success1: Boolean,
+      success2: Boolean
+  ): (Seq[Int], Seq[Int]) = {
+    val result = singleCheckResults(success1)
+
+    (
+      result._1 ++ Seq(if (success2) 85 else 19),
+      result._2 ++ Seq(if (success2) 3 else 0)
+    )
+  }
+
+  private def tripleCheckResults(
+      success1: Boolean,
+      success2: Boolean,
+      success3: Boolean
+  ): (Seq[Int], Seq[Int]) = {
+    val result = doubleCheckResults(success1, success2)
+
+    (
+      result._1 ++ Seq(if (success3) 93 else 11),
+      result._2 ++ Seq(if (success3) 7 else 0)
+    )
+  }
+
+  private def quadrupleCheckResults(
+      success1: Boolean,
+      success2: Boolean,
+      success3: Boolean,
+      success4: Boolean
+  ): (Seq[Int], Seq[Int]) = {
+    val result = tripleCheckResults(success1, success2, success3)
+
+    (
+      result._1 ++ Seq(if (success3) 90 else 9),
+      result._2 ++ Seq(if (success3) 4 else 0)
+    )
+  }
+
+  def text(checkIsSuperior: Boolean) =
+    if (checkIsSuperior) "superior"
+    else "equal or inferior"
 }
