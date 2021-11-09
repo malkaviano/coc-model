@@ -25,3 +25,10 @@ class HumanAgingOnEducation(
     if (times == 1) newEdu else checkEDUIncrease(newEdu, times - 1)
   }
 }
+
+object HumanAgingOnEducation {
+  object implicits {
+    implicit val humanAgingOnEducationEffect: HumanAgingOnEducation =
+      new HumanAgingOnEducation
+  }
+}

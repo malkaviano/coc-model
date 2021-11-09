@@ -4,6 +4,7 @@ import com.malk.coc.concepts.characteristics._
 import com.malk.coc.traits._
 import com.malk.coc.concepts.attributes.MovementRate
 import com.malk.coc.traits.EducationImprovement._
+import com.malk.coc.rules.HumanAgingOnEducation
 
 abstract class Human(
     protected val age: Age,
@@ -12,12 +13,17 @@ abstract class Human(
     protected val dex: Dexterity,
     protected val con: Constitution,
     protected val app: Appearance,
-    protected val edu: Education
-) extends Mobility
+    protected var edu: Education
+)(implicit ageEffect: HumanAgingOnEducation)
+    extends Mobility
     with PhysicalCapacity
     with Charismatic
     with Knowledge {
   protected val mov: MovementRate = MovementRate(str, dex, siz)
+
+  edu = ageEffect.modifiedEducation(age, edu)
+
+  def Age: Int = age.value
 
   override def MOV: Int = {
     val x = (age.value - 40)

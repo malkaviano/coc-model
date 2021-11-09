@@ -7,6 +7,8 @@ import com.malk.coc.concepts.characteristics._
 import com.malk.coc.traits.EducationImprovement._
 
 class HumanCharismaticSpec extends AnyFunSpec with Matchers {
+  import com.malk.coc.rules.HumanAgingOnEducation.implicits._
+
   describe("The Human APP") {
     val str = Strength(50)
     val siz = Size(60)

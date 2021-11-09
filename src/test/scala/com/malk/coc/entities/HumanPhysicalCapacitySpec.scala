@@ -7,6 +7,8 @@ import com.malk.coc.concepts.characteristics._
 import com.malk.coc.traits.EducationImprovement._
 
 class HumanPhysicalCapacitySpec extends AnyFunSpec with Matchers {
+  import com.malk.coc.rules.HumanAgingOnEducation.implicits._
+
   describe("The Human physical capacity") {
     val str = Strength(50)
     val siz = Size(60)
