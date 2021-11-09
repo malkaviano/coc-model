@@ -27,7 +27,7 @@ class HumanAgingOnEducationSpec
       val age = Dice.randomAge(20, 39)
       val edu = Education(67)
 
-      describe("when EDU check passes") {
+      describe("when EDU improvement check is superior to EDU") {
         it("should return new Education increased (5)") {
           val roll100 = mockFunction[Int]
 
@@ -43,7 +43,7 @@ class HumanAgingOnEducationSpec
         }
       }
 
-      describe("when EDU check fails") {
+      describe("when EDU improvement check is equal or inferior to EDU") {
         it("should return same Education") {
           val roll100 = mockFunction[Int]
 
@@ -64,8 +64,8 @@ class HumanAgingOnEducationSpec
       val age = Dice.randomAge(40, 49)
       val edu = Education(67)
 
-      describe("when first EDU check passes") {
-        describe("and second EDU check passes") {
+      describe("when first EDU improvement check is superior to EDU") {
+        describe("and second EDU improvement check is superior to EDU") {
           it("should return new Education increased (5) + (3)") {
             val roll100 = mockFunction[Int]
 
@@ -83,7 +83,9 @@ class HumanAgingOnEducationSpec
           }
         }
 
-        describe("and second EDU check fails") {
+        describe(
+          "and second EDU improvement check is equal or inferior to EDU"
+        ) {
           it("should return new Education increased (5)") {
             val roll100 = mockFunction[Int]
 
@@ -102,8 +104,8 @@ class HumanAgingOnEducationSpec
         }
       }
 
-      describe("when first EDU check fails") {
-        describe("and second EDU check passes") {
+      describe("when first EDU improvement check is equal or inferior to EDU") {
+        describe("and second EDU improvement check is superior to EDU") {
           it("should return new Education increased (3)") {
             val roll100 = mockFunction[Int]
 
@@ -121,7 +123,9 @@ class HumanAgingOnEducationSpec
           }
         }
 
-        describe("and second EDU check fails") {
+        describe(
+          "and second EDU improvement check is equal or inferior to EDU"
+        ) {
           it("should return same Education") {
             val roll100 = mockFunction[Int]
 
@@ -141,13 +145,13 @@ class HumanAgingOnEducationSpec
       }
     }
 
-    describe("when age is in the 50s or above") {
+    describe("when age is in the 50s") {
       val age = Dice.randomAge(50, 59)
       val edu = Education(67)
 
-      describe("when first EDU check passes") {
-        describe("and second EDU check passes") {
-          describe("and third EDU check passes") {
+      describe("when first EDU improvement check is superior to EDU") {
+        describe("and second EDU improvement check is superior to EDU") {
+          describe("and third EDU improvement check is superior to EDU") {
             it("should return new Education increased (5) + (3) + (7)") {
               val roll100 = mockFunction[Int]
 
@@ -167,7 +171,9 @@ class HumanAgingOnEducationSpec
             }
           }
 
-          describe("and third EDU check fails") {
+          describe(
+            "and third EDU improvement check is equal or inferior to EDU"
+          ) {
             it("should return new Education increased (5) + (3) + (0)") {
               val roll100 = mockFunction[Int]
 
@@ -188,8 +194,10 @@ class HumanAgingOnEducationSpec
           }
         }
 
-        describe("and second EDU check fails") {
-          describe("and third EDU check passes") {
+        describe(
+          "and second EDU improvement check is equal or inferior to EDU"
+        ) {
+          describe("and third EDU improvement check is superior to EDU") {
             it("should return new Education increased (5) + (0) + (7)") {
               val roll100 = mockFunction[Int]
 
@@ -209,7 +217,9 @@ class HumanAgingOnEducationSpec
             }
           }
 
-          describe("and third EDU check fails") {
+          describe(
+            "and third EDU improvement check is equal or inferior to EDU"
+          ) {
             it("should return new Education increased (5) + (0) + (0)") {
               val roll100 = mockFunction[Int]
 
@@ -231,9 +241,9 @@ class HumanAgingOnEducationSpec
         }
       }
 
-      describe("when first EDU check fails") {
-        describe("and second EDU check passes") {
-          describe("and third EDU check passes") {
+      describe("when first EDU improvement check is equal or inferior to EDU") {
+        describe("and second EDU improvement check is superior to EDU") {
+          describe("and third EDU improvement check is superior to EDU") {
             it("should return new Education increased (0) + (3) + (7)") {
               val roll100 = mockFunction[Int]
 
@@ -253,7 +263,9 @@ class HumanAgingOnEducationSpec
             }
           }
 
-          describe("and third EDU check fails") {
+          describe(
+            "and third EDU improvement check is equal or inferior to EDU"
+          ) {
             it("should return new Education increased (0) + (3) + (0)") {
               val roll100 = mockFunction[Int]
 
@@ -274,8 +286,10 @@ class HumanAgingOnEducationSpec
           }
         }
 
-        describe("and second EDU check fails") {
-          describe("and third EDU check passes") {
+        describe(
+          "and second EDU improvement check is equal or inferior to EDU"
+        ) {
+          describe("and third EDU improvement check is superior to EDU") {
             it("should return new Education increased (0) + (0) + (7)") {
               val roll100 = mockFunction[Int]
 
@@ -295,7 +309,9 @@ class HumanAgingOnEducationSpec
             }
           }
 
-          describe("and third EDU check fails") {
+          describe(
+            "and third EDU improvement check is equal or inferior to EDU"
+          ) {
             it("should return same Education") {
               val roll100 = mockFunction[Int]
 
@@ -311,7 +327,482 @@ class HumanAgingOnEducationSpec
 
               val hao = new HumanAgingOnEducation(roll100, roll10)
 
-              hao.modifiedEducation(age, edu) shouldBe Education(67)
+              hao.modifiedEducation(age, edu) shouldBe edu
+            }
+          }
+        }
+      }
+    }
+
+    describe("when age is 60 or above") {
+      val age = Dice.randomAge(60, 89)
+      val edu = Education(67)
+
+      describe("when first EDU improvement check is superior to EDU") {
+        describe("and second EDU improvement check is superior to EDU") {
+          describe("and third EDU improvement check is superior to EDU") {
+            describe("and forth EDU improvement check is superior to EDU") {
+              it(
+                "should return new Education increased (5) + (3) + (7) + (4)"
+              ) {
+                val roll100 = mockFunction[Int]
+
+                roll100.expects().returning(80).once()
+                roll100.expects().returning(85).once()
+                roll100.expects().returning(90).once()
+                roll100.expects().returning(96).once()
+
+                val roll10 = mockFunction[Int]
+
+                roll10.expects().returning(5).once()
+                roll10.expects().returning(3).once()
+                roll10.expects().returning(7).once()
+                roll10.expects().returning(4).once()
+
+                val hao = new HumanAgingOnEducation(roll100, roll10)
+
+                hao.modifiedEducation(age, edu) shouldBe Education(
+                  67 + 5 + 3 + 7 + 4
+                )
+              }
+            }
+
+            describe(
+              "and forth EDU improvement check is equal or inferior to EDU"
+            ) {
+              it(
+                "should return new Education increased (5) + (3) + (7) + (0)"
+              ) {
+                val roll100 = mockFunction[Int]
+
+                roll100.expects().returning(80).once()
+                roll100.expects().returning(85).once()
+                roll100.expects().returning(90).once()
+                roll100.expects().returning(26).once()
+
+                val roll10 = mockFunction[Int]
+
+                roll10.expects().returning(5).once()
+                roll10.expects().returning(3).once()
+                roll10.expects().returning(7).once()
+                roll10.expects().returning(4).never()
+
+                val hao = new HumanAgingOnEducation(roll100, roll10)
+
+                hao.modifiedEducation(age, edu) shouldBe Education(
+                  67 + 5 + 3 + 7
+                )
+              }
+            }
+          }
+
+          describe(
+            "and third EDU improvement check is equal or inferior to EDU"
+          ) {
+            describe("and forth EDU improvement check is superior to EDU") {
+              it(
+                "should return new Education increased (5) + (3) + (0) + (4)"
+              ) {
+                val roll100 = mockFunction[Int]
+
+                roll100.expects().returning(80).once()
+                roll100.expects().returning(85).once()
+                roll100.expects().returning(15).once()
+                roll100.expects().returning(96).once()
+
+                val roll10 = mockFunction[Int]
+
+                roll10.expects().returning(5).once()
+                roll10.expects().returning(3).once()
+                roll10.expects().returning(7).never()
+                roll10.expects().returning(4).once()
+
+                val hao = new HumanAgingOnEducation(roll100, roll10)
+
+                hao.modifiedEducation(age, edu) shouldBe Education(
+                  67 + 5 + 3 + 4
+                )
+              }
+            }
+
+            describe(
+              "and forth EDU improvement check is equal or inferior to EDU"
+            ) {
+              it(
+                "should return new Education increased (5) + (3) + (0) + (0)"
+              ) {
+                val roll100 = mockFunction[Int]
+
+                roll100.expects().returning(80).once()
+                roll100.expects().returning(85).once()
+                roll100.expects().returning(15).once()
+                roll100.expects().returning(26).once()
+
+                val roll10 = mockFunction[Int]
+
+                roll10.expects().returning(5).once()
+                roll10.expects().returning(3).once()
+                roll10.expects().returning(7).never()
+                roll10.expects().returning(4).never()
+
+                val hao = new HumanAgingOnEducation(roll100, roll10)
+
+                hao.modifiedEducation(age, edu) shouldBe Education(
+                  67 + 5 + 3
+                )
+              }
+            }
+          }
+        }
+
+        describe(
+          "and second EDU improvement check is equal or inferior to EDU"
+        ) {
+          describe("and third EDU improvement check is superior to EDU") {
+            describe("and forth EDU improvement check is superior to EDU") {
+              it(
+                "should return new Education increased (5) + (0) + (7) + (4)"
+              ) {
+                val roll100 = mockFunction[Int]
+
+                roll100.expects().returning(80).once()
+                roll100.expects().returning(9).once()
+                roll100.expects().returning(90).once()
+                roll100.expects().returning(96).once()
+
+                val roll10 = mockFunction[Int]
+
+                roll10.expects().returning(5).once()
+                roll10.expects().returning(3).never()
+                roll10.expects().returning(7).once()
+                roll10.expects().returning(4).once()
+
+                val hao = new HumanAgingOnEducation(roll100, roll10)
+
+                hao.modifiedEducation(age, edu) shouldBe Education(
+                  67 + 5 + 7 + 4
+                )
+              }
+            }
+
+            describe(
+              "and forth EDU improvement check is equal or inferior to EDU"
+            ) {
+              it(
+                "should return new Education increased (5) + (0) + (7) + (0)"
+              ) {
+                val roll100 = mockFunction[Int]
+
+                roll100.expects().returning(80).once()
+                roll100.expects().returning(9).once()
+                roll100.expects().returning(90).once()
+                roll100.expects().returning(26).once()
+
+                val roll10 = mockFunction[Int]
+
+                roll10.expects().returning(5).once()
+                roll10.expects().returning(3).never()
+                roll10.expects().returning(7).once()
+                roll10.expects().returning(4).never()
+
+                val hao = new HumanAgingOnEducation(roll100, roll10)
+
+                hao.modifiedEducation(age, edu) shouldBe Education(
+                  67 + 5 + 7
+                )
+              }
+            }
+          }
+
+          describe(
+            "and third EDU improvement check is equal or inferior to EDU"
+          ) {
+            describe("and forth EDU improvement check is superior to EDU") {
+              it(
+                "should return new Education increased (5) + (0) + (0) + (4)"
+              ) {
+                val roll100 = mockFunction[Int]
+
+                roll100.expects().returning(80).once()
+                roll100.expects().returning(9).once()
+                roll100.expects().returning(15).once()
+                roll100.expects().returning(96).once()
+
+                val roll10 = mockFunction[Int]
+
+                roll10.expects().returning(5).once()
+                roll10.expects().returning(3).never()
+                roll10.expects().returning(7).never()
+                roll10.expects().returning(4).once()
+
+                val hao = new HumanAgingOnEducation(roll100, roll10)
+
+                hao.modifiedEducation(age, edu) shouldBe Education(
+                  67 + 5 + 4
+                )
+              }
+            }
+
+            describe(
+              "and forth EDU improvement check is equal or inferior to EDU"
+            ) {
+              it(
+                "should return new Education increased (5) + (0) + (0) + (0)"
+              ) {
+                val roll100 = mockFunction[Int]
+
+                roll100.expects().returning(80).once()
+                roll100.expects().returning(9).once()
+                roll100.expects().returning(15).once()
+                roll100.expects().returning(26).once()
+
+                val roll10 = mockFunction[Int]
+
+                roll10.expects().returning(5).once()
+                roll10.expects().returning(3).never()
+                roll10.expects().returning(7).never()
+                roll10.expects().returning(4).never()
+
+                val hao = new HumanAgingOnEducation(roll100, roll10)
+
+                hao.modifiedEducation(age, edu) shouldBe Education(
+                  67 + 5
+                )
+              }
+            }
+          }
+        }
+      }
+
+      describe("when first EDU improvement check is equal or inferior to EDU") {
+        describe("and second EDU improvement check is superior to EDU") {
+          describe("and third EDU improvement check is superior to EDU") {
+            describe("and forth EDU improvement check is superior to EDU") {
+              it(
+                "should return new Education increased (0) + (3) + (7) + (4)"
+              ) {
+                val roll100 = mockFunction[Int]
+
+                roll100.expects().returning(6).once()
+                roll100.expects().returning(85).once()
+                roll100.expects().returning(90).once()
+                roll100.expects().returning(96).once()
+
+                val roll10 = mockFunction[Int]
+
+                roll10.expects().returning(5).never()
+                roll10.expects().returning(3).once()
+                roll10.expects().returning(7).once()
+                roll10.expects().returning(4).once()
+
+                val hao = new HumanAgingOnEducation(roll100, roll10)
+
+                hao.modifiedEducation(age, edu) shouldBe Education(
+                  67 + 3 + 7 + 4
+                )
+              }
+            }
+
+            describe(
+              "and forth EDU improvement check is equal or inferior to EDU"
+            ) {
+              it(
+                "should return new Education increased (0) + (3) + (7) + (0)"
+              ) {
+                val roll100 = mockFunction[Int]
+
+                roll100.expects().returning(6).once()
+                roll100.expects().returning(85).once()
+                roll100.expects().returning(90).once()
+                roll100.expects().returning(26).once()
+
+                val roll10 = mockFunction[Int]
+
+                roll10.expects().returning(5).never()
+                roll10.expects().returning(3).once()
+                roll10.expects().returning(7).once()
+                roll10.expects().returning(4).never()
+
+                val hao = new HumanAgingOnEducation(roll100, roll10)
+
+                hao.modifiedEducation(age, edu) shouldBe Education(
+                  67 + 3 + 7
+                )
+              }
+            }
+          }
+
+          describe(
+            "and third EDU improvement check is equal or inferior to EDU"
+          ) {
+            describe("and forth EDU improvement check is superior to EDU") {
+              it(
+                "should return new Education increased (0) + (3) + (0) + (4)"
+              ) {
+                val roll100 = mockFunction[Int]
+
+                roll100.expects().returning(6).once()
+                roll100.expects().returning(85).once()
+                roll100.expects().returning(15).once()
+                roll100.expects().returning(96).once()
+
+                val roll10 = mockFunction[Int]
+
+                roll10.expects().returning(5).never()
+                roll10.expects().returning(3).once()
+                roll10.expects().returning(7).never()
+                roll10.expects().returning(4).once()
+
+                val hao = new HumanAgingOnEducation(roll100, roll10)
+
+                hao.modifiedEducation(age, edu) shouldBe Education(
+                  67 + 3 + 4
+                )
+              }
+            }
+
+            describe(
+              "and forth EDU improvement check is equal or inferior to EDU"
+            ) {
+              it(
+                "should return new Education increased (0) + (3) + (0) + (0)"
+              ) {
+                val roll100 = mockFunction[Int]
+
+                roll100.expects().returning(6).once()
+                roll100.expects().returning(85).once()
+                roll100.expects().returning(15).once()
+                roll100.expects().returning(26).once()
+
+                val roll10 = mockFunction[Int]
+
+                roll10.expects().returning(5).never()
+                roll10.expects().returning(3).once()
+                roll10.expects().returning(7).never()
+                roll10.expects().returning(4).never()
+
+                val hao = new HumanAgingOnEducation(roll100, roll10)
+
+                hao.modifiedEducation(age, edu) shouldBe Education(
+                  67 + 3
+                )
+              }
+            }
+          }
+        }
+
+        describe(
+          "and second EDU improvement check is equal or inferior to EDU"
+        ) {
+          describe("and third EDU improvement check is superior to EDU") {
+            describe("and forth EDU improvement check is superior to EDU") {
+              it(
+                "should return new Education increased (0) + (0) + (7) + (4)"
+              ) {
+                val roll100 = mockFunction[Int]
+
+                roll100.expects().returning(6).once()
+                roll100.expects().returning(9).once()
+                roll100.expects().returning(90).once()
+                roll100.expects().returning(96).once()
+
+                val roll10 = mockFunction[Int]
+
+                roll10.expects().returning(5).never()
+                roll10.expects().returning(3).never()
+                roll10.expects().returning(7).once()
+                roll10.expects().returning(4).once()
+
+                val hao = new HumanAgingOnEducation(roll100, roll10)
+
+                hao.modifiedEducation(age, edu) shouldBe Education(
+                  67 + 7 + 4
+                )
+              }
+            }
+
+            describe(
+              "and forth EDU improvement check is equal or inferior to EDU"
+            ) {
+              it(
+                "should return new Education increased (0) + (0) + (7) + (0)"
+              ) {
+                val roll100 = mockFunction[Int]
+
+                roll100.expects().returning(6).once()
+                roll100.expects().returning(9).once()
+                roll100.expects().returning(90).once()
+                roll100.expects().returning(26).once()
+
+                val roll10 = mockFunction[Int]
+
+                roll10.expects().returning(5).never()
+                roll10.expects().returning(3).never()
+                roll10.expects().returning(7).once()
+                roll10.expects().returning(4).never()
+
+                val hao = new HumanAgingOnEducation(roll100, roll10)
+
+                hao.modifiedEducation(age, edu) shouldBe Education(
+                  67 + 7
+                )
+              }
+            }
+          }
+
+          describe(
+            "and third EDU improvement check is equal or inferior to EDU"
+          ) {
+            describe("and forth EDU improvement check is superior to EDU") {
+              it(
+                "should return new Education increased (0) + (0) + (0) + (4)"
+              ) {
+                val roll100 = mockFunction[Int]
+
+                roll100.expects().returning(6).once()
+                roll100.expects().returning(9).once()
+                roll100.expects().returning(15).once()
+                roll100.expects().returning(96).once()
+
+                val roll10 = mockFunction[Int]
+
+                roll10.expects().returning(5).never()
+                roll10.expects().returning(3).never()
+                roll10.expects().returning(7).never()
+                roll10.expects().returning(4).once()
+
+                val hao = new HumanAgingOnEducation(roll100, roll10)
+
+                hao.modifiedEducation(age, edu) shouldBe Education(
+                  67 + 4
+                )
+              }
+            }
+
+            describe(
+              "and forth EDU improvement check is equal or inferior to EDU"
+            ) {
+              it(
+                "should return same Education"
+              ) {
+                val roll100 = mockFunction[Int]
+
+                roll100.expects().returning(6).once()
+                roll100.expects().returning(9).once()
+                roll100.expects().returning(15).once()
+                roll100.expects().returning(26).once()
+
+                val roll10 = mockFunction[Int]
+
+                roll10.expects().returning(5).never()
+                roll10.expects().returning(3).never()
+                roll10.expects().returning(7).never()
+                roll10.expects().returning(4).never()
+
+                val hao = new HumanAgingOnEducation(roll100, roll10)
+
+                hao.modifiedEducation(age, edu) shouldBe edu
+              }
             }
           }
         }

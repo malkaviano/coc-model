@@ -12,6 +12,7 @@ class HumanAgingOnEducation(
 ) {
   def modifiedEducation(age: Age, edu: Education): Education = age.value match {
     case x if x < 20  => edu.copy(edu.value - 5)
+    case x if x >= 60 => checkEDUIncrease(edu, 4)
     case x if x >= 50 => checkEDUIncrease(edu, 3)
     case x if x >= 40 => checkEDUIncrease(edu, 2)
     case _            => checkEDUIncrease(edu)
