@@ -7,15 +7,15 @@ import org.scalamock.scalatest.MockFactory
 import com.malk.coc.concepts.characteristics.Education
 import com.malk.coc.concepts.characteristics.Age
 
-class HumanAgingOnEDUSpec extends AnyFunSpec with Matchers with MockFactory {
+class HumanAgingOnEducationSpec extends AnyFunSpec with Matchers with MockFactory {
   describe("Human aging effects on EDU") {
     describe("when age is bellow 20") {
       val age = Age(18)
       val edu = Education(67)
-      val hao = new HumanAgingOnEDU(age, edu)
+      val hao = new HumanAgingOnEducation(age, edu)
 
       it("should return new Education reduced in 5") {
-        hao.modifiedEDU shouldBe Education(67 - 5)
+        hao.modifiedEducation shouldBe Education(67 - 5)
       }
     }
 
@@ -33,9 +33,9 @@ class HumanAgingOnEDUSpec extends AnyFunSpec with Matchers with MockFactory {
 
           roll10.expects().returning(5).once()
 
-          val hao = new HumanAgingOnEDU(age, edu, roll100, roll10)
+          val hao = new HumanAgingOnEducation(age, edu, roll100, roll10)
 
-          hao.modifiedEDU shouldBe Education(67 + 5)
+          hao.modifiedEducation shouldBe Education(67 + 5)
         }
       }
 
@@ -49,9 +49,9 @@ class HumanAgingOnEDUSpec extends AnyFunSpec with Matchers with MockFactory {
 
           roll10.expects().returning(5).never()
 
-          val hao = new HumanAgingOnEDU(age, edu, roll100, roll10)
+          val hao = new HumanAgingOnEducation(age, edu, roll100, roll10)
 
-          hao.modifiedEDU shouldBe Education(67)
+          hao.modifiedEducation shouldBe Education(67)
         }
       }
     }
@@ -73,9 +73,9 @@ class HumanAgingOnEDUSpec extends AnyFunSpec with Matchers with MockFactory {
             roll10.expects().returning(5).once()
             roll10.expects().returning(3).once()
 
-            val hao = new HumanAgingOnEDU(age, edu, roll100, roll10)
+            val hao = new HumanAgingOnEducation(age, edu, roll100, roll10)
 
-            hao.modifiedEDU shouldBe Education(67 + 5 + 3)
+            hao.modifiedEducation shouldBe Education(67 + 5 + 3)
           }
         }
 
@@ -91,9 +91,9 @@ class HumanAgingOnEDUSpec extends AnyFunSpec with Matchers with MockFactory {
             roll10.expects().returning(5).once()
             roll10.expects().returning(3).never()
 
-            val hao = new HumanAgingOnEDU(age, edu, roll100, roll10)
+            val hao = new HumanAgingOnEducation(age, edu, roll100, roll10)
 
-            hao.modifiedEDU shouldBe Education(67 + 5)
+            hao.modifiedEducation shouldBe Education(67 + 5)
           }
         }
       }
@@ -111,9 +111,9 @@ class HumanAgingOnEDUSpec extends AnyFunSpec with Matchers with MockFactory {
             roll10.expects().returning(3).once()
             roll10.expects().returning(5).never()
 
-            val hao = new HumanAgingOnEDU(age, edu, roll100, roll10)
+            val hao = new HumanAgingOnEducation(age, edu, roll100, roll10)
 
-            hao.modifiedEDU shouldBe Education(70)
+            hao.modifiedEducation shouldBe Education(70)
           }
         }
 
@@ -129,9 +129,9 @@ class HumanAgingOnEDUSpec extends AnyFunSpec with Matchers with MockFactory {
             roll10.expects().returning(3).never()
             roll10.expects().returning(5).never()
 
-            val hao = new HumanAgingOnEDU(age, edu, roll100, roll10)
+            val hao = new HumanAgingOnEducation(age, edu, roll100, roll10)
 
-            hao.modifiedEDU shouldBe Education(67)
+            hao.modifiedEducation shouldBe Education(67)
           }
         }
       }
@@ -157,9 +157,9 @@ class HumanAgingOnEDUSpec extends AnyFunSpec with Matchers with MockFactory {
               roll10.expects().returning(3).once()
               roll10.expects().returning(7).once()
 
-              val hao = new HumanAgingOnEDU(age, edu, roll100, roll10)
+              val hao = new HumanAgingOnEducation(age, edu, roll100, roll10)
 
-              hao.modifiedEDU shouldBe Education(67 + 5 + 3 + 7)
+              hao.modifiedEducation shouldBe Education(67 + 5 + 3 + 7)
             }
           }
 
@@ -177,9 +177,9 @@ class HumanAgingOnEDUSpec extends AnyFunSpec with Matchers with MockFactory {
               roll10.expects().returning(3).once()
               roll10.expects().returning(7).never()
 
-              val hao = new HumanAgingOnEDU(age, edu, roll100, roll10)
+              val hao = new HumanAgingOnEducation(age, edu, roll100, roll10)
 
-              hao.modifiedEDU shouldBe Education(67 + 5 + 3)
+              hao.modifiedEducation shouldBe Education(67 + 5 + 3)
             }
           }
         }
@@ -199,9 +199,9 @@ class HumanAgingOnEDUSpec extends AnyFunSpec with Matchers with MockFactory {
               roll10.expects().returning(3).never()
               roll10.expects().returning(7).once()
 
-              val hao = new HumanAgingOnEDU(age, edu, roll100, roll10)
+              val hao = new HumanAgingOnEducation(age, edu, roll100, roll10)
 
-              hao.modifiedEDU shouldBe Education(67 + 5 + 7)
+              hao.modifiedEducation shouldBe Education(67 + 5 + 7)
             }
           }
 
@@ -219,9 +219,9 @@ class HumanAgingOnEDUSpec extends AnyFunSpec with Matchers with MockFactory {
               roll10.expects().returning(3).never()
               roll10.expects().returning(7).never()
 
-              val hao = new HumanAgingOnEDU(age, edu, roll100, roll10)
+              val hao = new HumanAgingOnEducation(age, edu, roll100, roll10)
 
-              hao.modifiedEDU shouldBe Education(67 + 5)
+              hao.modifiedEducation shouldBe Education(67 + 5)
             }
           }
         }
@@ -243,9 +243,9 @@ class HumanAgingOnEDUSpec extends AnyFunSpec with Matchers with MockFactory {
               roll10.expects().returning(3).once()
               roll10.expects().returning(7).once()
 
-              val hao = new HumanAgingOnEDU(age, edu, roll100, roll10)
+              val hao = new HumanAgingOnEducation(age, edu, roll100, roll10)
 
-              hao.modifiedEDU shouldBe Education(67 + 3 + 7)
+              hao.modifiedEducation shouldBe Education(67 + 3 + 7)
             }
           }
 
@@ -263,9 +263,9 @@ class HumanAgingOnEDUSpec extends AnyFunSpec with Matchers with MockFactory {
               roll10.expects().returning(3).once()
               roll10.expects().returning(7).never()
 
-              val hao = new HumanAgingOnEDU(age, edu, roll100, roll10)
+              val hao = new HumanAgingOnEducation(age, edu, roll100, roll10)
 
-              hao.modifiedEDU shouldBe Education(67 + 3)
+              hao.modifiedEducation shouldBe Education(67 + 3)
             }
           }
         }
@@ -285,9 +285,9 @@ class HumanAgingOnEDUSpec extends AnyFunSpec with Matchers with MockFactory {
               roll10.expects().returning(3).never()
               roll10.expects().returning(7).once()
 
-              val hao = new HumanAgingOnEDU(age, edu, roll100, roll10)
+              val hao = new HumanAgingOnEducation(age, edu, roll100, roll10)
 
-              hao.modifiedEDU shouldBe Education(67 + 7)
+              hao.modifiedEducation shouldBe Education(67 + 7)
             }
           }
 
@@ -305,9 +305,9 @@ class HumanAgingOnEDUSpec extends AnyFunSpec with Matchers with MockFactory {
               roll10.expects().returning(3).never()
               roll10.expects().returning(7).never()
 
-              val hao = new HumanAgingOnEDU(age, edu, roll100, roll10)
+              val hao = new HumanAgingOnEducation(age, edu, roll100, roll10)
 
-              hao.modifiedEDU shouldBe Education(67)
+              hao.modifiedEducation shouldBe Education(67)
             }
           }
         }
