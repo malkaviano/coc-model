@@ -9,6 +9,7 @@ Rules:
 - Always test first;
 - To capture all business rules (book rules) to code;
 - Avoid to the maximum primitive types;
+- Where specified by the book for the player to choose or roll, the software will make a random choice;
 
 Exceptions:
 - Age rule for Physical characteristics is so bad I'm going to change it (not because tech, but because it makes no sense);
