@@ -12,13 +12,12 @@ Rules:
 - Where specified by the book for the player to choose or roll, the software will make a random choice;
 
 Exceptions:
-- Age rule for Physical characteristics is so bad I'm going to change it (not because tech, but because it makes no sense);
-  - New Age rule (round down, following the system philosophy):
-    - Age 80 - 45% of the current value of STR, CON and DEX
-    - Age 70 - 65% of the current value of STR, CON and DEX
-    - Age 60 - 85% of the current value of STR, CON and DEX
-    - Age 50 - 90% of the current value of STR, CON and DEX
-    - Age 40 - 95% of the current value of STR, CON and DEX
+- New Age rule (round down, following the system philosophy):
+  - Age 80 - 45% of the current value of STR, CON and DEX
+  - Age 70 - 65% of the current value of STR, CON and DEX
+  - Age 60 - 85% of the current value of STR, CON and DEX
+  - Age 50 - 90% of the current value of STR, CON and DEX
+  - Age 40 - 95% of the current value of STR, CON and DEX
 
 - New Age rule for EDU improvement (for reasons). Cannot go above 99 remains:
   - Age 80's: +5D10
