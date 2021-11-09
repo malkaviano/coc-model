@@ -16,10 +16,10 @@ class HumanAgingOnEducationSpec
     describe("when age is bellow 20") {
       val age = Dice.randomAge(15, 19)
       val edu = Education(67)
-      val hao = new HumanAgingOnEducation(age, edu)
+      val hao = new HumanAgingOnEducation
 
       it("should return new Education reduced in 5") {
-        hao.modifiedEducation shouldBe Education(67 - 5)
+        hao.modifiedEducation(age, edu) shouldBe Education(67 - 5)
       }
     }
 
@@ -37,9 +37,9 @@ class HumanAgingOnEducationSpec
 
           roll10.expects().returning(5).once()
 
-          val hao = new HumanAgingOnEducation(age, edu, roll100, roll10)
+          val hao = new HumanAgingOnEducation(roll100, roll10)
 
-          hao.modifiedEducation shouldBe Education(67 + 5)
+          hao.modifiedEducation(age, edu) shouldBe Education(67 + 5)
         }
       }
 
@@ -53,9 +53,9 @@ class HumanAgingOnEducationSpec
 
           roll10.expects().returning(5).never()
 
-          val hao = new HumanAgingOnEducation(age, edu, roll100, roll10)
+          val hao = new HumanAgingOnEducation(roll100, roll10)
 
-          hao.modifiedEducation shouldBe Education(67)
+          hao.modifiedEducation(age, edu) shouldBe Education(67)
         }
       }
     }
@@ -77,9 +77,9 @@ class HumanAgingOnEducationSpec
             roll10.expects().returning(5).once()
             roll10.expects().returning(3).once()
 
-            val hao = new HumanAgingOnEducation(age, edu, roll100, roll10)
+            val hao = new HumanAgingOnEducation(roll100, roll10)
 
-            hao.modifiedEducation shouldBe Education(67 + 5 + 3)
+            hao.modifiedEducation(age, edu) shouldBe Education(67 + 5 + 3)
           }
         }
 
@@ -95,9 +95,9 @@ class HumanAgingOnEducationSpec
             roll10.expects().returning(5).once()
             roll10.expects().returning(3).never()
 
-            val hao = new HumanAgingOnEducation(age, edu, roll100, roll10)
+            val hao = new HumanAgingOnEducation(roll100, roll10)
 
-            hao.modifiedEducation shouldBe Education(67 + 5)
+            hao.modifiedEducation(age, edu) shouldBe Education(67 + 5)
           }
         }
       }
@@ -115,9 +115,9 @@ class HumanAgingOnEducationSpec
             roll10.expects().returning(3).once()
             roll10.expects().returning(5).never()
 
-            val hao = new HumanAgingOnEducation(age, edu, roll100, roll10)
+            val hao = new HumanAgingOnEducation(roll100, roll10)
 
-            hao.modifiedEducation shouldBe Education(70)
+            hao.modifiedEducation(age, edu) shouldBe Education(70)
           }
         }
 
@@ -133,9 +133,9 @@ class HumanAgingOnEducationSpec
             roll10.expects().returning(3).never()
             roll10.expects().returning(5).never()
 
-            val hao = new HumanAgingOnEducation(age, edu, roll100, roll10)
+            val hao = new HumanAgingOnEducation(roll100, roll10)
 
-            hao.modifiedEducation shouldBe Education(67)
+            hao.modifiedEducation(age, edu) shouldBe Education(67)
           }
         }
       }
@@ -161,9 +161,9 @@ class HumanAgingOnEducationSpec
               roll10.expects().returning(3).once()
               roll10.expects().returning(7).once()
 
-              val hao = new HumanAgingOnEducation(age, edu, roll100, roll10)
+              val hao = new HumanAgingOnEducation(roll100, roll10)
 
-              hao.modifiedEducation shouldBe Education(67 + 5 + 3 + 7)
+              hao.modifiedEducation(age, edu) shouldBe Education(67 + 5 + 3 + 7)
             }
           }
 
@@ -181,9 +181,9 @@ class HumanAgingOnEducationSpec
               roll10.expects().returning(3).once()
               roll10.expects().returning(7).never()
 
-              val hao = new HumanAgingOnEducation(age, edu, roll100, roll10)
+              val hao = new HumanAgingOnEducation(roll100, roll10)
 
-              hao.modifiedEducation shouldBe Education(67 + 5 + 3)
+              hao.modifiedEducation(age, edu) shouldBe Education(67 + 5 + 3)
             }
           }
         }
@@ -203,9 +203,9 @@ class HumanAgingOnEducationSpec
               roll10.expects().returning(3).never()
               roll10.expects().returning(7).once()
 
-              val hao = new HumanAgingOnEducation(age, edu, roll100, roll10)
+              val hao = new HumanAgingOnEducation(roll100, roll10)
 
-              hao.modifiedEducation shouldBe Education(67 + 5 + 7)
+              hao.modifiedEducation(age, edu) shouldBe Education(67 + 5 + 7)
             }
           }
 
@@ -223,9 +223,9 @@ class HumanAgingOnEducationSpec
               roll10.expects().returning(3).never()
               roll10.expects().returning(7).never()
 
-              val hao = new HumanAgingOnEducation(age, edu, roll100, roll10)
+              val hao = new HumanAgingOnEducation(roll100, roll10)
 
-              hao.modifiedEducation shouldBe Education(67 + 5)
+              hao.modifiedEducation(age, edu) shouldBe Education(67 + 5)
             }
           }
         }
@@ -247,9 +247,9 @@ class HumanAgingOnEducationSpec
               roll10.expects().returning(3).once()
               roll10.expects().returning(7).once()
 
-              val hao = new HumanAgingOnEducation(age, edu, roll100, roll10)
+              val hao = new HumanAgingOnEducation(roll100, roll10)
 
-              hao.modifiedEducation shouldBe Education(67 + 3 + 7)
+              hao.modifiedEducation(age, edu) shouldBe Education(67 + 3 + 7)
             }
           }
 
@@ -267,9 +267,9 @@ class HumanAgingOnEducationSpec
               roll10.expects().returning(3).once()
               roll10.expects().returning(7).never()
 
-              val hao = new HumanAgingOnEducation(age, edu, roll100, roll10)
+              val hao = new HumanAgingOnEducation(roll100, roll10)
 
-              hao.modifiedEducation shouldBe Education(67 + 3)
+              hao.modifiedEducation(age, edu) shouldBe Education(67 + 3)
             }
           }
         }
@@ -289,9 +289,9 @@ class HumanAgingOnEducationSpec
               roll10.expects().returning(3).never()
               roll10.expects().returning(7).once()
 
-              val hao = new HumanAgingOnEducation(age, edu, roll100, roll10)
+              val hao = new HumanAgingOnEducation(roll100, roll10)
 
-              hao.modifiedEducation shouldBe Education(67 + 7)
+              hao.modifiedEducation(age, edu) shouldBe Education(67 + 7)
             }
           }
 
@@ -309,9 +309,9 @@ class HumanAgingOnEducationSpec
               roll10.expects().returning(3).never()
               roll10.expects().returning(7).never()
 
-              val hao = new HumanAgingOnEducation(age, edu, roll100, roll10)
+              val hao = new HumanAgingOnEducation(roll100, roll10)
 
-              hao.modifiedEducation shouldBe Education(67)
+              hao.modifiedEducation(age, edu) shouldBe Education(67)
             }
           }
         }
