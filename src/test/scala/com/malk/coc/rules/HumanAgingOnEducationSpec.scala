@@ -6,11 +6,15 @@ import org.scalamock.scalatest.MockFactory
 
 import com.malk.coc.concepts.characteristics.Education
 import com.malk.coc.concepts.characteristics.Age
+import com.malk.coc.helpers.Dice
 
-class HumanAgingOnEducationSpec extends AnyFunSpec with Matchers with MockFactory {
+class HumanAgingOnEducationSpec
+    extends AnyFunSpec
+    with Matchers
+    with MockFactory {
   describe("Human aging effects on EDU") {
     describe("when age is bellow 20") {
-      val age = Age(18)
+      val age = Dice.randomAge(15, 19)
       val edu = Education(67)
       val hao = new HumanAgingOnEducation(age, edu)
 
@@ -20,7 +24,7 @@ class HumanAgingOnEducationSpec extends AnyFunSpec with Matchers with MockFactor
     }
 
     describe("when age is between 20 and 39") {
-      val age = Age(25)
+      val age = Dice.randomAge(20, 39)
       val edu = Education(67)
 
       describe("when EDU check passes") {
@@ -57,7 +61,7 @@ class HumanAgingOnEducationSpec extends AnyFunSpec with Matchers with MockFactor
     }
 
     describe("when age is in the 40s") {
-      val age = Age(40)
+      val age = Dice.randomAge(40, 49)
       val edu = Education(67)
 
       describe("when first EDU check passes") {
@@ -138,7 +142,7 @@ class HumanAgingOnEducationSpec extends AnyFunSpec with Matchers with MockFactor
     }
 
     describe("when age is in the 50s or above") {
-      val age = Age(52)
+      val age = Dice.randomAge(50, 59)
       val edu = Education(67)
 
       describe("when first EDU check passes") {
