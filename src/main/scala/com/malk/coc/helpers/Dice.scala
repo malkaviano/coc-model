@@ -1,5 +1,7 @@
 package com.malk.coc.helpers
 
+import com.malk.coc.concepts.characteristics.Age
+
 object Dice {
   import scala.util.Random
 
@@ -15,6 +17,8 @@ object Dice {
     case x if x > 100 => x - 100
     case x => x
   }
+
+  def randomAge = Age(rollBetween(15, 90))
 
   private def rollBetween(min: Int, max: Int) = Random.between(min, max)
 }

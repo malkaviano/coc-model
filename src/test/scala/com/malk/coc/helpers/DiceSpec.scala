@@ -4,6 +4,7 @@ import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 
 import scala.collection.mutable
+import com.malk.coc.concepts.characteristics.Age
 
 class DiceSpec extends AnyFunSpec with Matchers {
   describe("Simulating D10 rolls") {
@@ -63,6 +64,18 @@ class DiceSpec extends AnyFunSpec with Matchers {
       }
 
       rolls should contain theSameElementsAs (1 to 100)
+    }
+  }
+
+  describe("Generating a random Age") {
+    it("should return an Age between 15 and 89 at least once") {
+      val ages = mutable.Set.empty[Age]
+
+      for(n <- 1 to 1000) {
+        ages.add(Dice.randomAge)
+      }
+
+      ages should contain theSameElementsAs (15 to 89).map { i => Age(i) }
     }
   }
 }
