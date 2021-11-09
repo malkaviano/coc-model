@@ -11,5 +11,10 @@ object Dice {
 
   def roll4 = rollBetween(1, 5)
 
+  def roll100 = (roll10 * 10) + roll10 match {
+    case x if x > 100 => x - 100
+    case x => x
+  }
+
   private def rollBetween(min: Int, max: Int) = Random.between(min, max)
 }

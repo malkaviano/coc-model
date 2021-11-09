@@ -53,4 +53,16 @@ class DiceSpec extends AnyFunSpec with Matchers {
       rolls should contain only (1, 2, 3, 4)
     }
   }
+
+  describe("Simulating D100 rolls") {
+    it("should return a number between 1 and 100 at least once") {
+      val rolls = mutable.Set.empty[Int]
+
+      for(n <- 1 to 1000) {
+        rolls.add(Dice.roll100)
+      }
+
+      rolls should contain theSameElementsAs (1 to 100)
+    }
+  }
 }
