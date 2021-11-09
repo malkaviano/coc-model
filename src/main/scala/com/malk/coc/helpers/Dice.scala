@@ -18,7 +18,7 @@ object Dice {
     case x => x
   }
 
-  def randomAge = Age(rollBetween(15, 90))
+  def randomAge(min: Int = 15, max: Int = 89) = Age(rollBetween(min, max + 1))
 
   private def rollBetween(min: Int, max: Int) = Random.between(min, max)
 }

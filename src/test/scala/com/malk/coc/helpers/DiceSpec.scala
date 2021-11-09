@@ -72,10 +72,20 @@ class DiceSpec extends AnyFunSpec with Matchers {
       val ages = mutable.Set.empty[Age]
 
       for(n <- 1 to 1000) {
-        ages.add(Dice.randomAge)
+        ages.add(Dice.randomAge())
       }
 
       ages should contain theSameElementsAs (15 to 89).map { i => Age(i) }
+    }
+
+    it("should return an Age between 20 and 39 at least once") {
+      val ages = mutable.Set.empty[Age]
+
+      for(n <- 1 to 1000) {
+        ages.add(Dice.randomAge(20, 39))
+      }
+
+      ages should contain theSameElementsAs (20 to 39).map { i => Age(i) }
     }
   }
 }
