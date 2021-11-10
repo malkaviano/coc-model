@@ -8,13 +8,13 @@ import com.malk.coc.rules.HumanMobility
 import com.malk.coc.rules.HumanAgingEffectOnEducation
 
 abstract class Human(
-    protected val age: Age,
-    protected val str: Strength,
-    protected val siz: Size,
-    protected val dex: Dexterity,
-    protected val con: Constitution,
-    protected var app: Appearance,
-    protected var edu: Education
+    private val age: Age,
+    private val str: Strength,
+    private val siz: Size,
+    private val dex: Dexterity,
+    private val con: Constitution,
+    private var app: Appearance,
+    private var edu: Education
 )(implicit
     agingEffectOnEducation: AgingEffectOnEducation,
     movementRateGenerator: (Age, Strength, Dexterity, Size) => MovementRate,
@@ -26,7 +26,7 @@ abstract class Human(
   edu = agingEffectOnEducation.modifiedEducation(age, edu)
   app = agingEffectOnAppearanceModifier(age, app)
 
-  protected val mov: MovementRate =
+  private val mov: MovementRate =
     movementRateGenerator(age, str, dex, siz)
 
   def Age: Int = age.value
