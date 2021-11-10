@@ -4,7 +4,6 @@ import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 
 import com.malk.coc.concepts.characteristics._
-import com.malk.coc.traits.EducationImprovement._
 import com.malk.coc.helpers.Dice
 import com.malk.coc.rules.HumanAgingEffectOnEducation
 
