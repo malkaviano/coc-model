@@ -1,15 +1,16 @@
 package com.malk.coc.rules
 
+import scala.annotation.tailrec
+
 import com.malk.coc.concepts.characteristics.Age
 import com.malk.coc.concepts.characteristics.Education
-
 import com.malk.coc.helpers.Dice
-import scala.annotation.tailrec
+import com.malk.coc.traits.AgingEffectOnEducation
 
 class HumanAgingEffectOnEducation(
     protected val roll100: () => Int = () => Dice.roll100,
     protected val roll10: () => Int = () => Dice.roll10
-) {
+) extends AgingEffectOnEducation {
   def modifiedEducation(age: Age, edu: Education): Education = {
     val result = age.value match {
       case x if x < 20  => edu.copy(edu.value - 5)
