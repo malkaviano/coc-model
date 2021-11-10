@@ -6,10 +6,10 @@ import org.scalatest.matchers.should.Matchers
 import com.malk.coc.concepts.characteristics._
 import com.malk.coc.traits.EducationImprovement._
 import com.malk.coc.helpers.Dice
-import com.malk.coc.rules.HumanAgingOnEducation
+import com.malk.coc.rules.HumanAgingEffectOnEducation
 
 class HumanSpec extends AnyFunSpec with Matchers {
-  import com.malk.coc.rules.HumanAgingOnEducation.implicits._
+  import com.malk.coc.rules.HumanAgingEffectOnEducation.implicits._
 
   describe("The Human spec") {
     val age = Dice.randomAge()
@@ -43,7 +43,7 @@ class HumanSpec extends AnyFunSpec with Matchers {
         val roll10 = () => 5
         val roll100 = () => 99
 
-        val ageEffect = new HumanAgingOnEducation(roll100, roll10)
+        val ageEffect = new HumanAgingEffectOnEducation(roll100, roll10)
 
         val human = new Human(
           age,

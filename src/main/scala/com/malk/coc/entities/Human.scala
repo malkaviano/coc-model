@@ -3,8 +3,8 @@ package com.malk.coc.entities
 import com.malk.coc.concepts.characteristics._
 import com.malk.coc.traits._
 import com.malk.coc.concepts.attributes.MovementRate
-import com.malk.coc.traits.EducationImprovement._
-import com.malk.coc.rules.HumanAgingOnEducation
+import com.malk.coc.rules.HumanAgingEffectOnEducation
+
 
 abstract class Human(
     protected val age: Age,
@@ -14,7 +14,7 @@ abstract class Human(
     protected val con: Constitution,
     protected val app: Appearance,
     protected var edu: Education
-)(implicit ageEffect: HumanAgingOnEducation)
+)(implicit ageEffect: HumanAgingEffectOnEducation)
     extends Mobility
     with PhysicalCapacity
     with Charismatic

@@ -7,7 +7,7 @@ import com.malk.coc.concepts.characteristics._
 import com.malk.coc.traits.EducationImprovement._
 
 class HumanMobilitySpec extends AnyFunSpec with Matchers {
-  import com.malk.coc.rules.HumanAgingOnEducation.implicits._
+  import com.malk.coc.rules.HumanAgingEffectOnEducation.implicits._
 
   describe("The Human MOV") {
     val str = Strength(50)

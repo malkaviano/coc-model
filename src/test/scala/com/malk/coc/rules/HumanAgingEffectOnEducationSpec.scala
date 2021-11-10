@@ -8,7 +8,7 @@ import com.malk.coc.concepts.characteristics.Education
 import com.malk.coc.concepts.characteristics.Age
 import com.malk.coc.helpers.Dice
 
-trait HumanAgingOnEducationBehaviors extends Matchers with MockFactory {
+trait HumanAgingEffectOnEducationBehaviors extends Matchers with MockFactory {
   this: AnyFunSpec =>
   def humanAgingOnEducationIncrementCheck(
       age: Age,
@@ -38,7 +38,7 @@ trait HumanAgingOnEducationBehaviors extends Matchers with MockFactory {
               success10.expects().returning(increment).once()
           )
 
-          val hao = new HumanAgingOnEducation(success100, success10)
+          val hao = new HumanAgingEffectOnEducation(success100, success10)
 
           hao.modifiedEducation(age, edu) shouldBe expected
         }
@@ -47,16 +47,16 @@ trait HumanAgingOnEducationBehaviors extends Matchers with MockFactory {
   }
 }
 
-class HumanAgingOnEducationSpec
+class HumanAgingEffectOnEducationSpec
     extends AnyFunSpec
-    with HumanAgingOnEducationBehaviors {
+    with HumanAgingEffectOnEducationBehaviors {
   val edu = Education(67)
 
   describe(s"Human aging effects on ${edu}") {
     describe("when age is bellow 20") {
       val age = Dice.randomAge(15, 19)
 
-      val hao = new HumanAgingOnEducation
+      val hao = new HumanAgingEffectOnEducation
 
       val expected = Education(67 - 5)
 

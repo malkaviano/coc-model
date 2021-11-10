@@ -6,7 +6,7 @@ import com.malk.coc.concepts.characteristics.Education
 import com.malk.coc.helpers.Dice
 import scala.annotation.tailrec
 
-class HumanAgingOnEducation(
+class HumanAgingEffectOnEducation(
     protected val roll100: () => Int = () => Dice.roll100,
     protected val roll10: () => Int = () => Dice.roll10
 ) {
@@ -27,9 +27,9 @@ class HumanAgingOnEducation(
   }
 }
 
-object HumanAgingOnEducation {
+object HumanAgingEffectOnEducation {
   object implicits {
-    implicit val humanAgingOnEducationEffect: HumanAgingOnEducation =
-      new HumanAgingOnEducation
+    implicit val humanAgingOnEducationEffect: HumanAgingEffectOnEducation =
+      new HumanAgingEffectOnEducation
   }
 }
