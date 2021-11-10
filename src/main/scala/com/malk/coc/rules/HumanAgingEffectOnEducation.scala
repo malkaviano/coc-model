@@ -10,12 +10,16 @@ class HumanAgingEffectOnEducation(
     protected val roll100: () => Int = () => Dice.roll100,
     protected val roll10: () => Int = () => Dice.roll10
 ) {
-  def modifiedEducation(age: Age, edu: Education): Education = age.value match {
-    case x if x < 20  => edu.copy(edu.value - 5)
-    case x if x >= 60 => checkEDUIncrease(edu, 4)
-    case x if x >= 50 => checkEDUIncrease(edu, 3)
-    case x if x >= 40 => checkEDUIncrease(edu, 2)
-    case _            => checkEDUIncrease(edu)
+  def modifiedEducation(age: Age, edu: Education): Education = {
+    val result = age.value match {
+      case x if x < 20  => edu.copy(edu.value - 5)
+      case x if x >= 60 => checkEDUIncrease(edu, 4)
+      case x if x >= 50 => checkEDUIncrease(edu, 3)
+      case x if x >= 40 => checkEDUIncrease(edu, 2)
+      case _            => checkEDUIncrease(edu)
+    }
+
+    if (result.value >= 100) Education(99) else result
   }
 
   @tailrec

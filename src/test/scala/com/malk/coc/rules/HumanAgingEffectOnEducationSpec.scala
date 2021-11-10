@@ -167,6 +167,19 @@ class HumanAgingEffectOnEducationSpec
         }
       })
     }
+
+    describe("when Education passes 99") {
+      val edu = Education(90)
+      val expected = Education(99)
+
+      it(s"should return ${expected}") {
+        val hao = new HumanAgingEffectOnEducation(() => 99, () => 10)
+
+        val result = hao.modifiedEducation(Dice.randomAge(80, 89), edu)
+
+        result shouldBe expected
+      }
+    }
   }
 
   private def singleCheckResults(success1: Boolean): (Seq[Int], Seq[Int]) = {
