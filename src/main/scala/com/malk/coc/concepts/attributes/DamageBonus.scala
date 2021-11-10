@@ -2,11 +2,14 @@ package com.malk.coc.concepts.attributes
 
 import com.malk.coc.concepts.characteristics.{Strength, Size}
 import com.malk.coc.helpers.Dice._
+import com.malk.coc.concepts.traits.Attribute
 
 case class DamageBonus(
   private val str: Strength,
   private val siz: Size
-) extends Attribute("Damage Bonus") {
+) extends Attribute {
+  override val name = "Damage Bonus"
+
   override def value: Int = str.value + siz.value match {
     case x if x < 65 => -2
     case x if x < 85 => -1
