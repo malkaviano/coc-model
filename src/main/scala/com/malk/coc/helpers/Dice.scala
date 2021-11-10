@@ -13,10 +13,7 @@ object Dice {
 
   def roll4 = rollBetween(1, 5)
 
-  def roll100 = (roll10 * 10) + roll10 match {
-    case x if x > 100 => x - 100
-    case x => x
-  }
+  def roll100 = rollBetween(1, 101)
 
   def randomAge(min: Int = 15, max: Int = 89) = Age(rollBetween(min, max + 1))
 
