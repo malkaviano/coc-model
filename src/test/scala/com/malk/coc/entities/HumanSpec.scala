@@ -6,9 +6,11 @@ import org.scalatest.matchers.should.Matchers
 import com.malk.coc.concepts.characteristics._
 import com.malk.coc.helpers.Dice
 import com.malk.coc.rules.HumanAgingEffectOnEducation
+import com.malk.coc.rules.HumanMobility
 
 class HumanSpec extends AnyFunSpec with Matchers {
   import com.malk.coc.rules.HumanAgingEffectOnEducation.implicits._
+  import com.malk.coc.rules.HumanMobility._
 
   describe("The Human spec") {
     val age = Dice.randomAge()
@@ -52,7 +54,10 @@ class HumanSpec extends AnyFunSpec with Matchers {
           con,
           app,
           edu
-        )(ageEffect) {}
+        )(
+          agingEffectOnEducation = ageEffect,
+          movementRateGenerator = HumanMobility.movementRate
+        ) {}
 
         human.EDU shouldBe ageEffect.modifiedEducation(age, edu).value
       }

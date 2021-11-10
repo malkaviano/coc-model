@@ -1,18 +1,18 @@
 package com.malk.coc.rules
 
-import com.malk.coc.traits.Mobility
 import com.malk.coc.concepts.characteristics.Strength
 import com.malk.coc.concepts.characteristics.Dexterity
 import com.malk.coc.concepts.characteristics.Size
 import com.malk.coc.concepts.characteristics.Age
+import com.malk.coc.concepts.attributes.MovementRate
 
-class HumanMobility(
-    protected val age: Age,
-    protected val str: Strength,
-    protected val dex: Dexterity,
-    protected val siz: Size
-) extends Mobility {
-  override val MOV: Int = {
+object HumanMobility {
+  implicit def movementRate(
+      age: Age,
+      str: Strength,
+      dex: Dexterity,
+      siz: Size
+  ): MovementRate = {
     val result =
       if (str.value < siz.value && dex.value < siz.value)
         7
@@ -23,10 +23,12 @@ class HumanMobility(
 
     val delta = age.value - 40
 
-    if (delta < 0) {
+    val value = if (delta < 0) {
       result
     } else {
       result - ((delta / 10) + 1)
     }
+
+    MovementRate(value)
   }
 }

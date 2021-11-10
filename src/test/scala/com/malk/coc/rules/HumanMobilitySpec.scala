@@ -8,6 +8,7 @@ import com.malk.coc.concepts.characteristics.Dexterity
 import com.malk.coc.concepts.characteristics.Size
 import com.malk.coc.helpers.Dice
 import com.malk.coc.concepts.characteristics.Age
+import com.malk.coc.concepts.attributes.MovementRate
 
 trait MovementRateBehaviors extends Matchers { this: AnyFunSpec =>
   def calculateMovementRate(
@@ -15,13 +16,11 @@ trait MovementRateBehaviors extends Matchers { this: AnyFunSpec =>
       str: Strength,
       dex: Dexterity,
       siz: Size,
-      expected: Int
+      expected: MovementRate
   ) {
     describe(s"when ${str} - ${dex} - ${siz}") {
-      val mobility = new HumanMobility(age, str, dex, siz)
-
-      it(s"should return value ${expected}") {
-        mobility.MOV shouldBe expected
+      it(s"should return ${expected}") {
+        HumanMobility.movementRate(age, str, dex, siz) shouldBe expected
       }
     }
   }
@@ -81,7 +80,7 @@ class HumanMobilitySpec extends AnyFunSpec with MovementRateBehaviors {
       str: Strength,
       dex: Dexterity,
       siz: Size,
-      expected: Int
+      expected: MovementRate
   ) = {
     it should behave like calculateMovementRate(
       age,
@@ -94,13 +93,13 @@ class HumanMobilitySpec extends AnyFunSpec with MovementRateBehaviors {
 
   private def suit(age: Age, reduction: Int) = {
     Seq(
-      (Strength(60), Dexterity(70), Size(50), 9 - reduction),
-      (Strength(24), Dexterity(48), Size(50), 7 - reduction),
-      (Strength(50), Dexterity(50), Size(50), 8 - reduction),
-      (Strength(40), Dexterity(60), Size(50), 8 - reduction),
-      (Strength(55), Dexterity(30), Size(50), 8 - reduction),
-      (Strength(50), Dexterity(30), Size(50), 8 - reduction),
-      (Strength(40), Dexterity(50), Size(50), 8 - reduction)
+      (Strength(60), Dexterity(70), Size(50), MovementRate(9 - reduction)),
+      (Strength(24), Dexterity(48), Size(50), MovementRate(7 - reduction)),
+      (Strength(50), Dexterity(50), Size(50), MovementRate(8 - reduction)),
+      (Strength(40), Dexterity(60), Size(50), MovementRate(8 - reduction)),
+      (Strength(55), Dexterity(30), Size(50), MovementRate(8 - reduction)),
+      (Strength(50), Dexterity(30), Size(50), MovementRate(8 - reduction)),
+      (Strength(40), Dexterity(50), Size(50), MovementRate(8 - reduction))
     ).foreach {
       case (str, dex, siz, expected) => {
         check(age, str, dex, siz, expected)
