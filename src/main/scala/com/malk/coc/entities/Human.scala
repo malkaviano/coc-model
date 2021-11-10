@@ -13,16 +13,18 @@ abstract class Human(
     protected val siz: Size,
     protected val dex: Dexterity,
     protected val con: Constitution,
-    protected val app: Appearance,
+    protected var app: Appearance,
     protected var edu: Education
 )(implicit
     agingEffectOnEducation: AgingEffectOnEducation,
-    movementRateGenerator: (Age, Strength, Dexterity, Size) => MovementRate
+    movementRateGenerator: (Age, Strength, Dexterity, Size) => MovementRate,
+    agingEffectOnAppearanceModifier: (Age, Appearance) => Appearance
 ) extends Mobility
     with PhysicalCapacity
     with Charismatic
     with Knowledge {
   edu = agingEffectOnEducation.modifiedEducation(age, edu)
+  app = agingEffectOnAppearanceModifier(age, app)
 
   protected val mov: MovementRate =
     movementRateGenerator(age, str, dex, siz)
@@ -39,15 +41,7 @@ abstract class Human(
 
   override def SIZ: Int = siz.value
 
-  override def APP: Int = {
-    if (age.value < 40) {
-      app.value
-    } else {
-      val x = age.value - 40
-
-      app.value - ((x / 10) + 1) * 5
-    }
-  }
+  override def APP: Int = app.value
 
   override def EDU: Int = edu.value
 

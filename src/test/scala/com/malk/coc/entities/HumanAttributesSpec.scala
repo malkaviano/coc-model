@@ -9,6 +9,7 @@ import com.malk.coc.helpers.Dice
 class HumanAttributesSpec extends AnyFunSpec with Matchers {
   import com.malk.coc.rules.HumanAgingEffectOnEducation.implicits._
   import com.malk.coc.rules.HumanMobility._
+  import com.malk.coc.rules.HumanAgingEffectOnAppearance._
 
   describe("Human MOV") {
     val str = Strength(50)

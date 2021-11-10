@@ -7,10 +7,12 @@ import com.malk.coc.concepts.characteristics._
 import com.malk.coc.helpers.Dice
 import com.malk.coc.rules.HumanAgingEffectOnEducation
 import com.malk.coc.rules.HumanMobility
+import com.malk.coc.rules.HumanAgingEffectOnAppearance
 
 class HumanSpec extends AnyFunSpec with Matchers {
   import com.malk.coc.rules.HumanAgingEffectOnEducation.implicits._
   import com.malk.coc.rules.HumanMobility._
+  import com.malk.coc.rules.HumanAgingEffectOnAppearance._
 
   describe("The Human spec") {
     val age = Dice.randomAge()
@@ -56,7 +58,8 @@ class HumanSpec extends AnyFunSpec with Matchers {
           edu
         )(
           agingEffectOnEducation = ageEffect,
-          movementRateGenerator = HumanMobility.movementRate
+          movementRateGenerator = HumanMobility.movementRate,
+          agingEffectOnAppearanceModifier = HumanAgingEffectOnAppearance.appearance
         ) {}
 
         human.EDU shouldBe ageEffect.modifiedEducation(age, edu).value
@@ -64,6 +67,20 @@ class HumanSpec extends AnyFunSpec with Matchers {
 
       it("should have Appearance (APP) above 0") {
         human.APP should be > 0
+      }
+
+      it("should have initial Appearance (APP) modified by Age") {
+        val human = new Human(
+          Dice.randomAge(40, 49),
+          str,
+          siz,
+          dex,
+          con,
+          app,
+          edu
+        ){}
+
+        human.APP shouldBe 60
       }
 
       it("should have Strength (STR) above 0") {
