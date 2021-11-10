@@ -8,7 +8,11 @@ import com.malk.coc.concepts.characteristics.{Strength, Size}
 trait DamageBonusBehavior extends Matchers { this: AnyFunSpec =>
   def calculateDamageBonus(str: Strength, siz: Size, min: Int, max: Int) {
     it(s"should return value between ${min} and ${max}") {
-      DamageBonus(str, siz).value should (be >= min and be <= max)
+      val results = for {
+        i <- (1 to (if (max <= 30) 100000 else 500000))
+      } yield DamageBonus(str, siz).value
+
+      results.toSet should contain theSameElementsAs (min to max)
     }
   }
 }
@@ -31,6 +35,5 @@ class DamageBonusSpec extends AnyFunSpec with Matchers with DamageBonusBehavior 
     it should behave like calculateDamageBonus(Strength(200), Size(200), 4, 24)
     it should behave like calculateDamageBonus(Strength(250), Size(250), 5, 30)
     it should behave like calculateDamageBonus(Strength(300), Size(250), 6, 36)
-    it should behave like calculateDamageBonus(Strength(301), Size(304), 7, 42)
   }
 }
