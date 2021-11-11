@@ -5,6 +5,7 @@ import com.malk.coc.traits._
 import com.malk.coc.concepts.attributes.MovementRate
 import com.malk.coc.concepts.attributes.MaximumHitPoints
 import com.malk.coc.concepts.attributes.CurrentHitPoints
+import com.malk.coc.concepts.attributes.Build
 
 case class Human private (
     private val age: Age,
@@ -18,7 +19,8 @@ case class Human private (
     private val int: Intelligence,
     private val pow: Power,
     private val mov: MovementRate,
-    private val maxHP: MaximumHitPoints
+    private val maxHP: MaximumHitPoints,
+    private val build: Build
 ) extends Aging
     with Mobility
     with PhysicalCapacity
@@ -26,7 +28,8 @@ case class Human private (
     with Charismatic
     with Knowledge
     with Chance
-    with Damageable {
+    with Damageable
+    with FightingManeuverModifier {
 
   private var currentHP = CurrentHitPoints(maxHP.value)
 
@@ -57,6 +60,8 @@ case class Human private (
   override def HP_=(hp: Int): Unit = {
     currentHP = currentHP.copy(hp)
   }
+
+  override def Build: Int = build.value
 }
 
 object Human {
@@ -70,7 +75,7 @@ object Human {
       edu: Education,
       luck: Luck,
       int: Intelligence,
-      pow: Power,
+      pow: Power
   )(implicit
       agingEffectOnEducation: AgingEffectOnEducation,
       agingEffectOnAppearanceModifier: (Age, Appearance) => Appearance,
@@ -101,6 +106,8 @@ object Human {
 
     val maxHP = MaximumHitPoints(agedBody._2, agedBody._4)
 
+    val build = Build(agedBody._1, agedBody._4)
+
     Human(
       age,
       agedBody._1,
@@ -113,7 +120,8 @@ object Human {
       int,
       pow,
       modifiedMOV,
-      maxHP
+      maxHP,
+      build
     )
   }
 }

@@ -7,6 +7,7 @@ import com.malk.coc.concepts.characteristics._
 import com.malk.coc.helpers.Dice
 import com.malk.coc.concepts.attributes.MaximumHitPoints
 import com.malk.coc.concepts.attributes.MovementRate
+import com.malk.coc.concepts.attributes.Build
 
 class HumanAttributesSpec extends AnyFunSpec with Matchers {
   import com.malk.coc.rules.HumanAgingEffectOnEducation.implicits._
@@ -63,6 +64,14 @@ class HumanAttributesSpec extends AnyFunSpec with Matchers {
       human.HP = 20
 
       human.HP shouldBe 20
+    }
+  }
+
+  describe("Human Build") {
+    val build = Build(Strength(human.STR), Size(human.SIZ))
+
+    it(s"should have Build equal ${build.value}") {
+      human.Build shouldBe build.value
     }
   }
 }
