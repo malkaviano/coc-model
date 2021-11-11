@@ -23,7 +23,7 @@ class HumanSpec extends AnyFunSpec with Matchers {
     val app = Appearance(65)
     val edu = Education(48)
 
-    val human = new Human(
+    val human = Human(
       age,
       str,
       siz,
@@ -31,7 +31,7 @@ class HumanSpec extends AnyFunSpec with Matchers {
       con,
       app,
       edu
-    ) {}
+    )
 
     it("should have Age") {
       human.Age shouldBe age.value
