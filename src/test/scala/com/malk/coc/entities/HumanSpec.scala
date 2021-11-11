@@ -25,6 +25,8 @@ class HumanSpec extends AnyFunSpec with Matchers {
     val app = Appearance(65)
     val edu = Education(48)
     val luck = Luck(34)
+    val int = Intelligence(56)
+    val pow = Power(43)
 
     val human = Human(
       age,
@@ -34,7 +36,9 @@ class HumanSpec extends AnyFunSpec with Matchers {
       con,
       app,
       edu,
-      luck
+      luck,
+      int,
+      pow
     )
 
     it("should have Age") {
@@ -60,7 +64,9 @@ class HumanSpec extends AnyFunSpec with Matchers {
           con,
           app,
           edu,
-          luck
+          luck,
+          int,
+          pow
         )(
           agingEffectOnEducation = ageEffect,
           agingEffectOnAppearanceModifier =
@@ -85,7 +91,9 @@ class HumanSpec extends AnyFunSpec with Matchers {
           con,
           app,
           edu,
-          luck
+          luck,
+          int,
+          pow
         )
 
         human.APP shouldBe 60
@@ -104,7 +112,9 @@ class HumanSpec extends AnyFunSpec with Matchers {
           con,
           app,
           edu,
-          luck
+          luck,
+          int,
+          pow
         )
 
         human.STR shouldBe 47
@@ -123,7 +133,9 @@ class HumanSpec extends AnyFunSpec with Matchers {
           con,
           app,
           edu,
-          luck
+          luck,
+          int,
+          pow
         )
 
         human.DEX shouldBe 66
@@ -142,7 +154,9 @@ class HumanSpec extends AnyFunSpec with Matchers {
           con,
           app,
           edu,
-          luck
+          luck,
+          int,
+          pow
         )
 
         human.CON shouldBe 42
@@ -161,7 +175,9 @@ class HumanSpec extends AnyFunSpec with Matchers {
           con,
           app,
           edu,
-          luck
+          luck,
+          int,
+          pow
         )
 
         human.SIZ shouldBe 58
@@ -169,6 +185,14 @@ class HumanSpec extends AnyFunSpec with Matchers {
 
       it("should have Luck above 0") {
         human.Luck should be > 0
+      }
+
+      it("should have Intelligence (INT) above 0") {
+        human.INT should be > 0
+      }
+
+      it("should have Power (POW) above 0") {
+        human.POW should be > 0
       }
     }
 

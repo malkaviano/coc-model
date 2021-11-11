@@ -21,11 +21,13 @@ class HumanAttributesSpec extends AnyFunSpec with Matchers {
     val app = Appearance(65)
     val edu = Education(48)
     val luck = Luck(34)
+    val int = Intelligence(56)
+    val pow = Power(43)
 
     val baseMOV = 8
 
     describe(s"when ${age} - ${str} - ${dex} - ${siz}") {
-      val expected = 8 -1 - 1
+      val expected = 8 - 1 - 1
 
       val human = Human(
         age,
@@ -35,7 +37,9 @@ class HumanAttributesSpec extends AnyFunSpec with Matchers {
         con,
         app,
         edu,
-        luck
+        luck,
+        int,
+        pow
       )
 
       it(s"should have MOV ${expected}") {
