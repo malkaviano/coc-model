@@ -13,9 +13,7 @@ class Human(
     private val app: Appearance,
     private val edu: Education
 )(implicit
-    agingEffectOnEducation: AgingEffectOnEducation,
-    movementRateGenerator: (Age, Strength, Dexterity, Size) => MovementRate,
-    agingEffectOnAppearanceModifier: (Age, Appearance) => Appearance
+    movementRateGenerator: (Age, Strength, Dexterity, Size) => MovementRate
 ) extends Mobility
     with PhysicalCapacity
     with Charismatic
@@ -65,8 +63,6 @@ object Human {
           Size
       )
   ): Human = {
-    import com.malk.coc.rules.HumanAgingEffectOnBody
-    import com.malk.coc.rules.HumanAgingEffectOnEducation.implicits._
     import com.malk.coc.rules.HumanMobility._
 
     val resultBody = agingEffectOnBody(age, str, con, dex, siz)
