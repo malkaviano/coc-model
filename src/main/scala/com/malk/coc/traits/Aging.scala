@@ -1,5 +1,5 @@
 package com.malk.coc.traits
 
-trait Ageable {
+trait Aging {
   def Age: Int
 }

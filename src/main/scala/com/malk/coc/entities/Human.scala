@@ -13,12 +13,13 @@ case class Human private (
     private val app: Appearance,
     private val edu: Education,
     private val mov: MovementRate
-) extends Mobility
+) extends Aging
+    with Mobility
     with PhysicalCapacity
     with Charismatic
     with Knowledge {
 
-  def Age: Int = age.value
+  override def Age: Int = age.value
 
   override def MOV: Int = mov.value
 
