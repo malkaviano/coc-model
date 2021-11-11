@@ -14,7 +14,7 @@ class Human(
     private val dex: Dexterity,
     private val con: Constitution,
     private var app: Appearance,
-    private var edu: Education
+    private val edu: Education
 )(implicit
     agingEffectOnEducation: AgingEffectOnEducation,
     movementRateGenerator: (Age, Strength, Dexterity, Size) => MovementRate,
@@ -23,7 +23,6 @@ class Human(
     with PhysicalCapacity
     with Charismatic
     with Knowledge {
-  edu = agingEffectOnEducation.modifiedEducation(age, edu)
   app = agingEffectOnAppearanceModifier(age, app)
 
   private val mov: MovementRate =
@@ -56,6 +55,7 @@ object Human {
       app: Appearance,
       edu: Education
   )(implicit
+      agingEffectOnEducation: AgingEffectOnEducation,
       agingEffectOnAppearanceModifier: (Age, Appearance) => Appearance
   ): Human = {
     import com.malk.coc.rules.HumanAgingEffectOnBody
@@ -65,6 +65,8 @@ object Human {
     val resultBody =
       HumanAgingEffectOnBody.modifiedPhysical(age, str, con, dex, siz)
 
+    val agedEdu = agingEffectOnEducation.modifiedEducation(age, edu)
+
     new Human(
       age,
       resultBody._1,
@@ -72,7 +74,7 @@ object Human {
       resultBody._3,
       resultBody._2,
       app,
-      edu
+      agedEdu
     )
   }
 }

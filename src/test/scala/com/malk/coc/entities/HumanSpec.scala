@@ -48,7 +48,7 @@ class HumanSpec extends AnyFunSpec with Matchers {
 
         val ageEffect = new HumanAgingEffectOnEducation(roll100, roll10)
 
-        val human = new Human(
+        val human = Human(
           age,
           str,
           siz,
@@ -58,10 +58,9 @@ class HumanSpec extends AnyFunSpec with Matchers {
           edu
         )(
           agingEffectOnEducation = ageEffect,
-          movementRateGenerator = HumanMobility.movementRate,
           agingEffectOnAppearanceModifier =
             HumanAgingEffectOnAppearance.appearance
-        ) {}
+        )
 
         human.EDU shouldBe ageEffect.modifiedEducation(age, edu).value
       }
