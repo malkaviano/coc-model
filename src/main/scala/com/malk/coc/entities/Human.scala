@@ -4,7 +4,7 @@ import com.malk.coc.concepts.characteristics._
 import com.malk.coc.traits._
 import com.malk.coc.concepts.attributes.MovementRate
 
-class Human(
+class Human private(
     private val age: Age,
     private val str: Strength,
     private val siz: Size,

@@ -10,6 +10,7 @@ class HumanAttributesSpec extends AnyFunSpec with Matchers {
   import com.malk.coc.rules.HumanAgingEffectOnEducation.implicits._
   import com.malk.coc.rules.HumanMobility._
   import com.malk.coc.rules.HumanAgingEffectOnAppearance._
+  import com.malk.coc.rules.HumanAgingEffectOnBody._
 
   describe("Human MOV") {
     val str = Strength(50)
@@ -23,9 +24,9 @@ class HumanAttributesSpec extends AnyFunSpec with Matchers {
     val baseMOV = 8
 
     describe(s"when ${age} - ${str} - ${dex} - ${siz}") {
-      val expected = baseMOV - 1
+      val expected = 8 -1 - 1
 
-      val human = new Human(
+      val human = Human(
         age,
         str,
         siz,
@@ -33,7 +34,7 @@ class HumanAttributesSpec extends AnyFunSpec with Matchers {
         con,
         app,
         edu
-      ) {}
+      )
 
       it(s"should have MOV ${expected}") {
         human.MOV shouldBe expected
