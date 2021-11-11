@@ -16,71 +16,75 @@ class HumanAttributesSpec extends AnyFunSpec with Matchers {
   import com.malk.coc.rules.HumanAgingEffectOnAppearance._
   import com.malk.coc.rules.HumanAgingEffectOnBody._
 
-  val str = Strength(50)
-  val dex = Dexterity(50)
-  val siz = Size(50)
-  val age = Dice.randomAge(40, 49)
-  val con = Constitution(45)
-  val app = Appearance(65)
-  val edu = Education(48)
-  val luck = Luck(34)
-  val int = Intelligence(56)
-  val pow = Power(43)
+  describe("Human Attributes") {
+    val str = Strength(50)
+    val dex = Dexterity(50)
+    val siz = Size(50)
+    val age = Dice.randomAge(40, 49)
+    val con = Constitution(45)
+    val app = Appearance(65)
+    val edu = Education(48)
+    val luck = Luck(34)
+    val int = Intelligence(56)
+    val pow = Power(43)
 
-  val human = Human(
-    age,
-    str,
-    siz,
-    dex,
-    con,
-    app,
-    edu,
-    luck,
-    int,
-    pow
-  )
+    val human = Human(
+      age,
+      str,
+      siz,
+      dex,
+      con,
+      app,
+      edu,
+      luck,
+      int,
+      pow
+    )
 
-  describe("Human MovementRate (MOV)") {
-    val baseMOV = 8
+    describe("Human MovementRate (MOV)") {
+      val baseMOV = 8
 
-    describe(s"when Age ${human.Age} - STR ${human.STR} - DEX ${human.DEX} - SIZ ${human.SIZ}") {
+      describe(
+        s"when Age ${human.Age} - STR ${human.STR} - DEX ${human.DEX} - SIZ ${human.SIZ}"
+      ) {
 
-      val mov = MovementRate(8 - 1 - 1)
+        val mov = MovementRate(8 - 1 - 1)
 
-      it(s"should have MOV ${mov.value}") {
-        human.MOV shouldBe mov.value
+        it(s"should have MOV ${mov.value}") {
+          human.MOV shouldBe mov.value
+        }
+
+      }
+    }
+
+    describe("Human Current Hit Points (HP)") {
+      val hp = MaximumHitPoints(Constitution(human.CON), Size(human.SIZ))
+
+      it(s"should have Current Hit Points (HP) equal ${hp.value}") {
+        human.HP shouldBe hp.value
       }
 
-    }
-  }
+      it(s"should change Current Hit Points (HP) from ${hp.value} to ${20}") {
+        human.HP = 20
 
-  describe("Human Current Hit Points (HP)") {
-    val hp = MaximumHitPoints(Constitution(human.CON), Size(human.SIZ))
-
-    it(s"should have Current Hit Points (HP) equal ${hp.value}") {
-      human.HP shouldBe hp.value
+        human.HP shouldBe 20
+      }
     }
 
-    it(s"should change Current Hit Points (HP) from ${hp.value} to ${20}") {
-      human.HP = 20
+    describe("Human Build") {
+      val build = Build(Strength(human.STR), Size(human.SIZ))
 
-      human.HP shouldBe 20
+      it(s"should have Build equal ${build.value}") {
+        human.Build shouldBe build.value
+      }
     }
-  }
 
-  describe("Human Build") {
-    val build = Build(Strength(human.STR), Size(human.SIZ))
+    describe("Human Damage Bonus (DB)") {
+      val db = DamageBonus(Strength(human.STR), Size(human.SIZ))
 
-    it(s"should have Build equal ${build.value}") {
-      human.Build shouldBe build.value
-    }
-  }
-
-  describe("Human Damage Bonus (DB)") {
-    val db = DamageBonus(Strength(human.STR), Size(human.SIZ))
-
-    it(s"should have DB equal ${db.value}") {
-      human.DB shouldBe db.value
+      it(s"should have DB equal ${db.value}") {
+        human.DB shouldBe db.value
+      }
     }
   }
 }
