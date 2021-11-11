@@ -5,7 +5,7 @@ import org.scalatest.matchers.should.Matchers
 
 import com.malk.coc.concepts.characteristics._
 import com.malk.coc.helpers.Dice
-import com.malk.coc.concepts.attributes.HitPoints
+import com.malk.coc.concepts.attributes.MaximumHitPoints
 import com.malk.coc.concepts.attributes.MovementRate
 
 class HumanAttributesSpec extends AnyFunSpec with Matchers {
@@ -52,11 +52,17 @@ class HumanAttributesSpec extends AnyFunSpec with Matchers {
     }
   }
 
-  describe("Human Hit Points (HP)") {
-    val hp = HitPoints(Constitution(human.CON), Size(human.SIZ))
+  describe("Human Current Hit Points (HP)") {
+    val hp = MaximumHitPoints(Constitution(human.CON), Size(human.SIZ))
 
-    it(s"should have Hit Points (HP) ${hp.value}") {
+    it(s"should have Current Hit Points (HP) equal ${hp.value}") {
       human.HP shouldBe hp.value
+    }
+
+    it(s"should change Current Hit Points (HP) from ${hp.value} to ${20}") {
+      human.HP = 20
+
+      human.HP shouldBe 20
     }
   }
 }

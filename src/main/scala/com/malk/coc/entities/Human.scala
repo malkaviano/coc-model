@@ -3,7 +3,8 @@ package com.malk.coc.entities
 import com.malk.coc.concepts.characteristics._
 import com.malk.coc.traits._
 import com.malk.coc.concepts.attributes.MovementRate
-import com.malk.coc.concepts.attributes.HitPoints
+import com.malk.coc.concepts.attributes.MaximumHitPoints
+import com.malk.coc.concepts.attributes.CurrentHitPoints
 
 case class Human private (
     private val age: Age,
@@ -17,7 +18,7 @@ case class Human private (
     private val int: Intelligence,
     private val pow: Power,
     private val mov: MovementRate,
-    private val hp: HitPoints
+    private val maxHP: MaximumHitPoints
 ) extends Aging
     with Mobility
     with PhysicalCapacity
@@ -26,6 +27,8 @@ case class Human private (
     with Knowledge
     with Chance
     with Damageable {
+
+  private var currentHP = CurrentHitPoints(maxHP.value)
 
   override def Age: Int = age.value
 
@@ -49,7 +52,11 @@ case class Human private (
 
   override def POW: Int = pow.value
 
-  override def HP: Int = hp.value
+  override def HP: Int = currentHP.value
+
+  override def HP_=(hp: Int): Unit = {
+    currentHP = currentHP.copy(hp)
+  }
 }
 
 object Human {
@@ -92,7 +99,8 @@ object Human {
     val modifiedMOV =
       movementRateGenerator(age, agedBody._1, agedBody._3, agedBody._4)
 
-    val hp = HitPoints(agedBody._2, agedBody._4)
+    val maxHP = MaximumHitPoints(agedBody._2, agedBody._4)
+
     Human(
       age,
       agedBody._1,
@@ -105,7 +113,7 @@ object Human {
       int,
       pow,
       modifiedMOV,
-      hp
+      maxHP
     )
   }
 }

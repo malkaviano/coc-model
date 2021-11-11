@@ -5,20 +5,20 @@ import org.scalatest.matchers.should.Matchers
 
 import com.malk.coc.concepts.characteristics.{Constitution, Size}
 
-trait HitPointsBehaviors extends Matchers { this: AnyFunSpec =>
+trait MaximumHitPointsBehaviors extends Matchers { this: AnyFunSpec =>
   def calculateHitPoints(con: Constitution, siz: Size, expected: Int) {
     it(s"should return value ${expected}") {
-      HitPoints(con, siz).value shouldBe expected
+      MaximumHitPoints(con, siz).value shouldBe expected
     }
   }
 }
 
-class HitPointsSpec extends AnyFunSpec with Matchers with HitPointsBehaviors {
-  describe("The HitPoints") {
-    val hp = HitPoints(con = Constitution(40), siz = Size(60))
+class MaximumHitPointsSpec extends AnyFunSpec with Matchers with MaximumHitPointsBehaviors {
+  describe("The Maximum Hit Points") {
+    val hp = MaximumHitPoints(con = Constitution(40), siz = Size(60))
 
-    it("should have name Hit Points") {
-      hp.name shouldBe "Hit Points"
+    it("should have name Maximum Hit Points") {
+      hp.name shouldBe "Maximum Hit Points"
     }
 
     it should behave like calculateHitPoints(Constitution(40), Size(60), 10)
