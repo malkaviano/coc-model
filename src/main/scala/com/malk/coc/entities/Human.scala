@@ -7,7 +7,7 @@ import com.malk.coc.traits.AgingEffectOnEducation
 import com.malk.coc.rules.HumanMobility
 import com.malk.coc.rules.HumanAgingEffectOnEducation
 
-abstract class Human(
+class Human(
     private val age: Age,
     private val str: Strength,
     private val siz: Size,
@@ -33,25 +33,37 @@ abstract class Human(
 
   override def MOV: Int = mov.value
 
-  override def STR: Int = ageInfluencePhysicalCapacity(str)
+  override def STR: Int = str.value
 
-  override def CON: Int = ageInfluencePhysicalCapacity(con)
+  override def CON: Int = con.value
 
-  override def DEX: Int = ageInfluencePhysicalCapacity(dex)
+  override def DEX: Int = dex.value
 
   override def SIZ: Int = siz.value
 
   override def APP: Int = app.value
 
   override def EDU: Int = edu.value
+}
 
-  private def ageInfluencePhysicalCapacity(char: Characteristic) =
-    age.value match {
-      case x if x >= 80 => (char.value * 0.45).toInt
-      case x if x >= 70 => (char.value * 0.65).toInt
-      case x if x >= 60 => (char.value * 0.85).toInt
-      case x if x >= 50 => (char.value * 0.9).toInt
-      case x if x >= 40 => (char.value * 0.95).toInt
-      case _            => char.value
-    }
+object Human {
+  def apply(
+      age: Age,
+      str: Strength,
+      siz: Size,
+      dex: Dexterity,
+      con: Constitution,
+      app: Appearance,
+      edu: Education
+  ): Human = {
+    import com.malk.coc.rules.HumanAgingEffectOnBody
+    import com.malk.coc.rules.HumanAgingEffectOnEducation.implicits._
+    import com.malk.coc.rules.HumanMobility._
+    import com.malk.coc.rules.HumanAgingEffectOnAppearance._
+
+    val resultBody =
+      HumanAgingEffectOnBody.modifiedPhysical(age, str, con, dex, siz)
+
+    new Human(age, resultBody._1, resultBody._4, resultBody._3, resultBody._2, app, edu)
+  }
 }

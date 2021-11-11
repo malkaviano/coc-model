@@ -59,7 +59,8 @@ class HumanSpec extends AnyFunSpec with Matchers {
         )(
           agingEffectOnEducation = ageEffect,
           movementRateGenerator = HumanMobility.movementRate,
-          agingEffectOnAppearanceModifier = HumanAgingEffectOnAppearance.appearance
+          agingEffectOnAppearanceModifier =
+            HumanAgingEffectOnAppearance.appearance
         ) {}
 
         human.EDU shouldBe ageEffect.modifiedEducation(age, edu).value
@@ -78,7 +79,7 @@ class HumanSpec extends AnyFunSpec with Matchers {
           con,
           app,
           edu
-        ){}
+        ) {}
 
         human.APP shouldBe 60
       }
@@ -87,16 +88,72 @@ class HumanSpec extends AnyFunSpec with Matchers {
         human.STR should be > 0
       }
 
-      it("should have Strength (DEX) above 0") {
+      it("should have initial Strength (STR) modified by Age") {
+        val human = Human(
+          Dice.randomAge(50, 59),
+          str,
+          siz,
+          dex,
+          con,
+          app,
+          edu
+        )
+
+        human.STR shouldBe 47
+      }
+
+      it("should have Dexterity (DEX) above 0") {
         human.DEX should be > 0
       }
 
-      it("should have Strength (CON) above 0") {
+      it("should have initial Dexterity (DEX) modified by Age") {
+        val human = Human(
+          Dice.randomAge(50, 59),
+          str,
+          siz,
+          dex,
+          con,
+          app,
+          edu
+        )
+
+        human.DEX shouldBe 66
+      }
+
+      it("should have Constitution (CON) above 0") {
         human.CON should be > 0
       }
 
-      it("should have Strength (SIZ) above 0") {
+      it("should have initial Constitution (CON) modified by Age") {
+        val human = Human(
+          Dice.randomAge(50, 59),
+          str,
+          siz,
+          dex,
+          con,
+          app,
+          edu
+        )
+
+        human.CON shouldBe 42
+      }
+
+      it("should have Size (SIZ) above 0") {
         human.SIZ should be > 0
+      }
+
+      it("should have initial Size (SIZ) modified by young Age") {
+        val human = Human(
+          Dice.randomAge(15, 19),
+          str,
+          siz,
+          dex,
+          con,
+          app,
+          edu
+        )
+
+        human.SIZ shouldBe 58
       }
     }
 
