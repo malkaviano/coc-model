@@ -4,6 +4,5 @@ target/
 .metals/
 .vscode/
 project/.bloop/
-project/metals.sbt
-project/project/metals.sbt
+**/metals.sbt
 .scalafmt.conf
