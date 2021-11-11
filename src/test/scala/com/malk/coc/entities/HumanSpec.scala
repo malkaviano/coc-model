@@ -71,7 +71,7 @@ class HumanSpec extends AnyFunSpec with Matchers {
       }
 
       it("should have initial Appearance (APP) modified by Age") {
-        val human = new Human(
+        val human = Human(
           Dice.randomAge(40, 49),
           str,
           siz,
@@ -79,7 +79,7 @@ class HumanSpec extends AnyFunSpec with Matchers {
           con,
           app,
           edu
-        ) {}
+        )
 
         human.APP shouldBe 60
       }
