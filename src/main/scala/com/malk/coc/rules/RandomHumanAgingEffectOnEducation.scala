@@ -28,11 +28,3 @@ class RandomHumanAgingEffectOnEducation(
     }
   }
 }
-
-object RandomHumanAgingEffectOnEducation {
-  object implicits {
-    implicit val randomHumanAgingOnEducationEffect
-        : RandomHumanAgingEffectOnEducation =
-      new RandomHumanAgingEffectOnEducation
-  }
-}
