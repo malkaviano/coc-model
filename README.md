@@ -1,6 +1,8 @@
 # coc-kata
 Personal Kata about CoC (Call of Cthulhu®)
 
+[![CodeFactor](https://www.codefactor.io/repository/github/malkaviano/coc-kata/badge)](https://www.codefactor.io/repository/github/malkaviano/coc-kata)
+
 This repo may contain copyright material, I do own the pdf, but you are not authorized any of the mathematics or concepts inside this project without Chaosium® permission.
 
 This is an educational project.
