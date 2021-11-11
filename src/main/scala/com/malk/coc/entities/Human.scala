@@ -56,14 +56,25 @@ object Human {
       edu: Education
   )(implicit
       agingEffectOnEducation: AgingEffectOnEducation,
-      agingEffectOnAppearanceModifier: (Age, Appearance) => Appearance
+      agingEffectOnAppearanceModifier: (Age, Appearance) => Appearance,
+      agingEffectOnBody: (
+          Age,
+          Strength,
+          Constitution,
+          Dexterity,
+          Size
+      ) => (
+          Strength,
+          Constitution,
+          Dexterity,
+          Size
+      )
   ): Human = {
     import com.malk.coc.rules.HumanAgingEffectOnBody
     import com.malk.coc.rules.HumanAgingEffectOnEducation.implicits._
     import com.malk.coc.rules.HumanMobility._
 
-    val resultBody =
-      HumanAgingEffectOnBody.modifiedPhysical(age, str, con, dex, siz)
+    val resultBody = agingEffectOnBody(age, str, con, dex, siz)
 
     val agedEdu = agingEffectOnEducation.modifiedEducation(age, edu)
 

@@ -20,7 +20,7 @@ class HumanAgingEffectOnBodySpec extends AnyFunSpec with Matchers {
       val expected = (Strength(47), con, dex, Size(48))
 
       it("should deduct 5 points among STR and SIZ") {
-        val result = HumanAgingEffectOnBody.modifiedPhysical(age, str, con, dex, siz)
+        val result = HumanAgingEffectOnBody.modifiedBody(age, str, con, dex, siz)
 
         result shouldBe expected
       }
@@ -31,7 +31,7 @@ class HumanAgingEffectOnBodySpec extends AnyFunSpec with Matchers {
       val expected = (str, con, dex, siz)
 
       it("should return same stats") {
-        val result = HumanAgingEffectOnBody.modifiedPhysical(age, str, con, dex, siz)
+        val result = HumanAgingEffectOnBody.modifiedBody(age, str, con, dex, siz)
 
         result shouldBe expected
       }
@@ -42,7 +42,7 @@ class HumanAgingEffectOnBodySpec extends AnyFunSpec with Matchers {
       val expected = (Strength(48), Constitution(48), Dexterity(49), siz)
 
       it("should deduct 5 points among STR, CON or DEX") {
-        val result = HumanAgingEffectOnBody.modifiedPhysical(age, str, con, dex, siz)
+        val result = HumanAgingEffectOnBody.modifiedBody(age, str, con, dex, siz)
 
         result shouldBe expected
       }
@@ -53,7 +53,7 @@ class HumanAgingEffectOnBodySpec extends AnyFunSpec with Matchers {
       val expected = (Strength(47), Constitution(47), Dexterity(46), siz)
 
       it("should deduct 10 points among STR, CON or DEX") {
-        val result = HumanAgingEffectOnBody.modifiedPhysical(age, str, con, dex, siz)
+        val result = HumanAgingEffectOnBody.modifiedBody(age, str, con, dex, siz)
 
         result shouldBe expected
       }
@@ -64,7 +64,7 @@ class HumanAgingEffectOnBodySpec extends AnyFunSpec with Matchers {
       val expected = (Strength(44), Constitution(44), Dexterity(42), siz)
 
       it("should deduct 20 points among STR, CON or DEX") {
-        val result = HumanAgingEffectOnBody.modifiedPhysical(age, str, con, dex, siz)
+        val result = HumanAgingEffectOnBody.modifiedBody(age, str, con, dex, siz)
 
         result shouldBe expected
       }
@@ -75,7 +75,7 @@ class HumanAgingEffectOnBodySpec extends AnyFunSpec with Matchers {
       val expected = (Strength(37), Constitution(37), Dexterity(36), siz)
 
       it("should deduct 40 points among STR, CON or DEX") {
-        val result = HumanAgingEffectOnBody.modifiedPhysical(age, str, con, dex, siz)
+        val result = HumanAgingEffectOnBody.modifiedBody(age, str, con, dex, siz)
 
         result shouldBe expected
       }
@@ -86,7 +86,7 @@ class HumanAgingEffectOnBodySpec extends AnyFunSpec with Matchers {
       val expected = (Strength(24), Constitution(24), Dexterity(22), siz)
 
       it("should deduct 80 points among STR, CON or DEX") {
-        val result = HumanAgingEffectOnBody.modifiedPhysical(age, str, con, dex, siz)
+        val result = HumanAgingEffectOnBody.modifiedBody(age, str, con, dex, siz)
 
         result shouldBe expected
       }

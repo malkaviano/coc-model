@@ -8,11 +8,13 @@ import com.malk.coc.helpers.Dice
 import com.malk.coc.rules.HumanAgingEffectOnEducation
 import com.malk.coc.rules.HumanMobility
 import com.malk.coc.rules.HumanAgingEffectOnAppearance
+import com.malk.coc.rules.HumanAgingEffectOnBody
 
 class HumanSpec extends AnyFunSpec with Matchers {
   import com.malk.coc.rules.HumanAgingEffectOnEducation.implicits._
   import com.malk.coc.rules.HumanMobility._
   import com.malk.coc.rules.HumanAgingEffectOnAppearance._
+  import com.malk.coc.rules.HumanAgingEffectOnBody._
 
   describe("The Human spec") {
     val age = Dice.randomAge()
@@ -59,7 +61,8 @@ class HumanSpec extends AnyFunSpec with Matchers {
         )(
           agingEffectOnEducation = ageEffect,
           agingEffectOnAppearanceModifier =
-            HumanAgingEffectOnAppearance.appearance
+            HumanAgingEffectOnAppearance.appearance,
+          agingEffectOnBody = HumanAgingEffectOnBody.modifiedBody
         )
 
         human.EDU shouldBe ageEffect.modifiedEducation(age, edu).value

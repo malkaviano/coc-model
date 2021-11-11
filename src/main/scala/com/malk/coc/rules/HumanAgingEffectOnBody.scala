@@ -7,7 +7,7 @@ import com.malk.coc.concepts.characteristics.Size
 import com.malk.coc.concepts.characteristics.Age
 
 object HumanAgingEffectOnBody {
-  def modifiedPhysical(
+  implicit def modifiedBody(
       age: Age,
       str: Strength,
       con: Constitution,
