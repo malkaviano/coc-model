@@ -1,5 +1,5 @@
 package com.malk.coc.traits
 
-trait MeleeDamageEnhancement {
+trait MeleeDamageBonus {
   def DB: Int
 }
