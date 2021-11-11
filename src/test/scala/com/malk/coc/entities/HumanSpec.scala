@@ -24,6 +24,7 @@ class HumanSpec extends AnyFunSpec with Matchers {
     val con = Constitution(45)
     val app = Appearance(65)
     val edu = Education(48)
+    val luck = Luck(34)
 
     val human = Human(
       age,
@@ -32,7 +33,8 @@ class HumanSpec extends AnyFunSpec with Matchers {
       dex,
       con,
       app,
-      edu
+      edu,
+      luck
     )
 
     it("should have Age") {
@@ -57,7 +59,8 @@ class HumanSpec extends AnyFunSpec with Matchers {
           dex,
           con,
           app,
-          edu
+          edu,
+          luck
         )(
           agingEffectOnEducation = ageEffect,
           agingEffectOnAppearanceModifier =
@@ -81,7 +84,8 @@ class HumanSpec extends AnyFunSpec with Matchers {
           dex,
           con,
           app,
-          edu
+          edu,
+          luck
         )
 
         human.APP shouldBe 60
@@ -99,7 +103,8 @@ class HumanSpec extends AnyFunSpec with Matchers {
           dex,
           con,
           app,
-          edu
+          edu,
+          luck
         )
 
         human.STR shouldBe 47
@@ -117,7 +122,8 @@ class HumanSpec extends AnyFunSpec with Matchers {
           dex,
           con,
           app,
-          edu
+          edu,
+          luck
         )
 
         human.DEX shouldBe 66
@@ -135,7 +141,8 @@ class HumanSpec extends AnyFunSpec with Matchers {
           dex,
           con,
           app,
-          edu
+          edu,
+          luck
         )
 
         human.CON shouldBe 42
@@ -153,10 +160,15 @@ class HumanSpec extends AnyFunSpec with Matchers {
           dex,
           con,
           app,
-          edu
+          edu,
+          luck
         )
 
         human.SIZ shouldBe 58
+      }
+
+      it("should have Luck above 0") {
+        human.Luck should be > 0
       }
     }
 

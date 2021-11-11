@@ -12,12 +12,14 @@ case class Human private (
     private val con: Constitution,
     private val app: Appearance,
     private val edu: Education,
+    private val luck: Luck,
     private val mov: MovementRate
 ) extends Aging
     with Mobility
     with PhysicalCapacity
     with Charismatic
-    with Knowledge {
+    with Knowledge
+    with Chance {
 
   override def Age: Int = age.value
 
@@ -34,6 +36,8 @@ case class Human private (
   override def APP: Int = app.value
 
   override def EDU: Int = edu.value
+
+  override def Luck: Int = luck.value
 }
 
 object Human {
@@ -44,7 +48,8 @@ object Human {
       dex: Dexterity,
       con: Constitution,
       app: Appearance,
-      edu: Education
+      edu: Education,
+      luck: Luck
   )(implicit
       agingEffectOnEducation: AgingEffectOnEducation,
       agingEffectOnAppearanceModifier: (Age, Appearance) => Appearance,
@@ -80,6 +85,7 @@ object Human {
       agedBody._2,
       agedAppearance,
       agedEdu,
+      luck,
       modifiedMOV
     )
   }
