@@ -4,22 +4,19 @@ import com.malk.coc.concepts.characteristics._
 import com.malk.coc.traits._
 import com.malk.coc.concepts.attributes.MovementRate
 
-class Human private(
+class Human private (
     private val age: Age,
     private val str: Strength,
     private val siz: Size,
     private val dex: Dexterity,
     private val con: Constitution,
     private val app: Appearance,
-    private val edu: Education
-)(implicit
-    movementRateGenerator: (Age, Strength, Dexterity, Size) => MovementRate
+    private val edu: Education,
+    private val mov: MovementRate
 ) extends Mobility
     with PhysicalCapacity
     with Charismatic
     with Knowledge {
-  private val mov: MovementRate =
-    movementRateGenerator(age, str, dex, siz)
 
   def Age: Int = age.value
 
@@ -61,24 +58,28 @@ object Human {
           Constitution,
           Dexterity,
           Size
-      )
+      ),
+      movementRateGenerator: (Age, Strength, Dexterity, Size) => MovementRate
   ): Human = {
     import com.malk.coc.rules.HumanMobility._
 
-    val resultBody = agingEffectOnBody(age, str, con, dex, siz)
+    val agedBody = agingEffectOnBody(age, str, con, dex, siz)
 
     val agedEdu = agingEffectOnEducation.modifiedEducation(age, edu)
 
     val agedAppearance = agingEffectOnAppearanceModifier(age, app)
 
+    val modifiedMOV = movementRateGenerator(age, agedBody._1, agedBody._3, agedBody._4)
+
     new Human(
       age,
-      resultBody._1,
-      resultBody._4,
-      resultBody._3,
-      resultBody._2,
+      agedBody._1,
+      agedBody._4,
+      agedBody._3,
+      agedBody._2,
       agedAppearance,
-      agedEdu
+      agedEdu,
+      modifiedMOV
     )
   }
 }

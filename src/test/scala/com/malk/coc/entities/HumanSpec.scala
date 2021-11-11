@@ -62,7 +62,8 @@ class HumanSpec extends AnyFunSpec with Matchers {
           agingEffectOnEducation = ageEffect,
           agingEffectOnAppearanceModifier =
             HumanAgingEffectOnAppearance.appearance,
-          agingEffectOnBody = HumanAgingEffectOnBody.modifiedBody
+          agingEffectOnBody = HumanAgingEffectOnBody.modifiedBody,
+          movementRateGenerator = HumanMobility.movementRate
         )
 
         human.EDU shouldBe ageEffect.modifiedEducation(age, edu).value
