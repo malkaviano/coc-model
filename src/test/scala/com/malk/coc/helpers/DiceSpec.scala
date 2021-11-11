@@ -15,7 +15,7 @@ class DiceSpec extends AnyFunSpec with Matchers {
         rolls.add(Dice.roll10)
       }
 
-      rolls should contain only (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+      rolls should contain.only (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
     }
   }
 
@@ -27,7 +27,7 @@ class DiceSpec extends AnyFunSpec with Matchers {
         rolls.add(Dice.roll8)
       }
 
-      rolls should contain only (1, 2, 3, 4, 5, 6, 7, 8)
+      rolls should contain.only (1, 2, 3, 4, 5, 6, 7, 8)
     }
   }
 
@@ -39,7 +39,7 @@ class DiceSpec extends AnyFunSpec with Matchers {
         rolls.add(Dice.roll6)
       }
 
-      rolls should contain only (1, 2, 3, 4, 5, 6)
+      rolls should contain.only (1, 2, 3, 4, 5, 6)
     }
   }
 
@@ -51,7 +51,7 @@ class DiceSpec extends AnyFunSpec with Matchers {
         rolls.add(Dice.roll4)
       }
 
-      rolls should contain only (1, 2, 3, 4)
+      rolls should contain.only (1, 2, 3, 4)
     }
   }
 

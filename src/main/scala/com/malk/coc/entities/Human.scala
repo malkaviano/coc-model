@@ -98,8 +98,6 @@ object Human {
       ),
       movementRateGenerator: (Age, Strength, Dexterity, Size) => MovementRate
   ): Human = {
-    import com.malk.coc.rules.HumanMobility._
-
     val agedBody = agingEffectOnBody(age, str, con, dex, siz)
 
     val agedEdu = agingEffectOnEducation.modifiedEducation(age, edu)

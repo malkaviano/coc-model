@@ -3,10 +3,6 @@ package com.malk.coc.concepts.attributes
 import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 
-import com.malk.coc.concepts.characteristics.{Strength, Dexterity, Size}
-import com.malk.coc.rules.HumanMobility
-import com.malk.coc.helpers.Dice
-
 class MovementRateSpec
     extends AnyFunSpec
     with Matchers {

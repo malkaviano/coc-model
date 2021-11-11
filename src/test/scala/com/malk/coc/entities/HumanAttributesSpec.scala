@@ -42,8 +42,6 @@ class HumanAttributesSpec extends AnyFunSpec with Matchers {
     )
 
     describe("Human MovementRate (MOV)") {
-      val baseMOV = 8
-
       describe(
         s"when Age ${human.Age} - STR ${human.STR} - DEX ${human.DEX} - SIZ ${human.SIZ}"
       ) {
