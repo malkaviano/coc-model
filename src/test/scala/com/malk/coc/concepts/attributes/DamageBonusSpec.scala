@@ -6,7 +6,7 @@ import org.scalatest.matchers.should.Matchers
 import com.malk.coc.concepts.characteristics.{Strength, Size}
 
 trait DamageBonusBehavior extends Matchers { this: AnyFunSpec =>
-  def calculateDamageBonus(str: Strength, siz: Size, min: Int, max: Int) {
+  def calculateDamageBonus(str: Strength, siz: Size, min: Int, max: Int): Unit = {
     it(s"should return value between ${min} and ${max}") {
       val results = for {
         i <- (1 to (if (max <= 30) 100000 else 500000))

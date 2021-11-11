@@ -17,7 +17,7 @@ trait MovementRateBehaviors extends Matchers { this: AnyFunSpec =>
       dex: Dexterity,
       siz: Size,
       expected: MovementRate
-  ) {
+  ): Unit = {
     describe(s"when ${str} - ${dex} - ${siz}") {
       it(s"should return ${expected}") {
         HumanMobility.movementRate(age, str, dex, siz) shouldBe expected

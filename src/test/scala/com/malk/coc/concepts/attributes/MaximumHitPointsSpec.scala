@@ -6,7 +6,7 @@ import org.scalatest.matchers.should.Matchers
 import com.malk.coc.concepts.characteristics.{Constitution, Size}
 
 trait MaximumHitPointsBehaviors extends Matchers { this: AnyFunSpec =>
-  def calculateHitPoints(con: Constitution, siz: Size, expected: Int) {
+  def calculateHitPoints(con: Constitution, siz: Size, expected: Int): Unit = {
     it(s"should return value ${expected}") {
       MaximumHitPoints(con, siz).value shouldBe expected
     }

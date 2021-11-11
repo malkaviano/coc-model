@@ -6,7 +6,7 @@ import org.scalatest.matchers.should.Matchers
 import com.malk.coc.concepts.characteristics.{Strength, Size}
 
 trait BuildBehaviors extends Matchers { this: AnyFunSpec =>
-  def calculateBuild(str: Strength, siz: Size, expected: Int) {
+  def calculateBuild(str: Strength, siz: Size, expected: Int): Unit = {
     it(s"should return value ${expected}") {
       Build(str, siz).value shouldBe expected
     }

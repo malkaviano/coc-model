@@ -15,7 +15,7 @@ trait HumanAgingEffectOnEducationBehaviors extends Matchers with MockFactory {
       edu: Education,
       rolls: Seq[Int],
       increments: Seq[Int]
-  ) {
+  ): Unit = {
     val rollsStr = rolls.mkString("(", ") - (", ")")
     val incrementsStr = increments.mkString("(", ") + (", ")")
 
