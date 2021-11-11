@@ -3,9 +3,6 @@ package com.malk.coc.entities
 import com.malk.coc.concepts.characteristics._
 import com.malk.coc.traits._
 import com.malk.coc.concepts.attributes.MovementRate
-import com.malk.coc.traits.AgingEffectOnEducation
-import com.malk.coc.rules.HumanMobility
-import com.malk.coc.rules.HumanAgingEffectOnEducation
 
 class Human(
     private val age: Age,
@@ -13,7 +10,7 @@ class Human(
     private val siz: Size,
     private val dex: Dexterity,
     private val con: Constitution,
-    private var app: Appearance,
+    private val app: Appearance,
     private val edu: Education
 )(implicit
     agingEffectOnEducation: AgingEffectOnEducation,
@@ -23,8 +20,6 @@ class Human(
     with PhysicalCapacity
     with Charismatic
     with Knowledge {
-  app = agingEffectOnAppearanceModifier(age, app)
-
   private val mov: MovementRate =
     movementRateGenerator(age, str, dex, siz)
 
@@ -78,13 +73,15 @@ object Human {
 
     val agedEdu = agingEffectOnEducation.modifiedEducation(age, edu)
 
+    val agedAppearance = agingEffectOnAppearanceModifier(age, app)
+
     new Human(
       age,
       resultBody._1,
       resultBody._4,
       resultBody._3,
       resultBody._2,
-      app,
+      agedAppearance,
       agedEdu
     )
   }
