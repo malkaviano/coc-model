@@ -8,6 +8,7 @@ import com.malk.coc.helpers.Dice
 import com.malk.coc.concepts.attributes.MaximumHitPoints
 import com.malk.coc.concepts.attributes.MovementRate
 import com.malk.coc.concepts.attributes.Build
+import com.malk.coc.concepts.attributes.DamageBonus
 
 class HumanAttributesSpec extends AnyFunSpec with Matchers {
   import com.malk.coc.rules.HumanAgingEffectOnEducation.implicits._
@@ -72,6 +73,14 @@ class HumanAttributesSpec extends AnyFunSpec with Matchers {
 
     it(s"should have Build equal ${build.value}") {
       human.Build shouldBe build.value
+    }
+  }
+
+  describe("Human Damage Bonus (DB)") {
+    val db = DamageBonus(Strength(human.STR), Size(human.SIZ))
+
+    it(s"should have DB equal ${db.value}") {
+      human.DB shouldBe db.value
     }
   }
 }

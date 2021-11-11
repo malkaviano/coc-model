@@ -6,6 +6,7 @@ import com.malk.coc.concepts.attributes.MovementRate
 import com.malk.coc.concepts.attributes.MaximumHitPoints
 import com.malk.coc.concepts.attributes.CurrentHitPoints
 import com.malk.coc.concepts.attributes.Build
+import com.malk.coc.concepts.attributes.DamageBonus
 
 case class Human private (
     private val age: Age,
@@ -20,7 +21,8 @@ case class Human private (
     private val pow: Power,
     private val mov: MovementRate,
     private val maxHP: MaximumHitPoints,
-    private val build: Build
+    private val build: Build,
+    private val db: DamageBonus
 ) extends Aging
     with Mobility
     with PhysicalCapacity
@@ -29,7 +31,8 @@ case class Human private (
     with Knowledge
     with Chance
     with Damageable
-    with FightingManeuverModifier {
+    with FightingManeuverModifier
+    with MeleeDamageBonus {
 
   private var currentHP = CurrentHitPoints(maxHP.value)
 
@@ -62,6 +65,8 @@ case class Human private (
   }
 
   override def Build: Int = build.value
+
+  override def DB: Int = db.value
 }
 
 object Human {
@@ -108,6 +113,8 @@ object Human {
 
     val build = Build(agedBody._1, agedBody._4)
 
+    val db = DamageBonus(agedBody._1, agedBody._4)
+
     Human(
       age,
       agedBody._1,
@@ -121,7 +128,8 @@ object Human {
       pow,
       modifiedMOV,
       maxHP,
-      build
+      build,
+      db
     )
   }
 }
