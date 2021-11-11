@@ -5,6 +5,8 @@ import org.scalatest.matchers.should.Matchers
 
 import com.malk.coc.concepts.characteristics._
 import com.malk.coc.helpers.Dice
+import com.malk.coc.concepts.attributes.HitPoints
+import com.malk.coc.concepts.attributes.MovementRate
 
 class HumanAttributesSpec extends AnyFunSpec with Matchers {
   import com.malk.coc.rules.HumanAgingEffectOnEducation.implicits._
@@ -12,39 +14,49 @@ class HumanAttributesSpec extends AnyFunSpec with Matchers {
   import com.malk.coc.rules.HumanAgingEffectOnAppearance._
   import com.malk.coc.rules.HumanAgingEffectOnBody._
 
-  describe("Human MOV") {
-    val str = Strength(50)
-    val dex = Dexterity(50)
-    val siz = Size(50)
-    val age = Dice.randomAge(40, 49)
-    val con = Constitution(45)
-    val app = Appearance(65)
-    val edu = Education(48)
-    val luck = Luck(34)
-    val int = Intelligence(56)
-    val pow = Power(43)
+  val str = Strength(50)
+  val dex = Dexterity(50)
+  val siz = Size(50)
+  val age = Dice.randomAge(40, 49)
+  val con = Constitution(45)
+  val app = Appearance(65)
+  val edu = Education(48)
+  val luck = Luck(34)
+  val int = Intelligence(56)
+  val pow = Power(43)
 
+  val human = Human(
+    age,
+    str,
+    siz,
+    dex,
+    con,
+    app,
+    edu,
+    luck,
+    int,
+    pow
+  )
+
+  describe("Human MovementRate (MOV)") {
     val baseMOV = 8
 
-    describe(s"when ${age} - ${str} - ${dex} - ${siz}") {
-      val expected = 8 - 1 - 1
+    describe(s"when Age ${human.Age} - STR ${human.STR} - DEX ${human.DEX} - SIZ ${human.SIZ}") {
 
-      val human = Human(
-        age,
-        str,
-        siz,
-        dex,
-        con,
-        app,
-        edu,
-        luck,
-        int,
-        pow
-      )
+      val mov = MovementRate(8 - 1 - 1)
 
-      it(s"should have MOV ${expected}") {
-        human.MOV shouldBe expected
+      it(s"should have MOV ${mov.value}") {
+        human.MOV shouldBe mov.value
       }
+
+    }
+  }
+
+  describe("Human Hit Points (HP)") {
+    val hp = HitPoints(Constitution(human.CON), Size(human.SIZ))
+
+    it(s"should have Hit Points (HP) ${hp.value}") {
+      human.HP shouldBe hp.value
     }
   }
 }

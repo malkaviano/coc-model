@@ -3,6 +3,7 @@ package com.malk.coc.entities
 import com.malk.coc.concepts.characteristics._
 import com.malk.coc.traits._
 import com.malk.coc.concepts.attributes.MovementRate
+import com.malk.coc.concepts.attributes.HitPoints
 
 case class Human private (
     private val age: Age,
@@ -15,14 +16,16 @@ case class Human private (
     private val luck: Luck,
     private val int: Intelligence,
     private val pow: Power,
-    private val mov: MovementRate
+    private val mov: MovementRate,
+    private val hp: HitPoints
 ) extends Aging
     with Mobility
     with PhysicalCapacity
     with MentalCapacity
     with Charismatic
     with Knowledge
-    with Chance {
+    with Chance
+    with Damageable {
 
   override def Age: Int = age.value
 
@@ -45,6 +48,8 @@ case class Human private (
   override def INT: Int = int.value
 
   override def POW: Int = pow.value
+
+  override def HP: Int = hp.value
 }
 
 object Human {
@@ -87,6 +92,7 @@ object Human {
     val modifiedMOV =
       movementRateGenerator(age, agedBody._1, agedBody._3, agedBody._4)
 
+    val hp = HitPoints(agedBody._2, agedBody._4)
     Human(
       age,
       agedBody._1,
@@ -98,7 +104,8 @@ object Human {
       luck,
       int,
       pow,
-      modifiedMOV
+      modifiedMOV,
+      hp
     )
   }
 }
