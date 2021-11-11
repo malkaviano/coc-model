@@ -4,7 +4,7 @@ import com.malk.coc.concepts.characteristics._
 import com.malk.coc.traits._
 import com.malk.coc.concepts.attributes.MovementRate
 
-class Human private (
+case class Human private (
     private val age: Age,
     private val str: Strength,
     private val siz: Size,
@@ -71,7 +71,7 @@ object Human {
 
     val modifiedMOV = movementRateGenerator(age, agedBody._1, agedBody._3, agedBody._4)
 
-    new Human(
+    Human(
       age,
       agedBody._1,
       agedBody._4,
