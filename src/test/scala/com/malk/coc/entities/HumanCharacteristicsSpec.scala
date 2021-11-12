@@ -12,13 +12,13 @@ import com.malk.coc.rules.HumanAgingEffectOnBody
 import com.malk.coc.concepts.abstractions.Body
 import com.malk.coc.concepts.abstractions.Brain
 
-class HumanSpec extends AnyFunSpec with Matchers {
+class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
   import com.malk.coc.rules.HumanAgingEffectOnEducation.implicits._
   import com.malk.coc.rules.HumanMobility._
   import com.malk.coc.rules.HumanAgingEffectOnAppearance._
   import com.malk.coc.rules.HumanAgingEffectOnBody._
 
-  describe("The Human spec") {
+  describe("The Human Characteristics") {
     val age = Dice.randomAge()
     val str = Strength(50)
     val siz = Size(60)
