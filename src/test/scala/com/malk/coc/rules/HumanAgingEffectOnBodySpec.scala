@@ -7,7 +7,7 @@ import com.malk.coc.concepts.characteristics.Strength
 import com.malk.coc.concepts.characteristics.Constitution
 import com.malk.coc.concepts.characteristics.Dexterity
 import com.malk.coc.concepts.characteristics.Size
-import com.malk.coc.externals.abstractions.Body
+import com.malk.coc.concepts.abstractions.Body
 
 class HumanAgingEffectOnBodySpec extends AnyFunSpec with Matchers {
   describe("Age effect on physical characteristics") {

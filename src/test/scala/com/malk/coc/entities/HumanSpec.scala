@@ -9,8 +9,8 @@ import com.malk.coc.rules.HumanAgingEffectOnEducation
 import com.malk.coc.rules.HumanMobility
 import com.malk.coc.rules.HumanAgingEffectOnAppearance
 import com.malk.coc.rules.HumanAgingEffectOnBody
-import com.malk.coc.externals.abstractions.Body
-import com.malk.coc.externals.abstractions.Brain
+import com.malk.coc.concepts.abstractions.Body
+import com.malk.coc.concepts.abstractions.Brain
 
 class HumanSpec extends AnyFunSpec with Matchers {
   import com.malk.coc.rules.HumanAgingEffectOnEducation.implicits._

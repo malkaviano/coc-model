@@ -1,7 +1,7 @@
 package com.malk.coc.rules
 
 import com.malk.coc.concepts.characteristics.Age
-import com.malk.coc.externals.abstractions.Body
+import com.malk.coc.concepts.abstractions.Body
 
 object HumanAgingEffectOnBody {
   implicit def modifiedBody(

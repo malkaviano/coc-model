@@ -1,4 +1,4 @@
-package com.malk.coc.externals.abstractions
+package com.malk.coc.concepts.abstractions
 
 import com.malk.coc.concepts.characteristics.Intelligence
 import com.malk.coc.concepts.characteristics.Power

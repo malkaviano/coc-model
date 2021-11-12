@@ -9,8 +9,8 @@ import com.malk.coc.concepts.attributes.MaximumHitPoints
 import com.malk.coc.concepts.attributes.MovementRate
 import com.malk.coc.concepts.attributes.Build
 import com.malk.coc.concepts.attributes.DamageBonus
-import com.malk.coc.externals.abstractions.Body
-import com.malk.coc.externals.abstractions.Brain
+import com.malk.coc.concepts.abstractions.Body
+import com.malk.coc.concepts.abstractions.Brain
 
 class HumanAttributesSpec extends AnyFunSpec with Matchers {
   import com.malk.coc.rules.HumanAgingEffectOnEducation.implicits._

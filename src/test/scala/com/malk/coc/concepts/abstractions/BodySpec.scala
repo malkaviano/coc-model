@@ -1,4 +1,4 @@
-package com.malk.coc.externals.abstractions
+package com.malk.coc.concepts.abstractions
 
 import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers

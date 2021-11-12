@@ -7,8 +7,8 @@ import com.malk.coc.concepts.attributes.MaximumHitPoints
 import com.malk.coc.concepts.attributes.CurrentHitPoints
 import com.malk.coc.concepts.attributes.Build
 import com.malk.coc.concepts.attributes.DamageBonus
-import com.malk.coc.externals.abstractions.Body
-import com.malk.coc.externals.abstractions.Brain
+import com.malk.coc.concepts.abstractions.Body
+import com.malk.coc.concepts.abstractions.Brain
 
 case class Human private (
     private val age: Age,
