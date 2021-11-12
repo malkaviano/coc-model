@@ -1,3 +1,11 @@
 package com.malk.coc.concepts.characteristics
 
-case class Strength(override val value: Int) extends Characteristic("STR", value)
+import com.malk.coc.traits.Characteristic
+
+case class Strength(override val value: Int) extends Characteristic {
+  override val name = "STR"
+
+  override def +(plus: Int): Strength = {
+    this.copy(value + plus)
+  }
+}

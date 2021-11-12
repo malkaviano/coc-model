@@ -14,5 +14,25 @@ class SizeSpec extends AnyFunSpec with Matchers {
     it("should have value 70") {
       siz.value shouldBe 70
     }
+
+    describe(s"when ${siz} - 10") {
+      val expected = Size(60)
+
+      it(s"should return ${expected}") {
+        val result = siz - 10
+
+        result shouldBe expected
+      }
+    }
+
+    describe(s"when ${siz} + 6") {
+      val expected = Size(76)
+
+      it(s"should return ${expected}") {
+        val result = siz + 6
+
+        result shouldBe expected
+      }
+    }
   }
 }

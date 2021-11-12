@@ -14,5 +14,25 @@ class ConstitutionSpec extends AnyFunSpec with Matchers {
     it("should have value 55") {
       con.value shouldBe 55
     }
+
+    describe(s"when ${con} - 10") {
+      val expected = Constitution(45)
+
+      it(s"should return ${expected}") {
+        val result = con - 10
+
+        result shouldBe expected
+      }
+    }
+
+    describe(s"when ${con} + 6") {
+      val expected = Constitution(61)
+
+      it(s"should return ${expected}") {
+        val result = con + 6
+
+        result shouldBe expected
+      }
+    }
   }
 }

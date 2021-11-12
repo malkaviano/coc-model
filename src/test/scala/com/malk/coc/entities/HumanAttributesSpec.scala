@@ -9,6 +9,8 @@ import com.malk.coc.concepts.attributes.MaximumHitPoints
 import com.malk.coc.concepts.attributes.MovementRate
 import com.malk.coc.concepts.attributes.Build
 import com.malk.coc.concepts.attributes.DamageBonus
+import com.malk.coc.externals.abstractions.Body
+import com.malk.coc.externals.abstractions.Brain
 
 class HumanAttributesSpec extends AnyFunSpec with Matchers {
   import com.malk.coc.rules.HumanAgingEffectOnEducation.implicits._
@@ -28,17 +30,16 @@ class HumanAttributesSpec extends AnyFunSpec with Matchers {
     val int = Intelligence(56)
     val pow = Power(43)
 
+    val body = Body(str, con, dex, siz)
+    val brain = Brain(int, pow)
+
     val human = Human(
       age,
-      str,
-      siz,
-      dex,
-      con,
+      body,
       app,
       edu,
       luck,
-      int,
-      pow
+      brain
     )
 
     describe("Human MovementRate (MOV)") {

@@ -14,5 +14,25 @@ class AppearanceSpec extends AnyFunSpec with Matchers {
     it("should have value 65") {
       app.value shouldBe 65
     }
+
+    describe(s"when ${app} - 10") {
+      val expected = Appearance(55)
+
+      it(s"should return ${expected}") {
+        val result = app - 10
+
+        result shouldBe expected
+      }
+    }
+
+    describe(s"when ${app} + 6") {
+      val expected = Appearance(71)
+
+      it(s"should return ${expected}") {
+        val result = app + 6
+
+        result shouldBe expected
+      }
+    }
   }
 }

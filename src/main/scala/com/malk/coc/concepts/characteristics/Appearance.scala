@@ -1,3 +1,11 @@
 package com.malk.coc.concepts.characteristics
 
-case class Appearance(override val value: Int) extends Characteristic("APP", value)
+import com.malk.coc.traits.Characteristic
+
+case class Appearance(override val value: Int) extends Characteristic {
+  override val name: String = "APP"
+
+  override def +(plus: Int): Appearance = {
+    this.copy(value + plus)
+  }
+}

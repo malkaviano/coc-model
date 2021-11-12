@@ -1,3 +1,11 @@
 package com.malk.coc.concepts.characteristics
 
-case class Dexterity(override val value: Int) extends Characteristic("DEX", value)
+import com.malk.coc.traits.Characteristic
+
+case class Dexterity(override val value: Int) extends Characteristic {
+  override val name = "DEX"
+
+  override def +(plus: Int): Dexterity = {
+    this.copy(value + plus)
+  }
+}

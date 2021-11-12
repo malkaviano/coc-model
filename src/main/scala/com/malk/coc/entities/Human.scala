@@ -7,18 +7,16 @@ import com.malk.coc.concepts.attributes.MaximumHitPoints
 import com.malk.coc.concepts.attributes.CurrentHitPoints
 import com.malk.coc.concepts.attributes.Build
 import com.malk.coc.concepts.attributes.DamageBonus
+import com.malk.coc.externals.abstractions.Body
+import com.malk.coc.externals.abstractions.Brain
 
 case class Human private (
     private val age: Age,
-    private val str: Strength,
-    private val siz: Size,
-    private val dex: Dexterity,
-    private val con: Constitution,
+    private val body: Body,
     private val app: Appearance,
     private val edu: Education,
     private val luck: Luck,
-    private val int: Intelligence,
-    private val pow: Power,
+    private val brain: Brain,
     private val mov: MovementRate,
     private val maxHP: MaximumHitPoints,
     private val build: Build,
@@ -40,13 +38,13 @@ case class Human private (
 
   override def MOV: Int = mov.value
 
-  override def STR: Int = str.value
+  override def STR: Int = body.strength.value
 
-  override def CON: Int = con.value
+  override def CON: Int = body.constitution.value
 
-  override def DEX: Int = dex.value
+  override def DEX: Int = body.dexterity.value
 
-  override def SIZ: Int = siz.value
+  override def SIZ: Int = body.size.value
 
   override def APP: Int = app.value
 
@@ -54,9 +52,9 @@ case class Human private (
 
   override def Luck: Int = luck.value
 
-  override def INT: Int = int.value
+  override def INT: Int = brain.intelligence.value
 
-  override def POW: Int = pow.value
+  override def POW: Int = brain.power.value
 
   override def HP: Int = currentHP.value
 
@@ -72,58 +70,42 @@ case class Human private (
 object Human {
   def apply(
       age: Age,
-      str: Strength,
-      siz: Size,
-      dex: Dexterity,
-      con: Constitution,
+      body: Body,
       app: Appearance,
       edu: Education,
       luck: Luck,
-      int: Intelligence,
-      pow: Power
+      brain: Brain
   )(implicit
       agingEffectOnEducation: AgingEffectOnEducation,
       agingEffectOnAppearanceModifier: (Age, Appearance) => Appearance,
       agingEffectOnBody: (
           Age,
-          Strength,
-          Constitution,
-          Dexterity,
-          Size
-      ) => (
-          Strength,
-          Constitution,
-          Dexterity,
-          Size
-      ),
+          Body
+      ) => Body,
       movementRateGenerator: (Age, Strength, Dexterity, Size) => MovementRate
   ): Human = {
-    val agedBody = agingEffectOnBody(age, str, con, dex, siz)
+    val agedBody = agingEffectOnBody(age, body)
 
     val agedEdu = agingEffectOnEducation.modifiedEducation(age, edu)
 
     val agedAppearance = agingEffectOnAppearanceModifier(age, app)
 
     val modifiedMOV =
-      movementRateGenerator(age, agedBody._1, agedBody._3, agedBody._4)
+      movementRateGenerator(age, agedBody.strength, agedBody.dexterity, agedBody.size)
 
-    val maxHP = MaximumHitPoints(agedBody._2, agedBody._4)
+    val maxHP = MaximumHitPoints(agedBody.constitution, agedBody.size)
 
-    val build = Build(agedBody._1, agedBody._4)
+    val build = Build(agedBody.strength, agedBody.size)
 
-    val db = DamageBonus(agedBody._1, agedBody._4)
+    val db = DamageBonus(agedBody.strength, agedBody.size)
 
     Human(
       age,
-      agedBody._1,
-      agedBody._4,
-      agedBody._3,
-      agedBody._2,
+      agedBody,
       agedAppearance,
       agedEdu,
       luck,
-      int,
-      pow,
+      brain,
       modifiedMOV,
       maxHP,
       build,

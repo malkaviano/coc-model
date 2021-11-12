@@ -1,3 +1,11 @@
 package com.malk.coc.concepts.characteristics
 
-case class Intelligence(override val value: Int) extends Characteristic("INT", value)
+import com.malk.coc.traits.Characteristic
+
+case class Intelligence(override val value: Int) extends Characteristic {
+  override val name = "INT"
+
+  override def +(plus: Int): Intelligence = {
+    this.copy(value + plus)
+  }
+}

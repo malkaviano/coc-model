@@ -1,3 +1,11 @@
 package com.malk.coc.concepts.characteristics
 
-case class Constitution(override val value: Int) extends Characteristic("CON", value)
+import com.malk.coc.traits.Characteristic
+
+case class Constitution(override val value: Int) extends Characteristic {
+  override val name = "CON"
+
+  override def +(plus: Int): Constitution = {
+    this.copy(value + plus)
+  }
+}

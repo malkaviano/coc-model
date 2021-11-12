@@ -14,5 +14,25 @@ class PowerSpec extends AnyFunSpec with Matchers {
     it("should have value 70") {
       pow.value shouldBe 70
     }
+
+    describe(s"when ${pow} - 10") {
+      val expected = Power(60)
+
+      it(s"should return ${expected}") {
+        val result = pow - 10
+
+        result shouldBe expected
+      }
+    }
+
+    describe(s"when ${pow} + 6") {
+      val expected = Power(76)
+
+      it(s"should return ${expected}") {
+        val result = pow + 6
+
+        result shouldBe expected
+      }
+    }
   }
 }

@@ -9,6 +9,8 @@ import com.malk.coc.rules.HumanAgingEffectOnEducation
 import com.malk.coc.rules.HumanMobility
 import com.malk.coc.rules.HumanAgingEffectOnAppearance
 import com.malk.coc.rules.HumanAgingEffectOnBody
+import com.malk.coc.externals.abstractions.Body
+import com.malk.coc.externals.abstractions.Brain
 
 class HumanSpec extends AnyFunSpec with Matchers {
   import com.malk.coc.rules.HumanAgingEffectOnEducation.implicits._
@@ -28,17 +30,16 @@ class HumanSpec extends AnyFunSpec with Matchers {
     val int = Intelligence(56)
     val pow = Power(43)
 
+    val body = Body(str, con, dex, siz)
+    val brain = Brain(int, pow)
+
     val human = Human(
       age,
-      str,
-      siz,
-      dex,
-      con,
+      body,
       app,
       edu,
       luck,
-      int,
-      pow
+      brain
     )
 
     it("should have Age") {
@@ -58,15 +59,11 @@ class HumanSpec extends AnyFunSpec with Matchers {
 
         val human = Human(
           age,
-          str,
-          siz,
-          dex,
-          con,
+          body,
           app,
           edu,
           luck,
-          int,
-          pow
+          brain
         )(
           agingEffectOnEducation = ageEffect,
           agingEffectOnAppearanceModifier =
@@ -85,15 +82,11 @@ class HumanSpec extends AnyFunSpec with Matchers {
       it("should have initial Appearance (APP) modified by Age") {
         val human = Human(
           Dice.randomAge(40, 49),
-          str,
-          siz,
-          dex,
-          con,
+          body,
           app,
           edu,
           luck,
-          int,
-          pow
+          brain
         )
 
         human.APP shouldBe 60
@@ -106,15 +99,11 @@ class HumanSpec extends AnyFunSpec with Matchers {
       it("should have initial Strength (STR) modified by Age") {
         val human = Human(
           Dice.randomAge(50, 59),
-          str,
-          siz,
-          dex,
-          con,
+          body,
           app,
           edu,
           luck,
-          int,
-          pow
+          brain
         )
 
         human.STR shouldBe 47
@@ -127,15 +116,11 @@ class HumanSpec extends AnyFunSpec with Matchers {
       it("should have initial Dexterity (DEX) modified by Age") {
         val human = Human(
           Dice.randomAge(50, 59),
-          str,
-          siz,
-          dex,
-          con,
+          body,
           app,
           edu,
           luck,
-          int,
-          pow
+          brain
         )
 
         human.DEX shouldBe 66
@@ -148,15 +133,11 @@ class HumanSpec extends AnyFunSpec with Matchers {
       it("should have initial Constitution (CON) modified by Age") {
         val human = Human(
           Dice.randomAge(50, 59),
-          str,
-          siz,
-          dex,
-          con,
+          body,
           app,
           edu,
           luck,
-          int,
-          pow
+          brain
         )
 
         human.CON shouldBe 42
@@ -169,15 +150,11 @@ class HumanSpec extends AnyFunSpec with Matchers {
       it("should have initial Size (SIZ) modified by young Age") {
         val human = Human(
           Dice.randomAge(15, 19),
-          str,
-          siz,
-          dex,
-          con,
+          body,
           app,
           edu,
           luck,
-          int,
-          pow
+          brain
         )
 
         human.SIZ shouldBe 58

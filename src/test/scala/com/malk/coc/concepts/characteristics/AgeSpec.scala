@@ -14,5 +14,25 @@ class AgeSpec extends AnyFunSpec with Matchers {
     it("should have value 21") {
       age.value shouldBe 21
     }
+
+    describe(s"when ${age} - 10") {
+      val expected = Age(11)
+
+      it(s"should return ${expected}") {
+        val result = age - 10
+
+        result shouldBe expected
+      }
+    }
+
+    describe(s"when ${age} + 6") {
+      val expected = Age(27)
+
+      it(s"should return ${expected}") {
+        val result = age + 6
+
+        result shouldBe expected
+      }
+    }
   }
 }
