@@ -4,7 +4,7 @@ import com.malk.coc.concepts.characteristics.{Strength, Size}
 import com.malk.coc.helpers.Dice._
 import com.malk.coc.traits.Attribute
 
-case class DamageBonus(
+final case class DamageBonus(
   private val str: Strength,
   private val siz: Size
 ) extends Attribute {

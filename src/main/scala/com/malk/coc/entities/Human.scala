@@ -10,7 +10,7 @@ import com.malk.coc.concepts.attributes.DamageBonus
 import com.malk.coc.concepts.abstractions.Body
 import com.malk.coc.concepts.abstractions.Brain
 
-case class Human private (
+final case class Human private (
     private val age: Age,
     private val body: Body,
     private val app: Appearance,

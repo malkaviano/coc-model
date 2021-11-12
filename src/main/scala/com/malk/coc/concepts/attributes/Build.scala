@@ -3,7 +3,7 @@ package com.malk.coc.concepts.attributes
 import com.malk.coc.concepts.characteristics.{Strength, Size}
 import com.malk.coc.traits.Attribute
 
-case class Build(
+final case class Build(
   private val str: Strength,
   private val siz: Size
 ) extends Attribute {
