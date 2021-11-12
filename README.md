@@ -1,19 +1,23 @@
 # coc-kata
-Personal Kata about CoC (Call of Cthulhu®)
+Personal Customized Kata about CoC RPG system (Call of Cthulhu®), not intended to be used by anyone.
 
 [![CodeFactor](https://www.codefactor.io/repository/github/malkaviano/coc-kata/badge)](https://www.codefactor.io/repository/github/malkaviano/coc-kata)
 
-This repo may contain copyright material, I do own the pdf, but you are not authorized any of the mathematics or concepts inside this project without Chaosium® permission.
+This repo contains copyright material references, I'm the owner of the pdf book, and this project is intended for my own personal EDUCATIONAL purpose.
 
-This is an educational project.
+I'm not, in any way, giving anybody permission to use any of this without Chaosium® permission.
 
-Rules:
-- Always test first;
-- To capture all business rules (book rules) to code;
-- Avoid to the maximum primitive types;
-- Where specified by the book for the player to choose or roll, the software will make a random choice;
+Project Rules / Goals:
+- Always test first - TDD inspired;
+- To capture all business rules (book rules) to code - DDD inspired;
+- Avoid to the maximum primitive types - DDD technique inspired;
+- Where specified by the book for the player to choose or roll, the software will make a random choice - Needs to be done for automation;
+- Custom types over strings whenever possible - Trying to keep the static analysis power of the compiler on;
+- Avoid outside lib dependencies to the core - DDD inspired;
+- If needed generate abstrations to simulate concepts of the book, when needed simulate an environment to test concepts;
+  - Keep it as simple as possible;
 
-Optional:
+Optional implementations:
 - New Age rule for EDU improvement (RandomHumanAgingEffectOnEducation). It cannot go above 99:
   - Age 80's: +5D10
   - Age 70's: +4D10
