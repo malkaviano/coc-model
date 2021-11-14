@@ -18,5 +18,9 @@ class TetrahedronDiceSpec
     val range = TetrahedronDice.range
 
     behavesLikeDice(dice, name, range, rollD4, 2)
+
+    it(s"should have range (1, 4)") {
+      TetrahedronDice.range shouldBe ((1, 4))
+    }
   }
 }

@@ -19,10 +19,6 @@ trait BehavesLikeDice extends AnyFunSpec with Matchers with MockFactory {
       dice.name shouldBe name
     }
 
-    it(s"should have range ${TetrahedronDice.range}") {
-      TetrahedronDice.range shouldBe (range)
-    }
-
     it(s"should have roll generating a number between ${range}") {
       mock.expects(range).once().returning(expected)
 
