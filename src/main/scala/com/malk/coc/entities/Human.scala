@@ -20,7 +20,8 @@ final case class Human private (
     private val mov: MovementRate,
     private val maxHP: MaximumHitPoints,
     private val build: Build,
-    private val db: DamageBonus
+    private val db: DamageBonus,
+    private val sanity: Sanity
 ) extends Aging
     with Mobility
     with PhysicalCapacity
@@ -30,7 +31,8 @@ final case class Human private (
     with Chance
     with Damageable
     with FightingManeuverModifier
-    with MeleeDamageBonus {
+    with MeleeDamageBonus
+    with Madness {
 
   private var currentHP = CurrentHitPoints(maxHP.value)
 
@@ -65,6 +67,8 @@ final case class Human private (
   override def Build: Int = build.value
 
   override def DB: Int = db.value
+
+  override def Sanity: Int = sanity.value
 }
 
 object Human {
@@ -74,7 +78,8 @@ object Human {
       app: Appearance,
       edu: Education,
       luck: Luck,
-      brain: Brain
+      brain: Brain,
+      sanity: Sanity = Sanity(99)
   )(implicit
       agingEffectOnEducation: AgingEffectOnEducation,
       agingEffectOnAppearanceModifier: (Age, Appearance) => Appearance,
@@ -91,7 +96,12 @@ object Human {
     val agedAppearance = agingEffectOnAppearanceModifier(age, app)
 
     val modifiedMOV =
-      movementRateGenerator(age, agedBody.strength, agedBody.dexterity, agedBody.size)
+      movementRateGenerator(
+        age,
+        agedBody.strength,
+        agedBody.dexterity,
+        agedBody.size
+      )
 
     val maxHP = MaximumHitPoints(agedBody.constitution, agedBody.size)
 
@@ -109,7 +119,8 @@ object Human {
       modifiedMOV,
       maxHP,
       build,
-      db
+      db,
+      sanity
     )
   }
 }
