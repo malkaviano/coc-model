@@ -19,18 +19,6 @@ class DiceHelperSpec extends AnyFunSpec with Matchers {
     }
   }
 
-  describe("Simulating D100 rolls") {
-    it("should return a number between 1 and 100 at least once") {
-      val rolls = mutable.Set.empty[Int]
-
-      for (n <- 1 to 1000) {
-        rolls.add(DiceHelper.roll100)
-      }
-
-      rolls should contain theSameElementsAs (1 to 100)
-    }
-  }
-
   describe("Generating a random Age") {
     it("should return an Age between 15 and 89 at least once") {
       val ages = mutable.Set.empty[Age]
@@ -79,15 +67,27 @@ class DiceHelperSpec extends AnyFunSpec with Matchers {
     }
 
     describe("when range is (1, 10)") {
-    it("should return a number between 1 and 10 at least once") {
-      val rolls = mutable.Set.empty[Int]
+      it("should return a number between 1 and 10 at least once") {
+        val rolls = mutable.Set.empty[Int]
 
-      for (n <- 1 to 1000) {
-        rolls.add(DiceHelper.rollRange((1, 10)))
+        for (n <- 1 to 1000) {
+          rolls.add(DiceHelper.rollRange((1, 10)))
+        }
+
+        rolls should contain.only(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
       }
-
-      rolls should contain.only(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
     }
-  }
+
+    describe("when range is (1, 100)") {
+      it("should return a number between 1 and 100 at least once") {
+        val rolls = mutable.Set.empty[Int]
+
+        for (n <- 1 to 1000) {
+          rolls.add(DiceHelper.rollRange((1, 100)))
+        }
+
+        rolls should contain theSameElementsAs (1 to 100)
+      }
+    }
   }
 }

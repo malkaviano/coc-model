@@ -4,6 +4,7 @@ import com.malk.coc.concepts.characteristics.Age
 import com.malk.coc.concepts.dices.CubeDice
 import com.malk.coc.concepts.dices.TetrahedronDice
 import com.malk.coc.concepts.dices.DeltohedronDice
+import com.malk.coc.concepts.dices.HundredSidedDice
 
 object DiceHelper {
   import scala.util.Random
@@ -25,5 +26,7 @@ object DiceHelper {
     implicit val tetrahedronDice = TetrahedronDice(rollRange)
 
     implicit val deltohedronDice = DeltohedronDice(rollRange)
+
+    implicit val hundredSidedDice = HundredSidedDice(rollRange)
   }
 }
