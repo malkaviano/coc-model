@@ -4,7 +4,7 @@ import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 
 import com.malk.coc.concepts.characteristics._
-import com.malk.coc.helpers.Dice
+import com.malk.coc.helpers.DiceHelper
 import com.malk.coc.concepts.attributes.MaximumHitPoints
 import com.malk.coc.concepts.attributes.MovementRate
 import com.malk.coc.concepts.attributes.Build
@@ -22,7 +22,7 @@ class HumanAttributesSpec extends AnyFunSpec with Matchers {
     val str = Strength(50)
     val dex = Dexterity(50)
     val siz = Size(50)
-    val age = Dice.randomAge(40, 49)
+    val age = DiceHelper.randomAge(40, 49)
     val con = Constitution(45)
     val app = Appearance(65)
     val edu = Education(48)
@@ -79,6 +79,8 @@ class HumanAttributesSpec extends AnyFunSpec with Matchers {
     }
 
     describe("Human Damage Bonus (DB)") {
+      import com.malk.coc.helpers.DiceHelper.implicits._
+
       val db = DamageBonus(Strength(human.STR), Size(human.SIZ))
 
       it(s"should have DB equal ${db.value}") {

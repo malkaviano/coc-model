@@ -4,13 +4,15 @@ import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 
 import com.malk.coc.concepts.characteristics._
-import com.malk.coc.helpers.Dice
+import com.malk.coc.helpers.DiceHelper
 import com.malk.coc.rules.HumanAgingEffectOnEducation
 import com.malk.coc.rules.HumanMobility
 import com.malk.coc.rules.HumanAgingEffectOnAppearance
 import com.malk.coc.rules.HumanAgingEffectOnBody
 import com.malk.coc.concepts.abstractions.Body
 import com.malk.coc.concepts.abstractions.Brain
+import com.malk.coc.concepts.dices.DeltohedronDice
+import com.malk.coc.concepts.dices.HundredSidedDice
 
 class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
   import com.malk.coc.rules.HumanAgingEffectOnEducation.implicits._
@@ -19,7 +21,7 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
   import com.malk.coc.rules.HumanAgingEffectOnBody._
 
   describe("The Human Characteristics") {
-    val age = Dice.randomAge()
+    val age = DiceHelper.randomAge()
     val str = Strength(50)
     val siz = Size(60)
     val dex = Dexterity(70)
@@ -48,10 +50,11 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
       }
 
       it("should have initial Education (EDU) modified by Age") {
-        val roll10 = () => 5
-        val roll100 = () => 99
+        val hundredSidedDice = HundredSidedDice((t: (Int, Int)) => 95)
 
-        val ageEffect = new HumanAgingEffectOnEducation(roll100, roll10)
+        val deltohedronDice = DeltohedronDice((t: (Int, Int)) => 7)
+
+        val ageEffect = new HumanAgingEffectOnEducation(hundredSidedDice, deltohedronDice)
 
         val human = Human(
           age,
@@ -77,7 +80,7 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
 
       it("should have initial Appearance (APP) modified by Age") {
         val human = Human(
-          Dice.randomAge(40, 49),
+          DiceHelper.randomAge(40, 49),
           body,
           app,
           edu,
@@ -94,7 +97,7 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
 
       it("should have initial Strength (STR) modified by Age") {
         val human = Human(
-          Dice.randomAge(50, 59),
+          DiceHelper.randomAge(50, 59),
           body,
           app,
           edu,
@@ -111,7 +114,7 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
 
       it("should have initial Dexterity (DEX) modified by Age") {
         val human = Human(
-          Dice.randomAge(50, 59),
+          DiceHelper.randomAge(50, 59),
           body,
           app,
           edu,
@@ -128,7 +131,7 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
 
       it("should have initial Constitution (CON) modified by Age") {
         val human = Human(
-          Dice.randomAge(50, 59),
+          DiceHelper.randomAge(50, 59),
           body,
           app,
           edu,
@@ -145,7 +148,7 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
 
       it("should have initial Size (SIZ) modified by young Age") {
         val human = Human(
-          Dice.randomAge(15, 19),
+          DiceHelper.randomAge(15, 19),
           body,
           app,
           edu,

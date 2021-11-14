@@ -6,7 +6,9 @@ import org.scalamock.scalatest.MockFactory
 
 import com.malk.coc.concepts.characteristics.Education
 import com.malk.coc.concepts.characteristics.Age
-import com.malk.coc.helpers.Dice
+import com.malk.coc.helpers.DiceHelper
+import com.malk.coc.concepts.dices.DeltohedronDice
+import com.malk.coc.concepts.dices.HundredSidedDice
 
 trait HumanAgingEffectOnEducationBehaviors extends Matchers with MockFactory {
   this: AnyFunSpec =>
@@ -22,23 +24,25 @@ trait HumanAgingEffectOnEducationBehaviors extends Matchers with MockFactory {
     describe(s"the chance rolls: ${rollsStr}") {
       describe(s"the increment rolls: ${incrementsStr}") {
         val total = increments.reduce(_ + _)
-        val expected = edu.copy(edu.value + total)
+        val expected = edu + total
 
         it(s"should return ${expected}: was increased by ${total}") {
-          val success100 = mockFunction[Int]
+          val success100 = mockFunction[(Int, Int), Int]
 
-          rolls.foreach(roll => success100.expects().returning(roll))
+          rolls.foreach(roll => success100.expects((1, 100)).returning(roll))
 
-          val success10 = mockFunction[Int]
+          val success10 = mockFunction[(Int, Int), Int]
 
           increments.foreach(increment =>
-            if (increment == 0)
-              success10.expects().returning(increment).never()
-            else
-              success10.expects().returning(increment).once()
+            if (increment != 0) {
+              success10.expects((1, 10)).once().returning(increment)
+            }
           )
 
-          val hao = new HumanAgingEffectOnEducation(success100, success10)
+          val hao = new HumanAgingEffectOnEducation(
+            HundredSidedDice(success100),
+            DeltohedronDice(success10)
+          )
 
           hao.modifiedEducation(age, edu) shouldBe expected
         }
@@ -52,11 +56,15 @@ class HumanAgingEffectOnEducationSpec
     with HumanAgingEffectOnEducationBehaviors {
   val edu = Education(67)
 
+  val deltohedronDice = DeltohedronDice((t: (Int, Int)) => 9)
+  val hundredSidedDice = HundredSidedDice((t: (Int, Int)) => 100)
+
   describe(s"Human aging effects on ${edu}") {
     describe("when age is bellow 20") {
-      val age = Dice.randomAge(15, 19)
+      val age = DiceHelper.randomAge(15, 19)
 
-      val hao = new HumanAgingEffectOnEducation
+      val hao =
+        new HumanAgingEffectOnEducation(hundredSidedDice, deltohedronDice)
 
       val expected = Education(67 - 5)
 
@@ -68,7 +76,7 @@ class HumanAgingEffectOnEducationSpec
     describe(
       "when age is between 20 and 39 a single improvement check is made"
     ) {
-      val age = Dice.randomAge(20, 39)
+      val age = DiceHelper.randomAge(20, 39)
 
       Seq(true, false).foreach(firstImprovementCheckIsSuperior => {
 
@@ -88,7 +96,7 @@ class HumanAgingEffectOnEducationSpec
           describe(
             "when age is in the 40s a second improvement check is made"
           ) {
-            val age = Dice.randomAge(40, 49)
+            val age = DiceHelper.randomAge(40, 49)
 
             Seq(true, false).foreach(secondImprovementCheckIsSuperior => {
 
@@ -111,7 +119,7 @@ class HumanAgingEffectOnEducationSpec
               describe(
                 "when age is in the 50s a third improvement check is made"
               ) {
-                val age = Dice.randomAge(50, 59)
+                val age = DiceHelper.randomAge(50, 59)
 
                 Seq(true, false).foreach(thirdImprovementCheckIsSuperior => {
 
@@ -135,7 +143,7 @@ class HumanAgingEffectOnEducationSpec
                   describe(
                     "when age is 60 or above a fourth improvement check is made"
                   ) {
-                    val age = Dice.randomAge(60, 89)
+                    val age = DiceHelper.randomAge(60, 89)
 
                     Seq(true, false).foreach(
                       fourthImprovementCheckIsSuperior => {
@@ -173,9 +181,10 @@ class HumanAgingEffectOnEducationSpec
       val expected = Education(99)
 
       it(s"should return ${expected}") {
-        val hao = new HumanAgingEffectOnEducation(() => 99, () => 10)
+        val hao =
+          new HumanAgingEffectOnEducation(hundredSidedDice, deltohedronDice)
 
-        val result = hao.modifiedEducation(Dice.randomAge(80, 89), edu)
+        val result = hao.modifiedEducation(DiceHelper.randomAge(80, 89), edu)
 
         result shouldBe expected
       }
@@ -223,8 +232,8 @@ class HumanAgingEffectOnEducationSpec
     val result = tripleCheckResults(success1, success2, success3)
 
     (
-      result._1 ++ Seq(if (success3) 96 else 34),
-      result._2 ++ Seq(if (success3) 4 else 0)
+      result._1 ++ Seq(if (success4) 96 else 34),
+      result._2 ++ Seq(if (success4) 4 else 0)
     )
   }
 

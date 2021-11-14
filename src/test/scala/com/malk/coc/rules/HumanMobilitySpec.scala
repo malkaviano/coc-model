@@ -6,7 +6,7 @@ import org.scalatest.matchers.should.Matchers
 import com.malk.coc.concepts.characteristics.Strength
 import com.malk.coc.concepts.characteristics.Dexterity
 import com.malk.coc.concepts.characteristics.Size
-import com.malk.coc.helpers.Dice
+import com.malk.coc.helpers.DiceHelper
 import com.malk.coc.concepts.characteristics.Age
 import com.malk.coc.concepts.attributes.MovementRate
 
@@ -29,13 +29,13 @@ trait MovementRateBehaviors extends Matchers { this: AnyFunSpec =>
 class HumanMobilitySpec extends AnyFunSpec with MovementRateBehaviors {
   describe("Human MOV calculation") {
     describe("Human age is bellow 40") {
-      val age = Dice.randomAge(15, 39)
+      val age = DiceHelper.randomAge(15, 39)
 
       suit(age, 0)
     }
 
     describe("Human age is in the 40s") {
-      val age = Dice.randomAge(40, 49)
+      val age = DiceHelper.randomAge(40, 49)
 
       describe("deduct MOV by 1") {
         suit(age, 1)
@@ -43,7 +43,7 @@ class HumanMobilitySpec extends AnyFunSpec with MovementRateBehaviors {
     }
 
     describe("Human age is in the 50s") {
-      val age = Dice.randomAge(50, 59)
+      val age = DiceHelper.randomAge(50, 59)
 
       describe("deduct MOV by 2") {
         suit(age, 2)
@@ -51,7 +51,7 @@ class HumanMobilitySpec extends AnyFunSpec with MovementRateBehaviors {
     }
 
     describe("Human age is in the 60s") {
-      val age = Dice.randomAge(60, 69)
+      val age = DiceHelper.randomAge(60, 69)
 
       describe("deduct MOV by 3") {
         suit(age, 3)
@@ -59,7 +59,7 @@ class HumanMobilitySpec extends AnyFunSpec with MovementRateBehaviors {
     }
 
     describe("Human age is in the 70s") {
-      val age = Dice.randomAge(70, 79)
+      val age = DiceHelper.randomAge(70, 79)
 
       describe("deduct MOV by 4") {
         suit(age, 4)
@@ -67,7 +67,7 @@ class HumanMobilitySpec extends AnyFunSpec with MovementRateBehaviors {
     }
 
     describe("Human age is in the 80s") {
-      val age = Dice.randomAge(80, 89)
+      val age = DiceHelper.randomAge(80, 89)
 
       describe("deduct MOV by 5") {
         suit(age, 5)
