@@ -4,13 +4,18 @@ import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 
 import com.malk.coc.concepts.characteristics.{Strength, Size}
+import scala.collection.mutable
 
 trait DamageBonusBehavior extends Matchers { this: AnyFunSpec =>
   def calculateDamageBonus(str: Strength, siz: Size, min: Int, max: Int): Unit = {
     it(s"should return value between ${min} and ${max}") {
-      val results = for {
-        i <- (1 to (if (max <= 30) 100000 else 500000))
-      } yield DamageBonus(str, siz).value
+      val results = mutable.Set.empty[Int]
+
+      for(i <- (1 to (if (max <= 30) 100000 else 500000))) {
+        val db = DamageBonus(str, siz)
+
+        results.add(db.value)
+      }
 
       results.toSet should contain theSameElementsAs (min to max)
     }
@@ -19,10 +24,18 @@ trait DamageBonusBehavior extends Matchers { this: AnyFunSpec =>
 
 class DamageBonusSpec extends AnyFunSpec with Matchers with DamageBonusBehavior {
   describe("The Damage Bonus") {
-    val bd = DamageBonus(str = Strength(40), siz = Size(60))
+    val db = DamageBonus(str = Strength(70), siz = Size(70))
 
     it("should have name Damage Bonus") {
-      bd.name shouldBe "Damage Bonus"
+      db.name shouldBe "Damage Bonus"
+    }
+
+    it("should have value immutable") {
+      val expected = db.value
+
+      for(i <- 1 to 10) {
+        db.value shouldBe expected
+      }
     }
 
     it should behave like calculateDamageBonus(Strength(40), Size(60), 0, 0)

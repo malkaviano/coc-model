@@ -10,7 +10,7 @@ final case class DamageBonus(
 ) extends Attribute {
   override val name = "Damage Bonus"
 
-  override def value: Int = str.value + siz.value match {
+  override val value: Int = str.value + siz.value match {
     case x if x < 65 => -2
     case x if x < 85 => -1
     case x if x < 125 => 0
