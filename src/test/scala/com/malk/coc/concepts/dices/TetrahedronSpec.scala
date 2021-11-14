@@ -12,10 +12,10 @@ class TetrahedronSpec
   describe("Tetrahedron Dice roll") {
     val rollD4 = mockFunction[(Int, Int), Int]
 
-    val dice = Tetrahedron(rollD4)
+    val dice = TetrahedronDice(rollD4)
 
     val name = "D4"
-    val range = Tetrahedron.range
+    val range = TetrahedronDice.range
 
     behavesLikeDice(dice, name, range, rollD4, 2)
   }
