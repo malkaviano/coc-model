@@ -11,6 +11,7 @@ import com.malk.coc.rules.HumanAgingEffectOnAppearance
 import com.malk.coc.rules.HumanAgingEffectOnBody
 import com.malk.coc.concepts.abstractions.Body
 import com.malk.coc.concepts.abstractions.Brain
+import com.malk.coc.concepts.dices.DeltohedronDice
 
 class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
   import com.malk.coc.rules.HumanAgingEffectOnEducation.implicits._
@@ -48,10 +49,11 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
       }
 
       it("should have initial Education (EDU) modified by Age") {
-        val roll10 = () => 5
         val roll100 = () => 99
 
-        val ageEffect = new HumanAgingEffectOnEducation(roll100, roll10)
+        val deltohedronDice = DeltohedronDice((t: (Int, Int)) => 7)
+
+        val ageEffect = new HumanAgingEffectOnEducation(roll100, deltohedronDice)
 
         val human = Human(
           age,

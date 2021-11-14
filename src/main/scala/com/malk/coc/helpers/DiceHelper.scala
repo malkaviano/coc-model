@@ -3,11 +3,10 @@ package com.malk.coc.helpers
 import com.malk.coc.concepts.characteristics.Age
 import com.malk.coc.concepts.dices.CubeDice
 import com.malk.coc.concepts.dices.TetrahedronDice
+import com.malk.coc.concepts.dices.DeltohedronDice
 
 object DiceHelper {
   import scala.util.Random
-
-  def roll10 = rollBetween(1, 11)
 
   def roll8 = rollBetween(1, 9)
 
@@ -24,5 +23,7 @@ object DiceHelper {
     implicit val cubeDice = CubeDice(rollRange)
 
     implicit val tetrahedronDice = TetrahedronDice(rollRange)
+
+    implicit val deltohedronDice = DeltohedronDice(rollRange)
   }
 }

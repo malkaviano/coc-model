@@ -7,6 +7,7 @@ import org.scalamock.scalatest.MockFactory
 import com.malk.coc.concepts.characteristics.Education
 import com.malk.coc.concepts.characteristics.Age
 import com.malk.coc.helpers.DiceHelper
+import com.malk.coc.concepts.dices.DeltohedronDice
 
 trait HumanAgingEffectOnEducationBehaviors extends Matchers with MockFactory {
   this: AnyFunSpec =>
@@ -14,7 +15,8 @@ trait HumanAgingEffectOnEducationBehaviors extends Matchers with MockFactory {
       age: Age,
       edu: Education,
       rolls: Seq[Int],
-      increments: Seq[Int]
+      increments: Seq[Int],
+      deltohedronDice: DeltohedronDice
   ): Unit = {
     val rollsStr = rolls.mkString("(", ") - (", ")")
     val incrementsStr = increments.mkString("(", ") + (", ")")
@@ -29,16 +31,7 @@ trait HumanAgingEffectOnEducationBehaviors extends Matchers with MockFactory {
 
           rolls.foreach(roll => success100.expects().returning(roll))
 
-          val success10 = mockFunction[Int]
-
-          increments.foreach(increment =>
-            if (increment == 0)
-              success10.expects().returning(increment).never()
-            else
-              success10.expects().returning(increment).once()
-          )
-
-          val hao = new HumanAgingEffectOnEducation(success100, success10)
+          val hao = new HumanAgingEffectOnEducation(success100, deltohedronDice)
 
           hao.modifiedEducation(age, edu) shouldBe expected
         }
@@ -52,11 +45,13 @@ class HumanAgingEffectOnEducationSpec
     with HumanAgingEffectOnEducationBehaviors {
   val edu = Education(67)
 
+  val deltohedronDice = DeltohedronDice((t: (Int, Int)) => 5)
+
   describe(s"Human aging effects on ${edu}") {
     describe("when age is bellow 20") {
       val age = DiceHelper.randomAge(15, 19)
 
-      val hao = new HumanAgingEffectOnEducation
+      val hao = new HumanAgingEffectOnEducation(() => 100, deltohedronDice)
 
       val expected = Education(67 - 5)
 
@@ -82,7 +77,8 @@ class HumanAgingEffectOnEducationSpec
             age,
             edu,
             results._1,
-            results._2
+            results._2,
+            deltohedronDice
           )
 
           describe(
@@ -104,7 +100,8 @@ class HumanAgingEffectOnEducationSpec
                   age,
                   edu,
                   results._1,
-                  results._2
+                  results._2,
+                  deltohedronDice
                 )
               }
 
@@ -128,7 +125,8 @@ class HumanAgingEffectOnEducationSpec
                       age,
                       edu,
                       results._1,
-                      results._2
+                      results._2,
+                      deltohedronDice
                     )
                   }
 
@@ -154,7 +152,8 @@ class HumanAgingEffectOnEducationSpec
                             age,
                             edu,
                             results._1,
-                            results._2
+                            results._2,
+                            deltohedronDice
                           )
                         }
                       }
@@ -173,7 +172,7 @@ class HumanAgingEffectOnEducationSpec
       val expected = Education(99)
 
       it(s"should return ${expected}") {
-        val hao = new HumanAgingEffectOnEducation(() => 99, () => 10)
+        val hao = new HumanAgingEffectOnEducation(() => 99, deltohedronDice)
 
         val result = hao.modifiedEducation(DiceHelper.randomAge(80, 89), edu)
 
@@ -197,7 +196,7 @@ class HumanAgingEffectOnEducationSpec
 
     (
       result._1 ++ Seq(if (success2) 85 else 19),
-      result._2 ++ Seq(if (success2) 3 else 0)
+      result._2 ++ Seq(if (success2) 5 else 0)
     )
   }
 
@@ -210,7 +209,7 @@ class HumanAgingEffectOnEducationSpec
 
     (
       result._1 ++ Seq(if (success3) 93 else 11),
-      result._2 ++ Seq(if (success3) 7 else 0)
+      result._2 ++ Seq(if (success3) 5 else 0)
     )
   }
 
@@ -223,8 +222,8 @@ class HumanAgingEffectOnEducationSpec
     val result = tripleCheckResults(success1, success2, success3)
 
     (
-      result._1 ++ Seq(if (success3) 96 else 34),
-      result._2 ++ Seq(if (success3) 4 else 0)
+      result._1 ++ Seq(if (success4) 96 else 34),
+      result._2 ++ Seq(if (success4) 5 else 0)
     )
   }
 
