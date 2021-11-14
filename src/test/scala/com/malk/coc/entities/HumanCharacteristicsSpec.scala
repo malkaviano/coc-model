@@ -42,10 +42,6 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
       brain
     )
 
-    it("should have Age") {
-      human.Age shouldBe age.value
-    }
-
     describe("The Human characteristics") {
       it("should have Education (EDU) above 0") {
         human.EDU should be > 0
@@ -172,6 +168,5 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
         human.POW should be > 0
       }
     }
-
   }
 }
