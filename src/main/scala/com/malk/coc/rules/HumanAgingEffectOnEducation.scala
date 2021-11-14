@@ -4,12 +4,12 @@ import scala.annotation.tailrec
 
 import com.malk.coc.concepts.characteristics.Age
 import com.malk.coc.concepts.characteristics.Education
-import com.malk.coc.helpers.DiceHelper
 import com.malk.coc.traits.AgingEffectOnEducation
 import com.malk.coc.concepts.dices.DeltohedronDice
+import com.malk.coc.concepts.dices.HundredSidedDice
 
 class HumanAgingEffectOnEducation(
-    protected val roll100: () => Int = () => DiceHelper.roll100,
+    protected val hundredSidedDice: HundredSidedDice,
     protected val deltohedronDice: DeltohedronDice
 ) extends AgingEffectOnEducation {
   def modifiedEducation(age: Age, edu: Education): Education = {
@@ -27,7 +27,7 @@ class HumanAgingEffectOnEducation(
   @tailrec
   private def checkEDUIncrease(edu: Education, times: Int = 1): Education = {
     val newEdu =
-      if (roll100() > edu.value) edu.copy(edu.value + deltohedronDice.roll) else edu
+      if (hundredSidedDice.roll > edu.value) edu + deltohedronDice.roll else edu
 
     if (times == 1) newEdu else checkEDUIncrease(newEdu, times - 1)
   }
@@ -38,6 +38,6 @@ object HumanAgingEffectOnEducation {
     import com.malk.coc.helpers.DiceHelper.implicits._
 
     implicit val humanAgingOnEducationEffect: HumanAgingEffectOnEducation =
-      new HumanAgingEffectOnEducation(() => DiceHelper.roll100, deltohedronDice)
+      new HumanAgingEffectOnEducation(hundredSidedDice, deltohedronDice)
   }
 }

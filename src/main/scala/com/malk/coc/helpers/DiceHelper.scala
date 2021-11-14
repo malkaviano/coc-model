@@ -11,8 +11,6 @@ object DiceHelper {
 
   def roll8 = rollBetween(1, 9)
 
-  def roll100 = rollBetween(1, 101)
-
   def randomAge(min: Int = 15, max: Int = 89) = Age(rollBetween(min, max + 1))
 
   def rollRange(range: (Int, Int)): Int =
