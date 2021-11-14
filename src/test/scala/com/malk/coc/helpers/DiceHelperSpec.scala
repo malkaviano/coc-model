@@ -89,5 +89,17 @@ class DiceHelperSpec extends AnyFunSpec with Matchers {
         rolls should contain.only(1, 2, 3, 4, 5, 6)
       }
     }
+
+    describe("when range is (1, 4)") {
+      it("should return a number between 1 and 4 at least once") {
+        val rolls = mutable.Set.empty[Int]
+
+        for (n <- 1 to 1000) {
+          rolls.add(DiceHelper.rollRange((1, 4)))
+        }
+
+        rolls should contain.only(1, 2, 3, 4)
+      }
+    }
   }
 }
