@@ -4,7 +4,7 @@ import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 import org.scalamock.scalatest.MockFactory
 
-class TetrahedronSpec
+class TetrahedronDiceSpec
     extends AnyFunSpec
     with Matchers
     with MockFactory
