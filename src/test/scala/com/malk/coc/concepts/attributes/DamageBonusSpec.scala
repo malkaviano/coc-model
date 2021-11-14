@@ -4,7 +4,7 @@ import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 
 import com.malk.coc.concepts.characteristics.{Strength, Size}
-import com.malk.coc.concepts.abstractions.CubeDice
+import com.malk.coc.concepts.dices.CubeDice
 import org.scalamock.scalatest.MockFactory
 
 trait DamageBonusBehavior extends Matchers with MockFactory {

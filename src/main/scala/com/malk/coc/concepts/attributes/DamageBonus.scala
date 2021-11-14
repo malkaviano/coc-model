@@ -3,7 +3,7 @@ package com.malk.coc.concepts.attributes
 import com.malk.coc.concepts.characteristics.{Strength, Size}
 import com.malk.coc.helpers.DiceHelper._
 import com.malk.coc.traits.Attribute
-import com.malk.coc.concepts.abstractions.CubeDice
+import com.malk.coc.concepts.dices.CubeDice
 
 final case class DamageBonus(
   private val str: Strength,

@@ -1,4 +1,4 @@
-package com.malk.coc.concepts.abstractions
+package com.malk.coc.concepts.dices
 
 import com.malk.coc.traits.Dice
 

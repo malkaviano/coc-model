@@ -1,7 +1,7 @@
 package com.malk.coc.helpers
 
 import com.malk.coc.concepts.characteristics.Age
-import com.malk.coc.concepts.abstractions.CubeDice
+import com.malk.coc.concepts.dices.CubeDice
 
 object DiceHelper {
   import scala.util.Random
