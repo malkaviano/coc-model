@@ -10,8 +10,6 @@ object DiceHelper {
 
   def roll8 = rollBetween(1, 9)
 
-  def roll6 = rollBetween(1, 7)
-
   def roll4 = rollBetween(1, 5)
 
   def roll100 = rollBetween(1, 101)

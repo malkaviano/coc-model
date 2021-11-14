@@ -6,7 +6,7 @@ import org.scalatest.matchers.should.Matchers
 import scala.collection.mutable
 import com.malk.coc.concepts.characteristics.Age
 
-class DiceSpec extends AnyFunSpec with Matchers {
+class DiceHelperSpec extends AnyFunSpec with Matchers {
   describe("Simulating D10 rolls") {
     it("should return a number between 1 and 10 at least once") {
       val rolls = mutable.Set.empty[Int]
@@ -28,18 +28,6 @@ class DiceSpec extends AnyFunSpec with Matchers {
       }
 
       rolls should contain.only(1, 2, 3, 4, 5, 6, 7, 8)
-    }
-  }
-
-  describe("Simulating D6 rolls") {
-    it("should return a number between 1 and 6 at least once") {
-      val rolls = mutable.Set.empty[Int]
-
-      for (n <- 1 to 1000) {
-        rolls.add(DiceHelper.roll6)
-      }
-
-      rolls should contain.only(1, 2, 3, 4, 5, 6)
     }
   }
 

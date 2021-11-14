@@ -107,6 +107,8 @@ object Human {
 
     val build = Build(agedBody.strength, agedBody.size)
 
+    import com.malk.coc.helpers.DiceHelper.implicits._
+
     val db = DamageBonus(agedBody.strength, agedBody.size)
 
     Human(
