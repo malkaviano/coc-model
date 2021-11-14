@@ -6,6 +6,7 @@ import org.scalatest.matchers.should.Matchers
 import com.malk.coc.concepts.characteristics.{Strength, Size}
 import com.malk.coc.concepts.dices.CubeDice
 import org.scalamock.scalatest.MockFactory
+import com.malk.coc.concepts.dices.TetrahedronDice
 
 trait DamageBonusBehavior extends Matchers with MockFactory {
   this: AnyFunSpec =>
@@ -17,8 +18,11 @@ trait DamageBonusBehavior extends Matchers with MockFactory {
       rolledD4: Boolean = false
   ): Unit = {
     val rollD6 = mockFunction[(Int, Int), Int]
+    val rollD4 = mockFunction[(Int, Int), Int]
 
     val cubeDice = CubeDice(rollD6)
+    val tetrahedronDice = TetrahedronDice(rollD4)
+
 
     it(s"should return value equal ${expected}") {
       if (rolledD6) {
@@ -28,11 +32,12 @@ trait DamageBonusBehavior extends Matchers with MockFactory {
       }
 
       if (rolledD4) {
-        pending
+        rollD4.expects((1, 4)).atLeastOnce().returning(2)
       } else {
+        rollD4.expects((1, 4)).never().returning(2)
       }
 
-      val db = DamageBonus(str, siz)(cubeDice)
+      val db = DamageBonus(str, siz)(tetrahedronDice, cubeDice)
 
       db.value shouldBe expected
     }
@@ -62,7 +67,7 @@ class DamageBonusSpec
     it should behave like calculateDamageBonus(Strength(40), Size(60), 0)
     it should behave like calculateDamageBonus(Strength(40), Size(40), -1)
     it should behave like calculateDamageBonus(Strength(30), Size(30), -2)
-    it should behave like calculateDamageBonus(Strength(55), Size(70), 1, false, true)
+    it should behave like calculateDamageBonus(Strength(55), Size(70), 2, false, true)
     it should behave like calculateDamageBonus(Strength(80), Size(90), 4, true)
     it should behave like calculateDamageBonus(
       Strength(150),
