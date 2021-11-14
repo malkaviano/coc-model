@@ -1,6 +1,7 @@
 package com.malk.coc.helpers
 
 import com.malk.coc.concepts.characteristics.Age
+import com.malk.coc.concepts.abstractions.CubeDice
 
 object DiceHelper {
   import scala.util.Random
@@ -17,5 +18,12 @@ object DiceHelper {
 
   def randomAge(min: Int = 15, max: Int = 89) = Age(rollBetween(min, max + 1))
 
+  def rollRange(range: (Int, Int)): Int =
+    rollBetween(range._1, range._2 + 1)
+
   private def rollBetween(min: Int, max: Int) = Random.between(min, max)
+
+  object implicits {
+    implicit val cubeDice = CubeDice(rollRange)
+  }
 }
