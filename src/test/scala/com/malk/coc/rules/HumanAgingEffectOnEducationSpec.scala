@@ -6,7 +6,7 @@ import org.scalamock.scalatest.MockFactory
 
 import com.malk.coc.concepts.characteristics.Education
 import com.malk.coc.concepts.characteristics.Age
-import com.malk.coc.helpers.Dice
+import com.malk.coc.helpers.DiceHelper
 
 trait HumanAgingEffectOnEducationBehaviors extends Matchers with MockFactory {
   this: AnyFunSpec =>
@@ -54,7 +54,7 @@ class HumanAgingEffectOnEducationSpec
 
   describe(s"Human aging effects on ${edu}") {
     describe("when age is bellow 20") {
-      val age = Dice.randomAge(15, 19)
+      val age = DiceHelper.randomAge(15, 19)
 
       val hao = new HumanAgingEffectOnEducation
 
@@ -68,7 +68,7 @@ class HumanAgingEffectOnEducationSpec
     describe(
       "when age is between 20 and 39 a single improvement check is made"
     ) {
-      val age = Dice.randomAge(20, 39)
+      val age = DiceHelper.randomAge(20, 39)
 
       Seq(true, false).foreach(firstImprovementCheckIsSuperior => {
 
@@ -88,7 +88,7 @@ class HumanAgingEffectOnEducationSpec
           describe(
             "when age is in the 40s a second improvement check is made"
           ) {
-            val age = Dice.randomAge(40, 49)
+            val age = DiceHelper.randomAge(40, 49)
 
             Seq(true, false).foreach(secondImprovementCheckIsSuperior => {
 
@@ -111,7 +111,7 @@ class HumanAgingEffectOnEducationSpec
               describe(
                 "when age is in the 50s a third improvement check is made"
               ) {
-                val age = Dice.randomAge(50, 59)
+                val age = DiceHelper.randomAge(50, 59)
 
                 Seq(true, false).foreach(thirdImprovementCheckIsSuperior => {
 
@@ -135,7 +135,7 @@ class HumanAgingEffectOnEducationSpec
                   describe(
                     "when age is 60 or above a fourth improvement check is made"
                   ) {
-                    val age = Dice.randomAge(60, 89)
+                    val age = DiceHelper.randomAge(60, 89)
 
                     Seq(true, false).foreach(
                       fourthImprovementCheckIsSuperior => {
@@ -175,7 +175,7 @@ class HumanAgingEffectOnEducationSpec
       it(s"should return ${expected}") {
         val hao = new HumanAgingEffectOnEducation(() => 99, () => 10)
 
-        val result = hao.modifiedEducation(Dice.randomAge(80, 89), edu)
+        val result = hao.modifiedEducation(DiceHelper.randomAge(80, 89), edu)
 
         result shouldBe expected
       }

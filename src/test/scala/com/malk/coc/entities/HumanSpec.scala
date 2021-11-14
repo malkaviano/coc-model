@@ -4,7 +4,7 @@ import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 
 import com.malk.coc.concepts.characteristics.Sanity
-import com.malk.coc.helpers.Dice
+import com.malk.coc.helpers.DiceHelper
 import com.malk.coc.concepts.characteristics.Strength
 import com.malk.coc.concepts.characteristics.Size
 import com.malk.coc.concepts.characteristics.Dexterity
@@ -19,7 +19,7 @@ import com.malk.coc.concepts.abstractions.Brain
 
 class HumanSpec extends AnyFunSpec with Matchers {
   describe("Human") {
-    val age = Dice.randomAge()
+    val age = DiceHelper.randomAge()
 
     // TODO: Refactor with random data
     val str = Strength(50)

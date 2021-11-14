@@ -4,12 +4,12 @@ import scala.annotation.tailrec
 
 import com.malk.coc.concepts.characteristics.Age
 import com.malk.coc.concepts.characteristics.Education
-import com.malk.coc.helpers.Dice
+import com.malk.coc.helpers.DiceHelper
 import com.malk.coc.traits.AgingEffectOnEducation
 
 class HumanAgingEffectOnEducation(
-    protected val roll100: () => Int = () => Dice.roll100,
-    protected val roll10: () => Int = () => Dice.roll10
+    protected val roll100: () => Int = () => DiceHelper.roll100,
+    protected val roll10: () => Int = () => DiceHelper.roll10
 ) extends AgingEffectOnEducation {
   def modifiedEducation(age: Age, edu: Education): Education = {
     val result = age.value match {

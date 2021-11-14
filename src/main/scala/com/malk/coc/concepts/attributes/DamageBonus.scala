@@ -1,7 +1,7 @@
 package com.malk.coc.concepts.attributes
 
 import com.malk.coc.concepts.characteristics.{Strength, Size}
-import com.malk.coc.helpers.Dice._
+import com.malk.coc.helpers.DiceHelper._
 import com.malk.coc.traits.Attribute
 
 final case class DamageBonus(

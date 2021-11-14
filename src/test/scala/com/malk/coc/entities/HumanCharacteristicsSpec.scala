@@ -4,7 +4,7 @@ import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 
 import com.malk.coc.concepts.characteristics._
-import com.malk.coc.helpers.Dice
+import com.malk.coc.helpers.DiceHelper
 import com.malk.coc.rules.HumanAgingEffectOnEducation
 import com.malk.coc.rules.HumanMobility
 import com.malk.coc.rules.HumanAgingEffectOnAppearance
@@ -19,7 +19,7 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
   import com.malk.coc.rules.HumanAgingEffectOnBody._
 
   describe("The Human Characteristics") {
-    val age = Dice.randomAge()
+    val age = DiceHelper.randomAge()
     val str = Strength(50)
     val siz = Size(60)
     val dex = Dexterity(70)
@@ -77,7 +77,7 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
 
       it("should have initial Appearance (APP) modified by Age") {
         val human = Human(
-          Dice.randomAge(40, 49),
+          DiceHelper.randomAge(40, 49),
           body,
           app,
           edu,
@@ -94,7 +94,7 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
 
       it("should have initial Strength (STR) modified by Age") {
         val human = Human(
-          Dice.randomAge(50, 59),
+          DiceHelper.randomAge(50, 59),
           body,
           app,
           edu,
@@ -111,7 +111,7 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
 
       it("should have initial Dexterity (DEX) modified by Age") {
         val human = Human(
-          Dice.randomAge(50, 59),
+          DiceHelper.randomAge(50, 59),
           body,
           app,
           edu,
@@ -128,7 +128,7 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
 
       it("should have initial Constitution (CON) modified by Age") {
         val human = Human(
-          Dice.randomAge(50, 59),
+          DiceHelper.randomAge(50, 59),
           body,
           app,
           edu,
@@ -145,7 +145,7 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
 
       it("should have initial Size (SIZ) modified by young Age") {
         val human = Human(
-          Dice.randomAge(15, 19),
+          DiceHelper.randomAge(15, 19),
           body,
           app,
           edu,

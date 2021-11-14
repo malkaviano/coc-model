@@ -12,7 +12,7 @@ class DiceSpec extends AnyFunSpec with Matchers {
       val rolls = mutable.Set.empty[Int]
 
       for(n <- 1 to 1000) {
-        rolls.add(Dice.roll10)
+        rolls.add(DiceHelper.roll10)
       }
 
       rolls should contain.only (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
@@ -24,7 +24,7 @@ class DiceSpec extends AnyFunSpec with Matchers {
       val rolls = mutable.Set.empty[Int]
 
       for(n <- 1 to 1000) {
-        rolls.add(Dice.roll8)
+        rolls.add(DiceHelper.roll8)
       }
 
       rolls should contain.only (1, 2, 3, 4, 5, 6, 7, 8)
@@ -36,7 +36,7 @@ class DiceSpec extends AnyFunSpec with Matchers {
       val rolls = mutable.Set.empty[Int]
 
       for(n <- 1 to 1000) {
-        rolls.add(Dice.roll6)
+        rolls.add(DiceHelper.roll6)
       }
 
       rolls should contain.only (1, 2, 3, 4, 5, 6)
@@ -48,7 +48,7 @@ class DiceSpec extends AnyFunSpec with Matchers {
       val rolls = mutable.Set.empty[Int]
 
       for(n <- 1 to 1000) {
-        rolls.add(Dice.roll4)
+        rolls.add(DiceHelper.roll4)
       }
 
       rolls should contain.only (1, 2, 3, 4)
@@ -60,7 +60,7 @@ class DiceSpec extends AnyFunSpec with Matchers {
       val rolls = mutable.Set.empty[Int]
 
       for(n <- 1 to 1000) {
-        rolls.add(Dice.roll100)
+        rolls.add(DiceHelper.roll100)
       }
 
       rolls should contain theSameElementsAs (1 to 100)
@@ -72,7 +72,7 @@ class DiceSpec extends AnyFunSpec with Matchers {
       val ages = mutable.Set.empty[Age]
 
       for(n <- 1 to 1000) {
-        ages.add(Dice.randomAge())
+        ages.add(DiceHelper.randomAge())
       }
 
       ages should contain theSameElementsAs (15 to 89).map { i => Age(i) }
@@ -82,7 +82,7 @@ class DiceSpec extends AnyFunSpec with Matchers {
       val ages = mutable.Set.empty[Age]
 
       for(n <- 1 to 1000) {
-        ages.add(Dice.randomAge(20, 39))
+        ages.add(DiceHelper.randomAge(20, 39))
       }
 
       ages should contain theSameElementsAs (20 to 39).map { i => Age(i) }

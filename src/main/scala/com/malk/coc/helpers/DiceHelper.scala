@@ -2,7 +2,7 @@ package com.malk.coc.helpers
 
 import com.malk.coc.concepts.characteristics.Age
 
-object Dice {
+object DiceHelper {
   import scala.util.Random
 
   def roll10 = rollBetween(1, 11)
