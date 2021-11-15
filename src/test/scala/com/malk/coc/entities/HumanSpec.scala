@@ -3,7 +3,6 @@ package com.malk.coc.entities
 import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 
-import com.malk.coc.concepts.characteristics.Sanity
 import com.malk.coc.helpers.DiceHelper
 import com.malk.coc.concepts.characteristics.Strength
 import com.malk.coc.concepts.characteristics.Size
@@ -54,30 +53,9 @@ class HumanSpec extends AnyFunSpec with Matchers {
     }
 
     describe("Sanity") {
-      val sanity = Sanity(99)
-
-      it(s"should have default ${sanity}") {
-        human.Sanity shouldBe sanity.value
-      }
-
-      describe("when custom Sanity is used") {
-        val sanity = Sanity(81)
-
-        val human = Human(
-          age,
-          body,
-          app,
-          edu,
-          luck,
-          brain,
-          sanity
-        )
-
-        it(s"should have ${sanity}") {
-          human.Sanity shouldBe sanity.value
-        }
+      it(s"should have ${brain.power.value}") {
+        human.Sanity shouldBe pow.value
       }
     }
   }
-
 }
