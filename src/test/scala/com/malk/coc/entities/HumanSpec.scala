@@ -59,11 +59,5 @@ class HumanSpec extends AnyFunSpec with Matchers {
     it("should have Age") {
       human.Age shouldBe age.value
     }
-
-    describe("Sanity (SAN)") {
-      it(s"should have SAN 80") {
-        human.SAN shouldBe 80
-      }
-    }
   }
 }
