@@ -4,7 +4,7 @@ import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 
 import scala.collection.mutable
-import com.malk.coc.concepts.characteristics.Age
+import com.malk.coc.concepts.attributes.Age
 
 class DiceHelperSpec extends AnyFunSpec with Matchers {
   describe("Simulating D8 rolls") {

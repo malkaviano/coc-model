@@ -2,7 +2,7 @@ package com.malk.coc.rules
 
 import scala.annotation.tailrec
 
-import com.malk.coc.concepts.characteristics.Age
+import com.malk.coc.concepts.attributes.Age
 import com.malk.coc.concepts.abstractions.Body
 import com.malk.coc.concepts.dices.TetrahedronDice
 import com.malk.coc.concepts.dices.CubeDice
@@ -18,6 +18,9 @@ class HumanAgingRules(age: Age)(implicit
     deltohedronDice: DeltohedronDice,
     hundredSidedDice: HundredSidedDice
 ) {
+    import com.malk.coc.helpers.CharacteristicModifications.implicits._
+
+
   def on(body: Body): Body = {
     age.value match {
       case x if x >= 80 =>

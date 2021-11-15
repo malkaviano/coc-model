@@ -5,8 +5,6 @@ import com.malk.coc.concepts.abstractions.Body
 
 final case class MaximumHitPoints(
   private val body: Body
-) extends Attribute {
-  override val name = "Maximum Hit Points"
-
+) extends Attribute("Maximum Hit Points", 0) {
   override val value: Int = (body.constitution.value + body.size.value) / 10
 }

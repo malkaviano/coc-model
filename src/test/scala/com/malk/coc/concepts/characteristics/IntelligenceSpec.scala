@@ -4,6 +4,8 @@ import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 
 class IntelligenceSpec extends AnyFunSpec with Matchers {
+  import com.malk.coc.helpers.CharacteristicModifications.implicits._
+
   describe("The Intelligence") {
     val int = Intelligence(48)
 

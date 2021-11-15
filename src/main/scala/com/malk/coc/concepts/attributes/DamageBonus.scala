@@ -10,8 +10,7 @@ final case class DamageBonus(
 )(implicit
     private val tetrahedronDice: TetrahedronDice,
     private val cubeDice: CubeDice
-) extends Attribute {
-  override val name = "Damage Bonus"
+) extends Attribute("Damage Bonus", 0) {
 
   override val value: Int = body.strength.value + body.size.value match {
     case x if x < 65  => -2

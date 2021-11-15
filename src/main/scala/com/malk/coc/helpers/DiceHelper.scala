@@ -1,6 +1,6 @@
 package com.malk.coc.helpers
 
-import com.malk.coc.concepts.characteristics.Age
+import com.malk.coc.concepts.attributes.Age
 import com.malk.coc.concepts.dices.CubeDice
 import com.malk.coc.concepts.dices.TetrahedronDice
 import com.malk.coc.concepts.dices.DeltohedronDice

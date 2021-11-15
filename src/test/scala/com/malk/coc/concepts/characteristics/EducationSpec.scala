@@ -4,6 +4,8 @@ import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 
 class EducationSpec extends AnyFunSpec with Matchers {
+  import com.malk.coc.helpers.CharacteristicModifications.implicits._
+
   describe("The Education") {
     val edu = Education(69)
 
