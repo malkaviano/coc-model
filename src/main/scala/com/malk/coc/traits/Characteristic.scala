@@ -16,7 +16,7 @@ object Characteristic {
     implicit def toDexterity(value: Int): Dexterity = Dexterity(value)
   }
 
-  trait MathOperations[A] {
+  trait MathOperations[A <: Characteristic] {
     def -(other: A): A
 
     def +(other: A): A
