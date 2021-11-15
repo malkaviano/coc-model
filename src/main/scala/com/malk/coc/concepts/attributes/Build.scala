@@ -5,9 +5,7 @@ import com.malk.coc.concepts.abstractions.Body
 
 final case class Build(
   private val body: Body
-) extends Attribute {
-  override val name = "Build"
-
+) extends Attribute("Build", 0) {
   override val value: Int = body.strength.value + body.size.value match {
     case x if x < 65 => -2
     case x if x < 85 => -1

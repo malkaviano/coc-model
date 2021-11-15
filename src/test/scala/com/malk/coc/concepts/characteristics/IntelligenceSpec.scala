@@ -4,6 +4,8 @@ import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 
 class IntelligenceSpec extends AnyFunSpec with Matchers {
+  import com.malk.coc.traits.Characteristic.implicits._
+
   describe("The Intelligence") {
     val int = Intelligence(48)
 
@@ -30,6 +32,26 @@ class IntelligenceSpec extends AnyFunSpec with Matchers {
 
       it(s"should return ${expected}") {
         val result = int + 6
+
+        result shouldBe expected
+      }
+    }
+
+    describe(s"when ${int} + ${int}") {
+      val expected = Intelligence(96)
+
+      it(s"should be ${expected}") {
+        val result = int + int
+
+        result shouldBe expected
+      }
+    }
+
+    describe(s"when ${int} - ${int}") {
+      val expected = Intelligence(0)
+
+      it(s"should be ${expected}") {
+        val result = int - int
 
         result shouldBe expected
       }

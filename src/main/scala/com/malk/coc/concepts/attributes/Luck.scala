@@ -1,15 +1,16 @@
 package com.malk.coc.concepts.attributes
 
 import com.malk.coc.traits.Attribute
+import com.malk.coc.helpers.WithValueMathHelper
 
-final case class Luck(val value: Int) extends Attribute {
-  val name = "Luck"
-
-  def -(minus: Int): Luck = {
+final case class Luck(override val value: Int)
+    extends Attribute("Luck", value)
+    with WithValueMathHelper[Luck] {
+  override def -(minus: Int): Luck = {
     this.copy(value - minus)
   }
 
-  def +(plus: Int): Luck = {
+  override def +(plus: Int): Luck = {
     this.copy(value + plus)
   }
 }

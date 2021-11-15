@@ -11,6 +11,7 @@ import com.malk.coc.concepts.dices.HundredSidedDice
 import com.malk.coc.concepts.attributes.Age
 
 import com.malk.coc.helpers.DiceHelper.implicits._
+import com.malk.coc.traits.Characteristic.implicits._
 
 trait HumanAgingOnEducationBehavior extends Matchers with MockFactory {
   this: AnyFunSpec =>

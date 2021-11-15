@@ -1,13 +1,16 @@
 package com.malk.coc.concepts.characteristics
 
 import com.malk.coc.traits.Characteristic
+import com.malk.coc.traits.Characteristic.MathOperations
 
-final case class Intelligence(override val value: Int) extends Characteristic("INT", value) {
-  override def +(plus: Int): Intelligence = {
-    this.copy(value + plus)
+final case class Intelligence(override val value: Int)
+    extends Characteristic("INT", value)
+    with MathOperations[Intelligence] {
+  override def -(other: Intelligence): Intelligence = {
+    this.copy(this.value - other.value)
   }
 
-  override def -(minus: Int): Intelligence = {
-    this + -minus
+  override def +(other: Intelligence): Intelligence = {
+    this.copy(this.value + other.value)
   }
 }

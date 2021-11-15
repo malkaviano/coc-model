@@ -4,6 +4,8 @@ import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 
 class EducationSpec extends AnyFunSpec with Matchers {
+  import com.malk.coc.traits.Characteristic.implicits._
+
   describe("The Education") {
     val edu = Education(69)
 
@@ -30,6 +32,26 @@ class EducationSpec extends AnyFunSpec with Matchers {
 
       it(s"should return ${expected}") {
         val result = edu + 6
+
+        result shouldBe expected
+      }
+    }
+
+    describe(s"when ${edu} + ${edu}") {
+      val expected = Education(138)
+
+      it(s"should be ${expected}") {
+        val result = edu + edu
+
+        result shouldBe expected
+      }
+    }
+
+    describe(s"when ${edu} - ${edu}") {
+      val expected = Education(0)
+
+      it(s"should be ${expected}") {
+        val result = edu - edu
 
         result shouldBe expected
       }

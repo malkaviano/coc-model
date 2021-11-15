@@ -18,6 +18,8 @@ class HumanAgingRules(age: Age)(implicit
     deltohedronDice: DeltohedronDice,
     hundredSidedDice: HundredSidedDice
 ) {
+  import com.malk.coc.traits.Characteristic.implicits._
+
   def on(body: Body): Body = {
     age.value match {
       case x if x >= 80 =>

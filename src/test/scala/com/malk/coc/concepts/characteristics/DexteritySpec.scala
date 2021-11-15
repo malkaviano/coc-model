@@ -4,6 +4,8 @@ import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 
 class DexteritySpec extends AnyFunSpec with Matchers {
+  import com.malk.coc.traits.Characteristic.implicits._
+
   describe("The Dexterity") {
     val dex = Dexterity(80)
 
@@ -30,6 +32,26 @@ class DexteritySpec extends AnyFunSpec with Matchers {
 
       it(s"should return ${expected}") {
         val result = dex + 6
+
+        result shouldBe expected
+      }
+    }
+
+    describe(s"when ${dex} + ${dex}") {
+      val expected = Dexterity(160)
+
+      it(s"should be ${expected}") {
+        val result = dex + dex
+
+        result shouldBe expected
+      }
+    }
+
+    describe(s"when ${dex} - ${dex}") {
+      val expected = Dexterity(0)
+
+      it(s"should be ${expected}") {
+        val result = dex - dex
 
         result shouldBe expected
       }

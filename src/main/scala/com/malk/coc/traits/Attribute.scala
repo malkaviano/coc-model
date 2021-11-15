@@ -1,7 +1,3 @@
 package com.malk.coc.traits
 
-trait Attribute {
-  def name: String
-
-  def value: Int
-}
+abstract class Attribute(val name: String, val value: Int)

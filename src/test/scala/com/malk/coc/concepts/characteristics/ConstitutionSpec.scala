@@ -4,6 +4,8 @@ import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 
 class ConstitutionSpec extends AnyFunSpec with Matchers {
+  import com.malk.coc.traits.Characteristic.implicits._
+
   describe("The Constitution") {
     val con = Constitution(55)
 
@@ -30,6 +32,26 @@ class ConstitutionSpec extends AnyFunSpec with Matchers {
 
       it(s"should return ${expected}") {
         val result = con + 6
+
+        result shouldBe expected
+      }
+    }
+
+    describe(s"when ${con} + ${con}") {
+      val expected = Constitution(110)
+
+      it(s"should be ${expected}") {
+        val result = con + con
+
+        result shouldBe expected
+      }
+    }
+
+    describe(s"when ${con} - ${con}") {
+      val expected = Constitution(0)
+
+      it(s"should be ${expected}") {
+        val result = con - con
 
         result shouldBe expected
       }
