@@ -6,6 +6,7 @@ import com.malk.coc.concepts.characteristics.Strength
 import com.malk.coc.concepts.characteristics.Size
 import com.malk.coc.concepts.characteristics.Dexterity
 import com.malk.coc.concepts.characteristics.Constitution
+import com.malk.coc.concepts.attributes.Build
 
 class BodySpec extends AnyFunSpec with Matchers {
 
@@ -16,6 +17,8 @@ class BodySpec extends AnyFunSpec with Matchers {
     val con = Constitution(45)
 
     val body = Body(str, con, dex, siz)
+
+    val build = Build(body)
 
     it(s"should have ${str}") {
       body.strength shouldBe str
@@ -31,6 +34,10 @@ class BodySpec extends AnyFunSpec with Matchers {
 
     it(s"should have ${siz}") {
       body.size shouldBe siz
+    }
+
+    it(s"should have Build ${build}") {
+      body.build shouldBe build
     }
   }
 }

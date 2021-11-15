@@ -5,7 +5,6 @@ import com.malk.coc.traits._
 import com.malk.coc.concepts.attributes.MovementRate
 import com.malk.coc.concepts.attributes.MaximumHitPoints
 import com.malk.coc.concepts.attributes.CurrentHitPoints
-import com.malk.coc.concepts.attributes.Build
 import com.malk.coc.concepts.attributes.DamageBonus
 import com.malk.coc.concepts.abstractions.Body
 import com.malk.coc.concepts.abstractions.Brain
@@ -20,7 +19,6 @@ final case class Human private (
     private val brain: Brain,
     private val mov: MovementRate,
     private val maxHP: MaximumHitPoints,
-    private val build: Build,
     private val db: DamageBonus,
     private val sanity: Sanity
 ) extends Aging
@@ -65,7 +63,7 @@ final case class Human private (
     currentHP = currentHP.copy(hp)
   }
 
-  override def Build: Int = build.value
+  override def Build: Int = body.build.value
 
   override def DB: Int = db.value
 
@@ -105,8 +103,6 @@ object Human {
 
     val maxHP = MaximumHitPoints(agedBody)
 
-    val build = Build(agedBody)
-
     import com.malk.coc.helpers.DiceHelper.implicits._
 
     val db = DamageBonus(agedBody)
@@ -122,7 +118,6 @@ object Human {
       brain,
       modifiedMOV,
       maxHP,
-      build,
       db,
       sanity
     )
