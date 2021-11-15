@@ -8,6 +8,7 @@ import com.malk.coc.concepts.abstractions.Body
 import com.malk.coc.concepts.abstractions.Brain
 import com.malk.coc.concepts.attributes.Sanity
 import com.malk.coc.rules.HumanAgingRules
+import com.malk.coc.concepts.attributes.MaximumMagicPoints
 
 final case class Human private (
     private val age: Age,
@@ -17,7 +18,8 @@ final case class Human private (
     private val luck: Luck,
     private val brain: Brain,
     private val mov: MovementRate,
-    private val sanity: Sanity
+    private val sanity: Sanity,
+    private val mp: MaximumMagicPoints
 ) extends Aging
     with Mobility
     with PhysicalCapacity
@@ -28,7 +30,8 @@ final case class Human private (
     with Damageable
     with FightingManeuverModifier
     with MeleeDamageBonus
-    with SaneBehavior {
+    with SaneBehavior
+    with Magic {
 
   private var currentHP = CurrentHitPoints(body.maximumHitPoints.value)
 
@@ -65,6 +68,8 @@ final case class Human private (
   override def DB: Int = body.damageBonus.value
 
   override def SAN: Int = sanity.value
+
+  override def MP: Int = mp.value
 }
 
 object Human {
@@ -75,7 +80,8 @@ object Human {
       edu: Education,
       luck: Luck,
       brain: Brain,
-      sanity: Sanity
+      sanity: Sanity,
+      mp: MaximumMagicPoints,
   )(implicit
       humanAgingRules: HumanAgingRules
   ): Human = {
@@ -95,7 +101,8 @@ object Human {
       luck,
       brain,
       humanAgedMovementRate,
-      sanity
+      sanity,
+      mp
     )
   }
 }

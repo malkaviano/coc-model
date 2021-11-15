@@ -11,6 +11,7 @@ import com.malk.coc.concepts.abstractions.Body
 import com.malk.coc.concepts.abstractions.Brain
 import com.malk.coc.rules.HumanAgingRules
 import com.malk.coc.concepts.attributes.Sanity
+import com.malk.coc.concepts.attributes.MaximumMagicPoints
 
 class HumanAttributesSpec extends AnyFunSpec with Matchers {
   import com.malk.coc.helpers.DiceHelper.implicits._
@@ -33,6 +34,7 @@ class HumanAttributesSpec extends AnyFunSpec with Matchers {
     implicit val humanAgingRules = new HumanAgingRules(age)
 
     val sanity = Sanity(80)
+    val mp = MaximumMagicPoints(30)
 
     val human = Human(
       age,
@@ -41,50 +43,75 @@ class HumanAttributesSpec extends AnyFunSpec with Matchers {
       edu,
       luck,
       brain,
-      sanity
+      sanity,
+      mp
     )
 
-    describe("Human MovementRate (MOV)") {
-      describe(
-        s"when Age ${human.Age} - STR ${human.STR} - DEX ${human.DEX} - SIZ ${human.SIZ}"
-      ) {
+    describe("Human attributes") {
+      describe("Human MovementRate (MOV)") {
+        describe(
+          s"when Age ${human.Age} - STR ${human.STR} - DEX ${human.DEX} - SIZ ${human.SIZ}"
+        ) {
 
-        val mov = humanAgingRules movFor body
+          val mov = humanAgingRules movFor body
 
-        it(s"should have MOV ${mov.value}") {
-          human.MOV shouldBe mov.value
+          it(s"should have MOV ${mov.value}") {
+            human.MOV shouldBe mov.value
+          }
+
+        }
+      }
+
+      describe("Human Current Hit Points (HP)") {
+        it(
+          s"should have Current Hit Points (HP) equal ${body.maximumHitPoints.value}"
+        ) {
+          human.HP shouldBe body.maximumHitPoints.value
         }
 
+        it(
+          s"should change Current Hit Points (HP) from ${body.maximumHitPoints.value} to ${20}"
+        ) {
+          human.HP = 20
+
+          human.HP shouldBe 20
+        }
       }
-    }
 
-    describe("Human Current Hit Points (HP)") {
-      it(s"should have Current Hit Points (HP) equal ${body.maximumHitPoints.value}") {
-        human.HP shouldBe body.maximumHitPoints.value
+      describe("Human Build") {
+        val build = Build(body)
+
+        it(s"should have Build equal ${build.value}") {
+          human.Build shouldBe build.value
+        }
       }
 
-      it(s"should change Current Hit Points (HP) from ${body.maximumHitPoints.value} to ${20}") {
-        human.HP = 20
+      describe("Human Damage Bonus (DB)") {
+        import com.malk.coc.helpers.DiceHelper.implicits._
 
-        human.HP shouldBe 20
+        val db = DamageBonus(body)
+
+        it(s"should have DB equal ${db.value}") {
+          human.DB shouldBe db.value
+        }
       }
-    }
 
-    describe("Human Build") {
-      val build = Build(body)
-
-      it(s"should have Build equal ${build.value}") {
-        human.Build shouldBe build.value
+      describe("Magic Points (MP)") {
+        it(s"should have MP 30") {
+          human.MP shouldBe 30
+        }
       }
-    }
 
-    describe("Human Damage Bonus (DB)") {
-      import com.malk.coc.helpers.DiceHelper.implicits._
+      describe("Sanity (SAN)") {
+        it(s"should have SAN 80") {
+          human.SAN shouldBe 80
+        }
+      }
 
-      val db = DamageBonus(body)
-
-      it(s"should have DB equal ${db.value}") {
-        human.DB shouldBe db.value
+      describe("Luck") {
+        it("should have Luck above 0") {
+          human.Luck should be > 0
+        }
       }
     }
   }

@@ -11,6 +11,7 @@ import com.malk.coc.concepts.dices.DeltohedronDice
 import com.malk.coc.concepts.dices.HundredSidedDice
 import com.malk.coc.rules.HumanAgingRules
 import com.malk.coc.concepts.attributes.Sanity
+import com.malk.coc.concepts.attributes.MaximumMagicPoints
 
 class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
   import com.malk.coc.helpers.DiceHelper.implicits._
@@ -34,6 +35,8 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
 
     val sanity = Sanity(70)
 
+    val mp = MaximumMagicPoints(25)
+
     val human = Human(
       age,
       body,
@@ -41,10 +44,11 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
       edu,
       luck,
       brain,
-      sanity
+      sanity,
+      mp
     )
 
-    describe("The Human characteristics") {
+    describe("Education") {
       it("should have Education (EDU) above 0") {
         human.EDU should be > 0
       }
@@ -68,7 +72,8 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
           edu,
           luck,
           brain,
-          sanity
+          sanity,
+          mp
         )(
           humanAgingRules
         )
@@ -77,7 +82,9 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
 
         human.EDU shouldBe expected
       }
+    }
 
+    describe("Appearance") {
       it("should have Appearance (APP) above 0") {
         human.APP should be > 0
       }
@@ -94,12 +101,15 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
           edu,
           luck,
           brain,
-          sanity
+          sanity,
+          mp
         )
 
         human.APP shouldBe 60
       }
+    }
 
+    describe("Strength") {
       it("should have Strength (STR) above 0") {
         human.STR should be > 0
       }
@@ -116,12 +126,15 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
           edu,
           luck,
           brain,
-          sanity
+          sanity,
+          mp
         )
 
         human.STR shouldBe 47
       }
+    }
 
+    describe("Dexterity") {
       it("should have Dexterity (DEX) above 0") {
         human.DEX should be > 0
       }
@@ -138,12 +151,15 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
           edu,
           luck,
           brain,
-          sanity
+          sanity,
+          mp
         )
 
         human.DEX shouldBe 66
       }
+    }
 
+    describe("Constitution") {
       it("should have Constitution (CON) above 0") {
         human.CON should be > 0
       }
@@ -160,12 +176,15 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
           edu,
           luck,
           brain,
-          sanity
+          sanity,
+          mp
         )
 
         human.CON shouldBe 42
       }
+    }
 
+    describe("Size") {
       it("should have Size (SIZ) above 0") {
         human.SIZ should be > 0
       }
@@ -182,20 +201,21 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
           edu,
           luck,
           brain,
-          sanity
+          sanity,
+          mp
         )
 
         human.SIZ shouldBe 58
       }
+    }
 
-      it("should have Luck above 0") {
-        human.Luck should be > 0
-      }
-
+    describe("Intelligence") {
       it("should have Intelligence (INT) above 0") {
         human.INT should be > 0
       }
+    }
 
+    describe("Power") {
       it("should have Power (POW) above 0") {
         human.POW should be > 0
       }
