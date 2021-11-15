@@ -4,7 +4,7 @@ import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 
 class AppearanceSpec extends AnyFunSpec with Matchers {
-  import com.malk.coc.traits.Characteristic.implicits._
+  import com.malk.coc.helpers.CharacteristicModifications.implicits._
 
   describe("The Appearance") {
     val app = Appearance(65)
@@ -32,26 +32,6 @@ class AppearanceSpec extends AnyFunSpec with Matchers {
 
       it(s"should return ${expected}") {
         val result = app + 6
-
-        result shouldBe expected
-      }
-    }
-
-    describe(s"when ${app} + ${app}") {
-      val expected = Appearance(130)
-
-      it(s"should be ${expected}") {
-        val result = app + app
-
-        result shouldBe expected
-      }
-    }
-
-    describe(s"when ${app} - ${app}") {
-      val expected = Appearance(0)
-
-      it(s"should be ${expected}") {
-        val result = app - app
 
         result shouldBe expected
       }

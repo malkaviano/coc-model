@@ -4,7 +4,7 @@ import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 
 class SizeSpec extends AnyFunSpec with Matchers {
-  import com.malk.coc.traits.Characteristic.implicits._
+  import com.malk.coc.helpers.CharacteristicModifications.implicits._
 
   describe("The Size") {
     val siz = Size(70)
@@ -32,26 +32,6 @@ class SizeSpec extends AnyFunSpec with Matchers {
 
       it(s"should return ${expected}") {
         val result = siz + 6
-
-        result shouldBe expected
-      }
-    }
-
-    describe(s"when ${siz} + ${siz}") {
-      val expected = Size(140)
-
-      it(s"should be ${expected}") {
-        val result = siz + siz
-
-        result shouldBe expected
-      }
-    }
-
-    describe(s"when ${siz} - ${siz}") {
-      val expected = Size(0)
-
-      it(s"should be ${expected}") {
-        val result = siz - siz
 
         result shouldBe expected
       }

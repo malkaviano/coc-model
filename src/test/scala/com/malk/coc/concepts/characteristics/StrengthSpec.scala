@@ -4,7 +4,7 @@ import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 
 class StrengthSpec extends AnyFunSpec with Matchers {
-  import com.malk.coc.traits.Characteristic.implicits._
+  import com.malk.coc.helpers.CharacteristicModifications.implicits._
 
   describe("The Strength") {
     val str = Strength(60)
@@ -32,26 +32,6 @@ class StrengthSpec extends AnyFunSpec with Matchers {
 
       it(s"should return ${expected}") {
         val result = str + 6
-
-        result shouldBe expected
-      }
-    }
-
-    describe(s"when ${str} + ${str}") {
-      val expected = Strength(120)
-
-      it(s"should be ${expected}") {
-        val result = str + str
-
-        result shouldBe expected
-      }
-    }
-
-    describe(s"when ${str} - ${str}") {
-      val expected = Strength(0)
-
-      it(s"should be ${expected}") {
-        val result = str - str
 
         result shouldBe expected
       }
