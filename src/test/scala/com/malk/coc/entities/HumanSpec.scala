@@ -37,8 +37,6 @@ class HumanSpec extends AnyFunSpec with Matchers {
     val body = Body(str, con, dex, siz)
     val brain = Brain(int, pow)
 
-    import com.malk.coc.rules.HumanMobility._
-
     implicit val humanAgingRules = new HumanAgingRules(age)
 
     val human = Human(

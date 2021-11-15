@@ -3,30 +3,39 @@ package com.malk.coc.rules
 import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 
+import com.malk.coc.helpers.DiceHelper
+import com.malk.coc.concepts.abstractions.Body
 import com.malk.coc.concepts.characteristics.Strength
 import com.malk.coc.concepts.characteristics.Dexterity
 import com.malk.coc.concepts.characteristics.Size
-import com.malk.coc.helpers.DiceHelper
-import com.malk.coc.concepts.characteristics.Age
+import com.malk.coc.concepts.characteristics.Constitution
 import com.malk.coc.concepts.attributes.MovementRate
+import com.malk.coc.concepts.characteristics.Age
 
-trait MovementRateBehaviors extends Matchers { this: AnyFunSpec =>
+import com.malk.coc.helpers.DiceHelper.implicits._
+
+trait MovementRateBehavior extends Matchers { this: AnyFunSpec =>
   def calculateMovementRate(
       age: Age,
-      str: Strength,
-      dex: Dexterity,
-      siz: Size,
+      body: Body,
       expected: MovementRate
   ): Unit = {
-    describe(s"when ${str} - ${dex} - ${siz}") {
+    describe(s"when ${body}") {
       it(s"should return ${expected}") {
-        HumanMobility.movementRate(age, str, dex, siz) shouldBe expected
+        val humanAgingRules = new HumanAgingRules(age)
+
+        val result =  humanAgingRules movFor body
+
+        result shouldBe expected
       }
     }
   }
 }
 
-class HumanMobilitySpec extends AnyFunSpec with MovementRateBehaviors {
+class HumanAgingRulesMovForBodySpec
+    extends AnyFunSpec
+    with Matchers
+    with MovementRateBehavior {
   describe("Human MOV calculation") {
     describe("Human age is bellow 40") {
       val age = DiceHelper.randomAge(15, 39)
@@ -73,36 +82,56 @@ class HumanMobilitySpec extends AnyFunSpec with MovementRateBehaviors {
         suit(age, 5)
       }
     }
+
   }
 
   private def check(
       age: Age,
-      str: Strength,
-      dex: Dexterity,
-      siz: Size,
+      body: Body,
       expected: MovementRate
   ) = {
     it should behave like calculateMovementRate(
       age,
-      str,
-      dex,
-      siz,
+      body,
       expected
     )
   }
 
   private def suit(age: Age, reduction: Int) = {
+    val con = Constitution(47)
+
     Seq(
-      (Strength(60), Dexterity(70), Size(50), MovementRate(9 - reduction)),
-      (Strength(24), Dexterity(48), Size(50), MovementRate(7 - reduction)),
-      (Strength(50), Dexterity(50), Size(50), MovementRate(8 - reduction)),
-      (Strength(40), Dexterity(60), Size(50), MovementRate(8 - reduction)),
-      (Strength(55), Dexterity(30), Size(50), MovementRate(8 - reduction)),
-      (Strength(50), Dexterity(30), Size(50), MovementRate(8 - reduction)),
-      (Strength(40), Dexterity(50), Size(50), MovementRate(8 - reduction))
+      (
+        Body(Strength(60), con, Dexterity(70), Size(50)),
+        MovementRate(9 - reduction)
+      ),
+      (
+        Body(Strength(24), con, Dexterity(48), Size(50)),
+        MovementRate(7 - reduction)
+      ),
+      (
+        Body(Strength(50), con, Dexterity(50), Size(50)),
+        MovementRate(8 - reduction)
+      ),
+      (
+        Body(Strength(40), con, Dexterity(60), Size(50)),
+        MovementRate(8 - reduction)
+      ),
+      (
+        Body(Strength(55), con, Dexterity(30), Size(50)),
+        MovementRate(8 - reduction)
+      ),
+      (
+        Body(Strength(50), con, Dexterity(30), Size(50)),
+        MovementRate(8 - reduction)
+      ),
+      (
+        Body(Strength(40), con, Dexterity(50), Size(50)),
+        MovementRate(8 - reduction)
+      )
     ).foreach {
-      case (str, dex, siz, expected) => {
-        check(age, str, dex, siz, expected)
+      case (body, expected) => {
+        check(age, body, expected)
       }
     }
   }

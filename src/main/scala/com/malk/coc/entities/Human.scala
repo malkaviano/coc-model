@@ -76,7 +76,6 @@ object Human {
       luck: Luck,
       brain: Brain
   )(implicit
-      movementRateGenerator: (Age, Strength, Dexterity, Size) => MovementRate,
       humanAgingRules: HumanAgingRules
   ): Human = {
     val agedBody = humanAgingRules on body
@@ -85,13 +84,7 @@ object Human {
 
     val agedAppearance = humanAgingRules on app
 
-    val modifiedMOV =
-      movementRateGenerator(
-        age,
-        agedBody.strength,
-        agedBody.dexterity,
-        agedBody.size
-      )
+    val humanAgedMovementRate = humanAgingRules movFor body
 
     val sanity = Sanity(brain)
 
@@ -102,7 +95,7 @@ object Human {
       agedEdu,
       luck,
       brain,
-      modifiedMOV,
+      humanAgedMovementRate,
       sanity
     )
   }

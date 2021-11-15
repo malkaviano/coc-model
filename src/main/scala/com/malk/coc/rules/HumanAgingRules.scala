@@ -10,6 +10,7 @@ import com.malk.coc.concepts.characteristics.Education
 import com.malk.coc.concepts.dices.HundredSidedDice
 import com.malk.coc.concepts.dices.DeltohedronDice
 import com.malk.coc.concepts.characteristics.Appearance
+import com.malk.coc.concepts.attributes.MovementRate
 
 class HumanAgingRules(age: Age)(implicit
     tetrahedronDice: TetrahedronDice,
@@ -91,6 +92,26 @@ class HumanAgingRules(age: Age)(implicit
 
       (app - (((x / 10) + 1) * 5)).asInstanceOf[Appearance]
     }
+  }
+
+  def movFor(body: Body): MovementRate = {
+    val result =
+      if (body.strength.value < body.size.value && body.dexterity.value < body.size.value)
+        7
+      else if (body.strength.value > body.size.value && body.dexterity.value > body.size.value)
+        9
+      else
+        8
+
+    val delta = age.value - 40
+
+    val value = if (delta < 0) {
+      result
+    } else {
+      result - ((delta / 10) + 1)
+    }
+
+    MovementRate(value)
   }
 
   @tailrec
