@@ -9,6 +9,7 @@ import com.malk.coc.concepts.attributes.Build
 import com.malk.coc.concepts.attributes.DamageBonus
 import com.malk.coc.concepts.abstractions.Body
 import com.malk.coc.concepts.abstractions.Brain
+import com.malk.coc.concepts.attributes.Sanity
 
 final case class Human private (
     private val age: Age,
@@ -78,8 +79,7 @@ object Human {
       app: Appearance,
       edu: Education,
       luck: Luck,
-      brain: Brain,
-      sanity: Sanity = Sanity(99)
+      brain: Brain
   )(implicit
       agingEffectOnEducation: AgingEffectOnEducation,
       agingEffectOnAppearanceModifier: (Age, Appearance) => Appearance,
@@ -110,6 +110,8 @@ object Human {
     import com.malk.coc.helpers.DiceHelper.implicits._
 
     val db = DamageBonus(agedBody.strength, agedBody.size)
+
+    val sanity = Sanity(brain)
 
     Human(
       age,
