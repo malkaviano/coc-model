@@ -103,7 +103,7 @@ object Human {
         agedBody.size
       )
 
-    val maxHP = MaximumHitPoints(agedBody.constitution, agedBody.size)
+    val maxHP = MaximumHitPoints(agedBody)
 
     val build = Build(agedBody)
 

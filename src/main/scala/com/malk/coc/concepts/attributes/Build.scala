@@ -8,7 +8,7 @@ final case class Build(
 ) extends Attribute {
   override val name = "Build"
 
-  override def value: Int = body.strength.value + body.size.value match {
+  override val value: Int = body.strength.value + body.size.value match {
     case x if x < 65 => -2
     case x if x < 85 => -1
     case x if x < 125 => 0

@@ -57,7 +57,7 @@ class HumanAttributesSpec extends AnyFunSpec with Matchers {
     }
 
     describe("Human Current Hit Points (HP)") {
-      val hp = MaximumHitPoints(Constitution(human.CON), Size(human.SIZ))
+      val hp = MaximumHitPoints(body)
 
       it(s"should have Current Hit Points (HP) equal ${hp.value}") {
         human.HP shouldBe hp.value
