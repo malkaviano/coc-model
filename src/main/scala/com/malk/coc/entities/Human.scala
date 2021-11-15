@@ -9,6 +9,8 @@ import com.malk.coc.concepts.abstractions.Brain
 import com.malk.coc.concepts.attributes.Sanity
 import com.malk.coc.rules.HumanAgingRules
 import com.malk.coc.concepts.attributes.MaximumMagicPoints
+import com.malk.coc.concepts.attributes.Age
+import com.malk.coc.concepts.attributes.Luck
 
 final case class Human private (
     private val age: Age,

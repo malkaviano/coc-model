@@ -19,7 +19,7 @@ class SizeSpec extends AnyFunSpec with Matchers {
       val expected = Size(60)
 
       it(s"should return ${expected}") {
-        val result = siz - 10
+        val result = siz.copy(siz.value - 10)
 
         result shouldBe expected
       }
@@ -29,7 +29,7 @@ class SizeSpec extends AnyFunSpec with Matchers {
       val expected = Size(76)
 
       it(s"should return ${expected}") {
-        val result = siz + 6
+        val result = siz.copy(siz.value + 6)
 
         result shouldBe expected
       }

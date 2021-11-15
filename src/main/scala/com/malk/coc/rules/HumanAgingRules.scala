@@ -2,7 +2,7 @@ package com.malk.coc.rules
 
 import scala.annotation.tailrec
 
-import com.malk.coc.concepts.characteristics.Age
+import com.malk.coc.concepts.attributes.Age
 import com.malk.coc.concepts.abstractions.Body
 import com.malk.coc.concepts.dices.TetrahedronDice
 import com.malk.coc.concepts.dices.CubeDice

@@ -1,4 +1,4 @@
-package com.malk.coc.concepts.characteristics
+package com.malk.coc.concepts.attributes
 
 import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers

@@ -1,13 +1,7 @@
 package com.malk.coc.traits
 
-trait Characteristic {
-  def name: String
-
-  def value: Int
-
-  def -(minus: Int): Characteristic = {
-    this + -minus
-  }
+abstract class Characteristic(val name: String, val value: Int) {
+  def -(minus: Int): Characteristic
 
   def +(plus: Int): Characteristic
 }

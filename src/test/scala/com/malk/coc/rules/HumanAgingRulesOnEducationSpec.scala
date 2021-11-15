@@ -8,7 +8,7 @@ import com.malk.coc.concepts.characteristics.Education
 import com.malk.coc.helpers.DiceHelper
 import com.malk.coc.concepts.dices.DeltohedronDice
 import com.malk.coc.concepts.dices.HundredSidedDice
-import com.malk.coc.concepts.characteristics.Age
+import com.malk.coc.concepts.attributes.Age
 
 import com.malk.coc.helpers.DiceHelper.implicits._
 

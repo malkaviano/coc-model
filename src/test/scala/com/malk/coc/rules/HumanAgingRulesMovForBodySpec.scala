@@ -10,7 +10,7 @@ import com.malk.coc.concepts.characteristics.Dexterity
 import com.malk.coc.concepts.characteristics.Size
 import com.malk.coc.concepts.characteristics.Constitution
 import com.malk.coc.concepts.attributes.MovementRate
-import com.malk.coc.concepts.characteristics.Age
+import com.malk.coc.concepts.attributes.Age
 
 import com.malk.coc.helpers.DiceHelper.implicits._
 

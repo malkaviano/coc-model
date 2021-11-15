@@ -5,12 +5,11 @@ import org.scalatest.matchers.should.Matchers
 
 import com.malk.coc.helpers.DiceHelper
 import com.malk.coc.concepts.characteristics.Strength
-import com.malk.coc.concepts.characteristics.Size
 import com.malk.coc.concepts.characteristics.Dexterity
 import com.malk.coc.concepts.characteristics.Constitution
 import com.malk.coc.concepts.characteristics.Appearance
 import com.malk.coc.concepts.characteristics.Education
-import com.malk.coc.concepts.characteristics.Luck
+import com.malk.coc.concepts.attributes.Luck
 import com.malk.coc.concepts.characteristics.Intelligence
 import com.malk.coc.concepts.characteristics.Power
 import com.malk.coc.concepts.abstractions.Body
@@ -18,6 +17,7 @@ import com.malk.coc.concepts.abstractions.Brain
 import com.malk.coc.rules.HumanAgingRules
 import com.malk.coc.concepts.attributes.Sanity
 import com.malk.coc.concepts.attributes.MaximumMagicPoints
+import com.malk.coc.concepts.characteristics.Size
 
 class HumanSpec extends AnyFunSpec with Matchers {
   import com.malk.coc.helpers.DiceHelper.implicits._

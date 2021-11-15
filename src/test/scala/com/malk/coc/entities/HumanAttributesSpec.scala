@@ -12,6 +12,7 @@ import com.malk.coc.concepts.abstractions.Brain
 import com.malk.coc.rules.HumanAgingRules
 import com.malk.coc.concepts.attributes.Sanity
 import com.malk.coc.concepts.attributes.MaximumMagicPoints
+import com.malk.coc.concepts.attributes.Luck
 
 class HumanAttributesSpec extends AnyFunSpec with Matchers {
   import com.malk.coc.helpers.DiceHelper.implicits._
