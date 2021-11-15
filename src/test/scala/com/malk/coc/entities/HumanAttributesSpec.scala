@@ -107,12 +107,6 @@ class HumanAttributesSpec extends AnyFunSpec with Matchers {
           human.SAN shouldBe 80
         }
       }
-
-      describe("Luck") {
-        it("should have Luck above 0") {
-          human.Luck should be > 0
-        }
-      }
     }
   }
 }

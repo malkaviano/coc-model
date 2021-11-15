@@ -15,7 +15,6 @@ final case class Human private (
     private val body: Body,
     private val app: Appearance,
     private val edu: Education,
-    private val luck: Luck,
     private val brain: Brain,
     private val mov: MovementRate,
     private val sanity: Sanity,
@@ -26,7 +25,6 @@ final case class Human private (
     with MentalCapacity
     with Charismatic
     with Knowledge
-    with Chance
     with Damageable
     with FightingManeuverModifier
     with MeleeDamageBonus
@@ -50,8 +48,6 @@ final case class Human private (
   override def APP: Int = app.value
 
   override def EDU: Int = edu.value
-
-  override def Luck: Int = luck.value
 
   override def INT: Int = brain.intelligence.value
 
@@ -98,7 +94,6 @@ object Human {
       agedBody,
       agedAppearance,
       agedEdu,
-      luck,
       brain,
       humanAgedMovementRate,
       sanity,
