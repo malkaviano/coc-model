@@ -15,6 +15,7 @@ import com.malk.coc.concepts.characteristics.Intelligence
 import com.malk.coc.concepts.characteristics.Power
 import com.malk.coc.concepts.abstractions.Body
 import com.malk.coc.concepts.abstractions.Brain
+import com.malk.coc.rules.HumanAgingRules
 
 class HumanSpec extends AnyFunSpec with Matchers {
   import com.malk.coc.helpers.DiceHelper.implicits._
@@ -37,6 +38,8 @@ class HumanSpec extends AnyFunSpec with Matchers {
     val brain = Brain(int, pow)
 
     import com.malk.coc.rules.HumanMobility._
+
+    implicit val humanAgingRules = new HumanAgingRules(age)
 
     val human = Human(
       age,

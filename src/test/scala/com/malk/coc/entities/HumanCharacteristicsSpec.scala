@@ -31,6 +31,8 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
     val body = Body(str, con, dex, siz)
     val brain = Brain(int, pow)
 
+    implicit val humanAgingRules = new HumanAgingRules(age)
+
     val human = Human(
       age,
       body,
@@ -66,10 +68,7 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
           brain
         )(
           movementRateGenerator = HumanMobility.movementRate,
-          tetrahedronDice,
-          cubeDice,
-          deltohedronDice,
-          hundredSidedDice
+          humanAgingRules
         )
 
         val expected = (humanAgingRules on edu).value
@@ -82,8 +81,12 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
       }
 
       it("should have initial Appearance (APP) modified by Age") {
+        val age = DiceHelper.randomAge(40, 49)
+
+        implicit val humanAgingRules = new HumanAgingRules(age)
+
         val human = Human(
-          DiceHelper.randomAge(40, 49),
+          age,
           body,
           app,
           edu,
@@ -99,8 +102,12 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
       }
 
       it("should have initial Strength (STR) modified by Age") {
+        val age = DiceHelper.randomAge(50, 59)
+
+        implicit val humanAgingRules = new HumanAgingRules(age)
+
         val human = Human(
-          DiceHelper.randomAge(50, 59),
+          age,
           body,
           app,
           edu,
@@ -116,8 +123,12 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
       }
 
       it("should have initial Dexterity (DEX) modified by Age") {
+        val age = DiceHelper.randomAge(50, 59)
+
+        implicit val humanAgingRules = new HumanAgingRules(age)
+
         val human = Human(
-          DiceHelper.randomAge(50, 59),
+          age,
           body,
           app,
           edu,
@@ -133,8 +144,12 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
       }
 
       it("should have initial Constitution (CON) modified by Age") {
+        val age = DiceHelper.randomAge(50, 59)
+
+        implicit val humanAgingRules = new HumanAgingRules(age)
+
         val human = Human(
-          DiceHelper.randomAge(50, 59),
+          age,
           body,
           app,
           edu,
@@ -150,8 +165,12 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
       }
 
       it("should have initial Size (SIZ) modified by young Age") {
+        val age = DiceHelper.randomAge(15, 19)
+
+        implicit val humanAgingRules = new HumanAgingRules(age)
+
         val human = Human(
-          DiceHelper.randomAge(15, 19),
+          age,
           body,
           app,
           edu,

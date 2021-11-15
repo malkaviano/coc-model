@@ -8,10 +8,6 @@ import com.malk.coc.concepts.abstractions.Body
 import com.malk.coc.concepts.abstractions.Brain
 import com.malk.coc.concepts.attributes.Sanity
 import com.malk.coc.rules.HumanAgingRules
-import com.malk.coc.concepts.dices.TetrahedronDice
-import com.malk.coc.concepts.dices.CubeDice
-import com.malk.coc.concepts.dices.DeltohedronDice
-import com.malk.coc.concepts.dices.HundredSidedDice
 
 final case class Human private (
     private val age: Age,
@@ -81,13 +77,8 @@ object Human {
       brain: Brain
   )(implicit
       movementRateGenerator: (Age, Strength, Dexterity, Size) => MovementRate,
-      tetrahedronDice: TetrahedronDice,
-      cubeDice: CubeDice,
-      deltohedronDice: DeltohedronDice,
-      hundredSidedDice: HundredSidedDice
+      humanAgingRules: HumanAgingRules
   ): Human = {
-    val humanAgingRules = new HumanAgingRules(age)
-
     val agedBody = humanAgingRules on body
 
     val agedEdu = humanAgingRules on edu
