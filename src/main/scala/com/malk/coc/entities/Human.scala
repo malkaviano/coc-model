@@ -28,7 +28,7 @@ final case class Human private (
     with Damageable
     with FightingManeuverModifier
     with MeleeDamageBonus
-    with Madness {
+    with SaneBehavior {
 
   private var currentHP = CurrentHitPoints(body.maximumHitPoints.value)
 
@@ -64,7 +64,7 @@ final case class Human private (
 
   override def DB: Int = body.damageBonus.value
 
-  override def Sanity: Int = sanity.value
+  override def SAN: Int = sanity.value
 }
 
 object Human {
@@ -74,7 +74,8 @@ object Human {
       app: Appearance,
       edu: Education,
       luck: Luck,
-      brain: Brain
+      brain: Brain,
+      sanity: Sanity
   )(implicit
       humanAgingRules: HumanAgingRules
   ): Human = {
@@ -85,8 +86,6 @@ object Human {
     val agedAppearance = humanAgingRules on app
 
     val humanAgedMovementRate = humanAgingRules movFor body
-
-    val sanity = Sanity(brain)
 
     Human(
       age,
