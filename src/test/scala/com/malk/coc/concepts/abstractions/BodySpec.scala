@@ -8,6 +8,7 @@ import com.malk.coc.concepts.characteristics.Dexterity
 import com.malk.coc.concepts.characteristics.Constitution
 import com.malk.coc.concepts.attributes.Build
 import com.malk.coc.concepts.attributes.DamageBonus
+import com.malk.coc.concepts.attributes.MaximumHitPoints
 
 class BodySpec extends AnyFunSpec with Matchers {
   import com.malk.coc.helpers.DiceHelper.implicits._
@@ -22,6 +23,7 @@ class BodySpec extends AnyFunSpec with Matchers {
 
     val build = Build(body)
     val db = DamageBonus(body)
+    val hp = MaximumHitPoints(body)
 
     it(s"should have ${str}") {
       body.strength shouldBe str
@@ -45,6 +47,10 @@ class BodySpec extends AnyFunSpec with Matchers {
 
     it(s"should have DamageBonus ${db}") {
       body.damageBonus shouldBe db
+    }
+
+    it(s"should have MaximumHitPoints ${hp}") {
+      body.maximumHitPoints shouldBe hp
     }
   }
 }

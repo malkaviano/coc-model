@@ -3,7 +3,6 @@ package com.malk.coc.entities
 import com.malk.coc.concepts.characteristics._
 import com.malk.coc.traits._
 import com.malk.coc.concepts.attributes.MovementRate
-import com.malk.coc.concepts.attributes.MaximumHitPoints
 import com.malk.coc.concepts.attributes.CurrentHitPoints
 import com.malk.coc.concepts.abstractions.Body
 import com.malk.coc.concepts.abstractions.Brain
@@ -17,7 +16,6 @@ final case class Human private (
     private val luck: Luck,
     private val brain: Brain,
     private val mov: MovementRate,
-    private val maxHP: MaximumHitPoints,
     private val sanity: Sanity
 ) extends Aging
     with Mobility
@@ -31,7 +29,7 @@ final case class Human private (
     with MeleeDamageBonus
     with Madness {
 
-  private var currentHP = CurrentHitPoints(maxHP.value)
+  private var currentHP = CurrentHitPoints(body.maximumHitPoints.value)
 
   override def Age: Int = age.value
 
@@ -99,8 +97,6 @@ object Human {
         agedBody.size
       )
 
-    val maxHP = MaximumHitPoints(agedBody)
-
     val sanity = Sanity(brain)
 
     Human(
@@ -111,7 +107,6 @@ object Human {
       luck,
       brain,
       modifiedMOV,
-      maxHP,
       sanity
     )
   }

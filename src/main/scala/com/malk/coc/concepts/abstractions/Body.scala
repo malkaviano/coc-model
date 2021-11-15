@@ -8,6 +8,7 @@ import com.malk.coc.concepts.attributes.Build
 import com.malk.coc.concepts.attributes.DamageBonus
 import com.malk.coc.concepts.dices.TetrahedronDice
 import com.malk.coc.concepts.dices.CubeDice
+import com.malk.coc.concepts.attributes.MaximumHitPoints
 
 final case class Body private (
     characteristics: (Strength, Constitution, Dexterity, Size)
@@ -26,6 +27,8 @@ final case class Body private (
   val build: Build = Build(this)
 
   val damageBonus: DamageBonus = DamageBonus(this)(tetrahedronDice, cubeDice)
+
+  val maximumHitPoints: MaximumHitPoints = MaximumHitPoints(this)
 }
 
 object Body {
