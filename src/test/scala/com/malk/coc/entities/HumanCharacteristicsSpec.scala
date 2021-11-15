@@ -213,7 +213,9 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
       it("should have Intelligence (INT) above 0") {
         human.INT should be > 0
       }
+    }
 
+    describe("Power") {
       it("should have Power (POW) above 0") {
         human.POW should be > 0
       }
