@@ -1,20 +1,19 @@
 package com.malk.coc.concepts.attributes
 
-import com.malk.coc.concepts.characteristics.{Strength, Size}
 import com.malk.coc.traits.Attribute
 import com.malk.coc.concepts.dices.CubeDice
 import com.malk.coc.concepts.dices.TetrahedronDice
+import com.malk.coc.concepts.abstractions.Body
 
 final case class DamageBonus(
-    private val str: Strength,
-    private val siz: Size
+    private val body: Body
 )(implicit
     private val tetrahedronDice: TetrahedronDice,
     private val cubeDice: CubeDice
 ) extends Attribute {
   override val name = "Damage Bonus"
 
-  override val value: Int = str.value + siz.value match {
+  override val value: Int = body.strength.value + body.size.value match {
     case x if x < 65  => -2
     case x if x < 85  => -1
     case x if x < 125 => 0

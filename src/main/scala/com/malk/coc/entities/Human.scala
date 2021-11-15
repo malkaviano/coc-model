@@ -109,7 +109,7 @@ object Human {
 
     import com.malk.coc.helpers.DiceHelper.implicits._
 
-    val db = DamageBonus(agedBody.strength, agedBody.size)
+    val db = DamageBonus(agedBody)
 
     val sanity = Sanity(brain)
 

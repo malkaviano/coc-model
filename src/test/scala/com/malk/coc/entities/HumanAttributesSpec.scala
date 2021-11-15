@@ -81,7 +81,7 @@ class HumanAttributesSpec extends AnyFunSpec with Matchers {
     describe("Human Damage Bonus (DB)") {
       import com.malk.coc.helpers.DiceHelper.implicits._
 
-      val db = DamageBonus(Strength(human.STR), Size(human.SIZ))
+      val db = DamageBonus(body)
 
       it(s"should have DB equal ${db.value}") {
         human.DB shouldBe db.value
