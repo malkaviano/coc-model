@@ -105,7 +105,7 @@ object Human {
 
     val maxHP = MaximumHitPoints(agedBody.constitution, agedBody.size)
 
-    val build = Build(agedBody.strength, agedBody.size)
+    val build = Build(agedBody)
 
     import com.malk.coc.helpers.DiceHelper.implicits._
 

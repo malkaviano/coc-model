@@ -1,15 +1,14 @@
 package com.malk.coc.concepts.attributes
 
-import com.malk.coc.concepts.characteristics.{Strength, Size}
 import com.malk.coc.traits.Attribute
+import com.malk.coc.concepts.abstractions.Body
 
 final case class Build(
-  private val str: Strength,
-  private val siz: Size
+  private val body: Body
 ) extends Attribute {
   override val name = "Build"
 
-  override def value: Int = str.value + siz.value match {
+  override def value: Int = body.strength.value + body.size.value match {
     case x if x < 65 => -2
     case x if x < 85 => -1
     case x if x < 125 => 0

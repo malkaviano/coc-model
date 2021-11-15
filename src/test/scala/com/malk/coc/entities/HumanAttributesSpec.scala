@@ -71,7 +71,7 @@ class HumanAttributesSpec extends AnyFunSpec with Matchers {
     }
 
     describe("Human Build") {
-      val build = Build(Strength(human.STR), Size(human.SIZ))
+      val build = Build(body)
 
       it(s"should have Build equal ${build.value}") {
         human.Build shouldBe build.value
