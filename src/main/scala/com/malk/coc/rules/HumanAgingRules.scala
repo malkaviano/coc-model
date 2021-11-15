@@ -1,13 +1,20 @@
 package com.malk.coc.rules
 
+import scala.annotation.tailrec
+
 import com.malk.coc.concepts.characteristics.Age
 import com.malk.coc.concepts.abstractions.Body
 import com.malk.coc.concepts.dices.TetrahedronDice
 import com.malk.coc.concepts.dices.CubeDice
+import com.malk.coc.concepts.characteristics.Education
+import com.malk.coc.concepts.dices.HundredSidedDice
+import com.malk.coc.concepts.dices.DeltohedronDice
 
 class HumanAgingRules(age: Age)(implicit
     tetrahedronDice: TetrahedronDice,
-    cubeDice: CubeDice
+    cubeDice: CubeDice,
+    deltohedronDice: DeltohedronDice,
+    hundredSidedDice: HundredSidedDice
 ) {
   def on(body: Body): Body = {
     age.value match {
@@ -61,5 +68,25 @@ class HumanAgingRules(age: Age)(implicit
           body.size.copy(value = body.size.value - 2)
         )
     }
+  }
+
+  def on(edu: Education): Education = {
+    val result = age.value match {
+      case x if x < 20  => edu.copy(edu.value - 5)
+      case x if x >= 60 => checkEDUIncrease(edu, 4)
+      case x if x >= 50 => checkEDUIncrease(edu, 3)
+      case x if x >= 40 => checkEDUIncrease(edu, 2)
+      case _            => checkEDUIncrease(edu)
+    }
+
+    if (result.value >= 100) Education(99) else result
+  }
+
+  @tailrec
+  private def checkEDUIncrease(edu: Education, times: Int = 1): Education = {
+    val newEdu =
+      if (hundredSidedDice.roll > edu.value) edu + deltohedronDice.roll else edu
+
+    if (times == 1) newEdu else checkEDUIncrease(newEdu, times - 1)
   }
 }

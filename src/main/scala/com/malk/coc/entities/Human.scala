@@ -10,6 +10,8 @@ import com.malk.coc.concepts.attributes.Sanity
 import com.malk.coc.rules.HumanAgingRules
 import com.malk.coc.concepts.dices.TetrahedronDice
 import com.malk.coc.concepts.dices.CubeDice
+import com.malk.coc.concepts.dices.DeltohedronDice
+import com.malk.coc.concepts.dices.HundredSidedDice
 
 final case class Human private (
     private val age: Age,
@@ -78,17 +80,18 @@ object Human {
       luck: Luck,
       brain: Brain
   )(implicit
-      agingEffectOnEducation: AgingEffectOnEducation,
       agingEffectOnAppearanceModifier: (Age, Appearance) => Appearance,
       movementRateGenerator: (Age, Strength, Dexterity, Size) => MovementRate,
       tetrahedronDice: TetrahedronDice,
-      cubeDice: CubeDice
+      cubeDice: CubeDice,
+      deltohedronDice: DeltohedronDice,
+      hundredSidedDice: HundredSidedDice
   ): Human = {
     val humanAgingRules = new HumanAgingRules(age)
 
     val agedBody = humanAgingRules on body
 
-    val agedEdu = agingEffectOnEducation.modifiedEducation(age, edu)
+    val agedEdu = humanAgingRules on edu
 
     val agedAppearance = agingEffectOnAppearanceModifier(age, app)
 

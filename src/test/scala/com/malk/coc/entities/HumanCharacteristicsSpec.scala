@@ -5,17 +5,16 @@ import org.scalatest.matchers.should.Matchers
 
 import com.malk.coc.concepts.characteristics._
 import com.malk.coc.helpers.DiceHelper
-import com.malk.coc.rules.HumanAgingEffectOnEducation
 import com.malk.coc.rules.HumanMobility
 import com.malk.coc.rules.HumanAgingEffectOnAppearance
 import com.malk.coc.concepts.abstractions.Body
 import com.malk.coc.concepts.abstractions.Brain
 import com.malk.coc.concepts.dices.DeltohedronDice
 import com.malk.coc.concepts.dices.HundredSidedDice
+import com.malk.coc.rules.HumanAgingRules
 
 class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
   import com.malk.coc.helpers.DiceHelper.implicits._
-  import com.malk.coc.rules.HumanAgingEffectOnEducation.implicits._
   import com.malk.coc.rules.HumanMobility._
   import com.malk.coc.rules.HumanAgingEffectOnAppearance._
 
@@ -53,7 +52,12 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
 
         val deltohedronDice = DeltohedronDice((t: (Int, Int)) => 7)
 
-        val ageEffect = new HumanAgingEffectOnEducation(hundredSidedDice, deltohedronDice)
+        val humanAgingRules = new HumanAgingRules(age)(
+          tetrahedronDice,
+          cubeDice,
+          deltohedronDice,
+          hundredSidedDice
+        )
 
         val human = Human(
           age,
@@ -63,15 +67,18 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
           luck,
           brain
         )(
-          agingEffectOnEducation = ageEffect,
           agingEffectOnAppearanceModifier =
             HumanAgingEffectOnAppearance.appearance,
           movementRateGenerator = HumanMobility.movementRate,
           tetrahedronDice,
-          cubeDice
+          cubeDice,
+          deltohedronDice,
+          hundredSidedDice
         )
 
-        human.EDU shouldBe ageEffect.modifiedEducation(age, edu).value
+        val expected = (humanAgingRules on edu).value
+
+        human.EDU shouldBe expected
       }
 
       it("should have Appearance (APP) above 0") {
