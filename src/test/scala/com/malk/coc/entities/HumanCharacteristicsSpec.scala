@@ -10,6 +10,7 @@ import com.malk.coc.concepts.abstractions.Brain
 import com.malk.coc.concepts.dices.DeltohedronDice
 import com.malk.coc.concepts.dices.HundredSidedDice
 import com.malk.coc.rules.HumanAgingRules
+import com.malk.coc.concepts.attributes.Sanity
 
 class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
   import com.malk.coc.helpers.DiceHelper.implicits._
@@ -31,13 +32,16 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
 
     implicit val humanAgingRules = new HumanAgingRules(age)
 
+    val sanity = Sanity(70)
+
     val human = Human(
       age,
       body,
       app,
       edu,
       luck,
-      brain
+      brain,
+      sanity
     )
 
     describe("The Human characteristics") {
@@ -63,7 +67,8 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
           app,
           edu,
           luck,
-          brain
+          brain,
+          sanity
         )(
           humanAgingRules
         )
@@ -88,7 +93,8 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
           app,
           edu,
           luck,
-          brain
+          brain,
+          sanity
         )
 
         human.APP shouldBe 60
@@ -109,7 +115,8 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
           app,
           edu,
           luck,
-          brain
+          brain,
+          sanity
         )
 
         human.STR shouldBe 47
@@ -130,7 +137,8 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
           app,
           edu,
           luck,
-          brain
+          brain,
+          sanity
         )
 
         human.DEX shouldBe 66
@@ -151,7 +159,8 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
           app,
           edu,
           luck,
-          brain
+          brain,
+          sanity
         )
 
         human.CON shouldBe 42
@@ -172,7 +181,8 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
           app,
           edu,
           luck,
-          brain
+          brain,
+          sanity
         )
 
         human.SIZ shouldBe 58

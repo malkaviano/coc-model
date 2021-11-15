@@ -10,6 +10,7 @@ import com.malk.coc.concepts.attributes.DamageBonus
 import com.malk.coc.concepts.abstractions.Body
 import com.malk.coc.concepts.abstractions.Brain
 import com.malk.coc.rules.HumanAgingRules
+import com.malk.coc.concepts.attributes.Sanity
 
 class HumanAttributesSpec extends AnyFunSpec with Matchers {
   import com.malk.coc.helpers.DiceHelper.implicits._
@@ -31,13 +32,16 @@ class HumanAttributesSpec extends AnyFunSpec with Matchers {
 
     implicit val humanAgingRules = new HumanAgingRules(age)
 
+    val sanity = Sanity(80)
+
     val human = Human(
       age,
       body,
       app,
       edu,
       luck,
-      brain
+      brain,
+      sanity
     )
 
     describe("Human MovementRate (MOV)") {
