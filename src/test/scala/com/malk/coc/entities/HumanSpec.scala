@@ -37,7 +37,6 @@ class HumanSpec extends AnyFunSpec with Matchers {
     val brain = Brain(int, pow)
 
     import com.malk.coc.rules.HumanMobility._
-    import com.malk.coc.rules.HumanAgingEffectOnAppearance._
 
     val human = Human(
       age,

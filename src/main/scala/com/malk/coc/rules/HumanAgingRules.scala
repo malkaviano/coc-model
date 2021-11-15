@@ -9,6 +9,7 @@ import com.malk.coc.concepts.dices.CubeDice
 import com.malk.coc.concepts.characteristics.Education
 import com.malk.coc.concepts.dices.HundredSidedDice
 import com.malk.coc.concepts.dices.DeltohedronDice
+import com.malk.coc.concepts.characteristics.Appearance
 
 class HumanAgingRules(age: Age)(implicit
     tetrahedronDice: TetrahedronDice,
@@ -80,6 +81,16 @@ class HumanAgingRules(age: Age)(implicit
     }
 
     if (result.value >= 100) Education(99) else result
+  }
+
+  def on(app: Appearance): Appearance = {
+    if (age.value < 40) {
+      app
+    } else {
+      val x = age.value - 40
+
+      (app - (((x / 10) + 1) * 5)).asInstanceOf[Appearance]
+    }
   }
 
   @tailrec

@@ -80,7 +80,6 @@ object Human {
       luck: Luck,
       brain: Brain
   )(implicit
-      agingEffectOnAppearanceModifier: (Age, Appearance) => Appearance,
       movementRateGenerator: (Age, Strength, Dexterity, Size) => MovementRate,
       tetrahedronDice: TetrahedronDice,
       cubeDice: CubeDice,
@@ -93,7 +92,7 @@ object Human {
 
     val agedEdu = humanAgingRules on edu
 
-    val agedAppearance = agingEffectOnAppearanceModifier(age, app)
+    val agedAppearance = humanAgingRules on app
 
     val modifiedMOV =
       movementRateGenerator(

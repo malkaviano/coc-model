@@ -6,7 +6,6 @@ import org.scalatest.matchers.should.Matchers
 import com.malk.coc.concepts.characteristics._
 import com.malk.coc.helpers.DiceHelper
 import com.malk.coc.rules.HumanMobility
-import com.malk.coc.rules.HumanAgingEffectOnAppearance
 import com.malk.coc.concepts.abstractions.Body
 import com.malk.coc.concepts.abstractions.Brain
 import com.malk.coc.concepts.dices.DeltohedronDice
@@ -16,7 +15,6 @@ import com.malk.coc.rules.HumanAgingRules
 class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
   import com.malk.coc.helpers.DiceHelper.implicits._
   import com.malk.coc.rules.HumanMobility._
-  import com.malk.coc.rules.HumanAgingEffectOnAppearance._
 
   describe("The Human Characteristics") {
     val age = DiceHelper.randomAge()
@@ -67,8 +65,6 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
           luck,
           brain
         )(
-          agingEffectOnAppearanceModifier =
-            HumanAgingEffectOnAppearance.appearance,
           movementRateGenerator = HumanMobility.movementRate,
           tetrahedronDice,
           cubeDice,

@@ -14,7 +14,6 @@ import com.malk.coc.concepts.abstractions.Brain
 class HumanAttributesSpec extends AnyFunSpec with Matchers {
   import com.malk.coc.helpers.DiceHelper.implicits._
   import com.malk.coc.rules.HumanMobility._
-  import com.malk.coc.rules.HumanAgingEffectOnAppearance._
 
   describe("Human Attributes") {
     val str = Strength(50)
