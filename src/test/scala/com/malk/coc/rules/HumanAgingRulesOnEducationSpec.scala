@@ -5,12 +5,14 @@ import org.scalatest.matchers.should.Matchers
 import org.scalamock.scalatest.MockFactory
 
 import com.malk.coc.concepts.characteristics.Education
-import com.malk.coc.concepts.characteristics.Age
 import com.malk.coc.helpers.DiceHelper
 import com.malk.coc.concepts.dices.DeltohedronDice
 import com.malk.coc.concepts.dices.HundredSidedDice
+import com.malk.coc.concepts.characteristics.Age
 
-trait HumanAgingEffectOnEducationBehaviors extends Matchers with MockFactory {
+import com.malk.coc.helpers.DiceHelper.implicits._
+
+trait HumanAgingOnEducationBehavior extends Matchers with MockFactory {
   this: AnyFunSpec =>
   def humanAgingOnEducationIncrementCheck(
       age: Age,
@@ -39,37 +41,48 @@ trait HumanAgingEffectOnEducationBehaviors extends Matchers with MockFactory {
             }
           )
 
-          val hao = new HumanAgingEffectOnEducation(
-            HundredSidedDice(success100),
-            DeltohedronDice(success10)
+          val humanAgingRules = new HumanAgingRules(age)(
+            tetrahedronDice,
+            cubeDice,
+            DeltohedronDice(success10),
+            HundredSidedDice(success100)
           )
 
-          hao.modifiedEducation(age, edu) shouldBe expected
+          val result = humanAgingRules on edu
+
+          result shouldBe expected
         }
       }
     }
   }
 }
 
-class HumanAgingEffectOnEducationSpec
+class HumanAgingRulesOnEducationSpec
     extends AnyFunSpec
-    with HumanAgingEffectOnEducationBehaviors {
+    with Matchers
+    with HumanAgingOnEducationBehavior {
   val edu = Education(67)
 
   val deltohedronDice = DeltohedronDice((t: (Int, Int)) => 9)
   val hundredSidedDice = HundredSidedDice((t: (Int, Int)) => 100)
 
-  describe(s"Human aging effects on ${edu}") {
+  describe(s"Human Aging on ${edu}") {
     describe("when age is bellow 20") {
       val age = DiceHelper.randomAge(15, 19)
 
-      val hao =
-        new HumanAgingEffectOnEducation(hundredSidedDice, deltohedronDice)
+      val humanAgingRules = new HumanAgingRules(age)(
+        tetrahedronDice,
+        cubeDice,
+        deltohedronDice,
+        hundredSidedDice
+      )
 
-      val expected = Education(67 - 5)
+      val expected = edu - 5
 
       it(s"should return ${expected} was reduced by 5") {
-        hao.modifiedEducation(age, edu) shouldBe expected
+        val result = humanAgingRules on edu
+
+        result shouldBe expected
       }
     }
 
@@ -174,20 +187,6 @@ class HumanAgingEffectOnEducationSpec
           }
         }
       })
-    }
-
-    describe("when Education passes 99") {
-      val edu = Education(90)
-      val expected = Education(99)
-
-      it(s"should return ${expected}") {
-        val hao =
-          new HumanAgingEffectOnEducation(hundredSidedDice, deltohedronDice)
-
-        val result = hao.modifiedEducation(DiceHelper.randomAge(80, 89), edu)
-
-        result shouldBe expected
-      }
     }
   }
 

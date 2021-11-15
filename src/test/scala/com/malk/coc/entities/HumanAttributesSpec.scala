@@ -5,18 +5,14 @@ import org.scalatest.matchers.should.Matchers
 
 import com.malk.coc.concepts.characteristics._
 import com.malk.coc.helpers.DiceHelper
-import com.malk.coc.concepts.attributes.MovementRate
 import com.malk.coc.concepts.attributes.Build
 import com.malk.coc.concepts.attributes.DamageBonus
 import com.malk.coc.concepts.abstractions.Body
 import com.malk.coc.concepts.abstractions.Brain
+import com.malk.coc.rules.HumanAgingRules
 
 class HumanAttributesSpec extends AnyFunSpec with Matchers {
   import com.malk.coc.helpers.DiceHelper.implicits._
-  import com.malk.coc.rules.HumanAgingEffectOnEducation.implicits._
-  import com.malk.coc.rules.HumanMobility._
-  import com.malk.coc.rules.HumanAgingEffectOnAppearance._
-  import com.malk.coc.rules.HumanAgingEffectOnBody._
 
   describe("Human Attributes") {
     val str = Strength(50)
@@ -33,6 +29,8 @@ class HumanAttributesSpec extends AnyFunSpec with Matchers {
     val body = Body(str, con, dex, siz)
     val brain = Brain(int, pow)
 
+    implicit val humanAgingRules = new HumanAgingRules(age)
+
     val human = Human(
       age,
       body,
@@ -47,7 +45,7 @@ class HumanAttributesSpec extends AnyFunSpec with Matchers {
         s"when Age ${human.Age} - STR ${human.STR} - DEX ${human.DEX} - SIZ ${human.SIZ}"
       ) {
 
-        val mov = MovementRate(8 - 1 - 1)
+        val mov = humanAgingRules movFor body
 
         it(s"should have MOV ${mov.value}") {
           human.MOV shouldBe mov.value

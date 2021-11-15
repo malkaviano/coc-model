@@ -7,6 +7,7 @@ import com.malk.coc.concepts.attributes.CurrentHitPoints
 import com.malk.coc.concepts.abstractions.Body
 import com.malk.coc.concepts.abstractions.Brain
 import com.malk.coc.concepts.attributes.Sanity
+import com.malk.coc.rules.HumanAgingRules
 
 final case class Human private (
     private val age: Age,
@@ -75,27 +76,15 @@ object Human {
       luck: Luck,
       brain: Brain
   )(implicit
-      agingEffectOnEducation: AgingEffectOnEducation,
-      agingEffectOnAppearanceModifier: (Age, Appearance) => Appearance,
-      agingEffectOnBody: (
-          Age,
-          Body
-      ) => Body,
-      movementRateGenerator: (Age, Strength, Dexterity, Size) => MovementRate
+      humanAgingRules: HumanAgingRules
   ): Human = {
-    val agedBody = agingEffectOnBody(age, body)
+    val agedBody = humanAgingRules on body
 
-    val agedEdu = agingEffectOnEducation.modifiedEducation(age, edu)
+    val agedEdu = humanAgingRules on edu
 
-    val agedAppearance = agingEffectOnAppearanceModifier(age, app)
+    val agedAppearance = humanAgingRules on app
 
-    val modifiedMOV =
-      movementRateGenerator(
-        age,
-        agedBody.strength,
-        agedBody.dexterity,
-        agedBody.size
-      )
+    val humanAgedMovementRate = humanAgingRules movFor body
 
     val sanity = Sanity(brain)
 
@@ -106,7 +95,7 @@ object Human {
       agedEdu,
       luck,
       brain,
-      modifiedMOV,
+      humanAgedMovementRate,
       sanity
     )
   }
