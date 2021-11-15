@@ -16,7 +16,6 @@ class HumanAttributesSpec extends AnyFunSpec with Matchers {
   import com.malk.coc.rules.HumanAgingEffectOnEducation.implicits._
   import com.malk.coc.rules.HumanMobility._
   import com.malk.coc.rules.HumanAgingEffectOnAppearance._
-  import com.malk.coc.rules.HumanAgingEffectOnBody._
 
   describe("Human Attributes") {
     val str = Strength(50)

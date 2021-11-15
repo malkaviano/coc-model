@@ -8,7 +8,6 @@ import com.malk.coc.helpers.DiceHelper
 import com.malk.coc.rules.HumanAgingEffectOnEducation
 import com.malk.coc.rules.HumanMobility
 import com.malk.coc.rules.HumanAgingEffectOnAppearance
-import com.malk.coc.rules.HumanAgingEffectOnBody
 import com.malk.coc.concepts.abstractions.Body
 import com.malk.coc.concepts.abstractions.Brain
 import com.malk.coc.concepts.dices.DeltohedronDice
@@ -19,7 +18,6 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
   import com.malk.coc.rules.HumanAgingEffectOnEducation.implicits._
   import com.malk.coc.rules.HumanMobility._
   import com.malk.coc.rules.HumanAgingEffectOnAppearance._
-  import com.malk.coc.rules.HumanAgingEffectOnBody._
 
   describe("The Human Characteristics") {
     val age = DiceHelper.randomAge()
@@ -68,8 +66,9 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
           agingEffectOnEducation = ageEffect,
           agingEffectOnAppearanceModifier =
             HumanAgingEffectOnAppearance.appearance,
-          agingEffectOnBody = HumanAgingEffectOnBody.modifiedBody,
-          movementRateGenerator = HumanMobility.movementRate
+          movementRateGenerator = HumanMobility.movementRate,
+          tetrahedronDice,
+          cubeDice
         )
 
         human.EDU shouldBe ageEffect.modifiedEducation(age, edu).value

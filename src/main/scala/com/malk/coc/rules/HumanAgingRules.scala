@@ -5,14 +5,11 @@ import com.malk.coc.concepts.abstractions.Body
 import com.malk.coc.concepts.dices.TetrahedronDice
 import com.malk.coc.concepts.dices.CubeDice
 
-object HumanAgingEffectOnBody {
-  implicit def modifiedBody(
-      age: Age,
-      body: Body
-  )(implicit
-      tetrahedronDice: TetrahedronDice,
-      cubeDice: CubeDice
-  ): Body = {
+class HumanAgingRules(age: Age)(implicit
+    tetrahedronDice: TetrahedronDice,
+    cubeDice: CubeDice
+) {
+  def on(body: Body): Body = {
     age.value match {
       case x if x >= 80 =>
         Body(
