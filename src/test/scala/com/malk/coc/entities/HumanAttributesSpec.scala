@@ -11,6 +11,7 @@ import com.malk.coc.concepts.abstractions.Body
 import com.malk.coc.concepts.abstractions.Brain
 import com.malk.coc.rules.HumanAgingRules
 import com.malk.coc.concepts.attributes.Sanity
+import com.malk.coc.concepts.attributes.MaximumMagicPoints
 
 class HumanAttributesSpec extends AnyFunSpec with Matchers {
   import com.malk.coc.helpers.DiceHelper.implicits._
@@ -33,6 +34,7 @@ class HumanAttributesSpec extends AnyFunSpec with Matchers {
     implicit val humanAgingRules = new HumanAgingRules(age)
 
     val sanity = Sanity(80)
+    val mp = MaximumMagicPoints(30)
 
     val human = Human(
       age,
@@ -41,7 +43,8 @@ class HumanAttributesSpec extends AnyFunSpec with Matchers {
       edu,
       luck,
       brain,
-      sanity
+      sanity,
+      mp
     )
 
     describe("Human MovementRate (MOV)") {
@@ -85,6 +88,12 @@ class HumanAttributesSpec extends AnyFunSpec with Matchers {
 
       it(s"should have DB equal ${db.value}") {
         human.DB shouldBe db.value
+      }
+    }
+
+     describe("Magic Points (MP)") {
+      it(s"should have MP 30") {
+        human.MP shouldBe 30
       }
     }
   }

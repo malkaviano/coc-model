@@ -11,6 +11,7 @@ import com.malk.coc.concepts.dices.DeltohedronDice
 import com.malk.coc.concepts.dices.HundredSidedDice
 import com.malk.coc.rules.HumanAgingRules
 import com.malk.coc.concepts.attributes.Sanity
+import com.malk.coc.concepts.attributes.MaximumMagicPoints
 
 class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
   import com.malk.coc.helpers.DiceHelper.implicits._
@@ -34,6 +35,8 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
 
     val sanity = Sanity(70)
 
+    val mp = MaximumMagicPoints(25)
+
     val human = Human(
       age,
       body,
@@ -41,7 +44,8 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
       edu,
       luck,
       brain,
-      sanity
+      sanity,
+      mp
     )
 
     describe("The Human characteristics") {
@@ -68,7 +72,8 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
           edu,
           luck,
           brain,
-          sanity
+          sanity,
+          mp
         )(
           humanAgingRules
         )
@@ -94,7 +99,8 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
           edu,
           luck,
           brain,
-          sanity
+          sanity,
+          mp
         )
 
         human.APP shouldBe 60
@@ -116,7 +122,8 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
           edu,
           luck,
           brain,
-          sanity
+          sanity,
+          mp
         )
 
         human.STR shouldBe 47
@@ -138,7 +145,8 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
           edu,
           luck,
           brain,
-          sanity
+          sanity,
+          mp
         )
 
         human.DEX shouldBe 66
@@ -160,7 +168,8 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
           edu,
           luck,
           brain,
-          sanity
+          sanity,
+          mp
         )
 
         human.CON shouldBe 42
@@ -182,7 +191,8 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
           edu,
           luck,
           brain,
-          sanity
+          sanity,
+          mp
         )
 
         human.SIZ shouldBe 58
