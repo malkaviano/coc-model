@@ -32,7 +32,7 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
 
     implicit val humanAgingRules = new HumanAgingRules(age)
 
-    val sanity = Sanity(80)
+    val sanity = Sanity(70)
 
     val human = Human(
       age,
