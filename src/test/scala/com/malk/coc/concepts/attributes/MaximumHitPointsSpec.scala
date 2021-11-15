@@ -17,6 +17,8 @@ trait MaximumHitPointsBehaviors extends Matchers { this: AnyFunSpec =>
 }
 
 class MaximumHitPointsSpec extends AnyFunSpec with Matchers with MaximumHitPointsBehaviors {
+  import com.malk.coc.helpers.DiceHelper.implicits._
+
   describe("The Maximum Hit Points") {
     val str = Strength(67)
     val dex = Dexterity(45)

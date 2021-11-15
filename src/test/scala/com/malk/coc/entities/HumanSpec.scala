@@ -17,6 +17,8 @@ import com.malk.coc.concepts.abstractions.Body
 import com.malk.coc.concepts.abstractions.Brain
 
 class HumanSpec extends AnyFunSpec with Matchers {
+  import com.malk.coc.helpers.DiceHelper.implicits._
+
   describe("Human") {
     val age = DiceHelper.randomAge()
 

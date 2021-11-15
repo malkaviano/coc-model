@@ -7,8 +7,10 @@ import com.malk.coc.concepts.characteristics.Size
 import com.malk.coc.concepts.characteristics.Dexterity
 import com.malk.coc.concepts.characteristics.Constitution
 import com.malk.coc.concepts.attributes.Build
+import com.malk.coc.concepts.attributes.DamageBonus
 
 class BodySpec extends AnyFunSpec with Matchers {
+  import com.malk.coc.helpers.DiceHelper.implicits._
 
   describe("External abstraction Body") {
     val str = Strength(50)
@@ -19,6 +21,7 @@ class BodySpec extends AnyFunSpec with Matchers {
     val body = Body(str, con, dex, siz)
 
     val build = Build(body)
+    val db = DamageBonus(body)
 
     it(s"should have ${str}") {
       body.strength shouldBe str
@@ -38,6 +41,10 @@ class BodySpec extends AnyFunSpec with Matchers {
 
     it(s"should have Build ${build}") {
       body.build shouldBe build
+    }
+
+    it(s"should have DamageBonus ${db}") {
+      body.damageBonus shouldBe db
     }
   }
 }

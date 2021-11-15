@@ -17,6 +17,8 @@ trait BuildBehaviors extends Matchers { this: AnyFunSpec =>
 }
 
 class BuildSpec extends AnyFunSpec with Matchers with BuildBehaviors {
+  import com.malk.coc.helpers.DiceHelper.implicits._
+
   describe("The Build") {
     val con = Constitution(50)
     val dex = Dexterity(70)
