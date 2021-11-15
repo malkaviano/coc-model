@@ -5,7 +5,6 @@ import org.scalatest.matchers.should.Matchers
 
 import com.malk.coc.concepts.characteristics._
 import com.malk.coc.helpers.DiceHelper
-import com.malk.coc.concepts.attributes.MaximumHitPoints
 import com.malk.coc.concepts.attributes.MovementRate
 import com.malk.coc.concepts.attributes.Build
 import com.malk.coc.concepts.attributes.DamageBonus
@@ -13,6 +12,7 @@ import com.malk.coc.concepts.abstractions.Body
 import com.malk.coc.concepts.abstractions.Brain
 
 class HumanAttributesSpec extends AnyFunSpec with Matchers {
+  import com.malk.coc.helpers.DiceHelper.implicits._
   import com.malk.coc.rules.HumanAgingEffectOnEducation.implicits._
   import com.malk.coc.rules.HumanMobility._
   import com.malk.coc.rules.HumanAgingEffectOnAppearance._
@@ -57,13 +57,11 @@ class HumanAttributesSpec extends AnyFunSpec with Matchers {
     }
 
     describe("Human Current Hit Points (HP)") {
-      val hp = MaximumHitPoints(Constitution(human.CON), Size(human.SIZ))
-
-      it(s"should have Current Hit Points (HP) equal ${hp.value}") {
-        human.HP shouldBe hp.value
+      it(s"should have Current Hit Points (HP) equal ${body.maximumHitPoints.value}") {
+        human.HP shouldBe body.maximumHitPoints.value
       }
 
-      it(s"should change Current Hit Points (HP) from ${hp.value} to ${20}") {
+      it(s"should change Current Hit Points (HP) from ${body.maximumHitPoints.value} to ${20}") {
         human.HP = 20
 
         human.HP shouldBe 20
@@ -71,7 +69,7 @@ class HumanAttributesSpec extends AnyFunSpec with Matchers {
     }
 
     describe("Human Build") {
-      val build = Build(Strength(human.STR), Size(human.SIZ))
+      val build = Build(body)
 
       it(s"should have Build equal ${build.value}") {
         human.Build shouldBe build.value
@@ -81,7 +79,7 @@ class HumanAttributesSpec extends AnyFunSpec with Matchers {
     describe("Human Damage Bonus (DB)") {
       import com.malk.coc.helpers.DiceHelper.implicits._
 
-      val db = DamageBonus(Strength(human.STR), Size(human.SIZ))
+      val db = DamageBonus(body)
 
       it(s"should have DB equal ${db.value}") {
         human.DB shouldBe db.value

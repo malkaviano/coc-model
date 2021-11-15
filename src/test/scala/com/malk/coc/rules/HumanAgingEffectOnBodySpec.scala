@@ -10,6 +10,8 @@ import com.malk.coc.concepts.characteristics.Size
 import com.malk.coc.concepts.abstractions.Body
 
 class HumanAgingEffectOnBodySpec extends AnyFunSpec with Matchers {
+  import com.malk.coc.helpers.DiceHelper.implicits._
+
   describe("Age effect on physical characteristics") {
     val str = Strength(50)
     val con = Constitution(50)

@@ -4,7 +4,7 @@ import com.malk.coc.traits.Attribute
 import com.malk.coc.concepts.abstractions.Brain
 
 final case class Sanity(brain: Brain) extends Attribute {
-  override def name: String = "SAN"
+  override val name: String = "SAN"
 
-  override def value: Int = brain.power.value
+  override val value: Int = brain.power.value
 }

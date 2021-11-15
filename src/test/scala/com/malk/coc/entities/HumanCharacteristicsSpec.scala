@@ -15,6 +15,7 @@ import com.malk.coc.concepts.dices.DeltohedronDice
 import com.malk.coc.concepts.dices.HundredSidedDice
 
 class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
+  import com.malk.coc.helpers.DiceHelper.implicits._
   import com.malk.coc.rules.HumanAgingEffectOnEducation.implicits._
   import com.malk.coc.rules.HumanMobility._
   import com.malk.coc.rules.HumanAgingEffectOnAppearance._

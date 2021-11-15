@@ -7,12 +7,14 @@ import com.malk.coc.concepts.characteristics.{Strength, Size}
 import com.malk.coc.concepts.dices.CubeDice
 import org.scalamock.scalatest.MockFactory
 import com.malk.coc.concepts.dices.TetrahedronDice
+import com.malk.coc.concepts.characteristics.Constitution
+import com.malk.coc.concepts.characteristics.Dexterity
+import com.malk.coc.concepts.abstractions.Body
 
 trait DamageBonusBehavior extends Matchers with MockFactory {
   this: AnyFunSpec =>
   def calculateDamageBonus(
-      str: Strength,
-      siz: Size,
+      body: Body,
       expected: Int,
       rolledD6: Boolean = false,
       rolledD4: Boolean = false
@@ -22,7 +24,6 @@ trait DamageBonusBehavior extends Matchers with MockFactory {
 
     val cubeDice = CubeDice(rollD6)
     val tetrahedronDice = TetrahedronDice(rollD4)
-
 
     it(s"should return value equal ${expected}") {
       if (rolledD6) {
@@ -37,7 +38,7 @@ trait DamageBonusBehavior extends Matchers with MockFactory {
         rollD4.expects((1, 4)).never().returning(2)
       }
 
-      val db = DamageBonus(str, siz)(tetrahedronDice, cubeDice)
+      val db = DamageBonus(body)(tetrahedronDice, cubeDice)
 
       db.value shouldBe expected
     }
@@ -50,7 +51,10 @@ class DamageBonusSpec
     with DamageBonusBehavior {
   describe("The Damage Bonus") {
     import com.malk.coc.helpers.DiceHelper.implicits._
-    val db = DamageBonus(str = Strength(70), siz = Size(70))
+
+    val con = Constitution(55)
+    val dex = Dexterity(65)
+    val db = DamageBonus(Body(Strength(70), con, dex, Size(70)))
 
     it("should have name Damage Bonus") {
       db.name shouldBe "Damage Bonus"
@@ -64,38 +68,51 @@ class DamageBonusSpec
       }
     }
 
-    it should behave like calculateDamageBonus(Strength(40), Size(60), 0)
-    it should behave like calculateDamageBonus(Strength(40), Size(40), -1)
-    it should behave like calculateDamageBonus(Strength(30), Size(30), -2)
-    it should behave like calculateDamageBonus(Strength(55), Size(70), 2, false, true)
-    it should behave like calculateDamageBonus(Strength(80), Size(90), 4, true)
     it should behave like calculateDamageBonus(
-      Strength(150),
-      Size(120),
+      Body(Strength(40), con, dex, Size(60)),
+      0
+    )
+    it should behave like calculateDamageBonus(
+      Body(Strength(40), con, dex, Size(40)),
+      -1
+    )
+    it should behave like calculateDamageBonus(
+      Body(Strength(30), con, dex, Size(30)),
+      -2
+    )
+    it should behave like calculateDamageBonus(
+      Body(Strength(55), con, dex, Size(70)),
+      2,
+      false,
+      true
+    )
+    it should behave like calculateDamageBonus(
+      Body(Strength(80), con, dex, Size(90)),
+      4,
+      true
+    )
+    it should behave like calculateDamageBonus(
+      Body(Strength(150), con, dex, Size(120)),
       8,
       true
     )
     it should behave like calculateDamageBonus(
-      Strength(150),
-      Size(170),
+      Body(Strength(150), con, dex, Size(170)),
       12,
       true
     )
     it should behave like calculateDamageBonus(
-      Strength(200),
-      Size(200),
+      Body(Strength(200), con, dex, Size(200)),
       16,
       true
     )
     it should behave like calculateDamageBonus(
-      Strength(250),
-      Size(250),
+      Body(Strength(250), con, dex, Size(250)),
       20,
       true
     )
     it should behave like calculateDamageBonus(
-      Strength(300),
-      Size(250),
+      Body(Strength(300), con, dex, Size(250)),
       24,
       true
     )
