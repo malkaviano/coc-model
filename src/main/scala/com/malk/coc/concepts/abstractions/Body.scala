@@ -6,15 +6,15 @@ import com.malk.coc.concepts.characteristics.Dexterity
 import com.malk.coc.concepts.characteristics.Size
 import com.malk.coc.concepts.attributes.Build
 import com.malk.coc.concepts.attributes.DamageBonus
-import com.malk.coc.concepts.dices.FourFacedDice
-import com.malk.coc.concepts.dices.SixFacedDice
+import com.malk.coc.concepts.dices.FourSidedDice
+import com.malk.coc.concepts.dices.SixSidedDice
 import com.malk.coc.concepts.attributes.MaximumHitPoints
 
 final case class Body private (
     characteristics: (Strength, Constitution, Dexterity, Size)
 )(
-    private val fourFacedDice: FourFacedDice,
-    private val sixFacedDice: SixFacedDice
+    private val fourSidedDice: FourSidedDice,
+    private val sixSidedDice: SixSidedDice
 ) {
   val constitution: Constitution = characteristics._2
 
@@ -26,7 +26,7 @@ final case class Body private (
 
   val build: Build = Build(this)
 
-  val damageBonus: DamageBonus = DamageBonus(this)(fourFacedDice, sixFacedDice)
+  val damageBonus: DamageBonus = DamageBonus(this)(fourSidedDice, sixSidedDice)
 
   val maximumHitPoints: MaximumHitPoints = MaximumHitPoints(this)
 }
@@ -38,9 +38,9 @@ object Body {
       dex: Dexterity,
       siz: Size
   )(implicit
-      fourFacedDice: FourFacedDice,
-      sixFacedDice: SixFacedDice
+      fourSidedDice: FourSidedDice,
+      sixSidedDice: SixSidedDice
   ): Body = {
-    Body((str, con, dex, siz))(fourFacedDice, sixFacedDice)
+    Body((str, con, dex, siz))(fourSidedDice, sixSidedDice)
   }
 }
