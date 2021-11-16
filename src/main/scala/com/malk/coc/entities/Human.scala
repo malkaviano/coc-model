@@ -12,7 +12,7 @@ import com.malk.coc.concepts.attributes.MaximumMagicPoints
 import com.malk.coc.concepts.attributes.Age
 import com.malk.coc.concepts.attributes.Luck
 
-final case class Human private (
+class Human private (
     private val age: Age,
     private val body: Body,
     private val app: Appearance,
@@ -91,7 +91,7 @@ object Human {
 
     val humanAgedMovementRate = humanAgingRules movFor body
 
-    Human(
+    new Human(
       age,
       agedBody,
       agedAppearance,
