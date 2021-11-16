@@ -7,7 +7,7 @@ import com.malk.coc.concepts.characteristics._
 import com.malk.coc.helpers.DiceHelper
 import com.malk.coc.concepts.abstractions.Body
 import com.malk.coc.concepts.abstractions.Brain
-import com.malk.coc.concepts.dices.DeltohedronDice
+import com.malk.coc.concepts.dices.TenFacedDice
 import com.malk.coc.concepts.dices.HundredSidedDice
 import com.malk.coc.rules.HumanAgingRules
 import com.malk.coc.concepts.attributes.Sanity
@@ -58,12 +58,12 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
       it("should have initial Education (EDU) modified by Age") {
         val hundredSidedDice = HundredSidedDice((t: (Int, Int)) => 95)
 
-        val deltohedronDice = DeltohedronDice((t: (Int, Int)) => 7)
+        val tenFacedDice = TenFacedDice((t: (Int, Int)) => 7)
 
         val humanAgingRules = new HumanAgingRules(age)(
-          tetrahedronDice,
-          cubeDice,
-          deltohedronDice,
+          fourFacedDice,
+          sixFacedDice,
+          tenFacedDice,
           hundredSidedDice
         )
 
