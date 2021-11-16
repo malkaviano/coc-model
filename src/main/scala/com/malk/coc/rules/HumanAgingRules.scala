@@ -11,6 +11,8 @@ import com.malk.coc.concepts.dices.HundredSidedDice
 import com.malk.coc.concepts.dices.TenFacedDice
 import com.malk.coc.concepts.characteristics.Appearance
 import com.malk.coc.concepts.attributes.MovementRate
+import com.malk.coc.helpers.CharacteristicModifications.Modification
+import com.malk.coc.concepts.characteristics._
 
 class HumanAgingRules(age: Age)(implicit
     fourFacedDice: FourFacedDice,
@@ -18,66 +20,64 @@ class HumanAgingRules(age: Age)(implicit
     tenFacedDice: TenFacedDice,
     hundredSidedDice: HundredSidedDice
 ) {
-    import com.malk.coc.helpers.CharacteristicModifications.implicits._
-
-
   def on(body: Body): Body = {
     age.value match {
       case x if x >= 80 =>
-        Body(
-          body.strength.copy(value = body.strength.value - 26),
-          body.constitution.copy(value = body.constitution.value - 26),
-          body.dexterity.copy(value = body.dexterity.value - 28),
-          body.size
+        modifyBody(
+          body,
+          Modification[Strength](-26),
+          Modification[Constitution](-26),
+          Modification[Dexterity](-28),
+          Modification[Size](0)
         )
       case x if x >= 70 =>
-        Body(
-          body.strength.copy(value = body.strength.value - 13),
-          body.constitution.copy(value = body.constitution.value - 13),
-          body.dexterity.copy(value = body.dexterity.value - 14),
-          body.size
+        modifyBody(
+          body,
+          Modification[Strength](-13),
+          Modification[Constitution](-13),
+          Modification[Dexterity](-14),
+          Modification[Size](0)
         )
       case x if x >= 60 =>
-        Body(
-          body.strength.copy(value = body.strength.value - 6),
-          body.constitution.copy(value = body.constitution.value - 6),
-          body.dexterity.copy(value = body.dexterity.value - 8),
-          body.size
+        modifyBody(
+          body,
+          Modification[Strength](-6),
+          Modification[Constitution](-6),
+          Modification[Dexterity](-8),
+          Modification[Size](0)
         )
       case x if x >= 50 =>
-        Body(
-          body.strength.copy(value = body.strength.value - 3),
-          body.constitution.copy(value = body.constitution.value - 3),
-          body.dexterity.copy(value = body.dexterity.value - 4),
-          body.size
+        modifyBody(
+          body,
+          Modification[Strength](-3),
+          Modification[Constitution](-3),
+          Modification[Dexterity](-4),
+          Modification[Size](0)
         )
       case x if x >= 40 =>
-        Body(
-          body.strength.copy(value = body.strength.value - 2),
-          body.constitution.copy(value = body.constitution.value - 2),
-          body.dexterity.copy(value = body.dexterity.value - 1),
-          body.size
+        modifyBody(
+          body,
+          Modification[Strength](-2),
+          Modification[Constitution](-2),
+          Modification[Dexterity](-1),
+          Modification[Size](0)
         )
       case x if x >= 20 =>
-        Body(
-          body.strength,
-          body.constitution,
-          body.dexterity,
-          body.size
-        )
+        body
       case _ =>
-        Body(
-          body.strength.copy(value = body.strength.value - 3),
-          body.constitution,
-          body.dexterity,
-          body.size.copy(value = body.size.value - 2)
+        modifyBody(
+          body,
+          Modification[Strength](-3),
+          Modification[Constitution](0),
+          Modification[Dexterity](0),
+          Modification[Size](-2)
         )
     }
   }
 
   def on(edu: Education): Education = {
     val result = age.value match {
-      case x if x < 20  => edu.copy(edu.value - 5)
+      case x if x < 20  => edu - Modification[Education](5)
       case x if x >= 60 => checkEDUIncrease(edu, 4)
       case x if x >= 50 => checkEDUIncrease(edu, 3)
       case x if x >= 40 => checkEDUIncrease(edu, 2)
@@ -91,22 +91,26 @@ class HumanAgingRules(age: Age)(implicit
     if (age.value < 40) {
       app
     } else {
-      val x = age.value - 40
+      val x = (age - 40).value
 
-      (app - (((x / 10) + 1) * 5)).asInstanceOf[Appearance]
+      app - Modification[Appearance](((x / 10) + 1) * 5)
     }
   }
 
   def movFor(body: Body): MovementRate = {
     val result =
-      if (body.strength.value < body.size.value && body.dexterity.value < body.size.value)
+      if (
+        body.strength.value < body.size.value && body.dexterity.value < body.size.value
+      )
         7
-      else if (body.strength.value > body.size.value && body.dexterity.value > body.size.value)
+      else if (
+        body.strength.value > body.size.value && body.dexterity.value > body.size.value
+      )
         9
       else
         8
 
-    val delta = age.value - 40
+    val delta = (age - 40).value
 
     val value = if (delta < 0) {
       result
@@ -120,8 +124,23 @@ class HumanAgingRules(age: Age)(implicit
   @tailrec
   private def checkEDUIncrease(edu: Education, times: Int = 1): Education = {
     val newEdu =
-      if (hundredSidedDice.roll > edu.value) edu + tenFacedDice.roll else edu
+      if (hundredSidedDice.roll > edu.value) edu + Modification[Education](tenFacedDice.roll) else edu
 
     if (times == 1) newEdu else checkEDUIncrease(newEdu, times - 1)
+  }
+
+  private def modifyBody(
+      body: Body,
+      str: Modification[Strength],
+      con: Modification[Constitution],
+      dex: Modification[Dexterity],
+      siz: Modification[Size]
+  ): Body = {
+    Body(
+      body.strength + str,
+      body.constitution + con,
+      body.dexterity + dex,
+      body.size + siz
+    )
   }
 }
