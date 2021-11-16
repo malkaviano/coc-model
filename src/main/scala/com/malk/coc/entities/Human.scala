@@ -10,7 +10,6 @@ import com.malk.coc.concepts.attributes.Sanity
 import com.malk.coc.rules.HumanAgingRules
 import com.malk.coc.concepts.attributes.MaximumMagicPoints
 import com.malk.coc.concepts.attributes.Age
-import com.malk.coc.concepts.attributes.Luck
 
 class Human private (
     private val age: Age,
@@ -76,10 +75,9 @@ object Human {
       body: Body,
       app: Appearance,
       edu: Education,
-      luck: Luck,
       brain: Brain,
       sanity: Sanity,
-      mp: MaximumMagicPoints,
+      mp: MaximumMagicPoints
   )(implicit
       humanAgingRules: HumanAgingRules
   ): Human = {

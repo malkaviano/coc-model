@@ -13,7 +13,6 @@ import com.malk.coc.rules.HumanAgingRules
 import com.malk.coc.concepts.attributes.Sanity
 import com.malk.coc.concepts.attributes.MaximumMagicPoints
 import com.malk.coc.concepts.characteristics.Size
-import com.malk.coc.concepts.attributes.Luck
 
 class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
   import com.malk.coc.helpers.DiceHelper.implicits._
@@ -26,7 +25,6 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
     val con = Constitution(45)
     val app = Appearance(65)
     val edu = Education(48)
-    val luck = Luck(34)
     val int = Intelligence(56)
     val pow = Power(43)
 
@@ -44,7 +42,6 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
       body,
       app,
       edu,
-      luck,
       brain,
       sanity,
       mp
@@ -72,7 +69,6 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
           body,
           app,
           edu,
-          luck,
           brain,
           sanity,
           mp
@@ -101,7 +97,6 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
           body,
           app,
           edu,
-          luck,
           brain,
           sanity,
           mp
@@ -126,7 +121,6 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
           body,
           app,
           edu,
-          luck,
           brain,
           sanity,
           mp
@@ -151,7 +145,6 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
           body,
           app,
           edu,
-          luck,
           brain,
           sanity,
           mp
@@ -176,7 +169,6 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
           body,
           app,
           edu,
-          luck,
           brain,
           sanity,
           mp
@@ -201,7 +193,6 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
           body,
           app,
           edu,
-          luck,
           brain,
           sanity,
           mp

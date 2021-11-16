@@ -9,7 +9,6 @@ import com.malk.coc.concepts.characteristics.Dexterity
 import com.malk.coc.concepts.characteristics.Constitution
 import com.malk.coc.concepts.characteristics.Appearance
 import com.malk.coc.concepts.characteristics.Education
-import com.malk.coc.concepts.attributes.Luck
 import com.malk.coc.concepts.characteristics.Intelligence
 import com.malk.coc.concepts.characteristics.Power
 import com.malk.coc.concepts.abstractions.Body
@@ -32,7 +31,6 @@ class HumanSpec extends AnyFunSpec with Matchers {
     val con = Constitution(45)
     val app = Appearance(65)
     val edu = Education(48)
-    val luck = Luck(34)
     val int = Intelligence(56)
     val pow = Power(43)
 
@@ -50,7 +48,6 @@ class HumanSpec extends AnyFunSpec with Matchers {
       body,
       app,
       edu,
-      luck,
       brain,
       sanity,
       mp
