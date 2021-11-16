@@ -10,8 +10,9 @@ import com.malk.coc.concepts.dices.TenFacedDice
 import com.malk.coc.concepts.dices.HundredSidedDice
 import com.malk.coc.concepts.attributes.Age
 
-import com.malk.coc.helpers.DiceHelper.implicits._
 import com.malk.coc.helpers.CharacteristicModifications.implicits._
+import com.malk.coc.concepts.dices.SixFacedDice
+import com.malk.coc.concepts.dices.FourFacedDice
 
 trait HumanAgingOnEducationBehavior extends Matchers with MockFactory {
   this: AnyFunSpec =>
@@ -42,6 +43,9 @@ trait HumanAgingOnEducationBehavior extends Matchers with MockFactory {
             }
           )
 
+          val fourFacedDice = FourFacedDice((t: (Int, Int)) => 3)
+          val sixFacedDice = SixFacedDice((t: (Int, Int)) => 5)
+
           val humanAgingRules = new HumanAgingRules(age)(
             fourFacedDice,
             sixFacedDice,
@@ -64,6 +68,8 @@ class HumanAgingRulesOnEducationSpec
     with HumanAgingOnEducationBehavior {
   val edu = Education(67)
 
+  val fourFacedDice = FourFacedDice((t: (Int, Int)) => 3)
+  val sixFacedDice = SixFacedDice((t: (Int, Int)) => 5)
   val tenFacedDice = TenFacedDice((t: (Int, Int)) => 9)
   val hundredSidedDice = HundredSidedDice((t: (Int, Int)) => 100)
 

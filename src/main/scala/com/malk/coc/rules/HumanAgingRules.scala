@@ -123,8 +123,10 @@ class HumanAgingRules(age: Age)(implicit
 
   @tailrec
   private def checkEDUIncrease(edu: Education, times: Int = 1): Education = {
+    import com.malk.coc.rules.RollCheckRules.RollResult.implicits._
+
     val newEdu =
-      if (hundredSidedDice.roll > edu.value) edu + Modification[Education](tenFacedDice.roll) else edu
+      if (!RollCheckRules.characteristicCheck((edu))) edu + Modification[Education](tenFacedDice.roll) else edu
 
     if (times == 1) newEdu else checkEDUIncrease(newEdu, times - 1)
   }
