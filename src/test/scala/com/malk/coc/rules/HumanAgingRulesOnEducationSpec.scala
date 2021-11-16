@@ -6,7 +6,7 @@ import org.scalamock.scalatest.MockFactory
 
 import com.malk.coc.concepts.characteristics.Education
 import com.malk.coc.helpers.DiceHelper
-import com.malk.coc.concepts.dices.DeltohedronDice
+import com.malk.coc.concepts.dices.TenFacedDice
 import com.malk.coc.concepts.dices.HundredSidedDice
 import com.malk.coc.concepts.attributes.Age
 
@@ -43,9 +43,9 @@ trait HumanAgingOnEducationBehavior extends Matchers with MockFactory {
           )
 
           val humanAgingRules = new HumanAgingRules(age)(
-            tetrahedronDice,
-            cubeDice,
-            DeltohedronDice(success10),
+            fourFacedDice,
+            sixFacedDice,
+            TenFacedDice(success10),
             HundredSidedDice(success100)
           )
 
@@ -64,7 +64,7 @@ class HumanAgingRulesOnEducationSpec
     with HumanAgingOnEducationBehavior {
   val edu = Education(67)
 
-  val deltohedronDice = DeltohedronDice((t: (Int, Int)) => 9)
+  val tenFacedDice = TenFacedDice((t: (Int, Int)) => 9)
   val hundredSidedDice = HundredSidedDice((t: (Int, Int)) => 100)
 
   describe(s"Human Aging on ${edu}") {
@@ -72,9 +72,9 @@ class HumanAgingRulesOnEducationSpec
       val age = DiceHelper.randomAge(15, 19)
 
       val humanAgingRules = new HumanAgingRules(age)(
-        tetrahedronDice,
-        cubeDice,
-        deltohedronDice,
+        fourFacedDice,
+        sixFacedDice,
+        tenFacedDice,
         hundredSidedDice
       )
 

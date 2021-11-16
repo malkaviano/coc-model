@@ -4,18 +4,18 @@ import scala.annotation.tailrec
 
 import com.malk.coc.concepts.attributes.Age
 import com.malk.coc.concepts.abstractions.Body
-import com.malk.coc.concepts.dices.TetrahedronDice
-import com.malk.coc.concepts.dices.CubeDice
+import com.malk.coc.concepts.dices.FourFacedDice
+import com.malk.coc.concepts.dices.SixFacedDice
 import com.malk.coc.concepts.characteristics.Education
 import com.malk.coc.concepts.dices.HundredSidedDice
-import com.malk.coc.concepts.dices.DeltohedronDice
+import com.malk.coc.concepts.dices.TenFacedDice
 import com.malk.coc.concepts.characteristics.Appearance
 import com.malk.coc.concepts.attributes.MovementRate
 
 class HumanAgingRules(age: Age)(implicit
-    tetrahedronDice: TetrahedronDice,
-    cubeDice: CubeDice,
-    deltohedronDice: DeltohedronDice,
+    fourFacedDice: FourFacedDice,
+    sixFacedDice: SixFacedDice,
+    tenFacedDice: TenFacedDice,
     hundredSidedDice: HundredSidedDice
 ) {
     import com.malk.coc.helpers.CharacteristicModifications.implicits._
@@ -120,7 +120,7 @@ class HumanAgingRules(age: Age)(implicit
   @tailrec
   private def checkEDUIncrease(edu: Education, times: Int = 1): Education = {
     val newEdu =
-      if (hundredSidedDice.roll > edu.value) edu + deltohedronDice.roll else edu
+      if (hundredSidedDice.roll > edu.value) edu + tenFacedDice.roll else edu
 
     if (times == 1) newEdu else checkEDUIncrease(newEdu, times - 1)
   }
