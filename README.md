@@ -1,5 +1,5 @@
 # coc-kata
-Personal Customized Kata about CoC RPG system (Call of Cthulhu®), not intended to be used by anyone.
+Personal programming exercise inspired by CoC RPG system (Call of Cthulhu®), not intended to be used by anyone.
 
 [![CodeFactor](https://www.codefactor.io/repository/github/malkaviano/coc-kata/badge)](https://www.codefactor.io/repository/github/malkaviano/coc-kata)
 
