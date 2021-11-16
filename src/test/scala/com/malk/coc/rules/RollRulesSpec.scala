@@ -23,56 +23,56 @@ trait BehavesLikeCharacteristicRollCheck
 
       Seq(
         (
-          RollCheckRules.RegularDifficulty,
+          RollRules.RegularDifficulty,
           Seq(
-            (required / 5, RollCheckRules.ExtremeSuccessResult),
-            (required / 2, RollCheckRules.HardSuccessResult),
-            (required, RollCheckRules.SuccessResult),
-            (required + 1, RollCheckRules.FailureResult),
+            (required / 5, RollRules.ExtremeSuccessResult),
+            (required / 2, RollRules.HardSuccessResult),
+            (required, RollRules.SuccessResult),
+            (required + 1, RollRules.FailureResult),
             (
               98,
-              if (required < 50) RollCheckRules.FumbleResult
-              else RollCheckRules.FailureResult
+              if (required < 50) RollRules.FumbleResult
+              else RollRules.FailureResult
             )
           )
         ),
         (
-          RollCheckRules.HardDifficulty,
+          RollRules.HardDifficulty,
           Seq(
-            ((required / 2) / 5, RollCheckRules.ExtremeSuccessResult),
-            ((required / 2) / 2, RollCheckRules.HardSuccessResult),
-            ((required / 2), RollCheckRules.SuccessResult),
-            ((required / 2) + 1, RollCheckRules.FailureResult),
+            ((required / 2) / 5, RollRules.ExtremeSuccessResult),
+            ((required / 2) / 2, RollRules.HardSuccessResult),
+            ((required / 2), RollRules.SuccessResult),
+            ((required / 2) + 1, RollRules.FailureResult),
             (
               98,
-              if ((required / 2) < 50) RollCheckRules.FumbleResult
-              else RollCheckRules.FailureResult
+              if ((required / 2) < 50) RollRules.FumbleResult
+              else RollRules.FailureResult
             )
           )
         ),
         (
-          RollCheckRules.ExtremeDifficulty,
+          RollRules.ExtremeDifficulty,
           Seq(
-            ((required / 5) / 5, RollCheckRules.ExtremeSuccessResult),
-            ((required / 5) / 2, RollCheckRules.HardSuccessResult),
-            ((required / 5), RollCheckRules.SuccessResult),
-            ((required / 5) + 1, RollCheckRules.FailureResult),
+            ((required / 5) / 5, RollRules.ExtremeSuccessResult),
+            ((required / 5) / 2, RollRules.HardSuccessResult),
+            ((required / 5), RollRules.SuccessResult),
+            ((required / 5) + 1, RollRules.FailureResult),
             (
               98,
-              if ((required / 5) < 50) RollCheckRules.FumbleResult
-              else RollCheckRules.FailureResult
+              if ((required / 5) < 50) RollRules.FumbleResult
+              else RollRules.FailureResult
             )
           )
         )
       ).foreach(
         (t: (
-            RollCheckRules.RollDifficulty,
-            Seq[(Int, RollCheckRules.RollResult)]
+            RollRules.RollDifficulty,
+            Seq[(Int, RollRules.RollResult)]
         )) => {
           val difficulty = t._1
 
           describe(s"when difficulty is ${difficulty}") {
-            t._2.foreach((r: (Int, RollCheckRules.RollResult)) => {
+            t._2.foreach((r: (Int, RollRules.RollResult)) => {
               val rolled = r._1
               val expected = r._2
 
@@ -85,7 +85,7 @@ trait BehavesLikeCharacteristicRollCheck
                     val hundredSidedDice = HundredSidedDice(rollD100)
 
                     val result =
-                      RollCheckRules.characteristicCheck(
+                      RollRules.characteristicCheck(
                         characteristic,
                         difficulty
                       )(
@@ -109,7 +109,7 @@ trait BehavesLikeCharacteristicRollCheck
 
           val hundredSidedDice = HundredSidedDice(rollD100)
 
-          an[RuntimeException] should be thrownBy RollCheckRules
+          an[RuntimeException] should be thrownBy RollRules
             .characteristicCheck(characteristic)(
               hundredSidedDice
             )
@@ -119,7 +119,7 @@ trait BehavesLikeCharacteristicRollCheck
   }
 }
 
-class RollCheckRulesSpec
+class RollRulesSpec
     extends AnyFunSpec
     with Matchers
     with BehavesLikeCharacteristicRollCheck {
@@ -143,11 +143,11 @@ class RollCheckRulesSpec
               val hundredSidedDice = HundredSidedDice(rollD100)
 
               val result =
-                RollCheckRules.characteristicCheck(characteristic)(
+                RollRules.characteristicCheck(characteristic)(
                   hundredSidedDice
                 )
 
-              result shouldBe RollCheckRules.FumbleResult
+              result shouldBe RollRules.FumbleResult
             }
           }
 
@@ -159,11 +159,11 @@ class RollCheckRulesSpec
               val hundredSidedDice = HundredSidedDice(rollD100)
 
               val result =
-                RollCheckRules.characteristicCheck(characteristic)(
+                RollRules.characteristicCheck(characteristic)(
                   hundredSidedDice
                 )
 
-              result shouldBe RollCheckRules.CriticalSuccessResult
+              result shouldBe RollRules.CriticalSuccessResult
             }
           }
 
@@ -176,16 +176,16 @@ class RollCheckRulesSpec
   }
 
   describe("Roll Results") {
-    behavesLikeRollResult(RollCheckRules.FumbleResult, false)
-    behavesLikeRollResult(RollCheckRules.FailureResult, false)
-    behavesLikeRollResult(RollCheckRules.SuccessResult, true)
-    behavesLikeRollResult(RollCheckRules.HardSuccessResult, true)
-    behavesLikeRollResult(RollCheckRules.ExtremeSuccessResult, true)
-    behavesLikeRollResult(RollCheckRules.CriticalSuccessResult, true)
+    behavesLikeRollResult(RollRules.FumbleResult, false)
+    behavesLikeRollResult(RollRules.FailureResult, false)
+    behavesLikeRollResult(RollRules.SuccessResult, true)
+    behavesLikeRollResult(RollRules.HardSuccessResult, true)
+    behavesLikeRollResult(RollRules.ExtremeSuccessResult, true)
+    behavesLikeRollResult(RollRules.CriticalSuccessResult, true)
   }
 
-  def behavesLikeRollResult(result: RollCheckRules.RollResult, expected: Boolean) = {
-    import com.malk.coc.rules.RollCheckRules.RollResult.implicits._
+  def behavesLikeRollResult(result: RollRules.RollResult, expected: Boolean) = {
+    import com.malk.coc.rules.RollRules.RollResult.implicits._
 
     describe(s"${result}") {
       it(s"should be implicit converted to ${expected}") {

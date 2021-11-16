@@ -1,45 +1,42 @@
 package com.malk.coc.rules
 
-import com.malk.coc.concepts.dices.SixSidedDice
+import com.malk.coc.concepts.dices._
 import com.malk.coc.concepts.characteristics._
 import com.malk.coc.concepts.abstractions.Body
-import com.malk.coc.concepts.dices.FourSidedDice
 import com.malk.coc.concepts.abstractions.Brain
-import com.malk.coc.concepts.attributes.Age
-import com.malk.coc.helpers.DiceHelper
-import com.malk.coc.concepts.attributes.Luck
 
-object InvestigatorGenerator {
+
+object InvestigatorCharacteristics {
   def randomStrength(implicit sixSidedDice: SixSidedDice): Strength = {
-    Strength(rollThreeSixSidedMultFive(sixSidedDice))
+    Strength(RollRules.rollThreeSixSidedMultFive(sixSidedDice))
   }
 
   def randomConstitution(implicit sixSidedDice: SixSidedDice): Constitution = {
-    Constitution(rollThreeSixSidedMultFive(sixSidedDice))
+    Constitution(RollRules.rollThreeSixSidedMultFive(sixSidedDice))
   }
 
   def randomDexterity(implicit sixSidedDice: SixSidedDice): Dexterity = {
-    Dexterity(rollThreeSixSidedMultFive(sixSidedDice))
+    Dexterity(RollRules.rollThreeSixSidedMultFive(sixSidedDice))
   }
 
   def randomAppearance(implicit sixSidedDice: SixSidedDice): Appearance = {
-    Appearance(rollThreeSixSidedMultFive(sixSidedDice))
+    Appearance(RollRules.rollThreeSixSidedMultFive(sixSidedDice))
   }
 
   def randomPower(implicit sixSidedDice: SixSidedDice): Power = {
-    Power(rollThreeSixSidedMultFive(sixSidedDice))
+    Power(RollRules.rollThreeSixSidedMultFive(sixSidedDice))
   }
 
   def randomSize(implicit sixSidedDice: SixSidedDice): Size = {
-    Size(rollTwoSixSidedPlusSixMultFive(sixSidedDice))
+    Size(RollRules.rollTwoSixSidedPlusSixMultFive(sixSidedDice))
   }
 
   def randomIntelligence(implicit sixSidedDice: SixSidedDice): Intelligence = {
-    Intelligence(rollTwoSixSidedPlusSixMultFive(sixSidedDice))
+    Intelligence(RollRules.rollTwoSixSidedPlusSixMultFive(sixSidedDice))
   }
 
   def randomEducation(implicit sixSidedDice: SixSidedDice): Education = {
-    Education(rollTwoSixSidedPlusSixMultFive(sixSidedDice))
+    Education(RollRules.rollTwoSixSidedPlusSixMultFive(sixSidedDice))
   }
 
   def randomBody(implicit
@@ -58,31 +55,6 @@ object InvestigatorGenerator {
       pow: Power
   ): Brain = {
     Brain(int, pow)
-  }
-
-  def randomAge: Age = DiceHelper.randomAge()
-
-  def randomLuck(implicit sixSidedDice: SixSidedDice, age: Age): Luck = {
-    val value = age match {
-      case Age(value) if value < 20 =>
-        val result1 = rollThreeSixSidedMultFive(sixSidedDice)
-        val result2 = rollThreeSixSidedMultFive(sixSidedDice)
-
-        if (result1 > result2) result1 else result2
-      case Age(value) => rollThreeSixSidedMultFive(sixSidedDice)
-    }
-
-    Luck(value)
-  }
-
-  private def rollThreeSixSidedMultFive(sixSidedDice: SixSidedDice): Int = {
-    (1 to 3 map (_ => sixSidedDice.roll) reduce (_ + _)) * 5
-  }
-
-  private def rollTwoSixSidedPlusSixMultFive(
-      sixSidedDice: SixSidedDice
-  ): Int = {
-    ((1 to 2 map (_ => sixSidedDice.roll) reduce (_ + _)) + 6) * 5
   }
 
   object implicits {
@@ -127,7 +99,5 @@ object InvestigatorGenerator {
       int,
       pow
     )
-    implicit def age: Age = randomAge
-    implicit def luck(implicit sixSidedDice: SixSidedDice, age: Age): Luck = randomLuck(sixSidedDice, age)
   }
 }

@@ -1,9 +1,9 @@
 package com.malk.coc.rules
 
 import com.malk.coc.traits.Characteristic
-import com.malk.coc.concepts.dices.HundredSidedDice
+import com.malk.coc.concepts.dices._
 
-object RollCheckRules {
+object RollRules {
   def characteristicCheck(
       characteristic: Characteristic,
       difficulty: RollDifficulty = RegularDifficulty
@@ -52,5 +52,15 @@ object RollCheckRules {
         case _ => true
       }
     }
+  }
+
+  def rollThreeSixSidedMultFive(sixSidedDice: SixSidedDice): Int = {
+    (1 to 3 map (_ => sixSidedDice.roll) reduce (_ + _)) * 5
+  }
+
+  def rollTwoSixSidedPlusSixMultFive(
+      sixSidedDice: SixSidedDice
+  ): Int = {
+    ((1 to 2 map (_ => sixSidedDice.roll) reduce (_ + _)) + 6) * 5
   }
 }
