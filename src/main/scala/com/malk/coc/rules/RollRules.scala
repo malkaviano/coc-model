@@ -24,13 +24,6 @@ object RollRules {
     }
   }
 
-  private def needed(value: Int, difficulty: RollDifficulty) =
-    difficulty match {
-      case RegularDifficulty => value
-      case HardDifficulty    => value / 2
-      case ExtremeDifficulty => value / 5
-    }
-
   sealed trait RollDifficulty
   case object RegularDifficulty extends RollDifficulty
   case object HardDifficulty extends RollDifficulty
@@ -48,8 +41,8 @@ object RollRules {
     object implicits {
       implicit def resultToBoolean(result: RollResult): Boolean = result match {
         case FailureResult => false
-        case FumbleResult => false
-        case _ => true
+        case FumbleResult  => false
+        case _             => true
       }
     }
   }
@@ -63,4 +56,11 @@ object RollRules {
   ): Int = {
     ((1 to 2 map (_ => sixSidedDice.roll) reduce (_ + _)) + 6) * 5
   }
+
+  private def needed(value: Int, difficulty: RollDifficulty) =
+    difficulty match {
+      case RegularDifficulty => value
+      case HardDifficulty    => value / 2
+      case ExtremeDifficulty => value / 5
+    }
 }

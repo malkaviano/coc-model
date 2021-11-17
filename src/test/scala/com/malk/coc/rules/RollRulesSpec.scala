@@ -101,21 +101,6 @@ trait BehavesLikeCharacteristicRollCheck
         }
       )
     }
-
-    describe(s"when ${Size(4)}") {
-      describe("when Extreme difficulty") {
-        it("should throw an RuntimeException *Impossible to succeed") {
-          val rollD100 = mockFunction[(Int, Int), Int]
-
-          val hundredSidedDice = HundredSidedDice(rollD100)
-
-          an[RuntimeException] should be thrownBy RollRules
-            .characteristicCheck(characteristic)(
-              hundredSidedDice
-            )
-        }
-      }
-    }
   }
 }
 
@@ -182,6 +167,23 @@ class RollRulesSpec
     behavesLikeRollResult(RollRules.HardSuccessResult, true)
     behavesLikeRollResult(RollRules.ExtremeSuccessResult, true)
     behavesLikeRollResult(RollRules.CriticalSuccessResult, true)
+
+    describe(s"when ${Size(4)}") {
+      describe("when Extreme difficulty") {
+        it("should throw an RuntimeException *Impossible to succeed") {
+          val rollD100 = mockFunction[(Int, Int), Int]
+
+          val hundredSidedDice = HundredSidedDice(rollD100)
+
+          val thrown = the[RuntimeException] thrownBy RollRules
+            .characteristicCheck(Size(4), RollRules.ExtremeDifficulty)(
+              hundredSidedDice
+            )
+
+          thrown.getMessage shouldBe ("Impossible to succeed")
+        }
+      }
+    }
   }
 
   def behavesLikeRollResult(result: RollRules.RollResult, expected: Boolean) = {
