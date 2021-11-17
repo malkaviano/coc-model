@@ -46,6 +46,10 @@ class HumanAttributesSpec extends AnyFunSpec with Matchers {
     )
 
     describe("Human attributes") {
+      it("should have Age") {
+        human.Age shouldBe age.value
+      }
+
       describe("Human MovementRate (MOV)") {
         describe(
           s"when Age ${human.Age} - STR ${human.STR} - DEX ${human.DEX} - SIZ ${human.SIZ}"
