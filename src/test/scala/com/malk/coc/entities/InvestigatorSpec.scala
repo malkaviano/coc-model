@@ -40,6 +40,8 @@ class InvestigatorSpec extends AnyFunSpec with Matchers with MockFactory {
         brain,
         luck
       )(fourSidedDice, sixSidedDice, tenSidedDice, hundredSidedDice)
+
+      pending
     }
   }
 }
