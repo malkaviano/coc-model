@@ -7,13 +7,12 @@ import com.malk.coc.concepts.characteristics._
 import com.malk.coc.helpers.DiceHelper
 import com.malk.coc.concepts.abstractions.Body
 import com.malk.coc.concepts.abstractions.Brain
-import com.malk.coc.concepts.dices.TenFacedDice
+import com.malk.coc.concepts.dices.TenSidedDice
 import com.malk.coc.concepts.dices.HundredSidedDice
 import com.malk.coc.rules.HumanAgingRules
 import com.malk.coc.concepts.attributes.Sanity
 import com.malk.coc.concepts.attributes.MaximumMagicPoints
 import com.malk.coc.concepts.characteristics.Size
-import com.malk.coc.concepts.attributes.Luck
 
 class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
   import com.malk.coc.helpers.DiceHelper.implicits._
@@ -26,7 +25,6 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
     val con = Constitution(45)
     val app = Appearance(65)
     val edu = Education(48)
-    val luck = Luck(34)
     val int = Intelligence(56)
     val pow = Power(43)
 
@@ -44,7 +42,6 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
       body,
       app,
       edu,
-      luck,
       brain,
       sanity,
       mp
@@ -58,12 +55,12 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
       it("should have initial Education (EDU) modified by Age") {
         val hundredSidedDice = HundredSidedDice((t: (Int, Int)) => 95)
 
-        val tenFacedDice = TenFacedDice((t: (Int, Int)) => 7)
+        val tenSidedDice = TenSidedDice((t: (Int, Int)) => 7)
 
         val humanAgingRules = new HumanAgingRules(age)(
-          fourFacedDice,
-          sixFacedDice,
-          tenFacedDice,
+          fourSidedDice,
+          sixSidedDice,
+          tenSidedDice,
           hundredSidedDice
         )
 
@@ -72,7 +69,6 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
           body,
           app,
           edu,
-          luck,
           brain,
           sanity,
           mp
@@ -101,7 +97,6 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
           body,
           app,
           edu,
-          luck,
           brain,
           sanity,
           mp
@@ -126,7 +121,6 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
           body,
           app,
           edu,
-          luck,
           brain,
           sanity,
           mp
@@ -151,7 +145,6 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
           body,
           app,
           edu,
-          luck,
           brain,
           sanity,
           mp
@@ -176,7 +169,6 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
           body,
           app,
           edu,
-          luck,
           brain,
           sanity,
           mp
@@ -201,7 +193,6 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
           body,
           app,
           edu,
-          luck,
           brain,
           sanity,
           mp

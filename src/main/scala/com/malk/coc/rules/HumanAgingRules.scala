@@ -4,20 +4,20 @@ import scala.annotation.tailrec
 
 import com.malk.coc.concepts.attributes.Age
 import com.malk.coc.concepts.abstractions.Body
-import com.malk.coc.concepts.dices.FourFacedDice
-import com.malk.coc.concepts.dices.SixFacedDice
+import com.malk.coc.concepts.dices.FourSidedDice
+import com.malk.coc.concepts.dices.SixSidedDice
 import com.malk.coc.concepts.characteristics.Education
 import com.malk.coc.concepts.dices.HundredSidedDice
-import com.malk.coc.concepts.dices.TenFacedDice
+import com.malk.coc.concepts.dices.TenSidedDice
 import com.malk.coc.concepts.characteristics.Appearance
 import com.malk.coc.concepts.attributes.MovementRate
 import com.malk.coc.helpers.CharacteristicModifications.Modification
 import com.malk.coc.concepts.characteristics._
 
 class HumanAgingRules(age: Age)(implicit
-    fourFacedDice: FourFacedDice,
-    sixFacedDice: SixFacedDice,
-    tenFacedDice: TenFacedDice,
+    fourSidedDice: FourSidedDice,
+    sixSidedDice: SixSidedDice,
+    tenSidedDice: TenSidedDice,
     hundredSidedDice: HundredSidedDice
 ) {
   def on(body: Body): Body = {
@@ -123,10 +123,10 @@ class HumanAgingRules(age: Age)(implicit
 
   @tailrec
   private def checkEDUIncrease(edu: Education, times: Int = 1): Education = {
-    import com.malk.coc.rules.RollCheckRules.RollResult.implicits._
+    import com.malk.coc.rules.RollRules.RollResult.implicits._
 
     val newEdu =
-      if (!RollCheckRules.characteristicCheck((edu))) edu + Modification[Education](tenFacedDice.roll) else edu
+      if (!RollRules.characteristicCheck((edu))) edu + Modification[Education](tenSidedDice.roll) else edu
 
     if (times == 1) newEdu else checkEDUIncrease(newEdu, times - 1)
   }

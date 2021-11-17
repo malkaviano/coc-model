@@ -1,9 +1,9 @@
 package com.malk.coc.helpers
 
 import com.malk.coc.concepts.attributes.Age
-import com.malk.coc.concepts.dices.SixFacedDice
-import com.malk.coc.concepts.dices.FourFacedDice
-import com.malk.coc.concepts.dices.TenFacedDice
+import com.malk.coc.concepts.dices.SixSidedDice
+import com.malk.coc.concepts.dices.FourSidedDice
+import com.malk.coc.concepts.dices.TenSidedDice
 import com.malk.coc.concepts.dices.HundredSidedDice
 
 object DiceHelper {
@@ -19,11 +19,11 @@ object DiceHelper {
   private def rollBetween(min: Int, max: Int) = Random.between(min, max)
 
   object implicits {
-    implicit val sixFacedDice = SixFacedDice(rollRange)
+    implicit val sixSidedDice = SixSidedDice(rollRange)
 
-    implicit val fourFacedDice = FourFacedDice(rollRange)
+    implicit val fourSidedDice = FourSidedDice(rollRange)
 
-    implicit val tenFacedDice = TenFacedDice(rollRange)
+    implicit val tenSidedDice = TenSidedDice(rollRange)
 
     implicit val hundredSidedDice = HundredSidedDice(rollRange)
   }

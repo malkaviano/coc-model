@@ -4,9 +4,9 @@ import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 
 import com.malk.coc.concepts.characteristics.{Strength, Size}
-import com.malk.coc.concepts.dices.SixFacedDice
+import com.malk.coc.concepts.dices.SixSidedDice
 import org.scalamock.scalatest.MockFactory
-import com.malk.coc.concepts.dices.FourFacedDice
+import com.malk.coc.concepts.dices.FourSidedDice
 import com.malk.coc.concepts.characteristics.Constitution
 import com.malk.coc.concepts.characteristics.Dexterity
 import com.malk.coc.concepts.abstractions.Body
@@ -22,8 +22,8 @@ trait DamageBonusBehavior extends Matchers with MockFactory {
     val rollD6 = mockFunction[(Int, Int), Int]
     val rollD4 = mockFunction[(Int, Int), Int]
 
-    val sixFacedDice = SixFacedDice(rollD6)
-    val fourFacedDice = FourFacedDice(rollD4)
+    val sixSidedDice = SixSidedDice(rollD6)
+    val fourSidedDice = FourSidedDice(rollD4)
 
     it(s"should return value equal ${expected}") {
       if (rolledD6) {
@@ -38,7 +38,7 @@ trait DamageBonusBehavior extends Matchers with MockFactory {
         rollD4.expects((1, 4)).never().returning(2)
       }
 
-      val db = DamageBonus(body)(fourFacedDice, sixFacedDice)
+      val db = DamageBonus(body)(fourSidedDice, sixSidedDice)
 
       db.value shouldBe expected
     }

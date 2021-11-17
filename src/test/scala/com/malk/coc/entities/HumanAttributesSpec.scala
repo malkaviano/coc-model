@@ -12,7 +12,6 @@ import com.malk.coc.concepts.abstractions.Brain
 import com.malk.coc.rules.HumanAgingRules
 import com.malk.coc.concepts.attributes.Sanity
 import com.malk.coc.concepts.attributes.MaximumMagicPoints
-import com.malk.coc.concepts.attributes.Luck
 
 class HumanAttributesSpec extends AnyFunSpec with Matchers {
   import com.malk.coc.helpers.DiceHelper.implicits._
@@ -25,7 +24,6 @@ class HumanAttributesSpec extends AnyFunSpec with Matchers {
     val con = Constitution(45)
     val app = Appearance(65)
     val edu = Education(48)
-    val luck = Luck(34)
     val int = Intelligence(56)
     val pow = Power(43)
 
@@ -42,13 +40,16 @@ class HumanAttributesSpec extends AnyFunSpec with Matchers {
       body,
       app,
       edu,
-      luck,
       brain,
       sanity,
       mp
     )
 
     describe("Human attributes") {
+      it("should have Age") {
+        human.Age shouldBe age.value
+      }
+
       describe("Human MovementRate (MOV)") {
         describe(
           s"when Age ${human.Age} - STR ${human.STR} - DEX ${human.DEX} - SIZ ${human.SIZ}"

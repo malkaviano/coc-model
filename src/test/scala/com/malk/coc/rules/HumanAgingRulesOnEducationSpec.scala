@@ -6,13 +6,13 @@ import org.scalamock.scalatest.MockFactory
 
 import com.malk.coc.concepts.characteristics.Education
 import com.malk.coc.helpers.DiceHelper
-import com.malk.coc.concepts.dices.TenFacedDice
+import com.malk.coc.concepts.dices.TenSidedDice
 import com.malk.coc.concepts.dices.HundredSidedDice
 import com.malk.coc.concepts.attributes.Age
 
 import com.malk.coc.helpers.CharacteristicModifications.implicits._
-import com.malk.coc.concepts.dices.SixFacedDice
-import com.malk.coc.concepts.dices.FourFacedDice
+import com.malk.coc.concepts.dices.SixSidedDice
+import com.malk.coc.concepts.dices.FourSidedDice
 
 trait HumanAgingOnEducationBehavior extends Matchers with MockFactory {
   this: AnyFunSpec =>
@@ -43,13 +43,13 @@ trait HumanAgingOnEducationBehavior extends Matchers with MockFactory {
             }
           )
 
-          val fourFacedDice = FourFacedDice((t: (Int, Int)) => 3)
-          val sixFacedDice = SixFacedDice((t: (Int, Int)) => 5)
+          val fourSidedDice = FourSidedDice((t: (Int, Int)) => 3)
+          val sixSidedDice = SixSidedDice((t: (Int, Int)) => 5)
 
           val humanAgingRules = new HumanAgingRules(age)(
-            fourFacedDice,
-            sixFacedDice,
-            TenFacedDice(success10),
+            fourSidedDice,
+            sixSidedDice,
+            TenSidedDice(success10),
             HundredSidedDice(success100)
           )
 
@@ -68,9 +68,9 @@ class HumanAgingRulesOnEducationSpec
     with HumanAgingOnEducationBehavior {
   val edu = Education(67)
 
-  val fourFacedDice = FourFacedDice((t: (Int, Int)) => 3)
-  val sixFacedDice = SixFacedDice((t: (Int, Int)) => 5)
-  val tenFacedDice = TenFacedDice((t: (Int, Int)) => 9)
+  val fourSidedDice = FourSidedDice((t: (Int, Int)) => 3)
+  val sixSidedDice = SixSidedDice((t: (Int, Int)) => 5)
+  val tenSidedDice = TenSidedDice((t: (Int, Int)) => 9)
   val hundredSidedDice = HundredSidedDice((t: (Int, Int)) => 100)
 
   describe(s"Human Aging on ${edu}") {
@@ -78,9 +78,9 @@ class HumanAgingRulesOnEducationSpec
       val age = DiceHelper.randomAge(15, 19)
 
       val humanAgingRules = new HumanAgingRules(age)(
-        fourFacedDice,
-        sixFacedDice,
-        tenFacedDice,
+        fourSidedDice,
+        sixSidedDice,
+        tenSidedDice,
         hundredSidedDice
       )
 
