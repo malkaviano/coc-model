@@ -28,9 +28,10 @@ trait HumanAgingOnEducationBehavior extends Matchers with MockFactory {
     describe(s"the chance rolls: ${rollsStr}") {
       describe(s"the increment rolls: ${incrementsStr}") {
         val total = increments.reduce(_ + _)
-        val expected = edu + total
+        val temp = edu + total
+        val expected = if (temp.value > 99) Education(99)  else temp
 
-        it(s"should return ${expected}: was increased by ${total}") {
+        it(s"should return ${expected}. Rolled increments: ${total}") {
           val success100 = mockFunction[(Int, Int), Int]
 
           rolls.foreach(roll => success100.expects((1, 100)).returning(roll))
@@ -195,11 +196,30 @@ class HumanAgingRulesOnEducationSpec
         }
       })
     }
+
+    describe("when improvement check generates Edu over 99") {
+      val age = Age(82)
+      val edu = Education(90)
+
+      val results = quadrupleCheckResults(
+        true,
+        true,
+        true,
+        true
+      )
+
+      it should behave like humanAgingOnEducationIncrementCheck(
+        age,
+        edu,
+        results._1,
+        results._2
+      )
+    }
   }
 
   private def singleCheckResults(success1: Boolean): (Seq[Int], Seq[Int]) = {
     (
-      Seq(if (success1) 90 else 9),
+      Seq(if (success1) 100 else 9),
       Seq(if (success1) 5 else 0)
     )
   }
@@ -211,7 +231,7 @@ class HumanAgingRulesOnEducationSpec
     val result = singleCheckResults(success1)
 
     (
-      result._1 ++ Seq(if (success2) 85 else 19),
+      result._1 ++ Seq(if (success2) 100 else 19),
       result._2 ++ Seq(if (success2) 3 else 0)
     )
   }
@@ -224,7 +244,7 @@ class HumanAgingRulesOnEducationSpec
     val result = doubleCheckResults(success1, success2)
 
     (
-      result._1 ++ Seq(if (success3) 93 else 11),
+      result._1 ++ Seq(if (success3) 100 else 11),
       result._2 ++ Seq(if (success3) 7 else 0)
     )
   }
@@ -238,7 +258,7 @@ class HumanAgingRulesOnEducationSpec
     val result = tripleCheckResults(success1, success2, success3)
 
     (
-      result._1 ++ Seq(if (success4) 96 else 34),
+      result._1 ++ Seq(if (success4) 100 else 34),
       result._2 ++ Seq(if (success4) 4 else 0)
     )
   }
