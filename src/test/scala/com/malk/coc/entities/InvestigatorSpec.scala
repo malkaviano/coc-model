@@ -14,6 +14,7 @@ class InvestigatorSpec extends AnyFunSpec with Matchers with MockFactory {
       import com.malk.coc.helpers.InvestigatorAttributes.implicits._
       import com.malk.coc.helpers.InvestigatorCharacteristics.implicits._
       import com.malk.coc.helpers.InvestigatorOccupationTemplates.implicits._
+      import com.malk.coc.helpers.DiceHelper.implicits._
 
       val rollD10 = mockFunction[(Int, Int), Int]
       val tenSidedDice = TenSidedDice(rollD10)
@@ -42,27 +43,31 @@ class InvestigatorSpec extends AnyFunSpec with Matchers with MockFactory {
 
       val occupationTemplate = randomOccupationTemplate
 
-      // val occupationSkillPoints =
-      //   occupationTemplate.occupationSkillPointsRule.occupationSkillPoints(
-      //     implicitBody,
-      //     implicitBrain,
-      //     implicitEdu,
-      //     implicitApp,
-      //   )
+      val occupationSkillPoints =
+        occupationTemplate.occupationSkillPointsRule.occupationSkillPoints(
+          implicitBody,
+          implicitBrain,
+          implicitEdu,
+          implicitApp
+        )
 
-      val skills = occupationTemplate.fixedSkills ++ SkillHelper.chooseSkills(
+      val occupationSkills = occupationTemplate.fixedSkills ++ SkillHelper.chooseSkills(
         occupationTemplate.optionalSkills
       )
 
       val startCreditRating = occupationTemplate.startCreditRating
 
-      // TODO: Spent points on Credit Rating, because max rating
+      val creditRating = SkillHelper.spendPointsOnCreditRating(
+        occupationTemplate.startCreditRating,
+        occupationTemplate.maximumCreditRating,
+        occupationSkillPoints
+      )
 
       // TODO: Spent points
 
       val occupation = Occupation(
         occupationTemplate.name,
-        skills,
+        occupationSkills + creditRating,
         startCreditRating
       )
 
