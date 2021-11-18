@@ -34,7 +34,7 @@ class TwoEduEitherTwoStrOrDexRuleSpec
     extends AnyFunSpec
     with BehavesLikeOccupationSkillPointsRule {
   describe("TwoEduEitherTwoStrOrDexRule") {
-    import InvestigatorCharacteristics.implicits._
+    import  com.malk.coc.helpers.InvestigatorCharacteristics.implicits._
     import com.malk.coc.helpers.DiceHelper.implicits._
 
     val edu = Education(60)
