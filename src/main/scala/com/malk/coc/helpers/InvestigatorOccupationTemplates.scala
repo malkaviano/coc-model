@@ -15,7 +15,7 @@ object InvestigatorOccupationTemplates {
   }
 
   def randomOccupationTemplateName: String = {
-    Random.shuffle(occupationTemplates.keysIterator.toList).head
+    Random.shuffle(occupationTemplates.keysIterator.toSeq).head
   }
 
   def occupation(key: String): Option[OccupationTemplate] = {

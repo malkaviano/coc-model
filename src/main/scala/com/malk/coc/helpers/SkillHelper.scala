@@ -1,5 +1,7 @@
 package com.malk.coc.helpers
 
+import scala.util.Random
+
 import com.malk.coc.concepts.skills._
 import com.malk.coc.traits.Skill
 
@@ -15,5 +17,19 @@ object SkillHelper {
     Whip(0)
   )
 
-  def chooseSkill(optionalSkill: Set[(Int, Set[Skill])]): Set[Skill] = ???
+  val firearms: Set[Skill] = Set(
+    Bow(0),
+    Handgun(0),
+    HeavyWeapons(0),
+    Flamethrower(0),
+    MachineGun(0),
+    RifleAndShotgun(0),
+    SubmachineGun(0)
+  )
+
+  def chooseSkill(optionalSkill: Set[(Int, Set[Skill])]): Set[Skill] = {
+    optionalSkill.flatMap(t => {
+      Random.shuffle(t._2.toSeq).take(t._1)
+    })
+  }
 }

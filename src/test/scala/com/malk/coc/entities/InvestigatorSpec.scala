@@ -6,6 +6,7 @@ import org.scalamock.scalatest.MockFactory
 
 import com.malk.coc.concepts.dices._
 import com.malk.coc.occupations.Occupation
+import com.malk.coc.helpers.SkillHelper
 
 class InvestigatorSpec extends AnyFunSpec with Matchers with MockFactory {
   describe("Generating random investigator") {
@@ -38,10 +39,14 @@ class InvestigatorSpec extends AnyFunSpec with Matchers with MockFactory {
 
       // TODO: Calculate the occupation
 
+      val skills = occupationTemplate.fixedSkills ++ SkillHelper.chooseSkill(
+        occupationTemplate.optionalSkills
+      )
+
       // this is wrong
       val occupation = Occupation(
         occupationTemplate.name,
-        occupationTemplate.fixedSkills,
+        skills,
         occupationTemplate.startCreditRating
       )
 
