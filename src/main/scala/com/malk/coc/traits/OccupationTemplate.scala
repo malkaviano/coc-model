@@ -9,9 +9,9 @@ trait OccupationTemplate {
 
   def maximumCreditRating: CreditRating
 
-  def fixedSkills: Seq[Skill]
+  def fixedSkills: Set[Skill]
 
-  def optionalSkills: Seq[(Int, Seq[Skill])]
+  def optionalSkills: Set[(Int, Set[Skill])]
 
   def occupationSkillPointsRule: OccupationSkillPointsRule
 }

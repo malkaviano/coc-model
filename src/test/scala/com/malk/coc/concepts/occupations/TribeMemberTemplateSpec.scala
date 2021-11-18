@@ -11,7 +11,7 @@ class TribeMemberTemplateSpec extends AnyFunSpec with Matchers {
     val occupation = new TribeMemberTemplate
     val startCreditRating = CreditRating(0)
     val maximumCreditRating = CreditRating(15)
-    val fixedSkills: Seq[Skill] = Seq(
+    val fixedSkills: Set[Skill] = Set(
       Climb(0),
       NaturalWorld(0),
       Listen(0),
@@ -20,11 +20,11 @@ class TribeMemberTemplateSpec extends AnyFunSpec with Matchers {
       Swim(0)
     )
 
-    val optionalSkills: Seq[(Int, Seq[Skill])] = Seq(
-      (1, Seq(Sea(0), Desert(0), Arctic(0), WildernessTerrain(0))),
+    val optionalSkills: Set[(Int, Set[Skill])] = Set(
+      (1, Set(Sea(0), Desert(0), Arctic(0), WildernessTerrain(0))),
       (
         1,
-        Seq(
+        Set(
           Axe(0),
           Brawl(0),
           Chainsaw(0),

@@ -8,7 +8,7 @@ import com.malk.coc.concepts.skills._
 class SkillHelperSpec extends AnyFunSpec with Matchers {
   describe("Skill Helper") {
     describe("Fighting Skills") {
-      val fightingSkills = Seq(
+      val fightingSkills = Set(
         Axe(0),
         Brawl(0),
         Chainsaw(0),

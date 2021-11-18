@@ -13,7 +13,7 @@ final class TribeMemberTemplate extends OccupationTemplate {
 
   val maximumCreditRating = CreditRating(15)
 
-  val fixedSkills: Seq[Skill] = Seq(
+  val fixedSkills: Set[Skill] = Set(
     Climb(0),
     NaturalWorld(0),
     Listen(0),
@@ -22,17 +22,17 @@ final class TribeMemberTemplate extends OccupationTemplate {
     Swim(0)
   )
 
-  val optionalSkills: Seq[(Int, Seq[Skill])] = Seq(
+  val optionalSkills: Set[(Int, Set[Skill])] = Set(
     (
       1,
-      Seq(
+      Set(
         Sea(0),
         Desert(0),
         Arctic(0),
         WildernessTerrain(0)
       )
     ),
-    (1, SkillHelper.fighting ++ Seq(Throw(0)))
+    (1, SkillHelper.fighting ++ Set(Throw(0)))
   )
 
   val occupationSkillPointsRule = new TwoEduEitherTwoStrOrDexRule

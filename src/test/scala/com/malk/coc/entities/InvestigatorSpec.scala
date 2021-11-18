@@ -5,6 +5,7 @@ import org.scalatest.matchers.should.Matchers
 import org.scalamock.scalatest.MockFactory
 
 import com.malk.coc.concepts.dices._
+import com.malk.coc.occupations.Occupation
 
 class InvestigatorSpec extends AnyFunSpec with Matchers with MockFactory {
   describe("Generating random investigator") {
@@ -33,6 +34,17 @@ class InvestigatorSpec extends AnyFunSpec with Matchers with MockFactory {
 
       rollD4.stubs((1, 4)).returning(2)
 
+      val occupationTemplate = randomOccupationTemplate
+
+      // TODO: Calculate the occupation
+
+      // this is wrong
+      val occupation = Occupation(
+        occupationTemplate.name,
+        occupationTemplate.fixedSkills,
+        occupationTemplate.startCreditRating
+      )
+
       Investigator(
         age,
         body,
@@ -40,7 +52,7 @@ class InvestigatorSpec extends AnyFunSpec with Matchers with MockFactory {
         edu,
         brain,
         luck,
-        randomOccupationTemplate
+        occupation
       )(fourSidedDice, sixSidedDice, tenSidedDice, hundredSidedDice)
 
       pending
