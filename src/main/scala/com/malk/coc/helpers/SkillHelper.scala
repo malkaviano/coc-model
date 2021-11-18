@@ -4,6 +4,7 @@ import scala.util.Random
 
 import com.malk.coc.concepts.skills._
 import com.malk.coc.traits.Skill
+import com.malk.coc.concepts.occupations.OccupationSkillPoints
 
 object SkillHelper {
   val fighting: Set[Skill] = Set(
@@ -27,9 +28,21 @@ object SkillHelper {
     SubmachineGun(0)
   )
 
-  def chooseSkill(optionalSkill: Set[(Int, Set[Skill])]): Set[Skill] = {
+  def chooseSkills(optionalSkill: Set[(Int, Set[Skill])]): Set[Skill] = {
     optionalSkill.flatMap(t => {
       Random.shuffle(t._2.toSeq).take(t._1)
     })
+  }
+
+  def spendPointsOnCreditRating(
+      startingCreditRating: CreditRating,
+      maximumCreditRating: CreditRating,
+      occupationSkillPoints: OccupationSkillPoints
+  )(implicit rollRange: ((Int, Int)) => Int): CreditRating = {
+    val points = rollRange((0 , maximumCreditRating.value - startingCreditRating.value))
+
+    val spent = occupationSkillPoints.spend(points)
+
+    startingCreditRating.copy(startingCreditRating.value + spent)
   }
 }

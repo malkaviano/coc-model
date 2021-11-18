@@ -35,27 +35,43 @@ class InvestigatorSpec extends AnyFunSpec with Matchers with MockFactory {
 
       rollD4.stubs((1, 4)).returning(2)
 
+      val implicitBody = body
+      val implicitApp = app
+      val implicitEdu = edu
+      val implicitBrain = brain
+
       val occupationTemplate = randomOccupationTemplate
 
-      // TODO: Calculate the occupation
+      // val occupationSkillPoints =
+      //   occupationTemplate.occupationSkillPointsRule.occupationSkillPoints(
+      //     implicitBody,
+      //     implicitBrain,
+      //     implicitEdu,
+      //     implicitApp,
+      //   )
 
-      val skills = occupationTemplate.fixedSkills ++ SkillHelper.chooseSkill(
+      val skills = occupationTemplate.fixedSkills ++ SkillHelper.chooseSkills(
         occupationTemplate.optionalSkills
       )
 
-      // this is wrong
+      val startCreditRating = occupationTemplate.startCreditRating
+
+      // TODO: Spent points on Credit Rating, because max rating
+
+      // TODO: Spent points
+
       val occupation = Occupation(
         occupationTemplate.name,
         skills,
-        occupationTemplate.startCreditRating
+        startCreditRating
       )
 
       Investigator(
         age,
-        body,
-        app,
-        edu,
-        brain,
+        implicitBody,
+        implicitApp,
+        implicitEdu,
+        implicitBrain,
         luck,
         occupation
       )(fourSidedDice, sixSidedDice, tenSidedDice, hundredSidedDice)
