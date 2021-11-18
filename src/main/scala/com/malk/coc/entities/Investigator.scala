@@ -67,7 +67,7 @@ object Investigator {
       edu: Education,
       brain: Brain,
       luck: Luck,
-      occupation: Occupation
+      occupation: OccupationTemplate
   )(implicit
       fourSidedDice: FourSidedDice,
       sixSidedDice: SixSidedDice,

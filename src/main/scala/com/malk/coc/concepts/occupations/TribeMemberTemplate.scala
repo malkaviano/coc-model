@@ -4,9 +4,9 @@ import com.malk.coc.traits.Skill
 import com.malk.coc.concepts.skills._
 import com.malk.coc.helpers.SkillHelper
 import com.malk.coc.rules.TwoEduEitherTwoStrOrDexRule
-import com.malk.coc.traits.Occupation
+import com.malk.coc.traits.OccupationTemplate
 
-final class TribeMemberTemplate extends Occupation {
+final class TribeMemberTemplate extends OccupationTemplate {
   val name = TribeMemberTemplate.name
 
   val startCreditRating = CreditRating(0)

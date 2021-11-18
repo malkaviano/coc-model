@@ -2,7 +2,7 @@ package com.malk.coc.traits
 
 import com.malk.coc.concepts.skills.CreditRating
 
-trait Occupation {
+trait OccupationTemplate {
   def name: String
 
   def startCreditRating: CreditRating

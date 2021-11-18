@@ -10,7 +10,7 @@ class InvestigatorOccupationsSpec extends AnyFunSpec with Matchers {
       val expected = Set("TRIBE MEMBER")
 
       it("should return a list of occupation names") {
-        InvestigatorOccupations.occupationNames shouldBe expected
+        InvestigatorOccupationTemplates.occupationTemplateNames shouldBe expected
       }
     }
 
@@ -18,7 +18,7 @@ class InvestigatorOccupationsSpec extends AnyFunSpec with Matchers {
       val expected = "TRIBE MEMBER"
 
       it(s"should return ${expected}") {
-        InvestigatorOccupations.randomOccupationName shouldBe expected
+        InvestigatorOccupationTemplates.randomOccupationTemplateName shouldBe expected
       }
     }
 
@@ -26,7 +26,7 @@ class InvestigatorOccupationsSpec extends AnyFunSpec with Matchers {
       describe(s"when name exists") {
         val key = TribeMemberTemplate.name
         it(s"should return template") {
-          val result = InvestigatorOccupations.occupation(key)
+          val result = InvestigatorOccupationTemplates.occupation(key)
 
           result shouldBe defined
         }
@@ -36,7 +36,7 @@ class InvestigatorOccupationsSpec extends AnyFunSpec with Matchers {
         val key = "DOES NOT EXIST"
 
         it(s"should return None") {
-          val result = InvestigatorOccupations.occupation(key)
+          val result = InvestigatorOccupationTemplates.occupation(key)
 
           result shouldBe None
         }
@@ -45,9 +45,9 @@ class InvestigatorOccupationsSpec extends AnyFunSpec with Matchers {
 
     describe("getting random occupation") {
       it("should return an occupation") {
-        val result = InvestigatorOccupations.implicits.randomOccupation
+        val result = InvestigatorOccupationTemplates.implicits.randomOccupationTemplate
 
-        InvestigatorOccupations.occupationNames should contain (result.name)
+        InvestigatorOccupationTemplates.occupationTemplateNames should contain (result.name)
       }
     }
   }
