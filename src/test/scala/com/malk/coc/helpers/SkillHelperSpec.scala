@@ -9,6 +9,86 @@ import org.scalamock.scalatest.MockFactory
 
 class SkillHelperSpec extends AnyFunSpec with Matchers with MockFactory {
   describe("Skill Helper") {
+    describe("Common Skills") {
+      val commonSkills = Set(
+
+      )
+
+      it(s"should be a list of common skills") {
+        SkillHelper.commonSkills should contain theSameElementsAs commonSkills
+      }
+    }
+
+    describe("Interpersonal Skills") {
+      val interpersonalSkills = Set(
+
+      )
+
+      it(s"should be a list of interpersonal skills") {
+        SkillHelper.interpersonalSkills should contain theSameElementsAs interpersonalSkills
+      }
+    }
+
+    describe("Survival Skills") {
+      val survivalSkills = Set(
+
+      )
+
+      it(s"should be a list of survival skills") {
+        SkillHelper.survivalSkills should contain theSameElementsAs survivalSkills
+      }
+    }
+
+    describe("Art / Craft Skills") {
+      val artAndCraftSkills = Set(
+
+      )
+
+      it(s"should be a list of Art / Craft skills") {
+        SkillHelper.artAndCraftSkills should contain theSameElementsAs artAndCraftSkills
+      }
+    }
+
+    describe("Science Skills") {
+      val scienceSkills = Set(
+
+      )
+
+      it(s"should be a list of science skills") {
+        SkillHelper.scienceSkills should contain theSameElementsAs scienceSkills
+      }
+    }
+
+    describe("Lore Skills") {
+      val loreSkills = Set(
+
+      )
+
+      it(s"should be a list of lore skills") {
+        SkillHelper.loreSkills should contain theSameElementsAs loreSkills
+      }
+    }
+
+    describe("Language Other Skills") {
+      val languageOtherSkills = Set(
+
+      )
+
+      it(s"should be a list of Language Other skills") {
+        SkillHelper.languageOtherSkills should contain theSameElementsAs languageOtherSkills
+      }
+    }
+
+    describe("Language Other Skills") {
+      val pilotSkills = Set(
+
+      )
+
+      it(s"should be a list of pilot skills") {
+        SkillHelper.pilotSkills should contain theSameElementsAs pilotSkills
+      }
+    }
+
     describe("Fighting Skills") {
       val fightingSkills = Set(
         Axe(0),
@@ -22,7 +102,7 @@ class SkillHelperSpec extends AnyFunSpec with Matchers with MockFactory {
       )
 
       it(s"should be a list of fighting skills") {
-        SkillHelper.fighting should contain theSameElementsAs fightingSkills
+        SkillHelper.fightingSkills should contain theSameElementsAs fightingSkills
       }
     }
 
@@ -38,15 +118,15 @@ class SkillHelperSpec extends AnyFunSpec with Matchers with MockFactory {
       )
 
       it(s"should be a list of fighting skills") {
-        SkillHelper.firearms should contain theSameElementsAs firearmsSkills
+        SkillHelper.firearmsSkills should contain theSameElementsAs firearmsSkills
       }
     }
 
     describe("Choosing Skills") {
       Seq((1, 3, 4), (4, 2, 6), (10, 4, 12)).foreach(t => {
         val skills = Set(
-          (t._1, SkillHelper.fighting),
-          (t._2, SkillHelper.firearms)
+          (t._1, SkillHelper.fightingSkills),
+          (t._2, SkillHelper.firearmsSkills)
         )
 
         describe(s"when pick ${t._3} from ${skills}") {

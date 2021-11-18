@@ -7,7 +7,7 @@ import com.malk.coc.traits.Skill
 import com.malk.coc.concepts.occupations.OccupationSkillPoints
 
 object SkillHelper {
-  val fighting: Set[Skill] = Set(
+  val fightingSkills: Set[Skill] = Set(
     Axe(0),
     Brawl(0),
     Chainsaw(0),
@@ -18,7 +18,7 @@ object SkillHelper {
     Whip(0)
   )
 
-  val firearms: Set[Skill] = Set(
+  val firearmsSkills: Set[Skill] = Set(
     Bow(0),
     Handgun(0),
     HeavyWeapons(0),
@@ -27,6 +27,22 @@ object SkillHelper {
     RifleAndShotgun(0),
     SubmachineGun(0)
   )
+
+  val commonSkills: Set[Skill] = ???
+
+  val interpersonalSkills: Set[Skill] = ???
+
+  val survivalSkills: Set[Skill] = ???
+
+  val pilotSkills: Set[Skill] = ???
+
+  val loreSkills: Set[Skill] = ???
+
+  val languageOtherSkills: Set[Skill] = ???
+
+  val scienceSkills: Set[Skill] = ???
+
+  val artAndCraftSkills: Set[Skill] = ???
 
   def chooseSkills(optionalSkill: Set[(Int, Set[Skill])]): Set[Skill] = {
     optionalSkill.flatMap(t => {

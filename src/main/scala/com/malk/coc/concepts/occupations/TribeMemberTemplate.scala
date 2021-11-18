@@ -32,7 +32,7 @@ final class TribeMemberTemplate extends OccupationTemplate {
         WildernessTerrain(0)
       )
     ),
-    (1, SkillHelper.fighting ++ Set(Throw(0)))
+    (1, SkillHelper.fightingSkills ++ Set(Throw(0)))
   )
 
   val occupationSkillPointsRule = new TwoEduEitherTwoStrOrDexRule
