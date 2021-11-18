@@ -6,7 +6,7 @@ import com.malk.coc.concepts.skills._
 import com.malk.coc.helpers.SkillHelper
 import com.malk.coc.rules.TwoEduEitherTwoStrOrDexRule
 
-object TribalMember {
+final class TribalMember {
   val name = "TRIBE MEMBER"
 
   val startCreditRating = CreditRating(0)

@@ -9,6 +9,7 @@ import com.malk.coc.rules.TwoEduEitherTwoStrOrDexRule
 
 class TribalMemberSpec extends AnyFunSpec with Matchers {
   describe("TRIBE MEMBER occupation") {
+    val occupation = new TribalMember
     val startCreditRating = CreditRating(0)
     val maximumCreditRating = CreditRating(15)
     val fixedSkills: Seq[Skill] = Seq(
@@ -41,29 +42,29 @@ class TribalMemberSpec extends AnyFunSpec with Matchers {
     val occupationSkillPointsRule = new TwoEduEitherTwoStrOrDexRule
 
     it("should have name TRIBE MEMBER") {
-      TribalMember.name shouldBe "TRIBE MEMBER"
+      occupation.name shouldBe "TRIBE MEMBER"
     }
 
     it(s"should have start ${startCreditRating}") {
-      TribalMember.startCreditRating shouldBe startCreditRating
+      occupation.startCreditRating shouldBe startCreditRating
     }
 
     it(s"should have maximum ${maximumCreditRating}") {
-      TribalMember.maximumCreditRating shouldBe maximumCreditRating
+      occupation.maximumCreditRating shouldBe maximumCreditRating
     }
 
     it(s"should have a list of fixed skills") {
-      TribalMember.fixedSkills should contain theSameElementsAs fixedSkills
+      occupation.fixedSkills should contain theSameElementsAs fixedSkills
     }
 
     it(s"should have a list of optional skills") {
-      TribalMember.optionalSkills should contain theSameElementsAs optionalSkills
+      occupation.optionalSkills should contain theSameElementsAs optionalSkills
     }
 
     it(
       "should have Occupation Skill Points Rule equal TwoEduEitherTwoStrOrDexRule"
     ) {
-      TribalMember.occupationSkillPointsRule.name shouldBe occupationSkillPointsRule.name
+      occupation.occupationSkillPointsRule.name shouldBe occupationSkillPointsRule.name
     }
   }
 }
