@@ -24,6 +24,8 @@ trait ModernEraSkill
 
 trait UncommonSkill
 
+trait InterpersonalSkill
+
 // Behavior specializations (optional)
 trait WithoutBaseValueSkill extends BaseValueSkill {
   override val base: Int = 0
