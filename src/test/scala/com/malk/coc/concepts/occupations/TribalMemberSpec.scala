@@ -2,7 +2,6 @@ package com.malk.coc.concepts.occupations
 
 import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
-import com.malk.coc.concepts.attributes.CreditRating
 import com.malk.coc.concepts.skills._
 import com.malk.coc.traits.Skill
 import com.malk.coc.rules.TwoEduEitherTwoStrOrDexRule
