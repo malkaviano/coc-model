@@ -1,9 +1,10 @@
-package com.malk.coc.rules
+package com.malk.coc.helpers
 
 import com.malk.coc.concepts.dices._
 import com.malk.coc.concepts.characteristics._
 import com.malk.coc.concepts.abstractions.Body
 import com.malk.coc.concepts.abstractions.Brain
+import com.malk.coc.rules.RollRules
 
 
 object InvestigatorCharacteristics {

@@ -1,9 +1,10 @@
-package com.malk.coc.rules
+package com.malk.coc.helpers
 
 import com.malk.coc.helpers.DiceHelper
 import com.malk.coc.concepts.attributes.Age
 import com.malk.coc.concepts.attributes.Luck
 import com.malk.coc.concepts.dices._
+import com.malk.coc.rules.RollRules
 
 object InvestigatorAttributes {
   def randomAge: Age = DiceHelper.randomAge()
