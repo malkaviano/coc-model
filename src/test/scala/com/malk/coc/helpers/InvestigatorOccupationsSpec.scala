@@ -45,7 +45,7 @@ class InvestigatorOccupationsSpec extends AnyFunSpec with Matchers {
 
     describe("getting random occupation") {
       it("should return an occupation") {
-        val result = InvestigatorOccupations.randomOccupation
+        val result = InvestigatorOccupations.implicits.randomOccupation
 
         InvestigatorOccupations.occupationNames should contain (result.name)
       }

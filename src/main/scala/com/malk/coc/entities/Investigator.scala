@@ -9,7 +9,8 @@ import com.malk.coc.traits._
 
 final case class Investigator private (
     private val human: Human,
-    private val luck: Luck
+    private val luck: Luck,
+    val occupation: String
 ) extends Chance
     with Aging
     with Mobility
@@ -65,7 +66,8 @@ object Investigator {
       app: Appearance,
       edu: Education,
       brain: Brain,
-      luck: Luck
+      luck: Luck,
+      occupation: Occupation
   )(implicit
       fourSidedDice: FourSidedDice,
       sixSidedDice: SixSidedDice,
@@ -73,6 +75,7 @@ object Investigator {
       hundredSidedDice: HundredSidedDice
   ): Investigator = {
     val sanity = Sanity(brain.power.value)
+
     val mp = MaximumMagicPoints(brain.power.value / 5)
 
     val human = Human(
@@ -85,6 +88,6 @@ object Investigator {
       mp
     )(new HumanAgingRules(age))
 
-    new Investigator(human, luck)
+    new Investigator(human, luck, occupation.name)
   }
 }

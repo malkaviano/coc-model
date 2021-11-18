@@ -22,7 +22,9 @@ object InvestigatorOccupations {
     occupations.get(key)
   }
 
-  def randomOccupation: Occupation = {
-    occupation(randomOccupationName).get
+  object implicits {
+    implicit def randomOccupation: Occupation = {
+      occupation(randomOccupationName).get
+    }
   }
 }

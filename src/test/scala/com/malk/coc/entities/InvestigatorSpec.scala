@@ -11,6 +11,7 @@ class InvestigatorSpec extends AnyFunSpec with Matchers with MockFactory {
     it("should create an Investigator") {
       import com.malk.coc.helpers.InvestigatorAttributes.implicits._
       import com.malk.coc.helpers.InvestigatorCharacteristics.implicits._
+      import com.malk.coc.helpers.InvestigatorOccupations.implicits._
 
       val rollD10 = mockFunction[(Int, Int), Int]
       val tenSidedDice = TenSidedDice(rollD10)
@@ -38,7 +39,8 @@ class InvestigatorSpec extends AnyFunSpec with Matchers with MockFactory {
         app,
         edu,
         brain,
-        luck
+        luck,
+        randomOccupation
       )(fourSidedDice, sixSidedDice, tenSidedDice, hundredSidedDice)
 
       pending
