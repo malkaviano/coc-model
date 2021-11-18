@@ -9,8 +9,8 @@ import com.malk.coc.concepts.dices._
 class InvestigatorSpec extends AnyFunSpec with Matchers with MockFactory {
   describe("Generating random investigator") {
     it("should create an Investigator") {
-      import com.malk.coc.rules.InvestigatorAttributes.implicits._
-      import com.malk.coc.rules.InvestigatorCharacteristics.implicits._
+      import com.malk.coc.helpers.InvestigatorAttributes.implicits._
+      import com.malk.coc.helpers.InvestigatorCharacteristics.implicits._
 
       val rollD10 = mockFunction[(Int, Int), Int]
       val tenSidedDice = TenSidedDice(rollD10)
