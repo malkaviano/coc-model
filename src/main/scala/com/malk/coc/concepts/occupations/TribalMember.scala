@@ -22,14 +22,17 @@ object TribalMember {
     Swim(0)
   )
 
-  val optionalSkills: Seq[Seq[Skill]] = Seq(
-    Seq(
-      Sea(0),
-      Desert(0),
-      Arctic(0),
-      WildernessTerrain(0)
+  val optionalSkills: Seq[(Int, Seq[Skill])] = Seq(
+    (
+      1,
+      Seq(
+        Sea(0),
+        Desert(0),
+        Arctic(0),
+        WildernessTerrain(0)
+      )
     ),
-    SkillHelper.fighting ++ Seq(Throw(0))
+    (1, SkillHelper.fighting ++ Seq(Throw(0)))
   )
 
   val occupationSkillPointsRule = new TwoEduEitherTwoStrOrDexRule

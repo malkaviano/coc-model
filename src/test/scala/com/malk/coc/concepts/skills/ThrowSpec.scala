@@ -5,5 +5,5 @@ class ThrowSpec extends BehavesLikeSkill {
 
   val skill = Throw(spent = 10)
 
-  behavesLikeSkill(skill, skillName, 20, true, 30)
+  behavesLikeSkill(skill, skillName, 20, false, 30)
 }

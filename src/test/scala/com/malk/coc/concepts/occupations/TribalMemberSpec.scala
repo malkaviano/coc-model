@@ -20,18 +20,21 @@ class TribalMemberSpec extends AnyFunSpec with Matchers {
       Swim(0)
     )
 
-    val optionalSkills: Seq[Seq[Skill]] = Seq(
-      Seq(Sea(0), Desert(0), Arctic(0), WildernessTerrain(0)),
-      Seq(
-        Axe(0),
-        Brawl(0),
-        Chainsaw(0),
-        Flail(0),
-        Garrote(0),
-        Spear(0),
-        Sword(0),
-        Whip(0),
-        Throw(0)
+    val optionalSkills: Seq[(Int, Seq[Skill])] = Seq(
+      (1, Seq(Sea(0), Desert(0), Arctic(0), WildernessTerrain(0))),
+      (
+        1,
+        Seq(
+          Axe(0),
+          Brawl(0),
+          Chainsaw(0),
+          Flail(0),
+          Garrote(0),
+          Spear(0),
+          Sword(0),
+          Whip(0),
+          Throw(0)
+        )
       )
     )
 
@@ -57,7 +60,9 @@ class TribalMemberSpec extends AnyFunSpec with Matchers {
       TribalMember.optionalSkills should contain theSameElementsAs optionalSkills
     }
 
-    it("should have Occupation Skill Points Rule equal TwoEduEitherTwoStrOrDexRule") {
+    it(
+      "should have Occupation Skill Points Rule equal TwoEduEitherTwoStrOrDexRule"
+    ) {
       TribalMember.occupationSkillPointsRule.name shouldBe occupationSkillPointsRule.name
     }
   }

@@ -13,5 +13,14 @@ class TwoEduEitherTwoStrOrDexRule extends OccupationSkillPointsRule {
       brain: Brain,
       edu: Education,
       app: Appearance
-  ): OccupationSkillPoints = ???
+  ): OccupationSkillPoints = {
+    val eduPoints = 2 * edu.value
+
+    val otherPoints = body.strength match {
+      case x if x.value > body.dexterity.value => x.value
+      case _ => body.dexterity.value
+    }
+
+    OccupationSkillPoints(eduPoints + (2 * otherPoints))
+  }
 }
