@@ -2,7 +2,7 @@ package com.malk.coc.helpers
 
 import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
-import com.malk.coc.concepts.occupations.TribeMember
+import com.malk.coc.concepts.occupations.TribeMemberTemplate
 
 class InvestigatorOccupationsSpec extends AnyFunSpec with Matchers {
   describe("Investigator Occupations Helper") {
@@ -24,7 +24,7 @@ class InvestigatorOccupationsSpec extends AnyFunSpec with Matchers {
 
     describe("getting a occupation template") {
       describe(s"when name exists") {
-        val key = TribeMember.name
+        val key = TribeMemberTemplate.name
         it(s"should return template") {
           val result = InvestigatorOccupations.occupation(key)
 

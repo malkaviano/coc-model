@@ -6,9 +6,9 @@ import com.malk.coc.concepts.skills._
 import com.malk.coc.traits.Skill
 import com.malk.coc.rules.TwoEduEitherTwoStrOrDexRule
 
-class TribeMemberSpec extends AnyFunSpec with Matchers {
+class TribeMemberTemplateSpec extends AnyFunSpec with Matchers {
   describe("TRIBE MEMBER occupation") {
-    val occupation = new TribeMember
+    val occupation = new TribeMemberTemplate
     val startCreditRating = CreditRating(0)
     val maximumCreditRating = CreditRating(15)
     val fixedSkills: Seq[Skill] = Seq(

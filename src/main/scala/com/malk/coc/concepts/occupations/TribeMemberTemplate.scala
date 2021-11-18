@@ -6,8 +6,8 @@ import com.malk.coc.helpers.SkillHelper
 import com.malk.coc.rules.TwoEduEitherTwoStrOrDexRule
 import com.malk.coc.traits.Occupation
 
-final class TribeMember extends Occupation {
-  val name = TribeMember.name
+final class TribeMemberTemplate extends Occupation {
+  val name = TribeMemberTemplate.name
 
   val startCreditRating = CreditRating(0)
 
@@ -38,6 +38,6 @@ final class TribeMember extends Occupation {
   val occupationSkillPointsRule = new TwoEduEitherTwoStrOrDexRule
 }
 
-object TribeMember {
+object TribeMemberTemplate {
   val name = "TRIBE MEMBER"
 }
