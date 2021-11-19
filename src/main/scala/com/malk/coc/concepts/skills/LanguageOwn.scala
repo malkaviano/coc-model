@@ -5,8 +5,8 @@ import com.malk.coc.traits.CharacteristicSkill
 import com.malk.coc.traits.PushableSkill
 import com.malk.coc.traits.WithoutBaseValueSkill
 
-final case class LanguageOwn(edu: Education)(spent: Int)
-    extends CharacteristicSkill[Education](spent)
+final case class LanguageOwn(edu: Education)()
+    extends CharacteristicSkill[Education]
     with PushableSkill
     with WithoutBaseValueSkill {
   override val name: String = "Language Own"

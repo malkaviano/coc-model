@@ -4,8 +4,8 @@ import com.malk.coc.traits.Skill
 import com.malk.coc.traits.PushableSkill
 import com.malk.coc.traits.InterpersonalSkill
 
-final case class Intimidate(spent: Int)
-    extends Skill(spent)
+final case class Intimidate()
+    extends Skill
     with InterpersonalSkill
     with PushableSkill {
   override def base: Int = 15

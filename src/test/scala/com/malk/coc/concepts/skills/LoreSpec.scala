@@ -5,7 +5,7 @@ import com.malk.coc.traits.UncommonSkill
 class LoreSpec extends BehavesLikeGenericSkill {
   val skillName = "Lore"
 
-  val skill = new Lore(10) { }
+  val skill = new Lore { }
 
   behavesLikeGenericSkill(skill, skillName, 1, false)
 

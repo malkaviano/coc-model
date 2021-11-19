@@ -4,7 +4,8 @@ import com.malk.coc.traits.UncommonSkill
 
 class ReadLipsSpec extends BehavesLikeSkill {
   val skillName = "Read Lips"
-  val skill = ReadLips(spent = 10)
+
+  val skill = ReadLips()
 
   behavesLikeSkill(skill, skillName, 1, true, 11)
 

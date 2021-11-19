@@ -1,5 +1,5 @@
 package com.malk.coc.concepts.skills
 
-final case class Geology(spent: Int) extends Science(spent) {
+final case class Geology() extends Science {
   override val name = s"${super.name} (Geology)"
 }

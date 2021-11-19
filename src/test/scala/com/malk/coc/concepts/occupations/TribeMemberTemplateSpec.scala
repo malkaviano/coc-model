@@ -9,31 +9,34 @@ import com.malk.coc.rules.TwoEduEitherTwoStrOrDexRule
 class TribeMemberTemplateSpec extends AnyFunSpec with Matchers {
   describe("TRIBE MEMBER occupation") {
     val occupation = new TribeMemberTemplate
-    val startCreditRating = CreditRating(0)
-    val maximumCreditRating = CreditRating(15)
+    val startCreditRating = CreditRating()
+    val maximumCreditRating = CreditRating()
+
+    maximumCreditRating.spend(15)
+
     val fixedSkills: Set[Skill] = Set(
-      Climb(0),
-      NaturalWorld(0),
-      Listen(0),
-      Occult(0),
-      SpotHidden(0),
-      Swim(0)
+      Climb(),
+      NaturalWorld(),
+      Listen(),
+      Occult(),
+      SpotHidden(),
+      Swim()
     )
 
     val optionalSkills: Set[(Int, Set[Skill])] = Set(
-      (1, Set(Sea(0), Desert(0), Arctic(0), WildernessTerrain(0))),
+      (1, Set(Sea(), Desert(), Arctic(), WildernessTerrain())),
       (
         1,
         Set(
-          Axe(0),
-          Brawl(0),
-          Chainsaw(0),
-          Flail(0),
-          Garrote(0),
-          Spear(0),
-          Sword(0),
-          Whip(0),
-          Throw(0)
+          Axe(),
+          Brawl(),
+          Chainsaw(),
+          Flail(),
+          Garrote(),
+          Spear(),
+          Sword(),
+          Whip(),
+          Throw()
         )
       )
     )

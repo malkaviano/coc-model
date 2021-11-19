@@ -3,7 +3,7 @@ package com.malk.coc.concepts.skills
 class AstronomySpec extends BehavesLikeSkill {
   val skillName = "Science (Astronomy)"
 
-  val skill = Astronomy(spent = 10)
+  val skill = Astronomy()
 
   behavesLikeSkill(skill, skillName, 1, true, 11)
 }

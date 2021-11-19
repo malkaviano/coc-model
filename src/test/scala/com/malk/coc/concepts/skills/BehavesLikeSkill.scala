@@ -11,7 +11,7 @@ trait BehavesLikeSkill extends AnyFunSpec with Matchers {
       skillName: String,
       base: Int,
       canPush: Boolean,
-      value: Int
+      spent: Int
   ): Unit = {
     describe(s"The ${skillName} skill") {
       it(s"should have name ${skillName}") {
@@ -26,8 +26,18 @@ trait BehavesLikeSkill extends AnyFunSpec with Matchers {
         skill.canPush shouldBe canPush
       }
 
-      it(s"should have value equal ${value}") {
-        skill.value shouldBe value
+      it(s"should have value equal ${base}") {
+        skill.value shouldBe base
+      }
+
+      describe(s"spend ${spent}") {
+        val expected = skill.value + spent
+
+        it(s"should have value equal ${expected}") {
+          skill.spend(spent)
+
+          skill.value shouldBe expected
+        }
       }
     }
   }
