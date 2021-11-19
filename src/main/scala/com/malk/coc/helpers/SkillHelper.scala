@@ -160,12 +160,16 @@ object SkillHelper {
       maximumCreditRating: CreditRating,
       occupationSkillPoints: InvestigatorSkillPoints
   )(implicit rollRange: ((Int, Int)) => Int): CreditRating = {
-    val points = rollRange(
-      (0, maximumCreditRating.value - startingCreditRating.value)
-    )
+    if(maximumCreditRating.value - startingCreditRating.value > 0) {
+      val points = rollRange(
+        (0, maximumCreditRating.value - startingCreditRating.value)
+      )
 
-    val spent = occupationSkillPoints.spend(points)
+      val spent = occupationSkillPoints.spend(points)
 
-    startingCreditRating.copy(startingCreditRating.value + spent)
+      startingCreditRating.copy(startingCreditRating.value + spent)
+    } else {
+      startingCreditRating
+    }
   }
 }

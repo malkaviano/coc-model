@@ -382,27 +382,38 @@ class SkillHelperSpec extends AnyFunSpec with Matchers with MockFactory {
     describe("Spending points on Credit Rating") {
       val rollRange = mockFunction[(Int, Int), Int]
 
-      val startingCreditRating = CreditRating(15)
-      val maximumCreditRating = CreditRating(45)
-
       Seq(
         (
           30,
           InvestigatorSkillPoints(100),
-          maximumCreditRating,
-          InvestigatorSkillPoints(70)
+          CreditRating(45),
+          InvestigatorSkillPoints(70),
+          CreditRating(15),
+          CreditRating(45)
         ),
         (
           20,
           InvestigatorSkillPoints(10),
           CreditRating(25),
-          InvestigatorSkillPoints(0)
+          InvestigatorSkillPoints(0),
+          CreditRating(15),
+          CreditRating(45)
+        ),
+        (
+          20,
+          InvestigatorSkillPoints(10),
+          CreditRating(45),
+          InvestigatorSkillPoints(10),
+          CreditRating(45),
+          CreditRating(45)
         )
       ).foreach(t => {
         val spend = t._1
         val occupationSkillPoints = t._2
         val expected = t._3
         val remainingPoints = t._4
+        val startingCreditRating = t._5
+        val maximumCreditRating = t._6
 
         describe(s"when ${startingCreditRating}") {
           describe(s"when max is ${maximumCreditRating}") {

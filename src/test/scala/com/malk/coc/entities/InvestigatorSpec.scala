@@ -51,26 +51,26 @@ class InvestigatorSpec extends AnyFunSpec with Matchers with MockFactory {
           implicitApp
         )
 
-      val occupationSkills = occupationTemplate.fixedSkills ++ SkillHelper.chooseSkills(
-        occupationTemplate.optionalSkills
-      )
+      val occupationSkills =
+        occupationTemplate.fixedSkills ++ SkillHelper.chooseSkills(
+          occupationTemplate.optionalSkills
+        )
 
       val startCreditRating = occupationTemplate.startCreditRating
 
-      // TODO: Common Skills - occupationSkills - CreditRating = reserved skills
+      /*
+       TODO:
+         1 - Spent points on occupation skills
+         2 - Default skills = Common Skills - occupationSkills - CreditRating
+         3 - Add occupation skills and credit rating to reserved skills
+         4 - Spent personal points
+       */
 
       val creditRating = SkillHelper.spendPointsOnCreditRating(
         occupationTemplate.startCreditRating,
         occupationTemplate.maximumCreditRating,
         occupationSkillPoints
       )
-
-      /*
-       TODO:
-         1 - Spent points on occupation skills
-         2 - Add occupation skills and credit rating to reserved skills
-         3 - Spent personal points
-       */
 
       val occupation = Occupation(
         occupationTemplate.name,
