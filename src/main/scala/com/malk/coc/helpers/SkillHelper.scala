@@ -115,10 +115,8 @@ object SkillHelper {
       .toSet -- firearmsSkills -- fightingSkills
   }
 
-  val commonSkills: Set[Skill] = {
-    allSkills -- uncommonSkills -- modernSkills - CthulhuMythos(
-      0
-    )
+  def filteredSkills(exclude: Set[Skill]): Set[Skill] = {
+    allSkills -- exclude
   }
 
   val interpersonalSkills: Set[Skill] = {

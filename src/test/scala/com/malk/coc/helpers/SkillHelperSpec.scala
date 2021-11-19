@@ -12,8 +12,7 @@ import com.malk.coc.traits.Skill
 
 class SkillHelperSpec extends AnyFunSpec with Matchers with MockFactory {
   describe("Skill Helper") {
-    describe("All skills") {
-      val allSkills = Set(
+    val allSkills: Set[Skill] = Set(
         Accounting(0),
         Acting(0),
         AnimalHandling(0),
@@ -98,90 +97,22 @@ class SkillHelperSpec extends AnyFunSpec with Matchers with MockFactory {
         Zoology(0)
       )
 
+    describe("All skills") {
       it(s"should be a list of all skills") {
         SkillHelper.allSkills should contain theSameElementsAs allSkills
       }
     }
 
-    describe("Common Skills") {
-      val commonSkills: Set[Skill] = Set(
-        Accounting(0),
-        Acting(0),
-        Appraise(0),
-        Arctic(0),
-        Axe(0),
-        Bow(0),
-        Brawl(0),
-        Chainsaw(0),
-        Charm(0),
-        Climb(0),
-        Desert(0),
-        Disguise(0),
-        Dodge(Dexterity(0))(0),
-        DriveAuto(0),
-        ElectricalRepair(0),
-        FastTalk(0),
-        FineArt(0),
-        FirstAid(0),
-        Flail(0),
-        Flamethrower(0),
-        Forgery(0),
-        Garrote(0),
-        Handgun(0),
-        HeavyWeapons(0),
-        History(0),
-        Intimidate(0),
-        Jump(0),
-        LanguageOwn(Education(0))(0),
-        Law(0),
-        LibraryUse(0),
-        Listen(0),
-        MachineGun(0),
-        Mathematics(0),
-        MechanicalRepair(0),
-        NaturalWorld(0),
-        Navigate(0),
-        Occult(0),
-        Persuade(0),
-        Photography(0),
-        Psychology(0),
-        Ride(0),
-        RifleAndShotgun(0),
-        Sea(0),
-        SleightOfHand(0),
-        Spear(0),
-        SpotHidden(0),
-        Stealth(0),
-        SubmachineGun(0),
-        Swim(0),
-        Sword(0),
-        Throw(0),
-        Track(0),
-        Whip(0),
-        WildernessTerrain(0),
-        OperateHeavyMachinery(0),
-        Chemistry(0),
-        Engineering(0),
-        Geology(0),
-        Anthropology(0),
-        Locksmith(0),
-        Zoology(0),
-        Biology(0),
-        Botany(0),
-        Forensics(0),
-        Pharmacy(0),
-        Astronomy(0),
-        Cryptography(0),
-        Physics(0),
-        Psychoanalysis(0),
-        Medicine(0),
-        Meteorology(0),
-        Archaeology(0),
-        CreditRating(0)
+    describe("filtered Skills") {
+      val modernEraSkill: Set[Skill] = Set(
+        ComputerUse(0),
+        Electronics(0)
       )
 
-      it(s"should be a list of common skills") {
-        SkillHelper.commonSkills should contain theSameElementsAs commonSkills
+      val filteredSkills: Set[Skill] = allSkills -- modernEraSkill
+
+      it(s"should be a list of filtered skills") {
+        SkillHelper.filteredSkills(modernEraSkill) should contain theSameElementsAs filteredSkills
       }
     }
 
