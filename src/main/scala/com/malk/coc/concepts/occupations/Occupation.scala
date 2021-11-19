@@ -47,7 +47,11 @@ final case class Occupation(
       Dexterity(0)
     )() - LanguageOwn(
       Education(0)
-    )() -- SkillHelper.modernSkills -- SkillHelper.uncommonSkills
+    )() -- SkillHelper.modernSkills -- SkillHelper.uncommonSkills + Dodge(
+      body.dexterity
+    )() + LanguageOwn(
+      edu
+    )()
 
   private val spentSkillPoints: Set[Skill] = {
     spentAllPoints(
