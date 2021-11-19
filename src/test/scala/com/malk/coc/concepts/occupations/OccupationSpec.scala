@@ -4,6 +4,7 @@ import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 
 import com.malk.coc.occupations.Occupation
+import com.malk.coc.helpers.SkillHelper
 
 class OccupationSpec extends AnyFunSpec with Matchers {
   import com.malk.coc.helpers.InvestigatorCharacteristics.implicits._
@@ -39,7 +40,7 @@ class OccupationSpec extends AnyFunSpec with Matchers {
     val personalInterestPoints =
       InvestigatorSkillPoints(implicitBrain.intelligence.value * 2)
 
-    describe(s"when ${occupationSkillPoints}") {
+    describe(s"when ${occupationSkillPoints} and ${personalInterestPoints}") {
       val minCR = template.startCreditRating
       val maxCR = template.maximumCreditRating
 
@@ -64,6 +65,18 @@ class OccupationSpec extends AnyFunSpec with Matchers {
           (occupationSkillPoints.remaining + personalInterestPoints.remaining) - spentOnSkills
 
         result shouldBe 0
+      }
+
+      it("should have all skills") {
+        val available = SkillHelper
+          .filteredSkills(
+            SkillHelper.modernSkills ++ SkillHelper.uncommonSkills
+          )
+          .map(_.name)
+
+        val result = occupation.skills.map(_.name)
+
+        result should contain theSameElementsAs available
       }
     }
   }
