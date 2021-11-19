@@ -35,10 +35,6 @@ class InvestigatorSpec extends AnyFunSpec with Matchers with MockFactory {
 
       rollD4.stubs((1, 4)).returning(2)
 
-      /*
-       TODO: Spent personal points
-       */
-
       val occupationTemplate = randomOccupationTemplate
 
       val occupation = Occupation(

@@ -36,11 +36,10 @@ class OccupationSpec extends AnyFunSpec with Matchers {
         implicitApp
       )
 
-    describe(s"when ${occupationSkillPoints}") {
-      it(s"should have ${occupation.skills}") {
-        occupation.skills should have size 9
-      }
+    val personalInterestPoints =
+      InvestigatorSkillPoints(implicitBrain.intelligence.value * 2)
 
+    describe(s"when ${occupationSkillPoints}") {
       val minCR = template.startCreditRating
       val maxCR = template.maximumCreditRating
 
@@ -61,7 +60,8 @@ class OccupationSpec extends AnyFunSpec with Matchers {
         val baseValues = resultSkills.map(_.base).reduce(_ + _)
         val spentOnSkills = skillValues - baseValues
 
-        val result = occupationSkillPoints.remaining - spentOnSkills
+        val result =
+          (occupationSkillPoints.remaining + personalInterestPoints.remaining) - spentOnSkills
 
         result shouldBe 0
       }
