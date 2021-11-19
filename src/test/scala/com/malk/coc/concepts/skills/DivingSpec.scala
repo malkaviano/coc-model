@@ -5,7 +5,7 @@ import com.malk.coc.traits.UncommonSkill
 class DivingSpec extends BehavesLikeSkill {
   val skillName = "Diving"
 
-  val skill = Diving(spent = 10)
+  val skill = Diving()
 
   behavesLikeSkill(skill, skillName, 1, true, 11)
 

@@ -5,7 +5,7 @@ import com.malk.coc.traits.UncommonSkill
 class DemolitionsSpec extends BehavesLikeSkill {
   val skillName = "Demolitions"
 
-  val skill = Demolitions(spent = 10)
+  val skill = Demolitions()
 
   behavesLikeSkill(skill, skillName, 1, true, 11)
 

@@ -14,23 +14,25 @@ class SkillHelperSpec extends AnyFunSpec with Matchers with MockFactory {
   describe("Skill Helper") {
     describe("filtered Skills") {
       val modernEraSkill: Set[Skill] = Set(
-        ComputerUse(0),
-        Electronics(0)
+        ComputerUse(),
+        Electronics()
       )
 
       val filteredSkills: Set[Skill] = SkillHelper.allSkills -- modernEraSkill
 
       it(s"should be a list of filtered skills") {
-        SkillHelper.filteredSkills(modernEraSkill) should contain theSameElementsAs filteredSkills
+        SkillHelper.filteredSkills(
+          modernEraSkill
+        ) should contain theSameElementsAs filteredSkills
       }
     }
 
     describe("Interpersonal Skills") {
       val interpersonalSkills = Set(
-        Charm(0),
-        FastTalk(0),
-        Intimidate(0),
-        Persuade(0)
+        Charm(),
+        FastTalk(),
+        Intimidate(),
+        Persuade()
       )
 
       it(s"should be a list of interpersonal skills") {
@@ -40,12 +42,12 @@ class SkillHelperSpec extends AnyFunSpec with Matchers with MockFactory {
 
     describe("Uncommon Skills") {
       val uncommonSkills = Set(
-        AnimalHandling(0),
-        Hypnosis(0),
-        Demolitions(0),
-        Artillery(0),
-        Diving(0),
-        ReadLips(0)
+        AnimalHandling(),
+        Hypnosis(),
+        Demolitions(),
+        Artillery(),
+        Diving(),
+        ReadLips()
       )
 
       it(s"should be a list of Uncommon skills") {
@@ -55,8 +57,8 @@ class SkillHelperSpec extends AnyFunSpec with Matchers with MockFactory {
 
     describe("Modern Skills") {
       val modernSkills = Set(
-        ComputerUse(0),
-        Electronics(0)
+        ComputerUse(),
+        Electronics()
       )
 
       it(s"should be a list of Modern skills") {
@@ -66,10 +68,10 @@ class SkillHelperSpec extends AnyFunSpec with Matchers with MockFactory {
 
     describe("Survival Skills") {
       val survivalSkills = Set(
-        Arctic(0),
-        Desert(0),
-        Sea(0),
-        WildernessTerrain(0)
+        Arctic(),
+        Desert(),
+        Sea(),
+        WildernessTerrain()
       )
 
       it(s"should be a list of survival skills") {
@@ -79,10 +81,10 @@ class SkillHelperSpec extends AnyFunSpec with Matchers with MockFactory {
 
     describe("Art / Craft Skills") {
       val artAndCraftSkills = Set(
-        Acting(0),
-        FineArt(0),
-        Forgery(0),
-        Photography(0)
+        Acting(),
+        FineArt(),
+        Forgery(),
+        Photography()
       )
 
       it(s"should be a list of Art / Craft skills") {
@@ -92,19 +94,19 @@ class SkillHelperSpec extends AnyFunSpec with Matchers with MockFactory {
 
     describe("Science Skills") {
       val scienceSkills = Set(
-        Astronomy(0),
-        Biology(0),
-        Botany(0),
-        Chemistry(0),
-        Cryptography(0),
-        Engineering(0),
-        Forensics(0),
-        Geology(0),
-        Mathematics(0),
-        Meteorology(0),
-        Pharmacy(0),
-        Physics(0),
-        Zoology(0)
+        Astronomy(),
+        Biology(),
+        Botany(),
+        Chemistry(),
+        Cryptography(),
+        Engineering(),
+        Forensics(),
+        Geology(),
+        Mathematics(),
+        Meteorology(),
+        Pharmacy(),
+        Physics(),
+        Zoology()
       )
 
       it(s"should be a list of science skills") {
@@ -141,14 +143,14 @@ class SkillHelperSpec extends AnyFunSpec with Matchers with MockFactory {
 
     describe("Fighting Skills") {
       val fightingSkills = Set(
-        Axe(0),
-        Brawl(0),
-        Chainsaw(0),
-        Flail(0),
-        Garrote(0),
-        Spear(0),
-        Sword(0),
-        Whip(0)
+        Axe(),
+        Brawl(),
+        Chainsaw(),
+        Flail(),
+        Garrote(),
+        Spear(),
+        Sword(),
+        Whip()
       )
 
       it(s"should be a list of fighting skills") {
@@ -158,13 +160,13 @@ class SkillHelperSpec extends AnyFunSpec with Matchers with MockFactory {
 
     describe("Firearms Skills") {
       val firearmsSkills = Set(
-        Bow(0),
-        Handgun(0),
-        HeavyWeapons(0),
-        Flamethrower(0),
-        MachineGun(0),
-        RifleAndShotgun(0),
-        SubmachineGun(0)
+        Bow(),
+        Handgun(),
+        HeavyWeapons(),
+        Flamethrower(),
+        MachineGun(),
+        RifleAndShotgun(),
+        SubmachineGun()
       )
 
       it(s"should be a list of firearms skills") {
@@ -174,27 +176,27 @@ class SkillHelperSpec extends AnyFunSpec with Matchers with MockFactory {
 
     describe("Specialization Skills") {
       val specializationsSkills = Set(
-        Astronomy(0),
-        Biology(0),
-        Botany(0),
-        Chemistry(0),
-        Cryptography(0),
-        Engineering(0),
-        Forensics(0),
-        Geology(0),
-        Mathematics(0),
-        Meteorology(0),
-        Pharmacy(0),
-        Physics(0),
-        Zoology(0),
-        Acting(0),
-        FineArt(0),
-        Forgery(0),
-        Photography(0),
-        Arctic(0),
-        Desert(0),
-        Sea(0),
-        WildernessTerrain(0)
+        Astronomy(),
+        Biology(),
+        Botany(),
+        Chemistry(),
+        Cryptography(),
+        Engineering(),
+        Forensics(),
+        Geology(),
+        Mathematics(),
+        Meteorology(),
+        Pharmacy(),
+        Physics(),
+        Zoology(),
+        Acting(),
+        FineArt(),
+        Forgery(),
+        Photography(),
+        Arctic(),
+        Desert(),
+        Sea(),
+        WildernessTerrain()
       )
 
       it(s"should be a list of specialization skills") {
@@ -204,8 +206,8 @@ class SkillHelperSpec extends AnyFunSpec with Matchers with MockFactory {
 
     describe("Characteristic Skills") {
       val characteristicSkills: Set[Skill] = Set(
-        Dodge(Dexterity(0))(0),
-        LanguageOwn(Education(0))(0)
+        Dodge(Dexterity(0))(),
+        LanguageOwn(Education(0))()
       )
 
       it(s"should be a list of specialization skills") {
@@ -230,6 +232,26 @@ class SkillHelperSpec extends AnyFunSpec with Matchers with MockFactory {
       })
     }
 
+    describe("Helper Skills should be immutable") {
+      Seq(
+        (SkillHelper.modernSkills.head, SkillHelper.modernSkills.head),
+        (SkillHelper.allSkills.head, SkillHelper.allSkills.head),
+        (SkillHelper.fightingSkills.head, SkillHelper.fightingSkills.head)
+      ).foreach {
+        case (skill, original) => {
+          describe(s"when spend 50 on ${skill}") {
+            it("should not change value of the original skill") {
+              val oldValue = skill.value
+
+              skill.spend(50)
+
+              original.value shouldBe oldValue
+            }
+          }
+        }
+      }
+    }
+
     describe("Spending points on Credit Rating") {
       val rollRange = mockFunction[(Int, Int), Int]
 
@@ -237,40 +259,44 @@ class SkillHelperSpec extends AnyFunSpec with Matchers with MockFactory {
         (
           30,
           InvestigatorSkillPoints(100),
-          CreditRating(45),
+          45,
           InvestigatorSkillPoints(70),
-          CreditRating(15),
-          CreditRating(45)
+          15,
+          45
         ),
         (
           20,
           InvestigatorSkillPoints(10),
-          CreditRating(25),
+          25,
           InvestigatorSkillPoints(0),
-          CreditRating(15),
-          CreditRating(45)
+          15,
+          45
         ),
         (
           20,
           InvestigatorSkillPoints(10),
-          CreditRating(45),
+          45,
           InvestigatorSkillPoints(10),
-          CreditRating(45),
-          CreditRating(45)
+          45,
+          45
         )
       ).foreach(t => {
         val spend = t._1
         val occupationSkillPoints = t._2
-        val expected = t._3
+        val expected = CreditRating()
         val remainingPoints = t._4
-        val startingCreditRating = t._5
-        val maximumCreditRating = t._6
+        val startingCreditRating = CreditRating()
+        val maximumCreditRating = CreditRating()
 
-        describe(s"when ${startingCreditRating}") {
-          describe(s"when max is ${maximumCreditRating}") {
+        expected.spend(t._3)
+        startingCreditRating.spend(t._5)
+        maximumCreditRating.spend(t._6)
+
+        describe(s"when initial Credit Rating value is ${startingCreditRating.value}") {
+          describe(s"when maximum Credit Rating value is ${maximumCreditRating.value}") {
             describe(s"spending ${spend} points on Credit Rating") {
               describe(s"when ${occupationSkillPoints}") {
-                it(s"should return ${expected}") {
+                it(s"should return Credit Rating value ${expected.value}") {
                   rollRange
                     .stubs(
                       (
@@ -289,7 +315,7 @@ class SkillHelperSpec extends AnyFunSpec with Matchers with MockFactory {
                   result shouldBe expected
                 }
 
-                it(s"should discount points from OccupationSkillPoints") {
+                it(s"should have ${remainingPoints}") {
                   occupationSkillPoints shouldBe remainingPoints
                 }
               }

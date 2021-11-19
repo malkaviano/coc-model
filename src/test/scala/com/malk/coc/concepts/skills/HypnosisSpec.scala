@@ -5,7 +5,7 @@ import com.malk.coc.traits.UncommonSkill
 class HypnosisSpec extends BehavesLikeSkill {
   val skillName = "Hypnosis"
 
-  val skill = Hypnosis(spent = 10)
+  val skill = Hypnosis()
 
   behavesLikeSkill(skill, skillName, 1, true, 11)
 

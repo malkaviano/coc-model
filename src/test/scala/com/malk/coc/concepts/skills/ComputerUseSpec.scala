@@ -5,7 +5,7 @@ import com.malk.coc.traits.ModernEraSkill
 class ComputerUseSpec extends BehavesLikeSkill {
   val skillName = "Computer Use"
 
-  val skill = ComputerUse(spent = 10)
+  val skill = ComputerUse()
 
   behavesLikeSkill(skill, skillName, 5, true, 15)
 

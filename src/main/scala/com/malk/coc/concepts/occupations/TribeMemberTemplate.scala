@@ -9,30 +9,36 @@ import com.malk.coc.traits.OccupationTemplate
 final class TribeMemberTemplate extends OccupationTemplate {
   val name = TribeMemberTemplate.name
 
-  val startCreditRating = CreditRating(0)
+  val startCreditRating = CreditRating()
 
-  val maximumCreditRating = CreditRating(15)
+  val maximumCreditRating = {
+    val cr = CreditRating()
+
+    cr.spend(15)
+
+    cr
+  }
 
   val fixedSkills: Set[Skill] = Set(
-    Climb(0),
-    NaturalWorld(0),
-    Listen(0),
-    Occult(0),
-    SpotHidden(0),
-    Swim(0)
+    Climb(),
+    NaturalWorld(),
+    Listen(),
+    Occult(),
+    SpotHidden(),
+    Swim()
   )
 
   val optionalSkills: Set[(Int, Set[Skill])] = Set(
     (
       1,
       Set(
-        Sea(0),
-        Desert(0),
-        Arctic(0),
-        WildernessTerrain(0)
+        Sea(),
+        Desert(),
+        Arctic(),
+        WildernessTerrain()
       )
     ),
-    (1, SkillHelper.fightingSkills ++ Set(Throw(0)))
+    (1, SkillHelper.fightingSkills ++ Set(Throw()))
   )
 
   val occupationSkillPointsRule = new TwoEduEitherTwoStrOrDexRule

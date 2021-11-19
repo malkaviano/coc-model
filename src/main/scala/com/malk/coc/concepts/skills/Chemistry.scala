@@ -1,5 +1,5 @@
 package com.malk.coc.concepts.skills
 
-final case class Chemistry(spent: Int) extends Science(spent) {
+final case class Chemistry() extends Science {
   override val name = s"${super.name} (Chemistry)"
 }

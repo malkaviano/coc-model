@@ -10,14 +10,21 @@ sealed trait BaseValueSkill {
   def base: Int
 }
 
-abstract class Skill(spent: Int) extends BaseValueSkill with CanPushSkill {
+abstract class Skill extends BaseValueSkill with CanPushSkill {
+  private var spent: Int = 0
+
   def name: String
+
   def value: Int = base + spent
+
+  def spend(points: Int): Unit = {
+    spent += points
+  }
 }
 
-abstract class CharacteristicSkill[A <: Characteristic](spent: Int) extends Skill(spent)
+abstract class CharacteristicSkill[A <: Characteristic] extends Skill
 
-abstract class GenericSkill(spent: Int) extends Skill(spent)
+abstract class GenericSkill extends Skill
 
 // Skill tags (optional)
 trait ModernEraSkill

@@ -5,8 +5,8 @@ import com.malk.coc.traits.CharacteristicSkill
 import com.malk.coc.traits.NotPushableSkill
 import com.malk.coc.traits.WithoutBaseValueSkill
 
-final case class Dodge(dex: Dexterity)(spent: Int)
-    extends CharacteristicSkill[Dexterity](spent)
+final case class Dodge(dex: Dexterity)()
+    extends CharacteristicSkill[Dexterity]
     with NotPushableSkill
     with WithoutBaseValueSkill {
   override val name: String = "Dodge"
