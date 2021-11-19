@@ -1,6 +1,6 @@
 package com.malk.coc.traits
 
-import com.malk.coc.concepts.occupations.OccupationSkillPoints
+import com.malk.coc.concepts.occupations.InvestigatorSkillPoints
 import com.malk.coc.concepts.abstractions._
 import com.malk.coc.concepts.characteristics._
 
@@ -10,5 +10,5 @@ trait OccupationSkillPointsRule {
       brain: Brain,
       edu: Education,
       app: Appearance
-  ): OccupationSkillPoints
+  ): InvestigatorSkillPoints
 }

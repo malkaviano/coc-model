@@ -4,7 +4,7 @@ import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 
 import com.malk.coc.concepts.skills._
-import com.malk.coc.concepts.occupations.OccupationSkillPoints
+import com.malk.coc.concepts.occupations.InvestigatorSkillPoints
 import org.scalamock.scalatest.MockFactory
 import com.malk.coc.concepts.characteristics.Dexterity
 import com.malk.coc.concepts.characteristics.Education
@@ -388,15 +388,15 @@ class SkillHelperSpec extends AnyFunSpec with Matchers with MockFactory {
       Seq(
         (
           30,
-          OccupationSkillPoints(100),
+          InvestigatorSkillPoints(100),
           maximumCreditRating,
-          OccupationSkillPoints(70)
+          InvestigatorSkillPoints(70)
         ),
         (
           20,
-          OccupationSkillPoints(10),
+          InvestigatorSkillPoints(10),
           CreditRating(25),
-          OccupationSkillPoints(0)
+          InvestigatorSkillPoints(0)
         )
       ).foreach(t => {
         val spend = t._1
@@ -409,7 +409,14 @@ class SkillHelperSpec extends AnyFunSpec with Matchers with MockFactory {
             describe(s"spending ${spend} points on Credit Rating") {
               describe(s"when ${occupationSkillPoints}") {
                 it(s"should return ${expected}") {
-                  rollRange.stubs((0, 30)).returning(spend)
+                  rollRange
+                    .stubs(
+                      (
+                        0,
+                        maximumCreditRating.value - startingCreditRating.value
+                      )
+                    )
+                    .returning(spend)
 
                   val result = SkillHelper.spendPointsOnCreditRating(
                     startingCreditRating,

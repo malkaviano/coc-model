@@ -57,13 +57,20 @@ class InvestigatorSpec extends AnyFunSpec with Matchers with MockFactory {
 
       val startCreditRating = occupationTemplate.startCreditRating
 
+      // TODO: Common Skills - occupationSkills - CreditRating = reserved skills
+
       val creditRating = SkillHelper.spendPointsOnCreditRating(
         occupationTemplate.startCreditRating,
         occupationTemplate.maximumCreditRating,
         occupationSkillPoints
       )
 
-      // TODO: Spent points
+      /*
+       TODO:
+         1 - Spent points on occupation skills
+         2 - Add occupation skills and credit rating to reserved skills
+         3 - Spent personal points
+       */
 
       val occupation = Occupation(
         occupationTemplate.name,

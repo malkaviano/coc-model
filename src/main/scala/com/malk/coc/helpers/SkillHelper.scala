@@ -3,7 +3,7 @@ package com.malk.coc.helpers
 import scala.util.Random
 
 import com.malk.coc.concepts.skills._
-import com.malk.coc.concepts.occupations.OccupationSkillPoints
+import com.malk.coc.concepts.occupations.InvestigatorSkillPoints
 import com.malk.coc.concepts.characteristics._
 import com.malk.coc.traits._
 
@@ -158,7 +158,7 @@ object SkillHelper {
   def spendPointsOnCreditRating(
       startingCreditRating: CreditRating,
       maximumCreditRating: CreditRating,
-      occupationSkillPoints: OccupationSkillPoints
+      occupationSkillPoints: InvestigatorSkillPoints
   )(implicit rollRange: ((Int, Int)) => Int): CreditRating = {
     val points = rollRange(
       (0, maximumCreditRating.value - startingCreditRating.value)

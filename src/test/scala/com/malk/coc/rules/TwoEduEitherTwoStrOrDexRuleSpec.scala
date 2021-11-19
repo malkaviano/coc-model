@@ -7,7 +7,7 @@ import com.malk.coc.concepts.abstractions.Body
 import com.malk.coc.concepts.characteristics.Education
 import com.malk.coc.concepts.characteristics.Appearance
 import com.malk.coc.concepts.abstractions.Brain
-import com.malk.coc.concepts.occupations.OccupationSkillPoints
+import com.malk.coc.concepts.occupations.InvestigatorSkillPoints
 import com.malk.coc.traits.OccupationSkillPointsRule
 import com.malk.coc.concepts.characteristics.Strength
 import com.malk.coc.concepts.characteristics.Dexterity
@@ -19,7 +19,7 @@ trait BehavesLikeOccupationSkillPointsRule extends AnyFunSpec with Matchers {
       brain: Brain,
       edu: Education,
       app: Appearance,
-      expected: OccupationSkillPoints
+      expected: InvestigatorSkillPoints
   ): Unit = {
     describe(s"when ${body} ${brain} ${edu} ${app}") {
       it(s"should return ${expected}") {
@@ -54,7 +54,7 @@ class TwoEduEitherTwoStrOrDexRuleSpec
         brain,
         edu,
         app,
-        OccupationSkillPoints(220)
+        InvestigatorSkillPoints(220)
       )
     }
 
@@ -67,7 +67,7 @@ class TwoEduEitherTwoStrOrDexRuleSpec
         brain,
         edu,
         app,
-        OccupationSkillPoints(240)
+        InvestigatorSkillPoints(240)
       )
     }
 
@@ -82,7 +82,7 @@ class TwoEduEitherTwoStrOrDexRuleSpec
         brain,
         edu,
         app,
-        OccupationSkillPoints(260)
+        InvestigatorSkillPoints(260)
       )
     }
   }

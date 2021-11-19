@@ -3,10 +3,10 @@ package com.malk.coc.concepts.occupations
 import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 
-class OccupationSkillPointsSpec extends AnyFunSpec with Matchers {
+class InvestigatorSkillPointsSpec extends AnyFunSpec with Matchers {
 
-  describe("OccupationSkillPoints behavior") {
-    val osp = OccupationSkillPoints(220)
+  describe("Investigator Skill Points behavior") {
+    val osp = InvestigatorSkillPoints(220)
 
     describe(s"${osp}") {
       describe("spend return") {
