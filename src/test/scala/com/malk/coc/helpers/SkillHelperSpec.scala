@@ -7,6 +7,8 @@ import com.malk.coc.concepts.skills._
 import com.malk.coc.concepts.occupations.InvestigatorSkillPoints
 import org.scalamock.scalatest.MockFactory
 import com.malk.coc.traits._
+import com.malk.coc.concepts.characteristics.Dexterity
+import com.malk.coc.concepts.characteristics.Education
 
 class SkillHelperSpec extends AnyFunSpec with Matchers with MockFactory {
   describe("Skill Helper") {
@@ -19,7 +21,7 @@ class SkillHelperSpec extends AnyFunSpec with Matchers with MockFactory {
       val filteredSkills: Set[Skill] = SkillHelper.allSkills -- modernEraSkill
 
       it(s"should be a list of filtered skills") {
-        SkillHelper.excludedSkills(modernEraSkill) should contain theSameElementsAs filteredSkills
+        SkillHelper.filteredSkills(modernEraSkill) should contain theSameElementsAs filteredSkills
       }
     }
 
@@ -197,6 +199,17 @@ class SkillHelperSpec extends AnyFunSpec with Matchers with MockFactory {
 
       it(s"should be a list of specialization skills") {
         SkillHelper.specializationsSkills should contain theSameElementsAs specializationsSkills
+      }
+    }
+
+    describe("Characteristic Skills") {
+      val characteristicSkills: Set[Skill] = Set(
+        Dodge(Dexterity(0))(0),
+        LanguageOwn(Education(0))(0)
+      )
+
+      it(s"should be a list of specialization skills") {
+        SkillHelper.characteristicSkills should contain theSameElementsAs characteristicSkills
       }
     }
 
