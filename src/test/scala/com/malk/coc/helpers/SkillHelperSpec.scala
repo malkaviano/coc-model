@@ -6,113 +6,20 @@ import org.scalatest.matchers.should.Matchers
 import com.malk.coc.concepts.skills._
 import com.malk.coc.concepts.occupations.InvestigatorSkillPoints
 import org.scalamock.scalatest.MockFactory
-import com.malk.coc.concepts.characteristics.Dexterity
-import com.malk.coc.concepts.characteristics.Education
-import com.malk.coc.traits.Skill
+import com.malk.coc.traits._
 
 class SkillHelperSpec extends AnyFunSpec with Matchers with MockFactory {
   describe("Skill Helper") {
-    val allSkills: Set[Skill] = Set(
-        Accounting(0),
-        Acting(0),
-        AnimalHandling(0),
-        Anthropology(0),
-        Appraise(0),
-        Archaeology(0),
-        Arctic(0),
-        Artillery(0),
-        Astronomy(0),
-        Axe(0),
-        Biology(0),
-        Botany(0),
-        Bow(0),
-        Brawl(0),
-        Chainsaw(0),
-        Charm(0),
-        Chemistry(0),
-        Climb(0),
-        ComputerUse(0),
-        CreditRating(0),
-        Cryptography(0),
-        CthulhuMythos(0),
-        Demolitions(0),
-        Desert(0),
-        Disguise(0),
-        Diving(0),
-        Dodge(Dexterity(0))(0),
-        DriveAuto(0),
-        ElectricalRepair(0),
-        Electronics(0),
-        Engineering(0),
-        FastTalk(0),
-        FineArt(0),
-        FirstAid(0),
-        Flail(0),
-        Flamethrower(0),
-        Forensics(0),
-        Forgery(0),
-        Garrote(0),
-        Geology(0),
-        Handgun(0),
-        HeavyWeapons(0),
-        History(0),
-        Hypnosis(0),
-        Intimidate(0),
-        Jump(0),
-        LanguageOwn(Education(0))(0),
-        Law(0),
-        LibraryUse(0),
-        Listen(0),
-        Locksmith(0),
-        MachineGun(0),
-        Mathematics(0),
-        MechanicalRepair(0),
-        Medicine(0),
-        Meteorology(0),
-        NaturalWorld(0),
-        Navigate(0),
-        Occult(0),
-        OperateHeavyMachinery(0),
-        Persuade(0),
-        Pharmacy(0),
-        Photography(0),
-        Physics(0),
-        Psychoanalysis(0),
-        Psychology(0),
-        ReadLips(0),
-        Ride(0),
-        RifleAndShotgun(0),
-        Sea(0),
-        SleightOfHand(0),
-        Spear(0),
-        SpotHidden(0),
-        Stealth(0),
-        SubmachineGun(0),
-        Swim(0),
-        Sword(0),
-        Throw(0),
-        Track(0),
-        Whip(0),
-        WildernessTerrain(0),
-        Zoology(0)
-      )
-
-    describe("All skills") {
-      it(s"should be a list of all skills") {
-        SkillHelper.allSkills should contain theSameElementsAs allSkills
-      }
-    }
-
     describe("filtered Skills") {
       val modernEraSkill: Set[Skill] = Set(
         ComputerUse(0),
         Electronics(0)
       )
 
-      val filteredSkills: Set[Skill] = allSkills -- modernEraSkill
+      val filteredSkills: Set[Skill] = SkillHelper.allSkills -- modernEraSkill
 
       it(s"should be a list of filtered skills") {
-        SkillHelper.filteredSkills(modernEraSkill) should contain theSameElementsAs filteredSkills
+        SkillHelper.excludedSkills(modernEraSkill) should contain theSameElementsAs filteredSkills
       }
     }
 

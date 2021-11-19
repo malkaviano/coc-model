@@ -115,7 +115,7 @@ object SkillHelper {
       .toSet -- firearmsSkills -- fightingSkills
   }
 
-  def filteredSkills(exclude: Set[Skill]): Set[Skill] = {
+  def excludedSkills(exclude: Set[Skill]): Set[Skill] = {
     allSkills -- exclude
   }
 
