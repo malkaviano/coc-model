@@ -115,7 +115,11 @@ object SkillHelper {
       .toSet -- firearmsSkills -- fightingSkills
   }
 
-  def excludedSkills(exclude: Set[Skill]): Set[Skill] = {
+  val characteristicSkills: Set[Skill] = {
+    allSkills.filter(_.isInstanceOf[CharacteristicSkill[_]]).toSet
+  }
+
+  def filteredSkills(exclude: Set[Skill]): Set[Skill] = {
     allSkills -- exclude
   }
 
