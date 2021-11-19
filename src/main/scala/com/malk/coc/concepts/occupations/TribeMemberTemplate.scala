@@ -19,7 +19,7 @@ final class TribeMemberTemplate extends OccupationTemplate {
     cr
   }
 
-  val fixedSkills: Set[Skill] = Set(
+  def fixedSkills: Set[Skill] = Set(
     Climb(),
     NaturalWorld(),
     Listen(),
@@ -28,7 +28,7 @@ final class TribeMemberTemplate extends OccupationTemplate {
     Swim()
   )
 
-  val optionalSkills: Set[(Int, Set[Skill])] = Set(
+  def optionalSkills: Set[(Int, Set[Skill])] = Set(
     (
       1,
       Set(

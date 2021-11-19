@@ -20,6 +20,10 @@ abstract class Skill extends BaseValueSkill with CanPushSkill {
   def spend(points: Int): Unit = {
     spent += points
   }
+
+  override def toString(): String = {
+    s"${name} with base: ${base} and value: ${value}"
+  }
 }
 
 abstract class CharacteristicSkill[A <: Characteristic] extends Skill

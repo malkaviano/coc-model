@@ -32,9 +32,29 @@ final case class Occupation(
       occupationTemplate.optionalSkills
     )
 
-  private val spentSkillPoints: Set[Skill] = chosenOccupationSkills
+  private val spentSkillPoints: Set[Skill] = {
+    while (occupationSkillPoints.remaining > 0) {
+      chosenOccupationSkills.foreach(skill => {
+        val points = occupationSkillPoints.spend(rangeDice((0, 10)))
+
+        spendOccupationSkillPoints(skill, points)
+      })
+    }
+
+    chosenOccupationSkills
+  }
 
   val name: String = occupationTemplate.name
 
-  val skills: Set[Skill] = spentSkillPoints + creditRating
+  val skills: Set[Skill] =
+    spentSkillPoints + creditRating
+
+  private def spendOccupationSkillPoints(
+      skill: Skill,
+      points: Int
+  ): Skill = {
+    skill.spend(points)
+
+    skill
+  }
 }

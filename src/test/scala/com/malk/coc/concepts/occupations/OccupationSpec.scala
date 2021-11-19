@@ -28,8 +28,16 @@ class OccupationSpec extends AnyFunSpec with Matchers {
       occupation.name shouldBe "TRIBE MEMBER"
     }
 
-    describe("Skills") {
-      it("should have skills") {
+    val occupationSkillPoints =
+      template.occupationSkillPointsRule.occupationSkillPoints(
+        implicitBody,
+        implicitBrain,
+        implicitEdu,
+        implicitApp
+      )
+
+    describe(s"when ${occupationSkillPoints}") {
+      it(s"should have ${occupation.skills}") {
         occupation.skills should have size 9
       }
 
@@ -37,27 +45,25 @@ class OccupationSpec extends AnyFunSpec with Matchers {
       val maxCR = template.maximumCreditRating
 
       it(
-        s"should have Credit Rating between ${minCR} and ${maxCR}"
+        s"should have Credit Rating between ${minCR.value} and ${maxCR.value}"
       ) {
         val result = occupation.skills.filter(_.name == "Credit Rating").head
 
         result.value should (be >= minCR.value and be <= maxCR.value)
       }
 
-      val occupationSkillPoints =
-        template.occupationSkillPointsRule.occupationSkillPoints(
-          body,
-          brain,
-          edu,
-          app
-        )
-
       it(
-        s"should have all skills with points spent"
+        s"should have spent all occupation skills points"
       ) {
-        val result = occupation.skills.map(_.value).reduce(_ + _)
+        val resultSkills = occupation.skills.toSeq
 
-        result shouldBe occupationSkillPoints
+        val skillValues = resultSkills.map(_.value).reduce(_ + _)
+        val baseValues = resultSkills.map(_.base).reduce(_ + _)
+        val spentOnSkills = skillValues - baseValues
+
+        val result = occupationSkillPoints.remaining - spentOnSkills
+
+        result shouldBe 0
       }
     }
   }
