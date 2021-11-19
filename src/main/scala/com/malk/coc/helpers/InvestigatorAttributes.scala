@@ -23,7 +23,8 @@ object InvestigatorAttributes {
   }
 
   object implicits {
-      implicit def age: Age = randomAge
-    implicit def luck(implicit sixSidedDice: SixSidedDice, age: Age): Luck = randomLuck(sixSidedDice, age)
+    implicit def age: Age = randomAge
+    implicit def luck(implicit sixSidedDice: SixSidedDice, age: Age): Luck =
+      randomLuck(sixSidedDice, age)
   }
 }

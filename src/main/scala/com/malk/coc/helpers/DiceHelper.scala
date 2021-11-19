@@ -26,5 +26,7 @@ object DiceHelper {
     implicit val tenSidedDice = TenSidedDice(rollRange)
 
     implicit val hundredSidedDice = HundredSidedDice(rollRange)
+
+    implicit def rangeDice(range: (Int, Int)): Int = rollRange(range)
   }
 }
