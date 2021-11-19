@@ -56,7 +56,7 @@ final case class Occupation(
       15
     )
 
-    val eligible = chosenOccupationSkills ++ reservedSkills
+    val eligible = chosenOccupationSkills ++ reservedSkills + creditRating
 
     spentAllPoints(
       Random.shuffle(eligible.toSeq),
@@ -67,9 +67,8 @@ final case class Occupation(
 
   val name: String = occupationTemplate.name
 
-  // FIXME: Credit Rating is eligible to personal points.
   val skills: Set[Skill] =
-    spentSkillPoints + CthulhuMythos() + creditRating
+    spentSkillPoints + CthulhuMythos()
 
   private def spentAllPoints(
       skills: Seq[Skill],
@@ -78,7 +77,17 @@ final case class Occupation(
   ): Set[Skill] = {
     while (investigatorSkillPoints.remaining > 0) {
       skills.foreach(skill => {
-        val points = investigatorSkillPoints.spend(rangeDice((0, maxIncrement)))
+        val maxRange = if (skill.isInstanceOf[CreditRating]) {
+          occupationTemplate.maximumCreditRating.value - skill.value
+        } else {
+          maxIncrement
+        }
+
+        val points = if (maxRange == 0) {
+          0
+        } else {
+          investigatorSkillPoints.spend(rangeDice((0, maxRange)))
+        }
 
         spendOccupationSkillPoints(skill, points)
       })
