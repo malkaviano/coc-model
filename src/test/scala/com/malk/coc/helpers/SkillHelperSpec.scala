@@ -8,6 +8,7 @@ import com.malk.coc.concepts.occupations.OccupationSkillPoints
 import org.scalamock.scalatest.MockFactory
 import com.malk.coc.concepts.characteristics.Dexterity
 import com.malk.coc.concepts.characteristics.Education
+import com.malk.coc.traits.Skill
 
 class SkillHelperSpec extends AnyFunSpec with Matchers with MockFactory {
   describe("Skill Helper") {
@@ -103,41 +104,29 @@ class SkillHelperSpec extends AnyFunSpec with Matchers with MockFactory {
     }
 
     describe("Common Skills") {
-      val commonSkills = Set(
+      val commonSkills: Set[Skill] = Set(
         Accounting(0),
         Acting(0),
-        Anthropology(0),
         Appraise(0),
-        Archaeology(0),
         Arctic(0),
-        Astronomy(0),
         Axe(0),
-        Biology(0),
-        Botany(0),
         Bow(0),
         Brawl(0),
         Chainsaw(0),
         Charm(0),
-        Chemistry(0),
         Climb(0),
-        CreditRating(0),
-        Cryptography(0),
-        CthulhuMythos(0),
         Desert(0),
         Disguise(0),
         Dodge(Dexterity(0))(0),
         DriveAuto(0),
         ElectricalRepair(0),
-        Engineering(0),
         FastTalk(0),
         FineArt(0),
         FirstAid(0),
         Flail(0),
         Flamethrower(0),
-        Forensics(0),
         Forgery(0),
         Garrote(0),
-        Geology(0),
         Handgun(0),
         HeavyWeapons(0),
         History(0),
@@ -147,21 +136,14 @@ class SkillHelperSpec extends AnyFunSpec with Matchers with MockFactory {
         Law(0),
         LibraryUse(0),
         Listen(0),
-        Locksmith(0),
         MachineGun(0),
         Mathematics(0),
         MechanicalRepair(0),
-        Medicine(0),
-        Meteorology(0),
         NaturalWorld(0),
         Navigate(0),
         Occult(0),
-        OperateHeavyMachinery(0),
         Persuade(0),
-        Pharmacy(0),
         Photography(0),
-        Physics(0),
-        Psychoanalysis(0),
         Psychology(0),
         Ride(0),
         RifleAndShotgun(0),
@@ -177,7 +159,25 @@ class SkillHelperSpec extends AnyFunSpec with Matchers with MockFactory {
         Track(0),
         Whip(0),
         WildernessTerrain(0),
-        Zoology(0)
+        OperateHeavyMachinery(0),
+        Chemistry(0),
+        Engineering(0),
+        Geology(0),
+        Anthropology(0),
+        Locksmith(0),
+        Zoology(0),
+        Biology(0),
+        Botany(0),
+        Forensics(0),
+        Pharmacy(0),
+        Astronomy(0),
+        Cryptography(0),
+        Physics(0),
+        Psychoanalysis(0),
+        Medicine(0),
+        Meteorology(0),
+        Archaeology(0),
+        CreditRating(0)
       )
 
       it(s"should be a list of common skills") {
@@ -219,7 +219,7 @@ class SkillHelperSpec extends AnyFunSpec with Matchers with MockFactory {
         Electronics(0)
       )
 
-      it(s"should be a list of Uncommon skills") {
+      it(s"should be a list of Modern skills") {
         SkillHelper.modernSkills should contain theSameElementsAs modernSkills
       }
     }
@@ -316,8 +316,8 @@ class SkillHelperSpec extends AnyFunSpec with Matchers with MockFactory {
       }
     }
 
-    describe("Firearm Skills") {
-      val firearmSkills = Set(
+    describe("Firearms Skills") {
+      val firearmsSkills = Set(
         Bow(0),
         Handgun(0),
         HeavyWeapons(0),
@@ -327,8 +327,38 @@ class SkillHelperSpec extends AnyFunSpec with Matchers with MockFactory {
         SubmachineGun(0)
       )
 
-      it(s"should be a list of firearm skills") {
-        SkillHelper.firearmSkills should contain theSameElementsAs firearmSkills
+      it(s"should be a list of firearms skills") {
+        SkillHelper.firearmsSkills should contain theSameElementsAs firearmsSkills
+      }
+    }
+
+    describe("Specialization Skills") {
+      val specializationsSkills = Set(
+        Astronomy(0),
+        Biology(0),
+        Botany(0),
+        Chemistry(0),
+        Cryptography(0),
+        Engineering(0),
+        Forensics(0),
+        Geology(0),
+        Mathematics(0),
+        Meteorology(0),
+        Pharmacy(0),
+        Physics(0),
+        Zoology(0),
+        Acting(0),
+        FineArt(0),
+        Forgery(0),
+        Photography(0),
+        Arctic(0),
+        Desert(0),
+        Sea(0),
+        WildernessTerrain(0)
+      )
+
+      it(s"should be a list of specialization skills") {
+        SkillHelper.specializationsSkills should contain theSameElementsAs specializationsSkills
       }
     }
 
@@ -336,7 +366,7 @@ class SkillHelperSpec extends AnyFunSpec with Matchers with MockFactory {
       Seq((1, 3, 4), (4, 2, 6), (10, 4, 12)).foreach(t => {
         val skills = Set(
           (t._1, SkillHelper.fightingSkills),
-          (t._2, SkillHelper.firearmSkills)
+          (t._2, SkillHelper.firearmsSkills)
         )
 
         describe(s"when pick ${t._3} from ${skills}") {

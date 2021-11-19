@@ -3,12 +3,9 @@ package com.malk.coc.helpers
 import scala.util.Random
 
 import com.malk.coc.concepts.skills._
-import com.malk.coc.traits.Skill
 import com.malk.coc.concepts.occupations.OccupationSkillPoints
 import com.malk.coc.concepts.characteristics._
-import com.malk.coc.traits.UncommonSkill
-import com.malk.coc.traits.InterpersonalSkill
-import com.malk.coc.traits.ModernEraSkill
+import com.malk.coc.traits._
 
 object SkillHelper {
   val allSkills: Set[Skill] = Set(
@@ -100,7 +97,7 @@ object SkillHelper {
     allSkills.filter(_.isInstanceOf[Fighting])
   }
 
-  val firearmSkills: Set[Skill] = {
+  val firearmsSkills: Set[Skill] = {
     allSkills.filter(_.isInstanceOf[Firearm])
   }
 
@@ -112,8 +109,16 @@ object SkillHelper {
     allSkills.filter(_.isInstanceOf[ModernEraSkill]).toSet
   }
 
+  val specializationsSkills: Set[Skill] = {
+    allSkills
+      .filter(_.isInstanceOf[GenericSkill])
+      .toSet -- firearmsSkills -- fightingSkills
+  }
+
   val commonSkills: Set[Skill] = {
-    allSkills -- uncommonSkills -- modernSkills
+    allSkills -- uncommonSkills -- modernSkills - CthulhuMythos(
+      0
+    )
   }
 
   val interpersonalSkills: Set[Skill] = {
