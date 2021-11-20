@@ -125,7 +125,20 @@ class SkillHelperSpec extends AnyFunSpec with Matchers with MockFactory {
 
     describe("Language Other Skills") {
       val languageOtherSkills = Set(
-        ArabicLanguageOther()
+        ArabicLanguageOther(),
+        ChineseLanguageOther(),
+        EnglishLanguageOther(),
+        FrenchLanguageOther(),
+        GermanLanguageOther(),
+        ItalianLanguageOther(),
+        JapaneseLanguageOther(),
+        PolishLanguageOther(),
+        PortugueseLanguageOther(),
+        RussianLanguageOther(),
+        SpanishLanguageOther(),
+        SpanishLanguageOther(),
+        SpanishLanguageOther(),
+        TurkishLanguageOther()
       )
 
       it(s"should be a list of Language Other skills") {
@@ -252,8 +265,12 @@ class SkillHelperSpec extends AnyFunSpec with Matchers with MockFactory {
         startingCreditRating.spend(t._5)
         maximumCreditRating.spend(t._6)
 
-        describe(s"when initial Credit Rating value is ${startingCreditRating.value}") {
-          describe(s"when maximum Credit Rating value is ${maximumCreditRating.value}") {
+        describe(
+          s"when initial Credit Rating value is ${startingCreditRating.value}"
+        ) {
+          describe(
+            s"when maximum Credit Rating value is ${maximumCreditRating.value}"
+          ) {
             describe(s"spending ${spend} points on Credit Rating") {
               describe(s"when ${occupationSkillPoints}") {
                 it(s"should return Credit Rating value ${expected.value}") {

@@ -6,8 +6,7 @@ import com.malk.coc.concepts.skills._
 import com.malk.coc.concepts.occupations.InvestigatorSkillPoints
 import com.malk.coc.concepts.characteristics._
 import com.malk.coc.traits._
-import com.malk.coc.concepts.skills.languages.other.LanguageOther
-import com.malk.coc.concepts.skills.languages.other.ArabicLanguageOther
+import com.malk.coc.concepts.skills.languages.other._
 
 object SkillHelper {
   def allSkills: Set[Skill] = Set(
@@ -92,7 +91,20 @@ object SkillHelper {
     Whip(),
     WildernessTerrain(),
     Zoology(),
-    ArabicLanguageOther()
+    ArabicLanguageOther(),
+    ChineseLanguageOther(),
+    EnglishLanguageOther(),
+    FrenchLanguageOther(),
+    GermanLanguageOther(),
+    ItalianLanguageOther(),
+    JapaneseLanguageOther(),
+    PolishLanguageOther(),
+    PortugueseLanguageOther(),
+    RussianLanguageOther(),
+    SpanishLanguageOther(),
+    SpanishLanguageOther(),
+    SpanishLanguageOther(),
+    TurkishLanguageOther()
   )
 
   def fightingSkills: Set[Skill] = {
