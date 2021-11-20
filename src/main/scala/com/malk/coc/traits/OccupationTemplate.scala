@@ -6,6 +6,7 @@ import com.malk.coc.concepts.characteristics.Education
 import com.malk.coc.concepts.characteristics.Appearance
 import com.malk.coc.concepts.skills.CreditRating
 import com.malk.coc.concepts.occupations.InvestigatorSkillPoints
+import com.malk.coc.concepts.skills.languages.Language
 
 trait OccupationTemplate {
   def name: String
@@ -29,6 +30,7 @@ trait OccupationTemplate {
       body: Body,
       brain: Brain,
       edu: Education,
-      app: Appearance
+      app: Appearance,
+      language: Language
   ): (Set[Skill], Set[(Int, Set[Skill])], Set[Skill], Set[Skill])
 }

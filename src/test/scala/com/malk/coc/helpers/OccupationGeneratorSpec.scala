@@ -6,6 +6,9 @@ import org.scalatest.matchers.should.Matchers
 import com.malk.coc.helpers.SkillHelper
 import com.malk.coc.concepts.occupations.TribeMemberTemplate
 import com.malk.coc.concepts.occupations.InvestigatorSkillPoints
+import com.malk.coc.concepts.skills.languages.Arabic
+import com.malk.coc.concepts.skills.languages.own.LanguageOwn
+import com.malk.coc.concepts.characteristics.Education
 
 class OccupationGeneratorSpec extends AnyFunSpec with Matchers {
   import com.malk.coc.helpers.InvestigatorCharacteristics.implicits._
@@ -18,12 +21,16 @@ class OccupationGeneratorSpec extends AnyFunSpec with Matchers {
     val implicitEdu = edu
     val implicitApp = app
 
+    // TODO: randomize this
+    val language = Arabic
+
     val occupation = OccupationGenerator(
       template,
       implicitBody,
       implicitBrain,
       implicitEdu,
-      implicitApp
+      implicitApp,
+      language
     )
 
     it("should have name TRIBE MEMBER") {
@@ -62,7 +69,7 @@ class OccupationGeneratorSpec extends AnyFunSpec with Matchers {
       it("should have all skills") {
         val available = SkillHelper
           .filteredSkills(template.excludedSkills)
-          .map(_.name)
+          .map(_.name) + LanguageOwn(Education(0))(language).name
 
         val result = occupation.skills.map(_.name)
 

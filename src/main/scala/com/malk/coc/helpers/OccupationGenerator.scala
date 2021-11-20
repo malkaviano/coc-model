@@ -8,13 +8,15 @@ import com.malk.coc.helpers.SkillHelper
 import com.malk.coc.concepts.skills.CreditRating
 import com.malk.coc.concepts.occupations.InvestigatorSkillPoints
 import scala.util.Random
+import com.malk.coc.concepts.skills.languages.Language
 
 final case class OccupationGenerator(
     private val occupationTemplate: OccupationTemplate,
     private val body: Body,
     private val brain: Brain,
     private val edu: Education,
-    private val app: Appearance
+    private val app: Appearance,
+    private val language: Language
 )(implicit private val rangeDice: ((Int, Int)) => Int) {
   private val occupationSkillPoints =
     occupationTemplate.occupationSkillPoints(
@@ -29,7 +31,7 @@ final case class OccupationGenerator(
   )
 
   private val templateSkills =
-    occupationTemplate.templateSkills(body, brain, edu, app)
+    occupationTemplate.templateSkills(body, brain, edu, app, language)
 
   private val chosenOccupationSkills =
     templateSkills._1 ++ SkillHelper.chooseSkills(
@@ -57,7 +59,8 @@ final case class OccupationGenerator(
   val skills: Set[Skill] =
     spentSkillPoints ++ templateSkills._4
 
-  val remainingPoints: Int = occupationSkillPoints.remaining + personalInterestPoints.remaining
+  val remainingPoints: Int =
+    occupationSkillPoints.remaining + personalInterestPoints.remaining
 
   private def spentAllPoints(
       skills: Seq[Skill],

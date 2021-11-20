@@ -3,8 +3,10 @@ package com.malk.coc.concepts.occupations
 import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 import com.malk.coc.concepts.skills._
+import com.malk.coc.concepts.skills.languages.own._
 import com.malk.coc.traits.Skill
 import com.malk.coc.helpers.SkillHelper
+import com.malk.coc.concepts.skills.languages.Arabic
 
 class TribeMemberTemplateSpec extends AnyFunSpec with Matchers {
   import com.malk.coc.helpers.InvestigatorCharacteristics.implicits._
@@ -52,9 +54,12 @@ class TribeMemberTemplateSpec extends AnyFunSpec with Matchers {
     val implicitEdu = edu
     val implicitApp = app
 
+    // TODO: Randomize
+    val language = Arabic
+
     val selfSkills = Set(
       Dodge(implicitBody.dexterity)(),
-      LanguageOwn(implicitEdu)()
+      LanguageOwn(implicitEdu)(language)
     )
 
     val personalSkills: Set[Skill] = SkillHelper.filteredSkills(
@@ -82,7 +87,8 @@ class TribeMemberTemplateSpec extends AnyFunSpec with Matchers {
         implicitBody,
         implicitBrain,
         implicitEdu,
-        implicitApp
+        implicitApp,
+        language
       )
 
       it(s"should have a list of fixed skills") {
