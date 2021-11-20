@@ -4,18 +4,23 @@ import com.malk.coc.concepts.skills.languages.BehavesLikeLanguageSkill
 import com.malk.coc.concepts.skills.languages.own.LanguageOwn
 import com.malk.coc.concepts.characteristics.Education
 import com.malk.coc.concepts.skills.languages._
+import com.malk.coc.concepts.skills.BehavesLikeSkill
 
-class TurkishLanguageOtherSpec extends BehavesLikeLanguageSkill {
+class TurkishLanguageOtherSpec extends BehavesLikeLanguageSkill with BehavesLikeSkill{
   val skillName = "Language Other (Turkish)"
 
   val skill = TurkishLanguageOther()
 
-  checkLanguageBehavior(
+  behavesLikeSkill(
     skill,
     skillName,
     1,
     true,
-    20,
+    20
+  )
+
+  checkLanguageBehavior(
+    skill,
     (
       TurkishLanguageOther(),
       EnglishLanguageOther(),
