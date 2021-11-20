@@ -9,6 +9,8 @@ import com.malk.coc.concepts.skills._
 import com.malk.coc.concepts.characteristics.Dexterity
 import com.malk.coc.helpers.SkillHelper
 import com.malk.coc.rules.TwoEduEitherTwoStrOrDexRule
+import com.malk.coc.concepts.skills.languages.Language
+import com.malk.coc.concepts.skills.languages.own._
 
 final class SoldierTemplate extends OccupationTemplate {
   override def name: String = SoldierTemplate.name
@@ -38,11 +40,12 @@ final class SoldierTemplate extends OccupationTemplate {
       body: Body,
       brain: Brain,
       edu: Education,
-      app: Appearance
+      app: Appearance,
+      language: Language
   ): (Set[Skill], Set[(Int, Set[Skill])], Set[Skill], Set[Skill]) = {
      val dodge = Dodge(body.dexterity)()
 
-     val languageOwn = LanguageOwn(edu)()
+     val languageOwn = LanguageOwn(edu)(language)
 
     (
       (fixedSkills - dodge) + dodge,

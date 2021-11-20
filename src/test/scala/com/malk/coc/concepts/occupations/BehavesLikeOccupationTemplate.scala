@@ -8,6 +8,7 @@ import com.malk.coc.concepts.skills.CreditRating
 import com.malk.coc.concepts.abstractions._
 import com.malk.coc.concepts.characteristics._
 import com.malk.coc.traits.Skill
+import com.malk.coc.concepts.skills.languages.Language
 
 trait BehavesLikeOccupationTemplate extends AnyFunSpec with Matchers {
   def behavesLikeOccupationTemplate(
@@ -22,7 +23,8 @@ trait BehavesLikeOccupationTemplate extends AnyFunSpec with Matchers {
       fixedSkills: Set[Skill],
       optionalSkills: Set[(Int, Set[Skill])],
       personalSkills: Set[Skill],
-      nonTrainableSkills: Set[Skill]
+      nonTrainableSkills: Set[Skill],
+      language: Language
   ): Unit = {
     it(s"should have name ${templateName}") {
       occupationTemplate.name shouldBe templateName
@@ -41,7 +43,8 @@ trait BehavesLikeOccupationTemplate extends AnyFunSpec with Matchers {
         implicitBody,
         implicitBrain,
         implicitEdu,
-        implicitApp
+        implicitApp,
+        language
       )
 
       it(s"should have a list of fixed skills") {
