@@ -170,7 +170,7 @@ class SkillHelperSpec extends AnyFunSpec with Matchers with MockFactory {
       )
 
       it(s"should be a list of firearms skills") {
-        SkillHelper.firearmsSkills should contain theSameElementsAs firearmsSkills
+        SkillHelper.firearmSkills should contain theSameElementsAs firearmsSkills
       }
     }
 
@@ -219,7 +219,7 @@ class SkillHelperSpec extends AnyFunSpec with Matchers with MockFactory {
       Seq((1, 3, 4), (4, 2, 6), (10, 4, 12)).foreach(t => {
         val skills = Set(
           (t._1, SkillHelper.fightingSkills),
-          (t._2, SkillHelper.firearmsSkills)
+          (t._2, SkillHelper.firearmSkills)
         )
 
         describe(s"when pick ${t._3} from ${skills}") {

@@ -14,10 +14,6 @@ trait OccupationTemplate {
 
   def maximumCreditRating: Int
 
-  def fixedSkills: Set[Skill]
-
-  def optionalSkills: Set[(Int, Set[Skill])]
-
   def occupationSkillPoints(
       body: Body,
       brain: Brain,

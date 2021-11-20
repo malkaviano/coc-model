@@ -97,7 +97,7 @@ object SkillHelper {
     allSkills.filter(_.isInstanceOf[Fighting])
   }
 
-  def firearmsSkills: Set[Skill] = {
+  def firearmSkills: Set[Skill] = {
     allSkills.filter(_.isInstanceOf[Firearm])
   }
 
@@ -112,7 +112,7 @@ object SkillHelper {
   def specializationsSkills: Set[Skill] = {
     allSkills
       .filter(_.isInstanceOf[GenericSkill])
-      .toSet -- firearmsSkills -- fightingSkills
+      .toSet -- firearmSkills -- fightingSkills
   }
 
   def characteristicSkills: Set[Skill] = {
