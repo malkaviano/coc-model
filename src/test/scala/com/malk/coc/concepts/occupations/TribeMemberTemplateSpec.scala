@@ -4,7 +4,6 @@ import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 import com.malk.coc.concepts.skills._
 import com.malk.coc.traits.Skill
-import com.malk.coc.rules.TwoEduEitherTwoStrOrDexRule
 import com.malk.coc.helpers.SkillHelper
 
 class TribeMemberTemplateSpec extends AnyFunSpec with Matchers {
@@ -62,8 +61,6 @@ class TribeMemberTemplateSpec extends AnyFunSpec with Matchers {
       nonTrainableSkills ++ excludedSkills ++ selfSkills
     ) ++ selfSkills
 
-    val occupationSkillPointsRule = new TwoEduEitherTwoStrOrDexRule
-
     it("should have name TRIBE MEMBER") {
       occupationTemplate.name shouldBe "TRIBE MEMBER"
     }
@@ -103,12 +100,6 @@ class TribeMemberTemplateSpec extends AnyFunSpec with Matchers {
       it(s"should have a list of non trainable skills") {
         result._4 should contain theSameElementsAs nonTrainableSkills
       }
-    }
-
-    it(
-      "should have Occupation Skill Points Rule equal TwoEduEitherTwoStrOrDexRule"
-    ) {
-      occupationTemplate.occupationSkillPointsRule.name shouldBe occupationSkillPointsRule.name
     }
   }
 }

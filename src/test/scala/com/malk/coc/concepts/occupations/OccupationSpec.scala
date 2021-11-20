@@ -30,7 +30,7 @@ class OccupationSpec extends AnyFunSpec with Matchers {
     }
 
     val occupationSkillPoints =
-      template.occupationSkillPointsRule.occupationSkillPoints(
+      template.occupationSkillPoints(
         implicitBody,
         implicitBrain,
         implicitEdu,

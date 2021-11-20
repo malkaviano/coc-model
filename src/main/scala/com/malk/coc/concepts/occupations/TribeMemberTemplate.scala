@@ -49,7 +49,16 @@ final class TribeMemberTemplate extends OccupationTemplate {
     nonTrainableSkills ++ excludedSkills
   )
 
-  val occupationSkillPointsRule = new TwoEduEitherTwoStrOrDexRule
+  def occupationSkillPoints(
+      body: Body,
+      brain: Brain,
+      edu: Education,
+      app: Appearance
+  ): InvestigatorSkillPoints = {
+    val rule = new TwoEduEitherTwoStrOrDexRule
+
+    rule.occupationSkillPoints(body, brain, edu, app)
+  }
 
   def templateSkills(
       body: Body,

@@ -17,7 +17,7 @@ final case class Occupation(
     private val app: Appearance
 )(implicit private val rangeDice: ((Int, Int)) => Int) {
   private val occupationSkillPoints =
-    occupationTemplate.occupationSkillPointsRule.occupationSkillPoints(
+    occupationTemplate.occupationSkillPoints(
       body,
       brain,
       edu,
