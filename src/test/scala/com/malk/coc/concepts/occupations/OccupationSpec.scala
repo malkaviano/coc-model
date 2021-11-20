@@ -55,23 +55,12 @@ class OccupationSpec extends AnyFunSpec with Matchers {
       it(
         s"should have spent all occupation skills points"
       ) {
-        val resultSkills = occupation.skills.toSeq
-
-        val skillValues = resultSkills.map(_.value).reduce(_ + _)
-        val baseValues = resultSkills.map(_.base).reduce(_ + _)
-        val spentOnSkills = skillValues - baseValues
-
-        val result =
-          (occupationSkillPoints.remaining + personalInterestPoints.remaining) - spentOnSkills
-
-        result shouldBe 0
+        occupation.remainingPoints shouldBe 0
       }
 
       it("should have all skills") {
         val available = SkillHelper
-          .filteredSkills(
-            SkillHelper.modernSkills ++ SkillHelper.uncommonSkills
-          )
+          .filteredSkills(template.excludedSkills)
           .map(_.name)
 
         val result = occupation.skills.map(_.name)

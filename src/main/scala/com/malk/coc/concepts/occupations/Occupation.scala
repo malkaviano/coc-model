@@ -5,11 +5,8 @@ import com.malk.coc.traits.OccupationTemplate
 import com.malk.coc.concepts.characteristics._
 import com.malk.coc.concepts.abstractions._
 import com.malk.coc.helpers.SkillHelper
-import com.malk.coc.concepts.skills.CthulhuMythos
 import com.malk.coc.concepts.skills.CreditRating
 import com.malk.coc.concepts.occupations.InvestigatorSkillPoints
-import com.malk.coc.concepts.skills.Dodge
-import com.malk.coc.concepts.skills.LanguageOwn
 import scala.util.Random
 
 final case class Occupation(
@@ -37,21 +34,13 @@ final case class Occupation(
     occupationSkillPoints
   )
 
-  private val chosenOccupationSkills =
-    occupationTemplate.fixedSkills ++ SkillHelper.chooseSkills(
-      occupationTemplate.optionalSkills
-    )
+  private val templateSkills =
+    occupationTemplate.templateSkills(body, brain, edu, app)
 
-  private val reservedSkills =
-    SkillHelper.allSkills -- chosenOccupationSkills - CthulhuMythos() - CreditRating() - Dodge(
-      Dexterity(0)
-    )() - LanguageOwn(
-      Education(0)
-    )() -- SkillHelper.modernSkills -- SkillHelper.uncommonSkills + Dodge(
-      body.dexterity
-    )() + LanguageOwn(
-      edu
-    )()
+  private val chosenOccupationSkills =
+    templateSkills._1 ++ SkillHelper.chooseSkills(
+      templateSkills._2
+    )
 
   private val spentSkillPoints: Set[Skill] = {
     spentAllPoints(
@@ -60,7 +49,7 @@ final case class Occupation(
       15
     )
 
-    val eligible = chosenOccupationSkills ++ reservedSkills + creditRating
+    val eligible = chosenOccupationSkills ++ templateSkills._3 + creditRating
 
     spentAllPoints(
       Random.shuffle(eligible.toSeq),
@@ -72,7 +61,9 @@ final case class Occupation(
   val name: String = occupationTemplate.name
 
   val skills: Set[Skill] =
-    spentSkillPoints + CthulhuMythos()
+    spentSkillPoints ++ templateSkills._4
+
+  val remainingPoints: Int = occupationSkillPoints.remaining + personalInterestPoints.remaining
 
   private def spentAllPoints(
       skills: Seq[Skill],
