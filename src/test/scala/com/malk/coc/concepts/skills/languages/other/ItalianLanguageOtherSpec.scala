@@ -10,15 +10,17 @@ class ItalianLanguageOtherSpec extends BehavesLikeLanguageSkill {
 
   val skill = ItalianLanguageOther()
 
-  behavesLikeLanguageSkill(
+  checkLanguageBehavior(
     skill,
     skillName,
     1,
     true,
     20,
-    ItalianLanguageOther(),
-    EnglishLanguageOther(),
-    LanguageOwn(Education(50))(Italian),
-    LanguageOwn(Education(60))(Spanish)
+    (
+      ItalianLanguageOther(),
+      EnglishLanguageOther(),
+      LanguageOwn(Education(50))(Italian),
+      LanguageOwn(Education(60))(Spanish)
+    )
   )
 }

@@ -6,17 +6,19 @@ import org.scalatest.matchers.should.Matchers
 trait BehavesLikeLanguageSkill extends AnyFunSpec with Matchers {
   import com.malk.coc.traits.Skill
 
-  def behavesLikeLanguageSkill(
+  def checkLanguageBehavior(
       skill: Skill,
       skillName: String,
       skillBase: Int,
       skillCanPush: Boolean,
       spent: Int,
-      ownSameLanguage: Skill,
-      ownDifferentLanguage: Skill,
-      otherSameLanguage: Skill,
-      otherDifferentLanguage: Skill
+      skillsToCompare: (Skill, Skill, Skill, Skill)
   ): Unit = {
+    val ownSameLanguage: Skill = skillsToCompare._1
+    val ownDifferentLanguage: Skill = skillsToCompare._2
+    val otherSameLanguage: Skill = skillsToCompare._3
+    val otherDifferentLanguage: Skill = skillsToCompare._4
+
     describe(s"The ${skillName} skill") {
       it(s"should have name ${skillName}") {
         skill.name shouldBe skillName
