@@ -2,6 +2,7 @@ package com.malk.coc.concepts.occupations
 
 import com.malk.coc.traits.Skill
 import com.malk.coc.concepts.skills._
+import com.malk.coc.concepts.skills.languages.own._
 import com.malk.coc.helpers.SkillHelper
 import com.malk.coc.rules.TwoEduEitherTwoStrOrDexRule
 import com.malk.coc.traits.OccupationTemplate
@@ -9,6 +10,7 @@ import com.malk.coc.concepts.abstractions.Body
 import com.malk.coc.concepts.abstractions.Brain
 import com.malk.coc.concepts.characteristics.Education
 import com.malk.coc.concepts.characteristics.Appearance
+import com.malk.coc.concepts.skills.languages.Language
 
 final class TribeMemberTemplate extends OccupationTemplate {
   val name = TribeMemberTemplate.name
@@ -64,11 +66,12 @@ final class TribeMemberTemplate extends OccupationTemplate {
       body: Body,
       brain: Brain,
       edu: Education,
-      app: Appearance
+      app: Appearance,
+      language: Language
   ): (Set[Skill], Set[(Int, Set[Skill])], Set[Skill], Set[Skill]) = {
     val selfSkills = Set(
       Dodge(body.dexterity)(),
-      LanguageOwn(edu)()
+      LanguageOwn(edu)(language)
     )
 
     (

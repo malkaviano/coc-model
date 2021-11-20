@@ -4,12 +4,14 @@ import org.scalatest.funspec.AnyFunSpec
 
 import com.malk.coc.concepts.characteristics.Dexterity
 
-class DodgeSpec extends AnyFunSpec with BehavesLikeSkill {
+class DodgeSpec extends AnyFunSpec with BehavesLikeSkill with BehavesLikeSkillComparing {
   describe("The Dodge skill") {
     val dex = Dexterity(67)
 
     val skill = Dodge(dex)()
 
     behavesLikeSkill(skill, "Dodge", 33, false, 11)
+
+    behavesLikeSkillComparing(skill, "Dodge", 33, false)
   }
 }

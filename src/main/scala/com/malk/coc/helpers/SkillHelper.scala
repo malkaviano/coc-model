@@ -6,6 +6,8 @@ import com.malk.coc.concepts.skills._
 import com.malk.coc.concepts.occupations.InvestigatorSkillPoints
 import com.malk.coc.concepts.characteristics._
 import com.malk.coc.traits._
+import com.malk.coc.concepts.skills.languages.other.LanguageOther
+import com.malk.coc.concepts.skills.languages.other.ArabicLanguageOther
 
 object SkillHelper {
   def allSkills: Set[Skill] = Set(
@@ -55,7 +57,6 @@ object SkillHelper {
     Hypnosis(),
     Intimidate(),
     Jump(),
-    LanguageOwn(Education(0))(),
     Law(),
     LibraryUse(),
     Listen(),
@@ -90,7 +91,8 @@ object SkillHelper {
     Track(),
     Whip(),
     WildernessTerrain(),
-    Zoology()
+    Zoology(),
+    ArabicLanguageOther()
   )
 
   def fightingSkills: Set[Skill] = {
@@ -107,16 +109,6 @@ object SkillHelper {
 
   def modernSkills: Set[Skill] = {
     allSkills.filter(_.isInstanceOf[ModernEraSkill]).toSet
-  }
-
-  def specializationsSkills: Set[Skill] = {
-    allSkills
-      .filter(_.isInstanceOf[GenericSkill])
-      .toSet -- firearmSkills -- fightingSkills
-  }
-
-  def characteristicSkills: Set[Skill] = {
-    allSkills.filter(_.isInstanceOf[CharacteristicSkill[_]]).toSet
   }
 
   def filteredSkills(exclude: Set[Skill]): Set[Skill] = {
