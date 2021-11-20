@@ -6,6 +6,7 @@ import org.scalamock.scalatest.MockFactory
 
 import com.malk.coc.concepts.dices._
 import com.malk.coc.helpers.OccupationGenerator
+import com.malk.coc.concepts.skills.languages.Arabic
 
 class InvestigatorSpec extends AnyFunSpec with Matchers with MockFactory {
   describe("Generating random investigator") {
@@ -37,12 +38,16 @@ class InvestigatorSpec extends AnyFunSpec with Matchers with MockFactory {
 
       val occupationTemplate = randomOccupationTemplate
 
+      // TODO: randomize this
+      val language = Arabic
+
       val occupation = OccupationGenerator(
         occupationTemplate,
         body,
         brain,
         edu,
-        app
+        app,
+        language
       )
 
       Investigator(

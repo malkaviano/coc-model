@@ -3,7 +3,6 @@ package com.malk.coc.helpers
 import scala.util.Random
 
 import com.malk.coc.concepts.skills._
-import com.malk.coc.concepts.skills.languages.own._
 import com.malk.coc.concepts.occupations.InvestigatorSkillPoints
 import com.malk.coc.concepts.characteristics._
 import com.malk.coc.traits._
@@ -58,7 +57,6 @@ object SkillHelper {
     Hypnosis(),
     Intimidate(),
     Jump(),
-    LanguageOwn(Education(0))(),
     Law(),
     LibraryUse(),
     Listen(),
@@ -111,10 +109,6 @@ object SkillHelper {
 
   def modernSkills: Set[Skill] = {
     allSkills.filter(_.isInstanceOf[ModernEraSkill]).toSet
-  }
-
-  def characteristicSkills: Set[Skill] = {
-    allSkills.filter(_.isInstanceOf[CharacteristicSkill[_]]).toSet
   }
 
   def filteredSkills(exclude: Set[Skill]): Set[Skill] = {

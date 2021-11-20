@@ -10,6 +10,7 @@ import com.malk.coc.concepts.abstractions.Body
 import com.malk.coc.concepts.abstractions.Brain
 import com.malk.coc.concepts.characteristics.Education
 import com.malk.coc.concepts.characteristics.Appearance
+import com.malk.coc.concepts.skills.languages.Language
 
 final class TribeMemberTemplate extends OccupationTemplate {
   val name = TribeMemberTemplate.name
@@ -65,11 +66,12 @@ final class TribeMemberTemplate extends OccupationTemplate {
       body: Body,
       brain: Brain,
       edu: Education,
-      app: Appearance
+      app: Appearance,
+      language: Language
   ): (Set[Skill], Set[(Int, Set[Skill])], Set[Skill], Set[Skill]) = {
     val selfSkills = Set(
       Dodge(body.dexterity)(),
-      LanguageOwn(edu)()
+      LanguageOwn(edu)(language)
     )
 
     (
