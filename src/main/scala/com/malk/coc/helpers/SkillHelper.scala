@@ -3,11 +3,12 @@ package com.malk.coc.helpers
 import scala.util.Random
 
 import com.malk.coc.concepts.skills._
+import com.malk.coc.concepts.skills.languages.own._
 import com.malk.coc.concepts.occupations.InvestigatorSkillPoints
 import com.malk.coc.concepts.characteristics._
 import com.malk.coc.traits._
-import com.malk.coc.concepts.skills.language.other.LanguageOther
-import com.malk.coc.concepts.skills.language.other.ArabicLanguageOther
+import com.malk.coc.concepts.skills.languages.other.LanguageOther
+import com.malk.coc.concepts.skills.languages.other.ArabicLanguageOther
 
 object SkillHelper {
   def allSkills: Set[Skill] = Set(

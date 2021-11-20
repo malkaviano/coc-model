@@ -2,6 +2,7 @@ package com.malk.coc.concepts.occupations
 
 import com.malk.coc.traits.Skill
 import com.malk.coc.concepts.skills._
+import com.malk.coc.concepts.skills.languages.own._
 import com.malk.coc.helpers.SkillHelper
 import com.malk.coc.rules.TwoEduEitherTwoStrOrDexRule
 import com.malk.coc.traits.OccupationTemplate

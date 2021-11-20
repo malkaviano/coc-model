@@ -1,4 +1,4 @@
-package com.malk.coc.concepts.skills
+package com.malk.coc.concepts.skills.languages.own
 
 import com.malk.coc.concepts.characteristics.Education
 import com.malk.coc.traits.CharacteristicSkill
