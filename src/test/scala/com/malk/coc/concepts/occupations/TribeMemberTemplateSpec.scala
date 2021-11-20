@@ -13,10 +13,8 @@ class TribeMemberTemplateSpec extends AnyFunSpec with Matchers {
 
   describe("TRIBE MEMBER occupation") {
     val occupationTemplate = new TribeMemberTemplate
-    val startCreditRating = CreditRating()
-    val maximumCreditRating = CreditRating()
-
-    maximumCreditRating.spend(15)
+    val startCreditRating = 0
+    val maximumCreditRating = 15
 
     val fixedSkills: Set[Skill] = Set(
       Climb(),
@@ -24,7 +22,8 @@ class TribeMemberTemplateSpec extends AnyFunSpec with Matchers {
       Listen(),
       Occult(),
       SpotHidden(),
-      Swim()
+      Swim(),
+      CreditRating()
     )
 
     val optionalSkills: Set[(Int, Set[Skill])] = Set(
@@ -60,7 +59,7 @@ class TribeMemberTemplateSpec extends AnyFunSpec with Matchers {
     )
 
     val personalSkills: Set[Skill] = SkillHelper.filteredSkills(
-      nonTrainableSkills ++ excludedSkills ++ selfSkills + startCreditRating
+      nonTrainableSkills ++ excludedSkills ++ selfSkills
     ) ++ selfSkills
 
     val occupationSkillPointsRule = new TwoEduEitherTwoStrOrDexRule
@@ -70,8 +69,12 @@ class TribeMemberTemplateSpec extends AnyFunSpec with Matchers {
     }
 
     describe("getting template skills") {
-      it(s"should have start ${startCreditRating}") {
-        occupationTemplate.startCreditRating shouldBe startCreditRating
+      val expected = CreditRating()
+
+      expected.spend(startCreditRating)
+
+      it(s"should have initial ${expected}") {
+        occupationTemplate.startCreditRating.value shouldBe expected.value
       }
 
       it(s"should have maximum ${maximumCreditRating}") {

@@ -15,13 +15,7 @@ final class TribeMemberTemplate extends OccupationTemplate {
 
   def startCreditRating = CreditRating()
 
-  def maximumCreditRating = {
-    val cr = CreditRating()
-
-    cr.spend(15)
-
-    cr
-  }
+  def maximumCreditRating = 15
 
   def fixedSkills: Set[Skill] = Set(
     Climb(),
@@ -29,7 +23,8 @@ final class TribeMemberTemplate extends OccupationTemplate {
     Listen(),
     Occult(),
     SpotHidden(),
-    Swim()
+    Swim(),
+    startCreditRating
   )
 
   def optionalSkills: Set[(Int, Set[Skill])] = Set(
@@ -51,7 +46,7 @@ final class TribeMemberTemplate extends OccupationTemplate {
     SkillHelper.modernSkills ++ SkillHelper.uncommonSkills
 
   def personalSkills: Set[Skill] = SkillHelper.filteredSkills(
-    nonTrainableSkills ++ excludedSkills + startCreditRating
+    nonTrainableSkills ++ excludedSkills
   )
 
   val occupationSkillPointsRule = new TwoEduEitherTwoStrOrDexRule

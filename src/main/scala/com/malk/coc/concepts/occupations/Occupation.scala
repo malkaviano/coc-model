@@ -28,12 +28,6 @@ final case class Occupation(
     brain.intelligence.value * 2
   )
 
-  private val creditRating = SkillHelper.spendPointsOnCreditRating(
-    occupationTemplate.startCreditRating,
-    occupationTemplate.maximumCreditRating,
-    occupationSkillPoints
-  )
-
   private val templateSkills =
     occupationTemplate.templateSkills(body, brain, edu, app)
 
@@ -49,7 +43,7 @@ final case class Occupation(
       15
     )
 
-    val eligible = chosenOccupationSkills ++ templateSkills._3 + creditRating
+    val eligible = chosenOccupationSkills ++ templateSkills._3
 
     spentAllPoints(
       Random.shuffle(eligible.toSeq),
@@ -73,7 +67,7 @@ final case class Occupation(
     while (investigatorSkillPoints.remaining > 0) {
       skills.foreach(skill => {
         val maxRange = if (skill.isInstanceOf[CreditRating]) {
-          occupationTemplate.maximumCreditRating.value - skill.value
+          occupationTemplate.maximumCreditRating - skill.value
         } else {
           maxIncrement
         }
@@ -84,14 +78,14 @@ final case class Occupation(
           investigatorSkillPoints.spend(rangeDice((0, maxRange)))
         }
 
-        spendOccupationSkillPoints(skill, points)
+        spendSkillPoints(skill, points)
       })
     }
 
     skills.toSet
   }
 
-  private def spendOccupationSkillPoints(
+  private def spendSkillPoints(
       skill: Skill,
       points: Int
   ): Skill = {

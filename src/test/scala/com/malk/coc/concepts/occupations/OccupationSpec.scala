@@ -41,15 +41,15 @@ class OccupationSpec extends AnyFunSpec with Matchers {
       InvestigatorSkillPoints(implicitBrain.intelligence.value * 2)
 
     describe(s"when ${occupationSkillPoints} and ${personalInterestPoints}") {
-      val minCR = template.startCreditRating
+      val minCR = template.startCreditRating.value
       val maxCR = template.maximumCreditRating
 
       it(
-        s"should have Credit Rating between ${minCR.value} and ${maxCR.value}"
+        s"should have Credit Rating between ${minCR} and ${maxCR}"
       ) {
         val result = occupation.skills.filter(_.name == "Credit Rating").head
 
-        result.value should (be >= minCR.value and be <= maxCR.value)
+        result.value should (be >= minCR and be <= maxCR)
       }
 
       it(
