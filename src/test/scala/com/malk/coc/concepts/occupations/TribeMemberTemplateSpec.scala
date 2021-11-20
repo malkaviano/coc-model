@@ -6,8 +6,6 @@ import com.malk.coc.concepts.skills._
 import com.malk.coc.traits.Skill
 import com.malk.coc.rules.TwoEduEitherTwoStrOrDexRule
 import com.malk.coc.helpers.SkillHelper
-import com.malk.coc.concepts.characteristics.Dexterity
-import com.malk.coc.concepts.characteristics.Education
 
 class TribeMemberTemplateSpec extends AnyFunSpec with Matchers {
   import com.malk.coc.helpers.InvestigatorCharacteristics.implicits._
@@ -62,9 +60,7 @@ class TribeMemberTemplateSpec extends AnyFunSpec with Matchers {
     )
 
     val personalSkills: Set[Skill] = SkillHelper.filteredSkills(
-      Set(CreditRating(), CthulhuMythos()) ++ excludedSkills + Dodge(
-        Dexterity(0)
-      )() + LanguageOwn(Education(0))()
+      nonTrainableSkills ++ excludedSkills ++ selfSkills + startCreditRating
     ) ++ selfSkills
 
     val occupationSkillPointsRule = new TwoEduEitherTwoStrOrDexRule

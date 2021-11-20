@@ -9,7 +9,6 @@ import com.malk.coc.concepts.abstractions.Body
 import com.malk.coc.concepts.abstractions.Brain
 import com.malk.coc.concepts.characteristics.Education
 import com.malk.coc.concepts.characteristics.Appearance
-import com.malk.coc.concepts.characteristics.Dexterity
 
 final class TribeMemberTemplate extends OccupationTemplate {
   val name = TribeMemberTemplate.name
@@ -52,9 +51,7 @@ final class TribeMemberTemplate extends OccupationTemplate {
     SkillHelper.modernSkills ++ SkillHelper.uncommonSkills
 
   def personalSkills: Set[Skill] = SkillHelper.filteredSkills(
-    nonTrainableSkills ++ excludedSkills + Dodge(
-      Dexterity(0)
-    )() + LanguageOwn(Education(0))() + CreditRating()
+    nonTrainableSkills ++ excludedSkills + startCreditRating
   )
 
   val occupationSkillPointsRule = new TwoEduEitherTwoStrOrDexRule
@@ -73,7 +70,7 @@ final class TribeMemberTemplate extends OccupationTemplate {
     (
       fixedSkills,
       optionalSkills,
-      personalSkills ++ selfSkills,
+      (personalSkills -- selfSkills) ++ selfSkills,
       nonTrainableSkills
     )
   }
