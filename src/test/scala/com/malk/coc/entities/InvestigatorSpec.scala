@@ -5,7 +5,7 @@ import org.scalatest.matchers.should.Matchers
 import org.scalamock.scalatest.MockFactory
 
 import com.malk.coc.concepts.dices._
-import com.malk.coc.occupations.Occupation
+import com.malk.coc.helpers.OccupationGenerator
 
 class InvestigatorSpec extends AnyFunSpec with Matchers with MockFactory {
   describe("Generating random investigator") {
@@ -37,7 +37,7 @@ class InvestigatorSpec extends AnyFunSpec with Matchers with MockFactory {
 
       val occupationTemplate = randomOccupationTemplate
 
-      val occupation = Occupation(
+      val occupation = OccupationGenerator(
         occupationTemplate,
         body,
         brain,
@@ -52,7 +52,8 @@ class InvestigatorSpec extends AnyFunSpec with Matchers with MockFactory {
         edu,
         brain,
         luck,
-        occupation
+        occupation.name,
+        occupation.skills
       )(fourSidedDice, sixSidedDice, tenSidedDice, hundredSidedDice)
 
       pending

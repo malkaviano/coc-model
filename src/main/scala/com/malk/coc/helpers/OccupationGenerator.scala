@@ -1,4 +1,4 @@
-package com.malk.coc.occupations
+package com.malk.coc.helpers
 
 import com.malk.coc.traits.Skill
 import com.malk.coc.traits.OccupationTemplate
@@ -9,7 +9,7 @@ import com.malk.coc.concepts.skills.CreditRating
 import com.malk.coc.concepts.occupations.InvestigatorSkillPoints
 import scala.util.Random
 
-final case class Occupation(
+final case class OccupationGenerator(
     private val occupationTemplate: OccupationTemplate,
     private val body: Body,
     private val brain: Brain,

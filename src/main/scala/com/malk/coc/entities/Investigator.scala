@@ -6,12 +6,12 @@ import com.malk.coc.concepts.characteristics._
 import com.malk.coc.concepts.dices._
 import com.malk.coc.rules.HumanAgingRules
 import com.malk.coc.traits._
-import com.malk.coc.occupations.Occupation
 
 final case class Investigator private (
     private val human: Human,
     private val luck: Luck,
-    val occupation: Occupation
+    val occupationName: String,
+    val skills: Set[Skill]
 ) extends Chance
     with Aging
     with Mobility
@@ -68,7 +68,8 @@ object Investigator {
       edu: Education,
       brain: Brain,
       luck: Luck,
-      occupation: Occupation
+      occupationName: String,
+      skills: Set[Skill]
   )(implicit
       fourSidedDice: FourSidedDice,
       sixSidedDice: SixSidedDice,
@@ -89,6 +90,6 @@ object Investigator {
       mp
     )(new HumanAgingRules(age))
 
-    new Investigator(human, luck, occupation)
+    new Investigator(human, luck, occupationName, skills)
   }
 }

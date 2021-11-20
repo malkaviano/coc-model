@@ -1,12 +1,13 @@
-package com.malk.coc.concepts.occupations
+package com.malk.coc.helpers
 
 import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 
-import com.malk.coc.occupations.Occupation
 import com.malk.coc.helpers.SkillHelper
+import com.malk.coc.concepts.occupations.TribeMemberTemplate
+import com.malk.coc.concepts.occupations.InvestigatorSkillPoints
 
-class OccupationSpec extends AnyFunSpec with Matchers {
+class OccupationGeneratorSpec extends AnyFunSpec with Matchers {
   import com.malk.coc.helpers.InvestigatorCharacteristics.implicits._
   import com.malk.coc.helpers.DiceHelper.implicits._
 
@@ -17,7 +18,7 @@ class OccupationSpec extends AnyFunSpec with Matchers {
     val implicitEdu = edu
     val implicitApp = app
 
-    val occupation = Occupation(
+    val occupation = OccupationGenerator(
       template,
       implicitBody,
       implicitBrain,
