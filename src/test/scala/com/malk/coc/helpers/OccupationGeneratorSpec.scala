@@ -1,12 +1,13 @@
-package com.malk.coc.concepts.occupations
+package com.malk.coc.helpers
 
 import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 
-import com.malk.coc.occupations.Occupation
 import com.malk.coc.helpers.SkillHelper
+import com.malk.coc.concepts.occupations.TribeMemberTemplate
+import com.malk.coc.concepts.occupations.InvestigatorSkillPoints
 
-class OccupationSpec extends AnyFunSpec with Matchers {
+class OccupationGeneratorSpec extends AnyFunSpec with Matchers {
   import com.malk.coc.helpers.InvestigatorCharacteristics.implicits._
   import com.malk.coc.helpers.DiceHelper.implicits._
 
@@ -17,7 +18,7 @@ class OccupationSpec extends AnyFunSpec with Matchers {
     val implicitEdu = edu
     val implicitApp = app
 
-    val occupation = Occupation(
+    val occupation = OccupationGenerator(
       template,
       implicitBody,
       implicitBrain,
@@ -30,7 +31,7 @@ class OccupationSpec extends AnyFunSpec with Matchers {
     }
 
     val occupationSkillPoints =
-      template.occupationSkillPointsRule.occupationSkillPoints(
+      template.occupationSkillPoints(
         implicitBody,
         implicitBrain,
         implicitEdu,
@@ -41,37 +42,26 @@ class OccupationSpec extends AnyFunSpec with Matchers {
       InvestigatorSkillPoints(implicitBrain.intelligence.value * 2)
 
     describe(s"when ${occupationSkillPoints} and ${personalInterestPoints}") {
-      val minCR = template.startCreditRating
+      val minCR = template.startCreditRating.value
       val maxCR = template.maximumCreditRating
 
       it(
-        s"should have Credit Rating between ${minCR.value} and ${maxCR.value}"
+        s"should have Credit Rating between ${minCR} and ${maxCR}"
       ) {
         val result = occupation.skills.filter(_.name == "Credit Rating").head
 
-        result.value should (be >= minCR.value and be <= maxCR.value)
+        result.value should (be >= minCR and be <= maxCR)
       }
 
       it(
         s"should have spent all occupation skills points"
       ) {
-        val resultSkills = occupation.skills.toSeq
-
-        val skillValues = resultSkills.map(_.value).reduce(_ + _)
-        val baseValues = resultSkills.map(_.base).reduce(_ + _)
-        val spentOnSkills = skillValues - baseValues
-
-        val result =
-          (occupationSkillPoints.remaining + personalInterestPoints.remaining) - spentOnSkills
-
-        result shouldBe 0
+        occupation.remainingPoints shouldBe 0
       }
 
       it("should have all skills") {
         val available = SkillHelper
-          .filteredSkills(
-            SkillHelper.modernSkills ++ SkillHelper.uncommonSkills
-          )
+          .filteredSkills(template.excludedSkills)
           .map(_.name)
 
         val result = occupation.skills.map(_.name)

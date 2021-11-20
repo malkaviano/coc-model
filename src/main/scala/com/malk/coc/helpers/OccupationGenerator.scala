@@ -1,18 +1,15 @@
-package com.malk.coc.occupations
+package com.malk.coc.helpers
 
 import com.malk.coc.traits.Skill
 import com.malk.coc.traits.OccupationTemplate
 import com.malk.coc.concepts.characteristics._
 import com.malk.coc.concepts.abstractions._
 import com.malk.coc.helpers.SkillHelper
-import com.malk.coc.concepts.skills.CthulhuMythos
 import com.malk.coc.concepts.skills.CreditRating
 import com.malk.coc.concepts.occupations.InvestigatorSkillPoints
-import com.malk.coc.concepts.skills.Dodge
-import com.malk.coc.concepts.skills.LanguageOwn
 import scala.util.Random
 
-final case class Occupation(
+final case class OccupationGenerator(
     private val occupationTemplate: OccupationTemplate,
     private val body: Body,
     private val brain: Brain,
@@ -20,7 +17,7 @@ final case class Occupation(
     private val app: Appearance
 )(implicit private val rangeDice: ((Int, Int)) => Int) {
   private val occupationSkillPoints =
-    occupationTemplate.occupationSkillPointsRule.occupationSkillPoints(
+    occupationTemplate.occupationSkillPoints(
       body,
       brain,
       edu,
@@ -31,27 +28,13 @@ final case class Occupation(
     brain.intelligence.value * 2
   )
 
-  private val creditRating = SkillHelper.spendPointsOnCreditRating(
-    occupationTemplate.startCreditRating,
-    occupationTemplate.maximumCreditRating,
-    occupationSkillPoints
-  )
+  private val templateSkills =
+    occupationTemplate.templateSkills(body, brain, edu, app)
 
   private val chosenOccupationSkills =
-    occupationTemplate.fixedSkills ++ SkillHelper.chooseSkills(
-      occupationTemplate.optionalSkills
+    templateSkills._1 ++ SkillHelper.chooseSkills(
+      templateSkills._2
     )
-
-  private val reservedSkills =
-    SkillHelper.allSkills -- chosenOccupationSkills - CthulhuMythos() - CreditRating() - Dodge(
-      Dexterity(0)
-    )() - LanguageOwn(
-      Education(0)
-    )() -- SkillHelper.modernSkills -- SkillHelper.uncommonSkills + Dodge(
-      body.dexterity
-    )() + LanguageOwn(
-      edu
-    )()
 
   private val spentSkillPoints: Set[Skill] = {
     spentAllPoints(
@@ -60,7 +43,7 @@ final case class Occupation(
       15
     )
 
-    val eligible = chosenOccupationSkills ++ reservedSkills + creditRating
+    val eligible = chosenOccupationSkills ++ templateSkills._3
 
     spentAllPoints(
       Random.shuffle(eligible.toSeq),
@@ -72,7 +55,9 @@ final case class Occupation(
   val name: String = occupationTemplate.name
 
   val skills: Set[Skill] =
-    spentSkillPoints + CthulhuMythos()
+    spentSkillPoints ++ templateSkills._4
+
+  val remainingPoints: Int = occupationSkillPoints.remaining + personalInterestPoints.remaining
 
   private def spentAllPoints(
       skills: Seq[Skill],
@@ -82,7 +67,7 @@ final case class Occupation(
     while (investigatorSkillPoints.remaining > 0) {
       skills.foreach(skill => {
         val maxRange = if (skill.isInstanceOf[CreditRating]) {
-          occupationTemplate.maximumCreditRating.value - skill.value
+          occupationTemplate.maximumCreditRating - skill.value
         } else {
           maxIncrement
         }
@@ -93,14 +78,14 @@ final case class Occupation(
           investigatorSkillPoints.spend(rangeDice((0, maxRange)))
         }
 
-        spendOccupationSkillPoints(skill, points)
+        spendSkillPoints(skill, points)
       })
     }
 
     skills.toSet
   }
 
-  private def spendOccupationSkillPoints(
+  private def spendSkillPoints(
       skill: Skill,
       points: Int
   ): Skill = {

@@ -24,6 +24,20 @@ abstract class Skill extends BaseValueSkill with CanPushSkill {
   override def toString(): String = {
     s"${name} with base: ${base} and value: ${value}"
   }
+
+  override def hashCode(): Int = {
+    name.hashCode * 42
+  }
+
+  override def equals(x: Any): Boolean = {
+    if (x.isInstanceOf[Skill]) {
+      val skill = x.asInstanceOf[Skill]
+
+      this.name == skill.name
+    } else {
+      false
+    }
+  }
 }
 
 abstract class CharacteristicSkill[A <: Characteristic] extends Skill
