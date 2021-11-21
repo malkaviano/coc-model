@@ -59,16 +59,20 @@ class SoldierTemplateSpec extends BehavesLikeOccupationTemplate {
       language
     )
 
+    val templateSkillResult = TemplateSkillResult(
+      fixedSkills,
+      optionalSkills,
+      nonTrainableSkills,
+      excludedSkills
+    )
+
     it should behave like behavesLikeOccupationTemplate(
       occupationTemplate,
       SoldierTemplate.name,
       startCreditRating,
       30,
       result,
-      fixedSkills,
-      optionalSkills,
-      nonTrainableSkills,
-      excludedSkills
+      templateSkillResult
     )
   }
 }
