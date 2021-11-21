@@ -42,6 +42,8 @@ class SoldierTemplateSpec extends BehavesLikeOccupationTemplate {
 
     val nonTrainableSkills: Set[Skill] = Set(CthulhuMythos())
 
+    val excludedSkills: Set[Skill] = SkillHelper.uncommonSkills ++ SkillHelper.modernSkills
+
     // TODO: Randomize
     val language = English
 
@@ -61,7 +63,8 @@ class SoldierTemplateSpec extends BehavesLikeOccupationTemplate {
       result,
       fixedSkills,
       optionalSkills,
-      nonTrainableSkills
+      nonTrainableSkills,
+      excludedSkills
     )
   }
 }

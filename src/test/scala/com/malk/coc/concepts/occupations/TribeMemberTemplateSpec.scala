@@ -3,6 +3,7 @@ package com.malk.coc.concepts.occupations
 import com.malk.coc.concepts.skills._
 import com.malk.coc.traits.Skill
 import com.malk.coc.concepts.skills.languages.Arabic
+import com.malk.coc.helpers.SkillHelper
 
 class TribeMemberTemplateSpec extends BehavesLikeOccupationTemplate {
   import com.malk.coc.helpers.InvestigatorCharacteristics.implicits._
@@ -53,6 +54,8 @@ class TribeMemberTemplateSpec extends BehavesLikeOccupationTemplate {
 
     val nonTrainableSkills: Set[Skill] = Set(CthulhuMythos())
 
+    val excludedSkills: Set[Skill] = SkillHelper.uncommonSkills ++ SkillHelper.modernSkills
+
     val implicitBody = body
     val implicitBrain = brain
     val implicitEdu = edu
@@ -77,7 +80,8 @@ class TribeMemberTemplateSpec extends BehavesLikeOccupationTemplate {
       result,
       fixedSkills,
       optionalSkills,
-      nonTrainableSkills
+      nonTrainableSkills,
+      excludedSkills
     )
   }
 
