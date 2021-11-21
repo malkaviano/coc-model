@@ -5,10 +5,7 @@ import org.scalatest.matchers.should.Matchers
 
 import com.malk.coc.traits.OccupationTemplate
 import com.malk.coc.concepts.skills.CreditRating
-import com.malk.coc.concepts.abstractions._
-import com.malk.coc.concepts.characteristics._
 import com.malk.coc.traits.Skill
-import com.malk.coc.concepts.skills.languages.Language
 
 trait BehavesLikeOccupationTemplate extends AnyFunSpec with Matchers {
   def behavesLikeOccupationTemplate(
@@ -16,15 +13,11 @@ trait BehavesLikeOccupationTemplate extends AnyFunSpec with Matchers {
       templateName: String,
       startCreditRating: CreditRating,
       maximumCreditRating: Int,
-      implicitBody: Body,
-      implicitBrain: Brain,
-      implicitEdu: Education,
-      implicitApp: Appearance,
+      result: (Set[Skill], Set[(Int, Set[Skill])],Set[Skill],Set[Skill]),
       fixedSkills: Set[Skill],
       optionalSkills: Set[(Int, Set[Skill])],
       personalSkills: Set[Skill],
-      nonTrainableSkills: Set[Skill],
-      language: Language
+      nonTrainableSkills: Set[Skill]
   ): Unit = {
     it(s"should have name ${templateName}") {
       occupationTemplate.name shouldBe templateName
@@ -38,14 +31,6 @@ trait BehavesLikeOccupationTemplate extends AnyFunSpec with Matchers {
       it(s"should have maximum ${maximumCreditRating}") {
         occupationTemplate.maximumCreditRating shouldBe maximumCreditRating
       }
-
-      val result = occupationTemplate.templateSkills(
-        implicitBody,
-        implicitBrain,
-        implicitEdu,
-        implicitApp,
-        language
-      )
 
       it(s"should have a list of fixed skills") {
         result._1 should contain theSameElementsAs fixedSkills
