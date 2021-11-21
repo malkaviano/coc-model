@@ -6,7 +6,7 @@ import com.malk.coc.helpers.SkillHelper
 import com.malk.coc.concepts.skills.languages.English
 import com.malk.coc.concepts.skills.languages.own.LanguageOwn
 
-class SoldierTemplateSpec extends BehavesLikeOccupationTemplate {
+class SoldierOccupationTemplateSpec extends BehavesLikeOccupationTemplate {
   import com.malk.coc.helpers.InvestigatorCharacteristics.implicits._
   import com.malk.coc.helpers.DiceHelper.implicits._
 
@@ -15,7 +15,7 @@ class SoldierTemplateSpec extends BehavesLikeOccupationTemplate {
   val implicitEdu = edu
   val implicitApp = app
 
-  val occupationTemplate = new SoldierTemplate
+  val occupationTemplate = new SoldierOccupationTemplate
 
   // TODO: Randomize
   val language = English
@@ -68,7 +68,7 @@ class SoldierTemplateSpec extends BehavesLikeOccupationTemplate {
 
     it should behave like behavesLikeOccupationTemplate(
       occupationTemplate,
-      SoldierTemplate.name,
+      SoldierOccupationTemplate.name,
       startCreditRating,
       30,
       result,

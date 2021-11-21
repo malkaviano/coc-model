@@ -12,9 +12,7 @@ import com.malk.coc.concepts.skills.languages.Language
 import com.malk.coc.concepts.occupations.TemplateSkillResult
 import com.malk.coc.concepts.skills.languages.own.LanguageOwn
 import com.malk.coc.concepts.skills.Dodge
-import com.malk.coc.concepts.occupations.TribeMemberTemplate
-import com.malk.coc.concepts.occupations.SoldierTemplate
-import com.malk.coc.concepts.occupations.ZealotOccupationTemplate
+import com.malk.coc.concepts.occupations._
 
 final case class OccupationGenerator(
     private val occupationTemplate: OccupationTemplate,
@@ -117,8 +115,8 @@ final case class OccupationGenerator(
 
 object OccupationGenerator {
   val occupationTemplates = Set(
-    new TribeMemberTemplate,
-    new SoldierTemplate,
+    new TribeMemberOccupationTemplate,
+    new SoldierOccupationTemplate,
     new ZealotOccupationTemplate
   )
 }

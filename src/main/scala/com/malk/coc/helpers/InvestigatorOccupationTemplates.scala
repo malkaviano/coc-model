@@ -3,11 +3,13 @@ package com.malk.coc.helpers
 import scala.util.Random
 
 import com.malk.coc.traits.OccupationTemplate
-import com.malk.coc.concepts.occupations.TribeMemberTemplate
+import com.malk.coc.concepts.occupations._
 
 object InvestigatorOccupationTemplates {
   private val occupationTemplates: Map[String, OccupationTemplate] = Map(
-    TribeMemberTemplate.name -> new TribeMemberTemplate
+    TribeMemberOccupationTemplate.name -> new TribeMemberOccupationTemplate,
+    SoldierOccupationTemplate.name -> new SoldierOccupationTemplate,
+    ZealotOccupationTemplate.name -> new ZealotOccupationTemplate
   )
 
   def occupationTemplateNames: Set[String] = {

@@ -5,12 +5,12 @@ import com.malk.coc.traits.Skill
 import com.malk.coc.concepts.skills.languages.Arabic
 import com.malk.coc.helpers.SkillHelper
 
-class TribeMemberTemplateSpec extends BehavesLikeOccupationTemplate {
+class TribeMemberOccupationTemplateSpec extends BehavesLikeOccupationTemplate {
   import com.malk.coc.helpers.InvestigatorCharacteristics.implicits._
   import com.malk.coc.helpers.DiceHelper.implicits._
 
   describe("TRIBE MEMBER occupation") {
-    val occupationTemplate = new TribeMemberTemplate
+    val occupationTemplate = new TribeMemberOccupationTemplate
     val startCreditRating = CreditRating()
     val maximumCreditRating = 15
 
@@ -81,7 +81,7 @@ class TribeMemberTemplateSpec extends BehavesLikeOccupationTemplate {
 
     it should behave like behavesLikeOccupationTemplate(
       occupationTemplate,
-      TribeMemberTemplate.name,
+      TribeMemberOccupationTemplate.name,
       startCreditRating,
       maximumCreditRating,
       result,
