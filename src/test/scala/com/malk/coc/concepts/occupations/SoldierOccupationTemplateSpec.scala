@@ -15,10 +15,16 @@ class SoldierOccupationTemplateSpec extends BehavesLikeOccupationTemplate {
   val implicitEdu = edu
   val implicitApp = app
 
-  val occupationTemplate = SoldierOccupationTemplate.apply()
-
   // TODO: Randomize
   val language = English
+
+  val occupationTemplate = SoldierOccupationTemplate.apply(
+    implicitBody,
+    implicitBrain,
+    implicitEdu,
+    implicitApp,
+    language
+  )
 
   describe("SOLDIER occupation") {
     val startCreditRating = CreditRating()
@@ -51,13 +57,7 @@ class SoldierOccupationTemplateSpec extends BehavesLikeOccupationTemplate {
     val excludedSkills: Set[Skill] =
       SkillHelper.uncommonSkills ++ SkillHelper.modernSkills
 
-    val result = occupationTemplate.templateSkills(
-      implicitBody,
-      implicitBrain,
-      implicitEdu,
-      implicitApp,
-      language
-    )
+    val result = occupationTemplate.templateSkills
 
     val templateSkillResult = TemplateSkillResult(
       fixedSkills,

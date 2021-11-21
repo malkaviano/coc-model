@@ -1,12 +1,7 @@
 package com.malk.coc.traits
 
-import com.malk.coc.concepts.abstractions.Body
-import com.malk.coc.concepts.abstractions.Brain
-import com.malk.coc.concepts.characteristics.Education
-import com.malk.coc.concepts.characteristics.Appearance
 import com.malk.coc.concepts.skills.CreditRating
 import com.malk.coc.concepts.occupations.InvestigatorSkillPoints
-import com.malk.coc.concepts.skills.languages.Language
 import com.malk.coc.concepts.occupations.TemplateSkillResult
 
 trait OccupationTemplate {
@@ -14,18 +9,7 @@ trait OccupationTemplate {
 
   def startCreditRating: CreditRating
 
-  def occupationSkillPoints(
-      body: Body,
-      brain: Brain,
-      edu: Education,
-      app: Appearance
-  ): InvestigatorSkillPoints
+  def occupationSkillPoints: InvestigatorSkillPoints
 
-  def templateSkills(
-      body: Body,
-      brain: Brain,
-      edu: Education,
-      app: Appearance,
-      language: Language
-  ): TemplateSkillResult
+  def templateSkills: TemplateSkillResult
 }

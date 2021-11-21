@@ -9,8 +9,24 @@ class TribeMemberOccupationTemplateSpec extends BehavesLikeOccupationTemplate {
   import com.malk.coc.helpers.InvestigatorCharacteristics.implicits._
   import com.malk.coc.helpers.DiceHelper.implicits._
 
+  val implicitBody = body
+  val implicitBrain = brain
+  val implicitEdu = edu
+  val implicitApp = app
+
+  // TODO: Randomize
+  val language = Arabic
+
+  val occupationTemplate = TribeMemberOccupationTemplate.apply(
+    implicitBody,
+    implicitBrain,
+    implicitEdu,
+    implicitApp,
+    language
+  )
+
   describe("TRIBE MEMBER occupation") {
-    val occupationTemplate = TribeMemberOccupationTemplate.apply()
+
     val startCreditRating = CreditRating()
     val maximumCreditRating = 15
 
@@ -54,23 +70,10 @@ class TribeMemberOccupationTemplateSpec extends BehavesLikeOccupationTemplate {
 
     val nonTrainableSkills: Set[Skill] = Set(CthulhuMythos())
 
-    val excludedSkills: Set[Skill] = SkillHelper.uncommonSkills ++ SkillHelper.modernSkills
+    val excludedSkills: Set[Skill] =
+      SkillHelper.uncommonSkills ++ SkillHelper.modernSkills
 
-    val implicitBody = body
-    val implicitBrain = brain
-    val implicitEdu = edu
-    val implicitApp = app
-
-    // TODO: Randomize
-    val language = Arabic
-
-    val result = occupationTemplate.templateSkills(
-      implicitBody,
-      implicitBrain,
-      implicitEdu,
-      implicitApp,
-      language
-    )
+    val result = occupationTemplate.templateSkills
 
     val templateSkillResult = TemplateSkillResult(
       fixedSkills,

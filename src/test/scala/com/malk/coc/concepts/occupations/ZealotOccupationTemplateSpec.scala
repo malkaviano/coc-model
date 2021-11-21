@@ -15,10 +15,16 @@ class ZealotOccupationTemplateSpec extends BehavesLikeOccupationTemplate {
   val implicitEdu = edu
   val implicitApp = app
 
-  val occupationTemplate = ZealotOccupationTemplate.apply()
-
   // TODO: Randomize
   val language = Portuguese
+
+  val occupationTemplate = ZealotOccupationTemplate.apply(
+    implicitBody,
+    implicitBrain,
+    implicitEdu,
+    implicitApp,
+    language
+  )
 
   describe("ZEALOT occupation") {
     val startCreditRating = CreditRating(0, 30)
@@ -60,13 +66,7 @@ class ZealotOccupationTemplateSpec extends BehavesLikeOccupationTemplate {
       )
     )
 
-    val result = occupationTemplate.templateSkills(
-      implicitBody,
-      implicitBrain,
-      implicitEdu,
-      implicitApp,
-      language
-    )
+    val result = occupationTemplate.templateSkills
 
     val templateSkillResult = TemplateSkillResult(
       fixedSkills,

@@ -12,7 +12,6 @@ import com.malk.coc.concepts.skills.languages.Language
 import com.malk.coc.concepts.occupations.TemplateSkillResult
 import com.malk.coc.concepts.skills.languages.own.LanguageOwn
 import com.malk.coc.concepts.skills.Dodge
-import com.malk.coc.concepts.occupations._
 
 final case class OccupationGenerator(
     private val occupationTemplate: OccupationTemplate,
@@ -23,19 +22,14 @@ final case class OccupationGenerator(
     private val language: Language
 )(implicit private val rangeDice: ((Int, Int)) => Int) {
   private val occupationSkillPoints =
-    occupationTemplate.occupationSkillPoints(
-      body,
-      brain,
-      edu,
-      app
-    )
+    occupationTemplate.occupationSkillPoints
 
   private val personalInterestPoints = InvestigatorSkillPoints(
     brain.intelligence.value * 2
   )
 
   private val templateSkills: TemplateSkillResult =
-    occupationTemplate.templateSkills(body, brain, edu, app, language)
+    occupationTemplate.templateSkills
 
   private val chosenOccupationSkills =
     templateSkills.occupationFixedSkills ++ SkillHelper.chooseSkillsV2(
@@ -111,12 +105,4 @@ final case class OccupationGenerator(
 
     skill
   }
-}
-
-object OccupationGenerator {
-  val occupationTemplates = Set(
-    TribeMemberOccupationTemplate.apply(),
-    SoldierOccupationTemplate.apply(),
-    ZealotOccupationTemplate.apply()
-  )
 }

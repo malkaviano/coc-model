@@ -11,29 +11,24 @@ import com.malk.coc.concepts.skills._
 import com.malk.coc.helpers.SkillHelper
 import com.malk.coc.concepts.skills.languages.own.LanguageOwn
 
-class ZealotOccupationTemplate private () extends OccupationTemplate {
+class ZealotOccupationTemplate private (
+    val body: Body,
+    val brain: Brain,
+    val edu: Education,
+    val app: Appearance,
+    val language: Language
+) extends OccupationTemplate {
   override def name: String = ZealotOccupationTemplate.name
 
   override def startCreditRating: CreditRating = CreditRating(0, 30)
 
-  override def occupationSkillPoints(
-      body: Body,
-      brain: Brain,
-      edu: Education,
-      app: Appearance
-  ): InvestigatorSkillPoints = {
+  override def occupationSkillPoints: InvestigatorSkillPoints = {
     val rule = new TwoEduEitherTwoAppOrPowRule
 
     rule.occupationSkillPoints(body, brain, edu, app)
   }
 
-  override def templateSkills(
-      body: Body,
-      brain: Brain,
-      edu: Education,
-      app: Appearance,
-      language: Language
-  ): TemplateSkillResult = {
+  override def templateSkills: TemplateSkillResult = {
     TemplateSkillResult(
       fixedSkills,
       optionalSkills(language),
@@ -85,7 +80,13 @@ class ZealotOccupationTemplate private () extends OccupationTemplate {
 object ZealotOccupationTemplate {
   val name = "ZEALOT"
 
-  def apply(): ZealotOccupationTemplate = {
-    new ZealotOccupationTemplate()
+  def apply(
+      body: Body,
+      brain: Brain,
+      edu: Education,
+      app: Appearance,
+      language: Language
+  ): ZealotOccupationTemplate = {
+    new ZealotOccupationTemplate(body, brain, edu, app, language)
   }
 }

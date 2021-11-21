@@ -12,29 +12,24 @@ import com.malk.coc.rules.TwoEduEitherTwoDexOrStrRule
 import com.malk.coc.concepts.skills.languages.Language
 import com.malk.coc.concepts.skills.languages.own.LanguageOwn
 
-final class SoldierOccupationTemplate private() extends OccupationTemplate {
+final class SoldierOccupationTemplate private (
+    val body: Body,
+    val brain: Brain,
+    val edu: Education,
+    val app: Appearance,
+    val language: Language
+) extends OccupationTemplate {
   override def name: String = SoldierOccupationTemplate.name
 
   override def startCreditRating: CreditRating = CreditRating(9, 30)
 
-  override def occupationSkillPoints(
-      body: Body,
-      brain: Brain,
-      edu: Education,
-      app: Appearance
-  ): InvestigatorSkillPoints = {
+  override def occupationSkillPoints: InvestigatorSkillPoints = {
     val rule = new TwoEduEitherTwoDexOrStrRule
 
     rule.occupationSkillPoints(body, brain, edu, app)
   }
 
-  override def templateSkills(
-      body: Body,
-      brain: Brain,
-      edu: Education,
-      app: Appearance,
-      language: Language
-  ): TemplateSkillResult = {
+  override def templateSkills: TemplateSkillResult = {
     val dodge = Dodge(body.dexterity)()
 
     TemplateSkillResult(
@@ -51,7 +46,9 @@ final class SoldierOccupationTemplate private() extends OccupationTemplate {
     startCreditRating
   )
 
-  private def optionalSkills(language: Language): Seq[(Int, Seq[(Int, Set[Skill])])] = Seq(
+  private def optionalSkills(
+      language: Language
+  ): Seq[(Int, Seq[(Int, Set[Skill])])] = Seq(
     (
       1,
       Seq(
@@ -93,7 +90,12 @@ final class SoldierOccupationTemplate private() extends OccupationTemplate {
       Seq(
         (1, Set(FirstAid())),
         (1, Set(MechanicalRepair())),
-        (1, (SkillHelper.languageOtherSkills - LanguageOwn(Education(0))(language)))
+        (
+          1,
+          (SkillHelper.languageOtherSkills - LanguageOwn(Education(0))(
+            language
+          ))
+        )
       )
     )
   )
@@ -107,7 +109,13 @@ final class SoldierOccupationTemplate private() extends OccupationTemplate {
 object SoldierOccupationTemplate {
   val name = "SOLDIER"
 
-  def apply(): SoldierOccupationTemplate = {
-    new SoldierOccupationTemplate
+  def apply(
+      body: Body,
+      brain: Brain,
+      edu: Education,
+      app: Appearance,
+      language: Language
+  ): SoldierOccupationTemplate = {
+    new SoldierOccupationTemplate(body, brain, edu, app, language)
   }
 }
