@@ -39,18 +39,13 @@ final class TribeMemberTemplate extends OccupationTemplate {
       edu: Education,
       app: Appearance,
       language: Language
-  ): (
-      Set[Skill],
-      Seq[(Int, Seq[(Int, Set[Skill])])],
-      Set[Skill],
-      Set[Skill]
-  ) = {
+  ): TemplateSkillResult = {
     val selfSkills = Set(
       Dodge(body.dexterity)(),
       LanguageOwn(edu)(language)
     )
 
-    (
+    TemplateSkillResult(
       fixedSkills,
       optionalSkills,
       (personalSkills -- selfSkills) ++ selfSkills,

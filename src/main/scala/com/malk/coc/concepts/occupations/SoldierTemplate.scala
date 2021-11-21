@@ -42,17 +42,12 @@ final class SoldierTemplate extends OccupationTemplate {
       edu: Education,
       app: Appearance,
       language: Language
-  ): (
-      Set[Skill],
-      Seq[(Int, Seq[(Int, Set[Skill])])],
-      Set[Skill],
-      Set[Skill]
-  ) = {
+  ): TemplateSkillResult = {
     val dodge = Dodge(body.dexterity)()
 
     val languageOwn = LanguageOwn(edu)(language)
 
-    (
+    TemplateSkillResult(
       (fixedSkills - dodge) + dodge,
       optionalSkills,
       (personalSkills - dodge - languageOwn) + languageOwn,
