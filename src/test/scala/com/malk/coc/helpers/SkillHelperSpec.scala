@@ -125,7 +125,20 @@ class SkillHelperSpec extends AnyFunSpec with Matchers with MockFactory {
 
     describe("Language Other Skills") {
       val languageOtherSkills = Set(
-        ArabicLanguageOther()
+        ArabicLanguageOther(),
+        ChineseLanguageOther(),
+        EnglishLanguageOther(),
+        FrenchLanguageOther(),
+        GermanLanguageOther(),
+        ItalianLanguageOther(),
+        JapaneseLanguageOther(),
+        PolishLanguageOther(),
+        PortugueseLanguageOther(),
+        RussianLanguageOther(),
+        SpanishLanguageOther(),
+        SpanishLanguageOther(),
+        SpanishLanguageOther(),
+        TurkishLanguageOther()
       )
 
       it(s"should be a list of Language Other skills") {
@@ -171,25 +184,34 @@ class SkillHelperSpec extends AnyFunSpec with Matchers with MockFactory {
       )
 
       it(s"should be a list of firearms skills") {
-        SkillHelper.firearmsSkills should contain theSameElementsAs firearmsSkills
+        SkillHelper.firearmSkills should contain theSameElementsAs firearmsSkills
       }
     }
 
-    describe("Choosing Skills") {
-      Seq((1, 3, 4), (4, 2, 6), (10, 4, 12)).foreach(t => {
-        val skills = Set(
-          (t._1, SkillHelper.fightingSkills),
-          (t._2, SkillHelper.firearmsSkills)
+    describe("Choosing Skills version 2") {
+      val choose: Seq[(Int, Seq[(Int, Set[Skill])])] = Seq(
+        (
+          1,
+          Seq(
+            (1, SkillHelper.fightingSkills),
+            (1, SkillHelper.firearmSkills)
+          )
+        ),
+        (
+          2,
+          Seq(
+            (1, Set(FirstAid())),
+            (1, Set(MechanicalRepair())),
+            (1, SkillHelper.languageOtherSkills)
+          )
         )
+      )
 
-        describe(s"when pick ${t._3} from ${skills}") {
-          val result = SkillHelper.chooseSkills(skills)
+      it("should choose one firearm or fighting skill") {
+        val result = SkillHelper.chooseSkillsV2(choose)
 
-          it(s"should return ${result}") {
-            result should have size (t._3)
-          }
-        }
-      })
+        result should have size 3
+      }
     }
 
     describe("Helper Skills should be immutable") {
@@ -252,8 +274,12 @@ class SkillHelperSpec extends AnyFunSpec with Matchers with MockFactory {
         startingCreditRating.spend(t._5)
         maximumCreditRating.spend(t._6)
 
-        describe(s"when initial Credit Rating value is ${startingCreditRating.value}") {
-          describe(s"when maximum Credit Rating value is ${maximumCreditRating.value}") {
+        describe(
+          s"when initial Credit Rating value is ${startingCreditRating.value}"
+        ) {
+          describe(
+            s"when maximum Credit Rating value is ${maximumCreditRating.value}"
+          ) {
             describe(s"spending ${spend} points on Credit Rating") {
               describe(s"when ${occupationSkillPoints}") {
                 it(s"should return Credit Rating value ${expected.value}") {

@@ -34,7 +34,7 @@ final case class OccupationGenerator(
     occupationTemplate.templateSkills(body, brain, edu, app, language)
 
   private val chosenOccupationSkills =
-    templateSkills._1 ++ SkillHelper.chooseSkills(
+    templateSkills._1 ++ SkillHelper.chooseSkillsV2(
       templateSkills._2
     )
 

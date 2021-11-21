@@ -7,12 +7,12 @@ import com.malk.coc.helpers.SkillHelper
 import com.malk.coc.concepts.occupations.TribeMemberTemplate
 import com.malk.coc.concepts.occupations.InvestigatorSkillPoints
 import com.malk.coc.concepts.skills.languages.Arabic
-import com.malk.coc.concepts.skills.languages.own.LanguageOwn
-import com.malk.coc.concepts.characteristics.Education
 
 class OccupationGeneratorSpec extends AnyFunSpec with Matchers {
   import com.malk.coc.helpers.InvestigatorCharacteristics.implicits._
   import com.malk.coc.helpers.DiceHelper.implicits._
+  import com.malk.coc.concepts.skills.languages.own.LanguageOwn
+  import com.malk.coc.concepts.characteristics.Education
 
   describe("Occupation") {
     val template = new TribeMemberTemplate
@@ -68,8 +68,10 @@ class OccupationGeneratorSpec extends AnyFunSpec with Matchers {
 
       it("should have all skills") {
         val available = SkillHelper
-          .filteredSkills(template.excludedSkills)
-          .map(_.name) + LanguageOwn(Education(0))(language).name
+          .filteredSkills(
+            template.excludedSkills + LanguageOwn(Education(0))(language)
+          )
+          .map(_.name) + LanguageOwn(implicitEdu)(language).name
 
         val result = occupation.skills.map(_.name)
 
