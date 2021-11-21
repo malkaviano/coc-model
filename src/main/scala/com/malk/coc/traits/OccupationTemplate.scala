@@ -28,5 +28,5 @@ trait OccupationTemplate {
       edu: Education,
       app: Appearance,
       language: Language
-  ): (Set[Skill], Set[(Int, Set[Skill])], Set[Skill], Set[Skill])
+  ): (Set[Skill], Seq[(Int, Seq[(Int, Set[Skill])])], Set[Skill], Set[Skill])
 }

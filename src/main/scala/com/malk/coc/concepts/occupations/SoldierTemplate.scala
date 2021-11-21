@@ -42,15 +42,20 @@ final class SoldierTemplate extends OccupationTemplate {
       edu: Education,
       app: Appearance,
       language: Language
-  ): (Set[Skill], Set[(Int, Set[Skill])], Set[Skill], Set[Skill]) = {
-     val dodge = Dodge(body.dexterity)()
+  ): (
+      Set[Skill],
+      Seq[(Int, Seq[(Int, Set[Skill])])],
+      Set[Skill],
+      Set[Skill]
+  ) = {
+    val dodge = Dodge(body.dexterity)()
 
-     val languageOwn = LanguageOwn(edu)(language)
+    val languageOwn = LanguageOwn(edu)(language)
 
     (
       (fixedSkills - dodge) + dodge,
       optionalSkills,
-      (personalSkills - dodge -languageOwn) + languageOwn,
+      (personalSkills - dodge - languageOwn) + languageOwn,
       nonTrainableSkills
     )
   }
@@ -60,13 +65,51 @@ final class SoldierTemplate extends OccupationTemplate {
     Stealth()
   )
 
-  private def optionalSkills: Set[(Int, Set[Skill])] = Set(
-    (1, Set(Climb(), Swim())),
-    (1, SkillHelper.fightingSkills),
-    (1, SkillHelper.firearmSkills),
-    (1, SkillHelper.survivalSkills),
-    // Choose one Language Other and put it on the list, otherwise it will be weird polyglots soldiers.
-    (2, Set(FirstAid(), MechanicalRepair() /* TODO: 1 x Language Other */ ))
+  private def optionalSkills: Seq[(Int, Seq[(Int, Set[Skill])])] = Seq(
+    (
+      1,
+      Seq(
+        (
+          1,
+          Set(Climb(), Swim())
+        )
+      )
+    ),
+    (
+      1,
+      Seq(
+        (
+          1,
+          SkillHelper.fightingSkills
+        )
+      )
+    ),
+    (
+      1,
+      Seq(
+        (
+          1,
+          SkillHelper.firearmSkills
+        )
+      )
+    ),
+    (
+      1,
+      Seq(
+        (
+          1,
+          SkillHelper.survivalSkills
+        )
+      )
+    ),
+    (
+      2,
+      Seq(
+        (1, Set(FirstAid())),
+        (1, Set(MechanicalRepair())),
+        (1, SkillHelper.languageOtherSkills)
+      )
+    )
   )
 
   private def nonTrainableSkills: Set[Skill] = Set(CthulhuMythos())

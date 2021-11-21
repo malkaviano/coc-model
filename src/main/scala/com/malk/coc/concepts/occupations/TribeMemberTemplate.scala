@@ -39,7 +39,12 @@ final class TribeMemberTemplate extends OccupationTemplate {
       edu: Education,
       app: Appearance,
       language: Language
-  ): (Set[Skill], Set[(Int, Set[Skill])], Set[Skill], Set[Skill]) = {
+  ): (
+      Set[Skill],
+      Seq[(Int, Seq[(Int, Set[Skill])])],
+      Set[Skill],
+      Set[Skill]
+  ) = {
     val selfSkills = Set(
       Dodge(body.dexterity)(),
       LanguageOwn(edu)(language)
@@ -63,17 +68,30 @@ final class TribeMemberTemplate extends OccupationTemplate {
     startCreditRating
   )
 
-  private def optionalSkills: Set[(Int, Set[Skill])] = Set(
+  private def optionalSkills: Seq[(Int, Seq[(Int, Set[Skill])])] = Seq(
     (
       1,
-      Set(
-        Sea(),
-        Desert(),
-        Arctic(),
-        WildernessTerrain()
+      Seq(
+        (
+          1,
+          Set(
+            Sea(),
+            Desert(),
+            Arctic(),
+            WildernessTerrain()
+          )
+        )
       )
     ),
-    (1, SkillHelper.fightingSkills ++ Set(Throw()))
+    (
+      1,
+      Seq(
+        (
+          1,
+          SkillHelper.fightingSkills ++ Set(Throw())
+        )
+      )
+    )
   )
 
   private def nonTrainableSkills: Set[Skill] = Set(CthulhuMythos())

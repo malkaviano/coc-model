@@ -5,6 +5,8 @@ import com.malk.coc.concepts.skills._
 import com.malk.coc.helpers.SkillHelper
 import com.malk.coc.concepts.skills.languages.English
 import com.malk.coc.concepts.skills.languages.own.LanguageOwn
+import com.malk.coc.concepts.skills.languages.other.LanguageOther
+import com.malk.coc.concepts.skills.languages.Arabic
 
 class SoldierTemplateSpec extends BehavesLikeOccupationTemplate {
   import com.malk.coc.helpers.InvestigatorCharacteristics.implicits._
@@ -31,7 +33,7 @@ class SoldierTemplateSpec extends BehavesLikeOccupationTemplate {
       (1, SkillHelper.fightingSkills),
       (1, SkillHelper.firearmSkills),
       (1, SkillHelper.survivalSkills),
-      (2, Set(FirstAid(), MechanicalRepair() /* Language Other*/ ))
+      (2, Set(FirstAid(), MechanicalRepair(), new LanguageOther(Arabic) {}))
     )
 
     val nonTrainableSkills: Set[Skill] = Set(CthulhuMythos())

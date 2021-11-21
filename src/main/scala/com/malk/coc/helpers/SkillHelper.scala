@@ -155,7 +155,19 @@ object SkillHelper {
     allSkills.filter(_.isInstanceOf[ArtAndCraft]).toSet
   }
 
-  def chooseSkills(optionalSkill: Set[(Int, Set[Skill])]): Set[Skill] = {
+  def chooseSkillsV2(optionalSkill: Seq[(Int, Seq[(Int, Set[Skill])])]): Set[Skill] = {
+    val skills = optionalSkill.flatMap {
+      case (take, next) => {
+        val chosen = chooseSkills(next.toSet)
+
+        Random.shuffle(chosen).take(take)
+      }
+    }
+
+    skills.toSet
+  }
+
+  private def chooseSkills(optionalSkill: Set[(Int, Set[Skill])]): Set[Skill] = {
     optionalSkill.flatMap(t => {
       Random.shuffle(t._2.toSeq).take(t._1)
     })
