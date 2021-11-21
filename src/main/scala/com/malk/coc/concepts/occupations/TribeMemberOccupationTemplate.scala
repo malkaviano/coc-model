@@ -12,11 +12,11 @@ import com.malk.coc.concepts.characteristics.Appearance
 import com.malk.coc.concepts.skills.languages.Language
 
 final class TribeMemberOccupationTemplate private (
-    val body: Body,
-    val brain: Brain,
-    val edu: Education,
-    val app: Appearance,
-    val language: Language
+    override val body: Body,
+    override val brain: Brain,
+    override val edu: Education,
+    override val app: Appearance,
+    override val language: Language
 )
     extends OccupationTemplate {
   val name = TribeMemberOccupationTemplate.name

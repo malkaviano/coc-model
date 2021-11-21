@@ -17,7 +17,7 @@ class TribeMemberOccupationTemplateSpec extends BehavesLikeOccupationTemplate {
   // TODO: Randomize
   val language = Arabic
 
-  val occupationTemplate = TribeMemberOccupationTemplate.apply(
+  val occupationTemplate = TribeMemberOccupationTemplate(
     implicitBody,
     implicitBrain,
     implicitEdu,

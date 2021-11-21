@@ -2,30 +2,22 @@ package com.malk.coc.helpers
 
 import com.malk.coc.traits.Skill
 import com.malk.coc.traits.OccupationTemplate
-import com.malk.coc.concepts.characteristics._
-import com.malk.coc.concepts.abstractions._
 import com.malk.coc.helpers.SkillHelper
 import com.malk.coc.concepts.skills.CreditRating
 import com.malk.coc.concepts.occupations.InvestigatorSkillPoints
 import scala.util.Random
-import com.malk.coc.concepts.skills.languages.Language
 import com.malk.coc.concepts.occupations.TemplateSkillResult
 import com.malk.coc.concepts.skills.languages.own.LanguageOwn
 import com.malk.coc.concepts.skills.Dodge
 
 final case class OccupationGenerator(
-    private val occupationTemplate: OccupationTemplate,
-    private val body: Body,
-    private val brain: Brain,
-    private val edu: Education,
-    private val app: Appearance,
-    private val language: Language
+    private val occupationTemplate: OccupationTemplate
 )(implicit private val rangeDice: ((Int, Int)) => Int) {
   private val occupationSkillPoints =
     occupationTemplate.occupationSkillPoints
 
   private val personalInterestPoints = InvestigatorSkillPoints(
-    brain.intelligence.value * 2
+    occupationTemplate.brain.intelligence.value * 2
   )
 
   private val templateSkills: TemplateSkillResult =
@@ -45,11 +37,11 @@ final case class OccupationGenerator(
 
     val personalSkills = SkillHelper.filteredSkills(
       chosenOccupationSkills ++ templateSkills.cannotSpendPointsSkills ++ templateSkills.excludedSkills + LanguageOwn(
-        edu
-      )(language) + Dodge(body.dexterity)()
+        occupationTemplate.edu
+      )(occupationTemplate.language) + Dodge(occupationTemplate.body.dexterity)()
     ) + LanguageOwn(
-      edu
-    )(language) + Dodge(body.dexterity)()
+      occupationTemplate.edu
+    )(occupationTemplate.language) + Dodge(occupationTemplate.body.dexterity)()
 
     // TODO: Stop relying on HashSet implementation
     val eligible =

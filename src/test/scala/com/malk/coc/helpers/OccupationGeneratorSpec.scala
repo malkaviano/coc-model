@@ -32,14 +32,7 @@ class OccupationGeneratorSpec extends AnyFunSpec with Matchers {
           language
         ).head
 
-        val occupation = OccupationGenerator(
-          template,
-          implicitBody,
-          implicitBrain,
-          implicitEdu,
-          implicitApp,
-          language
-        )
+        val occupation = OccupationGenerator(template)
 
         val occupationSkillPoints =
           template.occupationSkillPoints

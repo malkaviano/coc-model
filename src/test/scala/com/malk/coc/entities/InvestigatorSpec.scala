@@ -42,12 +42,7 @@ class InvestigatorSpec extends AnyFunSpec with Matchers with MockFactory {
       val occupationTemplate = randomOccupationTemplate
 
       val occupation = OccupationGenerator(
-        occupationTemplate,
-        body,
-        brain,
-        edu,
-        app,
-        language
+        occupationTemplate
       )
 
       Investigator(
