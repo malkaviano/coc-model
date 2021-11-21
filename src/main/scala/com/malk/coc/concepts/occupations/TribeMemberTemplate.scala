@@ -19,38 +19,6 @@ final class TribeMemberTemplate extends OccupationTemplate {
 
   def maximumCreditRating = 15
 
-  def fixedSkills: Set[Skill] = Set(
-    Climb(),
-    NaturalWorld(),
-    Listen(),
-    Occult(),
-    SpotHidden(),
-    Swim(),
-    startCreditRating
-  )
-
-  def optionalSkills: Set[(Int, Set[Skill])] = Set(
-    (
-      1,
-      Set(
-        Sea(),
-        Desert(),
-        Arctic(),
-        WildernessTerrain()
-      )
-    ),
-    (1, SkillHelper.fightingSkills ++ Set(Throw()))
-  )
-
-  def nonTrainableSkills: Set[Skill] = Set(CthulhuMythos())
-
-  def excludedSkills: Set[Skill] =
-    SkillHelper.modernSkills ++ SkillHelper.uncommonSkills
-
-  def personalSkills: Set[Skill] = SkillHelper.filteredSkills(
-    nonTrainableSkills ++ excludedSkills
-  )
-
   def occupationSkillPoints(
       body: Body,
       brain: Brain,
@@ -61,6 +29,9 @@ final class TribeMemberTemplate extends OccupationTemplate {
 
     rule.occupationSkillPoints(body, brain, edu, app)
   }
+
+  def excludedSkills: Set[Skill] =
+    SkillHelper.modernSkills ++ SkillHelper.uncommonSkills
 
   def templateSkills(
       body: Body,
@@ -81,6 +52,35 @@ final class TribeMemberTemplate extends OccupationTemplate {
       nonTrainableSkills
     )
   }
+
+  private def fixedSkills: Set[Skill] = Set(
+    Climb(),
+    NaturalWorld(),
+    Listen(),
+    Occult(),
+    SpotHidden(),
+    Swim(),
+    startCreditRating
+  )
+
+  private def optionalSkills: Set[(Int, Set[Skill])] = Set(
+    (
+      1,
+      Set(
+        Sea(),
+        Desert(),
+        Arctic(),
+        WildernessTerrain()
+      )
+    ),
+    (1, SkillHelper.fightingSkills ++ Set(Throw()))
+  )
+
+  private def nonTrainableSkills: Set[Skill] = Set(CthulhuMythos())
+
+  private def personalSkills: Set[Skill] = SkillHelper.filteredSkills(
+    nonTrainableSkills ++ excludedSkills
+  )
 }
 
 object TribeMemberTemplate {
