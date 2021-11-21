@@ -25,7 +25,7 @@ trait BehavesLikeOccupationTemplate extends AnyFunSpec with Matchers {
       }
 
       it(s"should have maximum ${maximumCreditRating}") {
-        occupationTemplate.maximumCreditRating shouldBe maximumCreditRating
+        occupationTemplate.startCreditRating.maximum shouldBe maximumCreditRating
       }
 
       it(s"should have a list of fixed skills") {

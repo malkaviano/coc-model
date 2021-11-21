@@ -50,7 +50,7 @@ class OccupationGeneratorSpec extends AnyFunSpec with Matchers {
 
     describe(s"when ${occupationSkillPoints} and ${personalInterestPoints}") {
       val minCR = template.startCreditRating.value
-      val maxCR = template.maximumCreditRating
+      val maxCR = template.startCreditRating.maximum
 
       it(
         s"should have Credit Rating between ${minCR} and ${maxCR}"

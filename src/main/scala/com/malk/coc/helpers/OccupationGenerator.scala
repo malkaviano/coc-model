@@ -57,7 +57,8 @@ final case class OccupationGenerator(
     )(language) + Dodge(body.dexterity)()
 
     // TODO: Stop relying on HashSet implementation
-    val eligible = chosenOccupationSkills ++ (personalSkills -- chosenOccupationSkills)
+    val eligible =
+      chosenOccupationSkills ++ (personalSkills -- chosenOccupationSkills)
 
     spentAllPoints(
       Random.shuffle(eligible.toSeq),
@@ -81,18 +82,19 @@ final case class OccupationGenerator(
   ): Set[Skill] = {
     while (investigatorSkillPoints.remaining > 0) {
       skills.foreach(skill => {
-        val maxRange = if (skill.isInstanceOf[CreditRating]) {
-          occupationTemplate.maximumCreditRating - skill.value
+        val rolled = rangeDice((0, maxIncrement))
+
+        val points = if (skill.isInstanceOf[CreditRating]) {
+          if (skill.asInstanceOf[CreditRating].canSpend(rolled)) {
+            rolled
+          } else {
+            0
+          }
         } else {
-          maxIncrement
+          rolled
         }
 
-        val points = if (maxRange == 0) {
-          0
-        } else {
-          investigatorSkillPoints.spend(rangeDice((0, maxRange)))
-        }
-
+        investigatorSkillPoints.spend(points)
         spendSkillPoints(skill, points)
       })
     }
