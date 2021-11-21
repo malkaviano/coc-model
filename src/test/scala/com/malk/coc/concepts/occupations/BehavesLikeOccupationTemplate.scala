@@ -5,7 +5,6 @@ import org.scalatest.matchers.should.Matchers
 
 import com.malk.coc.traits.OccupationTemplate
 import com.malk.coc.concepts.skills.CreditRating
-import com.malk.coc.traits.Skill
 
 trait BehavesLikeOccupationTemplate extends AnyFunSpec with Matchers {
   def behavesLikeOccupationTemplate(
@@ -14,10 +13,7 @@ trait BehavesLikeOccupationTemplate extends AnyFunSpec with Matchers {
       startCreditRating: CreditRating,
       maximumCreditRating: Int,
       result: TemplateSkillResult,
-      fixedSkills: Set[Skill],
-      optionalSkills: Seq[(Int, Seq[(Int, Set[Skill])])],
-      nonTrainableSkills: Set[Skill],
-      excludedSkills: Set[Skill],
+      templateSkillResult: TemplateSkillResult
   ): Unit = {
     it(s"should have name ${templateName}") {
       occupationTemplate.name shouldBe templateName
@@ -29,23 +25,23 @@ trait BehavesLikeOccupationTemplate extends AnyFunSpec with Matchers {
       }
 
       it(s"should have maximum ${maximumCreditRating}") {
-        occupationTemplate.maximumCreditRating shouldBe maximumCreditRating
+        occupationTemplate.startCreditRating.maximum shouldBe maximumCreditRating
       }
 
       it(s"should have a list of fixed skills") {
-        result.occupationFixedSkills should contain theSameElementsAs fixedSkills
+        result.occupationFixedSkills should contain theSameElementsAs templateSkillResult.occupationFixedSkills
       }
 
       it(s"should have a list of optional skills") {
-        result.occupationChooseSkills should contain theSameElementsAs optionalSkills
+        result.occupationChooseSkills should contain theSameElementsAs templateSkillResult.occupationChooseSkills
       }
 
       it(s"should have a list of non trainable skills") {
-        result.cannotSpendPointsSkills should contain theSameElementsAs nonTrainableSkills
+        result.cannotSpendPointsSkills should contain theSameElementsAs templateSkillResult.cannotSpendPointsSkills
       }
 
       it(s"should have a list of excluded skills") {
-        result.excludedSkills should contain theSameElementsAs excludedSkills
+        result.excludedSkills should contain theSameElementsAs templateSkillResult.excludedSkills
       }
     }
   }

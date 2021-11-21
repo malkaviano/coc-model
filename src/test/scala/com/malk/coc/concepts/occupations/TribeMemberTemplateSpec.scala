@@ -72,16 +72,20 @@ class TribeMemberTemplateSpec extends BehavesLikeOccupationTemplate {
       language
     )
 
+    val templateSkillResult = TemplateSkillResult(
+      fixedSkills,
+      optionalSkills,
+      nonTrainableSkills,
+      excludedSkills
+    )
+
     it should behave like behavesLikeOccupationTemplate(
       occupationTemplate,
       TribeMemberTemplate.name,
       startCreditRating,
       maximumCreditRating,
       result,
-      fixedSkills,
-      optionalSkills,
-      nonTrainableSkills,
-      excludedSkills
+      templateSkillResult
     )
   }
 

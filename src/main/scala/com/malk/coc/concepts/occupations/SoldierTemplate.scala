@@ -15,15 +15,7 @@ import com.malk.coc.concepts.skills.languages.own.LanguageOwn
 final class SoldierTemplate extends OccupationTemplate {
   override def name: String = SoldierTemplate.name
 
-  override def startCreditRating: CreditRating = {
-    val cr = CreditRating()
-
-    cr.spend(9)
-
-    cr
-  }
-
-  override def maximumCreditRating: Int = 30
+  override def startCreditRating: CreditRating = CreditRating(9, 30)
 
   override def occupationSkillPoints(
       body: Body,

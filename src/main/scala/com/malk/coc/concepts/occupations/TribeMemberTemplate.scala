@@ -14,9 +14,7 @@ import com.malk.coc.concepts.skills.languages.Language
 final class TribeMemberTemplate extends OccupationTemplate {
   val name = TribeMemberTemplate.name
 
-  def startCreditRating = CreditRating()
-
-  def maximumCreditRating = 15
+  def startCreditRating = CreditRating(0, 15)
 
   def occupationSkillPoints(
       body: Body,

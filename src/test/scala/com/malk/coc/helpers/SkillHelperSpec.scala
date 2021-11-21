@@ -4,7 +4,6 @@ import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 
 import com.malk.coc.concepts.skills._
-import com.malk.coc.concepts.occupations.InvestigatorSkillPoints
 import org.scalamock.scalatest.MockFactory
 import com.malk.coc.traits._
 
@@ -232,83 +231,6 @@ class SkillHelperSpec extends AnyFunSpec with Matchers with MockFactory {
           }
         }
       }
-    }
-
-    describe("Spending points on Credit Rating") {
-      val rollRange = mockFunction[(Int, Int), Int]
-
-      Seq(
-        (
-          30,
-          InvestigatorSkillPoints(100),
-          45,
-          InvestigatorSkillPoints(70),
-          15,
-          45
-        ),
-        (
-          20,
-          InvestigatorSkillPoints(10),
-          25,
-          InvestigatorSkillPoints(0),
-          15,
-          45
-        ),
-        (
-          20,
-          InvestigatorSkillPoints(10),
-          45,
-          InvestigatorSkillPoints(10),
-          45,
-          45
-        )
-      ).foreach(t => {
-        val spend = t._1
-        val occupationSkillPoints = t._2
-        val expected = CreditRating()
-        val remainingPoints = t._4
-        val startingCreditRating = CreditRating()
-        val maximumCreditRating = CreditRating()
-
-        expected.spend(t._3)
-        startingCreditRating.spend(t._5)
-        maximumCreditRating.spend(t._6)
-
-        describe(
-          s"when initial Credit Rating value is ${startingCreditRating.value}"
-        ) {
-          describe(
-            s"when maximum Credit Rating value is ${maximumCreditRating.value}"
-          ) {
-            describe(s"spending ${spend} points on Credit Rating") {
-              describe(s"when ${occupationSkillPoints}") {
-                it(s"should return Credit Rating value ${expected.value}") {
-                  rollRange
-                    .stubs(
-                      (
-                        0,
-                        maximumCreditRating.value - startingCreditRating.value
-                      )
-                    )
-                    .returning(spend)
-
-                  val result = SkillHelper.spendPointsOnCreditRating(
-                    startingCreditRating,
-                    maximumCreditRating,
-                    occupationSkillPoints
-                  )(rollRange)
-
-                  result shouldBe expected
-                }
-
-                it(s"should have ${remainingPoints}") {
-                  occupationSkillPoints shouldBe remainingPoints
-                }
-              }
-            }
-          }
-        }
-      })
     }
   }
 }

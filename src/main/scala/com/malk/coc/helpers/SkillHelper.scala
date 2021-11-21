@@ -3,7 +3,6 @@ package com.malk.coc.helpers
 import scala.util.Random
 
 import com.malk.coc.concepts.skills._
-import com.malk.coc.concepts.occupations.InvestigatorSkillPoints
 import com.malk.coc.concepts.characteristics._
 import com.malk.coc.traits._
 import com.malk.coc.concepts.skills.languages.other._
@@ -171,23 +170,5 @@ object SkillHelper {
     optionalSkill.flatMap(t => {
       Random.shuffle(t._2.toSeq).take(t._1)
     })
-  }
-
-  def spendPointsOnCreditRating(
-      startingCreditRating: CreditRating,
-      maximumCreditRating: CreditRating,
-      occupationSkillPoints: InvestigatorSkillPoints
-  )(implicit rollRange: ((Int, Int)) => Int): CreditRating = {
-    if(maximumCreditRating.value - startingCreditRating.value > 0) {
-      val points = rollRange(
-        (0, maximumCreditRating.value - startingCreditRating.value)
-      )
-
-      val spent = occupationSkillPoints.spend(points)
-
-      startingCreditRating.spend(spent)
-    }
-
-    startingCreditRating
   }
 }

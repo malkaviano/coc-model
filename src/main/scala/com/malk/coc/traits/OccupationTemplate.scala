@@ -14,8 +14,6 @@ trait OccupationTemplate {
 
   def startCreditRating: CreditRating
 
-  def maximumCreditRating: Int
-
   def occupationSkillPoints(
       body: Body,
       brain: Brain,
