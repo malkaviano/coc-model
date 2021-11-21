@@ -4,7 +4,7 @@ import com.malk.coc.traits.Skill
 import com.malk.coc.concepts.skills._
 import com.malk.coc.concepts.skills.languages.own._
 import com.malk.coc.helpers.SkillHelper
-import com.malk.coc.rules.TwoEduEitherTwoStrOrDexRule
+import com.malk.coc.rules.TwoEduEitherTwoDexOrStrRule
 import com.malk.coc.traits.OccupationTemplate
 import com.malk.coc.concepts.abstractions.Body
 import com.malk.coc.concepts.abstractions.Brain
@@ -25,7 +25,7 @@ final class TribeMemberTemplate extends OccupationTemplate {
       edu: Education,
       app: Appearance
   ): InvestigatorSkillPoints = {
-    val rule = new TwoEduEitherTwoStrOrDexRule
+    val rule = new TwoEduEitherTwoDexOrStrRule
 
     rule.occupationSkillPoints(body, brain, edu, app)
   }

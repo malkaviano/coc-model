@@ -30,7 +30,7 @@ trait BehavesLikeOccupationSkillPointsRule extends AnyFunSpec with Matchers {
     }
   }
 }
-class TwoEduEitherTwoStrOrDexRuleSpec
+class TwoEduEitherTwoDexOrStrRuleSpec
     extends AnyFunSpec
     with BehavesLikeOccupationSkillPointsRule {
   describe("TwoEduEitherTwoStrOrDexRule") {
@@ -39,7 +39,7 @@ class TwoEduEitherTwoStrOrDexRuleSpec
 
     val edu = Education(60)
 
-    val rule = new TwoEduEitherTwoStrOrDexRule
+    val rule = new TwoEduEitherTwoDexOrStrRule
 
     it("should have name TwoEduEitherTwoStrOrDexRule") {
       rule.name shouldBe "TwoEduEitherTwoStrOrDexRule"
@@ -74,7 +74,7 @@ class TwoEduEitherTwoStrOrDexRuleSpec
     describe("when Strength is less than Dexterity") {
       val body = Body(Strength(40), con, Dexterity(70), siz)
 
-      val rule = new TwoEduEitherTwoStrOrDexRule
+      val rule = new TwoEduEitherTwoDexOrStrRule
 
       behavesLikeOccupationSkillPointsRule(
         rule,
