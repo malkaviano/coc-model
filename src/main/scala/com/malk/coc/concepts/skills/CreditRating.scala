@@ -13,10 +13,14 @@ final case class CreditRating(val initial: Int = 0, val maximum: Int = 30)
   override def name: String = "Credit Rating"
 
   override def spend(points: Int): Unit = {
-    if (internalValue + points <= maximum) {
+    if (canSpend(points)) {
       internalValue += points
     }
   }
 
   override def value: Int = internalValue
+
+  def canSpend(points: Int): Boolean = {
+    internalValue + points <= maximum
+  }
 }
