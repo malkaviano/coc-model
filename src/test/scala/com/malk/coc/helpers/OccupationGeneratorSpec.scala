@@ -15,7 +15,7 @@ class OccupationGeneratorSpec extends AnyFunSpec with Matchers {
   import com.malk.coc.concepts.characteristics.Education
 
   describe("Occupation") {
-    val template = new SoldierTemplate
+    val template = new ZealotOccupationTemplate
     val implicitBody = body
     val implicitBrain = brain
     val implicitEdu = edu
@@ -33,8 +33,8 @@ class OccupationGeneratorSpec extends AnyFunSpec with Matchers {
       language
     )
 
-    it("should have name SOLDIER") {
-      occupation.name shouldBe "SOLDIER"
+    it(s"should have name ${ZealotOccupationTemplate.name}") {
+      occupation.name shouldBe ZealotOccupationTemplate.name
     }
 
     val occupationSkillPoints =

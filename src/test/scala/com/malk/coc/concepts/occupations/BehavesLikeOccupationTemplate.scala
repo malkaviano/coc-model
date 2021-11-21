@@ -21,10 +21,10 @@ trait BehavesLikeOccupationTemplate extends AnyFunSpec with Matchers {
 
     describe("getting template skills") {
       it(s"should have initial ${startCreditRating}") {
-        occupationTemplate.startCreditRating.value shouldBe startCreditRating.value
+        occupationTemplate.startCreditRating shouldBe startCreditRating
       }
 
-      it(s"should have maximum ${maximumCreditRating}") {
+      it(s"should have maximum CreditRating ${maximumCreditRating}") {
         occupationTemplate.startCreditRating.maximum shouldBe maximumCreditRating
       }
 
