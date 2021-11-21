@@ -12,7 +12,7 @@ import com.malk.coc.rules.TwoEduEitherTwoDexOrStrRule
 import com.malk.coc.concepts.skills.languages.Language
 import com.malk.coc.concepts.skills.languages.own.LanguageOwn
 
-final class SoldierOccupationTemplate extends OccupationTemplate {
+final class SoldierOccupationTemplate private() extends OccupationTemplate {
   override def name: String = SoldierOccupationTemplate.name
 
   override def startCreditRating: CreditRating = CreditRating(9, 30)
@@ -106,4 +106,8 @@ final class SoldierOccupationTemplate extends OccupationTemplate {
 
 object SoldierOccupationTemplate {
   val name = "SOLDIER"
+
+  def apply(): SoldierOccupationTemplate = {
+    new SoldierOccupationTemplate
+  }
 }

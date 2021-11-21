@@ -15,7 +15,7 @@ class SoldierOccupationTemplateSpec extends BehavesLikeOccupationTemplate {
   val implicitEdu = edu
   val implicitApp = app
 
-  val occupationTemplate = new SoldierOccupationTemplate
+  val occupationTemplate = SoldierOccupationTemplate.apply()
 
   // TODO: Randomize
   val language = English

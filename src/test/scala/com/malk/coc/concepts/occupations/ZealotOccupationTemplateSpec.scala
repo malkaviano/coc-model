@@ -15,7 +15,7 @@ class ZealotOccupationTemplateSpec extends BehavesLikeOccupationTemplate {
   val implicitEdu = edu
   val implicitApp = app
 
-  val occupationTemplate = new ZealotOccupationTemplate
+  val occupationTemplate = ZealotOccupationTemplate.apply()
 
   // TODO: Randomize
   val language = Portuguese

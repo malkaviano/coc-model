@@ -11,8 +11,8 @@ import com.malk.coc.concepts.skills._
 import com.malk.coc.helpers.SkillHelper
 import com.malk.coc.concepts.skills.languages.own.LanguageOwn
 
-class ZealotOccupationTemplate extends OccupationTemplate {
-  override def name: String = "ZEALOT"
+class ZealotOccupationTemplate private () extends OccupationTemplate {
+  override def name: String = ZealotOccupationTemplate.name
 
   override def startCreditRating: CreditRating = CreditRating(0, 30)
 
@@ -84,4 +84,8 @@ class ZealotOccupationTemplate extends OccupationTemplate {
 
 object ZealotOccupationTemplate {
   val name = "ZEALOT"
+
+  def apply(): ZealotOccupationTemplate = {
+    new ZealotOccupationTemplate()
+  }
 }

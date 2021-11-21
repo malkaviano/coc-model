@@ -115,8 +115,8 @@ final case class OccupationGenerator(
 
 object OccupationGenerator {
   val occupationTemplates = Set(
-    new TribeMemberOccupationTemplate,
-    new SoldierOccupationTemplate,
-    new ZealotOccupationTemplate
+    TribeMemberOccupationTemplate.apply(),
+    SoldierOccupationTemplate.apply(),
+    ZealotOccupationTemplate.apply()
   )
 }

@@ -10,7 +10,7 @@ class TribeMemberOccupationTemplateSpec extends BehavesLikeOccupationTemplate {
   import com.malk.coc.helpers.DiceHelper.implicits._
 
   describe("TRIBE MEMBER occupation") {
-    val occupationTemplate = new TribeMemberOccupationTemplate
+    val occupationTemplate = TribeMemberOccupationTemplate.apply()
     val startCreditRating = CreditRating()
     val maximumCreditRating = 15
 

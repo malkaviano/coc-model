@@ -11,7 +11,7 @@ import com.malk.coc.concepts.characteristics.Education
 import com.malk.coc.concepts.characteristics.Appearance
 import com.malk.coc.concepts.skills.languages.Language
 
-final class TribeMemberOccupationTemplate extends OccupationTemplate {
+final class TribeMemberOccupationTemplate private () extends OccupationTemplate {
   val name = TribeMemberOccupationTemplate.name
 
   def startCreditRating = CreditRating(0, 15)
@@ -86,4 +86,8 @@ final class TribeMemberOccupationTemplate extends OccupationTemplate {
 
 object TribeMemberOccupationTemplate {
   val name = "TRIBE MEMBER"
+
+  def apply(): TribeMemberOccupationTemplate = {
+    new TribeMemberOccupationTemplate
+  }
 }

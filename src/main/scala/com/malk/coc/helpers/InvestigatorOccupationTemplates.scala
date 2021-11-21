@@ -7,9 +7,9 @@ import com.malk.coc.concepts.occupations._
 
 object InvestigatorOccupationTemplates {
   private val occupationTemplates: Map[String, OccupationTemplate] = Map(
-    TribeMemberOccupationTemplate.name -> new TribeMemberOccupationTemplate,
-    SoldierOccupationTemplate.name -> new SoldierOccupationTemplate,
-    ZealotOccupationTemplate.name -> new ZealotOccupationTemplate
+    TribeMemberOccupationTemplate.name -> TribeMemberOccupationTemplate.apply(),
+    SoldierOccupationTemplate.name -> SoldierOccupationTemplate.apply(),
+    ZealotOccupationTemplate.name -> ZealotOccupationTemplate.apply()
   )
 
   def occupationTemplateNames: Set[String] = {
