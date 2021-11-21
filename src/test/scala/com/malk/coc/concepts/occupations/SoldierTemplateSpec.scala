@@ -4,6 +4,7 @@ import com.malk.coc.traits.Skill
 import com.malk.coc.concepts.skills._
 import com.malk.coc.helpers.SkillHelper
 import com.malk.coc.concepts.skills.languages.English
+import com.malk.coc.concepts.skills.languages.own.LanguageOwn
 
 class SoldierTemplateSpec extends BehavesLikeOccupationTemplate {
   import com.malk.coc.helpers.InvestigatorCharacteristics.implicits._
@@ -15,6 +16,10 @@ class SoldierTemplateSpec extends BehavesLikeOccupationTemplate {
   val implicitApp = app
 
   val occupationTemplate = new SoldierTemplate
+
+  // TODO: Randomize
+  val language = English
+
   describe("SOLDIER occupation") {
     val startCreditRating = CreditRating()
 
@@ -22,7 +27,8 @@ class SoldierTemplateSpec extends BehavesLikeOccupationTemplate {
 
     val fixedSkills: Set[Skill] = Set(
       Dodge(implicitBody.dexterity)(),
-      Stealth()
+      Stealth(),
+      startCreditRating
     )
 
     val optionalSkills: Seq[(Int, Seq[(Int, Set[Skill])])] = Seq(
@@ -35,17 +41,15 @@ class SoldierTemplateSpec extends BehavesLikeOccupationTemplate {
         Seq(
           (1, Set(FirstAid())),
           (1, Set(MechanicalRepair())),
-          (1, SkillHelper.languageOtherSkills)
+          (1, SkillHelper.languageOtherSkills - LanguageOwn(edu)(language))
         )
       )
     )
 
     val nonTrainableSkills: Set[Skill] = Set(CthulhuMythos())
 
-    val excludedSkills: Set[Skill] = SkillHelper.uncommonSkills ++ SkillHelper.modernSkills
-
-    // TODO: Randomize
-    val language = English
+    val excludedSkills: Set[Skill] =
+      SkillHelper.uncommonSkills ++ SkillHelper.modernSkills
 
     val result = occupationTemplate.templateSkills(
       implicitBody,
