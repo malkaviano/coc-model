@@ -10,7 +10,6 @@ import com.malk.coc.concepts.characteristics.Dexterity
 import com.malk.coc.helpers.SkillHelper
 import com.malk.coc.rules.TwoEduEitherTwoDexOrStrRule
 import com.malk.coc.concepts.skills.languages.Language
-import com.malk.coc.concepts.skills.languages.own._
 
 final class SoldierTemplate extends OccupationTemplate {
   override def name: String = SoldierTemplate.name
@@ -45,12 +44,9 @@ final class SoldierTemplate extends OccupationTemplate {
   ): TemplateSkillResult = {
     val dodge = Dodge(body.dexterity)()
 
-    val languageOwn = LanguageOwn(edu)(language)
-
     TemplateSkillResult(
       (fixedSkills - dodge) + dodge,
       optionalSkills,
-      (personalSkills - dodge - languageOwn) + languageOwn,
       nonTrainableSkills,
       excludedSkills
     )
@@ -112,10 +108,6 @@ final class SoldierTemplate extends OccupationTemplate {
 
   private def excludedSkills: Set[Skill] =
     SkillHelper.modernSkills ++ SkillHelper.uncommonSkills
-
-  private def personalSkills: Set[Skill] = SkillHelper.filteredSkills(
-    nonTrainableSkills ++ excludedSkills
-  )
 }
 
 object SoldierTemplate {

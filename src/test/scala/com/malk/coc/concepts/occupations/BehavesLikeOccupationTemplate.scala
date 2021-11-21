@@ -16,7 +16,6 @@ trait BehavesLikeOccupationTemplate extends AnyFunSpec with Matchers {
       result: TemplateSkillResult,
       fixedSkills: Set[Skill],
       optionalSkills: Seq[(Int, Seq[(Int, Set[Skill])])],
-      personalSkills: Set[Skill],
       nonTrainableSkills: Set[Skill]
   ): Unit = {
     it(s"should have name ${templateName}") {
@@ -38,10 +37,6 @@ trait BehavesLikeOccupationTemplate extends AnyFunSpec with Matchers {
 
       it(s"should have a list of optional skills") {
         result.occupationChooseSkills should contain theSameElementsAs optionalSkills
-      }
-
-      it(s"should have a list of personal skills") {
-        result.personalSkills should contain theSameElementsAs personalSkills
       }
 
       it(s"should have a list of non trainable skills") {

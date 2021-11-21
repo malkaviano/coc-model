@@ -4,7 +4,6 @@ import com.malk.coc.traits.Skill
 import com.malk.coc.concepts.skills._
 import com.malk.coc.helpers.SkillHelper
 import com.malk.coc.concepts.skills.languages.English
-import com.malk.coc.concepts.skills.languages.own.LanguageOwn
 
 class SoldierTemplateSpec extends BehavesLikeOccupationTemplate {
   import com.malk.coc.helpers.InvestigatorCharacteristics.implicits._
@@ -43,18 +42,8 @@ class SoldierTemplateSpec extends BehavesLikeOccupationTemplate {
 
     val nonTrainableSkills: Set[Skill] = Set(CthulhuMythos())
 
-    val excludedSkills = SkillHelper.uncommonSkills ++ SkillHelper.modernSkills
-
     // TODO: Randomize
     val language = English
-
-    val personalSkills: Set[Skill] = SkillHelper.filteredSkills(
-      nonTrainableSkills ++ excludedSkills + LanguageOwn(implicitEdu)(
-        language
-      ) + Dodge(
-        implicitBody.dexterity
-      )()
-    ) + LanguageOwn(implicitEdu)(language)
 
     val result = occupationTemplate.templateSkills(
       implicitBody,
@@ -72,7 +61,6 @@ class SoldierTemplateSpec extends BehavesLikeOccupationTemplate {
       result,
       fixedSkills,
       optionalSkills,
-      personalSkills,
       nonTrainableSkills
     )
   }
