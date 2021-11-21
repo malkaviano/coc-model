@@ -10,6 +10,7 @@ import com.malk.coc.concepts.characteristics.Dexterity
 import com.malk.coc.helpers.SkillHelper
 import com.malk.coc.rules.TwoEduEitherTwoDexOrStrRule
 import com.malk.coc.concepts.skills.languages.Language
+import com.malk.coc.concepts.skills.languages.own.LanguageOwn
 
 final class SoldierTemplate extends OccupationTemplate {
   override def name: String = SoldierTemplate.name
@@ -46,7 +47,7 @@ final class SoldierTemplate extends OccupationTemplate {
 
     TemplateSkillResult(
       (fixedSkills - dodge) + dodge,
-      optionalSkills,
+      optionalSkills(language),
       nonTrainableSkills,
       excludedSkills
     )
@@ -54,10 +55,11 @@ final class SoldierTemplate extends OccupationTemplate {
 
   private def fixedSkills: Set[Skill] = Set(
     Dodge(Dexterity(0))(),
-    Stealth()
+    Stealth(),
+    startCreditRating
   )
 
-  private def optionalSkills: Seq[(Int, Seq[(Int, Set[Skill])])] = Seq(
+  private def optionalSkills(language: Language): Seq[(Int, Seq[(Int, Set[Skill])])] = Seq(
     (
       1,
       Seq(
@@ -99,7 +101,7 @@ final class SoldierTemplate extends OccupationTemplate {
       Seq(
         (1, Set(FirstAid())),
         (1, Set(MechanicalRepair())),
-        (1, SkillHelper.languageOtherSkills)
+        (1, (SkillHelper.languageOtherSkills - LanguageOwn(Education(0))(language)))
       )
     )
   )
