@@ -56,7 +56,8 @@ final case class OccupationGenerator(
       edu
     )(language) + Dodge(body.dexterity)()
 
-    val eligible = chosenOccupationSkills ++ personalSkills
+    // TODO: Stop relying on HashSet implementation
+    val eligible = chosenOccupationSkills ++ (personalSkills -- chosenOccupationSkills)
 
     spentAllPoints(
       Random.shuffle(eligible.toSeq),

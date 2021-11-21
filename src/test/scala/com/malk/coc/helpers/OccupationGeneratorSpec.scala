@@ -4,7 +4,7 @@ import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 
 import com.malk.coc.helpers.SkillHelper
-import com.malk.coc.concepts.occupations.TribeMemberTemplate
+import com.malk.coc.concepts.occupations._
 import com.malk.coc.concepts.occupations.InvestigatorSkillPoints
 import com.malk.coc.concepts.skills.languages.Arabic
 
@@ -15,7 +15,7 @@ class OccupationGeneratorSpec extends AnyFunSpec with Matchers {
   import com.malk.coc.concepts.characteristics.Education
 
   describe("Occupation") {
-    val template = new TribeMemberTemplate
+    val template = new SoldierTemplate
     val implicitBody = body
     val implicitBrain = brain
     val implicitEdu = edu
@@ -33,8 +33,8 @@ class OccupationGeneratorSpec extends AnyFunSpec with Matchers {
       language
     )
 
-    it("should have name TRIBE MEMBER") {
-      occupation.name shouldBe "TRIBE MEMBER"
+    it("should have name SOLDIER") {
+      occupation.name shouldBe "SOLDIER"
     }
 
     val occupationSkillPoints =
