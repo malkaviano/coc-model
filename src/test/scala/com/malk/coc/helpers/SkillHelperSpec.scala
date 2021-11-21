@@ -188,23 +188,6 @@ class SkillHelperSpec extends AnyFunSpec with Matchers with MockFactory {
       }
     }
 
-    describe("Choosing Skills") {
-      Seq((1, 3, 4), (4, 2, 6), (10, 4, 12)).foreach(t => {
-        val skills = Set(
-          (t._1, SkillHelper.fightingSkills),
-          (t._2, SkillHelper.firearmSkills)
-        )
-
-        describe(s"when pick ${t._3} from ${skills}") {
-          val result = SkillHelper.chooseSkills(skills)
-
-          it(s"should return ${result}") {
-            result should have size (t._3)
-          }
-        }
-      })
-    }
-
     describe("Choosing Skills version 2") {
       val choose: Seq[(Int, Seq[(Int, Set[Skill])])] = Seq(
         (

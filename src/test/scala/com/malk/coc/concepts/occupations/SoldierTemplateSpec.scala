@@ -5,8 +5,6 @@ import com.malk.coc.concepts.skills._
 import com.malk.coc.helpers.SkillHelper
 import com.malk.coc.concepts.skills.languages.English
 import com.malk.coc.concepts.skills.languages.own.LanguageOwn
-import com.malk.coc.concepts.skills.languages.other.LanguageOther
-import com.malk.coc.concepts.skills.languages.Arabic
 
 class SoldierTemplateSpec extends BehavesLikeOccupationTemplate {
   import com.malk.coc.helpers.InvestigatorCharacteristics.implicits._
@@ -28,12 +26,19 @@ class SoldierTemplateSpec extends BehavesLikeOccupationTemplate {
       Stealth()
     )
 
-    val optionalSkills: Set[(Int, Set[Skill])] = Set(
-      (1, Set(Climb(), Swim())),
-      (1, SkillHelper.fightingSkills),
-      (1, SkillHelper.firearmSkills),
-      (1, SkillHelper.survivalSkills),
-      (2, Set(FirstAid(), MechanicalRepair(), new LanguageOther(Arabic) {}))
+    val optionalSkills: Seq[(Int, Seq[(Int, Set[Skill])])] = Seq(
+      (1, Seq((1, Set(Climb(), Swim())))),
+      (1, Seq((1, SkillHelper.fightingSkills))),
+      (1, Seq((1, SkillHelper.firearmSkills))),
+      (1, Seq((1, SkillHelper.survivalSkills))),
+      (
+        2,
+        Seq(
+          (1, Set(FirstAid())),
+          (1, Set(MechanicalRepair())),
+          (1, SkillHelper.languageOtherSkills)
+        )
+      )
     )
 
     val nonTrainableSkills: Set[Skill] = Set(CthulhuMythos())
@@ -44,18 +49,20 @@ class SoldierTemplateSpec extends BehavesLikeOccupationTemplate {
     val language = English
 
     val personalSkills: Set[Skill] = SkillHelper.filteredSkills(
-      nonTrainableSkills ++ excludedSkills + LanguageOwn(implicitEdu)(language) + Dodge(
+      nonTrainableSkills ++ excludedSkills + LanguageOwn(implicitEdu)(
+        language
+      ) + Dodge(
         implicitBody.dexterity
       )()
     ) + LanguageOwn(implicitEdu)(language)
 
     val result = occupationTemplate.templateSkills(
-        implicitBody,
-        implicitBrain,
-        implicitEdu,
-        implicitApp,
-        language
-      )
+      implicitBody,
+      implicitBrain,
+      implicitEdu,
+      implicitApp,
+      language
+    )
 
     it should behave like behavesLikeOccupationTemplate(
       occupationTemplate,

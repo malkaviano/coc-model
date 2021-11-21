@@ -13,9 +13,14 @@ trait BehavesLikeOccupationTemplate extends AnyFunSpec with Matchers {
       templateName: String,
       startCreditRating: CreditRating,
       maximumCreditRating: Int,
-      result: (Set[Skill], Set[(Int, Set[Skill])],Set[Skill],Set[Skill]),
+      result: (
+          Set[Skill],
+          Seq[(Int, Seq[(Int, Set[Skill])])],
+          Set[Skill],
+          Set[Skill]
+      ),
       fixedSkills: Set[Skill],
-      optionalSkills: Set[(Int, Set[Skill])],
+      optionalSkills: Seq[(Int, Seq[(Int, Set[Skill])])],
       personalSkills: Set[Skill],
       nonTrainableSkills: Set[Skill]
   ): Unit = {
