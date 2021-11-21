@@ -10,6 +10,8 @@ import com.malk.coc.concepts.occupations.InvestigatorSkillPoints
 import scala.util.Random
 import com.malk.coc.concepts.skills.languages.Language
 import com.malk.coc.concepts.occupations.TemplateSkillResult
+import com.malk.coc.concepts.skills.languages.own.LanguageOwn
+import com.malk.coc.concepts.skills.Dodge
 
 final case class OccupationGenerator(
     private val occupationTemplate: OccupationTemplate,
@@ -39,14 +41,22 @@ final case class OccupationGenerator(
       templateSkills.occupationChooseSkills
     )
 
-  private val spentSkillPoints: Set[Skill] = {
+  private val spentSkillPointsOnSKills: Set[Skill] = {
     spentAllPoints(
       chosenOccupationSkills.toSeq,
       occupationSkillPoints,
       15
     )
 
-    val eligible = chosenOccupationSkills ++ templateSkills.personalSkills
+    val personalSkills = SkillHelper.filteredSkills(
+      chosenOccupationSkills ++ templateSkills.cannotSpendPointsSkills ++ templateSkills.excludedSkills + LanguageOwn(
+        edu
+      )(language) + Dodge(body.dexterity)()
+    ) + LanguageOwn(
+      edu
+    )(language) + Dodge(body.dexterity)()
+
+    val eligible = chosenOccupationSkills ++ personalSkills
 
     spentAllPoints(
       Random.shuffle(eligible.toSeq),
@@ -58,7 +68,7 @@ final case class OccupationGenerator(
   val name: String = occupationTemplate.name
 
   val skills: Set[Skill] =
-    spentSkillPoints ++ templateSkills.cannotSpendPointsSkills
+    spentSkillPointsOnSKills ++ templateSkills.cannotSpendPointsSkills
 
   val remainingPoints: Int =
     occupationSkillPoints.remaining + personalInterestPoints.remaining

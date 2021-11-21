@@ -66,10 +66,18 @@ class OccupationGeneratorSpec extends AnyFunSpec with Matchers {
         occupation.remainingPoints shouldBe 0
       }
 
+      val templateResult = template.templateSkills(
+        implicitBody,
+        implicitBrain,
+        implicitEdu,
+        implicitApp,
+        language
+      )
+
       it("should have all skills") {
         val available = SkillHelper
           .filteredSkills(
-            template.excludedSkills + LanguageOwn(Education(0))(language)
+            templateResult.excludedSkills + LanguageOwn(Education(0))(language)
           )
           .map(_.name) + LanguageOwn(implicitEdu)(language).name
 

@@ -51,7 +51,8 @@ final class SoldierTemplate extends OccupationTemplate {
       (fixedSkills - dodge) + dodge,
       optionalSkills,
       (personalSkills - dodge - languageOwn) + languageOwn,
-      nonTrainableSkills
+      nonTrainableSkills,
+      excludedSkills
     )
   }
 

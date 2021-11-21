@@ -30,9 +30,6 @@ final class TribeMemberTemplate extends OccupationTemplate {
     rule.occupationSkillPoints(body, brain, edu, app)
   }
 
-  def excludedSkills: Set[Skill] =
-    SkillHelper.modernSkills ++ SkillHelper.uncommonSkills
-
   def templateSkills(
       body: Body,
       brain: Brain,
@@ -49,7 +46,8 @@ final class TribeMemberTemplate extends OccupationTemplate {
       fixedSkills,
       optionalSkills,
       (personalSkills -- selfSkills) ++ selfSkills,
-      nonTrainableSkills
+      nonTrainableSkills,
+      excludedSkills
     )
   }
 
@@ -94,6 +92,9 @@ final class TribeMemberTemplate extends OccupationTemplate {
   private def personalSkills: Set[Skill] = SkillHelper.filteredSkills(
     nonTrainableSkills ++ excludedSkills
   )
+
+  private def excludedSkills: Set[Skill] =
+    SkillHelper.modernSkills ++ SkillHelper.uncommonSkills
 }
 
 object TribeMemberTemplate {
