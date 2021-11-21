@@ -13,16 +13,11 @@ trait BehavesLikeOccupationTemplate extends AnyFunSpec with Matchers {
       templateName: String,
       startCreditRating: CreditRating,
       maximumCreditRating: Int,
-      result: (
-          Set[Skill],
-          Seq[(Int, Seq[(Int, Set[Skill])])],
-          Set[Skill],
-          Set[Skill]
-      ),
+      result: TemplateSkillResult,
       fixedSkills: Set[Skill],
       optionalSkills: Seq[(Int, Seq[(Int, Set[Skill])])],
-      personalSkills: Set[Skill],
-      nonTrainableSkills: Set[Skill]
+      nonTrainableSkills: Set[Skill],
+      excludedSkills: Set[Skill],
   ): Unit = {
     it(s"should have name ${templateName}") {
       occupationTemplate.name shouldBe templateName
@@ -38,19 +33,19 @@ trait BehavesLikeOccupationTemplate extends AnyFunSpec with Matchers {
       }
 
       it(s"should have a list of fixed skills") {
-        result._1 should contain theSameElementsAs fixedSkills
+        result.occupationFixedSkills should contain theSameElementsAs fixedSkills
       }
 
       it(s"should have a list of optional skills") {
-        result._2 should contain theSameElementsAs optionalSkills
-      }
-
-      it(s"should have a list of personal skills") {
-        result._3 should contain theSameElementsAs personalSkills
+        result.occupationChooseSkills should contain theSameElementsAs optionalSkills
       }
 
       it(s"should have a list of non trainable skills") {
-        result._4 should contain theSameElementsAs nonTrainableSkills
+        result.cannotSpendPointsSkills should contain theSameElementsAs nonTrainableSkills
+      }
+
+      it(s"should have a list of excluded skills") {
+        result.excludedSkills should contain theSameElementsAs excludedSkills
       }
     }
   }

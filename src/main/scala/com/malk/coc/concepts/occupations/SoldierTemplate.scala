@@ -10,7 +10,7 @@ import com.malk.coc.concepts.characteristics.Dexterity
 import com.malk.coc.helpers.SkillHelper
 import com.malk.coc.rules.TwoEduEitherTwoDexOrStrRule
 import com.malk.coc.concepts.skills.languages.Language
-import com.malk.coc.concepts.skills.languages.own._
+import com.malk.coc.concepts.skills.languages.own.LanguageOwn
 
 final class SoldierTemplate extends OccupationTemplate {
   override def name: String = SoldierTemplate.name
@@ -42,30 +42,24 @@ final class SoldierTemplate extends OccupationTemplate {
       edu: Education,
       app: Appearance,
       language: Language
-  ): (
-      Set[Skill],
-      Seq[(Int, Seq[(Int, Set[Skill])])],
-      Set[Skill],
-      Set[Skill]
-  ) = {
+  ): TemplateSkillResult = {
     val dodge = Dodge(body.dexterity)()
 
-    val languageOwn = LanguageOwn(edu)(language)
-
-    (
+    TemplateSkillResult(
       (fixedSkills - dodge) + dodge,
-      optionalSkills,
-      (personalSkills - dodge - languageOwn) + languageOwn,
-      nonTrainableSkills
+      optionalSkills(language),
+      nonTrainableSkills,
+      excludedSkills
     )
   }
 
   private def fixedSkills: Set[Skill] = Set(
     Dodge(Dexterity(0))(),
-    Stealth()
+    Stealth(),
+    startCreditRating
   )
 
-  private def optionalSkills: Seq[(Int, Seq[(Int, Set[Skill])])] = Seq(
+  private def optionalSkills(language: Language): Seq[(Int, Seq[(Int, Set[Skill])])] = Seq(
     (
       1,
       Seq(
@@ -107,7 +101,7 @@ final class SoldierTemplate extends OccupationTemplate {
       Seq(
         (1, Set(FirstAid())),
         (1, Set(MechanicalRepair())),
-        (1, SkillHelper.languageOtherSkills)
+        (1, (SkillHelper.languageOtherSkills - LanguageOwn(Education(0))(language)))
       )
     )
   )
@@ -116,10 +110,6 @@ final class SoldierTemplate extends OccupationTemplate {
 
   private def excludedSkills: Set[Skill] =
     SkillHelper.modernSkills ++ SkillHelper.uncommonSkills
-
-  private def personalSkills: Set[Skill] = SkillHelper.filteredSkills(
-    nonTrainableSkills ++ excludedSkills
-  )
 }
 
 object SoldierTemplate {

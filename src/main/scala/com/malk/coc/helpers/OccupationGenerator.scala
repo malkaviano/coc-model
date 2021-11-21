@@ -9,6 +9,9 @@ import com.malk.coc.concepts.skills.CreditRating
 import com.malk.coc.concepts.occupations.InvestigatorSkillPoints
 import scala.util.Random
 import com.malk.coc.concepts.skills.languages.Language
+import com.malk.coc.concepts.occupations.TemplateSkillResult
+import com.malk.coc.concepts.skills.languages.own.LanguageOwn
+import com.malk.coc.concepts.skills.Dodge
 
 final case class OccupationGenerator(
     private val occupationTemplate: OccupationTemplate,
@@ -30,22 +33,31 @@ final case class OccupationGenerator(
     brain.intelligence.value * 2
   )
 
-  private val templateSkills =
+  private val templateSkills: TemplateSkillResult =
     occupationTemplate.templateSkills(body, brain, edu, app, language)
 
   private val chosenOccupationSkills =
-    templateSkills._1 ++ SkillHelper.chooseSkillsV2(
-      templateSkills._2
+    templateSkills.occupationFixedSkills ++ SkillHelper.chooseSkillsV2(
+      templateSkills.occupationChooseSkills
     )
 
-  private val spentSkillPoints: Set[Skill] = {
+  private val spentSkillPointsOnSKills: Set[Skill] = {
     spentAllPoints(
       chosenOccupationSkills.toSeq,
       occupationSkillPoints,
       15
     )
 
-    val eligible = chosenOccupationSkills ++ templateSkills._3
+    val personalSkills = SkillHelper.filteredSkills(
+      chosenOccupationSkills ++ templateSkills.cannotSpendPointsSkills ++ templateSkills.excludedSkills + LanguageOwn(
+        edu
+      )(language) + Dodge(body.dexterity)()
+    ) + LanguageOwn(
+      edu
+    )(language) + Dodge(body.dexterity)()
+
+    // TODO: Stop relying on HashSet implementation
+    val eligible = chosenOccupationSkills ++ (personalSkills -- chosenOccupationSkills)
 
     spentAllPoints(
       Random.shuffle(eligible.toSeq),
@@ -57,7 +69,7 @@ final case class OccupationGenerator(
   val name: String = occupationTemplate.name
 
   val skills: Set[Skill] =
-    spentSkillPoints ++ templateSkills._4
+    spentSkillPointsOnSKills ++ templateSkills.cannotSpendPointsSkills
 
   val remainingPoints: Int =
     occupationSkillPoints.remaining + personalInterestPoints.remaining

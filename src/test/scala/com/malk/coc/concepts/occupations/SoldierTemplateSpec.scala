@@ -16,6 +16,10 @@ class SoldierTemplateSpec extends BehavesLikeOccupationTemplate {
   val implicitApp = app
 
   val occupationTemplate = new SoldierTemplate
+
+  // TODO: Randomize
+  val language = English
+
   describe("SOLDIER occupation") {
     val startCreditRating = CreditRating()
 
@@ -23,7 +27,8 @@ class SoldierTemplateSpec extends BehavesLikeOccupationTemplate {
 
     val fixedSkills: Set[Skill] = Set(
       Dodge(implicitBody.dexterity)(),
-      Stealth()
+      Stealth(),
+      startCreditRating
     )
 
     val optionalSkills: Seq[(Int, Seq[(Int, Set[Skill])])] = Seq(
@@ -36,25 +41,15 @@ class SoldierTemplateSpec extends BehavesLikeOccupationTemplate {
         Seq(
           (1, Set(FirstAid())),
           (1, Set(MechanicalRepair())),
-          (1, SkillHelper.languageOtherSkills)
+          (1, SkillHelper.languageOtherSkills - LanguageOwn(edu)(language))
         )
       )
     )
 
     val nonTrainableSkills: Set[Skill] = Set(CthulhuMythos())
 
-    val excludedSkills = SkillHelper.uncommonSkills ++ SkillHelper.modernSkills
-
-    // TODO: Randomize
-    val language = English
-
-    val personalSkills: Set[Skill] = SkillHelper.filteredSkills(
-      nonTrainableSkills ++ excludedSkills + LanguageOwn(implicitEdu)(
-        language
-      ) + Dodge(
-        implicitBody.dexterity
-      )()
-    ) + LanguageOwn(implicitEdu)(language)
+    val excludedSkills: Set[Skill] =
+      SkillHelper.uncommonSkills ++ SkillHelper.modernSkills
 
     val result = occupationTemplate.templateSkills(
       implicitBody,
@@ -72,8 +67,8 @@ class SoldierTemplateSpec extends BehavesLikeOccupationTemplate {
       result,
       fixedSkills,
       optionalSkills,
-      personalSkills,
-      nonTrainableSkills
+      nonTrainableSkills,
+      excludedSkills
     )
   }
 }

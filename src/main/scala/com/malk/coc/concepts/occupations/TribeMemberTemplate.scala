@@ -2,7 +2,6 @@ package com.malk.coc.concepts.occupations
 
 import com.malk.coc.traits.Skill
 import com.malk.coc.concepts.skills._
-import com.malk.coc.concepts.skills.languages.own._
 import com.malk.coc.helpers.SkillHelper
 import com.malk.coc.rules.TwoEduEitherTwoDexOrStrRule
 import com.malk.coc.traits.OccupationTemplate
@@ -30,31 +29,18 @@ final class TribeMemberTemplate extends OccupationTemplate {
     rule.occupationSkillPoints(body, brain, edu, app)
   }
 
-  def excludedSkills: Set[Skill] =
-    SkillHelper.modernSkills ++ SkillHelper.uncommonSkills
-
   def templateSkills(
       body: Body,
       brain: Brain,
       edu: Education,
       app: Appearance,
       language: Language
-  ): (
-      Set[Skill],
-      Seq[(Int, Seq[(Int, Set[Skill])])],
-      Set[Skill],
-      Set[Skill]
-  ) = {
-    val selfSkills = Set(
-      Dodge(body.dexterity)(),
-      LanguageOwn(edu)(language)
-    )
-
-    (
+  ): TemplateSkillResult = {
+    TemplateSkillResult(
       fixedSkills,
       optionalSkills,
-      (personalSkills -- selfSkills) ++ selfSkills,
-      nonTrainableSkills
+      nonTrainableSkills,
+      excludedSkills
     )
   }
 
@@ -96,9 +82,8 @@ final class TribeMemberTemplate extends OccupationTemplate {
 
   private def nonTrainableSkills: Set[Skill] = Set(CthulhuMythos())
 
-  private def personalSkills: Set[Skill] = SkillHelper.filteredSkills(
-    nonTrainableSkills ++ excludedSkills
-  )
+  private def excludedSkills: Set[Skill] =
+    SkillHelper.modernSkills ++ SkillHelper.uncommonSkills
 }
 
 object TribeMemberTemplate {
