@@ -3,19 +3,16 @@ package com.malk.coc.concepts.occupations
 import com.malk.coc.traits.Skill
 import com.malk.coc.concepts.skills._
 import com.malk.coc.helpers.SkillHelper
-import com.malk.coc.concepts.skills.languages.English
 
 class SoldierOccupationTemplateSpec extends BehavesLikeOccupationTemplate {
   import com.malk.coc.helpers.InvestigatorCharacteristics.implicits._
   import com.malk.coc.helpers.DiceHelper.implicits._
+  import com.malk.coc.helpers.InvestigatorAttributes.implicits._
 
   val implicitBody = body
   val implicitBrain = brain
   val implicitEdu = edu
   val implicitApp = app
-
-  // TODO: Randomize
-  val language = English
 
   val occupationTemplate = SoldierOccupationTemplate(
     implicitBody,

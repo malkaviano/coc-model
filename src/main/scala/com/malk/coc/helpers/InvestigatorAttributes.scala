@@ -5,6 +5,9 @@ import com.malk.coc.concepts.attributes.Age
 import com.malk.coc.concepts.attributes.Luck
 import com.malk.coc.concepts.dices._
 import com.malk.coc.rules.RollRules
+import com.malk.coc.concepts.skills.languages.Language
+import scala.util.Random
+import com.malk.coc.concepts.skills.languages._
 
 object InvestigatorAttributes {
   def randomAge: Age = DiceHelper.randomAge()
@@ -22,9 +25,28 @@ object InvestigatorAttributes {
     Luck(value)
   }
 
+  def randomLanguage: Language = Random.shuffle(Set(
+      Arabic,
+      English,
+      German,
+      Japanese,
+      Portuguese,
+      Spanish,
+      Chinese,
+      French,
+      Italian,
+      Polish,
+      Russian,
+      Turkish
+    )).head
+
   object implicits {
     implicit def age: Age = randomAge
+
     implicit def luck(implicit sixSidedDice: SixSidedDice, age: Age): Luck =
       randomLuck(sixSidedDice, age)
+
+    implicit def language: Language =
+      randomLanguage
   }
 }

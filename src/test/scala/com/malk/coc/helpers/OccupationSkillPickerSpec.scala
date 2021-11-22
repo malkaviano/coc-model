@@ -2,7 +2,6 @@ package com.malk.coc.helpers
 
 import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
-import com.malk.coc.concepts.skills.languages.Spanish
 import com.malk.coc.concepts.skills.languages.own.LanguageOwn
 import com.malk.coc.concepts.skills._
 import com.malk.coc.traits.OccupationTemplate
@@ -19,14 +18,14 @@ import com.malk.coc.concepts.characteristics.Dexterity
 class OccupationSkillPickerSpec extends AnyFunSpec with Matchers {
   import com.malk.coc.helpers.InvestigatorCharacteristics.implicits._
   import com.malk.coc.helpers.DiceHelper.implicits._
+  import com.malk.coc.helpers.InvestigatorAttributes.implicits._
 
   val implicitBody = body
   val implicitBrain = brain
   val implicitEdu = edu
   val implicitApp = app
 
-  // TODO: randomize this
-  val templateLanguage = Spanish
+  val templateLanguage = language
 
   describe("picking occupation skills") {
     it("should return template occupation skills") {
