@@ -11,29 +11,25 @@ import com.malk.coc.concepts.characteristics.Education
 import com.malk.coc.concepts.characteristics.Appearance
 import com.malk.coc.concepts.skills.languages.Language
 
-final class TribeMemberTemplate extends OccupationTemplate {
-  val name = TribeMemberTemplate.name
+final class TribeMemberOccupationTemplate private (
+    override val body: Body,
+    override val brain: Brain,
+    override val edu: Education,
+    override val app: Appearance,
+    override val language: Language
+)
+    extends OccupationTemplate {
+  val name = TribeMemberOccupationTemplate.name
 
   def startCreditRating = CreditRating(0, 15)
 
-  def occupationSkillPoints(
-      body: Body,
-      brain: Brain,
-      edu: Education,
-      app: Appearance
-  ): InvestigatorSkillPoints = {
+  override def occupationSkillPoints: InvestigatorSkillPoints = {
     val rule = new TwoEduEitherTwoDexOrStrRule
 
     rule.occupationSkillPoints(body, brain, edu, app)
   }
 
-  def templateSkills(
-      body: Body,
-      brain: Brain,
-      edu: Education,
-      app: Appearance,
-      language: Language
-  ): TemplateSkillResult = {
+  override def templateSkills: TemplateSkillResult = {
     TemplateSkillResult(
       fixedSkills,
       optionalSkills,
@@ -84,6 +80,16 @@ final class TribeMemberTemplate extends OccupationTemplate {
     SkillHelper.modernSkills ++ SkillHelper.uncommonSkills
 }
 
-object TribeMemberTemplate {
+object TribeMemberOccupationTemplate {
   val name = "TRIBE MEMBER"
+
+  def apply(
+      body: Body,
+      brain: Brain,
+      edu: Education,
+      app: Appearance,
+      language: Language
+  ): TribeMemberOccupationTemplate = {
+    new TribeMemberOccupationTemplate(body, brain, edu, app, language)
+  }
 }

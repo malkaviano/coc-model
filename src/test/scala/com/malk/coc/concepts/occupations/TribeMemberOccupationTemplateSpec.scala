@@ -5,12 +5,28 @@ import com.malk.coc.traits.Skill
 import com.malk.coc.concepts.skills.languages.Arabic
 import com.malk.coc.helpers.SkillHelper
 
-class TribeMemberTemplateSpec extends BehavesLikeOccupationTemplate {
+class TribeMemberOccupationTemplateSpec extends BehavesLikeOccupationTemplate {
   import com.malk.coc.helpers.InvestigatorCharacteristics.implicits._
   import com.malk.coc.helpers.DiceHelper.implicits._
 
+  val implicitBody = body
+  val implicitBrain = brain
+  val implicitEdu = edu
+  val implicitApp = app
+
+  // TODO: Randomize
+  val language = Arabic
+
+  val occupationTemplate = TribeMemberOccupationTemplate(
+    implicitBody,
+    implicitBrain,
+    implicitEdu,
+    implicitApp,
+    language
+  )
+
   describe("TRIBE MEMBER occupation") {
-    val occupationTemplate = new TribeMemberTemplate
+
     val startCreditRating = CreditRating()
     val maximumCreditRating = 15
 
@@ -54,23 +70,10 @@ class TribeMemberTemplateSpec extends BehavesLikeOccupationTemplate {
 
     val nonTrainableSkills: Set[Skill] = Set(CthulhuMythos())
 
-    val excludedSkills: Set[Skill] = SkillHelper.uncommonSkills ++ SkillHelper.modernSkills
+    val excludedSkills: Set[Skill] =
+      SkillHelper.uncommonSkills ++ SkillHelper.modernSkills
 
-    val implicitBody = body
-    val implicitBrain = brain
-    val implicitEdu = edu
-    val implicitApp = app
-
-    // TODO: Randomize
-    val language = Arabic
-
-    val result = occupationTemplate.templateSkills(
-      implicitBody,
-      implicitBrain,
-      implicitEdu,
-      implicitApp,
-      language
-    )
+    val result = occupationTemplate.templateSkills
 
     val templateSkillResult = TemplateSkillResult(
       fixedSkills,
@@ -81,7 +84,7 @@ class TribeMemberTemplateSpec extends BehavesLikeOccupationTemplate {
 
     it should behave like behavesLikeOccupationTemplate(
       occupationTemplate,
-      TribeMemberTemplate.name,
+      TribeMemberOccupationTemplate.name,
       startCreditRating,
       maximumCreditRating,
       result,
