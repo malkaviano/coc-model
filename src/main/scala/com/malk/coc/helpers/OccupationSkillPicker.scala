@@ -23,6 +23,10 @@ final case class OccupationSkillPicker(
 
   val creditRating = occupationTemplate.startCreditRating
 
+  val cannotSpendPointsSkills: Set[Skill] = occupationTemplate.templateSkills.cannotSpendPointsSkills
+
+  val excludedSkills: Set[Skill] = occupationTemplate.templateSkills.excludedSkills
+
   occupationTemplate.templateSkills.occupationFixedSkills.foreach(skill => {
     getSkill(skill).foreach(pickedSkills.add(_))
   })
@@ -31,8 +35,7 @@ final case class OccupationSkillPicker(
     case (take: Int, options: Seq[(Int, Set[Skill])]) => {
       val firstPick = options.flatMap {
         case (take: Int, options: Set[Skill]) => {
-          // FIXME: Filter out cannotSpend and Excluded, or we gonna take less skills in the end.
-          val reduced = options -- pickedSkills
+          val reduced = options -- pickedSkills -- cannotSpendPointsSkills -- excludedSkills
 
           Random.shuffle(reduced.toSeq).take(take)
         }
@@ -46,8 +49,6 @@ final case class OccupationSkillPicker(
   }
 
   val occupationSkills: Set[Skill] = pickedSkills.toSet
-
-  val cannotSpendPointsSkills: Set[Skill] = occupationTemplate.templateSkills.cannotSpendPointsSkills
 
   def personalSkills(occupationSkills: Set[Skill]): Set[Skill] = {
     occupationSkills.foreach(getSkill(_).foreach(consolidatedSkills.add(_)))

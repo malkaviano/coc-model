@@ -122,11 +122,21 @@ class OccupationSkillPickerSpec extends AnyFunSpec with Matchers {
                 Seq(
                   (
                     4,
-                    SkillHelper.allSkills
+                    Set(
+                      CthulhuMythos(),
+                      ComputerUse(),
+                      Electronics(),
+                      Axe(),
+                      Handgun(),
+                      FastTalk(),
+                      Stealth()
+                    )
                   )
                 )
               )
-            )
+            ),
+            cannotSpendPointsSkills = Set(CthulhuMythos()),
+            excludedSkills = SkillHelper.uncommonSkills ++ SkillHelper.modernSkills
           )
         )
 
