@@ -63,7 +63,7 @@ final class ProfessorOccupationTemplate private (
 }
 
 object ProfessorOccupationTemplate {
-  val name = "PROFESSOR"
+  val name = "PROFESSOR2"
 
   def apply(
       body: Body,
