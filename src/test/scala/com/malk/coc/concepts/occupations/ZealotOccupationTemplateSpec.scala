@@ -4,7 +4,6 @@ import com.malk.coc.concepts.skills.languages.Portuguese
 import com.malk.coc.concepts.skills._
 import com.malk.coc.traits.Skill
 import com.malk.coc.helpers.SkillHelper
-import com.malk.coc.concepts.skills.languages.own.LanguageOwn
 
 class ZealotOccupationTemplateSpec extends BehavesLikeOccupationTemplate {
   import com.malk.coc.helpers.InvestigatorCharacteristics.implicits._
@@ -56,11 +55,7 @@ class ZealotOccupationTemplateSpec extends BehavesLikeOccupationTemplate {
         Seq(
           (
             15,
-            SkillHelper.filteredSkills(
-              fixedSkills ++ nonTrainableSkills ++ excludedSkills ++ SkillHelper.interpersonalSkills + LanguageOwn(
-                edu
-              )(language)
-            )
+            SkillHelper.allSkills
           )
         )
       )

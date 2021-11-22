@@ -9,7 +9,6 @@ import com.malk.coc.rules.TwoEduEitherTwoAppOrPowRule
 import com.malk.coc.traits.Skill
 import com.malk.coc.concepts.skills._
 import com.malk.coc.helpers.SkillHelper
-import com.malk.coc.concepts.skills.languages.own.LanguageOwn
 
 class ZealotOccupationTemplate private (
     override val body: Body,
@@ -61,11 +60,7 @@ class ZealotOccupationTemplate private (
       Seq(
         (
           15,
-          SkillHelper.filteredSkills(
-            fixedSkills ++ nonTrainableSkills ++ excludedSkills ++ SkillHelper.interpersonalSkills + LanguageOwn(
-              Education(0)
-            )(language)
-          )
+          SkillHelper.allSkills
         )
       )
     )
