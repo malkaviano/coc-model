@@ -14,13 +14,14 @@ class ProfessorOccupationTemplateSpec extends BehavesLikeOccupationTemplate {
   val implicitBrain = brain
   val implicitEdu = edu
   val implicitApp = app
+  val implicitLanguage = language
 
   val occupationTemplate = ProfessorOccupationTemplate(
     implicitBody,
     implicitBrain,
     implicitEdu,
     implicitApp,
-    language
+    implicitLanguage
   )
 
   describe("PROFESSOR occupation") {
@@ -28,7 +29,7 @@ class ProfessorOccupationTemplateSpec extends BehavesLikeOccupationTemplate {
 
     val fixedSkills: Set[Skill] = Set(
       LibraryUse(),
-      LanguageOwn(implicitEdu)(language),
+      LanguageOwn(implicitEdu)(implicitLanguage),
       Psychology(),
       startCreditRating
     )

@@ -13,13 +13,14 @@ class ZealotOccupationTemplateSpec extends BehavesLikeOccupationTemplate {
   val implicitBrain = brain
   val implicitEdu = edu
   val implicitApp = app
+  val implicitLanguage = language
 
   val occupationTemplate = ZealotOccupationTemplate(
     implicitBody,
     implicitBrain,
     implicitEdu,
     implicitApp,
-    language
+    implicitLanguage
   )
 
   describe("ZEALOT occupation") {

@@ -25,7 +25,7 @@ object InvestigatorAttributes {
     Luck(value)
   }
 
-  def randomLanguage: Language = Random.shuffle(Set(
+  def randomLanguage: Language = Random.shuffle(Seq(
       Arabic,
       English,
       German,

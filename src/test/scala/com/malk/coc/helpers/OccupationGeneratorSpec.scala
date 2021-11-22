@@ -20,13 +20,14 @@ class OccupationGeneratorSpec extends AnyFunSpec with Matchers {
         val implicitBrain = brain
         val implicitEdu = edu
         val implicitApp = app
+        val implicitLanguage = language
 
         val template = InvestigatorOccupationTemplates.occupationTemplate(templateName)(
           implicitBody,
           implicitBrain,
           implicitEdu,
           implicitApp,
-          language
+          implicitLanguage
         ).head
 
         val occupation = OccupationGenerator(template)
@@ -64,10 +65,10 @@ class OccupationGeneratorSpec extends AnyFunSpec with Matchers {
             val available = SkillHelper
               .filteredSkills(
                 templateResult.excludedSkills + LanguageOwn(Education(0))(
-                  language
+                  implicitLanguage
                 )
               )
-              .map(_.name) + LanguageOwn(implicitEdu)(language).name
+              .map(_.name) + LanguageOwn(implicitEdu)(implicitLanguage).name
 
             val result = occupation.skills.map(_.name)
 

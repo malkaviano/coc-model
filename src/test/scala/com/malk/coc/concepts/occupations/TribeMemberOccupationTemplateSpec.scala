@@ -13,13 +13,14 @@ class TribeMemberOccupationTemplateSpec extends BehavesLikeOccupationTemplate {
   val implicitBrain = brain
   val implicitEdu = edu
   val implicitApp = app
+  val implicitLanguage = language
 
   val occupationTemplate = TribeMemberOccupationTemplate(
     implicitBody,
     implicitBrain,
     implicitEdu,
     implicitApp,
-    language
+    implicitLanguage
   )
 
   describe("TRIBE MEMBER occupation") {
