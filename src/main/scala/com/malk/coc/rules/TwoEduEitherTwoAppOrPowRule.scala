@@ -5,7 +5,7 @@ import com.malk.coc.concepts.occupations.InvestigatorSkillPoints
 import com.malk.coc.concepts.characteristics._
 import com.malk.coc.concepts.abstractions._
 
-class TwoEduEitherTwoAppOrPowRule extends OccupationSkillPointsRule {
+final class TwoEduEitherTwoAppOrPowRule extends OccupationSkillPointsRule {
   val name = "TwoEduEitherTwoAppOrPowRule"
 
   override def occupationSkillPoints(
