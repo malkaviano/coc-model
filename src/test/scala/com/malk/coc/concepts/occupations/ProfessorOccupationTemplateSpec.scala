@@ -1,38 +1,27 @@
 package com.malk.coc.concepts.occupations
 
-import com.malk.coc.concepts.skills.languages.Polish
 import com.malk.coc.concepts.skills._
 import com.malk.coc.traits.Skill
 import com.malk.coc.helpers.SkillHelper
 import com.malk.coc.concepts.skills.languages.own.LanguageOwn
 
-/*
-PROFESSOR [Lovecraftian]—
-
-Other Language,
-any four other skills as academic or personal specialties.
-
-Occupation Skill Points: EDU × 4
-*/
-
 class ProfessorOccupationTemplateSpec extends BehavesLikeOccupationTemplate {
   import com.malk.coc.helpers.InvestigatorCharacteristics.implicits._
+  import com.malk.coc.helpers.InvestigatorAttributes.implicits._
   import com.malk.coc.helpers.DiceHelper.implicits._
 
   val implicitBody = body
   val implicitBrain = brain
   val implicitEdu = edu
   val implicitApp = app
-
-  // TODO: Randomize
-  val language = Polish
+  val implicitLanguage = language
 
   val occupationTemplate = ProfessorOccupationTemplate(
     implicitBody,
     implicitBrain,
     implicitEdu,
     implicitApp,
-    language
+    implicitLanguage
   )
 
   describe("PROFESSOR occupation") {
@@ -40,7 +29,7 @@ class ProfessorOccupationTemplateSpec extends BehavesLikeOccupationTemplate {
 
     val fixedSkills: Set[Skill] = Set(
       LibraryUse(),
-      LanguageOwn(implicitEdu)(language),
+      LanguageOwn(implicitEdu)(implicitLanguage),
       Psychology(),
       startCreditRating
     )

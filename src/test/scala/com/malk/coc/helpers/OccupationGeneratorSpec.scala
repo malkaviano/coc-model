@@ -5,13 +5,13 @@ import org.scalatest.matchers.should.Matchers
 
 import com.malk.coc.helpers.SkillHelper
 import com.malk.coc.concepts.occupations.InvestigatorSkillPoints
-import com.malk.coc.concepts.skills.languages.Arabic
 
 class OccupationGeneratorSpec extends AnyFunSpec with Matchers {
   import com.malk.coc.helpers.InvestigatorCharacteristics.implicits._
   import com.malk.coc.helpers.DiceHelper.implicits._
   import com.malk.coc.concepts.skills.languages.own.LanguageOwn
   import com.malk.coc.concepts.characteristics.Education
+  import com.malk.coc.helpers.InvestigatorAttributes.implicits._
 
   InvestigatorOccupationTemplates.occupationTemplateNames.foreach(
     templateName => {
@@ -20,16 +20,14 @@ class OccupationGeneratorSpec extends AnyFunSpec with Matchers {
         val implicitBrain = brain
         val implicitEdu = edu
         val implicitApp = app
-
-        // TODO: randomize this
-        val language = Arabic
+        val implicitLanguage = language
 
         val template = InvestigatorOccupationTemplates.occupationTemplate(templateName)(
           implicitBody,
           implicitBrain,
           implicitEdu,
           implicitApp,
-          language
+          implicitLanguage
         ).head
 
         val occupation = OccupationGenerator(template)
@@ -67,10 +65,10 @@ class OccupationGeneratorSpec extends AnyFunSpec with Matchers {
             val available = SkillHelper
               .filteredSkills(
                 templateResult.excludedSkills + LanguageOwn(Education(0))(
-                  language
+                  implicitLanguage
                 )
               )
-              .map(_.name) + LanguageOwn(implicitEdu)(language).name
+              .map(_.name) + LanguageOwn(implicitEdu)(implicitLanguage).name
 
             val result = occupation.skills.map(_.name)
 

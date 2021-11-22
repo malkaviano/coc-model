@@ -6,7 +6,6 @@ import org.scalamock.scalatest.MockFactory
 
 import com.malk.coc.concepts.dices._
 import com.malk.coc.helpers.OccupationGenerator
-import com.malk.coc.concepts.skills.languages.Polish
 
 class InvestigatorSpec extends AnyFunSpec with Matchers with MockFactory {
   describe("Generating random investigator") {
@@ -35,9 +34,6 @@ class InvestigatorSpec extends AnyFunSpec with Matchers with MockFactory {
       implicit val fourSidedDice = FourSidedDice(rollD4)
 
       rollD4.stubs((1, 4)).returning(2)
-
-      // TODO: randomize this
-      implicit val language = Polish
 
       val occupationTemplate = randomOccupationTemplate
 

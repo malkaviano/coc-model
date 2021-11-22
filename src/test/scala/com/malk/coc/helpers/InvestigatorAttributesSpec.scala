@@ -7,6 +7,7 @@ import org.scalamock.scalatest.MockFactory
 import com.malk.coc.concepts.dices._
 import com.malk.coc.concepts.attributes.Luck
 import com.malk.coc.concepts.attributes.Age
+import com.malk.coc.concepts.skills.languages._
 
 class InvestigatorAttributesSpec
     extends AnyFunSpec
@@ -57,6 +58,29 @@ class InvestigatorAttributesSpec
 
         result shouldBe luck1
       }
+    }
+  }
+
+  describe("Generating random language") {
+    val languages: Set[Language] = Set(
+      Arabic,
+      English,
+      German,
+      Japanese,
+      Portuguese,
+      Spanish,
+      Chinese,
+      French,
+      Italian,
+      Polish,
+      Russian,
+      Turkish
+    )
+
+    it(s"should return one of ${languages}") {
+      val result = InvestigatorAttributes.randomLanguage
+
+      languages should contain (result)
     }
   }
 }
