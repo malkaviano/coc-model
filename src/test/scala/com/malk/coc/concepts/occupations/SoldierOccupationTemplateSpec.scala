@@ -4,7 +4,6 @@ import com.malk.coc.traits.Skill
 import com.malk.coc.concepts.skills._
 import com.malk.coc.helpers.SkillHelper
 import com.malk.coc.concepts.skills.languages.English
-import com.malk.coc.concepts.skills.languages.own.LanguageOwn
 
 class SoldierOccupationTemplateSpec extends BehavesLikeOccupationTemplate {
   import com.malk.coc.helpers.InvestigatorCharacteristics.implicits._
@@ -47,7 +46,7 @@ class SoldierOccupationTemplateSpec extends BehavesLikeOccupationTemplate {
         Seq(
           (1, Set(FirstAid())),
           (1, Set(MechanicalRepair())),
-          (1, SkillHelper.languageOtherSkills - LanguageOwn(edu)(language))
+          (1, SkillHelper.languageOtherSkills)
         )
       )
     )

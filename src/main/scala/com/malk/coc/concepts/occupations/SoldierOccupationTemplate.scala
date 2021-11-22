@@ -10,7 +10,6 @@ import com.malk.coc.concepts.characteristics.Dexterity
 import com.malk.coc.helpers.SkillHelper
 import com.malk.coc.rules.TwoEduEitherTwoDexOrStrRule
 import com.malk.coc.concepts.skills.languages.Language
-import com.malk.coc.concepts.skills.languages.own.LanguageOwn
 
 final class SoldierOccupationTemplate private (
     override val body: Body,
@@ -92,9 +91,7 @@ final class SoldierOccupationTemplate private (
         (1, Set(MechanicalRepair())),
         (
           1,
-          (SkillHelper.languageOtherSkills - LanguageOwn(Education(0))(
-            language
-          ))
+          (SkillHelper.languageOtherSkills)
         )
       )
     )
