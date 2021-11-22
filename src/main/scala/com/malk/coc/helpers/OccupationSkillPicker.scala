@@ -46,6 +46,8 @@ final case class OccupationSkillPicker(
 
   val occupationSkills: Set[Skill] = pickedSkills.toSet
 
+  val cannotSpendPointsSkills: Set[Skill] = occupationTemplate.templateSkills.cannotSpendPointsSkills
+
   def personalSkills(occupationSkills: Set[Skill]): Set[Skill] = {
     occupationSkills.foreach(getSkill(_).foreach(consolidatedSkills.add(_)))
 

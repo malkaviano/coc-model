@@ -5,7 +5,6 @@ import com.malk.coc.traits.OccupationTemplate
 import com.malk.coc.concepts.skills.CreditRating
 import com.malk.coc.concepts.occupations.InvestigatorSkillPoints
 import scala.util.Random
-import com.malk.coc.concepts.occupations.TemplateSkillResult
 
 final case class OccupationGenerator(
     private val occupationTemplate: OccupationTemplate
@@ -16,9 +15,6 @@ final case class OccupationGenerator(
   private val personalInterestPoints = InvestigatorSkillPoints(
     occupationTemplate.brain.intelligence.value * 2
   )
-
-  private val templateSkills: TemplateSkillResult =
-    occupationTemplate.templateSkills
 
   private val picker = OccupationSkillPicker(
     occupationTemplate
@@ -45,7 +41,7 @@ final case class OccupationGenerator(
   val name: String = occupationTemplate.name
 
   val skills: Set[Skill] =
-    spentSkillPointsOnSKills ++ templateSkills.cannotSpendPointsSkills
+    spentSkillPointsOnSKills ++ picker.cannotSpendPointsSkills
 
   val remainingPoints: Int =
     occupationSkillPoints.remaining + personalInterestPoints.remaining
