@@ -5,15 +5,6 @@ import com.malk.coc.traits.Skill
 import com.malk.coc.helpers.SkillHelper
 import com.malk.coc.concepts.skills.languages.own.LanguageOwn
 
-/*
-PROFESSOR [Lovecraftian]—
-
-Other Language,
-any four other skills as academic or personal specialties.
-
-Occupation Skill Points: EDU × 4
-*/
-
 class ProfessorOccupationTemplateSpec extends BehavesLikeOccupationTemplate {
   import com.malk.coc.helpers.InvestigatorCharacteristics.implicits._
   import com.malk.coc.helpers.InvestigatorAttributes.implicits._
