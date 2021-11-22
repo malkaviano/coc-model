@@ -23,9 +23,11 @@ final case class OccupationGenerator(
   private val templateSkills: TemplateSkillResult =
     occupationTemplate.templateSkills
 
-  private val chosenOccupationSkills = OccupationSkillPicker(
+  private val picker = OccupationSkillPicker(
     occupationTemplate
-  ).occupationSkills
+  )
+
+  private val chosenOccupationSkills = picker.occupationSkills
 
   private val spentSkillPointsOnSKills: Set[Skill] = {
     spentAllPoints(

@@ -41,12 +41,18 @@ final case class OccupationSkillPicker(
 
   def occupationSkills: Set[Skill] = pickedSkills.toSet
 
+  // def allSkills: Set[Skill] = pickedSkills.toSet
+
   private def addSkill(skill: Skill): Unit = {
-    skill match {
-      case LanguageOwn(edu)   => pickedSkills.add(languageOwn)
-      case Dodge(dex)         => pickedSkills.add(dodge)
-      case CreditRating(i, m) => pickedSkills.add(creditRating)
-      case anyOther           => pickedSkills.add(anyOther)
+    val toAdd = skill match {
+      case x: Skill if occupationTemplate.templateSkills.excludedSkills.contains(x) => None
+      case x: Skill if occupationTemplate.templateSkills.cannotSpendPointsSkills.contains(x) => None
+      case LanguageOwn(edu)   => Some(languageOwn)
+      case Dodge(dex)         => Some(dodge)
+      case CreditRating(i, m) => Some(creditRating)
+      case anyOther           => Some(anyOther)
     }
+
+    toAdd.foreach(pickedSkills.add(_))
   }
 }

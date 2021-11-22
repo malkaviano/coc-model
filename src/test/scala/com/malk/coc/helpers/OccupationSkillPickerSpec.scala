@@ -32,7 +32,11 @@ class OccupationSkillPickerSpec extends AnyFunSpec with Matchers {
     it("should return template occupation skills") {
       val picker =
         new OccupationSkillPicker(
-          templateFixture(occupationFixedSkills = Set(CreditRating(0, 30)))
+          templateFixture(
+            occupationFixedSkills = Set(CreditRating(0, 30), CthulhuMythos(), ComputerUse()),
+            excludedSkills = Set(ComputerUse()),
+            cannotSpendPointsSkills = Set(CthulhuMythos())
+          )
         )
 
       picker.occupationSkills should contain theSameElementsAs Set(
