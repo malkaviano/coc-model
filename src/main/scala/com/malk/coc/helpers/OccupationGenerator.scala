@@ -23,10 +23,9 @@ final case class OccupationGenerator(
   private val templateSkills: TemplateSkillResult =
     occupationTemplate.templateSkills
 
-  private val chosenOccupationSkills =
-    templateSkills.occupationFixedSkills ++ SkillHelper.chooseSkillsV2(
-      templateSkills.occupationChooseSkills
-    )
+  private val chosenOccupationSkills = OccupationSkillPicker(
+    occupationTemplate
+  ).occupationSkills
 
   private val spentSkillPointsOnSKills: Set[Skill] = {
     spentAllPoints(
@@ -38,7 +37,9 @@ final case class OccupationGenerator(
     val personalSkills = SkillHelper.filteredSkills(
       chosenOccupationSkills ++ templateSkills.cannotSpendPointsSkills ++ templateSkills.excludedSkills + LanguageOwn(
         occupationTemplate.edu
-      )(occupationTemplate.language) + Dodge(occupationTemplate.body.dexterity)()
+      )(occupationTemplate.language) + Dodge(
+        occupationTemplate.body.dexterity
+      )()
     ) + LanguageOwn(
       occupationTemplate.edu
     )(occupationTemplate.language) + Dodge(occupationTemplate.body.dexterity)()
