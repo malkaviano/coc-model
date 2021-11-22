@@ -187,32 +187,6 @@ class SkillHelperSpec extends AnyFunSpec with Matchers with MockFactory {
       }
     }
 
-    describe("Choosing Skills version 2") {
-      val choose: Seq[(Int, Seq[(Int, Set[Skill])])] = Seq(
-        (
-          1,
-          Seq(
-            (1, SkillHelper.fightingSkills),
-            (1, SkillHelper.firearmSkills)
-          )
-        ),
-        (
-          2,
-          Seq(
-            (1, Set(FirstAid())),
-            (1, Set(MechanicalRepair())),
-            (1, SkillHelper.languageOtherSkills)
-          )
-        )
-      )
-
-      it("should choose one firearm or fighting skill") {
-        val result = SkillHelper.chooseSkillsV2(choose)
-
-        result should have size 3
-      }
-    }
-
     describe("Helper Skills should be immutable") {
       Seq(
         (SkillHelper.modernSkills.head, SkillHelper.modernSkills.head),
