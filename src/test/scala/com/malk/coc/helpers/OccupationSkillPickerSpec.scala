@@ -33,7 +33,8 @@ class OccupationSkillPickerSpec extends AnyFunSpec with Matchers {
       val picker =
         new OccupationSkillPicker(
           templateFixture(
-            occupationFixedSkills = Set(CreditRating(0, 30), CthulhuMythos(), ComputerUse()),
+            occupationFixedSkills =
+              Set(CreditRating(0, 30), CthulhuMythos(), ComputerUse()),
             excludedSkills = Set(ComputerUse()),
             cannotSpendPointsSkills = Set(CthulhuMythos())
           )
@@ -80,22 +81,20 @@ class OccupationSkillPickerSpec extends AnyFunSpec with Matchers {
       }
     }
 
-    describe("when occupation skill have default Credit Rating") {
-      it("should return right Credit Rating") {
-        val picker = new OccupationSkillPicker(
-          templateFixture(occupationFixedSkills =
-            Set(
-              CreditRating(),
-              Dodge(Dexterity(0))()
-            )
+    it("should return right Credit Rating") {
+      val picker = new OccupationSkillPicker(
+        templateFixture(occupationFixedSkills =
+          Set(
+            CreditRating(),
+            Dodge(Dexterity(0))()
           )
         )
+      )
 
-        val result =
-          picker.occupationSkills.filter(_.isInstanceOf[CreditRating]).head
+      val result =
+        picker.occupationSkills.filter(_.isInstanceOf[CreditRating]).head
 
-        result.value shouldBe CreditRating(5, 40).value
-      }
+      result.value shouldBe CreditRating(5, 40).value
     }
 
     describe("when picking any skill") {
@@ -134,6 +133,45 @@ class OccupationSkillPickerSpec extends AnyFunSpec with Matchers {
       it("should have nine skills") {
         picker.occupationSkills should have size 9
       }
+    }
+  }
+
+  describe("return all skills") {
+    it("should return right LanguageOwn") {
+      val picker = new OccupationSkillPicker(
+        templateFixture(occupationFixedSkills =
+          Set(
+            CreditRating(0, 30)
+          )
+        )
+      )
+
+      val result =
+        picker
+          .personalSkills(picker.occupationSkills)
+          .filter(_.isInstanceOf[LanguageOwn])
+          .head
+
+      result.value shouldBe LanguageOwn(implicitEdu)(templateLanguage).value
+    }
+
+    it("should return right Dodge") {
+      val picker = new OccupationSkillPicker(
+        templateFixture(occupationFixedSkills =
+          Set(
+            CreditRating(0, 30)
+          )
+        )
+      )
+
+      val result =
+        picker
+          .personalSkills(picker.occupationSkills)
+          .filter(_.isInstanceOf[Dodge])
+          .head
+
+      result.value shouldBe Dodge(implicitBody.dexterity)().value
+
     }
   }
 

@@ -2,13 +2,10 @@ package com.malk.coc.helpers
 
 import com.malk.coc.traits.Skill
 import com.malk.coc.traits.OccupationTemplate
-import com.malk.coc.helpers.SkillHelper
 import com.malk.coc.concepts.skills.CreditRating
 import com.malk.coc.concepts.occupations.InvestigatorSkillPoints
 import scala.util.Random
 import com.malk.coc.concepts.occupations.TemplateSkillResult
-import com.malk.coc.concepts.skills.languages.own.LanguageOwn
-import com.malk.coc.concepts.skills.Dodge
 
 final case class OccupationGenerator(
     private val occupationTemplate: OccupationTemplate
@@ -36,19 +33,7 @@ final case class OccupationGenerator(
       15
     )
 
-    val personalSkills = SkillHelper.filteredSkills(
-      chosenOccupationSkills ++ templateSkills.cannotSpendPointsSkills ++ templateSkills.excludedSkills + LanguageOwn(
-        occupationTemplate.edu
-      )(occupationTemplate.language) + Dodge(
-        occupationTemplate.body.dexterity
-      )()
-    ) + LanguageOwn(
-      occupationTemplate.edu
-    )(occupationTemplate.language) + Dodge(occupationTemplate.body.dexterity)()
-
-    // TODO: Stop relying on HashSet implementation
-    val eligible =
-      chosenOccupationSkills ++ (personalSkills -- chosenOccupationSkills)
+    val eligible = picker.personalSkills(chosenOccupationSkills)
 
     spentAllPoints(
       Random.shuffle(eligible.toSeq),

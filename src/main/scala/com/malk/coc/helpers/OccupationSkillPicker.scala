@@ -8,11 +8,13 @@ import com.malk.coc.concepts.skills._
 import com.malk.coc.traits.OccupationTemplate
 import com.malk.coc.traits.Skill
 import scala.util.Random
+import com.malk.coc.concepts.skills.languages.other.LanguageOther
 
 final case class OccupationSkillPicker(
     val occupationTemplate: OccupationTemplate
 ) {
   private val pickedSkills: mutableSet[Skill] = mutableSet.empty
+  private val consolidatedSkills: mutableSet[Skill] = mutableSet.empty
 
   val languageOwn: LanguageOwn =
     LanguageOwn(occupationTemplate.edu)(occupationTemplate.language)
@@ -22,7 +24,7 @@ final case class OccupationSkillPicker(
   val creditRating = occupationTemplate.startCreditRating
 
   occupationTemplate.templateSkills.occupationFixedSkills.foreach(skill => {
-    addSkill(skill)
+    getSkill(skill).foreach(pickedSkills.add(_))
   })
 
   occupationTemplate.templateSkills.occupationChooseSkills.foreach {
@@ -35,24 +37,44 @@ final case class OccupationSkillPicker(
         }
       }
 
-      Random.shuffle(firstPick.toSeq).take(take).foreach(pickedSkills.add(_))
+      Random
+        .shuffle(firstPick.toSeq)
+        .take(take)
+        .foreach(getSkill(_).foreach(pickedSkills.add(_)))
     }
   }
 
-  def occupationSkills: Set[Skill] = pickedSkills.toSet
+  val occupationSkills: Set[Skill] = pickedSkills.toSet
 
-  // def allSkills: Set[Skill] = pickedSkills.toSet
+  def personalSkills(occupationSkills: Set[Skill]): Set[Skill] = {
+    occupationSkills.foreach(getSkill(_).foreach(consolidatedSkills.add(_)))
 
-  private def addSkill(skill: Skill): Unit = {
-    val toAdd = skill match {
-      case x: Skill if occupationTemplate.templateSkills.excludedSkills.contains(x) => None
-      case x: Skill if occupationTemplate.templateSkills.cannotSpendPointsSkills.contains(x) => None
+    SkillHelper
+      .filteredSkills(
+        occupationTemplate.templateSkills.excludedSkills ++ occupationTemplate.templateSkills.cannotSpendPointsSkills
+      )
+      .foreach(getSkill(_).foreach(consolidatedSkills.add(_)))
+
+    consolidatedSkills.toSet
+  }
+
+  private def getSkill(skill: Skill): Option[Skill] = {
+    skill match {
+      case x: Skill
+          if occupationTemplate.templateSkills.excludedSkills.contains(x) =>
+        None
+      case x: Skill
+          if occupationTemplate.templateSkills.cannotSpendPointsSkills.contains(
+            x
+          ) =>
+        None
+      case skill: LanguageOther
+          if skill.language == occupationTemplate.language =>
+        Some(languageOwn)
       case LanguageOwn(edu)   => Some(languageOwn)
       case Dodge(dex)         => Some(dodge)
       case CreditRating(i, m) => Some(creditRating)
       case anyOther           => Some(anyOther)
     }
-
-    toAdd.foreach(pickedSkills.add(_))
   }
 }
