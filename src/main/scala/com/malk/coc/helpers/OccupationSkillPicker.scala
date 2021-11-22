@@ -31,6 +31,7 @@ final case class OccupationSkillPicker(
     case (take: Int, options: Seq[(Int, Set[Skill])]) => {
       val firstPick = options.flatMap {
         case (take: Int, options: Set[Skill]) => {
+          // FIXME: Filter out cannotSpend and Excluded, or we gonna take less skills in the end.
           val reduced = options -- pickedSkills
 
           Random.shuffle(reduced.toSeq).take(take)
