@@ -9,6 +9,7 @@ import com.malk.coc.traits.OccupationTemplate
 import com.malk.coc.traits.Skill
 import scala.util.Random
 import com.malk.coc.concepts.skills.languages.other.LanguageOther
+import com.malk.coc.concepts.occupations.OccupationTemplateOption
 
 final case class OccupationSkillPicker(
     val occupationTemplate: OccupationTemplate
@@ -23,26 +24,23 @@ final case class OccupationSkillPicker(
 
   val creditRating = occupationTemplate.startCreditRating
 
-  val cannotSpendPointsSkills: Set[Skill] = occupationTemplate.templateSkills.cannotSpendPointsSkills
+  val cannotSpendPointsSkills: Set[Skill] =
+    occupationTemplate.templateSkills.cannotSpendPointsSkills
 
-  val excludedSkills: Set[Skill] = occupationTemplate.templateSkills.excludedSkills
+  val excludedSkills: Set[Skill] =
+    occupationTemplate.templateSkills.excludedSkills
 
   occupationTemplate.templateSkills.occupationFixedSkills.foreach(skill => {
     getSkill(skill).foreach(pickedSkills.add(_))
   })
 
   occupationTemplate.templateSkills.occupationChooseSkills.foreach {
-    case (take: Int, options: Seq[(Int, Set[Skill])]) => {
-      val firstPick = options.flatMap {
-        case (take: Int, options: Set[Skill]) => {
-          val reduced = options -- pickedSkills -- cannotSpendPointsSkills -- excludedSkills
-
-          Random.shuffle(reduced.toSeq).take(take)
-        }
-      }
+    case OccupationTemplateOption(take: Int, options: Set[Skill]) => {
+      val reduced =
+        options -- pickedSkills -- cannotSpendPointsSkills -- excludedSkills
 
       Random
-        .shuffle(firstPick.toSeq)
+        .shuffle(reduced.toSeq)
         .take(take)
         .foreach(getSkill(_).foreach(pickedSkills.add(_)))
     }

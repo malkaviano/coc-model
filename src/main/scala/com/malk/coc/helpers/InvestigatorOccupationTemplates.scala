@@ -20,24 +20,6 @@ object InvestigatorOccupationTemplates {
         body: Body, brain: Brain, edu: Education, app: Appearance,
         language: Language
       ) => TribeMemberOccupationTemplate(body, brain, edu, app, language)
-    ),
-    SoldierOccupationTemplate.name -> (
-      (
-        body: Body, brain: Brain, edu: Education, app: Appearance,
-        language: Language
-      ) => SoldierOccupationTemplate(body, brain, edu, app, language)
-    ),
-    ZealotOccupationTemplate.name -> (
-      (
-        body: Body, brain: Brain, edu: Education, app: Appearance,
-        language: Language
-      ) => ZealotOccupationTemplate(body, brain, edu, app, language)
-    ),
-    ProfessorOccupationTemplate.name -> (
-      (
-        body: Body, brain: Brain, edu: Education, app: Appearance,
-        language: Language
-      ) => ProfessorOccupationTemplate(body, brain, edu, app, language)
     )
   )
 

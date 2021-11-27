@@ -38,30 +38,23 @@ class TribeMemberOccupationTemplateSpec extends BehavesLikeOccupationTemplate {
       CreditRating()
     )
 
-    val optionalSkills: Seq[(Int, Seq[(Int, Set[Skill])])] = Seq(
-      (
+    val optionalSkills = Seq(
+      OccupationTemplateOption(
         1,
-        Seq(
-          (1, Set(Sea(), Desert(), Arctic(), WildernessTerrain()))
-        )
+        Set(Sea(), Desert(), Arctic(), WildernessTerrain())
       ),
-      (
+      OccupationTemplateOption(
         1,
-        Seq(
-          (
-            1,
-            Set(
-              Axe(),
-              Brawl(),
-              Chainsaw(),
-              Flail(),
-              Garrote(),
-              Spear(),
-              Sword(),
-              Whip(),
-              Throw()
-            )
-          )
+        Set(
+          Axe(),
+          Brawl(),
+          Chainsaw(),
+          Flail(),
+          Garrote(),
+          Spear(),
+          Sword(),
+          Whip(),
+          Throw()
         )
       )
     )

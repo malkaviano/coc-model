@@ -17,8 +17,7 @@ final class TribeMemberOccupationTemplate private (
     override val edu: Education,
     override val app: Appearance,
     override val language: Language
-)
-    extends OccupationTemplate {
+) extends OccupationTemplate {
   val name = TribeMemberOccupationTemplate.name
 
   def startCreditRating = CreditRating(0, 15)
@@ -48,29 +47,19 @@ final class TribeMemberOccupationTemplate private (
     startCreditRating
   )
 
-  private def optionalSkills: Seq[(Int, Seq[(Int, Set[Skill])])] = Seq(
-    (
+  private def optionalSkills: Seq[OccupationTemplateOption] = Seq(
+    OccupationTemplateOption(
       1,
-      Seq(
-        (
-          1,
-          Set(
-            Sea(),
-            Desert(),
-            Arctic(),
-            WildernessTerrain()
-          )
-        )
+      Set(
+        Sea(),
+        Desert(),
+        Arctic(),
+        WildernessTerrain()
       )
     ),
-    (
+    OccupationTemplateOption(
       1,
-      Seq(
-        (
-          1,
-          SkillHelper.fightingSkills ++ Set(Throw())
-        )
-      )
+      SkillHelper.fightingSkills ++ Set(Throw())
     )
   )
 
