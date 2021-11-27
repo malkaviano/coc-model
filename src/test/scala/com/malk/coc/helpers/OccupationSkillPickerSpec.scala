@@ -14,6 +14,7 @@ import com.malk.coc.concepts.characteristics.Education
 import com.malk.coc.concepts.abstractions.Body
 import com.malk.coc.traits.Skill
 import com.malk.coc.concepts.characteristics.Dexterity
+import com.malk.coc.concepts.occupations.OccupationTemplateOption
 
 class OccupationSkillPickerSpec extends AnyFunSpec with Matchers {
   import com.malk.coc.helpers.InvestigatorCharacteristics.implicits._
@@ -107,35 +108,26 @@ class OccupationSkillPickerSpec extends AnyFunSpec with Matchers {
               Psychology()
             ),
             occupationChooseSkills = Seq(
-              (
+              OccupationTemplateOption(
                 1,
-                Seq(
-                  (
-                    1,
-                    SkillHelper.languageOtherSkills
-                  )
-                )
+                SkillHelper.languageOtherSkills
               ),
-              (
+              OccupationTemplateOption(
                 4,
-                Seq(
-                  (
-                    4,
-                    Set(
-                      CthulhuMythos(),
-                      ComputerUse(),
-                      Electronics(),
-                      Axe(),
-                      Handgun(),
-                      FastTalk(),
-                      Stealth()
-                    )
-                  )
+                Set(
+                  CthulhuMythos(),
+                  ComputerUse(),
+                  Electronics(),
+                  Axe(),
+                  Handgun(),
+                  FastTalk(),
+                  Stealth()
                 )
               )
             ),
             cannotSpendPointsSkills = Set(CthulhuMythos()),
-            excludedSkills = SkillHelper.uncommonSkills ++ SkillHelper.modernSkills
+            excludedSkills =
+              SkillHelper.uncommonSkills ++ SkillHelper.modernSkills
           )
         )
 
@@ -186,7 +178,7 @@ class OccupationSkillPickerSpec extends AnyFunSpec with Matchers {
 
   private def templateFixture(
       occupationFixedSkills: Set[Skill],
-      occupationChooseSkills: Seq[(Int, Seq[(Int, Set[Skill])])] = Seq.empty,
+      occupationChooseSkills: Seq[OccupationTemplateOption] = Seq.empty,
       cannotSpendPointsSkills: Set[Skill] = Set.empty,
       excludedSkills: Set[Skill] = Set.empty
   ): OccupationTemplate = {
