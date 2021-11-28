@@ -10,6 +10,7 @@ import com.malk.coc.concepts.dices.FourSidedDice
 import com.malk.coc.concepts.characteristics.Constitution
 import com.malk.coc.concepts.characteristics.Dexterity
 import com.malk.coc.concepts.abstractions.Body
+import com.malk.coc.concepts.dices.DiceRange
 
 trait DamageBonusBehavior extends Matchers with MockFactory {
   this: AnyFunSpec =>
@@ -19,23 +20,23 @@ trait DamageBonusBehavior extends Matchers with MockFactory {
       rolledD6: Boolean = false,
       rolledD4: Boolean = false
   ): Unit = {
-    val rollD6 = mockFunction[(Int, Int), Int]
-    val rollD4 = mockFunction[(Int, Int), Int]
+    val rollD6 = mockFunction[DiceRange, Int]
+    val rollD4 = mockFunction[DiceRange, Int]
 
     val sixSidedDice = SixSidedDice(rollD6)
     val fourSidedDice = FourSidedDice(rollD4)
 
     it(s"should return value equal ${expected}") {
       if (rolledD6) {
-        rollD6.expects((1, 6)).atLeastOnce().returning(4)
+        rollD6.expects(DiceRange(1, 6)).atLeastOnce().returning(4)
       } else {
-        rollD6.expects((1, 6)).never().returning(4)
+        rollD6.expects(DiceRange(1, 6)).never().returning(4)
       }
 
       if (rolledD4) {
-        rollD4.expects((1, 4)).atLeastOnce().returning(2)
+        rollD4.expects(DiceRange(1, 4)).atLeastOnce().returning(2)
       } else {
-        rollD4.expects((1, 4)).never().returning(2)
+        rollD4.expects(DiceRange(1, 4)).never().returning(2)
       }
 
       val db = DamageBonus(body)(fourSidedDice, sixSidedDice)

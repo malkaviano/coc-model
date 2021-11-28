@@ -8,6 +8,7 @@ import com.malk.coc.concepts.characteristics.Strength
 import com.malk.coc.traits.Characteristic
 import com.malk.coc.concepts.dices.HundredSidedDice
 import com.malk.coc.concepts.characteristics._
+import com.malk.coc.concepts.dices.DiceRange
 
 trait BehavesLikeCharacteristicRollCheck
     extends AnyFunSpec
@@ -79,7 +80,7 @@ trait BehavesLikeCharacteristicRollCheck
               if (rolled > 1) {
                 describe(s"when roll is equal ${rolled}") {
                   it(s"should return ${expected}") {
-                    val rollD100 = mockFunction[(Int, Int), Int]
+                    val rollD100 = mockFunction[DiceRange, Int]
                     rollD100.expects(range).once().returning(rolled)
 
                     val hundredSidedDice = HundredSidedDice(rollD100)
@@ -122,7 +123,7 @@ class RollRulesSpec
 
           describe("when rolling 100") {
             it("should return Fumble") {
-              val rollD100 = mockFunction[(Int, Int), Int]
+              val rollD100 = mockFunction[DiceRange, Int]
               rollD100.expects(range).once().returning(100)
 
               val hundredSidedDice = HundredSidedDice(rollD100)
@@ -138,7 +139,7 @@ class RollRulesSpec
 
           describe("when rolling 1") {
             it("should return Critical Success") {
-              val rollD100 = mockFunction[(Int, Int), Int]
+              val rollD100 = mockFunction[DiceRange, Int]
               rollD100.expects(range).once().returning(1)
 
               val hundredSidedDice = HundredSidedDice(rollD100)
@@ -171,7 +172,7 @@ class RollRulesSpec
     describe(s"when ${Size(4)}") {
       describe("when Extreme difficulty") {
         it("should throw an RuntimeException *Impossible to succeed") {
-          val rollD100 = mockFunction[(Int, Int), Int]
+          val rollD100 = mockFunction[DiceRange, Int]
 
           val hundredSidedDice = HundredSidedDice(rollD100)
 

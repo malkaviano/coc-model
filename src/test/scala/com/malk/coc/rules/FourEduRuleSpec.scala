@@ -5,7 +5,7 @@ import com.malk.coc.concepts.occupations.InvestigatorSkillPoints
 
 class FourEduRuleSpec extends BehavesLikeOccupationSkillPointsRule {
   describe("FourEduRule") {
-    import com.malk.coc.helpers.InvestigatorCharacteristics.implicits._
+    import com.malk.coc.generators.InvestigatorCharacteristics.implicits._
     import com.malk.coc.helpers.DiceHelper.implicits._
 
     val edu = Education(60)

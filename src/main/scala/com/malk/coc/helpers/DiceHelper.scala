@@ -5,6 +5,7 @@ import com.malk.coc.concepts.dices.SixSidedDice
 import com.malk.coc.concepts.dices.FourSidedDice
 import com.malk.coc.concepts.dices.TenSidedDice
 import com.malk.coc.concepts.dices.HundredSidedDice
+import com.malk.coc.concepts.dices.DiceRange
 
 object DiceHelper {
   import scala.util.Random
@@ -13,8 +14,8 @@ object DiceHelper {
 
   def randomAge(min: Int = 15, max: Int = 89) = Age(rollBetween(min, max + 1))
 
-  def rollRange(range: (Int, Int)): Int =
-    rollBetween(range._1, range._2 + 1)
+  def rollRange(range: DiceRange): Int =
+    rollBetween(range.min, range.max + 1)
 
   private def rollBetween(min: Int, max: Int) = Random.between(min, max)
 
@@ -27,6 +28,6 @@ object DiceHelper {
 
     implicit val hundredSidedDice = HundredSidedDice(rollRange)
 
-    implicit def rangeDice(range: (Int, Int)): Int = rollRange(range)
+    implicit def rangeDice(range: DiceRange): Int = rollRange(range)
   }
 }

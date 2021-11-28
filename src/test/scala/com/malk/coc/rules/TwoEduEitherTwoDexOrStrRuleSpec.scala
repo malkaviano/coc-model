@@ -9,7 +9,7 @@ import com.malk.coc.concepts.characteristics.Dexterity
 class TwoEduEitherTwoDexOrStrRuleSpec
     extends BehavesLikeOccupationSkillPointsRule {
   describe("TwoEduEitherTwoStrOrDexRule") {
-    import  com.malk.coc.helpers.InvestigatorCharacteristics.implicits._
+    import  com.malk.coc.generators.InvestigatorCharacteristics.implicits._
     import com.malk.coc.helpers.DiceHelper.implicits._
 
     val edu = Education(60)

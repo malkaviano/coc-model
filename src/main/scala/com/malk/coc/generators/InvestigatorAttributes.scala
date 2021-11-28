@@ -1,4 +1,4 @@
-package com.malk.coc.helpers
+package com.malk.coc.generators
 
 import com.malk.coc.helpers.DiceHelper
 import com.malk.coc.concepts.attributes.Age

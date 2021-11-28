@@ -1,4 +1,4 @@
-package com.malk.coc.helpers
+package com.malk.coc.generators
 
 import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
@@ -14,10 +14,10 @@ class InvestigatorCharacteristicsSpec
     extends AnyFunSpec
     with Matchers
     with MockFactory {
-  val rollD6 = mockFunction[(Int, Int), Int]
+  val rollD6 = mockFunction[DiceRange, Int]
   implicit val sixSidedDice = SixSidedDice(rollD6)
 
-  val rollD4 = mockFunction[(Int, Int), Int]
+  val rollD4 = mockFunction[DiceRange, Int]
   implicit val fourSidedDice = FourSidedDice(rollD4)
 
   describe("Generating random Strength using 3D6 * 5") {
@@ -105,7 +105,7 @@ class InvestigatorCharacteristicsSpec
 
     it(s"should equal ${expected}") {
       Seq(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1).foreach(
-        rollD6.expects((1, 6)).once().returning(_)
+        rollD6.expects(DiceRange(1, 6)).once().returning(_)
       )
 
       import InvestigatorCharacteristics.implicits._
@@ -120,7 +120,7 @@ class InvestigatorCharacteristicsSpec
     val expected = Brain(Intelligence(40), Power(15))
 
     it(s"should equal ${expected}") {
-      Seq(1, 1, 1, 1, 1).foreach(rollD6.expects((1, 6)).once().returning(_))
+      Seq(1, 1, 1, 1, 1).foreach(rollD6.expects(DiceRange(1, 6)).once().returning(_))
 
       import InvestigatorCharacteristics.implicits._
 
@@ -136,7 +136,7 @@ class InvestigatorCharacteristicsSpec
       expected: Characteristic
   ): Unit = {
     it(s"should return ${expected}") {
-      rolls.foreach(rollD6.expects((1, 6)).once().returning(_))
+      rolls.foreach(rollD6.expects(DiceRange(1, 6)).once().returning(_))
 
       func() shouldBe expected
     }
@@ -148,7 +148,7 @@ class InvestigatorCharacteristicsSpec
       expected: Characteristic
   ): Unit = {
     it(s"should return ${expected}") {
-      rolls.foreach(rollD6.expects((1, 6)).once().returning(_))
+      rolls.foreach(rollD6.expects(DiceRange(1, 6)).once().returning(_))
 
       func() shouldBe expected
     }

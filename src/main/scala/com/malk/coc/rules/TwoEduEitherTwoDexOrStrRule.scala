@@ -1,11 +1,11 @@
 package com.malk.coc.rules
 
-import com.malk.coc.traits.OccupationSkillPointsRule
+import com.malk.coc.traits.OccupationSkillPoints
 import com.malk.coc.concepts.occupations.InvestigatorSkillPoints
 import com.malk.coc.concepts.characteristics._
 import com.malk.coc.concepts.abstractions._
 
-final class TwoEduEitherTwoDexOrStrRule extends OccupationSkillPointsRule {
+final class TwoEduEitherTwoDexOrStrRule extends OccupationSkillPoints {
   val name = "TwoEduEitherTwoStrOrDexRule"
 
   override def occupationSkillPoints(

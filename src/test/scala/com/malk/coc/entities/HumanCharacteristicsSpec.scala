@@ -13,6 +13,7 @@ import com.malk.coc.rules.HumanAgingRules
 import com.malk.coc.concepts.attributes.Sanity
 import com.malk.coc.concepts.attributes.MaximumMagicPoints
 import com.malk.coc.concepts.characteristics.Size
+import com.malk.coc.concepts.dices.DiceRange
 
 class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
   import com.malk.coc.helpers.DiceHelper.implicits._
@@ -53,9 +54,9 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
       }
 
       it("should have initial Education (EDU) modified by Age") {
-        val hundredSidedDice = HundredSidedDice((t: (Int, Int)) => 95)
+        val hundredSidedDice = HundredSidedDice((t: DiceRange) => 95)
 
-        val tenSidedDice = TenSidedDice((t: (Int, Int)) => 7)
+        val tenSidedDice = TenSidedDice((t: DiceRange) => 7)
 
         val humanAgingRules = new HumanAgingRules(age)(
           fourSidedDice,

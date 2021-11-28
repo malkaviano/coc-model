@@ -1,4 +1,4 @@
-package com.malk.coc.helpers
+package com.malk.coc.generators
 
 import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
@@ -7,11 +7,11 @@ import com.malk.coc.helpers.SkillHelper
 import com.malk.coc.concepts.occupations.InvestigatorSkillPoints
 
 class OccupationGeneratorSpec extends AnyFunSpec with Matchers {
-  import com.malk.coc.helpers.InvestigatorCharacteristics.implicits._
+  import com.malk.coc.generators.InvestigatorCharacteristics.implicits._
   import com.malk.coc.helpers.DiceHelper.implicits._
   import com.malk.coc.concepts.skills.languages.own.LanguageOwn
   import com.malk.coc.concepts.characteristics.Education
-  import com.malk.coc.helpers.InvestigatorAttributes.implicits._
+  import com.malk.coc.generators.InvestigatorAttributes.implicits._
 
   InvestigatorOccupationTemplates.occupationTemplateNames.foreach(
     templateName => {

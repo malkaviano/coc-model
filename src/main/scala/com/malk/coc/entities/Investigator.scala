@@ -50,8 +50,6 @@ final case class Investigator private (
 
   override def HP: Int = ???
 
-  override def HP_=(hp: Int): Unit = ???
-
   override def Build: Int = ???
 
   override def DB: Int = ???

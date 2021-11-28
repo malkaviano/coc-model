@@ -3,7 +3,6 @@ package com.malk.coc.entities
 import com.malk.coc.concepts.characteristics._
 import com.malk.coc.traits._
 import com.malk.coc.concepts.attributes.MovementRate
-import com.malk.coc.concepts.attributes.CurrentHitPoints
 import com.malk.coc.concepts.abstractions.Body
 import com.malk.coc.concepts.abstractions.Brain
 import com.malk.coc.concepts.attributes.Sanity
@@ -31,9 +30,6 @@ class Human private (
     with MeleeDamageBonus
     with SaneBehavior
     with Magic {
-
-  private var currentHP = CurrentHitPoints(body.maximumHitPoints.value)
-
   override def Age: Int = age.value
 
   override def MOV: Int = mov.value
@@ -54,11 +50,7 @@ class Human private (
 
   override def POW: Int = brain.power.value
 
-  override def HP: Int = currentHP.value
-
-  override def HP_=(hp: Int): Unit = {
-    currentHP = currentHP.copy(hp)
-  }
+  override def HP: Int = body.maximumHitPoints.value
 
   override def Build: Int = body.build.value
 

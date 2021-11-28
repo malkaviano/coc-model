@@ -4,7 +4,7 @@ import com.malk.coc.concepts.occupations.InvestigatorSkillPoints
 import com.malk.coc.concepts.abstractions._
 import com.malk.coc.concepts.characteristics._
 
-trait OccupationSkillPointsRule {
+trait OccupationSkillPoints {
   def occupationSkillPoints(
       body: Body,
       brain: Brain,

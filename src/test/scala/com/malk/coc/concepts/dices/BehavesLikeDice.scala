@@ -11,8 +11,8 @@ trait BehavesLikeDice extends AnyFunSpec with Matchers with MockFactory {
   def behavesLikeDice(
       dice: Dice,
       name: String,
-      range: (Int, Int),
-      mock: MockFunction1[(Int, Int), Int],
+      range: DiceRange,
+      mock: MockFunction1[DiceRange, Int],
       expected: Int
   ) = {
     it(s"should have name ${name}") {

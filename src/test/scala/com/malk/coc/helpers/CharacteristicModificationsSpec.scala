@@ -5,12 +5,13 @@ import org.scalatest.matchers.should.Matchers
 import com.malk.coc.helpers.CharacteristicModifications._
 import com.malk.coc.concepts.characteristics._
 import com.malk.coc.traits.Characteristic
+import com.malk.coc.concepts.dices.DiceRange
 
 class CharacteristicModificationsSpec extends AnyFunSpec with Matchers {
   import com.malk.coc.helpers.CharacteristicModifications.implicits._
 
   describe("Characteristics Modification") {
-    val value = DiceHelper.rollRange((1, 10))
+    val value = DiceHelper.rollRange(DiceRange(1, 10))
 
     describe(s"StrengthModification implicitly from ${value}") {
       val expected = Modification[Strength](value)

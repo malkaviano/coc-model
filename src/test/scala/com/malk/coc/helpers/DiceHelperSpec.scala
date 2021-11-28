@@ -5,6 +5,7 @@ import org.scalatest.matchers.should.Matchers
 
 import scala.collection.mutable
 import com.malk.coc.concepts.attributes.Age
+import com.malk.coc.concepts.dices.DiceRange
 
 class DiceHelperSpec extends AnyFunSpec with Matchers {
   describe("Simulating D8 rolls") {
@@ -47,7 +48,7 @@ class DiceHelperSpec extends AnyFunSpec with Matchers {
         val rolls = mutable.Set.empty[Int]
 
         for (n <- 1 to 1000) {
-          rolls.add(DiceHelper.rollRange((1, 6)))
+          rolls.add(DiceHelper.rollRange(DiceRange(1, 6)))
         }
 
         rolls should contain.only(1, 2, 3, 4, 5, 6)
@@ -59,7 +60,7 @@ class DiceHelperSpec extends AnyFunSpec with Matchers {
         val rolls = mutable.Set.empty[Int]
 
         for (n <- 1 to 1000) {
-          rolls.add(DiceHelper.rollRange((1, 4)))
+          rolls.add(DiceHelper.rollRange(DiceRange(1, 4)))
         }
 
         rolls should contain.only(1, 2, 3, 4)
@@ -71,7 +72,7 @@ class DiceHelperSpec extends AnyFunSpec with Matchers {
         val rolls = mutable.Set.empty[Int]
 
         for (n <- 1 to 1000) {
-          rolls.add(DiceHelper.rollRange((1, 10)))
+          rolls.add(DiceHelper.rollRange(DiceRange(1, 10)))
         }
 
         rolls should contain.only(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
@@ -83,7 +84,7 @@ class DiceHelperSpec extends AnyFunSpec with Matchers {
         val rolls = mutable.Set.empty[Int]
 
         for (n <- 1 to 1000) {
-          rolls.add(DiceHelper.rollRange((1, 100)))
+          rolls.add(DiceHelper.rollRange(DiceRange(1, 100)))
         }
 
         rolls should contain theSameElementsAs (1 to 100)
