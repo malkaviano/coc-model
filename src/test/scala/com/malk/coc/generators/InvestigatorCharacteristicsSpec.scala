@@ -1,4 +1,4 @@
-package com.malk.coc.helpers
+package com.malk.coc.generators
 
 import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers

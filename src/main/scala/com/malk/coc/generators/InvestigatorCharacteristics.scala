@@ -1,4 +1,4 @@
-package com.malk.coc.helpers
+package com.malk.coc.generators
 
 import com.malk.coc.concepts.dices._
 import com.malk.coc.concepts.characteristics._

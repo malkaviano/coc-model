@@ -5,14 +5,14 @@ import org.scalatest.matchers.should.Matchers
 import org.scalamock.scalatest.MockFactory
 
 import com.malk.coc.concepts.dices._
-import com.malk.coc.helpers.OccupationGenerator
+import com.malk.coc.generators.OccupationGenerator
 
 class InvestigatorSpec extends AnyFunSpec with Matchers with MockFactory {
   describe("Generating random investigator") {
     it("should create an Investigator") {
-      import com.malk.coc.helpers.InvestigatorAttributes.implicits._
-      import com.malk.coc.helpers.InvestigatorCharacteristics.implicits._
-      import com.malk.coc.helpers.InvestigatorOccupationTemplates.implicits._
+      import com.malk.coc.generators.InvestigatorAttributes.implicits._
+      import com.malk.coc.generators.InvestigatorCharacteristics.implicits._
+      import com.malk.coc.generators.InvestigatorOccupationTemplates.implicits._
       import com.malk.coc.helpers.DiceHelper.implicits._
 
       val rollD10 = mockFunction[(Int, Int), Int]

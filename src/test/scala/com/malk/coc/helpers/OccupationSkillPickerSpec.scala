@@ -17,9 +17,9 @@ import com.malk.coc.concepts.characteristics.Dexterity
 import com.malk.coc.concepts.occupations.OccupationTemplateOption
 
 class OccupationSkillPickerSpec extends AnyFunSpec with Matchers {
-  import com.malk.coc.helpers.InvestigatorCharacteristics.implicits._
+  import com.malk.coc.generators.InvestigatorCharacteristics.implicits._
   import com.malk.coc.helpers.DiceHelper.implicits._
-  import com.malk.coc.helpers.InvestigatorAttributes.implicits._
+  import com.malk.coc.generators.InvestigatorAttributes.implicits._
 
   val implicitBody = body
   val implicitBrain = brain

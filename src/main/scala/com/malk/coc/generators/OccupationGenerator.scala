@@ -1,10 +1,11 @@
-package com.malk.coc.helpers
+package com.malk.coc.generators
 
 import com.malk.coc.traits.Skill
 import com.malk.coc.traits.OccupationTemplate
 import com.malk.coc.concepts.skills.CreditRating
 import com.malk.coc.concepts.occupations.InvestigatorSkillPoints
 import scala.util.Random
+import com.malk.coc.helpers.OccupationSkillPicker
 
 final case class OccupationGenerator(
     private val occupationTemplate: OccupationTemplate
