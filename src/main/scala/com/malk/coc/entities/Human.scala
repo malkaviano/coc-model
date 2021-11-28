@@ -7,7 +7,7 @@ import com.malk.coc.concepts.abstractions.Body
 import com.malk.coc.concepts.abstractions.Brain
 import com.malk.coc.concepts.attributes.Sanity
 import com.malk.coc.rules.HumanAgingRules
-import com.malk.coc.concepts.attributes.MaximumMagicPoints
+import com.malk.coc.concepts.attributes.CurrentMagicPoints
 import com.malk.coc.concepts.attributes.Age
 
 class Human private (
@@ -18,7 +18,7 @@ class Human private (
     private val brain: Brain,
     private val mov: MovementRate,
     private val sanity: Sanity,
-    private val mp: MaximumMagicPoints
+    private val mp: CurrentMagicPoints
 ) extends Aging
     with Mobility
     with PhysicalCapacity
@@ -69,7 +69,7 @@ object Human {
       edu: Education,
       brain: Brain,
       sanity: Sanity,
-      mp: MaximumMagicPoints
+      mp: CurrentMagicPoints
   )(implicit
       humanAgingRules: HumanAgingRules
   ): Human = {

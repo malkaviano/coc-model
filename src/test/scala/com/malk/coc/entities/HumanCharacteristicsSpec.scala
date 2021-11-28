@@ -11,7 +11,7 @@ import com.malk.coc.concepts.dices.TenSidedDice
 import com.malk.coc.concepts.dices.HundredSidedDice
 import com.malk.coc.rules.HumanAgingRules
 import com.malk.coc.concepts.attributes.Sanity
-import com.malk.coc.concepts.attributes.MaximumMagicPoints
+import com.malk.coc.concepts.attributes.CurrentMagicPoints
 import com.malk.coc.concepts.characteristics.Size
 import com.malk.coc.concepts.dices.DiceRange
 
@@ -36,7 +36,7 @@ class HumanCharacteristicsSpec extends AnyFunSpec with Matchers {
 
     val sanity = Sanity(70)
 
-    val mp = MaximumMagicPoints(25)
+    val mp = CurrentMagicPoints(25)
 
     val human = Human(
       age,
