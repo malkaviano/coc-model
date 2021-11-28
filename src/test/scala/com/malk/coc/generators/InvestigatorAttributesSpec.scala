@@ -13,10 +13,10 @@ class InvestigatorAttributesSpec
     extends AnyFunSpec
     with Matchers
     with MockFactory {
-  val rollD6 = mockFunction[(Int, Int), Int]
+  val rollD6 = mockFunction[DiceRange, Int]
   implicit val sixSidedDice = SixSidedDice(rollD6)
 
-  val rollD4 = mockFunction[(Int, Int), Int]
+  val rollD4 = mockFunction[DiceRange, Int]
   implicit val fourSidedDice = FourSidedDice(rollD4)
 
   describe("Generating random Age") {
@@ -37,7 +37,7 @@ class InvestigatorAttributesSpec
       describe(s"when generated Lucks are ${luck1} and ${luck2}") {
         it(s"should return ${luck2}") {
           Seq(1, 1, 1, 3, 3, 3).foreach(
-            rollD6.expects((1, 6)).once().returning(_)
+            rollD6.expects(DiceRange(1, 6)).once().returning(_)
           )
 
           val result =
@@ -51,7 +51,7 @@ class InvestigatorAttributesSpec
     describe(s"when ${age2}") {
       it(s"should return ${luck1}") {
         Seq(1, 1, 1).foreach(
-          rollD6.expects((1, 6)).once().returning(_)
+          rollD6.expects(DiceRange(1, 6)).once().returning(_)
         )
 
         val result = InvestigatorAttributes.randomLuck(sixSidedDice, age2)

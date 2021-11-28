@@ -13,6 +13,7 @@ import com.malk.coc.concepts.attributes.Age
 import com.malk.coc.helpers.CharacteristicModifications.implicits._
 import com.malk.coc.concepts.dices.SixSidedDice
 import com.malk.coc.concepts.dices.FourSidedDice
+import com.malk.coc.concepts.dices.DiceRange
 
 trait HumanAgingOnEducationBehavior extends Matchers with MockFactory {
   this: AnyFunSpec =>
@@ -32,20 +33,20 @@ trait HumanAgingOnEducationBehavior extends Matchers with MockFactory {
         val expected = if (temp.value > 99) Education(99)  else temp
 
         it(s"should return ${expected}. Rolled increments: ${total}") {
-          val success100 = mockFunction[(Int, Int), Int]
+          val success100 = mockFunction[DiceRange, Int]
 
-          rolls.foreach(roll => success100.expects((1, 100)).returning(roll))
+          rolls.foreach(roll => success100.expects(DiceRange(1, 100)).returning(roll))
 
-          val success10 = mockFunction[(Int, Int), Int]
+          val success10 = mockFunction[DiceRange, Int]
 
           increments.foreach(increment =>
             if (increment != 0) {
-              success10.expects((1, 10)).once().returning(increment)
+              success10.expects(DiceRange(1, 10)).once().returning(increment)
             }
           )
 
-          val fourSidedDice = FourSidedDice((t: (Int, Int)) => 3)
-          val sixSidedDice = SixSidedDice((t: (Int, Int)) => 5)
+          val fourSidedDice = FourSidedDice((t: DiceRange) => 3)
+          val sixSidedDice = SixSidedDice((t: DiceRange) => 5)
 
           val humanAgingRules = new HumanAgingRules(age)(
             fourSidedDice,
@@ -69,10 +70,10 @@ class HumanAgingRulesOnEducationSpec
     with HumanAgingOnEducationBehavior {
   val edu = Education(67)
 
-  val fourSidedDice = FourSidedDice((t: (Int, Int)) => 3)
-  val sixSidedDice = SixSidedDice((t: (Int, Int)) => 5)
-  val tenSidedDice = TenSidedDice((t: (Int, Int)) => 9)
-  val hundredSidedDice = HundredSidedDice((t: (Int, Int)) => 100)
+  val fourSidedDice = FourSidedDice((t: DiceRange) => 3)
+  val sixSidedDice = SixSidedDice((t: DiceRange) => 5)
+  val tenSidedDice = TenSidedDice((t: DiceRange) => 9)
+  val hundredSidedDice = HundredSidedDice((t: DiceRange) => 100)
 
   describe(s"Human Aging on ${edu}") {
     describe("when age is bellow 20") {

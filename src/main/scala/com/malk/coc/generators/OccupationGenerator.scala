@@ -6,10 +6,11 @@ import com.malk.coc.concepts.skills.CreditRating
 import com.malk.coc.concepts.occupations.InvestigatorSkillPoints
 import scala.util.Random
 import com.malk.coc.helpers.OccupationSkillPicker
+import com.malk.coc.concepts.dices.DiceRange
 
 final case class OccupationGenerator(
     private val occupationTemplate: OccupationTemplate
-)(implicit private val rangeDice: ((Int, Int)) => Int) {
+)(implicit private val rangeDice: (DiceRange) => Int) {
   private val occupationSkillPoints =
     occupationTemplate.occupationSkillPoints
 
@@ -54,7 +55,7 @@ final case class OccupationGenerator(
   ): Set[Skill] = {
     while (investigatorSkillPoints.remaining > 0) {
       skills.foreach(skill => {
-        val rolled = rangeDice((0, maxIncrement))
+        val rolled = rangeDice(DiceRange(0, maxIncrement))
 
         val points = if (skill.isInstanceOf[CreditRating]) {
           if (skill.asInstanceOf[CreditRating].canSpend(rolled)) {
