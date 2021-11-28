@@ -70,14 +70,6 @@ class HumanAttributesSpec extends AnyFunSpec with Matchers {
         ) {
           human.HP shouldBe body.maximumHitPoints.value
         }
-
-        it(
-          s"should change Current Hit Points (HP) from ${body.maximumHitPoints.value} to ${20}"
-        ) {
-          human.HP = 20
-
-          human.HP shouldBe 20
-        }
       }
 
       describe("Human Build") {
