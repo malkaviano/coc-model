@@ -76,7 +76,7 @@ object Investigator {
   ): Investigator = {
     val sanity = Sanity(brain.power.value)
 
-    val mp = MaximumMagicPoints(brain.power.value / 5)
+    val mp = CurrentMagicPoints(brain.power.value / 5)
 
     val human = Human(
       age,
