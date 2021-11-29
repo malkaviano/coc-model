@@ -1,6 +1,6 @@
 package com.malk.coc.generators
 
-import com.malk.coc.concepts.dices._
+import com.malk.coc.abstractions.dices._
 import com.malk.coc.concepts.characteristics._
 import com.malk.coc.abstractions.Body
 import com.malk.coc.abstractions.Brain

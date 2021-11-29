@@ -1,7 +1,7 @@
 package com.malk.coc.rules
 
 import com.malk.coc.traits.Characteristic
-import com.malk.coc.concepts.dices._
+import com.malk.coc.abstractions.dices._
 
 object RollRules {
   def characteristicCheck(

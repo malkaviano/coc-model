@@ -1,11 +1,11 @@
 package com.malk.coc.helpers
 
 import com.malk.coc.concepts.attributes.Age
-import com.malk.coc.concepts.dices.SixSidedDice
-import com.malk.coc.concepts.dices.FourSidedDice
-import com.malk.coc.concepts.dices.TenSidedDice
-import com.malk.coc.concepts.dices.HundredSidedDice
-import com.malk.coc.concepts.dices.DiceRange
+import com.malk.coc.abstractions.dices.SixSidedDice
+import com.malk.coc.abstractions.dices.FourSidedDice
+import com.malk.coc.abstractions.dices.TenSidedDice
+import com.malk.coc.abstractions.dices.HundredSidedDice
+import com.malk.coc.abstractions.dices.DiceRange
 
 object DiceHelper {
   import scala.util.Random

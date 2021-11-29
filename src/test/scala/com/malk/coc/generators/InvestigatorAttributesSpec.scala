@@ -4,7 +4,7 @@ import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 import org.scalamock.scalatest.MockFactory
 
-import com.malk.coc.concepts.dices._
+import com.malk.coc.abstractions.dices._
 import com.malk.coc.concepts.attributes.Luck
 import com.malk.coc.concepts.attributes.Age
 import com.malk.coc.concepts.skills.languages._

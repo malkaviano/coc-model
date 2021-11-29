@@ -3,7 +3,7 @@ package com.malk.coc.generators
 import com.malk.coc.helpers.DiceHelper
 import com.malk.coc.concepts.attributes.Age
 import com.malk.coc.concepts.attributes.Luck
-import com.malk.coc.concepts.dices._
+import com.malk.coc.abstractions.dices._
 import com.malk.coc.rules.RollRules
 import com.malk.coc.concepts.skills.languages.Language
 import scala.util.Random

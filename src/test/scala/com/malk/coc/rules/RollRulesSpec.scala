@@ -6,9 +6,9 @@ import org.scalamock.scalatest.MockFactory
 
 import com.malk.coc.concepts.characteristics.Strength
 import com.malk.coc.traits.Characteristic
-import com.malk.coc.concepts.dices.HundredSidedDice
+import com.malk.coc.abstractions.dices.HundredSidedDice
 import com.malk.coc.concepts.characteristics._
-import com.malk.coc.concepts.dices.DiceRange
+import com.malk.coc.abstractions.dices.DiceRange
 
 trait BehavesLikeCharacteristicRollCheck
     extends AnyFunSpec

@@ -5,7 +5,7 @@ import org.scalatest.matchers.should.Matchers
 import com.malk.coc.helpers.CharacteristicModifications._
 import com.malk.coc.concepts.characteristics._
 import com.malk.coc.traits.Characteristic
-import com.malk.coc.concepts.dices.DiceRange
+import com.malk.coc.abstractions.dices.DiceRange
 
 class CharacteristicModificationsSpec extends AnyFunSpec with Matchers {
   import com.malk.coc.helpers.CharacteristicModifications.implicits._

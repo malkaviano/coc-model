@@ -4,11 +4,11 @@ import scala.annotation.tailrec
 
 import com.malk.coc.concepts.attributes.Age
 import com.malk.coc.abstractions.Body
-import com.malk.coc.concepts.dices.FourSidedDice
-import com.malk.coc.concepts.dices.SixSidedDice
+import com.malk.coc.abstractions.dices.FourSidedDice
+import com.malk.coc.abstractions.dices.SixSidedDice
 import com.malk.coc.concepts.characteristics.Education
-import com.malk.coc.concepts.dices.HundredSidedDice
-import com.malk.coc.concepts.dices.TenSidedDice
+import com.malk.coc.abstractions.dices.HundredSidedDice
+import com.malk.coc.abstractions.dices.TenSidedDice
 import com.malk.coc.concepts.characteristics.Appearance
 import com.malk.coc.concepts.attributes.MovementRate
 import com.malk.coc.helpers.CharacteristicModifications.Modification
