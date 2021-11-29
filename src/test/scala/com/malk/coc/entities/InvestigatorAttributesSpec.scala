@@ -101,6 +101,18 @@ class InvestigatorAttributesSpec extends AnyFunSpec with Matchers with MockFacto
           human.Luck should be > 0
         }
       }
+
+      describe("Occupation") {
+        it(s"should have Luck") {
+          human.occupationName should not be empty
+        }
+      }
+
+      describe("Skills") {
+        it(s"should have Skills") {
+          human.skills should not be empty
+        }
+      }
     }
   }
 }
