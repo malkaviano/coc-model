@@ -1,14 +1,20 @@
 package com.malk.coc.entities
 
+import com.malk.coc.concepts.characteristics._
+import com.malk.coc.traits._
 import com.malk.coc.concepts.attributes._
 import com.malk.coc.abstractions._
-import com.malk.coc.concepts.characteristics._
-import com.malk.coc.concepts.dices._
 import com.malk.coc.rules.HumanAgingRules
-import com.malk.coc.traits._
 
-final case class Investigator private (
-    private val human: Human,
+class Investigator private (
+    private val age: Age,
+    private val body: Body,
+    private val app: Appearance,
+    private val edu: Education,
+    private val brain: Brain,
+    private val mov: MovementRate,
+    private val sanity: Sanity,
+    private val mp: CurrentMagicPoints,
     private val luck: Luck,
     val occupationName: String,
     val skills: Set[Skill]
@@ -24,38 +30,37 @@ final case class Investigator private (
     with MeleeDamageBonus
     with SaneBehavior
     with Magic {
-  override def Luck: Int = ???
+  override def Age: Int = age.value
 
-  override def MP: Int = ???
+  override def MOV: Int = mov.value
 
-  override def Age: Int = ???
+  override def STR: Int = body.strength.value
 
-  override def MOV: Int = ???
+  override def CON: Int = body.constitution.value
 
-  override def STR: Int = ???
+  override def DEX: Int = body.dexterity.value
 
-  override def CON: Int = ???
+  override def SIZ: Int = body.size.value
 
-  override def SIZ: Int = ???
+  override def APP: Int = app.value
 
-  override def DEX: Int = ???
+  override def EDU: Int = edu.value
 
-  override def INT: Int = ???
+  override def INT: Int = brain.intelligence.value
 
-  override def POW: Int = ???
+  override def POW: Int = brain.power.value
 
-  override def APP: Int = ???
+  override def HP: Int = body.maximumHitPoints.value
 
-  override def EDU: Int = ???
+  override def Build: Int = body.build.value
 
-  override def HP: Int = ???
+  override def DB: Int = body.damageBonus.value
 
-  override def Build: Int = ???
+  override def SAN: Int = sanity.value
 
-  override def DB: Int = ???
+  override def MP: Int = mp.value
 
-  override def SAN: Int = ???
-
+  override def Luck: Int = luck.value
 }
 
 object Investigator {
@@ -69,25 +74,32 @@ object Investigator {
       occupationName: String,
       skills: Set[Skill]
   )(implicit
-      fourSidedDice: FourSidedDice,
-      sixSidedDice: SixSidedDice,
-      tenSidedDice: TenSidedDice,
-      hundredSidedDice: HundredSidedDice
+      humanAgingRules: HumanAgingRules
   ): Investigator = {
+    val agedBody = humanAgingRules on body
+
+    val agedEdu = humanAgingRules on edu
+
+    val agedAppearance = humanAgingRules on app
+
+    val humanAgedMovementRate = humanAgingRules movFor body
+
     val sanity = Sanity(brain.power.value)
 
     val mp = CurrentMagicPoints(brain.power.value / 5)
 
-    val human = Human(
+    new Investigator(
       age,
-      body,
-      app,
-      edu,
+      agedBody,
+      agedAppearance,
+      agedEdu,
       brain,
+      humanAgedMovementRate,
       sanity,
-      mp
-    )(new HumanAgingRules(age))
-
-    new Investigator(human, luck, occupationName, skills)
+      mp,
+      luck,
+      occupationName,
+      skills
+    )
   }
 }
