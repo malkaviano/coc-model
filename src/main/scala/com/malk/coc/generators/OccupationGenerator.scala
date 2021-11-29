@@ -8,18 +8,37 @@ import com.malk.coc.concepts.skills.CreditRating
 import com.malk.coc.abstractions._
 import com.malk.coc.helpers.OccupationSkillPicker
 import com.malk.coc.abstractions.dices.DiceRange
+import com.malk.coc.concepts.characteristics.Education
+import com.malk.coc.concepts.characteristics.Appearance
+import com.malk.coc.concepts.skills.languages.Language
 
-final case class OccupationGenerator(
+final class OccupationGenerator(
+    private val body: Body,
+    private val brain: Brain,
+    private val edu: Education,
+    private val app: Appearance,
+    private val language: Language,
     private val occupationTemplate: OccupationTemplate
 )(implicit private val rangeDice: (DiceRange) => Int) {
-  private val occupationSkillPoints =
-    occupationTemplate.occupationSkillPoints
+  private val occupationSkillPoints: SkillPoints =
+    occupationTemplate.occupationSkillPoints(
+      body,
+      brain,
+      edu,
+      app,
+      language
+    )
 
   private val personalInterestPoints = SkillPoints(
-    occupationTemplate.brain.intelligence.value * 2
+    brain.intelligence.value * 2
   )
 
   private val picker = OccupationSkillPicker(
+    body,
+    brain,
+    edu,
+    app,
+    language,
     occupationTemplate
   )
 

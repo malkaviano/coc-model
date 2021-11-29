@@ -22,18 +22,26 @@ class OccupationGeneratorSpec extends AnyFunSpec with Matchers {
         val implicitApp = app
         val implicitLanguage = language
 
-        val template = InvestigatorOccupationTemplates.occupationTemplate(templateName)(
+        val template = InvestigatorOccupationTemplates
+          .occupationTemplate(templateName).head
+
+        val occupation = new OccupationGenerator(
           implicitBody,
           implicitBrain,
           implicitEdu,
           implicitApp,
-          implicitLanguage
-        ).head
-
-        val occupation = OccupationGenerator(template)
+          implicitLanguage,
+          template
+        )
 
         val occupationSkillPoints =
-          template.occupationSkillPoints
+          template.occupationSkillPoints(
+            implicitBody,
+            implicitBrain,
+            implicitEdu,
+            implicitApp,
+            implicitLanguage
+          )
 
         val personalInterestPoints =
           SkillPoints(implicitBrain.intelligence.value * 2)
