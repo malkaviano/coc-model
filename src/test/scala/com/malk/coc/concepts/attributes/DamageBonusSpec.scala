@@ -4,13 +4,13 @@ import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 
 import com.malk.coc.concepts.characteristics.{Strength, Size}
-import com.malk.coc.concepts.dices.SixSidedDice
+import com.malk.coc.abstractions.dices.SixSidedDice
 import org.scalamock.scalatest.MockFactory
-import com.malk.coc.concepts.dices.FourSidedDice
+import com.malk.coc.abstractions.dices.FourSidedDice
 import com.malk.coc.concepts.characteristics.Constitution
 import com.malk.coc.concepts.characteristics.Dexterity
 import com.malk.coc.abstractions.Body
-import com.malk.coc.concepts.dices.DiceRange
+import com.malk.coc.abstractions.dices.DiceRange
 
 trait DamageBonusBehavior extends Matchers with MockFactory {
   this: AnyFunSpec =>

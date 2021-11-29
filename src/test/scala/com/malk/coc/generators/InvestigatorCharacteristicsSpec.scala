@@ -5,7 +5,7 @@ import org.scalatest.matchers.should.Matchers
 import org.scalamock.scalatest.MockFactory
 
 import com.malk.coc.concepts.characteristics._
-import com.malk.coc.concepts.dices._
+import com.malk.coc.abstractions.dices._
 import com.malk.coc.traits.Characteristic
 import com.malk.coc.abstractions.Body
 import com.malk.coc.abstractions.Brain

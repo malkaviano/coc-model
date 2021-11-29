@@ -6,8 +6,8 @@ import com.malk.coc.concepts.characteristics.Dexterity
 import com.malk.coc.concepts.characteristics.Size
 import com.malk.coc.concepts.attributes.Build
 import com.malk.coc.concepts.attributes.DamageBonus
-import com.malk.coc.concepts.dices.FourSidedDice
-import com.malk.coc.concepts.dices.SixSidedDice
+import com.malk.coc.abstractions.dices.FourSidedDice
+import com.malk.coc.abstractions.dices.SixSidedDice
 import com.malk.coc.concepts.attributes.MaximumHitPoints
 
 final case class Body private (

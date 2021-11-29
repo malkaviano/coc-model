@@ -7,7 +7,7 @@ import com.malk.coc.traits.OccupationTemplate
 import com.malk.coc.concepts.skills.CreditRating
 import com.malk.coc.abstractions._
 import com.malk.coc.helpers.OccupationSkillPicker
-import com.malk.coc.concepts.dices.DiceRange
+import com.malk.coc.abstractions.dices.DiceRange
 
 final case class OccupationGenerator(
     private val occupationTemplate: OccupationTemplate

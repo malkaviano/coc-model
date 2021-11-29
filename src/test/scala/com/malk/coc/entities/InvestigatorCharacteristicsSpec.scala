@@ -4,9 +4,9 @@ import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 import org.scalamock.scalatest.MockFactory
 
-import com.malk.coc.concepts.dices._
+import com.malk.coc.abstractions.dices._
 import com.malk.coc.rules.HumanAgingRules
-import com.malk.coc.concepts.dices.DiceRange
+import com.malk.coc.abstractions.dices.DiceRange
 import com.malk.coc.generators.OccupationGenerator
 
 class InvestigatorCharacteristicsSpec extends AnyFunSpec with Matchers with MockFactory {
