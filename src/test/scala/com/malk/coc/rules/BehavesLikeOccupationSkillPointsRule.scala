@@ -4,11 +4,9 @@ import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 
 import com.malk.coc.concepts.characteristics.Appearance
-import com.malk.coc.concepts.abstractions.Brain
 import com.malk.coc.traits.OccupationSkillPoints
-import com.malk.coc.concepts.abstractions.Body
 import com.malk.coc.concepts.characteristics.Education
-import com.malk.coc.concepts.occupations.InvestigatorSkillPoints
+import com.malk.coc.abstractions._
 
 trait BehavesLikeOccupationSkillPointsRule extends AnyFunSpec with Matchers {
   def behavesLikeOccupationSkillPointsRule(
@@ -17,7 +15,7 @@ trait BehavesLikeOccupationSkillPointsRule extends AnyFunSpec with Matchers {
       brain: Brain,
       edu: Education,
       app: Appearance,
-      expected: InvestigatorSkillPoints
+      expected: SkillPoints
   ): Unit = {
     describe(s"when ${body} ${brain} ${edu} ${app}") {
       it(s"should return ${expected}") {

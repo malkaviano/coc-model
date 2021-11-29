@@ -3,7 +3,7 @@ package com.malk.coc.rules
 import scala.annotation.tailrec
 
 import com.malk.coc.concepts.attributes.Age
-import com.malk.coc.concepts.abstractions.Body
+import com.malk.coc.abstractions.Body
 import com.malk.coc.concepts.dices.FourSidedDice
 import com.malk.coc.concepts.dices.SixSidedDice
 import com.malk.coc.concepts.characteristics.Education

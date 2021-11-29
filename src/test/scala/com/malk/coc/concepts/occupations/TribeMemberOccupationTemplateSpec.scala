@@ -3,6 +3,7 @@ package com.malk.coc.concepts.occupations
 import com.malk.coc.concepts.skills._
 import com.malk.coc.traits.Skill
 import com.malk.coc.helpers.SkillHelper
+import com.malk.coc.abstractions._
 
 class TribeMemberOccupationTemplateSpec extends BehavesLikeOccupationTemplate {
   import com.malk.coc.generators.InvestigatorCharacteristics.implicits._
@@ -39,11 +40,11 @@ class TribeMemberOccupationTemplateSpec extends BehavesLikeOccupationTemplate {
     )
 
     val optionalSkills = Seq(
-      OccupationTemplateOption(
+      OccupationTemplateChoice(
         1,
         Set(Sea(), Desert(), Arctic(), WildernessTerrain())
       ),
-      OccupationTemplateOption(
+      OccupationTemplateChoice(
         1,
         Set(
           Axe(),

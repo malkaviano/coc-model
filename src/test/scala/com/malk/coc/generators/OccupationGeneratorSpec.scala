@@ -4,7 +4,7 @@ import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 
 import com.malk.coc.helpers.SkillHelper
-import com.malk.coc.concepts.occupations.InvestigatorSkillPoints
+import com.malk.coc.abstractions._
 
 class OccupationGeneratorSpec extends AnyFunSpec with Matchers {
   import com.malk.coc.generators.InvestigatorCharacteristics.implicits._
@@ -36,7 +36,7 @@ class OccupationGeneratorSpec extends AnyFunSpec with Matchers {
           template.occupationSkillPoints
 
         val personalInterestPoints =
-          InvestigatorSkillPoints(implicitBrain.intelligence.value * 2)
+          SkillPoints(implicitBrain.intelligence.value * 2)
 
         describe(
           s"when ${occupationSkillPoints} and ${personalInterestPoints}"

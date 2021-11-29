@@ -1,7 +1,7 @@
 package com.malk.coc.rules
 
 import com.malk.coc.concepts.characteristics.Education
-import com.malk.coc.concepts.occupations.InvestigatorSkillPoints
+import com.malk.coc.abstractions._
 
 class FourEduRuleSpec extends BehavesLikeOccupationSkillPointsRule {
   describe("FourEduRule") {
@@ -22,7 +22,7 @@ class FourEduRuleSpec extends BehavesLikeOccupationSkillPointsRule {
       brain,
       edu,
       app,
-      InvestigatorSkillPoints(240)
+      SkillPoints(240)
     )
   }
 }

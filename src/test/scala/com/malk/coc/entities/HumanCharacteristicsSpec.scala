@@ -5,8 +5,8 @@ import org.scalatest.matchers.should.Matchers
 
 import com.malk.coc.concepts.characteristics._
 import com.malk.coc.helpers.DiceHelper
-import com.malk.coc.concepts.abstractions.Body
-import com.malk.coc.concepts.abstractions.Brain
+import com.malk.coc.abstractions.Body
+import com.malk.coc.abstractions.Brain
 import com.malk.coc.concepts.dices.TenSidedDice
 import com.malk.coc.concepts.dices.HundredSidedDice
 import com.malk.coc.rules.HumanAgingRules

@@ -1,9 +1,8 @@
 package com.malk.coc.rules
 
 import com.malk.coc.traits.OccupationSkillPoints
-import com.malk.coc.concepts.occupations.InvestigatorSkillPoints
 import com.malk.coc.concepts.characteristics._
-import com.malk.coc.concepts.abstractions._
+import com.malk.coc.abstractions._
 
 final class TwoEduEitherTwoDexOrStrRule extends OccupationSkillPoints {
   val name = "TwoEduEitherTwoStrOrDexRule"
@@ -13,7 +12,7 @@ final class TwoEduEitherTwoDexOrStrRule extends OccupationSkillPoints {
       brain: Brain,
       edu: Education,
       app: Appearance
-  ): InvestigatorSkillPoints = {
+  ): SkillPoints = {
     val eduPoints = 2 * edu.value
 
     val otherPoints = body.strength match {
@@ -21,6 +20,6 @@ final class TwoEduEitherTwoDexOrStrRule extends OccupationSkillPoints {
       case _ => body.dexterity.value
     }
 
-    InvestigatorSkillPoints(eduPoints + (2 * otherPoints))
+    SkillPoints(eduPoints + (2 * otherPoints))
   }
 }

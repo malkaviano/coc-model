@@ -1,8 +1,8 @@
 package com.malk.coc.rules
 
-import com.malk.coc.concepts.abstractions.Brain
+import com.malk.coc.abstractions.Brain
 import com.malk.coc.concepts.characteristics._
-import com.malk.coc.concepts.occupations.InvestigatorSkillPoints
+import com.malk.coc.abstractions._
 
 class TwoEduEitherTwoAppOrPowRuleSpec extends BehavesLikeOccupationSkillPointsRule {
   describe("TwoEduEitherTwoAppOrPowRule") {
@@ -27,7 +27,7 @@ class TwoEduEitherTwoAppOrPowRuleSpec extends BehavesLikeOccupationSkillPointsRu
         brain,
         edu,
         app,
-        InvestigatorSkillPoints(220)
+        SkillPoints(220)
       )
     }
 
@@ -41,7 +41,7 @@ class TwoEduEitherTwoAppOrPowRuleSpec extends BehavesLikeOccupationSkillPointsRu
         brain,
         edu,
         app,
-        InvestigatorSkillPoints(240)
+        SkillPoints(240)
       )
     }
 
@@ -54,7 +54,7 @@ class TwoEduEitherTwoAppOrPowRuleSpec extends BehavesLikeOccupationSkillPointsRu
         brain,
         edu,
         app,
-        InvestigatorSkillPoints(260)
+        SkillPoints(260)
       )
     }
   }

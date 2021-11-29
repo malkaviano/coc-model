@@ -7,8 +7,8 @@ import org.scalamock.scalatest.MockFactory
 import com.malk.coc.concepts.characteristics._
 import com.malk.coc.concepts.dices._
 import com.malk.coc.traits.Characteristic
-import com.malk.coc.concepts.abstractions.Body
-import com.malk.coc.concepts.abstractions.Brain
+import com.malk.coc.abstractions.Body
+import com.malk.coc.abstractions.Brain
 
 class InvestigatorCharacteristicsSpec
     extends AnyFunSpec

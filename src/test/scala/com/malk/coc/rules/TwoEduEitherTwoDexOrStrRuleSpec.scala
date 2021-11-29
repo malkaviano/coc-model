@@ -1,10 +1,7 @@
 package com.malk.coc.rules
 
-import com.malk.coc.concepts.abstractions.Body
-import com.malk.coc.concepts.characteristics.Education
-import com.malk.coc.concepts.occupations.InvestigatorSkillPoints
-import com.malk.coc.concepts.characteristics.Strength
-import com.malk.coc.concepts.characteristics.Dexterity
+import com.malk.coc.abstractions._
+import com.malk.coc.concepts.characteristics._
 
 class TwoEduEitherTwoDexOrStrRuleSpec
     extends BehavesLikeOccupationSkillPointsRule {
@@ -29,7 +26,7 @@ class TwoEduEitherTwoDexOrStrRuleSpec
         brain,
         edu,
         app,
-        InvestigatorSkillPoints(220)
+        SkillPoints(220)
       )
     }
 
@@ -42,7 +39,7 @@ class TwoEduEitherTwoDexOrStrRuleSpec
         brain,
         edu,
         app,
-        InvestigatorSkillPoints(240)
+        SkillPoints(240)
       )
     }
 
@@ -57,7 +54,7 @@ class TwoEduEitherTwoDexOrStrRuleSpec
         brain,
         edu,
         app,
-        InvestigatorSkillPoints(260)
+        SkillPoints(260)
       )
     }
   }
