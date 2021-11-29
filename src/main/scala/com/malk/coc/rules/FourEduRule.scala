@@ -1,10 +1,10 @@
 package com.malk.coc.rules
 
-import com.malk.coc.traits.OccupationSkillPoints
+import com.malk.coc.traits.OccupationSkillPointsGeneration
 import com.malk.coc.abstractions._
 import com.malk.coc.concepts.characteristics.{Appearance, Education}
 
-class FourEduRule extends OccupationSkillPoints {
+class FourEduRule extends OccupationSkillPointsGeneration {
   val name = "FourEduRule"
 
   override def occupationSkillPoints(

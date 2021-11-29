@@ -28,6 +28,11 @@ class OccupationSkillPickerSpec extends AnyFunSpec with Matchers {
     it("should return template occupation skills") {
       val picker =
         new OccupationSkillPicker(
+          implicitBody,
+          implicitBrain,
+          implicitEdu,
+          implicitApp,
+          templateLanguage,
           templateFixture(
             occupationFixedSkills =
               Set(CreditRating(0, 30), CthulhuMythos(), ComputerUse()),
@@ -44,6 +49,11 @@ class OccupationSkillPickerSpec extends AnyFunSpec with Matchers {
     describe("when occupation skill has LanguageOwn") {
       it("should return right LanguageOwn") {
         val picker = new OccupationSkillPicker(
+          implicitBody,
+          implicitBrain,
+          implicitEdu,
+          implicitApp,
+          templateLanguage,
           templateFixture(occupationFixedSkills =
             Set(
               CreditRating(0, 30),
@@ -62,6 +72,11 @@ class OccupationSkillPickerSpec extends AnyFunSpec with Matchers {
     describe("when occupation skill has Dodge") {
       it("should return right Dodge") {
         val picker = new OccupationSkillPicker(
+          implicitBody,
+          implicitBrain,
+          implicitEdu,
+          implicitApp,
+          templateLanguage,
           templateFixture(occupationFixedSkills =
             Set(
               CreditRating(0, 30),
@@ -79,6 +94,11 @@ class OccupationSkillPickerSpec extends AnyFunSpec with Matchers {
 
     it("should return right Credit Rating") {
       val picker = new OccupationSkillPicker(
+        implicitBody,
+        implicitBrain,
+        implicitEdu,
+        implicitApp,
+        templateLanguage,
         templateFixture(occupationFixedSkills =
           Set(
             CreditRating(),
@@ -96,6 +116,11 @@ class OccupationSkillPickerSpec extends AnyFunSpec with Matchers {
     describe("when picking any skill") {
       val picker =
         new OccupationSkillPicker(
+          implicitBody,
+          implicitBrain,
+          implicitEdu,
+          implicitApp,
+          templateLanguage,
           templateFixture(
             occupationFixedSkills = Set(
               CreditRating(0, 30),
@@ -136,6 +161,11 @@ class OccupationSkillPickerSpec extends AnyFunSpec with Matchers {
   describe("return all skills") {
     it("should return right LanguageOwn") {
       val picker = new OccupationSkillPicker(
+        implicitBody,
+        implicitBrain,
+        implicitEdu,
+        implicitApp,
+        templateLanguage,
         templateFixture(occupationFixedSkills =
           Set(
             CreditRating(0, 30)
@@ -154,6 +184,11 @@ class OccupationSkillPickerSpec extends AnyFunSpec with Matchers {
 
     it("should return right Dodge") {
       val picker = new OccupationSkillPicker(
+        implicitBody,
+        implicitBrain,
+        implicitEdu,
+        implicitApp,
+        templateLanguage,
         templateFixture(occupationFixedSkills =
           Set(
             CreditRating(0, 30)
@@ -183,7 +218,13 @@ class OccupationSkillPickerSpec extends AnyFunSpec with Matchers {
 
       def startCreditRating: CreditRating = CreditRating(5, 50)
 
-      def occupationSkillPoints: SkillPoints = ???
+      override def occupationSkillPoints(
+          body: Body,
+          brain: Brain,
+          edu: Education,
+          app: Appearance,
+          language: Language
+      ): SkillPoints = SkillPoints(300)
 
       def templateSkills: TemplateSkillResult = TemplateSkillResult(
         occupationFixedSkills,
@@ -191,17 +232,6 @@ class OccupationSkillPickerSpec extends AnyFunSpec with Matchers {
         cannotSpendPointsSkills,
         excludedSkills
       )
-
-      def body: Body = implicitBody
-
-      def brain: Brain = implicitBrain
-
-      def edu: Education = implicitEdu
-
-      def app: Appearance = implicitApp
-
-      def language: Language = templateLanguage
-
     }
   }
 }

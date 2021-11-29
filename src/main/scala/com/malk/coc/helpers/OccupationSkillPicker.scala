@@ -10,17 +10,25 @@ import com.malk.coc.traits.OccupationTemplate
 import com.malk.coc.traits.Skill
 import com.malk.coc.concepts.skills.languages.other.LanguageOther
 import com.malk.coc.abstractions._
+import com.malk.coc.concepts.characteristics.Education
+import com.malk.coc.concepts.characteristics.Appearance
+import com.malk.coc.concepts.skills.languages.Language
 
 final case class OccupationSkillPicker(
-    val occupationTemplate: OccupationTemplate
+    private val body: Body,
+    private val brain: Brain,
+    private val edu: Education,
+    private val app: Appearance,
+    private val language: Language,
+    private val occupationTemplate: OccupationTemplate
 ) {
   private val pickedSkills: mutableSet[Skill] = mutableSet.empty
   private val consolidatedSkills: mutableSet[Skill] = mutableSet.empty
 
   val languageOwn: LanguageOwn =
-    LanguageOwn(occupationTemplate.edu)(occupationTemplate.language)
+    LanguageOwn(edu)(language)
 
-  val dodge: Dodge = Dodge(occupationTemplate.body.dexterity)()
+  val dodge: Dodge = Dodge(body.dexterity)()
 
   val creditRating = occupationTemplate.startCreditRating
 
@@ -71,7 +79,7 @@ final case class OccupationSkillPicker(
           ) =>
         None
       case skill: LanguageOther
-          if skill.language == occupationTemplate.language =>
+          if skill.language == language =>
         Some(languageOwn)
       case LanguageOwn(edu)   => Some(languageOwn)
       case Dodge(dex)         => Some(dodge)

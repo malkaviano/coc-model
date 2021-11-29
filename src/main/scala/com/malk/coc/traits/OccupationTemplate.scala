@@ -13,17 +13,13 @@ trait OccupationTemplate {
 
   def startCreditRating: CreditRating
 
-  def occupationSkillPoints: SkillPoints
+  def occupationSkillPoints(
+      body: Body,
+      brain: Brain,
+      edu: Education,
+      app: Appearance,
+      language: Language
+  ): SkillPoints
 
   def templateSkills: TemplateSkillResult
-
-  def body: Body
-
-  def brain: Brain
-
-  def edu: Education
-
-  def app: Appearance
-
-  def language: Language
 }

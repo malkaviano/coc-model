@@ -14,11 +14,7 @@ class InvestigatorAttributesSpec extends AnyFunSpec with Matchers with MockFacto
   import com.malk.coc.helpers.DiceHelper.implicits._
 
   describe("Investigator Attributes") {
-    val occupationTemplate = randomOccupationTemplate
-
-    val occupation = OccupationGenerator(
-      occupationTemplate
-    )
+    implicit val occupationTemplate = randomOccupationTemplate
 
     val implicitAge = age
 
@@ -27,6 +23,14 @@ class InvestigatorAttributesSpec extends AnyFunSpec with Matchers with MockFacto
     val implicitBody = body
 
     val implicitBrain = brain
+
+    val occupation = new OccupationGenerator(
+      implicitBody,
+      implicitBrain,
+      edu,
+      app,
+      language,occupationTemplate
+    )
 
     val human = Investigator(
       implicitAge,
