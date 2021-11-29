@@ -3,7 +3,7 @@ package com.malk.coc.concepts.attributes
 import com.malk.coc.traits.Attribute
 import com.malk.coc.concepts.dices.SixSidedDice
 import com.malk.coc.concepts.dices.FourSidedDice
-import com.malk.coc.concepts.abstractions.Body
+import com.malk.coc.abstractions.Body
 
 final case class DamageBonus(
     private val body: Body

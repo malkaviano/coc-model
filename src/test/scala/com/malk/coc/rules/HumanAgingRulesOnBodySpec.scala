@@ -6,7 +6,7 @@ import com.malk.coc.concepts.characteristics.Strength
 import com.malk.coc.concepts.characteristics.Constitution
 import com.malk.coc.concepts.characteristics.Dexterity
 import com.malk.coc.concepts.characteristics.Size
-import com.malk.coc.concepts.abstractions.Body
+import com.malk.coc.abstractions.Body
 import com.malk.coc.helpers.DiceHelper
 
 class HumanAgingRulesOnBodySpec extends AnyFunSpec with Matchers {

@@ -1,10 +1,11 @@
 package com.malk.coc.generators
 
+import scala.util.Random
+
 import com.malk.coc.traits.Skill
 import com.malk.coc.traits.OccupationTemplate
 import com.malk.coc.concepts.skills.CreditRating
-import com.malk.coc.concepts.occupations.InvestigatorSkillPoints
-import scala.util.Random
+import com.malk.coc.abstractions._
 import com.malk.coc.helpers.OccupationSkillPicker
 import com.malk.coc.concepts.dices.DiceRange
 
@@ -14,7 +15,7 @@ final case class OccupationGenerator(
   private val occupationSkillPoints =
     occupationTemplate.occupationSkillPoints
 
-  private val personalInterestPoints = InvestigatorSkillPoints(
+  private val personalInterestPoints = SkillPoints(
     occupationTemplate.brain.intelligence.value * 2
   )
 
@@ -50,7 +51,7 @@ final case class OccupationGenerator(
 
   private def spentAllPoints(
       skills: Seq[Skill],
-      investigatorSkillPoints: InvestigatorSkillPoints,
+      investigatorSkillPoints: SkillPoints,
       maxIncrement: Int
   ): Set[Skill] = {
     while (investigatorSkillPoints.remaining > 0) {

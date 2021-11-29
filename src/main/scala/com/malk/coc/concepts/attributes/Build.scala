@@ -1,7 +1,7 @@
 package com.malk.coc.concepts.attributes
 
 import com.malk.coc.traits.Attribute
-import com.malk.coc.concepts.abstractions.Body
+import com.malk.coc.abstractions.Body
 
 final case class Build(
     private val body: Body

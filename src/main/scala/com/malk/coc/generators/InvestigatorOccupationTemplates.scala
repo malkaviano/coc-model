@@ -6,8 +6,8 @@ import com.malk.coc.traits.OccupationTemplate
 import com.malk.coc.concepts.occupations._
 import com.malk.coc.concepts.characteristics.Education
 import com.malk.coc.concepts.characteristics.Appearance
-import com.malk.coc.concepts.abstractions.Body
-import com.malk.coc.concepts.abstractions.Brain
+import com.malk.coc.abstractions.Body
+import com.malk.coc.abstractions.Brain
 import com.malk.coc.concepts.skills.languages.Language
 
 object InvestigatorOccupationTemplates {

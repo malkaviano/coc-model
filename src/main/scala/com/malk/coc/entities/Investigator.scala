@@ -1,7 +1,7 @@
 package com.malk.coc.entities
 
 import com.malk.coc.concepts.attributes._
-import com.malk.coc.concepts.abstractions._
+import com.malk.coc.abstractions._
 import com.malk.coc.concepts.characteristics._
 import com.malk.coc.concepts.dices._
 import com.malk.coc.rules.HumanAgingRules

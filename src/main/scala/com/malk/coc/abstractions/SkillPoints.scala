@@ -1,6 +1,6 @@
-package com.malk.coc.concepts.occupations
+package com.malk.coc.abstractions
 
-final case class InvestigatorSkillPoints(private var total: Int) {
+final case class SkillPoints(private var total: Int) {
   def remaining: Int = total
 
   def spend(points: Int): Int = {

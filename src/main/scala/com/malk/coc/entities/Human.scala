@@ -3,8 +3,8 @@ package com.malk.coc.entities
 import com.malk.coc.concepts.characteristics._
 import com.malk.coc.traits._
 import com.malk.coc.concepts.attributes.MovementRate
-import com.malk.coc.concepts.abstractions.Body
-import com.malk.coc.concepts.abstractions.Brain
+import com.malk.coc.abstractions.Body
+import com.malk.coc.abstractions.Brain
 import com.malk.coc.concepts.attributes.Sanity
 import com.malk.coc.rules.HumanAgingRules
 import com.malk.coc.concepts.attributes.CurrentMagicPoints

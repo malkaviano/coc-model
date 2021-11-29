@@ -9,7 +9,7 @@ import org.scalamock.scalatest.MockFactory
 import com.malk.coc.concepts.dices.FourSidedDice
 import com.malk.coc.concepts.characteristics.Constitution
 import com.malk.coc.concepts.characteristics.Dexterity
-import com.malk.coc.concepts.abstractions.Body
+import com.malk.coc.abstractions.Body
 import com.malk.coc.concepts.dices.DiceRange
 
 trait DamageBonusBehavior extends Matchers with MockFactory {

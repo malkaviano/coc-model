@@ -1,4 +1,4 @@
-package com.malk.coc.concepts.abstractions
+package com.malk.coc.abstractions
 
 import com.malk.coc.concepts.characteristics.Strength
 import com.malk.coc.concepts.characteristics.Constitution

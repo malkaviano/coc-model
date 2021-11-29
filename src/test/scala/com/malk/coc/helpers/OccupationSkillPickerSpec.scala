@@ -5,16 +5,12 @@ import org.scalatest.matchers.should.Matchers
 import com.malk.coc.concepts.skills.languages.own.LanguageOwn
 import com.malk.coc.concepts.skills._
 import com.malk.coc.traits.OccupationTemplate
-import com.malk.coc.concepts.occupations.InvestigatorSkillPoints
 import com.malk.coc.concepts.skills.languages.Language
 import com.malk.coc.concepts.characteristics.Appearance
-import com.malk.coc.concepts.abstractions.Brain
-import com.malk.coc.concepts.occupations.TemplateSkillResult
 import com.malk.coc.concepts.characteristics.Education
-import com.malk.coc.concepts.abstractions.Body
 import com.malk.coc.traits.Skill
 import com.malk.coc.concepts.characteristics.Dexterity
-import com.malk.coc.concepts.occupations.OccupationTemplateOption
+import com.malk.coc.abstractions._
 
 class OccupationSkillPickerSpec extends AnyFunSpec with Matchers {
   import com.malk.coc.generators.InvestigatorCharacteristics.implicits._
@@ -108,11 +104,11 @@ class OccupationSkillPickerSpec extends AnyFunSpec with Matchers {
               Psychology()
             ),
             occupationChooseSkills = Seq(
-              OccupationTemplateOption(
+              OccupationTemplateChoice(
                 1,
                 SkillHelper.languageOtherSkills
               ),
-              OccupationTemplateOption(
+              OccupationTemplateChoice(
                 4,
                 Set(
                   CthulhuMythos(),
@@ -178,7 +174,7 @@ class OccupationSkillPickerSpec extends AnyFunSpec with Matchers {
 
   private def templateFixture(
       occupationFixedSkills: Set[Skill],
-      occupationChooseSkills: Seq[OccupationTemplateOption] = Seq.empty,
+      occupationChooseSkills: Seq[OccupationTemplateChoice] = Seq.empty,
       cannotSpendPointsSkills: Set[Skill] = Set.empty,
       excludedSkills: Set[Skill] = Set.empty
   ): OccupationTemplate = {
@@ -187,7 +183,7 @@ class OccupationSkillPickerSpec extends AnyFunSpec with Matchers {
 
       def startCreditRating: CreditRating = CreditRating(5, 50)
 
-      def occupationSkillPoints: InvestigatorSkillPoints = ???
+      def occupationSkillPoints: SkillPoints = ???
 
       def templateSkills: TemplateSkillResult = TemplateSkillResult(
         occupationFixedSkills,

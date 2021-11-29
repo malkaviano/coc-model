@@ -5,8 +5,7 @@ import com.malk.coc.concepts.skills._
 import com.malk.coc.helpers.SkillHelper
 import com.malk.coc.rules.TwoEduEitherTwoDexOrStrRule
 import com.malk.coc.traits.OccupationTemplate
-import com.malk.coc.concepts.abstractions.Body
-import com.malk.coc.concepts.abstractions.Brain
+import com.malk.coc.abstractions._
 import com.malk.coc.concepts.characteristics.Education
 import com.malk.coc.concepts.characteristics.Appearance
 import com.malk.coc.concepts.skills.languages.Language
@@ -22,7 +21,7 @@ final class TribeMemberOccupationTemplate private (
 
   def startCreditRating = CreditRating(0, 15)
 
-  override def occupationSkillPoints: InvestigatorSkillPoints = {
+  override def occupationSkillPoints: SkillPoints = {
     val rule = new TwoEduEitherTwoDexOrStrRule
 
     rule.occupationSkillPoints(body, brain, edu, app)
@@ -47,8 +46,8 @@ final class TribeMemberOccupationTemplate private (
     startCreditRating
   )
 
-  private def optionalSkills: Seq[OccupationTemplateOption] = Seq(
-    OccupationTemplateOption(
+  private def optionalSkills: Seq[OccupationTemplateChoice] = Seq(
+    OccupationTemplateChoice(
       1,
       Set(
         Sea(),
@@ -57,7 +56,7 @@ final class TribeMemberOccupationTemplate private (
         WildernessTerrain()
       )
     ),
-    OccupationTemplateOption(
+    OccupationTemplateChoice(
       1,
       SkillHelper.fightingSkills ++ Set(Throw())
     )

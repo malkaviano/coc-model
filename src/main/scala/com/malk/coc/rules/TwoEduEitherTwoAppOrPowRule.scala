@@ -1,9 +1,8 @@
 package com.malk.coc.rules
 
 import com.malk.coc.traits.OccupationSkillPoints
-import com.malk.coc.concepts.occupations.InvestigatorSkillPoints
 import com.malk.coc.concepts.characteristics._
-import com.malk.coc.concepts.abstractions._
+import com.malk.coc.abstractions._
 
 final class TwoEduEitherTwoAppOrPowRule extends OccupationSkillPoints {
   val name = "TwoEduEitherTwoAppOrPowRule"
@@ -13,7 +12,7 @@ final class TwoEduEitherTwoAppOrPowRule extends OccupationSkillPoints {
       brain: Brain,
       edu: Education,
       app: Appearance
-  ): InvestigatorSkillPoints = {
+  ): SkillPoints = {
     val eduPoints = 2 * edu.value
 
     val otherPoints = app match {
@@ -21,6 +20,6 @@ final class TwoEduEitherTwoAppOrPowRule extends OccupationSkillPoints {
       case _ => brain.power.value
     }
 
-    InvestigatorSkillPoints(eduPoints + (2 * otherPoints))
+    SkillPoints(eduPoints + (2 * otherPoints))
   }
 }

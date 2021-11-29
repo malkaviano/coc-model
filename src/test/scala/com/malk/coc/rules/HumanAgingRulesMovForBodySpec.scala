@@ -4,7 +4,7 @@ import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 
 import com.malk.coc.helpers.DiceHelper
-import com.malk.coc.concepts.abstractions.Body
+import com.malk.coc.abstractions.Body
 import com.malk.coc.concepts.characteristics.Strength
 import com.malk.coc.concepts.characteristics.Dexterity
 import com.malk.coc.concepts.characteristics.Size

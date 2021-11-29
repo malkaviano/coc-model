@@ -5,6 +5,7 @@ import org.scalatest.matchers.should.Matchers
 
 import com.malk.coc.traits.OccupationTemplate
 import com.malk.coc.concepts.skills.CreditRating
+import com.malk.coc.abstractions._
 
 trait BehavesLikeOccupationTemplate extends AnyFunSpec with Matchers {
   def behavesLikeOccupationTemplate(

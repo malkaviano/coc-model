@@ -2,14 +2,14 @@ package com.malk.coc.helpers
 
 import scala.collection.mutable.{Set => mutableSet}
 import scala.collection.immutable.Set
+import scala.util.Random
 
 import com.malk.coc.concepts.skills.languages.own.LanguageOwn
 import com.malk.coc.concepts.skills._
 import com.malk.coc.traits.OccupationTemplate
 import com.malk.coc.traits.Skill
-import scala.util.Random
 import com.malk.coc.concepts.skills.languages.other.LanguageOther
-import com.malk.coc.concepts.occupations.OccupationTemplateOption
+import com.malk.coc.abstractions._
 
 final case class OccupationSkillPicker(
     val occupationTemplate: OccupationTemplate
@@ -35,7 +35,7 @@ final case class OccupationSkillPicker(
   })
 
   occupationTemplate.templateSkills.occupationChooseSkills.foreach {
-    case OccupationTemplateOption(take: Int, options: Set[Skill]) => {
+    case OccupationTemplateChoice(take: Int, options: Set[Skill]) => {
       val reduced =
         options -- pickedSkills -- cannotSpendPointsSkills -- excludedSkills
 
