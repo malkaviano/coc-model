@@ -36,12 +36,7 @@ lazy val root = (project in file("."))
 
 lazy val concepts = (project in file("coc-concepts"))
   .settings(
-    name := "coc-concepts",
-    libraryDependencies ++= Seq(
-      scalaTest % Test,
-      scalaTestPlus % Test,
-      scalaMock % Test
-    )
+    name := "coc-concepts"
   )
 
 lazy val rules = (project in file("coc-rules"))

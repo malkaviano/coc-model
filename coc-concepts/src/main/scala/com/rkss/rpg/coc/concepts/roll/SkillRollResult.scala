@@ -2,14 +2,18 @@ package com.rkss.rpg.coc.concepts.roll
 
 sealed trait SkillRollResult
 
-case object FumbleResult extends SkillRollResult
+sealed trait SuccessResult extends SkillRollResult
 
-case object FailureResult extends SkillRollResult
+case object RegularSuccess extends SuccessResult
 
-case object RegularSuccessResult extends SkillRollResult
+case object HardSuccess extends SuccessResult
 
-case object HardSuccessResult extends SkillRollResult
+case object ExtremeSuccess extends SuccessResult
 
-case object ExtremeSuccessResult extends SkillRollResult
+case object CriticalSuccess extends SuccessResult
 
-case object CriticalSuccessResult extends SkillRollResult
+sealed trait FailureResult extends SkillRollResult
+
+case object Fumble extends FailureResult
+
+case object Failure extends FailureResult
