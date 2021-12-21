@@ -22,7 +22,7 @@ ThisBuild / scalacOptions ++= Seq(
 
 lazy val root = (project in file("."))
   .settings(
-    name := "coc-concepts",
+    name := "coc-universe",
     libraryDependencies ++= Seq(
       scalaTest % Test,
       scalaTestPlus % Test,
