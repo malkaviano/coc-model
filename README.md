@@ -1,5 +1,5 @@
-# coc-exercise
-Personal programming exercise inspired by CoC RPG system (Call of Cthulhu®), not intended to be used by anyone.
+# coc-concepts
+Personal programming concepts inspired by CoC RPG system (Call of Cthulhu®), not intended to be used by anyone.
 
 This repo contains copyright material references, I'm the owner of the pdf book, and this project is intended for my own personal EDUCATIONAL purpose.
 

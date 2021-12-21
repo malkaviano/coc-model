@@ -2,8 +2,8 @@ import Dependencies._
 
 ThisBuild / scalaVersion := "2.13.6"
 ThisBuild / version := "0.1.0-SNAPSHOT"
-ThisBuild / organization := "com.example"
-ThisBuild / organizationName := "example"
+ThisBuild / organization := "com.github.malkaviano"
+ThisBuild / organizationName := "rkss"
 
 ThisBuild / scalacOptions ++= Seq(
   "-encoding",
@@ -22,7 +22,7 @@ ThisBuild / scalacOptions ++= Seq(
 
 lazy val root = (project in file("."))
   .settings(
-    name := "coc-kata",
+    name := "coc-concepts",
     libraryDependencies ++= Seq(
       scalaTest % Test,
       scalaTestPlus % Test,
