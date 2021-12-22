@@ -1,6 +1,6 @@
 package com.rkss.rpg.coc.foundations.characteristics
 
-import com.rkss.rpg.coc.concepts.characteristics.PrimaryCharacteristic
+import com.rkss.rpg.coc.concepts.PrimaryCharacteristic
 import com.rkss.rpg.coc.concepts.roll._
 
 class GenericCharacteristic private[characteristics] (
