@@ -21,30 +21,35 @@ class SkillRollSpec
       RegularSuccess,
       RegularDifficulty
     )
+
     it should behave like makingASkillRoll(
       rollable,
       60,
       Failure,
       RegularDifficulty
     )
+
     it should behave like makingASkillRoll(
       rollable,
       100,
       Fumble,
       RegularDifficulty
     )
+
     it should behave like makingASkillRoll(
       rollable,
       20,
       HardSuccess,
       RegularDifficulty
     )
+
     it should behave like makingASkillRoll(
       rollable,
       6,
       ExtremeSuccess,
       RegularDifficulty
     )
+
     it should behave like makingASkillRoll(
       rollable,
       1,
@@ -58,6 +63,7 @@ class SkillRollSpec
       RegularSuccess,
       HardDifficulty
     )
+
     it should behave like makingASkillRoll(
       rollable,
       6,
@@ -70,6 +76,20 @@ class SkillRollSpec
       6,
       RegularSuccess,
       ExtremeDifficulty
+    )
+
+    it should behave like makingASkillRoll(
+      rollable,
+      97,
+      Failure,
+      RegularDifficulty
+    )
+
+    it should behave like makingASkillRoll(
+      rollable,
+      97,
+      Fumble,
+      HardDifficulty
     )
   }
 }
