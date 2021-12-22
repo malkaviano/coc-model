@@ -3,12 +3,10 @@ package com.rkss.rpg.coc.rules.roll
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.funspec.AnyFunSpec
 
-import scala.collection.mutable.{Queue => MutableQueue}
-
 import com.rkss.rpg.helpers.dice.HundredSidedDice
-import com.rkss.rpg.helpers.traits._
 import com.rkss.rpg.coc.concepts.roll._
 import com.rkss.rpg.coc.foundations.characteristics.Strength
+import com.rkss.testing.props._
 
 class SkillRollSpec
     extends AnyFunSpec
@@ -19,84 +17,84 @@ class SkillRollSpec
   describe("Making a skill roll") {
     it should behave like makingASkillRoll(
       rollable,
-      MutableQueue(48),
+      Seq(48),
       RegularSuccess,
       RegularDifficulty
     )
 
     it should behave like makingASkillRoll(
       rollable,
-      MutableQueue(60),
+      Seq(60),
       Failure,
       RegularDifficulty
     )
 
     it should behave like makingASkillRoll(
       rollable,
-      MutableQueue(100),
+      Seq(100),
       Fumble,
       RegularDifficulty
     )
 
     it should behave like makingASkillRoll(
       rollable,
-      MutableQueue(20),
+      Seq(20),
       HardSuccess,
       RegularDifficulty
     )
 
     it should behave like makingASkillRoll(
       rollable,
-      MutableQueue(6),
+      Seq(6),
       ExtremeSuccess,
       RegularDifficulty
     )
 
     it should behave like makingASkillRoll(
       rollable,
-      MutableQueue(1),
+      Seq(1),
       CriticalSuccess,
       RegularDifficulty
     )
 
     it should behave like makingASkillRoll(
       rollable,
-      MutableQueue(20),
+      Seq(20),
       RegularSuccess,
       HardDifficulty
     )
 
     it should behave like makingASkillRoll(
       rollable,
-      MutableQueue(6),
+      Seq(6),
       HardSuccess,
       HardDifficulty
     )
 
     it should behave like makingASkillRoll(
       rollable,
-      MutableQueue(6),
+      Seq(6),
       RegularSuccess,
       ExtremeDifficulty
     )
 
     it should behave like makingASkillRoll(
       rollable,
-      MutableQueue(97),
+      Seq(97),
       Failure,
       RegularDifficulty
     )
 
     it should behave like makingASkillRoll(
       rollable,
-      MutableQueue(97),
+      Seq(97),
       Fumble,
       HardDifficulty
     )
 
     it should behave like makingASkillRoll(
       rollable,
-      MutableQueue(48, 20, 80),
+      Seq(48, 20, 80),
       HardSuccess,
       RegularDifficulty,
       BonusDice(2),
@@ -105,7 +103,7 @@ class SkillRollSpec
 
     it should behave like makingASkillRoll(
       rollable,
-      MutableQueue(48, 100),
+      Seq(48, 100),
       Fumble,
       RegularDifficulty,
       BonusDice(0),
@@ -117,7 +115,7 @@ class SkillRollSpec
 trait BehaveLikeMakingARoll { this: AnyFunSpec with Matchers =>
   def makingASkillRoll(
       rollable: Rollable,
-      diceResults: MutableQueue[Int],
+      diceResults: Seq[Int],
       result: SkillRollResult,
       difficulty: SkillRollDifficultyLevel,
       bonusDice: BonusDice = BonusDice(0),
@@ -125,11 +123,7 @@ trait BehaveLikeMakingARoll { this: AnyFunSpec with Matchers =>
   ): Unit = {
     val rollStreak = diceResults.mkString(", ")
 
-    val fakeRng: DiceRange => DiceResult = _ => {
-      FakeDiceResult(diceResults.dequeue())
-    }
-
-    val mockedDice = HundredSidedDice(fakeRng)
+    val mockedDice = HundredSidedDice(TestingProps.fakeRng(diceResults.toSeq))
 
     val skillRoll =
       SkillRoll(rollable, difficulty, bonusDice, penaltyDice)(mockedDice)
@@ -147,5 +141,3 @@ trait BehaveLikeMakingARoll { this: AnyFunSpec with Matchers =>
     }
   }
 }
-
-final case class FakeDiceResult(override val value: Int) extends DiceResult
