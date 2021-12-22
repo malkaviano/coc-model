@@ -22,8 +22,10 @@ ThisBuild / scalacOptions ++= Seq(
 
 lazy val root = (project in file("."))
   .aggregate(concepts)
-  .aggregate(rules)
   .dependsOn(concepts)
+  .aggregate(foundations)
+  .dependsOn(foundations)
+  .aggregate(rules)
   .dependsOn(rules)
   .settings(
     name := "coc-universe",
@@ -39,9 +41,23 @@ lazy val concepts = (project in file("coc-concepts"))
     name := "coc-concepts"
   )
 
+lazy val foundations = (project in file("coc-foundations"))
+  .aggregate(concepts)
+  .dependsOn(concepts)
+  .settings(
+    name := "coc-foundations",
+    libraryDependencies ++= Seq(
+      scalaTest % Test,
+      scalaTestPlus % Test,
+      scalaMock % Test
+    )
+  )
+
 lazy val rules = (project in file("coc-rules"))
   .aggregate(concepts)
   .dependsOn(concepts)
+  .aggregate(foundations)
+  .dependsOn(foundations)
   .settings(
     name := "coc-rules",
     libraryDependencies ++= Seq(

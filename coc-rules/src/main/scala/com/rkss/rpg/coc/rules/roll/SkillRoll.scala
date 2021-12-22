@@ -10,14 +10,19 @@ final case class SkillRoll(
     private val penalty: PenaltyDice = PenaltyDice(0)
 )(implicit private val hundredSidedDice: HundredSidedDice) {
   lazy val result: SkillRollResult = {
-    val value = rollable.value(difficulty)
+    val regular = rollable.value(difficulty)
+    val hard = regular / 2
+    val extreme = regular / 5
+
     val rolled = hundredSidedDice.roll.value
 
     rolled match {
-      case 1 => CriticalSuccess
-      case 100 => Fumble
-      case diceResult if diceResult <= value => RegularSuccess
-      case _ => Failure
+      case 1                                   => CriticalSuccess
+      case 100                                 => Fumble
+      case diceResult if diceResult <= extreme => ExtremeSuccess
+      case diceResult if diceResult <= hard    => HardSuccess
+      case diceResult if diceResult <= regular => RegularSuccess
+      case _                                   => Failure
     }
   }
 }
