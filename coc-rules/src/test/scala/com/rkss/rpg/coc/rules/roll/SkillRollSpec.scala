@@ -8,19 +8,74 @@ import com.rkss.rpg.helpers.traits._
 import com.rkss.rpg.coc.concepts.roll._
 import com.rkss.rpg.coc.foundations.characteristics.Strength
 
-class SkillRollSpec extends AnyFunSpec with Matchers {
+class SkillRollSpec
+    extends AnyFunSpec
+    with Matchers
+    with BehaveLikeMakingARoll {
   val rollable = Strength(50)
 
   describe("Making a skill roll") {
-    behaveLikeMakingASkillRoll(rollable, 48, RegularSuccess, RegularDifficulty)
-    behaveLikeMakingASkillRoll(rollable, 60, Failure, RegularDifficulty)
-    behaveLikeMakingASkillRoll(rollable, 100, Fumble, RegularDifficulty)
-    // behaveLikeMakingASkillRoll(rollable, 20, HardSuccess, RegularDifficulty)
-    // behaveLikeMakingASkillRoll(rollable, 5, ExtremeSuccess, RegularDifficulty)
-    behaveLikeMakingASkillRoll(rollable, 1, CriticalSuccess, RegularDifficulty)
-  }
+    it should behave like makingASkillRoll(
+      rollable,
+      48,
+      RegularSuccess,
+      RegularDifficulty
+    )
+    it should behave like makingASkillRoll(
+      rollable,
+      60,
+      Failure,
+      RegularDifficulty
+    )
+    it should behave like makingASkillRoll(
+      rollable,
+      100,
+      Fumble,
+      RegularDifficulty
+    )
+    it should behave like makingASkillRoll(
+      rollable,
+      20,
+      HardSuccess,
+      RegularDifficulty
+    )
+    it should behave like makingASkillRoll(
+      rollable,
+      6,
+      ExtremeSuccess,
+      RegularDifficulty
+    )
+    it should behave like makingASkillRoll(
+      rollable,
+      1,
+      CriticalSuccess,
+      RegularDifficulty
+    )
 
-  private def behaveLikeMakingASkillRoll(
+    it should behave like makingASkillRoll(
+      rollable,
+      20,
+      RegularSuccess,
+      HardDifficulty
+    )
+    it should behave like makingASkillRoll(
+      rollable,
+      6,
+      HardSuccess,
+      HardDifficulty
+    )
+
+    it should behave like makingASkillRoll(
+      rollable,
+      6,
+      RegularSuccess,
+      ExtremeDifficulty
+    )
+  }
+}
+
+trait BehaveLikeMakingARoll { this: AnyFunSpec with Matchers =>
+  def makingASkillRoll(
       rollable: Rollable,
       diceResult: Int,
       result: SkillRollResult,
@@ -30,7 +85,7 @@ class SkillRollSpec extends AnyFunSpec with Matchers {
 
     val mockedDice = HundredSidedDice(fakeRng)
 
-    val skillRoll = SkillRoll(rollable)(mockedDice)
+    val skillRoll = SkillRoll(rollable, difficulty)(mockedDice)
 
     describe(s"when difficulty is $difficulty") {
       describe(
