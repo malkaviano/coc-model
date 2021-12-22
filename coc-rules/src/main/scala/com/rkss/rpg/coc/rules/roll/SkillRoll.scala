@@ -30,6 +30,12 @@ final case class SkillRoll(
   }
 
   private def rollDice: DiceResult = {
-    hundredSidedDice.roll
+    val diff = bonusDice.value - penaltyDice.value
+
+    val dice = 1 + Math.abs(diff)
+
+    val rolled = (1 to dice).map(_ => hundredSidedDice.roll).sortBy(_.value)
+
+    if (diff < 0) rolled.last else rolled.head
   }
 }
