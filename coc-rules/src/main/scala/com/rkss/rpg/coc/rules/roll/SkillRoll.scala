@@ -16,9 +16,11 @@ final case class SkillRoll(
 
     val rolled = hundredSidedDice.roll.value
 
+    val fumble = if (regular < 50) 96 else 100
+
     rolled match {
       case 1                                   => CriticalSuccess
-      case 100                                 => Fumble
+      case diceResult if diceResult >= fumble  => Fumble
       case diceResult if diceResult <= extreme => ExtremeSuccess
       case diceResult if diceResult <= hard    => HardSuccess
       case diceResult if diceResult <= regular => RegularSuccess
