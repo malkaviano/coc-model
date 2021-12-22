@@ -20,7 +20,7 @@ class PlayerMakesSkillRollSpec
     with Matchers {
   info("As a player")
   info("I want to make a skill roll")
-  info("So that I can check my success during an action")
+  info("So that I can check if it was succeeded")
 
   Feature("Player makes a skill roll") {
     Seq(
@@ -43,7 +43,7 @@ class PlayerMakesSkillRollSpec
     ).foreach {
       case SkillRollScenario(value, difficulty, bonusDice, penaltyDice, result, rolled) => {
         Scenario(s"The skill roll is a $result") {
-          Given(s"My Strength is $value")
+          Given(s"My Skill / Characteristic value is $value")
           val strength = Strength(value)
 
           And(s"The difficulty is $difficulty")
