@@ -6,13 +6,9 @@ import org.scalatest.matchers.should.Matchers
 
 import com.rkss.rpg.coc.foundations.characteristics.Strength
 import com.rkss.rpg.helpers.dice.HundredSidedDice
-import com.rkss.rpg.coc.concepts.roll.RegularSuccess
 import com.rkss.rpg.coc.rules.roll.SkillRoll
-import com.rkss.rpg.coc.concepts.roll.RegularDifficulty
-import com.rkss.rpg.coc.concepts.roll.BonusDice
-import com.rkss.rpg.coc.concepts.roll.PenaltyDice
+import com.rkss.rpg.coc.concepts.roll._
 import com.rkss.testing.props._
-import com.rkss.rpg.coc.concepts.roll.CriticalSuccess
 
 class PlayerMakesSkillRollSpec
     extends AnyFeatureSpec
@@ -20,7 +16,7 @@ class PlayerMakesSkillRollSpec
     with Matchers {
   info("As a player")
   info("I want to make a skill roll")
-  info("So that I can check my success during an action")
+  info("So that I can check if it was succeeded")
 
   Feature("Player makes a skill roll") {
     Seq(
@@ -39,11 +35,19 @@ class PlayerMakesSkillRollSpec
         PenaltyDice(0),
         CriticalSuccess,
         Seq(98, 1)
+      ),
+      SkillRollScenario(
+        80,
+        RegularDifficulty,
+        BonusDice(1),
+        PenaltyDice(2),
+        Failure,
+        Seq(98, 1)
       )
     ).foreach {
       case SkillRollScenario(value, difficulty, bonusDice, penaltyDice, result, rolled) => {
         Scenario(s"The skill roll is a $result") {
-          Given(s"My Strength is $value")
+          Given(s"My Skill / Characteristic value is $value")
           val strength = Strength(value)
 
           And(s"The difficulty is $difficulty")
