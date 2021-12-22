@@ -6,13 +6,9 @@ import org.scalatest.matchers.should.Matchers
 
 import com.rkss.rpg.coc.foundations.characteristics.Strength
 import com.rkss.rpg.helpers.dice.HundredSidedDice
-import com.rkss.rpg.coc.concepts.roll.RegularSuccess
 import com.rkss.rpg.coc.rules.roll.SkillRoll
-import com.rkss.rpg.coc.concepts.roll.RegularDifficulty
-import com.rkss.rpg.coc.concepts.roll.BonusDice
-import com.rkss.rpg.coc.concepts.roll.PenaltyDice
+import com.rkss.rpg.coc.concepts.roll._
 import com.rkss.testing.props._
-import com.rkss.rpg.coc.concepts.roll.CriticalSuccess
 
 class PlayerMakesSkillRollSpec
     extends AnyFeatureSpec
@@ -38,6 +34,14 @@ class PlayerMakesSkillRollSpec
         BonusDice(1),
         PenaltyDice(0),
         CriticalSuccess,
+        Seq(98, 1)
+      ),
+      SkillRollScenario(
+        80,
+        RegularDifficulty,
+        BonusDice(1),
+        PenaltyDice(2),
+        Failure,
         Seq(98, 1)
       )
     ).foreach {
