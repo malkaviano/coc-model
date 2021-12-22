@@ -2,15 +2,14 @@ package com.rkss.rpg.coc.rules.roll
 
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.funspec.AnyFunSpec
-import org.scalamock.scalatest.MockFactory
 
-import com.rkss.rpg.coc.concepts.characteristics._
 import com.rkss.rpg.helpers.dice.HundredSidedDice
 import com.rkss.rpg.helpers.traits._
 import com.rkss.rpg.coc.concepts.roll._
+import com.rkss.rpg.coc.foundations.characteristics.Strength
 
-class SkillRollSpec extends AnyFunSpec with Matchers with MockFactory {
-  val rollable = FakePrimaryCharacteristic(50)
+class SkillRollSpec extends AnyFunSpec with Matchers {
+  val rollable = Strength(50)
 
   describe("Making a skill roll") {
     behaveLikeMakingASkillRoll(rollable, 48, RegularSuccess, RegularDifficulty)
@@ -48,12 +47,3 @@ class SkillRollSpec extends AnyFunSpec with Matchers with MockFactory {
 }
 
 final case class FakeDiceResult(override val value: Int) extends DiceResult
-
-final case class FakePrimaryCharacteristic(private val base: Int)
-    extends PrimaryCharacteristic {
-
-  override def value(difficulty: SkillRollDifficultyLevel): Int = {
-    this.base
-  }
-
-}
