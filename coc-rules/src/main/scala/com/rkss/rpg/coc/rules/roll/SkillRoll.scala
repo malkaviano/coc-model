@@ -5,10 +5,10 @@ import com.rkss.rpg.coc.concepts.roll._
 import com.rkss.rpg.helpers.traits.DiceResult
 
 final case class SkillRoll(
-    private val rollable: Rollable,
-    private val difficulty: SkillRollDifficultyLevel = RegularDifficulty,
-    private val bonusDice: BonusDice = BonusDice(0),
-    private val penaltyDice: PenaltyDice = PenaltyDice(0)
+    val rollable: Rollable,
+    val difficulty: SkillRollDifficultyLevel = RegularDifficulty,
+    val bonusDice: BonusDice = BonusDice(0),
+    val penaltyDice: PenaltyDice = PenaltyDice(0)
 )(implicit private val hundredSidedDice: HundredSidedDice) {
   private var pushed = false
 
