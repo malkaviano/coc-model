@@ -9,13 +9,9 @@ final case class PushedSkillRoll(
     private val pushedBonusDice: Option[BonusDice] = None,
     private val pushedPenaltyDice: Option[PenaltyDice] = None
 )(implicit private val hundredSidedDice: HundredSidedDice) {
-  private var pushed = false
-
   lazy val result: Option[SkillRollResult] = {
     canPush match {
       case true => {
-        pushed = true
-
         Some(roll)
       }
       case _ => None
@@ -23,7 +19,7 @@ final case class PushedSkillRoll(
   }
 
   private def canPush: Boolean = {
-    !pushed && failedSkillRoll.rollable
+    failedSkillRoll.rollable
       .isInstanceOf[Pushable] && failedSkillRoll.result == Failure
   }
 
