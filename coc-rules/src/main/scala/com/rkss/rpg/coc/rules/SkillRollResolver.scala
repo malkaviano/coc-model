@@ -1,23 +1,23 @@
-package com.rkss.rpg.coc.rules.roll
+package com.rkss.rpg.coc.rules
 
-import com.rkss.rpg.helpers.dice._
-import com.rkss.rpg.coc.concepts.roll._
+import com.rkss.rpg.helpers.dice.HundredSidedDice
+import com.rkss.rpg.coc.concepts.skillroll._
 import com.rkss.rpg.helpers.traits.DiceResult
 
-final case class SkillRoll(
-    private val rollable: Rollable,
-    private val difficulty: SkillRollDifficultyLevel = RegularDifficulty,
-    private val bonusDice: BonusDice = BonusDice(0),
-    private val penaltyDice: PenaltyDice = PenaltyDice(0)
-)(implicit private val hundredSidedDice: HundredSidedDice) {
-  lazy val result: SkillRollResult = {
+private class SkillRollResolver private () {
+  def roll(
+      rollable: Rollable,
+      difficulty: SkillRollDifficultyLevel,
+      bonusDice: BonusDice,
+      penaltyDice: PenaltyDice
+  )(implicit hundredSidedDice: HundredSidedDice): SkillRollResult = {
     val regular = rollable.value(difficulty)
     val hard = regular / 2
     val extreme = regular / 5
 
     val fumble = if (regular < 50) 96 else 100
 
-    val rolled = rollDice.value
+    val rolled = rollDice(bonusDice, penaltyDice).value
 
     rolled match {
       case 1                                   => CriticalSuccess
@@ -29,7 +29,9 @@ final case class SkillRoll(
     }
   }
 
-  private def rollDice: DiceResult = {
+  private def rollDice(bonusDice: BonusDice, penaltyDice: PenaltyDice)(implicit
+      hundredSidedDice: HundredSidedDice
+  ): DiceResult = {
     val diff = bonusDice.value - penaltyDice.value
 
     val dice = 1 + Math.abs(diff)
@@ -37,5 +39,11 @@ final case class SkillRoll(
     val rolled = (1 to dice).map(_ => hundredSidedDice.roll).sortBy(_.value)
 
     if (diff < 0) rolled.last else rolled.head
+  }
+}
+
+private object SkillRollResolver {
+  lazy val instance: SkillRollResolver = {
+    new SkillRollResolver
   }
 }

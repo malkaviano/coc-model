@@ -1,4 +1,4 @@
-package com.rkss.rpg.coc.rules.roll.features
+package com.rkss.rpg.coc.rules
 
 import org.scalatest.featurespec.AnyFeatureSpec
 import org.scalatest.GivenWhenThen
@@ -6,8 +6,8 @@ import org.scalatest.matchers.should.Matchers
 
 import com.rkss.rpg.coc.foundations.characteristics.Strength
 import com.rkss.rpg.helpers.dice.HundredSidedDice
-import com.rkss.rpg.coc.rules.roll.SkillRoll
-import com.rkss.rpg.coc.concepts.roll._
+import com.rkss.rpg.coc.rules.SkillRoll
+import com.rkss.rpg.coc.concepts.skillroll._
 import com.rkss.testing.props._
 
 class PlayerMakesSkillRollSpec

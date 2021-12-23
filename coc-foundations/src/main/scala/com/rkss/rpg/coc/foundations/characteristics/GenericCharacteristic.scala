@@ -1,7 +1,7 @@
 package com.rkss.rpg.coc.foundations.characteristics
 
 import com.rkss.rpg.coc.concepts.PrimaryCharacteristic
-import com.rkss.rpg.coc.concepts.roll._
+import com.rkss.rpg.coc.concepts.skillroll._
 
 class GenericCharacteristic private[characteristics] (
     val name: String,
