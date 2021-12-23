@@ -26,19 +26,7 @@ final case class SkillRoll(
   }
 
   private def canPush: Boolean = {
-    pushed match {
-      case false if rollable.isInstanceOf[Pushable] => {
-        result match {
-          case RegularSuccess  => false
-          case HardSuccess     => false
-          case ExtremeSuccess  => false
-          case CriticalSuccess => false
-          case Fumble          => false
-          case Failure         => true
-        }
-      }
-      case _ => false
-    }
+    !pushed && rollable.isInstanceOf[Pushable] && result == Failure
   }
 
   private def roll: SkillRollResult = {
