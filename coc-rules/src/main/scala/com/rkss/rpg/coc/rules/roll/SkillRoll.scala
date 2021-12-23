@@ -10,7 +10,38 @@ final case class SkillRoll(
     private val bonusDice: BonusDice = BonusDice(0),
     private val penaltyDice: PenaltyDice = PenaltyDice(0)
 )(implicit private val hundredSidedDice: HundredSidedDice) {
-  lazy val result: SkillRollResult = {
+  private var pushed = false
+
+  lazy val result: SkillRollResult = roll
+
+  lazy val push: Option[SkillRollResult] = {
+    canPush match {
+      case true => {
+        pushed = true
+
+        Some(roll)
+      }
+      case _ => None
+    }
+  }
+
+  private def canPush: Boolean = {
+    pushed match {
+      case false if rollable.isInstanceOf[Pushable] => {
+        result match {
+          case RegularSuccess  => false
+          case HardSuccess     => false
+          case ExtremeSuccess  => false
+          case CriticalSuccess => false
+          case Fumble          => false
+          case Failure         => true
+        }
+      }
+      case _ => false
+    }
+  }
+
+  private def roll: SkillRollResult = {
     val regular = rollable.value(difficulty)
     val hard = regular / 2
     val extreme = regular / 5

@@ -11,89 +11,90 @@ import com.rkss.testing.props._
 class SkillRollSpec
     extends AnyFunSpec
     with Matchers
-    with BehaveLikeMakingARoll {
-  val rollable = Strength(50)
+    with BehaveLikeMakingASkillRoll
+    with BehaveLikePushingASkillRoll {
+  val strength = Strength(50)
 
   describe("Making a skill roll") {
     it should behave like makingASkillRoll(
-      rollable,
+      strength,
       Seq(48),
       RegularSuccess,
       RegularDifficulty
     )
 
     it should behave like makingASkillRoll(
-      rollable,
+      strength,
       Seq(60),
       Failure,
       RegularDifficulty
     )
 
     it should behave like makingASkillRoll(
-      rollable,
+      strength,
       Seq(100),
       Fumble,
       RegularDifficulty
     )
 
     it should behave like makingASkillRoll(
-      rollable,
+      strength,
       Seq(20),
       HardSuccess,
       RegularDifficulty
     )
 
     it should behave like makingASkillRoll(
-      rollable,
+      strength,
       Seq(6),
       ExtremeSuccess,
       RegularDifficulty
     )
 
     it should behave like makingASkillRoll(
-      rollable,
+      strength,
       Seq(1),
       CriticalSuccess,
       RegularDifficulty
     )
 
     it should behave like makingASkillRoll(
-      rollable,
+      strength,
       Seq(20),
       RegularSuccess,
       HardDifficulty
     )
 
     it should behave like makingASkillRoll(
-      rollable,
+      strength,
       Seq(6),
       HardSuccess,
       HardDifficulty
     )
 
     it should behave like makingASkillRoll(
-      rollable,
+      strength,
       Seq(6),
       RegularSuccess,
       ExtremeDifficulty
     )
 
     it should behave like makingASkillRoll(
-      rollable,
+      strength,
       Seq(97),
       Failure,
       RegularDifficulty
     )
 
     it should behave like makingASkillRoll(
-      rollable,
+      strength,
       Seq(97),
       Fumble,
       HardDifficulty
     )
 
     it should behave like makingASkillRoll(
-      rollable,
+      strength,
       Seq(48, 20, 80),
       HardSuccess,
       RegularDifficulty,
@@ -102,7 +103,7 @@ class SkillRollSpec
     )
 
     it should behave like makingASkillRoll(
-      rollable,
+      strength,
       Seq(48, 100),
       Fumble,
       RegularDifficulty,
@@ -110,9 +111,69 @@ class SkillRollSpec
       PenaltyDice(1)
     )
   }
+
+  describe("Pushing a skill roll") {
+    Seq(
+      (
+        SkillRoll(strength, RegularDifficulty, BonusDice(0), PenaltyDice(0))(
+          HundredSidedDice(TestingProps.fakeRng(Seq(100, 70)))
+        ),
+        Fumble,
+        None
+      ),
+      (
+        SkillRoll(strength, RegularDifficulty, BonusDice(1), PenaltyDice(0))(
+          HundredSidedDice(TestingProps.fakeRng(Seq(10, 70)))
+        ),
+        RegularSuccess,
+        None
+      ),
+      (
+        SkillRoll(strength, RegularDifficulty, BonusDice(0), PenaltyDice(1))(
+          HundredSidedDice(TestingProps.fakeRng(Seq(5, 70, 15, 80)))
+        ),
+        Failure,
+        Some(Failure)
+      ),
+      (
+        SkillRoll(strength, HardDifficulty, BonusDice(0), PenaltyDice(0))(
+          HundredSidedDice(TestingProps.fakeRng(Seq(70, 15)))
+        ),
+        Failure,
+        Some(RegularSuccess)
+      )
+    ).foreach(t => {
+      val skillRoll = t._1
+      val result: SkillRollResult = t._2
+      val expected: Option[SkillRollResult] = t._3
+
+      describe(s"when the skill roll is a $result") {
+        it should behave like pushingASkillRoll(
+          skillRoll,
+          expected
+        )
+      }
+    })
+
+    describe(s"when the skill is not pushable") {
+      it(s"should return None") {
+        val skillRoll = SkillRoll(
+          FakeRollableNonPushable(48),
+          RegularDifficulty,
+          BonusDice(0),
+          PenaltyDice(0)
+        )(
+          HundredSidedDice(TestingProps.fakeRng(Seq(70, 15)))
+        )
+
+        skillRoll.push shouldBe None
+      }
+    }
+  }
+
 }
 
-trait BehaveLikeMakingARoll { this: AnyFunSpec with Matchers =>
+trait BehaveLikeMakingASkillRoll { this: AnyFunSpec with Matchers =>
   def makingASkillRoll(
       rollable: Rollable,
       diceResults: Seq[Int],
@@ -138,6 +199,17 @@ trait BehaveLikeMakingARoll { this: AnyFunSpec with Matchers =>
           }
         }
       }
+    }
+  }
+}
+
+trait BehaveLikePushingASkillRoll { this: AnyFunSpec with Matchers =>
+  def pushingASkillRoll(
+      skillRoll: SkillRoll,
+      result: Option[SkillRollResult]
+  ): Unit = {
+    it(s"should return $result") {
+      skillRoll.push shouldBe result
     }
   }
 }
