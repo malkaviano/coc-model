@@ -1,6 +1,5 @@
 package com.rkss.rpg.coc.concepts
 
-import com.rkss.rpg.coc.concepts.skillroll.Rollable
-import com.rkss.rpg.coc.concepts.skillroll.Pushable
+import com.rkss.rpg.coc.concepts.skill.roll._
 
-trait PrimaryCharacteristic extends Rollable with Pushable
+trait PrimaryCharacteristic extends SkillRollable with SkillPushable

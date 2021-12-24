@@ -1,6 +1,6 @@
 package com.rkss.rpg.coc.rules
 
-import com.rkss.rpg.coc.concepts.skillroll._
+import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.helpers.dice.HundredSidedDice
 
 final case class PushedSkillRoll(
@@ -20,7 +20,7 @@ final case class PushedSkillRoll(
 
   private def canPush: Boolean = {
     failedSkillRoll.rollable
-      .isInstanceOf[Pushable] && failedSkillRoll.result == Failure
+      .isInstanceOf[SkillPushable] && failedSkillRoll.result == Failure
   }
 
   private def roll: SkillRollResult = SkillRollResolver.instance.roll(

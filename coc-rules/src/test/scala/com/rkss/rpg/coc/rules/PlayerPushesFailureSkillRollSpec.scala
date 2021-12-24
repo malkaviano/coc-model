@@ -8,7 +8,7 @@ import com.rkss.rpg.coc.rules._
 import com.rkss.rpg.helpers.dice.HundredSidedDice
 import com.rkss.testing.props.TestingProps
 import com.rkss.rpg.coc.foundations.characteristics.Strength
-import com.rkss.rpg.coc.concepts.skillroll._
+import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.testing.props.PushedSkillRollScenario
 
 class PlayerPushesSkillRollSpec
