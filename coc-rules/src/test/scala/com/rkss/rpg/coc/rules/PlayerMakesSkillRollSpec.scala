@@ -4,10 +4,11 @@ import org.scalatest.featurespec.AnyFeatureSpec
 import org.scalatest.GivenWhenThen
 import org.scalatest.matchers.should.Matchers
 
-import com.rkss.rpg.coc.foundations.characteristics.Strength
 import com.rkss.rpg.helpers.dice.HundredSidedDice
 import com.rkss.rpg.coc.concepts.skill.roll._
-import com.rkss.testing.props._
+import com.rkss.rpg.coc.props.scenarios._
+import com.rkss.rpg.coc.props.TestingProps
+import com.rkss.rpg.coc.props.fakes._
 
 class PlayerMakesSkillRollSpec
     extends AnyFeatureSpec
@@ -21,6 +22,8 @@ class PlayerMakesSkillRollSpec
     Seq(
       SkillRollScenario(
         60,
+        30,
+        12,
         RegularDifficulty,
         BonusDice(0),
         PenaltyDice(0),
@@ -29,6 +32,8 @@ class PlayerMakesSkillRollSpec
       ),
       SkillRollScenario(
         80,
+        40,
+        16,
         RegularDifficulty,
         BonusDice(1),
         PenaltyDice(0),
@@ -37,6 +42,8 @@ class PlayerMakesSkillRollSpec
       ),
       SkillRollScenario(
         80,
+        40,
+        16,
         RegularDifficulty,
         BonusDice(1),
         PenaltyDice(2),
@@ -44,10 +51,19 @@ class PlayerMakesSkillRollSpec
         Seq(98, 1)
       )
     ).foreach {
-      case SkillRollScenario(value, difficulty, bonusDice, penaltyDice, result, rolled) => {
+      case SkillRollScenario(
+            regular,
+            hard,
+            extreme,
+            difficulty,
+            bonusDice,
+            penaltyDice,
+            result,
+            rolled
+          ) => {
         Scenario(s"The skill roll is a $result") {
-          Given(s"My Skill / Characteristic value is $value")
-          val strength = Strength(value)
+          Given(s"My Skill / Characteristic value is $regular")
+          val someRollable = FakeCharacteristic(regular, hard, extreme)
 
           And(s"The difficulty is $difficulty")
           And(s"The bonus dice is ${bonusDice.value}")
@@ -57,9 +73,10 @@ class PlayerMakesSkillRollSpec
           val hundredSidedDice =
             HundredSidedDice(TestingProps.fakeRng(rolled))
 
-          val skillRoll = SkillRoll(strength, difficulty, bonusDice, penaltyDice)(
-            hundredSidedDice
-          )
+          val skillRoll =
+            SkillRoll(someRollable, difficulty, bonusDice, penaltyDice)(
+              hundredSidedDice
+            )
 
           Then(s"The result should be $result")
           skillRoll.result shouldBe result

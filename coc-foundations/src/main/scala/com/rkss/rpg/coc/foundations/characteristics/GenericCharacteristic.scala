@@ -5,16 +5,16 @@ import com.rkss.rpg.coc.concepts.skill.roll._
 
 class GenericCharacteristic private[characteristics] (
     val name: String,
-    protected val base: Int
+    protected val baseValue: Int
 ) extends PrimaryCharacteristic {
 
   override def value(
       difficulty: SkillRollDifficultyLevel = RegularDifficulty
   ): Int = {
     difficulty match {
-      case RegularDifficulty => this.base
-      case HardDifficulty    => this.base / 2
-      case ExtremeDifficulty => this.base / 5
+      case RegularDifficulty => baseValue
+      case HardDifficulty    => baseValue / 2
+      case ExtremeDifficulty => baseValue / 5
     }
   }
 }
