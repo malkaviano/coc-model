@@ -1,10 +1,10 @@
-package com.rkss.rpg.coc.foundations.helpers
+package com.rkss.rpg.coc.rules
 
 import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 
-import com.rkss.rpg.coc.foundations.props.FakeSkill
-import com.rkss.rpg.coc.foundations.props.TestingProps
+import com.rkss.rpg.coc.props.FakeSkill
+import com.rkss.rpg.coc.props.TestingProps
 
 import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.helpers.dice._

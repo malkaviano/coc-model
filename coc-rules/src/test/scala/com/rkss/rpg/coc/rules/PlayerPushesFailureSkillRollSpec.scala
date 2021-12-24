@@ -6,10 +6,10 @@ import org.scalatest.matchers.should.Matchers
 
 import com.rkss.rpg.coc.rules._
 import com.rkss.rpg.helpers.dice.HundredSidedDice
-import com.rkss.testing.props.TestingProps
-import com.rkss.rpg.coc.foundations.characteristics.Strength
 import com.rkss.rpg.coc.concepts.skill.roll._
-import com.rkss.testing.props.PushedSkillRollScenario
+import com.rkss.rpg.coc.props.scenarios._
+import com.rkss.rpg.coc.props.TestingProps
+import com.rkss.rpg.coc.props.fakes._
 
 class PlayerPushesSkillRollSpec
     extends AnyFeatureSpec
@@ -25,7 +25,7 @@ class PlayerPushesSkillRollSpec
   Feature("Player pushes a failed skill roll") {
     Seq(
       PushedSkillRollScenario(
-        Strength(47),
+        FakeCharacteristic(47, 23, 9),
         Seq(90),
         Seq(10),
         HardSuccess,
@@ -34,7 +34,7 @@ class PlayerPushesSkillRollSpec
         Option.empty[PenaltyDice]
       ),
       PushedSkillRollScenario(
-        Strength(47),
+        FakeCharacteristic(47, 23, 9),
         Seq(90),
         Seq(10),
         Failure,
@@ -43,7 +43,7 @@ class PlayerPushesSkillRollSpec
         Option.empty[PenaltyDice]
       ),
       PushedSkillRollScenario(
-        Strength(47),
+        FakeCharacteristic(47, 23, 9),
         Seq(90),
         Seq(20, 4),
         ExtremeSuccess,
@@ -52,7 +52,7 @@ class PlayerPushesSkillRollSpec
         Option.empty[PenaltyDice]
       ),
       PushedSkillRollScenario(
-        Strength(47),
+        FakeCharacteristic(47, 23, 9),
         Seq(90),
         Seq(20, 4, 100),
         Fumble,
@@ -73,7 +73,7 @@ class PlayerPushesSkillRollSpec
         Scenario(s"The pushed skill roll is a $result") {
           Given("a skill roll failed")
           val failureSkillRoll = SkillRoll(
-            Strength(47)
+            FakeCharacteristic(47, 23, 9)
           )(HundredSidedDice(TestingProps.fakeRng(failedRolls)))
           val pushedDifficulty =
             difficulty.getOrElse(failureSkillRoll.difficulty)

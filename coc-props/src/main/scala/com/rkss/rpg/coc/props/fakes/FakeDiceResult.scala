@@ -1,4 +1,4 @@
-package com.rkss.testing.props
+package com.rkss.rpg.coc.props.fakes
 
 import com.rkss.rpg.helpers.traits.DiceResult
 

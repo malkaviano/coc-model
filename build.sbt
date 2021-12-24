@@ -41,11 +41,20 @@ lazy val concepts = (project in file("coc-concepts"))
     name := "coc-concepts"
   )
 
-lazy val foundations = (project in file("coc-foundations"))
+lazy val props = (project in file("coc-props"))
   .aggregate(concepts)
   .dependsOn(concepts)
   .settings(
-    name := "coc-foundations",
+    name := "coc-props"
+  )
+
+lazy val rules = (project in file("coc-rules"))
+  .aggregate(concepts)
+  .dependsOn(concepts)
+  .aggregate(props)
+  .dependsOn(props % "compile -> test")
+  .settings(
+    name := "coc-rules",
     libraryDependencies ++= Seq(
       scalaTest % Test,
       scalaTestPlus % Test,
@@ -53,13 +62,13 @@ lazy val foundations = (project in file("coc-foundations"))
     )
   )
 
-lazy val rules = (project in file("coc-rules"))
+lazy val foundations = (project in file("coc-foundations"))
   .aggregate(concepts)
   .dependsOn(concepts)
-  .aggregate(foundations)
-  .dependsOn(foundations)
+  .aggregate(rules)
+  .dependsOn(rules)
   .settings(
-    name := "coc-rules",
+    name := "coc-foundations",
     libraryDependencies ++= Seq(
       scalaTest % Test,
       scalaTestPlus % Test,

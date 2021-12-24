@@ -3,15 +3,14 @@ package com.rkss.rpg.coc.rules
 import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 
-import com.rkss.testing.props.TestingProps
-
 import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.helpers.dice.HundredSidedDice
-import com.rkss.rpg.coc.foundations.characteristics.Strength
+import com.rkss.rpg.coc.props._
+import com.rkss.rpg.coc.props.fakes._
 
 class SkillRollResolverSpec extends AnyFunSpec with Matchers with BehaveLikeASkillRollResolver {
   describe("Resolving the skill roll") {
-    val strength = Strength(50)
+    val strength = FakeCharacteristic(50, 25, 10)
 
     it should behave like resolveSkillRoll(
       strength,
