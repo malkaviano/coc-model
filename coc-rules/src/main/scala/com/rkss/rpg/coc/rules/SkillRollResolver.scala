@@ -1,7 +1,7 @@
 package com.rkss.rpg.coc.rules
 
 import com.rkss.rpg.helpers.dice.HundredSidedDice
-import com.rkss.rpg.coc.concepts.skillroll._
+import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.helpers.traits.DiceResult
 
 private class SkillRollResolver private () {

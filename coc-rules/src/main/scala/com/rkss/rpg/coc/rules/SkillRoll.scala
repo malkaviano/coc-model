@@ -1,7 +1,7 @@
 package com.rkss.rpg.coc.rules
 
 import com.rkss.rpg.helpers.dice._
-import com.rkss.rpg.coc.concepts.skillroll._
+import com.rkss.rpg.coc.concepts.skill.roll._
 
 final case class SkillRoll(
     val rollable: SkillRollable,

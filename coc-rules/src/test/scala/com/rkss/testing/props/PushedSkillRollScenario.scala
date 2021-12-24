@@ -1,6 +1,6 @@
 package com.rkss.testing.props
 
-import com.rkss.rpg.coc.concepts.skillroll._
+import com.rkss.rpg.coc.concepts.skill.roll._
 
 final case class PushedSkillRollScenario(
     rollable: SkillRollable,

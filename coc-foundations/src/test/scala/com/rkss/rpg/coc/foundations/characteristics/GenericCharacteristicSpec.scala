@@ -2,8 +2,7 @@ package com.rkss.rpg.coc.foundations.characteristics
 
 import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
-import com.rkss.rpg.coc.concepts.skillroll.HardDifficulty
-import com.rkss.rpg.coc.concepts.skillroll.ExtremeDifficulty
+import com.rkss.rpg.coc.concepts.skill.roll._
 
 class GenericCharacteristicSpec extends AnyFunSpec with Matchers {
   describe("Any Characteristic behavior") {

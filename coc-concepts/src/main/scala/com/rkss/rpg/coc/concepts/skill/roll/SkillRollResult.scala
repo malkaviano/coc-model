@@ -1,4 +1,4 @@
-package com.rkss.rpg.coc.concepts.skillroll
+package com.rkss.rpg.coc.concepts.skill.roll
 
 sealed trait SkillRollResult
 

@@ -1,9 +1,6 @@
 package com.rkss.testing.props
 
-import com.rkss.rpg.coc.concepts.skillroll.SkillRollDifficultyLevel
-import com.rkss.rpg.coc.concepts.skillroll.BonusDice
-import com.rkss.rpg.coc.concepts.skillroll.PenaltyDice
-import com.rkss.rpg.coc.concepts.skillroll.SkillRollResult
+import com.rkss.rpg.coc.concepts.skill.roll._
 
 final case class SkillRollScenario(
     val rollableValue: Int,

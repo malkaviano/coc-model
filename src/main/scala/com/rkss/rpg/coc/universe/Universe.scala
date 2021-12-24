@@ -1,6 +1,5 @@
 import com.rkss.rpg.coc.foundations.characteristics._
-import com.rkss.rpg.coc.rules.SkillRoll
-import com.rkss.rpg.coc.rules.PushedSkillRoll
+import com.rkss.rpg.coc.rules._
 
 object Universe extends App {
   println("Sample usage of concepts / rules")

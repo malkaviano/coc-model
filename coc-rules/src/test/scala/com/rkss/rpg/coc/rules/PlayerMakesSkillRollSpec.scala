@@ -6,8 +6,7 @@ import org.scalatest.matchers.should.Matchers
 
 import com.rkss.rpg.coc.foundations.characteristics.Strength
 import com.rkss.rpg.helpers.dice.HundredSidedDice
-import com.rkss.rpg.coc.rules.SkillRoll
-import com.rkss.rpg.coc.concepts.skillroll._
+import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.testing.props._
 
 class PlayerMakesSkillRollSpec
