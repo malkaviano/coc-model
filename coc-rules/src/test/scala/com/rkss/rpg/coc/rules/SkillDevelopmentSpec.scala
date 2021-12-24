@@ -3,11 +3,12 @@ package com.rkss.rpg.coc.rules
 import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 
-import com.rkss.rpg.coc.props.FakeSkill
 import com.rkss.rpg.coc.props.TestingProps
 
 import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.helpers.dice._
+import com.rkss.rpg.coc.props.fakes.FakeSkill
+import com.rkss.rpg.coc.concepts.skill.SkillUsedCheck
 
 class SkillDevelopmentSpec extends AnyFunSpec with Matchers {
   describe("Developing a skill") {
@@ -43,7 +44,7 @@ class SkillDevelopmentSpec extends AnyFunSpec with Matchers {
       rolledImprovement: Seq[Int],
       skillRollResult: SkillRollResult,
       expected: Int,
-      succeeded: Boolean
+      skillUseSucceeded: Boolean
   ): Unit = {
     val hundredSidedDice = HundredSidedDice(
       TestingProps.fakeRng(rolledTest)
@@ -53,7 +54,11 @@ class SkillDevelopmentSpec extends AnyFunSpec with Matchers {
       TestingProps.fakeRng(rolledImprovement)
     )
 
-    val developingSkill = FakeSkill("SomeSkill", 10, succeeded)
+    val developingSkill = new FakeSkill("SomeSkill", 10)
+      with SkillUsedCheck
+      with SkillDevelopment {
+      override def succeeded: Boolean = skillUseSucceeded
+    }
 
     developingSkill.develop(hundredSidedDice, tenSidedDice)
   }
