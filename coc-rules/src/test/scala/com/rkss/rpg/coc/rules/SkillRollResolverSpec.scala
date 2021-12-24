@@ -10,87 +10,87 @@ import com.rkss.rpg.coc.props.fakes._
 
 class SkillRollResolverSpec extends AnyFunSpec with Matchers with BehaveLikeASkillRollResolver {
   describe("Resolving the skill roll") {
-    val strength = FakeCharacteristic(50, 25, 10)
+    val someCharacteristic = FakeCharacteristic(50, 25, 10)
 
     it should behave like resolveSkillRoll(
-      strength,
+      someCharacteristic,
       Seq(48),
       RegularSuccess,
       RegularDifficulty
     )
 
     it should behave like resolveSkillRoll(
-      strength,
+      someCharacteristic,
       Seq(60),
       Failure,
       RegularDifficulty
     )
 
     it should behave like resolveSkillRoll(
-      strength,
+      someCharacteristic,
       Seq(100),
       Fumble,
       RegularDifficulty
     )
 
     it should behave like resolveSkillRoll(
-      strength,
+      someCharacteristic,
       Seq(20),
       HardSuccess,
       RegularDifficulty
     )
 
     it should behave like resolveSkillRoll(
-      strength,
+      someCharacteristic,
       Seq(6),
       ExtremeSuccess,
       RegularDifficulty
     )
 
     it should behave like resolveSkillRoll(
-      strength,
+      someCharacteristic,
       Seq(1),
       CriticalSuccess,
       RegularDifficulty
     )
 
     it should behave like resolveSkillRoll(
-      strength,
+      someCharacteristic,
       Seq(20),
       RegularSuccess,
       HardDifficulty
     )
 
     it should behave like resolveSkillRoll(
-      strength,
+      someCharacteristic,
       Seq(6),
       HardSuccess,
       HardDifficulty
     )
 
     it should behave like resolveSkillRoll(
-      strength,
+      someCharacteristic,
       Seq(6),
       RegularSuccess,
       ExtremeDifficulty
     )
 
     it should behave like resolveSkillRoll(
-      strength,
+      someCharacteristic,
       Seq(97),
       Failure,
       RegularDifficulty
     )
 
     it should behave like resolveSkillRoll(
-      strength,
+      someCharacteristic,
       Seq(97),
       Fumble,
       HardDifficulty
     )
 
     it should behave like resolveSkillRoll(
-      strength,
+      someCharacteristic,
       Seq(48, 20, 80),
       HardSuccess,
       RegularDifficulty,
@@ -99,7 +99,7 @@ class SkillRollResolverSpec extends AnyFunSpec with Matchers with BehaveLikeASki
     )
 
     it should behave like resolveSkillRoll(
-      strength,
+      someCharacteristic,
       Seq(48, 100),
       Fumble,
       RegularDifficulty,

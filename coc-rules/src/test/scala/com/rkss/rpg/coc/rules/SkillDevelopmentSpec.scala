@@ -54,7 +54,7 @@ class SkillDevelopmentSpec extends AnyFunSpec with Matchers {
       TestingProps.fakeRng(rolledImprovement)
     )
 
-    val developingSkill = new FakeSkill("SomeSkill", 10)
+    val developingSkill = new FakeSkill("SomeSkill", 10, 10, 5, 2)
       with SkillUsedCheck
       with SkillDevelopment {
       override def succeeded: Boolean = skillUseSucceeded
