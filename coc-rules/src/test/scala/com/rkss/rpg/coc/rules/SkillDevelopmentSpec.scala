@@ -58,6 +58,8 @@ class SkillDevelopmentSpec extends AnyFunSpec with Matchers {
       with SkillUsedCheck
       with SkillDevelopment {
       override def succeeded: Boolean = skillUseSucceeded
+
+      override def improvedValue: Int = rolledImprovement.head
     }
 
     developingSkill.develop(hundredSidedDice, tenSidedDice)
