@@ -4,10 +4,11 @@ import org.scalatest.featurespec.AnyFeatureSpec
 import org.scalatest.GivenWhenThen
 import org.scalatest.matchers.should.Matchers
 
-import com.rkss.rpg.coc.foundations.characteristics.Strength
 import com.rkss.rpg.helpers.dice.HundredSidedDice
 import com.rkss.rpg.coc.concepts.skill.roll._
-import com.rkss.testing.props._
+import com.rkss.rpg.coc.props.scenarios._
+import com.rkss.rpg.coc.props.TestingProps
+import com.rkss.rpg.coc.props.fakes._
 
 class PlayerMakesSkillRollSpec
     extends AnyFeatureSpec
@@ -47,7 +48,7 @@ class PlayerMakesSkillRollSpec
       case SkillRollScenario(value, difficulty, bonusDice, penaltyDice, result, rolled) => {
         Scenario(s"The skill roll is a $result") {
           Given(s"My Skill / Characteristic value is $value")
-          val strength = Strength(value)
+          val strength = FakeCharacteristic(value, value / 2, value / 5)
 
           And(s"The difficulty is $difficulty")
           And(s"The bonus dice is ${bonusDice.value}")

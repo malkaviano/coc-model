@@ -1,8 +1,8 @@
-package com.rkss.rpg.coc.foundations.props
+package com.rkss.rpg.coc.props
 
-import com.rkss.rpg.coc.foundations.helpers.SkillDevelopment
 import com.rkss.rpg.coc.concepts.skill.roll.SkillRollDifficultyLevel
 import com.rkss.rpg.coc.concepts.skill._
+import com.rkss.rpg.coc.rules.SkillDevelopment
 
 final case class FakeSkill() extends Skill with SkillDevelopment {
   override def name: String = "FakeSkill"
