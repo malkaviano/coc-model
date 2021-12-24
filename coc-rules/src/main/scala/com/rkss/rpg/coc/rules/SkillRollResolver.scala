@@ -6,7 +6,7 @@ import com.rkss.rpg.helpers.traits.DiceResult
 
 private class SkillRollResolver private () {
   def roll(
-      rollable: Rollable,
+      rollable: SkillRollable,
       difficulty: SkillRollDifficultyLevel,
       bonusDice: BonusDice,
       penaltyDice: PenaltyDice

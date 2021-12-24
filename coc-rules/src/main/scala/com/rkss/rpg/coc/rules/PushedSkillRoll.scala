@@ -20,7 +20,7 @@ final case class PushedSkillRoll(
 
   private def canPush: Boolean = {
     failedSkillRoll.rollable
-      .isInstanceOf[Pushable] && failedSkillRoll.result == Failure
+      .isInstanceOf[SkillPushable] && failedSkillRoll.result == Failure
   }
 
   private def roll: SkillRollResult = SkillRollResolver.instance.roll(

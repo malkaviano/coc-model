@@ -112,7 +112,7 @@ class SkillRollResolverSpec extends AnyFunSpec with Matchers with BehaveLikeASki
 
 trait BehaveLikeASkillRollResolver { this: AnyFunSpec with Matchers =>
   def resolveSkillRoll(
-      rollable: Rollable,
+      rollable: SkillRollable,
       diceResults: Seq[Int],
       result: SkillRollResult,
       difficulty: SkillRollDifficultyLevel,

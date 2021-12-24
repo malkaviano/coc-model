@@ -3,7 +3,7 @@ package com.rkss.testing.props
 import com.rkss.rpg.coc.concepts.skillroll._
 
 final case class PushedSkillRollScenario(
-    rollable: Rollable,
+    rollable: SkillRollable,
     failedRolls: Seq[Int],
     pushedRolls: Seq[Int],
     result: SkillRollResult,

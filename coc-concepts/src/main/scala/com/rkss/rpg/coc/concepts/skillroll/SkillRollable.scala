@@ -1,5 +1,5 @@
 package com.rkss.rpg.coc.concepts.skillroll
 
-trait Rollable {
+trait SkillRollable {
   def value(difficulty: SkillRollDifficultyLevel): Int
 }

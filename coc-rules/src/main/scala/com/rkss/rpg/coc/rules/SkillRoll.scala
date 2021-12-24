@@ -4,7 +4,7 @@ import com.rkss.rpg.helpers.dice._
 import com.rkss.rpg.coc.concepts.skillroll._
 
 final case class SkillRoll(
-    val rollable: Rollable,
+    val rollable: SkillRollable,
     val difficulty: SkillRollDifficultyLevel = RegularDifficulty,
     val bonusDice: BonusDice = BonusDice(0),
     val penaltyDice: PenaltyDice = PenaltyDice(0)
