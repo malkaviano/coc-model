@@ -18,4 +18,10 @@ class FakeSkill(
       case ExtremeDifficulty => extreme
     }
   }
+
+  override def roll(
+      difficulty: SkillRollDifficultyLevel,
+      bonusDice: BonusDice,
+      penaltyDice: PenaltyDice
+  ): SkillRollResult = ???
 }
