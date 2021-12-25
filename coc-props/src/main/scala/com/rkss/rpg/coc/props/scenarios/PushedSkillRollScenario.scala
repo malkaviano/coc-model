@@ -4,8 +4,6 @@ import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.helpers.traits.DiceResult
 
 final case class PushedSkillRollScenario(
-    rollable: SkillRollable,
-    failedRolls: Seq[Int],
     pushedRolls: Seq[Int],
     result: SkillRollResult,
     difficulty: Option[SkillRollDifficultyLevel],

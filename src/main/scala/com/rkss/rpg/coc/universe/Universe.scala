@@ -21,7 +21,7 @@ object Universe extends App {
 
   println(s"Result is ${skillRoll.result}")
 
-  val pushedRoll = PushedSkillRoll(skillRoll)
+  val pushedRoll = PushedSkillRoll(skillRoll.result)
 
   println(s"Pushing the skill roll resulted in ${pushedRoll.result}")
 }
