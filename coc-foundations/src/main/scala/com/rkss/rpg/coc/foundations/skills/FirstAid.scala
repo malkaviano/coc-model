@@ -5,7 +5,7 @@ import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.rules._
 
 trait FirstAid
-    extends ImprovableSkill
+    extends ImprovableSkillBehavior
     with SkillPushable
     with SkillImprovable
     with SkillImprovement {

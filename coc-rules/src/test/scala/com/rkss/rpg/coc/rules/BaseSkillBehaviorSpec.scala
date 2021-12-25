@@ -5,9 +5,9 @@ import org.scalatest.matchers.should.Matchers
 
 import com.rkss.rpg.coc.concepts.skill.roll._
 
-class BasicSkillSpec extends AnyFunSpec with Matchers {
+class BaseSkillBehaviorSpec extends AnyFunSpec with Matchers {
   describe("Basic skill behavior") {
-    val basicSkill = new BasicSkill {
+    val basicSkill = new BaseSkillBehavior {
       override def name: String = "Some Skill"
 
       override def baseValue: Int = 40
