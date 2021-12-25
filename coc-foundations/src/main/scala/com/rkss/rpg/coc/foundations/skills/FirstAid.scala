@@ -16,12 +16,6 @@ trait FirstAid
 
 object FirstAid {
   def create: Skill = {
-    new FirstAid {
-      override def roll(
-          difficulty: SkillRollDifficultyLevel,
-          bonusDice: BonusDice,
-          penaltyDice: PenaltyDice
-      ): SkillRollResult = ???
-    }
+    new FirstAid {}
   }
 }

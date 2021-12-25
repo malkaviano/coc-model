@@ -10,4 +10,10 @@ trait BasicSkill extends Skill {
   ): Int = {
     SkillRollValue(baseValue).value(difficulty)
   }
+
+  override def roll(
+      difficulty: SkillRollDifficultyLevel,
+      bonusDice: BonusDice,
+      penaltyDice: PenaltyDice
+  ): SkillRollResult = ???
 }
