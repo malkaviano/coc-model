@@ -1,6 +1,7 @@
 package com.rkss.rpg.coc.props.scenarios
 
 import com.rkss.rpg.coc.concepts.skill.roll._
+import com.rkss.rpg.helpers.traits.DiceResult
 
 final case class PushedSkillRollScenario(
     rollable: SkillRollable,
@@ -9,5 +10,6 @@ final case class PushedSkillRollScenario(
     result: SkillRollResult,
     difficulty: Option[SkillRollDifficultyLevel],
     bonusDice: Option[BonusDice],
-    penaltyDice: Option[PenaltyDice]
+    penaltyDice: Option[PenaltyDice],
+    chosenRoll: DiceResult
 )

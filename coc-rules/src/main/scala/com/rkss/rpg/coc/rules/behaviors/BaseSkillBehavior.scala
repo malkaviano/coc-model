@@ -17,7 +17,7 @@ trait BaseSkillBehavior extends Skill {
       difficulty: SkillRollDifficultyLevel = RegularDifficulty,
       bonusDice: BonusDice = BonusDice(0),
       penaltyDice: PenaltyDice = PenaltyDice(0)
-  )(implicit hundredSidedDice: HundredSidedDice): SkillRollResult = {
+  )(implicit hundredSidedDice: HundredSidedDice): SkillRolled = {
     SkillRoll(this, difficulty, bonusDice, penaltyDice).result
   }
 }

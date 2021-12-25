@@ -6,6 +6,7 @@ import org.scalatest.matchers.should.Matchers
 import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.helpers.dice.HundredSidedDice
 import com.rkss.rpg.coc.props.TestingProps
+import com.rkss.rpg.coc.props.fakes.FakeDiceResult
 
 class BaseSkillBehaviorSpec extends AnyFunSpec with Matchers {
   describe("Basic skill behavior") {
@@ -32,10 +33,19 @@ class BaseSkillBehaviorSpec extends AnyFunSpec with Matchers {
         val hundredSidedDice =
           HundredSidedDice(TestingProps.fakeRng(Seq(20)))
 
+        val expected = SkillRolled(
+          skill,
+          RegularDifficulty,
+          BonusDice(0),
+          PenaltyDice(0),
+          HardSuccess,
+          FakeDiceResult(20)
+        )
+
         it("return a SkillRollResult") {
           val result = skill.roll()(hundredSidedDice)
 
-          result shouldBe HardSuccess
+          result shouldBe expected
         }
       }
     }

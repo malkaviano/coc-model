@@ -22,5 +22,5 @@ final case class FakeCharacteristic(
       difficulty: SkillRollDifficultyLevel,
       bonusDice: BonusDice,
       penaltyDice: PenaltyDice
-  )(implicit hundredSidedDice: HundredSidedDice): SkillRollResult = ???
+  )(implicit hundredSidedDice: HundredSidedDice): SkillRolled = ???
 }
