@@ -5,7 +5,6 @@ import org.scalatest.matchers.should.Matchers
 
 import com.rkss.rpg.coc.props.TestingProps
 
-import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.helpers.dice._
 import com.rkss.rpg.coc.props.fakes.FakeSkill
 import com.rkss.rpg.coc.concepts.skill._
@@ -15,7 +14,7 @@ class SkillImprovementSpec extends AnyFunSpec with Matchers {
     describe("Improvement check") {
       describe("when skill used check is true") {
         describe("when improvement check fails") {
-          val skill = skillImprovement(Seq(1), Seq(10), ExtremeSuccess, true)
+          val skill = skillImprovement(Seq(1), Seq(10), true)
 
           it("should have same improve value") {
             skill.improvedValue shouldBe 0
@@ -25,7 +24,7 @@ class SkillImprovementSpec extends AnyFunSpec with Matchers {
         }
 
         describe("when improvement check is equal or superior to 95") {
-          val skill = skillImprovement(Seq(95), Seq(8), HardSuccess, true)
+          val skill = skillImprovement(Seq(95), Seq(8), true)
 
           it("should have higher improve value") {
             skill.improvedValue shouldBe 8
@@ -35,7 +34,7 @@ class SkillImprovementSpec extends AnyFunSpec with Matchers {
         }
 
         describe("when improvement check is superior to skill value") {
-          val skill = skillImprovement(Seq(80), Seq(6), RegularSuccess, true)
+          val skill = skillImprovement(Seq(80), Seq(6), true)
 
           it("should have higher improve value") {
             skill.improvedValue shouldBe 6
@@ -46,7 +45,7 @@ class SkillImprovementSpec extends AnyFunSpec with Matchers {
       }
 
       describe("when skill used check is false") {
-        val skill = skillImprovement(Seq(96), Seq(8), Failure, false)
+        val skill = skillImprovement(Seq(96), Seq(8), false)
 
         it("should have same improve value") {
           skill.improvedValue shouldBe 0
@@ -78,7 +77,6 @@ class SkillImprovementSpec extends AnyFunSpec with Matchers {
   private def skillImprovement(
       rolledTest: Seq[Int],
       rolledImprovement: Seq[Int],
-      skillRollResult: SkillRollResult,
       skillUseSucceeded: Boolean
   ): SkillImprovement = {
     val hundredSidedDice = HundredSidedDice(
