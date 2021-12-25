@@ -5,22 +5,18 @@ import com.rkss.rpg.helpers.dice._
 import com.rkss.rpg.coc.concepts.skill.roll.RegularDifficulty
 import com.rkss.rpg.helpers.traits.DiceResult
 
-trait SkillImprovement { self: Skill with SkillImprovable =>
+trait SkillImprovement { self: Skill =>
   def improvementCheck(implicit
       hundredSidedDice: HundredSidedDice,
       tenSidedDice: TenSidedDice
   ): Option[DiceResult] = {
-    if (usedWithSuccess) {
-      val rolled = hundredSidedDice.roll
+    val rolled = hundredSidedDice.roll
 
-      val currentValue = value(RegularDifficulty)
+    val currentValue = value(RegularDifficulty)
 
-      rolled.value match {
-        case x if x >= 95 || x > currentValue => Some(tenSidedDice.roll)
-        case _                                => None
-      }
-    } else {
-      Option.empty[DiceResult]
+    rolled.value match {
+      case x if x >= 95 || x > currentValue => Some(tenSidedDice.roll)
+      case _                                => None
     }
   }
 }

@@ -4,10 +4,9 @@ import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.coc.rules._
 
-trait ImprovableSkillBehavior
-    extends BaseSkillBehavior
-    with SkillImprovable
-    with SkillImprovement {
+trait ImprovableSkillBehavior extends BaseSkillBehavior {
+  self: SkillImprovable with SkillImprovement =>
+
   private val _improvedValue: Int = 0
 
   override def improvedValue: Int = _improvedValue
@@ -16,11 +15,15 @@ trait ImprovableSkillBehavior
 
   override def usedWithSuccess: Boolean = _usedWithSuccess
 
-  override def tickSuccessfullyUsed(): Unit = _usedWithSuccess = true
-
   override def value(
       difficulty: SkillRollDifficultyLevel = RegularDifficulty
   ): Int = {
     SkillRollValue(baseValue + improvedValue).value(difficulty)
+  }
+
+  def tickSuccessfullyUsed(): Unit = _usedWithSuccess = true
+
+  def improveSkill(): Unit = {
+    ???
   }
 }
