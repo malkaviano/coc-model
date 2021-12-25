@@ -4,7 +4,7 @@ import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.helpers.dice._
 import com.rkss.rpg.coc.concepts.skill.roll.RegularDifficulty
 
-trait SkillImprovement { this: Skill with SkillImprovable =>
+trait SkillImprovement { self: Skill with SkillImprovable =>
   private var _improvedValue: Int = 0
 
   override def improvedValue: Int = _improvedValue
