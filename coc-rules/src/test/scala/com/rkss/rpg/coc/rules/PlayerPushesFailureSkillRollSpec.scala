@@ -25,8 +25,6 @@ class PlayerPushesSkillRollSpec
   Feature("Player pushes a failed skill roll") {
     Seq(
       PushedSkillRollScenario(
-        FakeCharacteristic(47, 23, 9),
-        Seq(90),
         Seq(10),
         HardSuccess,
         Option.empty[SkillRollDifficultyLevel],
@@ -35,8 +33,6 @@ class PlayerPushesSkillRollSpec
         FakeDiceResult(10)
       ),
       PushedSkillRollScenario(
-        FakeCharacteristic(47, 23, 9),
-        Seq(90),
         Seq(10),
         Failure,
         Option(ExtremeDifficulty),
@@ -45,8 +41,6 @@ class PlayerPushesSkillRollSpec
         FakeDiceResult(10)
       ),
       PushedSkillRollScenario(
-        FakeCharacteristic(47, 23, 9),
-        Seq(90),
         Seq(20, 4),
         ExtremeSuccess,
         Option(HardDifficulty),
@@ -55,8 +49,6 @@ class PlayerPushesSkillRollSpec
         FakeDiceResult(4)
       ),
       PushedSkillRollScenario(
-        FakeCharacteristic(47, 23, 9),
-        Seq(90),
         Seq(20, 4, 100),
         Fumble,
         Option(ExtremeDifficulty),
@@ -66,8 +58,6 @@ class PlayerPushesSkillRollSpec
       )
     ).foreach {
       case PushedSkillRollScenario(
-            rollable,
-            failedRolls,
             pushedRolls,
             result,
             difficulty,
@@ -77,16 +67,24 @@ class PlayerPushesSkillRollSpec
           ) => {
         Scenario(s"The pushed skill roll is a $result") {
           Given("a skill roll failed")
-          val failureSkillRoll = SkillRoll(
-            FakeCharacteristic(47, 23, 9)
-          )(HundredSidedDice(TestingProps.fakeRng(failedRolls)))
+          val rollable = FakeCharacteristic(47, 23, 9)
+
+          val skillRolled = SkillRolled(
+            rollable,
+            RegularDifficulty,
+            BonusDice(0),
+            PenaltyDice(0),
+            Failure,
+            FakeDiceResult(95)
+          )
+
           val pushedDifficulty =
-            difficulty.getOrElse(failureSkillRoll.difficulty)
+            difficulty.getOrElse(skillRolled.difficulty)
           And(s"the pushed skill roll difficulty is $pushedDifficulty")
-          val pushedBonusDice = bonusDice.getOrElse(failureSkillRoll.bonusDice)
+          val pushedBonusDice = bonusDice.getOrElse(skillRolled.bonusDice)
           And(s"the bonus dice is ${pushedBonusDice.value}")
           val pushedPenaltyDice =
-            penaltyDice.getOrElse(failureSkillRoll.penaltyDice)
+            penaltyDice.getOrElse(skillRolled.penaltyDice)
           And(s"the penalty dice is ${pushedPenaltyDice.value}")
           And(
             s"the maximum value to pass the pushed skill roll is ${rollable.value(pushedDifficulty)}"
@@ -96,7 +94,7 @@ class PlayerPushesSkillRollSpec
             s"the player push the skill roll with ${pushedRolls.mkString(", ")}"
           )
           val pushedSkillRoll = PushedSkillRoll(
-            failureSkillRoll,
+            skillRolled,
             difficulty,
             bonusDice,
             penaltyDice
