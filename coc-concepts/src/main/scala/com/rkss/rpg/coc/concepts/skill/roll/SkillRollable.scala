@@ -1,5 +1,7 @@
 package com.rkss.rpg.coc.concepts.skill.roll
 
+import com.rkss.rpg.helpers.dice.HundredSidedDice
+
 trait SkillRollable {
   def value(difficulty: SkillRollDifficultyLevel): Int
 
@@ -7,5 +9,5 @@ trait SkillRollable {
       difficulty: SkillRollDifficultyLevel,
       bonusDice: BonusDice,
       penaltyDice: PenaltyDice
-  ): SkillRollResult
+  )(implicit hundredSidedDice: HundredSidedDice): SkillRollResult
 }
