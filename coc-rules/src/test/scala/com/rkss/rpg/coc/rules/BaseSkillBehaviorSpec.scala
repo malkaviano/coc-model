@@ -24,5 +24,14 @@ class BaseSkillBehaviorSpec extends AnyFunSpec with Matchers {
     it("should have extreme value") {
       basicSkill.value(ExtremeDifficulty) shouldBe 8
     }
+
+    describe("Skill roll") {
+      // val hundredSidedDice =
+      //       HundredSidedDice(TestingProps.fakeRng(Seq(10)))
+
+      // basicSkill.roll()(hundredSidedDice)
+
+      pending
+    }
   }
 }
