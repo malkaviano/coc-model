@@ -26,11 +26,6 @@ class BaseSkillBehaviorSpec extends AnyFunSpec with Matchers {
     }
 
     describe("Skill roll") {
-      // val hundredSidedDice =
-      //       HundredSidedDice(TestingProps.fakeRng(Seq(10)))
-
-      // basicSkill.roll()(hundredSidedDice)
-
       pending
     }
   }
