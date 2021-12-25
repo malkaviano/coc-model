@@ -15,8 +15,8 @@ trait SkillImprovement { self: Skill =>
     val currentValue = value(RegularDifficulty)
 
     rolled.value match {
-      case x if x >= 95 || x > currentValue => Some(tenSidedDice.roll)
-      case _                                => None
+      case x if x > 95 || x > currentValue => Some(tenSidedDice.roll)
+      case _                               => None
     }
   }
 }
