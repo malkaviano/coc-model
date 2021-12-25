@@ -9,9 +9,11 @@ trait SkillImprovement { self: Skill with SkillImprovable =>
 
   override def improvedValue: Int = _improvedValue
 
-  private val _usedWithSuccess: Boolean = false
+  private var _usedWithSuccess: Boolean = false
 
   override def usedWithSuccess: Boolean = _usedWithSuccess
+
+  override def tickUsedWithSuccess(): Unit = _usedWithSuccess = true
 
   def improvementCheck(implicit
       hundredSidedDice: HundredSidedDice,
@@ -29,7 +31,7 @@ trait SkillImprovement { self: Skill with SkillImprovable =>
 
       _improvedValue += result.getOrElse(0)
 
-      // TODO: update usedWithSuccess to false
+      _usedWithSuccess = false
     }
   }
 }

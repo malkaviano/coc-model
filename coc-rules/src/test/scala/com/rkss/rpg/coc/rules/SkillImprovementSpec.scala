@@ -15,28 +15,44 @@ class SkillImprovementSpec extends AnyFunSpec with Matchers {
     describe("Improvement check") {
       describe("when skill used check is true") {
         describe("when improvement check fails") {
+          val skill = skillImprovement(Seq(1), Seq(10), ExtremeSuccess, true)
+
           it("should have same improve value") {
-            testSkillImprovement(Seq(1), Seq(10), ExtremeSuccess, 0, true)
+            skill.improvedValue shouldBe 0
           }
+
+          it should behave like checkUsedWithSuccess(skill, false)
         }
 
         describe("when improvement check is equal or superior to 95") {
+          val skill = skillImprovement(Seq(95), Seq(8), HardSuccess, true)
+
           it("should have higher improve value") {
-            testSkillImprovement(Seq(95), Seq(8), HardSuccess, 8, true)
+            skill.improvedValue shouldBe 8
           }
+
+          it should behave like checkUsedWithSuccess(skill, false)
         }
 
         describe("when improvement check is superior to skill value") {
+          val skill = skillImprovement(Seq(80), Seq(6), RegularSuccess, true)
+
           it("should have higher improve value") {
-            testSkillImprovement(Seq(80), Seq(6), RegularSuccess, 6, true)
+            skill.improvedValue shouldBe 6
           }
+
+          it should behave like checkUsedWithSuccess(skill, false)
         }
       }
 
       describe("when skill used check is false") {
+        val skill = skillImprovement(Seq(96), Seq(8), Failure, false)
+
         it("should have same improve value") {
-          testSkillImprovement(Seq(96), Seq(8), Failure, 0, false)
+          skill.improvedValue shouldBe 0
         }
+
+        it should behave like checkUsedWithSuccess(skill, false)
       }
     }
 
@@ -48,16 +64,23 @@ class SkillImprovementSpec extends AnyFunSpec with Matchers {
           skill.usedWithSuccess shouldBe false
         }
       }
+
+      describe("when skill was ticked") {
+        val skill = ImprovableFakeSkill("SomeSkill", 10, 10, 5, 2)
+
+        skill.tickUsedWithSuccess()
+
+        skill.usedWithSuccess shouldBe true
+      }
     }
   }
 
-  private def testSkillImprovement(
+  private def skillImprovement(
       rolledTest: Seq[Int],
       rolledImprovement: Seq[Int],
       skillRollResult: SkillRollResult,
-      expected: Int,
       skillUseSucceeded: Boolean
-  ): Unit = {
+  ): SkillImprovement = {
     val hundredSidedDice = HundredSidedDice(
       TestingProps.fakeRng(rolledTest)
     )
@@ -68,9 +91,21 @@ class SkillImprovementSpec extends AnyFunSpec with Matchers {
 
     val improvableSkill = ImprovableFakeSkill("SomeSkill", 10, 10, 5, 2)
 
+    if (skillUseSucceeded) improvableSkill.tickUsedWithSuccess()
+
     improvableSkill.improvementCheck(hundredSidedDice, tenSidedDice)
 
-    improvableSkill.improvedValue shouldBe expected
+    improvableSkill
+  }
+
+  private def checkUsedWithSuccess(skill: SkillImprovement, expected: Boolean): Unit = {
+    describe("After skill improvement check") {
+      describe("usedWithSuccess") {
+        it("return false") {
+          skill.usedWithSuccess shouldBe expected
+        }
+      }
+    }
   }
 }
 
