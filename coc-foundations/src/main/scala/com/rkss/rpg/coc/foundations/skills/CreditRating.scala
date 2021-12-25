@@ -12,6 +12,12 @@ trait CreditRating extends rules.BasicSkill with SkillPushable {
 
 object CreditRating {
   def create: Skill = {
-    new CreditRating {}
+    new CreditRating {
+      override def roll(
+          difficulty: SkillRollDifficultyLevel,
+          bonusDice: BonusDice,
+          penaltyDice: PenaltyDice
+      ): SkillRollResult = ???
+    }
   }
 }

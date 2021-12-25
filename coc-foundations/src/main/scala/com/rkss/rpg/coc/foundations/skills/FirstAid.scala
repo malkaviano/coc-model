@@ -6,7 +6,9 @@ import com.rkss.rpg.coc.rules._
 
 trait FirstAid
     extends ImprovableSkill
-    with SkillPushable {
+    with SkillPushable
+    with SkillImprovable
+    with SkillImprovement {
   override lazy val name: String = "First Aid"
 
   override lazy val baseValue: Int = 30
@@ -14,6 +16,12 @@ trait FirstAid
 
 object FirstAid {
   def create: Skill = {
-    new FirstAid {}
+    new FirstAid {
+      override def roll(
+          difficulty: SkillRollDifficultyLevel,
+          bonusDice: BonusDice,
+          penaltyDice: PenaltyDice
+      ): SkillRollResult = ???
+    }
   }
 }

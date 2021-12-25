@@ -14,4 +14,12 @@ class GenericCharacteristic private[characteristics] (
   ): Int = {
     SkillRollValue(baseValue).value(difficulty)
   }
+
+  override def roll(
+      difficulty: SkillRollDifficultyLevel,
+      bonusDice: BonusDice,
+      penaltyDice: PenaltyDice
+  ): SkillRollResult = {
+    ???
+  }
 }
