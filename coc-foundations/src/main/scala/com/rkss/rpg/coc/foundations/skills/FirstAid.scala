@@ -4,7 +4,11 @@ import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.rules.SkillDevelopment
 
-trait FirstAid extends Skill with SkillPushable with SkillUsedCheck with SkillDevelopment {
+trait FirstAid
+    extends Skill
+    with SkillPushable
+    with SkillUsedCheck
+    with SkillDevelopment {
   override lazy val name: String = "First Aid"
 
   override lazy val baseValue: Int = 30
@@ -15,7 +19,13 @@ trait FirstAid extends Skill with SkillPushable with SkillUsedCheck with SkillDe
 object FirstAid {
   def create: Skill = {
     new FirstAid {
-      def succeeded: Boolean = false
+      override def succeeded: Boolean = false
+
+      override def roll(
+          difficulty: SkillRollDifficultyLevel,
+          bonusDice: BonusDice,
+          penaltyDice: PenaltyDice
+      ): SkillRollResult = ???
     }
   }
 }

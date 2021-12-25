@@ -17,4 +17,12 @@ class GenericCharacteristic private[characteristics] (
       case ExtremeDifficulty => baseValue / 5
     }
   }
+
+  override def roll(
+      difficulty: SkillRollDifficultyLevel,
+      bonusDice: BonusDice,
+      penaltyDice: PenaltyDice
+  ): SkillRollResult = {
+    ???
+  }
 }
