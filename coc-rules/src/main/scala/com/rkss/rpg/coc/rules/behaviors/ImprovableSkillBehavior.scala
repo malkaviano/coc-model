@@ -21,9 +21,9 @@ trait ImprovableSkillBehavior extends BaseSkillBehavior {
     SkillRollValue(baseValue + improvedValue).value(difficulty)
   }
 
-  def tickSuccessfullyUsed(): Unit = _usedWithSuccess = true
+  override def tickSuccessfullyUsed(): Unit = _usedWithSuccess = true
 
-  def improveSkill(): Unit = {
+  override def improveSkill(): Unit = {
     ???
   }
 }
