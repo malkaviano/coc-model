@@ -24,5 +24,5 @@ class FakeSkill(
       difficulty: SkillRollDifficultyLevel,
       bonusDice: BonusDice,
       penaltyDice: PenaltyDice
-  )(implicit hundredSidedDice: HundredSidedDice): SkillRollResult = ???
+  )(implicit hundredSidedDice: HundredSidedDice): SkillRolled = ???
 }

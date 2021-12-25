@@ -9,9 +9,9 @@ final case class SkillRoll(
     val bonusDice: BonusDice = BonusDice(0),
     val penaltyDice: PenaltyDice = PenaltyDice(0)
 )(implicit private val hundredSidedDice: HundredSidedDice) {
-  lazy val result: SkillRollResult = roll
+  lazy val result: SkillRolled = roll
 
-  private def roll: SkillRollResult = SkillRollResolver.instance.roll(
+  private def roll: SkillRolled = SkillRollResolver.instance.roll(
     rollable,
     difficulty,
     bonusDice,
