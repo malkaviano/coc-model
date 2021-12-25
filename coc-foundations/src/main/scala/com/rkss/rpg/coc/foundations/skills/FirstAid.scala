@@ -2,10 +2,10 @@ package com.rkss.rpg.coc.foundations.skills
 
 import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.coc.concepts.skill._
-import com.rkss.rpg.coc.rules
+import com.rkss.rpg.coc.rules._
 
 trait FirstAid
-    extends rules.SuccessDevelopSkill
+    extends ImprovableSkill
     with SkillPushable {
   override lazy val name: String = "First Aid"
 
@@ -14,10 +14,6 @@ trait FirstAid
 
 object FirstAid {
   def create: Skill = {
-    new FirstAid {
-      override def succeeded: Boolean = false
-
-      override def improvedValue: Int = 0
-    }
+    new FirstAid {}
   }
 }

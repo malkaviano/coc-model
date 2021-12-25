@@ -4,14 +4,20 @@ import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.helpers.dice._
 import com.rkss.rpg.coc.concepts.skill.roll.RegularDifficulty
 
-trait SkillDevelopment { this: Skill with SkillUsedCheck =>
-  def improvedValue: Int
+trait SkillImprovement { this: Skill with SkillImprovable =>
+  private var _improvedValue: Int = 0
 
-  def develop(implicit
+  override def improvedValue: Int = _improvedValue
+
+  private val _usedWithSuccess: Boolean = false
+
+  override def usedWithSuccess: Boolean = _usedWithSuccess
+
+  def improvementCheck(implicit
       hundredSidedDice: HundredSidedDice,
       tenSidedDice: TenSidedDice
-  ): SkillDevelopmentResult = {
-    if (succeeded) {
+  ): Unit = {
+    if (usedWithSuccess) {
       val rolled = hundredSidedDice.roll
 
       val currentValue = value(RegularDifficulty)
@@ -21,9 +27,9 @@ trait SkillDevelopment { this: Skill with SkillUsedCheck =>
         case _                                => None
       }
 
-      SkillDevelopmentResult(result)
-    } else {
-      SkillDevelopmentResult(None)
+      _improvedValue += result.getOrElse(0)
+
+      // TODO: update usedWithSuccess to false
     }
   }
 }
