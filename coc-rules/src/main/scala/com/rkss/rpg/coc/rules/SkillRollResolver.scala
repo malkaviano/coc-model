@@ -10,16 +10,16 @@ private class SkillRollResolver private () {
       difficulty: SkillRollDifficultyLevel,
       bonusDice: BonusDice,
       penaltyDice: PenaltyDice
-  )(implicit hundredSidedDice: HundredSidedDice): SkillRollResult = {
+  )(implicit hundredSidedDice: HundredSidedDice): SkillRolled = {
     val regular = rollable.value(difficulty)
     val hard = regular / 2
     val extreme = regular / 5
 
     val fumble = if (regular < 50) 96 else 100
 
-    val rolled = rollDice(bonusDice, penaltyDice).value
+    val rolled = rollDice(bonusDice, penaltyDice)
 
-    rolled match {
+    val result = rolled.value match {
       case 1                                   => CriticalSuccess
       case diceResult if diceResult >= fumble  => Fumble
       case diceResult if diceResult <= extreme => ExtremeSuccess
@@ -27,6 +27,8 @@ private class SkillRollResolver private () {
       case diceResult if diceResult <= regular => RegularSuccess
       case _                                   => Failure
     }
+
+    SkillRolled(rollable, difficulty, bonusDice, penaltyDice, result, rolled)
   }
 
   private def rollDice(bonusDice: BonusDice, penaltyDice: PenaltyDice)(implicit

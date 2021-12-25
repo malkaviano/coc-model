@@ -6,8 +6,4 @@ trait Skill extends SkillRollable {
   def name: String
 
   def baseValue: Int
-
-  def value(
-      difficulty: SkillRollDifficultyLevel = RegularDifficulty
-  ): Int
 }

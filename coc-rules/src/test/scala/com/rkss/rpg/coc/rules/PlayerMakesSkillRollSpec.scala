@@ -28,7 +28,8 @@ class PlayerMakesSkillRollSpec
         BonusDice(0),
         PenaltyDice(0),
         RegularSuccess,
-        Seq(50)
+        Seq(50),
+        FakeDiceResult(50)
       ),
       SkillRollScenario(
         80,
@@ -38,7 +39,8 @@ class PlayerMakesSkillRollSpec
         BonusDice(1),
         PenaltyDice(0),
         CriticalSuccess,
-        Seq(98, 1)
+        Seq(98, 1),
+        FakeDiceResult(1)
       ),
       SkillRollScenario(
         80,
@@ -48,7 +50,8 @@ class PlayerMakesSkillRollSpec
         BonusDice(1),
         PenaltyDice(2),
         Failure,
-        Seq(98, 1)
+        Seq(98, 1),
+        FakeDiceResult(98)
       )
     ).foreach {
       case SkillRollScenario(
@@ -59,7 +62,8 @@ class PlayerMakesSkillRollSpec
             bonusDice,
             penaltyDice,
             result,
-            rolled
+            rolled,
+            chosenRoll
           ) => {
         Scenario(s"The skill roll is a $result") {
           Given(s"My Skill / Characteristic value is $regular")
@@ -79,7 +83,17 @@ class PlayerMakesSkillRollSpec
             )
 
           Then(s"The result should be $result")
-          skillRoll.result shouldBe result
+          val expected =
+            SkillRolled(
+              someRollable,
+              difficulty,
+              bonusDice,
+              penaltyDice,
+              result,
+              chosenRoll
+            )
+
+          skillRoll.result shouldBe expected
         }
       }
     }
