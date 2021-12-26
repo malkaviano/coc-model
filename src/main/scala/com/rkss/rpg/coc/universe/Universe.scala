@@ -1,27 +1,31 @@
 import com.rkss.rpg.coc.foundations.characteristics._
-import com.rkss.rpg.coc.rules._
-import com.rkss.rpg.coc.concepts.skill.roll.RegularDifficulty
-import com.rkss.rpg.coc.concepts.skill.roll.BonusDice
-import com.rkss.rpg.coc.concepts.skill.roll.PenaltyDice
+import com.rkss.rpg.coc.concepts.skill.roll._
+import com.rkss.rpg.coc.foundations.skills._
 
 object Universe extends App {
   import com.rkss.rpg.helpers.dice.Bag._
 
-  println("Sample usage of concepts / rules")
+  println("Sample usage of foundations")
 
   val strength = Strength(40)
 
-  val strengthSkillRollResult = strength.roll(RegularDifficulty, BonusDice(0), PenaltyDice(0))
+  val strengthSkillRollResult =
+    strength.roll(RegularDifficulty, BonusDice(0), PenaltyDice(0))
 
-  println(strengthSkillRollResult)
+  println(s"Strength roll: $strengthSkillRollResult")
 
-  val skillRoll = SkillRoll(strength)
+  val pushedRoll = strength.pushRoll()
 
-  println(s"Making a $skillRoll")
+  println(s"Pushing the strength result: ${pushedRoll}")
 
-  println(s"Result is ${skillRoll.result}")
+  val firstAid = FirstAid.create
 
-  val pushedRoll = PushedSkillRoll(skillRoll.result)
+  val firstAidRollResult =
+    firstAid.roll(RegularDifficulty, BonusDice(0), PenaltyDice(0))
 
-  println(s"Pushing the skill roll resulted in ${pushedRoll.result}")
+  println(s"First Aid roll: $firstAidRollResult")
+
+  val pushedfirstAidRoll = firstAid.pushRoll()
+
+  println(s"Pushing the First Aid result: ${pushedfirstAidRoll}")
 }

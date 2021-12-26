@@ -4,8 +4,8 @@ import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.coc.rules._
 
-trait ImprovableSkillBehavior extends BaseSkillBehavior {
-  self: SkillImprovable with SkillImprovement =>
+trait ImprovableSkillBehavior {
+  self: Skill with SkillRollBehavior with SkillImprovable with SkillImprovement =>
 
   private val _improvedValue: Int = 0
 
