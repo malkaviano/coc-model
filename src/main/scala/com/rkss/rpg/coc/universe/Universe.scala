@@ -1,13 +1,10 @@
 import com.rkss.rpg.coc.foundations.characteristics._
-import com.rkss.rpg.coc.rules._
-import com.rkss.rpg.coc.concepts.skill.roll.RegularDifficulty
-import com.rkss.rpg.coc.concepts.skill.roll.BonusDice
-import com.rkss.rpg.coc.concepts.skill.roll.PenaltyDice
+import com.rkss.rpg.coc.concepts.skill.roll._
 
 object Universe extends App {
   import com.rkss.rpg.helpers.dice.Bag._
 
-  println("Sample usage of concepts / rules")
+  println("Sample usage of foundations")
 
   val strength = Strength(40)
 
@@ -16,7 +13,7 @@ object Universe extends App {
 
   println(strengthSkillRollResult)
 
-  val pushedRoll = PushedSkillRoll(strengthSkillRollResult)
+  val pushedRoll = strength.pushRoll()
 
-  println(s"Pushing the skill roll resulted in ${pushedRoll.result}")
+  println(s"Pushing the skill roll resulted in ${pushedRoll}")
 }
