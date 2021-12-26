@@ -11,17 +11,12 @@ object Universe extends App {
 
   val strength = Strength(40)
 
-  val strengthSkillRollResult = strength.roll(RegularDifficulty, BonusDice(0), PenaltyDice(0))
+  val strengthSkillRollResult =
+    strength.roll(RegularDifficulty, BonusDice(0), PenaltyDice(0))
 
   println(strengthSkillRollResult)
 
-  val skillRoll = SkillRoll(strength)
-
-  println(s"Making a $skillRoll")
-
-  println(s"Result is ${skillRoll.result}")
-
-  val pushedRoll = PushedSkillRoll(skillRoll.result)
+  val pushedRoll = PushedSkillRoll(strengthSkillRollResult)
 
   println(s"Pushing the skill roll resulted in ${pushedRoll.result}")
 }

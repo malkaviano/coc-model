@@ -7,10 +7,11 @@ import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.helpers.dice.HundredSidedDice
 import com.rkss.rpg.coc.props.TestingProps
 import com.rkss.rpg.coc.props.fakes.FakeDiceResult
+import com.rkss.rpg.coc.concepts.skill.Skill
 
 class SkillRollBehaviorSpec extends AnyFunSpec with Matchers {
   describe("Basic skill behavior") {
-    val skill = new SkillRollBehavior {
+    val skill = new SkillRollBehavior with Skill {
       override def name: String = "Some Skill"
 
       override def baseValue: Int = 40

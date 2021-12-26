@@ -9,6 +9,9 @@ final case class FakeCharacteristic(
     private val hard: Int,
     private val extreme: Int
 ) extends PrimaryCharacteristic {
+  override val name = "FakeCharacteristic"
+
+  override def baseValue: Int = regular
 
   override def value(difficulty: SkillRollDifficultyLevel): Int = {
     difficulty match {
