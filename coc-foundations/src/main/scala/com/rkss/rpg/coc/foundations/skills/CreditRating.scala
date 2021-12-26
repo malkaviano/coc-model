@@ -4,7 +4,7 @@ import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.coc.concepts.skill.Skill
 import com.rkss.rpg.coc.rules.behaviors._
 
-trait CreditRating extends BaseSkillBehavior with SkillPushable {
+trait CreditRating extends SkillRollBehavior with SkillPushable {
   override lazy val name: String = "Credit Rating"
 
   override lazy val baseValue: Int = 0

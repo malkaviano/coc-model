@@ -6,7 +6,7 @@ import com.rkss.rpg.coc.rules.SkillRollValue
 import com.rkss.rpg.helpers.dice._
 import com.rkss.rpg.coc.rules.SkillRoll
 
-trait BaseSkillBehavior extends Skill {
+trait SkillRollBehavior extends Skill {
   override def value(
       difficulty: SkillRollDifficultyLevel = RegularDifficulty
   ): Int = {

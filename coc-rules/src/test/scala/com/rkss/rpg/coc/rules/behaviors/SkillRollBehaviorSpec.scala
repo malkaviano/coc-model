@@ -8,9 +8,9 @@ import com.rkss.rpg.helpers.dice.HundredSidedDice
 import com.rkss.rpg.coc.props.TestingProps
 import com.rkss.rpg.coc.props.fakes.FakeDiceResult
 
-class BaseSkillBehaviorSpec extends AnyFunSpec with Matchers {
+class SkillRollBehaviorSpec extends AnyFunSpec with Matchers {
   describe("Basic skill behavior") {
-    val skill = new BaseSkillBehavior {
+    val skill = new SkillRollBehavior {
       override def name: String = "Some Skill"
 
       override def baseValue: Int = 40
