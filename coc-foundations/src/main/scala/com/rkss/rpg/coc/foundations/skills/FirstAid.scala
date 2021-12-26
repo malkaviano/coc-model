@@ -11,7 +11,8 @@ trait FirstAid
     with SkillImprovable
     with SkillImprovement
     with SkillRollBehavior
-    with ImprovableSkillBehavior {
+    with ImprovableSkillBehavior
+    with PushableSkillRollBehavior {
   override lazy val name: String = "First Aid"
 
   override lazy val baseValue: Int = 30

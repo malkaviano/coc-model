@@ -26,4 +26,10 @@ final case class FakeCharacteristic(
       bonusDice: BonusDice,
       penaltyDice: PenaltyDice
   )(implicit hundredSidedDice: HundredSidedDice): SkillRolled = ???
+
+  def pushRoll(
+      difficulty: Option[SkillRollDifficultyLevel],
+      bonusDice: Option[BonusDice],
+      penaltyDice: Option[PenaltyDice]
+  )(implicit hundredSidedDice: HundredSidedDice): Option[SkillRolled] = ???
 }
