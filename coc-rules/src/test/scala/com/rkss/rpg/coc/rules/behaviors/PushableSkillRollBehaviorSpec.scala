@@ -54,12 +54,12 @@ class PushableSkillRollBehaviorSpec extends AnyFunSpec with Matchers {
     }
 
     describe(s"when previous roll was a Failure") {
-      val pushableSkillRollBehavior =
-        FakePushableSkillRoll("Fake", 60, 60, 30, 12)
-
-      rollSkill(pushableSkillRollBehavior, Seq(80))
-
       it("return a RegularSuccess") {
+        val pushableSkillRollBehavior =
+          FakePushableSkillRoll("Fake", 60, 60, 30, 12)
+
+        rollSkill(pushableSkillRollBehavior, Seq(80))
+
         val hundredSidedDice = HundredSidedDice(
           TestingProps.fakeRng(Seq(40))
         )
@@ -72,10 +72,30 @@ class PushableSkillRollBehaviorSpec extends AnyFunSpec with Matchers {
           BonusDice(0),
           PenaltyDice(0),
           RegularSuccess,
-          FakeDiceResult(40)
+          FakeDiceResult(40),
+          true
         )
 
         result shouldBe Option(expected)
+      }
+
+      describe("when pushing an already pushed skill roll") {
+        it("return no result") {
+          val pushableSkillRollBehavior =
+            FakePushableSkillRoll("Fake", 60, 60, 30, 12)
+
+          rollSkill(pushableSkillRollBehavior, Seq(80))
+
+          val hundredSidedDice = HundredSidedDice(
+            TestingProps.fakeRng(Seq(40, 50))
+          )
+
+          pushableSkillRollBehavior.pushRoll()(hundredSidedDice)
+
+          val result = pushableSkillRollBehavior.pushRoll()(hundredSidedDice)
+
+          result shouldBe Option.empty[SkillRolled]
+        }
       }
     }
   }

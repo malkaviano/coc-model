@@ -15,7 +15,18 @@ trait PushableSkillRollBehavior extends SkillRollBehavior {
   )(implicit hundredSidedDice: HundredSidedDice): Option[SkillRolled] = {
     lastSkillRolled match {
       case Some(skillRolled) =>
-        PushedSkillRoll(skillRolled).result
+        if (skillRolled.pushed) {
+          Option.empty[SkillRolled]
+        } else {
+          PushedSkillRoll(skillRolled).result match {
+            case Some(value) => {
+              lastSkillRolled = Option(value.copy(pushed = true))
+
+              lastSkillRolled
+            }
+            case None => Option.empty[SkillRolled]
+          }
+        }
       case None =>
         Option.empty[SkillRolled]
     }
