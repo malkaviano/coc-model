@@ -1,5 +1,6 @@
 import com.rkss.rpg.coc.foundations.characteristics._
 import com.rkss.rpg.coc.concepts.skill.roll._
+import com.rkss.rpg.coc.foundations.skills._
 
 object Universe extends App {
   import com.rkss.rpg.helpers.dice.Bag._
@@ -11,9 +12,20 @@ object Universe extends App {
   val strengthSkillRollResult =
     strength.roll(RegularDifficulty, BonusDice(0), PenaltyDice(0))
 
-  println(strengthSkillRollResult)
+  println(s"Strength roll: $strengthSkillRollResult")
 
   val pushedRoll = strength.pushRoll()
 
-  println(s"Pushing the skill roll resulted in ${pushedRoll}")
+  println(s"Pushing the strength result: ${pushedRoll}")
+
+  val firstAid = FirstAid.create
+
+  val firstAidRollResult =
+    firstAid.roll(RegularDifficulty, BonusDice(0), PenaltyDice(0))
+
+  println(s"First Aid roll: $firstAidRollResult")
+
+  val pushedfirstAidRoll = firstAid.pushRoll()
+
+  println(s"Pushing the First Aid result: ${pushedfirstAidRoll}")
 }

@@ -15,7 +15,7 @@ trait CreditRating
 }
 
 object CreditRating {
-  def create: Skill = {
+  def create: CreditRating = {
     new CreditRating {}
   }
 }

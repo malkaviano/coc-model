@@ -19,7 +19,7 @@ trait FirstAid
 }
 
 object FirstAid {
-  def create: Skill = {
+  def create: FirstAid = {
     new FirstAid {}
   }
 }
