@@ -20,10 +20,10 @@ trait SkillRollBehavior { self: RollableEntity with SkillRollable =>
       bonusDice: BonusDice = BonusDice(0),
       penaltyDice: PenaltyDice = PenaltyDice(0)
   )(implicit hundredSidedDice: HundredSidedDice): SkillRolled = {
-    val result = SkillRoll(this, difficulty, bonusDice, penaltyDice).result
+    lastSkillRolled = Option(
+      SkillRoll(this, difficulty, bonusDice, penaltyDice).result
+    )
 
-    lastSkillRolled = Option(result)
-
-    result
+    lastSkillRolled.get
   }
 }
