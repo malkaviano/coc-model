@@ -8,5 +8,6 @@ final case class SkillRolled(
     val bonusDice: BonusDice,
     val penaltyDice: PenaltyDice,
     val rollResult: SkillRollResult,
-    val rolled: DiceResult
+    val rolled: DiceResult,
+    val pushed: Boolean = false
 )
