@@ -6,9 +6,9 @@ import org.scalatest.matchers.should.Matchers
 
 import com.rkss.rpg.helpers.dice.HundredSidedDice
 import com.rkss.rpg.coc.concepts.skill.roll._
-import com.rkss.rpg.coc.props.scenarios._
-import com.rkss.rpg.coc.props.TestingProps
-import com.rkss.rpg.coc.props.fakes._
+import com.rkss.rpg.coc.testing.scenarios._
+import com.rkss.rpg.coc.rules.testing._
+import com.rkss.rpg.coc.rules.testing.fakes._
 
 class PlayerMakesSkillRollSpec
     extends AnyFeatureSpec

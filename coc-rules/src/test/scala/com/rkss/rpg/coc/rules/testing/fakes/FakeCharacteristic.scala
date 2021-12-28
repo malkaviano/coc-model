@@ -1,4 +1,4 @@
-package com.rkss.rpg.coc.props.fakes
+package com.rkss.rpg.coc.rules.testing.fakes
 
 import com.rkss.rpg.coc.concepts.PrimaryCharacteristic
 import com.rkss.rpg.coc.concepts.skill.roll._
