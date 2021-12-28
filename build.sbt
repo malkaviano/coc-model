@@ -41,18 +41,9 @@ lazy val concepts = (project in file("coc-concepts"))
     name := "coc-concepts"
   )
 
-lazy val props = (project in file("coc-props"))
-  .aggregate(concepts)
-  .dependsOn(concepts)
-  .settings(
-    name := "coc-props"
-  )
-
 lazy val rules = (project in file("coc-rules"))
   .aggregate(concepts)
   .dependsOn(concepts)
-  .aggregate(props)
-  .dependsOn(props % "compile -> test")
   .settings(
     name := "coc-rules",
     libraryDependencies ++= Seq(
