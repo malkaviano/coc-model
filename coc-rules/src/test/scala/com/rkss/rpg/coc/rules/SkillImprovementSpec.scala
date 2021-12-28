@@ -55,12 +55,3 @@ class SkillImprovementSpec extends AnyFunSpec with Matchers {
     )
   }
 }
-
-final case class FakeSkillImprovement(
-    override val name: String,
-    override val baseValue: Int,
-    override val regular: Int,
-    override val hard: Int,
-    override val extreme: Int
-) extends FakeSkill(name, baseValue, regular, hard, extreme)
-    with SkillImprovement
