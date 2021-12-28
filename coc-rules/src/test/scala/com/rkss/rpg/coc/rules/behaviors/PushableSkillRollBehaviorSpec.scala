@@ -5,9 +5,8 @@ import org.scalatest.matchers.should.Matchers
 
 import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.helpers.dice.HundredSidedDice
-import com.rkss.rpg.coc.props.TestingProps
-import com.rkss.rpg.coc.props.fakes.FakeSkill
-import com.rkss.rpg.coc.props.fakes.FakeDiceResult
+import com.rkss.rpg.coc.rules.testing._
+import com.rkss.rpg.coc.rules.testing.fakes._
 
 class PushableSkillRollBehaviorSpec extends AnyFunSpec with Matchers {
   describe("Pushing a skill roll") {
@@ -111,14 +110,3 @@ class PushableSkillRollBehaviorSpec extends AnyFunSpec with Matchers {
     pushableSkillRollBehavior.roll()(hundredSidedDice)
   }
 }
-
-final case class FakePushableSkillRoll(
-    override val name: String,
-    override val baseValue: Int,
-    override val regular: Int,
-    override val hard: Int,
-    override val extreme: Int
-) extends FakeSkill(name, baseValue, regular, hard, extreme)
-    with SkillRollBehavior
-    with SkillPushable
-    with PushableSkillRollBehavior

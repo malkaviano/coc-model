@@ -3,11 +3,10 @@ package com.rkss.rpg.coc.rules
 import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 
-import com.rkss.rpg.coc.props.TestingProps
-
 import com.rkss.rpg.helpers.dice._
 import com.rkss.rpg.helpers.traits.DiceResult
-import com.rkss.rpg.coc.props.fakes._
+import com.rkss.rpg.coc.rules.testing._
+import com.rkss.rpg.coc.rules.testing.fakes._
 
 class SkillImprovementSpec extends AnyFunSpec with Matchers {
   describe("Improving a skill") {
@@ -56,12 +55,3 @@ class SkillImprovementSpec extends AnyFunSpec with Matchers {
     )
   }
 }
-
-final case class FakeSkillImprovement(
-    override val name: String,
-    override val baseValue: Int,
-    override val regular: Int,
-    override val hard: Int,
-    override val extreme: Int
-) extends FakeSkill(name, baseValue, regular, hard, extreme)
-    with SkillImprovement

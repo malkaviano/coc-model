@@ -1,10 +1,9 @@
-package com.rkss.rpg.coc.props
+package com.rkss.rpg.coc.rules.testing
 
 import scala.collection.mutable.{Queue => MutableQueue}
 
-import com.rkss.rpg.helpers.traits.DiceRange
-import com.rkss.rpg.helpers.traits.DiceResult
-import com.rkss.rpg.coc.props.fakes._
+import com.rkss.rpg.helpers.traits._
+import com.rkss.rpg.coc.rules.testing.fakes._
 
 object TestingProps {
   def fakeRng(returns: Seq[Int]): (DiceRange) => DiceResult = {

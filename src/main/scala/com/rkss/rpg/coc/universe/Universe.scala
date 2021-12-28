@@ -25,7 +25,7 @@ object Universe extends App {
 
   println(s"First Aid roll: $firstAidRollResult")
 
-  val pushedfirstAidRoll = firstAid.pushRoll()
+  val pushedFirstAidRoll = firstAid.pushRoll()
 
-  println(s"Pushing the First Aid result: ${pushedfirstAidRoll}")
+  println(s"Pushing the First Aid result: ${pushedFirstAidRoll}")
 }

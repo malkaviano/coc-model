@@ -5,8 +5,8 @@ import org.scalatest.matchers.should.Matchers
 
 import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.helpers.dice.HundredSidedDice
-import com.rkss.rpg.coc.props._
-import com.rkss.rpg.coc.props.fakes._
+import com.rkss.rpg.coc.rules.testing._
+import com.rkss.rpg.coc.rules.testing.fakes._
 
 class SkillRollResolverSpec
     extends AnyFunSpec
