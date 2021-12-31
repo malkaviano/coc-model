@@ -67,7 +67,7 @@ class PlayerMakesSkillRollSpec
           ) => {
         Scenario(s"The skill roll is a $result") {
           Given(s"My Skill / Characteristic value is $regular")
-          val someRollable = FakeCharacteristic(regular, hard, extreme)
+          val someRollable = FakeCharacteristic(regular)
 
           And(s"The difficulty is $difficulty")
           And(s"The bonus dice is ${bonusDice.value}")

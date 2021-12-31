@@ -7,13 +7,14 @@ import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.helpers.dice.HundredSidedDice
 import com.rkss.rpg.coc.rules.testing._
 import com.rkss.rpg.coc.rules.testing.fakes._
+import com.rkss.rpg.coc.concepts.RollableEntity
 
 class SkillRollResolverSpec
     extends AnyFunSpec
     with Matchers
     with BehaveLikeASkillRollResolver {
   describe("Resolving the skill roll") {
-    val someCharacteristic = FakeCharacteristic(50, 25, 10)
+    val someCharacteristic = FakeCharacteristic(50)
 
     it should behave like resolveSkillRoll(
       someCharacteristic,
@@ -199,7 +200,7 @@ class SkillRollResolverSpec
 
 trait BehaveLikeASkillRollResolver { self: AnyFunSpec with Matchers =>
   def resolveSkillRoll(
-      rollable: SkillRollable,
+      rollable: RollableEntity,
       diceResults: Seq[Int],
       expected: SkillRolled,
       difficulty: SkillRollDifficultyLevel= RegularDifficulty,
