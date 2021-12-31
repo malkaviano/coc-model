@@ -9,10 +9,9 @@ import com.rkss.rpg.coc.rules.testing._
 import com.rkss.rpg.coc.rules.testing.fakes._
 import com.rkss.rpg.coc.concepts.EntityWithDifficultyValue
 
-class SkillRollResolverSpec
+final class SkillRollResolverSpec
     extends AnyFunSpec
-    with Matchers
-    with BehaveLikeASkillRollResolver {
+    with Matchers {
   describe("Resolving the skill roll") {
     val someCharacteristic = FakeCharacteristic(50)
 
@@ -196,10 +195,8 @@ class SkillRollResolverSpec
       PenaltyDice(1)
     )
   }
-}
 
-trait BehaveLikeASkillRollResolver { self: AnyFunSpec with Matchers =>
-  def resolveSkillRoll(
+  private def resolveSkillRoll(
       rollable: EntityWithDifficultyValue,
       diceResults: Seq[Int],
       expected: SkillRolled,

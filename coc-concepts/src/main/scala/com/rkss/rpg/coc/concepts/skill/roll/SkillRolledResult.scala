@@ -1,8 +1,8 @@
 package com.rkss.rpg.coc.concepts.skill.roll
 
-sealed trait SkillRolledResult
+private[coc] sealed trait SkillRolledResult
 
-sealed trait SuccessResult extends SkillRolledResult
+private[coc] sealed trait SuccessResult extends SkillRolledResult
 
 case object RegularSuccess extends SuccessResult
 
@@ -12,7 +12,7 @@ case object ExtremeSuccess extends SuccessResult
 
 case object CriticalSuccess extends SuccessResult
 
-sealed trait FailureResult extends SkillRolledResult
+private[coc] sealed trait FailureResult extends SkillRolledResult
 
 case object Fumble extends FailureResult
 

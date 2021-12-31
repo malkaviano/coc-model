@@ -2,7 +2,7 @@ package com.rkss.rpg.coc.concepts.skill.roll
 
 import com.rkss.rpg.helpers.dice.HundredSidedDice
 
-trait SkillRollable {
+private[coc] trait SkillRollable {
   def roll(
       difficulty: SkillRollDifficultyLevel,
       bonusDice: BonusDice,
