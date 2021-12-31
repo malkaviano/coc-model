@@ -5,8 +5,7 @@ import com.rkss.rpg.coc.rules.SkillImprovement
 final case class FakeSkillImprovement(
     override val name: String,
     override val baseValue: Int,
-    override val regular: Int,
-    override val hard: Int,
-    override val extreme: Int
-) extends FakeSkill(name, baseValue, regular, hard, extreme)
+    override val occupationPoints: Int = 0,
+    override val personalPoints: Int = 0
+) extends FakeSkill(name, baseValue, occupationPoints, personalPoints)
     with SkillImprovement

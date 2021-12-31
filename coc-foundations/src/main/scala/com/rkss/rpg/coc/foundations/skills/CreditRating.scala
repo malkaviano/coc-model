@@ -6,16 +6,23 @@ import com.rkss.rpg.coc.rules.behaviors._
 
 trait CreditRating
     extends Skill
+    with SkillWithValue
     with SkillRollBehavior
     with SkillPushable
-    with PushableSkillRollBehavior {
-  override lazy val name: String = "Credit Rating"
-
-  override lazy val baseValue: Int = 0
-}
+    with PushableSkillRollBehavior
 
 object CreditRating {
-  def create: CreditRating = {
-    new CreditRating {}
+  val name = "Credit Rating"
+
+  def create(occupation: Int = 0, personal: Int = 0): CreditRating = {
+    new CreditRating {
+      override val name: String = CreditRating.name
+
+      override val baseValue: Int = 0
+
+      override val occupationPoints: Int = occupation
+
+      override val personalPoints: Int = personal
+    }
   }
 }

@@ -49,7 +49,7 @@ class SkillImprovementSpec extends AnyFunSpec with Matchers {
       TestingProps.fakeRng(rolledImprovement)
     )
 
-    FakeSkillImprovement("fake", 50, 50, 25, 10).improvementCheck(
+    FakeSkillImprovement("fake", 50).improvementCheck(
       hundredSidedDice,
       tenSidedDice
     )

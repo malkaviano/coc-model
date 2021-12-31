@@ -5,4 +5,8 @@ import com.rkss.rpg.coc.concepts.RollableEntity
 
 trait Skill extends RollableEntity with SkillRollable {
   def name: String
+
+  def occupationPoints: Int
+
+  def personalPoints: Int
 }
