@@ -7,7 +7,7 @@ import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.helpers.dice.HundredSidedDice
 import com.rkss.rpg.coc.rules.testing._
 import com.rkss.rpg.coc.rules.testing.fakes._
-import com.rkss.rpg.coc.concepts.RollableEntity
+import com.rkss.rpg.coc.concepts.EntityWithDifficultyValue
 
 class SkillRollResolverSpec
     extends AnyFunSpec
@@ -200,7 +200,7 @@ class SkillRollResolverSpec
 
 trait BehaveLikeASkillRollResolver { self: AnyFunSpec with Matchers =>
   def resolveSkillRoll(
-      rollable: RollableEntity,
+      rollable: EntityWithDifficultyValue,
       diceResults: Seq[Int],
       expected: SkillRolled,
       difficulty: SkillRollDifficultyLevel= RegularDifficulty,

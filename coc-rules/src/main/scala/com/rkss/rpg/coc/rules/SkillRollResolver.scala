@@ -3,11 +3,11 @@ package com.rkss.rpg.coc.rules
 import com.rkss.rpg.helpers.dice.HundredSidedDice
 import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.helpers.traits.DiceResult
-import com.rkss.rpg.coc.concepts.RollableEntity
+import com.rkss.rpg.coc.concepts.EntityWithDifficultyValue
 
 private class SkillRollResolver private () {
   def roll(
-      rollable: RollableEntity,
+      rollable: EntityWithDifficultyValue,
       difficulty: SkillRollDifficultyLevel,
       bonusDice: BonusDice,
       penaltyDice: PenaltyDice

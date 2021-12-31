@@ -7,7 +7,7 @@ import com.rkss.rpg.coc.rules.SkillImprovement
 
 trait FirstAid
     extends Skill
-    with SkillWithValue
+    with SkillWithDifficultyValueBehavior
     with SkillPushable
     with SkillRollBehavior
     with PushableSkillRollBehavior
