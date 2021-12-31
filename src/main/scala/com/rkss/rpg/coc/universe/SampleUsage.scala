@@ -37,6 +37,8 @@ object SampleUsage extends App {
             | regular: ${firstAid.value()}
             | hard: ${firstAid.value(HardDifficulty)}
             | extreme: ${firstAid.value(ExtremeDifficulty)}
+            | success check: ${firstAid.successCheck}
+            | improved value: ${firstAid.improvedValue}
             """.stripMargin)
 
   val firstAidRollResult =
