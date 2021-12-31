@@ -8,14 +8,16 @@ trait CreditRating
     extends Skill
     with SkillRollBehavior
     with SkillPushable
-    with PushableSkillRollBehavior {
-  override lazy val name: String = "Credit Rating"
-
-  override lazy val baseValue: Int = 0
-}
+    with PushableSkillRollBehavior
 
 object CreditRating {
+  val name = "Credit Rating"
+
   def create: CreditRating = {
-    new CreditRating {}
+    new CreditRating {
+      override val name: String = CreditRating.name
+
+      override val baseValue: Int = 0
+    }
   }
 }
