@@ -67,7 +67,7 @@ class PlayerPushesSkillRollSpec
           ) => {
         Scenario(s"The pushed skill roll is a $result") {
           Given("a skill roll failed")
-          val rollable = FakeCharacteristic(47, 23, 9)
+          val rollable = FakeCharacteristic(47)
 
           val skillRolled = SkillRolled(
             rollable,
