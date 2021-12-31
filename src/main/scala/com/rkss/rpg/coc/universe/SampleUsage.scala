@@ -11,6 +11,12 @@ object SampleUsage extends App {
 
   val strength = Strength(40)
 
+  println(s"""${strength.name}
+              | regular: ${strength.value()}
+              | hard: ${strength.value(HardDifficulty)}
+              | extreme: ${strength.value(ExtremeDifficulty)}
+            """.stripMargin)
+
   val strengthSkillRollResult =
     strength.roll(RegularDifficulty, BonusDice(0), PenaltyDice(0))
 
@@ -23,6 +29,15 @@ object SampleUsage extends App {
   })
 
   val firstAid = FirstAid.create(40, 15)
+
+  println(s"""${firstAid.name}
+            | base value: ${firstAid.baseValue}
+            | occupation points: ${firstAid.occupationPoints}
+            | personal points: ${firstAid.personalPoints}
+            | regular: ${firstAid.value()}
+            | hard: ${firstAid.value(HardDifficulty)}
+            | extreme: ${firstAid.value(ExtremeDifficulty)}
+            """.stripMargin)
 
   val firstAidRollResult =
     firstAid.roll(RegularDifficulty, BonusDice(0), PenaltyDice(0))

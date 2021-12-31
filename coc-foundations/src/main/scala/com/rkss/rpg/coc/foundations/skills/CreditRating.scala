@@ -4,7 +4,7 @@ import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.coc.concepts.skill.Skill
 import com.rkss.rpg.coc.rules.behaviors._
 
-trait CreditRating
+sealed trait CreditRating
     extends Skill
     with SkillWithDifficultyValueBehavior
     with SkillRollBehavior

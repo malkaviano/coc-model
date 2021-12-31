@@ -5,7 +5,7 @@ import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.rules.behaviors._
 import com.rkss.rpg.coc.rules.SkillImprovement
 
-trait FirstAid
+sealed trait FirstAid
     extends Skill
     with SkillWithDifficultyValueBehavior
     with SkillPushable
