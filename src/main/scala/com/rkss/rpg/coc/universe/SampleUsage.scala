@@ -1,4 +1,4 @@
-package com.rkss.rpg.script
+package com.rkss.rpg.script // Package is outside coc on purpose to check visibility
 
 import com.rkss.rpg.coc.foundations.characteristics._
 import com.rkss.rpg.coc.concepts.skill.roll._
