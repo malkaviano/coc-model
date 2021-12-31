@@ -7,26 +7,14 @@ import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.helpers.dice.HundredSidedDice
 import com.rkss.rpg.coc.rules.testing.fakes._
 import com.rkss.rpg.coc.rules.testing._
-import com.rkss.rpg.coc.concepts.skill.Skill
+import com.rkss.rpg.coc.concepts.RollableEntity
 
 class SkillRollBehaviorSpec extends AnyFunSpec with Matchers {
-  describe("Basic skill behavior") {
-    val skill = new SkillRollBehavior with Skill {
-      override def name: String = "Some Skill"
-
+  describe("Skill behavior behavior") {
+    val skill = new SkillRollBehavior with RollableEntity with SkillRollable {
       override def baseValue: Int = 40
-    }
 
-    it("should have regular value") {
-      skill.value() shouldBe 40
-    }
-
-    it("should have hard value") {
-      skill.value(HardDifficulty) shouldBe 20
-    }
-
-    it("should have extreme value") {
-      skill.value(ExtremeDifficulty) shouldBe 8
+      override def value(difficulty: SkillRollDifficultyLevel): Int = 40
     }
 
     describe("Skill roll") {
