@@ -26,9 +26,9 @@ object FirstAid {
 
       override val personalPoints: Int = personal
 
-      override def improvedValue: Int = 0
+      override def improvedValue: Int = 0 // Temporary code
 
-      override def successCheck: Boolean = false
+      override def successCheck: Boolean = false // Temporary code
     }
   }
 }
