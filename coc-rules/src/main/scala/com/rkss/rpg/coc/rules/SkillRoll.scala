@@ -4,7 +4,7 @@ import com.rkss.rpg.helpers.dice._
 import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.coc.concepts.EntityWithDifficultyValue
 
-final case class SkillRoll(
+private[coc] final case class SkillRoll(
     val rollable: EntityWithDifficultyValue,
     val difficulty: SkillRollDifficultyLevel = RegularDifficulty,
     val bonusDice: BonusDice = BonusDice(0),

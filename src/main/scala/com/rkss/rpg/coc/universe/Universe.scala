@@ -18,12 +18,15 @@ object Universe extends App {
 
   println(s"Pushing the strength result: ${pushedRoll}")
 
-  val firstAid = FirstAid.create()
+  val firstAid = FirstAid.create(40, 15)
 
   val firstAidRollResult =
     firstAid.roll(RegularDifficulty, BonusDice(0), PenaltyDice(0))
 
-  println(s"First Aid roll: $firstAidRollResult")
+  println(
+    s"First Aid (${firstAidRollResult.rollable
+      .value()}) roll:  ${firstAidRollResult.rollResult} ${firstAidRollResult.rolled}"
+  )
 
   val pushedFirstAidRoll = firstAid.pushRoll()
 

@@ -4,7 +4,7 @@ import com.rkss.rpg.coc.concepts.EntityWithDifficultyValue
 import com.rkss.rpg.coc.concepts.skill.roll.SkillRollDifficultyLevel
 import com.rkss.rpg.coc.rules.SkillRollValue
 
-trait WithDifficultyValueBehavior { self: EntityWithDifficultyValue =>
+private[coc] trait WithDifficultyValueBehavior { self: EntityWithDifficultyValue =>
   def value(
       difficulty: SkillRollDifficultyLevel
   ): Int = {

@@ -5,7 +5,7 @@ import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.helpers.traits.DiceResult
 import com.rkss.rpg.coc.concepts.EntityWithDifficultyValue
 
-private class SkillRollResolver private () {
+private[coc] class SkillRollResolver private () {
   def roll(
       rollable: EntityWithDifficultyValue,
       difficulty: SkillRollDifficultyLevel,
