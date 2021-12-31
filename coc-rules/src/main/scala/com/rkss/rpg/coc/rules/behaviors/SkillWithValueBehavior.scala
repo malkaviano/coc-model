@@ -1,4 +1,4 @@
-package com.rkss.rpg.coc.foundations.skills
+package com.rkss.rpg.coc.rules.behaviors
 
 import com.rkss.rpg.coc.concepts.skill.roll.SkillRollDifficultyLevel
 import com.rkss.rpg.coc.concepts.skill.Skill
