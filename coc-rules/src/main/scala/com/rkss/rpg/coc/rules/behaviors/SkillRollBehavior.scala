@@ -5,7 +5,7 @@ import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.helpers.dice._
 import com.rkss.rpg.coc.rules.SkillRoll
 
-trait SkillRollBehavior { self: RollableEntity with SkillRollable =>
+private[coc] trait SkillRollBehavior { self: EntityWithDifficultyValue with SkillRollable =>
   protected var lastSkillRolled: Option[SkillRolled] = None
 
   override def roll(

@@ -1,6 +1,6 @@
 package com.rkss.rpg.coc.concepts.skill.roll
 
-sealed trait SkillRollDifficultyLevel
+private[coc] sealed trait SkillRollDifficultyLevel
 
 case object RegularDifficulty extends SkillRollDifficultyLevel
 

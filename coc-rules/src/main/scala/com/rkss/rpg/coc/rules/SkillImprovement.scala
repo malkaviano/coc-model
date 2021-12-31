@@ -5,7 +5,7 @@ import com.rkss.rpg.helpers.dice._
 import com.rkss.rpg.coc.concepts.skill.roll.RegularDifficulty
 import com.rkss.rpg.helpers.traits.DiceResult
 
-trait SkillImprovement { self: Skill =>
+private[coc] trait SkillImprovement { self: Skill =>
   def improvementCheck(implicit
       hundredSidedDice: HundredSidedDice,
       tenSidedDice: TenSidedDice

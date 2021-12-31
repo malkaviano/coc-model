@@ -8,7 +8,7 @@ import com.rkss.rpg.helpers.traits.DiceResult
 import com.rkss.rpg.coc.rules.testing._
 import com.rkss.rpg.coc.rules.testing.fakes._
 
-class SkillImprovementSpec extends AnyFunSpec with Matchers {
+final class SkillImprovementSpec extends AnyFunSpec with Matchers {
   describe("Improving a skill") {
     describe("Improvement check") {
       describe("when improvement check fails") {

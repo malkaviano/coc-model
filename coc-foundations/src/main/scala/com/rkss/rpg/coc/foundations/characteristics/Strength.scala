@@ -5,7 +5,7 @@ import com.rkss.rpg.coc.rules.behaviors._
 
 final case class Strength(override val baseValue: Int)
     extends PrimaryCharacteristic
-    with WithValueBehavior
+    with WithDifficultyValueBehavior
     with SkillRollBehavior
     with PushableSkillRollBehavior {
   override val name: String = "Strength"

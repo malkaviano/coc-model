@@ -6,7 +6,7 @@ import com.rkss.rpg.coc.rules.behaviors._
 final case class FakeCharacteristic(
     override val baseValue: Int
 ) extends PrimaryCharacteristic
-    with WithValueBehavior
+    with WithDifficultyValueBehavior
     with SkillRollBehavior
     with PushableSkillRollBehavior {
   override val name: String = "FakeCharacteristic"

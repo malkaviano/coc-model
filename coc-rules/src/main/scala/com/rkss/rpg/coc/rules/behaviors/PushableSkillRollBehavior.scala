@@ -5,8 +5,8 @@ import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.helpers.dice.HundredSidedDice
 import com.rkss.rpg.coc.rules._
 
-trait PushableSkillRollBehavior extends SkillRollBehavior {
-  self: RollableEntity with SkillRollable with SkillPushable =>
+private[coc] trait PushableSkillRollBehavior extends SkillRollBehavior {
+  self: EntityWithDifficultyValue with SkillRollable with SkillPushable =>
 
   override def pushRoll(
       difficulty: Option[SkillRollDifficultyLevel] = None,

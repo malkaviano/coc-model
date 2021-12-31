@@ -1,3 +1,3 @@
 package com.rkss.rpg.coc.concepts
 
-trait DerivedAttribute
+private[coc] trait DerivedAttribute

@@ -3,7 +3,7 @@ package com.rkss.rpg.coc.rules
 import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.helpers.dice.HundredSidedDice
 
-final case class PushedSkillRoll(
+private[coc] final case class PushedSkillRoll(
     private val skillRolled: SkillRolled,
     private val pushedDifficulty: Option[SkillRollDifficultyLevel] = None,
     private val pushedBonusDice: Option[BonusDice] = None,

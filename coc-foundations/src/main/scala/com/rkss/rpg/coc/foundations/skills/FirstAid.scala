@@ -3,17 +3,15 @@ package com.rkss.rpg.coc.foundations.skills
 import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.rules.behaviors._
-import com.rkss.rpg.coc.rules.SkillImprovement
 
-trait FirstAid
+sealed trait FirstAid
     extends Skill
-    with SkillWithValue
+    with SkillWithDifficultyValueBehavior
     with SkillPushable
     with SkillRollBehavior
     with PushableSkillRollBehavior
-    with SkillImprovable
-    with SkillImprovement
-    with ImprovableSkillBehavior
+    with SkillSuccessCheck
+    with SkillWithImprovedValue
 
 object FirstAid {
   val name = "First Aid"
@@ -27,6 +25,10 @@ object FirstAid {
       override val occupationPoints: Int = occupation
 
       override val personalPoints: Int = personal
+
+      override def improvedValue: Int = 0 // Temporary code
+
+      override def successCheck: Boolean = false // Temporary code
     }
   }
 }

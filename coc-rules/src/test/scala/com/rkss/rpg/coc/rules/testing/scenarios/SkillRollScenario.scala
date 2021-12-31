@@ -10,7 +10,7 @@ final case class SkillRollScenario(
     val difficulty: SkillRollDifficultyLevel,
     val bonusDice: BonusDice,
     val penaltyDice: PenaltyDice,
-    val skillRollResult: SkillRollResult,
+    val skillRollResult: SkillRolledResult,
     val rolled: Seq[Int],
     val chosenRoll: DiceResult
 )
