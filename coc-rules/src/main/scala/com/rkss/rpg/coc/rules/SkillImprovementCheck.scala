@@ -11,20 +11,22 @@ private final class SkillImprovementCheck private () {
       tenSidedDice: TenSidedDice
   ): SkillImproved = {
     val none = SkillImproved(skill, 0, Option.empty[DiceResult], false)
+
     skill.successCheck match {
       case true =>
-        val roll = tenSidedDice.roll
+        val increment = tenSidedDice.roll.value
         val skillValue = skill.value()
+        val rolled = hundredSidedDice.roll
 
-        hundredSidedDice.roll.value match {
+        rolled.value match {
           case x if x > skillValue || x > 95 =>
             SkillImproved(
               skill,
-              roll.value,
-              Option(roll),
-              skillValue < 90 && skillValue + roll.value >= 90
+              increment,
+              Option(rolled),
+              skillValue < 90 && skillValue + increment >= 90
             )
-          case _ => none
+          case _ => none.copy(rolled = Option(rolled))
         }
       case _ => none
     }

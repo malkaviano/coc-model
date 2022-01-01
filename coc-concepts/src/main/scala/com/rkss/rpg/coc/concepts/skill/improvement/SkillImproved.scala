@@ -6,6 +6,6 @@ import com.rkss.rpg.coc.concepts.skill.Skill
 final case class SkillImproved(
     val skillTested: Skill,
     val improvedValue: Int,
-    val result: Option[DiceResult],
+    val rolled: Option[DiceResult],
     val sanityGained: Boolean
 )
