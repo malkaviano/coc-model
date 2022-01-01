@@ -8,7 +8,7 @@ import com.rkss.rpg.helpers.dice.HundredSidedDice
 import com.rkss.rpg.coc.rules.testing._
 import com.rkss.rpg.coc.rules.testing.fakes._
 
-class PushableSkillRollBehaviorSpec extends AnyFunSpec with Matchers {
+final class PushableSkillRollBehaviorSpec extends AnyFunSpec with Matchers {
   describe("Pushing a skill roll") {
     describe("when no previous skill roll was made") {
       it("return no result") {

@@ -1,4 +1,4 @@
-package com.rkss.rpg.coc.testing.scenarios
+package com.rkss.rpg.coc.rules.testing.scenarios
 
 import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.helpers.traits.DiceResult

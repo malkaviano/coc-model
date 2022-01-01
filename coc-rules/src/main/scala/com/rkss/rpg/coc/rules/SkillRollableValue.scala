@@ -2,7 +2,7 @@ package com.rkss.rpg.coc.rules
 
 import com.rkss.rpg.coc.concepts.skill.roll._
 
-private[coc] final case class SkillRollValue(val value: Int) {
+private final case class SkillRollValue(val value: Int) {
   def value(
       difficulty: SkillRollDifficultyLevel
   ): Int = {
