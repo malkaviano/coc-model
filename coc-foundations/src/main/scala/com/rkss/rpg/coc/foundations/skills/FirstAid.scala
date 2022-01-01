@@ -8,7 +8,6 @@ import com.rkss.rpg.coc.concepts.skill.check._
 
 sealed trait FirstAid
     extends Skill
-    with SkillWithDifficultyValueBehavior
     with SkillPushable
     with SkillRollBehavior
     with PushableSkillRollBehavior
@@ -18,6 +17,7 @@ sealed trait FirstAid
     with SkillWithImprovedValue
     with SkillImprovable
     with SkillImprovementBehavior
+    with ImprovableWithDifficultyValueBehavior
 
 object FirstAid {
   val name = "First Aid"

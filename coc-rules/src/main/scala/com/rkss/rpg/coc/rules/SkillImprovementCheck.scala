@@ -2,7 +2,6 @@ package com.rkss.rpg.coc.rules
 
 import com.rkss.rpg.helpers.dice._
 import com.rkss.rpg.coc.concepts.skill._
-import com.rkss.rpg.helpers.traits.DiceResult
 import com.rkss.rpg.coc.concepts.skill.improvement._
 
 private final class SkillImprovementCheck private () {
@@ -10,8 +9,6 @@ private final class SkillImprovementCheck private () {
       hundredSidedDice: HundredSidedDice,
       tenSidedDice: TenSidedDice
   ): SkillImproved = {
-    val none = SkillImproved(skill, 0, Option.empty[DiceResult], false)
-
     val increment = tenSidedDice.roll.value
     val skillValue = skill.value()
     val rolled = hundredSidedDice.roll
@@ -24,7 +21,7 @@ private final class SkillImprovementCheck private () {
           Option(rolled),
           skillValue < 90 && skillValue + increment >= 90
         )
-      case _ => none.copy(rolled = Option(rolled))
+      case _ => SkillImproved(skill, 0, Option(rolled), false)
     }
   }
 }

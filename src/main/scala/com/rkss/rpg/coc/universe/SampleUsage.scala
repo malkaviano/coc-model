@@ -28,7 +28,7 @@ object SampleUsage extends App {
     println(s"Pushing the strength: ${printSkillRollResult(p)}")
   })
 
-  val firstAid = FirstAid.create(40, 15)
+  val firstAid = FirstAid.create(10, 15)
 
   println(s"""${firstAid.name}
             | base value: ${firstAid.baseValue}
@@ -65,7 +65,25 @@ object SampleUsage extends App {
     """
   }
 
+  firstAid.checkUsedWithSuccess()
+
   val improvement = firstAid.improvementCheck
 
   println(improvement)
+
+  val improvement2 = firstAid.improvementCheck
+
+  println(improvement2)
+
+  firstAid.checkUsedWithSuccess()
+
+  val improvement3 = firstAid.improvementCheck
+
+  println(improvement3)
+
+  val improvement4 = firstAid.improvementCheck
+
+  println(improvement4)
+
+  println(firstAid.value())
 }

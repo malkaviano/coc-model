@@ -6,7 +6,7 @@ import com.rkss.rpg.coc.concepts.skill.check._
 private[coc] trait SkillSuccessfullyUsedBehavior {
   self: Skill with SkillSuccessCheck with SkillSuccessCheckable =>
 
-  private var _successCheck: Boolean = false
+  protected var _successCheck: Boolean = false
 
   override def successCheck: Boolean = _successCheck
 
