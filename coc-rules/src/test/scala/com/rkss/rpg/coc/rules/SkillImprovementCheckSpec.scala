@@ -7,21 +7,11 @@ import com.rkss.rpg.coc.rules.testing.fakes._
 import com.rkss.rpg.helpers.dice._
 import com.rkss.rpg.coc.rules.testing.TestingProps
 import com.rkss.rpg.coc.concepts.skill.improvement._
-import com.rkss.rpg.helpers.traits.DiceResult
 
 final class SkillImprovementCheckSpec extends AnyFunSpec with Matchers {
   describe("Skill Improvement Check") {
-    describe("when skill has no success check") {
-      val skill = FakeSkillWithSuccessCheck("fake", 30)
-
-      val expected =
-        SkillImproved(skill, 0, Option.empty[DiceResult], false)
-
-      it should behave like improvementCheck(skill, Seq(10), Seq(8), expected)
-    }
-
     describe("when skill fails the improvement check") {
-      val skill = FakeSkillWithSuccessCheck("fake", 30, successCheck = true)
+      val skill = FakeSkillWithSuccessCheck("fake", 30)
 
       val expected =
         SkillImproved(skill, 0, Option(FakeDiceResult(10)), false)
@@ -30,7 +20,7 @@ final class SkillImprovementCheckSpec extends AnyFunSpec with Matchers {
     }
 
     describe("when skill succeeds the improvement check") {
-      val skill = FakeSkillWithSuccessCheck("fake", 30, successCheck = true)
+      val skill = FakeSkillWithSuccessCheck("fake", 30)
 
       val expected =
         SkillImproved(skill, 8, Option(FakeDiceResult(90)), false)
@@ -38,7 +28,7 @@ final class SkillImprovementCheckSpec extends AnyFunSpec with Matchers {
       it should behave like improvementCheck(skill, Seq(90), Seq(8), expected)
 
       describe("when skill value is 101") {
-        val skill = FakeSkillWithSuccessCheck("fake", 30, 50, 21, successCheck = true)
+        val skill = FakeSkillWithSuccessCheck("fake", 30, 50, 21)
 
         val expected =
           SkillImproved(skill, 6, Option(FakeDiceResult(98)), false)
@@ -47,7 +37,7 @@ final class SkillImprovementCheckSpec extends AnyFunSpec with Matchers {
       }
 
       describe("when skill reaches 90%") {
-        val skill = FakeSkillWithSuccessCheck("fake", 30, 50, 6, successCheck = true)
+        val skill = FakeSkillWithSuccessCheck("fake", 30, 50, 6)
 
         val expected =
           SkillImproved(skill, 4, Option(FakeDiceResult(100)), true)

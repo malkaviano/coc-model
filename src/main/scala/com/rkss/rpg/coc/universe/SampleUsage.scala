@@ -64,4 +64,8 @@ object SampleUsage extends App {
       Pushed: ${skillRolled.pushed}
     """
   }
+
+  val improvement = firstAid.improvementCheck
+
+  println(improvement)
 }

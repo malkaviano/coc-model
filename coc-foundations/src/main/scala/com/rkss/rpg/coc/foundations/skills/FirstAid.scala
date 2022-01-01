@@ -4,6 +4,7 @@ import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.rules.behaviors._
 import com.rkss.rpg.coc.concepts.skill.improvement._
+import com.rkss.rpg.coc.concepts.skill.check._
 
 sealed trait FirstAid
     extends Skill
@@ -12,7 +13,10 @@ sealed trait FirstAid
     with SkillRollBehavior
     with PushableSkillRollBehavior
     with SkillSuccessCheck
+    with SkillSuccessCheckable
+    with SkillSuccessfullyUsedBehavior
     with SkillWithImprovedValue
+    with SkillImprovable
     with SkillImprovementBehavior
 
 object FirstAid {
