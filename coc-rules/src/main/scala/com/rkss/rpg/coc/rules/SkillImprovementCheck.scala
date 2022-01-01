@@ -9,8 +9,8 @@ private final class SkillImprovementCheck private () {
   def improvementCheck(skill: Skill with SkillSuccessCheck)(implicit
       hundredSidedDice: HundredSidedDice,
       tenSidedDice: TenSidedDice
-  ): SkillImprovementResult = {
-    val none = SkillImprovementResult(skill, 0, Option.empty[DiceResult], false)
+  ): SkillImproved = {
+    val none = SkillImproved(skill, 0, Option.empty[DiceResult], false)
     skill.successCheck match {
       case true =>
         val roll = tenSidedDice.roll
@@ -18,7 +18,7 @@ private final class SkillImprovementCheck private () {
 
         hundredSidedDice.roll.value match {
           case x if x > skillValue || x > 95 =>
-            SkillImprovementResult(
+            SkillImproved(
               skill,
               roll.value,
               Option(roll),

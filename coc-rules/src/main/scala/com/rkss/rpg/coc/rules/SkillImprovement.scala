@@ -10,7 +10,7 @@ private[coc] final case class SkillImprovement(
     hundredSidedDice: HundredSidedDice,
     tenSidedDice: TenSidedDice
 ) {
-  lazy val result: SkillImprovementResult = {
+  lazy val result: SkillImproved = {
     SkillImprovementCheck.instance.improvementCheck(skill)
   }
 }
