@@ -9,7 +9,7 @@ import com.rkss.rpg.coc.rules.testing.fakes._
 import com.rkss.rpg.coc.rules.testing._
 import com.rkss.rpg.coc.concepts.EntityWithDifficultyValue
 
-class SkillRollBehaviorSpec extends AnyFunSpec with Matchers {
+final class SkillRollBehaviorSpec extends AnyFunSpec with Matchers {
   describe("Skill behavior behavior") {
     val skill = new SkillRollBehavior with EntityWithDifficultyValue with SkillRollable {
       override def baseValue: Int = 40

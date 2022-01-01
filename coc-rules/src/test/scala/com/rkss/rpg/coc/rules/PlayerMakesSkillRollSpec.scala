@@ -10,7 +10,7 @@ import com.rkss.rpg.coc.rules.testing.scenarios._
 import com.rkss.rpg.coc.rules.testing._
 import com.rkss.rpg.coc.rules.testing.fakes._
 
-class PlayerMakesSkillRollSpec
+final class PlayerMakesSkillRollSpec
     extends AnyFeatureSpec
     with GivenWhenThen
     with Matchers {
