@@ -6,7 +6,7 @@ import com.rkss.rpg.coc.rules.behaviors._
 
 sealed trait CreditRating
     extends Skill
-    with SkillWithDifficultyValueBehavior
+    with WithDifficultyValueBehavior
     with SkillRollBehavior
     with SkillPushable
     with PushableSkillRollBehavior

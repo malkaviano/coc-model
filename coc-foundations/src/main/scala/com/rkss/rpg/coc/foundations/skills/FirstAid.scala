@@ -17,7 +17,7 @@ sealed trait FirstAid
     with SkillWithImprovedValue
     with SkillImprovable
     with SkillImprovementBehavior
-    with ImprovableWithDifficultyValueBehavior
+    with WithDifficultyValueBehavior
 
 object FirstAid {
   val name = "First Aid"
