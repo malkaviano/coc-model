@@ -1,6 +1,7 @@
 package com.rkss.rpg.coc.rules
 
 import com.rkss.rpg.coc.concepts.skill._
+import com.rkss.rpg.coc.concepts.skill.improvement._
 import com.rkss.rpg.helpers.dice.{HundredSidedDice, TenSidedDice}
 
 private[coc] final case class SkillImprovement(

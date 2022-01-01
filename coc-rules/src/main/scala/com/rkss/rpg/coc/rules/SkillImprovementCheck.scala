@@ -3,6 +3,7 @@ package com.rkss.rpg.coc.rules
 import com.rkss.rpg.helpers.dice._
 import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.helpers.traits.DiceResult
+import com.rkss.rpg.coc.concepts.skill.improvement._
 
 private final class SkillImprovementCheck private () {
   def improvementCheck(skill: Skill with SkillSuccessCheck)(implicit

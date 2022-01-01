@@ -1,6 +1,6 @@
 package com.rkss.rpg.coc.rules.testing.fakes
 
-import com.rkss.rpg.coc.concepts.skill.SkillSuccessCheck
+import com.rkss.rpg.coc.concepts.skill.improvement._
 
 final case class FakeSkillWithSuccessCheck(
     override val name: String,
