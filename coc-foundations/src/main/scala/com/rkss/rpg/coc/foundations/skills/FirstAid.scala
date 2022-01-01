@@ -13,6 +13,7 @@ sealed trait FirstAid
     with PushableSkillRollBehavior
     with SkillSuccessCheck
     with SkillWithImprovedValue
+    with SkillImprovementBehavior
 
 object FirstAid {
   val name = "First Aid"
@@ -26,10 +27,6 @@ object FirstAid {
       override val occupationPoints: Int = occupation
 
       override val personalPoints: Int = personal
-
-      override def improvedValue: Int = 0 // Temporary code
-
-      override def successCheck: Boolean = false // Temporary code
     }
   }
 }
