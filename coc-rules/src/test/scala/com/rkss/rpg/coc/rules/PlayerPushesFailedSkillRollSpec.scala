@@ -11,7 +11,7 @@ import com.rkss.rpg.coc.rules.testing.scenarios._
 import com.rkss.rpg.coc.rules.testing._
 import com.rkss.rpg.coc.rules.testing.fakes._
 
-final class PlayerPushesSkillRollSpec
+final class PlayerPushesFailedSkillRollSpec
     extends AnyFeatureSpec
     with GivenWhenThen
     with Matchers {
