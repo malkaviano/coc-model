@@ -23,7 +23,7 @@ final class SkillRollBehaviorSpec extends AnyFunSpec with Matchers {
           BonusDice(0),
           PenaltyDice(0),
           HardSuccess,
-          FakeDiceResult(20)
+          SkillRollDiceResult(20)
         )
 
         it("return a SkillRollResult") {

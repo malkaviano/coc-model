@@ -25,7 +25,7 @@ final class SkillRollResolverSpec
         BonusDice(0),
         PenaltyDice(0),
         RegularSuccess,
-        FakeDiceResult(48)
+        SkillRollDiceResult(48)
       )
     )
 
@@ -38,7 +38,7 @@ final class SkillRollResolverSpec
         BonusDice(0),
         PenaltyDice(0),
         Failure,
-        FakeDiceResult(60)
+        SkillRollDiceResult(60)
       )
     )
 
@@ -51,7 +51,7 @@ final class SkillRollResolverSpec
         BonusDice(0),
         PenaltyDice(0),
         Fumble,
-        FakeDiceResult(100)
+        SkillRollDiceResult(100)
       )
     )
 
@@ -64,7 +64,7 @@ final class SkillRollResolverSpec
         BonusDice(0),
         PenaltyDice(0),
         HardSuccess,
-        FakeDiceResult(20)
+        SkillRollDiceResult(20)
       )
     )
 
@@ -77,7 +77,7 @@ final class SkillRollResolverSpec
         BonusDice(0),
         PenaltyDice(0),
         ExtremeSuccess,
-        FakeDiceResult(6)
+        SkillRollDiceResult(6)
       )
     )
 
@@ -90,7 +90,7 @@ final class SkillRollResolverSpec
         BonusDice(0),
         PenaltyDice(0),
         CriticalSuccess,
-        FakeDiceResult(1)
+        SkillRollDiceResult(1)
       )
     )
 
@@ -103,7 +103,7 @@ final class SkillRollResolverSpec
         BonusDice(0),
         PenaltyDice(0),
         RegularSuccess,
-        FakeDiceResult(20)
+        SkillRollDiceResult(20)
       ),
       HardDifficulty
     )
@@ -117,7 +117,7 @@ final class SkillRollResolverSpec
         BonusDice(0),
         PenaltyDice(0),
         HardSuccess,
-        FakeDiceResult(6)
+        SkillRollDiceResult(6)
       ),
       HardDifficulty
     )
@@ -131,7 +131,7 @@ final class SkillRollResolverSpec
         BonusDice(0),
         PenaltyDice(0),
         RegularSuccess,
-        FakeDiceResult(6)
+        SkillRollDiceResult(6)
       ),
       ExtremeDifficulty
     )
@@ -145,7 +145,7 @@ final class SkillRollResolverSpec
         BonusDice(0),
         PenaltyDice(0),
         Failure,
-        FakeDiceResult(97)
+        SkillRollDiceResult(97)
       ),
       RegularDifficulty
     )
@@ -159,21 +159,21 @@ final class SkillRollResolverSpec
         BonusDice(0),
         PenaltyDice(0),
         Fumble,
-        FakeDiceResult(97)
+        SkillRollDiceResult(97)
       ),
       HardDifficulty
     )
 
     it should behave like resolveSkillRoll(
       someCharacteristic,
-      Seq(48, 20, 80),
+      Seq(48, 20),
       SkillRolled(
         someCharacteristic,
         RegularDifficulty,
         BonusDice(2),
         PenaltyDice(1),
         HardSuccess,
-        FakeDiceResult(20)
+        SkillRollDiceResult(20, Seq(48))
       ),
       RegularDifficulty,
       BonusDice(2),
@@ -189,7 +189,7 @@ final class SkillRollResolverSpec
         BonusDice(0),
         PenaltyDice(1),
         Fumble,
-        FakeDiceResult(100)
+        SkillRollDiceResult(100, Seq(48))
       ),
       RegularDifficulty,
       BonusDice(0),
@@ -216,7 +216,7 @@ final class SkillRollResolverSpec
         BonusDice(0),
         PenaltyDice(0),
         RegularSuccess,
-        FakeDiceResult(48),
+        SkillRollDiceResult(48),
         false,
         Option(opposedByRegular)
       )
@@ -232,7 +232,7 @@ final class SkillRollResolverSpec
         BonusDice(0),
         PenaltyDice(0),
         Failure,
-        FakeDiceResult(48),
+        SkillRollDiceResult(48),
         false,
         Option(opposedByHard)
       )
@@ -248,7 +248,7 @@ final class SkillRollResolverSpec
         BonusDice(0),
         PenaltyDice(0),
         HardSuccess,
-        FakeDiceResult(5),
+        SkillRollDiceResult(5),
         false,
         Option(opposedByExtreme)
       )

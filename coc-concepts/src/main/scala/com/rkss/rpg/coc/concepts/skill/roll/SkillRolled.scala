@@ -1,6 +1,5 @@
 package com.rkss.rpg.coc.concepts.skill.roll
 
-import com.rkss.rpg.helpers.traits.DiceResult
 import com.rkss.rpg.coc.concepts.EntityWithDifficultyValue
 
 final case class SkillRolled(
@@ -9,7 +8,7 @@ final case class SkillRolled(
     val bonusDice: BonusDice,
     val penaltyDice: PenaltyDice,
     val rollResult: SkillRolledResult,
-    val rolled: DiceResult,
+    val rolled: SkillRollDiceResult,
     val pushed: Boolean = false,
     val opposedBy: Option[EntityWithDifficultyValue] =
       Option.empty[EntityWithDifficultyValue]

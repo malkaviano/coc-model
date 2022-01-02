@@ -1,7 +1,6 @@
 package com.rkss.rpg.coc.rules.testing.scenarios
 
 import com.rkss.rpg.coc.concepts.skill.roll._
-import com.rkss.rpg.helpers.traits.DiceResult
 
 final case class SkillRollScenario(
     val regular: Int,
@@ -12,5 +11,5 @@ final case class SkillRollScenario(
     val penaltyDice: PenaltyDice,
     val skillRollResult: SkillRolledResult,
     val rolled: Seq[Int],
-    val chosenRoll: DiceResult
+    val chosenRoll: SkillRollDiceResult
 )

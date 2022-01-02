@@ -5,7 +5,6 @@ import org.scalatest.matchers.should.Matchers
 
 import com.rkss.rpg.coc.rules.testing.fakes._
 import com.rkss.rpg.coc.concepts.skill.roll._
-import com.rkss.rpg.coc.rules.testing.fakes.FakeDiceResult
 import com.rkss.rpg.coc.rules.testing.TestingProps
 import com.rkss.rpg.helpers.dice.HundredSidedDice
 
@@ -21,7 +20,7 @@ final class OpposedSkillRollBehaviorSpec extends AnyFunSpec with Matchers {
       BonusDice(0),
       PenaltyDice(0),
       RegularSuccess,
-      FakeDiceResult(19),
+      SkillRollDiceResult(19),
       false,
       Option(opposedBy)
     )

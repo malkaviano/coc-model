@@ -29,7 +29,7 @@ final class PlayerMakesSkillRollSpec
         PenaltyDice(0),
         RegularSuccess,
         Seq(50),
-        FakeDiceResult(50)
+        SkillRollDiceResult(50)
       ),
       SkillRollScenario(
         80,
@@ -40,7 +40,7 @@ final class PlayerMakesSkillRollSpec
         PenaltyDice(0),
         CriticalSuccess,
         Seq(98, 1),
-        FakeDiceResult(1)
+        SkillRollDiceResult(1, Seq(98))
       ),
       SkillRollScenario(
         80,
@@ -51,7 +51,7 @@ final class PlayerMakesSkillRollSpec
         PenaltyDice(2),
         Failure,
         Seq(98, 1),
-        FakeDiceResult(98)
+        SkillRollDiceResult(98, Seq(1))
       )
     ).foreach {
       case SkillRollScenario(
