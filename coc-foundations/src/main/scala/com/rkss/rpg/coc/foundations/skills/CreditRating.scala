@@ -3,9 +3,11 @@ package com.rkss.rpg.coc.foundations.skills
 import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.coc.concepts.skill.Skill
 import com.rkss.rpg.coc.rules.behaviors._
+import com.rkss.rpg.coc.concepts.skill.allocation.SkillWithPointsAllocation
 
 sealed trait CreditRating
     extends Skill
+    with SkillWithPointsAllocation
     with WithDifficultyValueBehavior
     with SkillRollBehavior
     with SkillPushable
