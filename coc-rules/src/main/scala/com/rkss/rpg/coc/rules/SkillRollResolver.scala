@@ -58,7 +58,13 @@ private class SkillRollResolver private () {
 
     val rolled = (1 to dice).map(_ => hundredSidedDice.roll).sortBy(_.value)
 
-    SkillRollDiceResult((if (diff < 0) rolled.last else rolled.head).value)
+    if (diff < 0) {
+      val tmp = rolled.reverse
+
+      SkillRollDiceResult(tmp.head.value, tmp.tail.map(_.value))
+    } else {
+      SkillRollDiceResult(rolled.head.value, rolled.tail.map(_.value))
+    }
   }
 }
 

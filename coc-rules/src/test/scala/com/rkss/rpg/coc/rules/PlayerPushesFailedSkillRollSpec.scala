@@ -46,7 +46,7 @@ final class PlayerPushesFailedSkillRollSpec
         Option(HardDifficulty),
         Option(BonusDice(1)),
         Option.empty[PenaltyDice],
-        SkillRollDiceResult(4)
+        SkillRollDiceResult(4, Seq(20))
       ),
       PushedSkillRollScenario(
         Seq(20, 4, 100),
@@ -54,7 +54,7 @@ final class PlayerPushesFailedSkillRollSpec
         Option(ExtremeDifficulty),
         Option.empty[BonusDice],
         Option(PenaltyDice(2)),
-        SkillRollDiceResult(100)
+        SkillRollDiceResult(100, Seq(20, 4))
       )
     ).foreach {
       case PushedSkillRollScenario(

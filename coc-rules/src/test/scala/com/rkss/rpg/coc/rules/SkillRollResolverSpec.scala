@@ -166,14 +166,14 @@ final class SkillRollResolverSpec
 
     it should behave like resolveSkillRoll(
       someCharacteristic,
-      Seq(48, 20, 80),
+      Seq(48, 20),
       SkillRolled(
         someCharacteristic,
         RegularDifficulty,
         BonusDice(2),
         PenaltyDice(1),
         HardSuccess,
-        SkillRollDiceResult(20)
+        SkillRollDiceResult(20, Seq(48))
       ),
       RegularDifficulty,
       BonusDice(2),
@@ -189,7 +189,7 @@ final class SkillRollResolverSpec
         BonusDice(0),
         PenaltyDice(1),
         Fumble,
-        SkillRollDiceResult(100)
+        SkillRollDiceResult(100, Seq(48))
       ),
       RegularDifficulty,
       BonusDice(0),
