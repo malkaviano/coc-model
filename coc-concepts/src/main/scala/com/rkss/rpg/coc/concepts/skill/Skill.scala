@@ -5,8 +5,4 @@ import com.rkss.rpg.coc.concepts.EntityWithDifficultyValue
 
 private[coc] trait Skill extends EntityWithDifficultyValue with SkillRollable {
   def name: String
-
-  def occupationPoints: Int
-
-  def personalPoints: Int
 }

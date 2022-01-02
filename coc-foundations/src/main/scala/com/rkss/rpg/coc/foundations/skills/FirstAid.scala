@@ -5,9 +5,11 @@ import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.rules.behaviors._
 import com.rkss.rpg.coc.concepts.skill.improvement._
 import com.rkss.rpg.coc.concepts.skill.check._
+import com.rkss.rpg.coc.concepts.skill.allocation.SkillWithPointsAllocation
 
 sealed trait FirstAid
     extends Skill
+    with SkillWithPointsAllocation
     with SkillPushable
     with SkillRollBehavior
     with PushableSkillRollBehavior
