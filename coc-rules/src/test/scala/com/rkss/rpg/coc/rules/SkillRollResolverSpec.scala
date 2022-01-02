@@ -8,11 +8,12 @@ import com.rkss.rpg.helpers.dice.HundredSidedDice
 import com.rkss.rpg.coc.rules.testing._
 import com.rkss.rpg.coc.rules.testing.fakes._
 import com.rkss.rpg.coc.concepts.EntityWithDifficultyValue
+import com.rkss.rpg.coc.concepts.skill.Skill
 
 final class SkillRollResolverSpec
     extends AnyFunSpec
     with Matchers {
-  describe("Resolving the skill roll") {
+  describe("Resolving a skill roll") {
     val someCharacteristic = FakeCharacteristic(50)
 
     it should behave like resolveSkillRoll(
@@ -196,6 +197,64 @@ final class SkillRollResolverSpec
     )
   }
 
+  describe("Resolving a opposed skill roll") {
+    val someSkill = new FakeSkill("fake", 50)
+
+    val opposedByRegular = new  FakeSkill("regular", 30)
+
+    val opposedByHard = new  FakeSkill("hard", 78)
+
+    val opposedByExtreme = new  FakeSkill("extreme", 90)
+
+    it should behave like resolveOpposedSkillRoll(
+      someSkill,
+      opposedByRegular,
+      Seq(48),
+      SkillRolled(
+        someSkill,
+        RegularDifficulty,
+        BonusDice(0),
+        PenaltyDice(0),
+        RegularSuccess,
+        FakeDiceResult(48),
+        false,
+        Option(opposedByRegular)
+      )
+    )
+
+    it should behave like resolveOpposedSkillRoll(
+      someSkill,
+      opposedByHard,
+      Seq(48),
+      SkillRolled(
+        someSkill,
+        HardDifficulty,
+        BonusDice(0),
+        PenaltyDice(0),
+        Failure,
+        FakeDiceResult(48),
+        false,
+        Option(opposedByHard)
+      )
+    )
+
+    it should behave like resolveOpposedSkillRoll(
+      someSkill,
+      opposedByExtreme,
+      Seq(5),
+      SkillRolled(
+        someSkill,
+        ExtremeDifficulty,
+        BonusDice(0),
+        PenaltyDice(0),
+        HardSuccess,
+        FakeDiceResult(5),
+        false,
+        Option(opposedByExtreme)
+      )
+    )
+  }
+
   private def resolveSkillRoll(
       rollable: EntityWithDifficultyValue,
       diceResults: Seq[Int],
@@ -222,6 +281,41 @@ final class SkillRollResolverSpec
             skillRollResolver.roll(
               rollable,
               difficulty,
+              bonusDice,
+              penaltyDice
+            ) shouldBe expected
+          }
+        }
+      }
+    }
+  }
+
+  private def resolveOpposedSkillRoll(
+      skill: Skill,
+      opposedBy: Skill,
+      diceResults: Seq[Int],
+      expected: SkillRolled,
+      bonusDice: BonusDice = BonusDice(0),
+      penaltyDice: PenaltyDice = PenaltyDice(0)
+  ): Unit = {
+    val rollStreak = diceResults.mkString(", ")
+
+    implicit val mockedDice = HundredSidedDice(
+      TestingProps.fakeRng(diceResults.toSeq)
+    )
+
+    val skillRollResolver =
+      SkillRollResolver.instance
+
+    describe(s"when opposing skill value is ${opposedBy.value()}") {
+      describe(
+        s"when tested skill / characteristic has regular value ${skill.value()}"
+      ) {
+        describe(s"when rolling $rollStreak") {
+          it(s"should return ${expected}") {
+            skillRollResolver.rollOpposedBy(
+              skill,
+              opposedBy,
               bonusDice,
               penaltyDice
             ) shouldBe expected

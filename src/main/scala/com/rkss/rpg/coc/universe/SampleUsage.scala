@@ -44,25 +44,26 @@ object SampleUsage extends App {
   val firstAidRollResult =
     firstAid.roll(RegularDifficulty, BonusDice(0), PenaltyDice(0))
 
-  println(s"First Aid: ${printSkillRollResult(firstAidRollResult)}")
+  println(s"First Aid roll: ${printSkillRollResult(firstAidRollResult)}")
 
   val pushedFirstAidRoll = firstAid.pushRoll()
 
   pushedFirstAidRoll.foreach(p => {
-    println(s"Pushing the First Aid: ${printSkillRollResult(p)}")
+    println(s"Pushing the First Aid roll: ${printSkillRollResult(p)}")
   })
 
   private def printSkillRollResult(skillRolled: SkillRolled): String = {
     s"""
-      Base value: ${skillRolled.rollable.baseValue}
-      Roll value: ${skillRolled.rollable.value(skillRolled.difficulty)}
-      Difficulty: ${skillRolled.difficulty}
-      Bonus dice: ${skillRolled.bonusDice}
-      Penalty dice: ${skillRolled.penaltyDice}
-      Rolled: ${skillRolled.rolled}
-      Roll result: ${skillRolled.rollResult}
-      Pushed: ${skillRolled.pushed}
-    """
+      | Base value: ${skillRolled.rollable.baseValue}
+      | Roll value: ${skillRolled.rollable.value(skillRolled.difficulty)}
+      | Difficulty: ${skillRolled.difficulty}
+      | Bonus dice: ${skillRolled.bonusDice}
+      | Penalty dice: ${skillRolled.penaltyDice}
+      | Rolled: ${skillRolled.rolled}
+      | Roll result: ${skillRolled.rollResult}
+      | Pushed: ${skillRolled.pushed}
+      | Opposing skill: ${skillRolled.opposedBy}
+    """.stripMargin
   }
 
   firstAid.checkUsedWithSuccess()
