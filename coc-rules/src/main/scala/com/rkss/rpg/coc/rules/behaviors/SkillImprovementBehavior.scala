@@ -5,7 +5,7 @@ import com.rkss.rpg.coc.concepts.skill.improvement._
 import com.rkss.rpg.coc.concepts.skill.check._
 import com.rkss.rpg.helpers.dice._
 import com.rkss.rpg.coc.rules._
-import com.rkss.rpg.helpers.traits.DiceResult
+import com.rkss.rpg.coc.concepts.skill.roll.SkillRollDiceResult
 
 private[coc] trait SkillImprovementBehavior
     extends SkillSuccessfullyUsedBehavior {
@@ -33,7 +33,7 @@ private[coc] trait SkillImprovementBehavior
 
         result
       }
-      case _ => SkillImproved(this, 0, Option.empty[DiceResult], false)
+      case _ => SkillImproved(this, 0, Option.empty[SkillRollDiceResult], false)
     }
   }
 }

@@ -71,7 +71,7 @@ final class PushableSkillRollBehaviorSpec extends AnyFunSpec with Matchers {
           BonusDice(0),
           PenaltyDice(0),
           RegularSuccess,
-          FakeDiceResult(40),
+          SkillRollDiceResult(40),
           true
         )
 

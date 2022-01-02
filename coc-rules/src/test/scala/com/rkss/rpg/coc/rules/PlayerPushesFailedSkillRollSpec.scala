@@ -30,7 +30,7 @@ final class PlayerPushesFailedSkillRollSpec
         Option.empty[SkillRollDifficultyLevel],
         Option.empty[BonusDice],
         Option.empty[PenaltyDice],
-        FakeDiceResult(10)
+        SkillRollDiceResult(10)
       ),
       PushedSkillRollScenario(
         Seq(10),
@@ -38,7 +38,7 @@ final class PlayerPushesFailedSkillRollSpec
         Option(ExtremeDifficulty),
         Option.empty[BonusDice],
         Option.empty[PenaltyDice],
-        FakeDiceResult(10)
+        SkillRollDiceResult(10)
       ),
       PushedSkillRollScenario(
         Seq(20, 4),
@@ -46,7 +46,7 @@ final class PlayerPushesFailedSkillRollSpec
         Option(HardDifficulty),
         Option(BonusDice(1)),
         Option.empty[PenaltyDice],
-        FakeDiceResult(4)
+        SkillRollDiceResult(4)
       ),
       PushedSkillRollScenario(
         Seq(20, 4, 100),
@@ -54,7 +54,7 @@ final class PlayerPushesFailedSkillRollSpec
         Option(ExtremeDifficulty),
         Option.empty[BonusDice],
         Option(PenaltyDice(2)),
-        FakeDiceResult(100)
+        SkillRollDiceResult(100)
       )
     ).foreach {
       case PushedSkillRollScenario(
@@ -75,7 +75,7 @@ final class PlayerPushesFailedSkillRollSpec
             BonusDice(0),
             PenaltyDice(0),
             Failure,
-            FakeDiceResult(95)
+            SkillRollDiceResult(95)
           )
 
           val pushedDifficulty =

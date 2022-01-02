@@ -7,6 +7,7 @@ import com.rkss.rpg.coc.rules.testing.fakes._
 import com.rkss.rpg.helpers.dice._
 import com.rkss.rpg.coc.rules.testing.TestingProps
 import com.rkss.rpg.coc.concepts.skill.improvement._
+import com.rkss.rpg.coc.concepts.skill.roll.SkillRollDiceResult
 
 final class SkillImprovementCheckSpec extends AnyFunSpec with Matchers {
   describe("Skill Improvement Check") {
@@ -14,7 +15,7 @@ final class SkillImprovementCheckSpec extends AnyFunSpec with Matchers {
       val skill = FakeSkillWithSuccessCheck("fake", 30)
 
       val expected =
-        SkillImproved(skill, 0, Option(FakeDiceResult(10)), false)
+        SkillImproved(skill, 0, Option(SkillRollDiceResult(10)), false)
 
       it should behave like improvementCheck(skill, Seq(10), Seq(8), expected)
     }
@@ -23,7 +24,7 @@ final class SkillImprovementCheckSpec extends AnyFunSpec with Matchers {
       val skill = FakeSkillWithSuccessCheck("fake", 30)
 
       val expected =
-        SkillImproved(skill, 8, Option(FakeDiceResult(90)), false)
+        SkillImproved(skill, 8, Option(SkillRollDiceResult(90)), false)
 
       it should behave like improvementCheck(skill, Seq(90), Seq(8), expected)
 
@@ -31,7 +32,7 @@ final class SkillImprovementCheckSpec extends AnyFunSpec with Matchers {
         val skill = FakeSkillWithSuccessCheck("fake", 30, 50, 21)
 
         val expected =
-          SkillImproved(skill, 6, Option(FakeDiceResult(98)), false)
+          SkillImproved(skill, 6, Option(SkillRollDiceResult(98)), false)
 
         it should behave like improvementCheck(skill, Seq(98), Seq(6), expected)
       }
@@ -40,7 +41,7 @@ final class SkillImprovementCheckSpec extends AnyFunSpec with Matchers {
         val skill = FakeSkillWithSuccessCheck("fake", 30, 50, 6)
 
         val expected =
-          SkillImproved(skill, 4, Option(FakeDiceResult(100)), true)
+          SkillImproved(skill, 4, Option(SkillRollDiceResult(100)), true)
 
         it should behave like improvementCheck(skill, Seq(100), Seq(4), expected)
       }
