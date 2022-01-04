@@ -6,6 +6,7 @@ import com.rkss.rpg.coc.rules.SkillRollValue
 import com.rkss.rpg.coc.concepts.skill.roll.RegularDifficulty
 import com.rkss.rpg.coc.concepts.skill.improvement.SkillWithImprovedValue
 import com.rkss.rpg.coc.concepts.skill.allocation.SkillWithPointsAllocation
+import com.rkss.rpg.coc.concepts.EntityWithModificationValue
 
 private[coc] trait WithDifficultyValueBehavior {
   self: EntityWithDifficultyValue =>
@@ -24,6 +25,12 @@ private[coc] trait WithDifficultyValueBehavior {
       case _ => 0
     }
 
-    SkillRollValue(baseValue + allocated + improved).value(difficulty)
+    val modification = self match {
+      case withModificationValue: EntityWithModificationValue =>
+        withModificationValue.modification
+      case _ => 0
+    }
+
+    SkillRollValue(baseValue + allocated + improved + modification).value(difficulty)
   }
 }
