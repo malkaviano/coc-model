@@ -11,15 +11,16 @@ sealed trait Accounting
     extends Skill
     with SkillWithPointsAllocation
     with SkillPushable
-    with SkillRollBehavior
-    with PushableSkillRollBehavior
     with SkillSuccessCheck
     with SkillSuccessCheckable
-    with SkillSuccessfullyUsedBehavior
     with SkillWithImprovedValue
     with SkillImprovable
+    with SkillRollBehavior
+    with SkillSuccessfullyUsedBehavior
+    with PushableSkillRollBehavior
     with SkillImprovementBehavior
     with WithDifficultyValueBehavior
+    with WithModificationValueBehavior
 
 object Accounting {
   val name = "Accounting"

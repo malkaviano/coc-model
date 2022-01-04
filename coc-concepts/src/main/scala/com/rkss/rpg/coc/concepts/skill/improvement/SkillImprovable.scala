@@ -4,7 +4,7 @@ import com.rkss.rpg.coc.concepts.skill.Skill
 import com.rkss.rpg.coc.concepts.skill.check._
 import com.rkss.rpg.helpers.dice._
 
-private[coc] trait SkillImprovable {
+trait SkillImprovable {
   self: Skill with SkillSuccessCheck with SkillWithImprovedValue =>
 
   def improvementCheck(implicit

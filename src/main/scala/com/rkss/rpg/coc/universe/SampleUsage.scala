@@ -3,9 +3,37 @@ package com.rkss.rpg.script // Package is outside coc on purpose to check visibi
 import com.rkss.rpg.coc.foundations.characteristics._
 import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.coc.foundations.skills._
+import com.rkss.rpg.coc.concepts.skill.Skill
+import com.rkss.rpg.coc.concepts.skill.improvement.SkillWithImprovedValue
 
 object SampleUsage extends App {
   import com.rkss.rpg.helpers.dice.Bag._
+
+  private def printSkillRollResult(skillRolled: SkillRolled): String = {
+    s"""
+      | Base value: ${skillRolled.rollable.baseValue}
+      | Roll value: ${skillRolled.rollable.value(skillRolled.difficulty)}
+      | Difficulty: ${skillRolled.difficulty}
+      | Bonus dice: ${skillRolled.bonusDice}
+      | Penalty dice: ${skillRolled.penaltyDice}
+      | Rolled: ${skillRolled.rolled}
+      | Roll result: ${skillRolled.rollResult}
+      | Pushed: ${skillRolled.pushed}
+    """.stripMargin
+  }
+
+  private def printSkill(skill: Skill): Unit = {
+    println(s"""${skill.name}
+       | base value: ${skill.baseValue}
+       | modified: ${skill.modificationValue}
+       | regular: ${skill.value()}
+       | hard: ${skill.value(HardDifficulty)}
+       | extreme: ${skill.value(ExtremeDifficulty)}
+      """.stripMargin)
+
+    if (skill.isInstanceOf[SkillWithImprovedValue])
+      println("improved:" + skill.asInstanceOf[SkillWithImprovedValue].improvedValue)
+  }
 
   println("Sample usage of foundations")
 
@@ -32,40 +60,16 @@ object SampleUsage extends App {
 
   val firstAid = FirstAid.create(10, 15)
 
-  println(s"""${firstAid.name}
-            | base value: ${firstAid.baseValue}
-            | occupation points: ${firstAid.occupationPoints}
-            | personal points: ${firstAid.personalPoints}
-            | regular: ${firstAid.value()}
-            | hard: ${firstAid.value(HardDifficulty)}
-            | extreme: ${firstAid.value(ExtremeDifficulty)}
-            | success check: ${firstAid.successCheck}
-            | improved value: ${firstAid.improvedValue}
-            """.stripMargin)
-
   val firstAidRollResult =
-    firstAid.roll(RegularDifficulty, BonusDice(0), PenaltyDice(0))
+    firstAid.roll(RegularDifficulty, BonusDice(1), PenaltyDice(0))
 
   println(s"First Aid roll: ${printSkillRollResult(firstAidRollResult)}")
 
-  val pushedFirstAidRoll = firstAid.pushRoll()
+  val pushedFirstAidRoll = firstAid.pushRoll(bonusDice = Option(BonusDice(0)))
 
   pushedFirstAidRoll.foreach(p => {
     println(s"Pushing the First Aid roll: ${printSkillRollResult(p)}")
   })
-
-  private def printSkillRollResult(skillRolled: SkillRolled): String = {
-    s"""
-      | Base value: ${skillRolled.rollable.baseValue}
-      | Roll value: ${skillRolled.rollable.value(skillRolled.difficulty)}
-      | Difficulty: ${skillRolled.difficulty}
-      | Bonus dice: ${skillRolled.bonusDice}
-      | Penalty dice: ${skillRolled.penaltyDice}
-      | Rolled: ${skillRolled.rolled}
-      | Roll result: ${skillRolled.rollResult}
-      | Pushed: ${skillRolled.pushed}
-    """.stripMargin
-  }
 
   firstAid.checkUsedWithSuccess()
 
@@ -87,20 +91,13 @@ object SampleUsage extends App {
 
   println(improvement4)
 
-  println(firstAid.value())
+  printSkill(firstAid)
 
   val accounting = Accounting.create(10, 15)
 
-  println(s"""${accounting.name}
-            | base value: ${accounting.baseValue}
-            | occupation points: ${accounting.occupationPoints}
-            | personal points: ${accounting.personalPoints}
-            | regular: ${accounting.value()}
-            | hard: ${accounting.value(HardDifficulty)}
-            | extreme: ${accounting.value(ExtremeDifficulty)}
-            | success check: ${accounting.successCheck}
-            | improved value: ${accounting.improvedValue}
-            """.stripMargin)
+  accounting.modify(5)
+
+  printSkill(accounting)
 
   val accountingRollResult =
     accounting.roll(RegularDifficulty, BonusDice(0), PenaltyDice(0))
@@ -112,4 +109,8 @@ object SampleUsage extends App {
   pushedAccountingRoll.foreach(p => {
     println(s"Pushing the Accounting roll: ${printSkillRollResult(p)}")
   })
+
+  val cr = CreditRating.create(10, 15)
+
+  printSkill(cr)
 }
