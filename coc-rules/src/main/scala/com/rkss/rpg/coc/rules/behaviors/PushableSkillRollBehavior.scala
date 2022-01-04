@@ -18,7 +18,7 @@ private[coc] trait PushableSkillRollBehavior extends SkillRollBehavior {
         if (skillRolled.pushed) {
           Option.empty[SkillRolled]
         } else {
-          PushedSkillRoll(skillRolled).result match {
+          PushedSkillRoll(skillRolled, difficulty, bonusDice, penaltyDice).result match {
             case Some(value) => {
               lastSkillRolled = Option(
                 value.copy(pushed = true)
