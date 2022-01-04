@@ -20,8 +20,6 @@ sealed trait Accounting
     with SkillImprovable
     with SkillImprovementBehavior
     with WithDifficultyValueBehavior
-    with SkillRollOpposable
-    with OpposedSkillRollBehavior
 
 object Accounting {
   val name = "Accounting"

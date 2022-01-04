@@ -9,7 +9,5 @@ final case class SkillRolled(
     val penaltyDice: PenaltyDice,
     val rollResult: SkillRolledResult,
     val rolled: SkillRollDiceResult,
-    val pushed: Boolean = false,
-    val opposedBy: Option[EntityWithDifficultyValue] =
-      Option.empty[EntityWithDifficultyValue]
+    val pushed: Boolean = false
 )
