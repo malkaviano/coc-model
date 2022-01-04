@@ -11,7 +11,7 @@ private[coc] trait WithModificationValueBehavior {
     _modification += value
   }
 
-  override def modification: Int = {
+  override def modificationValue: Int = {
     _modification
   }
 }

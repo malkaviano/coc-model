@@ -9,14 +9,14 @@ final class WithModificationValueBehaviorSpec extends AnyFunSpec with Matchers {
     val fake = FakeCharacteristic(10)
 
     it("should have initial value 0") {
-      fake.modification shouldBe 0
+      fake.modificationValue shouldBe 0
     }
 
     describe("Modifying an entity with 10") {
       it("should have modification value 10") {
         fake.modify(10)
 
-        fake.modification shouldBe 10
+        fake.modificationValue shouldBe 10
       }
     }
   }
