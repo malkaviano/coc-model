@@ -21,7 +21,7 @@ private[coc] trait PushableSkillRollBehavior extends SkillRollBehavior {
           PushedSkillRoll(skillRolled).result match {
             case Some(value) => {
               lastSkillRolled = Option(
-                value.copy(pushed = true, opposedBy = skillRolled.opposedBy)
+                value.copy(pushed = true)
               )
 
               lastSkillRolled

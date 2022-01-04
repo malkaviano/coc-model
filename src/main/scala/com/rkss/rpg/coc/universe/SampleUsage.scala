@@ -62,7 +62,6 @@ object SampleUsage extends App {
       | Rolled: ${skillRolled.rolled}
       | Roll result: ${skillRolled.rollResult}
       | Pushed: ${skillRolled.pushed}
-      | Opposing skill: ${skillRolled.opposedBy}
     """.stripMargin
   }
 
@@ -102,7 +101,7 @@ object SampleUsage extends App {
             """.stripMargin)
 
   val accountingRollResult =
-    accounting.rollOpposedBy(Accounting.create(20, 25), BonusDice(0), PenaltyDice(0))
+    accounting.roll(RegularDifficulty, BonusDice(0), PenaltyDice(0))
 
   println(s"Accounting roll: ${printSkillRollResult(accountingRollResult)}")
 

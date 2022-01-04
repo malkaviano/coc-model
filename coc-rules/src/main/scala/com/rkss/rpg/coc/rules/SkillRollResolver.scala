@@ -3,7 +3,6 @@ package com.rkss.rpg.coc.rules
 import com.rkss.rpg.helpers.dice.HundredSidedDice
 import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.coc.concepts.EntityWithDifficultyValue
-import com.rkss.rpg.coc.concepts.skill.Skill
 
 private class SkillRollResolver private () {
   def roll(
@@ -30,23 +29,6 @@ private class SkillRollResolver private () {
     }
 
     SkillRolled(rollable, difficulty, bonusDice, penaltyDice, result, rolled)
-  }
-
-  def rollOpposedBy(
-      skill: Skill,
-      opposedBy: EntityWithDifficultyValue,
-      bonusDice: BonusDice,
-      penaltyDice: PenaltyDice
-  )(implicit hundredSidedDice: HundredSidedDice): SkillRolled = {
-    val difficulty = opposedBy.value() match {
-      case x if x >= 90 => ExtremeDifficulty
-      case x if x >= 50 => HardDifficulty
-      case _            => RegularDifficulty
-    }
-
-    val result = roll(skill, difficulty, bonusDice, penaltyDice)
-
-    result.copy(opposedBy = Option(opposedBy))
   }
 
   private def rollDice(bonusDice: BonusDice, penaltyDice: PenaltyDice)(implicit
