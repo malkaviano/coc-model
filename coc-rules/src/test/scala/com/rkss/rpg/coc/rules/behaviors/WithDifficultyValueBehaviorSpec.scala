@@ -11,24 +11,24 @@ import com.rkss.rpg.coc.rules.testing.TestingProps
 final class WithDifficultyValueBehaviorSpec extends AnyFunSpec with Matchers {
   describe("Getting value based on difficulty") {
     describe("Characteristic value") {
-      val charactetistic = FakeCharacteristic(70)
+      val characteristic = FakeCharacteristic(70)
 
-      charactetistic.modify(-20)
+      characteristic.modify(-20)
 
       it should behave like getDifficultyValue(
-        charactetistic,
+        characteristic,
         50,
         RegularDifficulty
       )
 
       it should behave like getDifficultyValue(
-        charactetistic,
+        characteristic,
         25,
         HardDifficulty
       )
 
       it should behave like getDifficultyValue(
-        charactetistic,
+        characteristic,
         10,
         ExtremeDifficulty
       )

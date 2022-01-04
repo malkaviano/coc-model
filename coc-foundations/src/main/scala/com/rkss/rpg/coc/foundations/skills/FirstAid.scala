@@ -11,15 +11,16 @@ sealed trait FirstAid
     extends Skill
     with SkillWithPointsAllocation
     with SkillPushable
-    with SkillRollBehavior
-    with PushableSkillRollBehavior
     with SkillSuccessCheck
     with SkillSuccessCheckable
-    with SkillSuccessfullyUsedBehavior
     with SkillWithImprovedValue
     with SkillImprovable
+    with SkillRollBehavior
+    with PushableSkillRollBehavior
+    with SkillSuccessfullyUsedBehavior
     with SkillImprovementBehavior
     with WithDifficultyValueBehavior
+    with WithModificationValueBehavior
 
 object FirstAid {
   val name = "First Aid"

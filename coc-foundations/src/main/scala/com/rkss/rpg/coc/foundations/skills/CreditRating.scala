@@ -8,10 +8,11 @@ import com.rkss.rpg.coc.concepts.skill.allocation.SkillWithPointsAllocation
 sealed trait CreditRating
     extends Skill
     with SkillWithPointsAllocation
-    with WithDifficultyValueBehavior
-    with SkillRollBehavior
     with SkillPushable
+    with SkillRollBehavior
+    with WithDifficultyValueBehavior
     with PushableSkillRollBehavior
+    with WithModificationValueBehavior
 
 object CreditRating {
   val name = "Credit Rating"

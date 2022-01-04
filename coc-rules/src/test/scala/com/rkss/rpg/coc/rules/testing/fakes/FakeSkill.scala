@@ -13,3 +13,4 @@ class FakeSkill(
     with WithDifficultyValueBehavior
     with SkillRollBehavior
     with SkillWithPointsAllocation
+    with WithModificationValueBehavior

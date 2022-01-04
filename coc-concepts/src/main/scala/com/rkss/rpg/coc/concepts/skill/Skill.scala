@@ -1,8 +1,12 @@
 package com.rkss.rpg.coc.concepts.skill
 
 import com.rkss.rpg.coc.concepts.skill.roll._
-import com.rkss.rpg.coc.concepts.EntityWithDifficultyValue
+import com.rkss.rpg.coc.concepts._
 
-private[coc] trait Skill extends EntityWithDifficultyValue with SkillRollable {
+trait Skill
+    extends EntityWithDifficultyValue
+    with SkillRollable
+    with EntityWithModificationValue
+    with ModifiableValue {
   def name: String
 }
