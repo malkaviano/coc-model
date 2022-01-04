@@ -11,6 +11,8 @@ object SampleUsage extends App {
 
   val strength = Strength(40)
 
+  strength.modify(10)
+
   println(s"""${strength.name}
               | regular: ${strength.value()}
               | hard: ${strength.value(HardDifficulty)}
