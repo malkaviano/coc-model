@@ -57,7 +57,7 @@ lazy val foundations = (project in file("coc-foundations"))
   .aggregate(concepts)
   .dependsOn(concepts)
   .aggregate(rules)
-  .dependsOn(rules)
+  .dependsOn(rules % "compile->compile;test->test")
   .settings(
     name := "coc-foundations",
     libraryDependencies ++= Seq(
