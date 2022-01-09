@@ -3,7 +3,7 @@ package com.rkss.rpg.coc.rules.behaviors
 import com.rkss.rpg.coc.concepts._
 import com.rkss.rpg.helpers.dice.HundredSidedDice
 
-trait WithBasicRollBehavior {
+private[coc] trait WithBasicRollBehavior {
   self: EntityWithBasicRoll =>
 
   override def roll(implicit
