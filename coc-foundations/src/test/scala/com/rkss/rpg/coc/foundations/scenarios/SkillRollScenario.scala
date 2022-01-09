@@ -13,17 +13,17 @@ trait SkillRollScenario {
 
   def makingASkillRoll(spec: SkillRollSpec): Unit = {
 
-    Scenario(s"Making a skill roll") {
-      val (difficulty, bonusDice, penaltyDice, rolled, expected, entity) =
-        (
-          spec.difficulty,
-          spec.bonusDice,
-          spec.penaltyDice,
-          spec.rolled,
-          spec.expected,
-          spec.entity
-        )
+    val (difficulty, bonusDice, penaltyDice, rolled, expected, entity) =
+      (
+        spec.difficulty,
+        spec.bonusDice,
+        spec.penaltyDice,
+        spec.rolled,
+        spec.expected,
+        spec.entity
+      )
 
+    Scenario(s"Making a skill roll for ${entity}") {
       Given(s"My Skill / Characteristic value is ${entity.value()}")
       And(s"The difficulty is $difficulty")
       And(s"The bonus dice is ${bonusDice.value}")
