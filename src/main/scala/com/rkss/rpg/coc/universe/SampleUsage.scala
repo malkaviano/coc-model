@@ -23,7 +23,7 @@ object SampleUsage extends App {
   }
 
   private def printSkill(skill: Skill): Unit = {
-    println(s"""${skill.name}
+    println(s"""${skill.id}
        | base value: ${skill.baseValue}
        | modified: ${skill.modificationValue}
        | regular: ${skill.value()}
@@ -41,7 +41,7 @@ object SampleUsage extends App {
 
   strength.modify(10)
 
-  println(s"""${strength.name}
+  println(s"""${strength.id}
               | regular: ${strength.value()}
               | hard: ${strength.value(HardDifficulty)}
               | extreme: ${strength.value(ExtremeDifficulty)}

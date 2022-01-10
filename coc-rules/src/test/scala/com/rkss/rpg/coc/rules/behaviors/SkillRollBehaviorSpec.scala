@@ -10,7 +10,7 @@ import com.rkss.rpg.coc.rules.testing._
 
 final class SkillRollBehaviorSpec extends AnyFunSpec with Matchers {
   describe("Skill roll behavior") {
-    val skill = new FakeSkill("fake", 40)
+    val skill = new FakeSkill(40)
 
     describe("Skill roll") {
       describe("when making a skill roll") {

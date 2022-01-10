@@ -9,7 +9,7 @@ final class SkillSuccessfullyUsedBehaviorSpec extends AnyFunSpec with Matchers {
     describe("Used with success") {
       describe("A skill not checked yet") {
         it("returns false") {
-          val skill = FakeSkillWithSuccessCheck("fake", 20, 30, 10)
+          val skill = FakeSkillWithSuccessCheck(20, 30, 10)
 
           skill.successCheck shouldBe false
         }
@@ -17,7 +17,7 @@ final class SkillSuccessfullyUsedBehaviorSpec extends AnyFunSpec with Matchers {
 
       describe("A skill checked with success") {
         it("returns true") {
-          val skill = FakeSkillWithSuccessCheck("fake", 20, 30, 10)
+          val skill = FakeSkillWithSuccessCheck(20, 30, 10)
 
           skill.checkUsedWithSuccess()
 

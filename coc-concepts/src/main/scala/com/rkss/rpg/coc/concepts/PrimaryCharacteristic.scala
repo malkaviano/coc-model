@@ -8,5 +8,5 @@ trait PrimaryCharacteristic
     with ModifiableValue
     with SkillRollable
     with SkillPushable {
-  def name: String
+  def id: Identification
 }

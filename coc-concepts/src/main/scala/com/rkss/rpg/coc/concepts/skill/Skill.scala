@@ -8,5 +8,5 @@ trait Skill
     with SkillRollable
     with EntityWithModificationValue
     with ModifiableValue {
-  def name: String
+  def id: Identification
 }

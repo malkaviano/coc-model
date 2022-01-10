@@ -6,6 +6,7 @@ import com.rkss.rpg.coc.rules.behaviors._
 import com.rkss.rpg.coc.concepts.skill.improvement._
 import com.rkss.rpg.coc.concepts.skill.check._
 import com.rkss.rpg.coc.concepts.skill.allocation.SkillWithPointsAllocation
+import com.rkss.rpg.coc.concepts._
 
 sealed trait FirstAid
     extends Skill
@@ -23,11 +24,9 @@ sealed trait FirstAid
     with WithModificationValueBehavior
 
 object FirstAid {
-  val name = "First Aid"
-
   def create(occupation: Int = 0, personal: Int = 0): FirstAid = {
     new FirstAid {
-      override val name: String = FirstAid.name
+      override val id: Identification = SkillFirstAid
 
       override val baseValue: Int = 30
 

@@ -35,7 +35,7 @@ final class WithDifficultyValueBehaviorSpec extends AnyFunSpec with Matchers {
     }
 
     describe("Skill value") {
-      val skill = FakeSkillImprovable("fake", 40, 10)
+      val skill = FakeSkillImprovable(40, 10)
 
       skill.checkUsedWithSuccess()
 
