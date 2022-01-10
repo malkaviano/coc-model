@@ -10,5 +10,5 @@ final case class FakeCharacteristic(
     with WithDifficultyValueBehavior
     with SkillRollBehavior
     with PushableSkillRollBehavior {
-  override val name: String = "FakeCharacteristic"
+  override val id: Identification = CharacteristicStrength
 }
