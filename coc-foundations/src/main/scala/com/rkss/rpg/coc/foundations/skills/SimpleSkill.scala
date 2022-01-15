@@ -8,8 +8,12 @@ import com.rkss.rpg.coc.concepts.skill.check._
 import com.rkss.rpg.coc.concepts.skill.allocation.SkillWithPointsAllocation
 import com.rkss.rpg.coc.concepts._
 
-sealed trait Accounting
-    extends Skill
+final case class SimpleSkill(
+    override val id: Identification,
+    override val baseValue: Int,
+    override val occupationPoints: Int = 0,
+    override val personalPoints: Int = 0
+) extends Skill
     with SkillWithPointsAllocation
     with SkillPushable
     with SkillSuccessCheck
@@ -22,17 +26,3 @@ sealed trait Accounting
     with SkillImprovementBehavior
     with WithDifficultyValueBehavior
     with WithModificationValueBehavior
-
-object Accounting {
-  def create(occupation: Int = 0, personal: Int = 0): Accounting = {
-    new Accounting {
-      override val id: Identification = SkillAccounting
-
-      override val baseValue: Int = 5
-
-      override val occupationPoints: Int = occupation
-
-      override val personalPoints: Int = personal
-    }
-  }
-}

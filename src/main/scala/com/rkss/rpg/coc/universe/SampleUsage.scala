@@ -3,8 +3,9 @@ package com.rkss.rpg.script // Package is outside coc on purpose to check visibi
 import com.rkss.rpg.coc.foundations.characteristics._
 import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.coc.foundations.skills._
-import com.rkss.rpg.coc.concepts.skill.Skill
-import com.rkss.rpg.coc.concepts.skill.improvement.SkillWithImprovedValue
+import com.rkss.rpg.coc.concepts.skill._
+import com.rkss.rpg.coc.concepts.skill.improvement._
+import com.rkss.rpg.coc.concepts._
 
 object SampleUsage extends App {
   import com.rkss.rpg.helpers.dice.Bag._
@@ -37,7 +38,7 @@ object SampleUsage extends App {
 
   println("Sample usage of foundations")
 
-  val strength = Strength(40)
+  val strength = AnyCharacteristic(CharacteristicStrength, 40)
 
   strength.modify(10)
 
@@ -58,7 +59,7 @@ object SampleUsage extends App {
     println(s"Pushing the strength: ${printSkillRollResult(p)}")
   })
 
-  val firstAid = FirstAid.create(10, 15)
+  val firstAid = SimpleSkill(SkillFirstAid, 30, 10, 15)
 
   val firstAidRollResult =
     firstAid.roll(RegularDifficulty, BonusDice(1), PenaltyDice(0))
@@ -93,7 +94,7 @@ object SampleUsage extends App {
 
   printSkill(firstAid)
 
-  val accounting = Accounting.create(10, 15)
+  val accounting = SimpleSkill(SkillAccounting, 5, 10, 15)
 
   accounting.modify(5)
 
@@ -110,7 +111,7 @@ object SampleUsage extends App {
     println(s"Pushing the Accounting roll: ${printSkillRollResult(p)}")
   })
 
-  val cr = CreditRating.create(10, 15)
+  // val cr = CreditRating.create(10, 15)
 
-  printSkill(cr)
+  // printSkill(cr)
 }

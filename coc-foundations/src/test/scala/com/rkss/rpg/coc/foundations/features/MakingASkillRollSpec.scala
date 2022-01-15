@@ -7,8 +7,9 @@ import org.scalatest.matchers.should.Matchers
 import com.rkss.rpg.coc.foundations.specs.scenarios.SkillRollScenario
 import com.rkss.rpg.coc.foundations.characteristics._
 import com.rkss.rpg.coc.concepts.skill.roll._
-import com.rkss.rpg.coc.foundations.specs.SkillRollSpec
-import com.rkss.rpg.coc.foundations.skills.Accounting
+import com.rkss.rpg.coc.foundations.specs._
+import com.rkss.rpg.coc.foundations.skills._
+import com.rkss.rpg.coc.concepts._
 
 final class MakingASkillRollSpec
     extends AnyFeatureSpec
@@ -21,7 +22,7 @@ final class MakingASkillRollSpec
 
   Seq(
     SkillRollSpec(
-      Strength(50),
+      AnyCharacteristic(CharacteristicStrength, 50),
       RegularDifficulty,
       BonusDice(0),
       PenaltyDice(0),
@@ -30,7 +31,7 @@ final class MakingASkillRollSpec
       SkillRollDiceResult(10)
     ),
     SkillRollSpec(
-      Accounting.create(20, 15),
+      SimpleSkill(SkillAccounting, 5, 20, 15),
       RegularDifficulty,
       BonusDice(0),
       PenaltyDice(1),
