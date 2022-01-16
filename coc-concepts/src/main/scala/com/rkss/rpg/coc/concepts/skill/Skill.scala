@@ -7,6 +7,4 @@ trait Skill
     extends EntityWithDifficultyValue
     with SkillRollable
     with EntityWithModificationValue
-    with ModifiableValue {
-  def id: Identification
-}
+    with ModifiableValue

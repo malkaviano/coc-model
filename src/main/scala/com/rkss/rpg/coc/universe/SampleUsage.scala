@@ -5,7 +5,6 @@ import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.coc.foundations.skills._
 import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.concepts.skill.improvement._
-import com.rkss.rpg.coc.concepts._
 
 object SampleUsage extends App {
   import com.rkss.rpg.helpers.dice.Bag._
@@ -24,7 +23,7 @@ object SampleUsage extends App {
   }
 
   private def printSkill(skill: Skill): Unit = {
-    println(s"""${skill.id}
+    println(s"""
        | base value: ${skill.baseValue}
        | modified: ${skill.modificationValue}
        | regular: ${skill.value()}
@@ -38,11 +37,11 @@ object SampleUsage extends App {
 
   println("Sample usage of foundations")
 
-  val strength = AnyCharacteristic(CharacteristicStrength, 40)
+  val strength = Strength(40)
 
   strength.modify(10)
 
-  println(s"""${strength.id}
+  println(s"""
               | regular: ${strength.value()}
               | hard: ${strength.value(HardDifficulty)}
               | extreme: ${strength.value(ExtremeDifficulty)}

@@ -6,7 +6,6 @@ import com.rkss.rpg.coc.rules.behaviors._
 import com.rkss.rpg.coc.concepts.skill.improvement._
 import com.rkss.rpg.coc.concepts.skill.check._
 import com.rkss.rpg.coc.concepts.skill.allocation.SkillWithPointsAllocation
-import com.rkss.rpg.coc.concepts._
 
 trait FirstAid
     extends Skill
@@ -25,7 +24,7 @@ trait FirstAid
 
 object FirstAid {
   def create(occupationPoints: Int = 0, personalPoints: Int = 0): FirstAid = {
-    new SimpleSkill(SkillFirstAid, 30, occupationPoints, personalPoints)
+    new SimpleSkill(30, occupationPoints, personalPoints)
       with FirstAid
   }
 }

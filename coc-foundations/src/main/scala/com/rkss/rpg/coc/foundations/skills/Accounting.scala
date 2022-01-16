@@ -6,7 +6,6 @@ import com.rkss.rpg.coc.rules.behaviors._
 import com.rkss.rpg.coc.concepts.skill.improvement._
 import com.rkss.rpg.coc.concepts.skill.check._
 import com.rkss.rpg.coc.concepts.skill.allocation.SkillWithPointsAllocation
-import com.rkss.rpg.coc.concepts._
 
 trait Accounting extends Skill
     with SkillWithPointsAllocation
@@ -24,7 +23,7 @@ trait Accounting extends Skill
 
 object Accounting {
   def create(occupationPoints: Int = 0, personalPoints: Int = 0): Accounting = {
-    new SimpleSkill(SkillAccounting, 5, occupationPoints, personalPoints)
+    new SimpleSkill(5, occupationPoints, personalPoints)
       with Accounting
   }
 }

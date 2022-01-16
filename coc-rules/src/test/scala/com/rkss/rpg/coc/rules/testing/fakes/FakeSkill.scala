@@ -3,8 +3,6 @@ package com.rkss.rpg.coc.rules.testing.fakes
 import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.rules.behaviors._
 import com.rkss.rpg.coc.concepts.skill.allocation.SkillWithPointsAllocation
-import com.rkss.rpg.coc.concepts.Identification
-import com.rkss.rpg.coc.concepts.SkillAccounting
 
 class FakeSkill(
     override val baseValue: Int,
@@ -14,6 +12,4 @@ class FakeSkill(
     with WithDifficultyValueBehavior
     with SkillRollBehavior
     with SkillWithPointsAllocation
-    with WithModificationValueBehavior {
-  override val id: Identification = SkillAccounting
-}
+    with WithModificationValueBehavior

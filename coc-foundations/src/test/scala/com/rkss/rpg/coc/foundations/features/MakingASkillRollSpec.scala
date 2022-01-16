@@ -9,7 +9,6 @@ import com.rkss.rpg.coc.foundations.characteristics._
 import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.coc.foundations.specs._
 import com.rkss.rpg.coc.foundations.skills._
-import com.rkss.rpg.coc.concepts._
 
 final class MakingASkillRollSpec
     extends AnyFeatureSpec
@@ -22,7 +21,7 @@ final class MakingASkillRollSpec
 
   Seq(
     SkillRollSpec(
-      AnyCharacteristic(CharacteristicStrength, 50),
+      Strength(50),
       RegularDifficulty,
       BonusDice(0),
       PenaltyDice(0),
@@ -31,7 +30,7 @@ final class MakingASkillRollSpec
       SkillRollDiceResult(10)
     ),
     SkillRollSpec(
-      new SimpleSkill(SkillAccounting, 5, 20, 15) with Accounting,
+      new SimpleSkill(5, 20, 15) with Accounting,
       RegularDifficulty,
       BonusDice(0),
       PenaltyDice(1),

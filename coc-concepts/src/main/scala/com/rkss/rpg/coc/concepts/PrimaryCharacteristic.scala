@@ -7,6 +7,4 @@ trait PrimaryCharacteristic
     with EntityWithModificationValue
     with ModifiableValue
     with SkillRollable
-    with SkillPushable {
-  def id: Identification
-}
+    with SkillPushable

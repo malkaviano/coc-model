@@ -9,6 +9,4 @@ final case class FakeCharacteristic(
     with WithModificationValueBehavior
     with WithDifficultyValueBehavior
     with SkillRollBehavior
-    with PushableSkillRollBehavior {
-  override val id: Identification = CharacteristicStrength
-}
+    with PushableSkillRollBehavior
