@@ -1,6 +1,5 @@
 package com.rkss.rpg.script // Package is outside coc on purpose to check visibility
 
-import com.rkss.rpg.coc.foundations.characteristics._
 import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.coc.foundations.skills._
 import com.rkss.rpg.coc.concepts.skill._
@@ -18,7 +17,7 @@ object SampleUsage extends App {
       | Penalty dice: ${skillRolled.penaltyDice}
       | Rolled: ${skillRolled.rolled}
       | Roll result: ${skillRolled.rollResult}
-      | Pushed: ${skillRolled.pushed}
+      | Pushed: ${skillRolled.pushed}import com.rkss.rpg.coc.foundations.characteristics._
     """.stripMargin
   }
 
@@ -36,27 +35,6 @@ object SampleUsage extends App {
   }
 
   println("Sample usage of foundations")
-
-  val strength = Strength(40)
-
-  strength.modify(10)
-
-  println(s"""
-              | regular: ${strength.value()}
-              | hard: ${strength.value(HardDifficulty)}
-              | extreme: ${strength.value(ExtremeDifficulty)}
-            """.stripMargin)
-
-  val strengthSkillRollResult =
-    strength.roll(RegularDifficulty, BonusDice(0), PenaltyDice(0))
-
-  println(s"Strength roll: ${printSkillRollResult(strengthSkillRollResult)}")
-
-  val pushedStrengthRoll = strength.pushRoll()
-
-  pushedStrengthRoll.foreach(p => {
-    println(s"Pushing the strength: ${printSkillRollResult(p)}")
-  })
 
   val firstAid = FirstAid.create(10, 15)
 
@@ -92,25 +70,4 @@ object SampleUsage extends App {
   println(improvement4)
 
   printSkill(firstAid)
-
-  val accounting = Accounting.create(10, 15)
-
-  accounting.modify(5)
-
-  printSkill(accounting)
-
-  val accountingRollResult =
-    accounting.roll(RegularDifficulty, BonusDice(0), PenaltyDice(0))
-
-  println(s"Accounting roll: ${printSkillRollResult(accountingRollResult)}")
-
-  val pushedAccountingRoll = accounting.pushRoll()
-
-  pushedAccountingRoll.foreach(p => {
-    println(s"Pushing the Accounting roll: ${printSkillRollResult(p)}")
-  })
-
-  // val cr = CreditRating.create(10, 15)
-
-  // printSkill(cr)
 }
