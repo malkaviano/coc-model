@@ -30,13 +30,22 @@ final class MakingASkillRollSpec
       SkillRollDiceResult(10)
     ),
     SkillRollSpec(
-      new SimpleSkill(5, 20, 15) with Accounting,
+      Accounting.create(20, 15),
       RegularDifficulty,
       BonusDice(0),
       PenaltyDice(1),
       Seq(12, 15),
       HardSuccess,
       SkillRollDiceResult(15, Seq(12))
+    ),
+    SkillRollSpec(
+      FirstAid.create(20, 20),
+      HardDifficulty,
+      BonusDice(2),
+      PenaltyDice(0),
+      Seq(50, 40, 30),
+      RegularSuccess,
+      SkillRollDiceResult(30, Seq(40, 50))
     )
   ).foreach(spec => ScenariosFor(makingASkillRoll(spec)))
 }
