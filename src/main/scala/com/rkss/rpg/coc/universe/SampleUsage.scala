@@ -8,19 +8,6 @@ import com.rkss.rpg.coc.concepts.skill.improvement._
 object SampleUsage extends App {
   import com.rkss.rpg.helpers.dice.Bag._
 
-  private def printSkillRollResult(skillRolled: SkillRolled): String = {
-    s"""
-      | Base value: ${skillRolled.rollable.baseValue}
-      | Roll value: ${skillRolled.rollable.value(skillRolled.difficulty)}
-      | Difficulty: ${skillRolled.difficulty}
-      | Bonus dice: ${skillRolled.bonusDice}
-      | Penalty dice: ${skillRolled.penaltyDice}
-      | Rolled: ${skillRolled.rolled}
-      | Roll result: ${skillRolled.rollResult}
-      | Pushed: ${skillRolled.pushed}import com.rkss.rpg.coc.foundations.characteristics._
-    """.stripMargin
-  }
-
   private def printSkill(skill: Skill): Unit = {
     println(s"""
        | base value: ${skill.baseValue}
@@ -37,17 +24,6 @@ object SampleUsage extends App {
   println("Sample usage of foundations")
 
   val firstAid = FirstAid.create(10, 15)
-
-  val firstAidRollResult =
-    firstAid.roll(RegularDifficulty, BonusDice(1), PenaltyDice(0))
-
-  println(s"First Aid roll: ${printSkillRollResult(firstAidRollResult)}")
-
-  val pushedFirstAidRoll = firstAid.pushRoll(bonusDice = Option(BonusDice(0)))
-
-  pushedFirstAidRoll.foreach(p => {
-    println(s"Pushing the First Aid roll: ${printSkillRollResult(p)}")
-  })
 
   firstAid.checkUsedWithSuccess()
 
