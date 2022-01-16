@@ -46,6 +46,15 @@ final class MakingASkillRollSpec
       Seq(50, 40, 30),
       RegularSuccess,
       SkillRollDiceResult(30, Seq(40, 50))
+    ),
+    SkillRollSpec(
+      Axe.create(20, 20),
+      ExtremeDifficulty,
+      BonusDice(2),
+      PenaltyDice(0),
+      Seq(50, 40, 30),
+      Failure,
+      SkillRollDiceResult(30, Seq(40, 50))
     )
   ).foreach(spec => ScenariosFor(makingASkillRoll(spec)))
 }
