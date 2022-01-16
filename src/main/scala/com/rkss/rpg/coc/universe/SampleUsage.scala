@@ -59,7 +59,7 @@ object SampleUsage extends App {
     println(s"Pushing the strength: ${printSkillRollResult(p)}")
   })
 
-  val firstAid = SimpleSkill(SkillFirstAid, 30, 10, 15)
+  val firstAid = FirstAid.create(10, 15)
 
   val firstAidRollResult =
     firstAid.roll(RegularDifficulty, BonusDice(1), PenaltyDice(0))
@@ -94,7 +94,7 @@ object SampleUsage extends App {
 
   printSkill(firstAid)
 
-  val accounting = SimpleSkill(SkillAccounting, 5, 10, 15)
+  val accounting = Accounting.create(10, 15)
 
   accounting.modify(5)
 
