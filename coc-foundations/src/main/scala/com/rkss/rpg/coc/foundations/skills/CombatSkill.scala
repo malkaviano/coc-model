@@ -7,6 +7,7 @@ import com.rkss.rpg.coc.concepts.skill.check._
 import com.rkss.rpg.coc.concepts.skill.allocation._
 
 final case class CombatSkill(
+    override val name: SkillName,
     override val baseValue: Int,
     override val occupationPoints: Int,
     override val personalPoints: Int,

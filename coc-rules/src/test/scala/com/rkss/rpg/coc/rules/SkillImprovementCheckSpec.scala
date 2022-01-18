@@ -8,11 +8,12 @@ import com.rkss.rpg.helpers.dice._
 import com.rkss.rpg.coc.rules.testing.TestingProps
 import com.rkss.rpg.coc.concepts.skill.improvement._
 import com.rkss.rpg.coc.concepts.skill.roll.SkillRollDiceResult
+import com.rkss.rpg.coc.concepts.skill._
 
 final class SkillImprovementCheckSpec extends AnyFunSpec with Matchers {
   describe("Skill Improvement Check") {
     describe("when skill fails the improvement check") {
-      val skill = FakeSkillWithSuccessCheck(30)
+      val skill = FakeSkillWithSuccessCheck(Anthropology, 30)
 
       val expected =
         SkillImproved(skill, 0, Option(SkillRollDiceResult(10)), false)
@@ -21,7 +22,7 @@ final class SkillImprovementCheckSpec extends AnyFunSpec with Matchers {
     }
 
     describe("when skill succeeds the improvement check") {
-      val skill = FakeSkillWithSuccessCheck(30)
+      val skill = FakeSkillWithSuccessCheck(Handgun, 30)
 
       val expected =
         SkillImproved(skill, 8, Option(SkillRollDiceResult(90)), false)
@@ -29,7 +30,7 @@ final class SkillImprovementCheckSpec extends AnyFunSpec with Matchers {
       it should behave like improvementCheck(skill, Seq(90), Seq(8), expected)
 
       describe("when skill value is 101") {
-        val skill = FakeSkillWithSuccessCheck(30, 50, 21)
+        val skill = FakeSkillWithSuccessCheck(Axe, 30, 50, 21)
 
         val expected =
           SkillImproved(skill, 6, Option(SkillRollDiceResult(98)), false)
@@ -38,7 +39,7 @@ final class SkillImprovementCheckSpec extends AnyFunSpec with Matchers {
       }
 
       describe("when skill reaches 90%") {
-        val skill = FakeSkillWithSuccessCheck(30, 50, 6)
+        val skill = FakeSkillWithSuccessCheck(Brawl, 30, 50, 6)
 
         val expected =
           SkillImproved(skill, 4, Option(SkillRollDiceResult(100)), true)

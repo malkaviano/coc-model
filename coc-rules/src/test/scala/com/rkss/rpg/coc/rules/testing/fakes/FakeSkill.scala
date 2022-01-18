@@ -5,6 +5,7 @@ import com.rkss.rpg.coc.rules.behaviors._
 import com.rkss.rpg.coc.concepts.skill.allocation.SkillWithPointsAllocation
 
 class FakeSkill(
+    override val name: SkillName,
     override val baseValue: Int,
     override val occupationPoints: Int = 0,
     override val personalPoints: Int = 0,

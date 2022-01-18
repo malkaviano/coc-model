@@ -8,5 +8,7 @@ trait Skill
     with SkillRollable
     with EntityWithModificationValue
     with ModifiableValue {
+  def name: SkillName
+
   def tags: Seq[SkillTag]
 }

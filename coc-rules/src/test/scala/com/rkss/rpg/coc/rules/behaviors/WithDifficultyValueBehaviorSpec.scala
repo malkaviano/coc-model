@@ -7,6 +7,7 @@ import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.coc.concepts._
 import com.rkss.rpg.helpers.dice._
 import com.rkss.rpg.coc.rules.testing.TestingProps
+import com.rkss.rpg.coc.concepts.skill._
 
 final class WithDifficultyValueBehaviorSpec extends AnyFunSpec with Matchers {
   describe("Getting value based on difficulty") {
@@ -35,7 +36,7 @@ final class WithDifficultyValueBehaviorSpec extends AnyFunSpec with Matchers {
     }
 
     describe("Skill value") {
-      val skill = FakeSkillImprovable(40, 10)
+      val skill = FakeSkillImprovable(Garrote, 40, 10)
 
       skill.checkUsedWithSuccess()
 

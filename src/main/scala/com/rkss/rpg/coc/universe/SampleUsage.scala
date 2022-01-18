@@ -23,7 +23,15 @@ object SampleUsage extends App {
 
   println("Sample usage of foundations")
 
-  val firstAid = BasicSkill(30, 10, 15)
+  // TODO: SkillFactory.create(FirstAid, 10, 15)
+
+  // TODO: SkillFactory.dodge(dexterity, 10, 15)
+
+  // TODO: SkillFactory.languageOwn(education, language, 10, 15)
+
+  // TODO: SkillFactory.languageOther(language, 10, 15)
+
+  val firstAid = BasicSkill(FirstAid, 30, 10, 15)
 
   firstAid.checkUsedWithSuccess()
 

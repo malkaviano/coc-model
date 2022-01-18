@@ -9,6 +9,7 @@ import com.rkss.rpg.coc.foundations.characteristics._
 import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.coc.foundations.specs._
 import com.rkss.rpg.coc.foundations.skills._
+import com.rkss.rpg.coc.concepts.skill._
 
 final class MakingASkillRollSpec
     extends AnyFeatureSpec
@@ -30,7 +31,7 @@ final class MakingASkillRollSpec
       SkillRollDiceResult(10)
     ),
     SkillRollSpec(
-      BasicSkill(5, 20, 15),
+      BasicSkill(Geology, 5, 20, 15),
       RegularDifficulty,
       BonusDice(0),
       PenaltyDice(1),
@@ -39,7 +40,7 @@ final class MakingASkillRollSpec
       SkillRollDiceResult(15, Seq(12))
     ),
     SkillRollSpec(
-      BasicSkill(30, 20, 20),
+      BasicSkill(HeavyWeapons, 30, 20, 20),
       HardDifficulty,
       BonusDice(2),
       PenaltyDice(0),
@@ -48,7 +49,7 @@ final class MakingASkillRollSpec
       SkillRollDiceResult(30, Seq(40, 50))
     ),
     SkillRollSpec(
-      CombatSkill(15, 20, 20),
+      CombatSkill(Throw, 15, 20, 20),
       ExtremeDifficulty,
       BonusDice(2),
       PenaltyDice(0),
