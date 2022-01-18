@@ -22,21 +22,21 @@ final class PushingASkillRollSpec
   info("As a player I want to push a skill roll")
   info("So I can try to succeeded my previous failed roll")
 
-  val fumble = BasicSkill(Track, 5, 10, 0)
+  val fumble = new BasicSkill(Track, 5, 10, 0)
 
   fumble.roll()(HundredSidedDice(TestingProps.fakeRng(Seq(100))))
 
-  val success = BasicSkill(Mathematics, 5, 30, 15)
+  val success = new BasicSkill(Mathematics, 5, 30, 15)
 
   success.roll()(HundredSidedDice(TestingProps.fakeRng(Seq(1))))
 
-  val failure = BasicSkill(MechanicalRepair, 1, 20, 14)
+  val failure = new BasicSkill(MechanicalRepair, 1, 20, 14)
 
   failure.roll(penaltyDice = PenaltyDice(1))(
     HundredSidedDice(TestingProps.fakeRng(Seq(95, 80)))
   )
 
-  val failure2 = BasicSkill(Physics, 5, 20, 14)
+  val failure2 = new BasicSkill(Physics, 5, 20, 14)
 
   failure2.roll(bonusDice = BonusDice(1))(
     HundredSidedDice(TestingProps.fakeRng(Seq(95, 80)))

@@ -31,7 +31,7 @@ final class MakingASkillRollSpec
       SkillRollDiceResult(10)
     ),
     SkillRollSpec(
-      BasicSkill(Geology, 5, 20, 15),
+      new BasicSkill(Geology, 5, 20, 15),
       RegularDifficulty,
       BonusDice(0),
       PenaltyDice(1),
@@ -40,7 +40,7 @@ final class MakingASkillRollSpec
       SkillRollDiceResult(15, Seq(12))
     ),
     SkillRollSpec(
-      BasicSkill(HeavyWeapons, 30, 20, 20),
+      new BasicSkill(HeavyWeapons, 30, 20, 20),
       HardDifficulty,
       BonusDice(2),
       PenaltyDice(0),
@@ -49,7 +49,7 @@ final class MakingASkillRollSpec
       SkillRollDiceResult(30, Seq(40, 50))
     ),
     SkillRollSpec(
-      CombatSkill(Throw, 15, 20, 20),
+      new CombatSkill(Throw, 15, 20, 20),
       ExtremeDifficulty,
       BonusDice(2),
       PenaltyDice(0),
