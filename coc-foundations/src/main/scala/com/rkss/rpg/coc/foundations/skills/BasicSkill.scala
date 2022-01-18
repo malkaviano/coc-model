@@ -7,15 +7,20 @@ import com.rkss.rpg.coc.concepts.skill.improvement._
 import com.rkss.rpg.coc.concepts.skill.check._
 import com.rkss.rpg.coc.concepts.skill.allocation._
 
-trait BasicSkill extends Skill
+final case class BasicSkill(
+    override val baseValue: Int,
+    override val occupationPoints: Int,
+    override val personalPoints: Int,
+    override val tags: Seq[SkillTag] = Seq.empty[SkillTag]
+) extends Skill
     with SkillWithPointsAllocation
-    with SkillPushable
     with SkillSuccessCheck
     with SkillSuccessCheckable
     with SkillWithImprovedValue
     with SkillImprovable
     with SkillRollBehavior
     with SkillSuccessfullyUsedBehavior
+    with SkillPushable
     with PushableSkillRollBehavior
     with SkillImprovementBehavior
     with WithDifficultyValueBehavior

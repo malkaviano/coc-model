@@ -23,7 +23,7 @@ object SampleUsage extends App {
 
   println("Sample usage of foundations")
 
-  val firstAid = FirstAid.create(10, 15)
+  val firstAid = BasicSkill(30, 10, 15)
 
   firstAid.checkUsedWithSuccess()
 

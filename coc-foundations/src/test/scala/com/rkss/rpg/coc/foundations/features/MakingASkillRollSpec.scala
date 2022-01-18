@@ -30,7 +30,7 @@ final class MakingASkillRollSpec
       SkillRollDiceResult(10)
     ),
     SkillRollSpec(
-      Accounting.create(20, 15),
+      BasicSkill(5, 20, 15),
       RegularDifficulty,
       BonusDice(0),
       PenaltyDice(1),
@@ -39,7 +39,7 @@ final class MakingASkillRollSpec
       SkillRollDiceResult(15, Seq(12))
     ),
     SkillRollSpec(
-      FirstAid.create(20, 20),
+      BasicSkill(30, 20, 20),
       HardDifficulty,
       BonusDice(2),
       PenaltyDice(0),
@@ -48,7 +48,7 @@ final class MakingASkillRollSpec
       SkillRollDiceResult(30, Seq(40, 50))
     ),
     SkillRollSpec(
-      Axe.create(20, 20),
+      CombatSkill(15, 20, 20),
       ExtremeDifficulty,
       BonusDice(2),
       PenaltyDice(0),

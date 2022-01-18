@@ -6,7 +6,12 @@ import com.rkss.rpg.coc.concepts.skill.improvement._
 import com.rkss.rpg.coc.concepts.skill.check._
 import com.rkss.rpg.coc.concepts.skill.allocation._
 
-trait CombatSkill extends Skill
+final case class CombatSkill(
+    override val baseValue: Int,
+    override val occupationPoints: Int,
+    override val personalPoints: Int,
+    override val tags: Seq[SkillTag] = Seq.empty[SkillTag]
+) extends Skill
     with SkillWithPointsAllocation
     with SkillSuccessCheck
     with SkillSuccessCheckable
