@@ -7,7 +7,8 @@ import com.rkss.rpg.coc.concepts.skill.allocation.SkillWithPointsAllocation
 class FakeSkill(
     override val baseValue: Int,
     override val occupationPoints: Int = 0,
-    override val personalPoints: Int = 0
+    override val personalPoints: Int = 0,
+    override val tags: Seq[SkillTag] = Seq.empty[SkillTag]
 ) extends Skill
     with WithDifficultyValueBehavior
     with SkillRollBehavior
