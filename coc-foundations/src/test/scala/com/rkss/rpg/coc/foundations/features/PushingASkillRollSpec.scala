@@ -10,8 +10,8 @@ import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.coc.foundations.specs._
 import com.rkss.rpg.helpers.dice.HundredSidedDice
 import com.rkss.rpg.coc.rules.testing.TestingProps
-import com.rkss.rpg.coc.foundations.skills.BasicSkill
 import com.rkss.rpg.coc.concepts.skill._
+import com.rkss.rpg.coc.foundations.skills.SkillFactory
 
 final class PushingASkillRollSpec
     extends AnyFeatureSpec
@@ -22,21 +22,21 @@ final class PushingASkillRollSpec
   info("As a player I want to push a skill roll")
   info("So I can try to succeeded my previous failed roll")
 
-  val fumble = new BasicSkill(Track, 5, 10, 0)
+  val fumble = SkillFactory.basicSkill(Track, 10, 0)
 
   fumble.roll()(HundredSidedDice(TestingProps.fakeRng(Seq(100))))
 
-  val success = new BasicSkill(Mathematics, 5, 30, 15)
+  val success = SkillFactory.basicSkill(Disguise, 30, 15)
 
   success.roll()(HundredSidedDice(TestingProps.fakeRng(Seq(1))))
 
-  val failure = new BasicSkill(MechanicalRepair, 1, 20, 14)
+  val failure = SkillFactory.basicSkill(MechanicalRepair, 20, 14)
 
   failure.roll(penaltyDice = PenaltyDice(1))(
     HundredSidedDice(TestingProps.fakeRng(Seq(95, 80)))
   )
 
-  val failure2 = new BasicSkill(Physics, 5, 20, 14)
+  val failure2 = SkillFactory.basicSkill(History, 20, 14)
 
   failure2.roll(bonusDice = BonusDice(1))(
     HundredSidedDice(TestingProps.fakeRng(Seq(95, 80)))

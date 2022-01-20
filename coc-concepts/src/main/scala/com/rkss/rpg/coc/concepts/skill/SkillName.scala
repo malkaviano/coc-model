@@ -13,8 +13,8 @@ case object Artillery extends SimpleSkillName
 case object Charm extends SimpleSkillName
 case object Climb extends SimpleSkillName
 case object ComputerUse extends SimpleSkillName
-case object CreditRating extends SimpleSkillName
-case object CthulhuMythos extends SimpleSkillName
+// case object CreditRating extends SimpleSkillName
+// case object CthulhuMythos extends SimpleSkillName
 case object Demolitions extends SimpleSkillName
 case object Disguise extends SimpleSkillName
 case object Diving extends SimpleSkillName
@@ -59,6 +59,38 @@ case object FineArt extends ArtAndCraft
 case object Forgery extends ArtAndCraft
 case object Photography extends ArtAndCraft
 
+
+sealed trait Lore extends SimpleSkillName
+
+case object DreamLore extends Lore
+case object NecronomiconLore extends Lore
+case object UFOLore extends Lore
+case object VampireLore extends Lore
+case object WerewolfLore extends Lore
+case object YaddithianLore extends Lore
+
+sealed trait Science extends SimpleSkillName
+
+case object Astronomy extends Science
+case object Biology extends Science
+case object Botany extends Science
+case object Chemistry extends Science
+case object Cryptography extends Science
+case object Engineering extends Science
+case object Forensics extends Science
+case object Geology extends Science
+case object Mathematics extends Science
+case object Meteorology extends Science
+case object Pharmacy extends Science
+case object Physics extends Science
+case object Zoology extends Science
+
+sealed trait Survival extends SimpleSkillName
+
+case object Arctic extends Survival
+case object Desert extends Survival
+case object Sea extends Survival
+
 sealed trait CombatSkillName extends SkillName
 
 case object Throw extends CombatSkillName
@@ -91,34 +123,3 @@ case object LanguageOther extends LanguageSkillName
 sealed trait EducationSkillName extends LanguageSkillName
 
 case object LanguageOwn extends EducationSkillName
-
-sealed trait Lore extends SimpleSkillName
-
-case object DreamLore extends Lore
-case object NecronomiconLore extends Lore
-case object UFOLore extends Lore
-case object VampireLore extends Lore
-case object WerewolfLore extends Lore
-case object YaddithianLore extends Lore
-
-sealed trait Science extends SimpleSkillName
-
-case object Astronomy extends Science
-case object Biology extends Science
-case object Botany extends Science
-case object Chemistry extends Science
-case object Cryptography extends Science
-case object Engineering extends Science
-case object Forensics extends Science
-case object Geology extends Science
-case object Mathematics extends Science
-case object Meteorology extends Science
-case object Pharmacy extends Science
-case object Physics extends Science
-case object Zoology extends Science
-
-sealed trait Survival extends SimpleSkillName
-
-case object Arctic extends Survival
-case object Desert extends Survival
-case object Sea extends Survival
