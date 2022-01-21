@@ -1,6 +1,7 @@
 package com.rkss.rpg.coc.foundations.skills
 
 import com.rkss.rpg.coc.concepts.skill._
+import com.rkss.rpg.coc.foundations.characteristics.Dexterity
 
 object SkillFactory {
   val basicSkills: Map[SimpleSkillName, SkillInfo] = Map(
@@ -114,5 +115,13 @@ object SkillFactory {
     val SkillInfo(baseValue, tags) = combatSkills(name)
 
     new CombatSkill(name, baseValue, occupationPoints, personalPoints, tags)
+  }
+
+  def dodgeSkill(
+      dexterity: Dexterity,
+      occupationPoints: Int,
+      personalPoints: Int
+  ): CombatSkill = {
+    new CombatSkill(Dodge, dexterity.value(), occupationPoints, personalPoints)
   }
 }

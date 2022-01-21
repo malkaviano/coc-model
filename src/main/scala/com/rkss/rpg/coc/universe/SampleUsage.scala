@@ -4,6 +4,7 @@ import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.coc.foundations.skills._
 import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.concepts.skill.improvement._
+import com.rkss.rpg.coc.foundations.characteristics.Dexterity
 
 object SampleUsage extends App {
   import com.rkss.rpg.helpers.dice.Bag._
@@ -27,9 +28,7 @@ object SampleUsage extends App {
 
   println("Sample usage of foundations")
 
-  // TODO: SkillFactory.dodge(dexterity, 10, 15)
-
-  // TODO: SkillFactory.languageOwn(education, language, 10, 15)
+  // TODO: SkillFactory.languageOwn(language, 10, 15, education)
 
   // TODO: SkillFactory.languageOther(language, 10, 15)
 
@@ -68,4 +67,8 @@ object SampleUsage extends App {
   val brawl = SkillFactory.combatSkill(Brawl, 20, 5)
 
   printSkill(brawl)
+
+  val dodge = SkillFactory.dodgeSkill(Dexterity(50), 10, 15)
+
+  printSkill(dodge)
 }

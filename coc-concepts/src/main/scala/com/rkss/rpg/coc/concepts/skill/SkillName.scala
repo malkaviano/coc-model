@@ -2,6 +2,10 @@ package com.rkss.rpg.coc.concepts.skill
 
 sealed trait SkillName
 
+case object CreditRating extends SkillName
+case object CthulhuMythos extends SkillName
+case object Dodge extends SkillName
+
 sealed trait SimpleSkillName extends SkillName
 
 case object Accounting extends SimpleSkillName
@@ -13,8 +17,6 @@ case object Artillery extends SimpleSkillName
 case object Charm extends SimpleSkillName
 case object Climb extends SimpleSkillName
 case object ComputerUse extends SimpleSkillName
-// case object CreditRating extends SimpleSkillName
-// case object CthulhuMythos extends SimpleSkillName
 case object Demolitions extends SimpleSkillName
 case object Disguise extends SimpleSkillName
 case object Diving extends SimpleSkillName
@@ -47,10 +49,6 @@ case object SpotHidden extends SimpleSkillName
 case object Stealth extends SimpleSkillName
 case object Swim extends SimpleSkillName
 case object Track extends SimpleSkillName
-
-sealed trait DexteritySkillName extends SkillName
-
-case object Dodge extends DexteritySkillName
 
 sealed trait ArtAndCraft extends SimpleSkillName
 
@@ -119,7 +117,4 @@ case object SubmachineGun extends Firearms
 sealed trait LanguageSkillName extends SkillName
 
 case object LanguageOther extends LanguageSkillName
-
-sealed trait EducationSkillName extends LanguageSkillName
-
-case object LanguageOwn extends EducationSkillName
+case object LanguageOwn extends LanguageSkillName

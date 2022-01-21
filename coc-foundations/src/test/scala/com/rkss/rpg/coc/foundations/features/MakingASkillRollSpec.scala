@@ -56,6 +56,15 @@ final class MakingASkillRollSpec
       Seq(50, 40, 30),
       Failure,
       SkillRollDiceResult(30, Seq(40, 50))
+    ),
+    SkillRollSpec(
+      SkillFactory.dodgeSkill(Dexterity(40), 20, 20),
+      ExtremeDifficulty,
+      BonusDice(1),
+      PenaltyDice(1),
+      Seq(50),
+      Failure,
+      SkillRollDiceResult(50)
     )
   ).foreach(spec => ScenariosFor(makingASkillRoll(spec)))
 }
