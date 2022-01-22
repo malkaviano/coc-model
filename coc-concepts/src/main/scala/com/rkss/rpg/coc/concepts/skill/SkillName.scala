@@ -116,5 +116,14 @@ case object SubmachineGun extends Firearms
 
 sealed trait LanguageSkillName extends SkillName
 
-case object LanguageOther extends LanguageSkillName
-case object LanguageOwn extends LanguageSkillName
+case object ArabicLanguage extends LanguageSkillName
+case object ChineseLanguage extends LanguageSkillName
+case object EnglishLanguage extends LanguageSkillName
+case object FrenchLanguage extends LanguageSkillName
+case object GermanLanguage extends LanguageSkillName
+case object ItalianLanguage extends LanguageSkillName
+case object JapaneseLanguage extends LanguageSkillName
+case object LatinLanguage extends LanguageSkillName
+case object PortugueseLanguage extends LanguageSkillName
+case object RussianLanguage extends LanguageSkillName
+case object SpanishLanguage extends LanguageSkillName

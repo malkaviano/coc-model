@@ -11,7 +11,7 @@ import com.rkss.rpg.coc.foundations.specs._
 import com.rkss.rpg.helpers.dice.HundredSidedDice
 import com.rkss.rpg.coc.rules.testing.TestingProps
 import com.rkss.rpg.coc.concepts.skill._
-import com.rkss.rpg.coc.foundations.skills.SkillFactory
+import com.rkss.rpg.coc.foundations.skills._
 
 final class PushingASkillRollSpec
     extends AnyFeatureSpec
@@ -41,6 +41,15 @@ final class PushingASkillRollSpec
   failure2.roll(bonusDice = BonusDice(1))(
     HundredSidedDice(TestingProps.fakeRng(Seq(95, 80)))
   )
+
+  val criticalSuccess = SkillFactory.languageSkill(SpanishLanguage, 10, 5)
+
+  criticalSuccess.roll()(HundredSidedDice(TestingProps.fakeRng(Seq(95))))
+
+  val hardSuccess =
+    SkillFactory.languageSkill(Education(60), RussianLanguage, 10, 5)
+
+  hardSuccess.roll()(HundredSidedDice(TestingProps.fakeRng(Seq(95))))
 
   Seq(
     // No previous roll
@@ -113,6 +122,46 @@ final class PushingASkillRollSpec
           PenaltyDice(2),
           Failure,
           SkillRollDiceResult(55, Seq(12)),
+          true
+        )
+      )
+    ),
+    PushSkillRollSpec(
+      criticalSuccess,
+      None,
+      Option(BonusDice(0)),
+      Option(PenaltyDice(0)),
+      Seq(1),
+      Failure,
+      SkillRollDiceResult(1),
+      Some(
+        SkillRolled(
+          criticalSuccess,
+          RegularDifficulty,
+          BonusDice(0),
+          PenaltyDice(0),
+          CriticalSuccess,
+          SkillRollDiceResult(1),
+          true
+        )
+      )
+    ),
+    PushSkillRollSpec(
+      hardSuccess,
+      None,
+      Option(BonusDice(0)),
+      Option(PenaltyDice(0)),
+      Seq(25),
+      HardSuccess,
+      SkillRollDiceResult(25),
+      Some(
+        SkillRolled(
+          hardSuccess,
+          RegularDifficulty,
+          BonusDice(0),
+          PenaltyDice(0),
+          HardSuccess,
+          SkillRollDiceResult(25),
           true
         )
       )

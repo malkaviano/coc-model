@@ -1,7 +1,7 @@
 package com.rkss.rpg.coc.foundations.skills
 
 import com.rkss.rpg.coc.concepts.skill._
-import com.rkss.rpg.coc.foundations.characteristics.Dexterity
+import com.rkss.rpg.coc.foundations.characteristics._
 
 object SkillFactory {
   val basicSkills: Map[SimpleSkillName, SkillInfo] = Map(
@@ -123,5 +123,34 @@ object SkillFactory {
       personalPoints: Int
   ): CombatSkill = {
     new CombatSkill(Dodge, dexterity.value(), occupationPoints, personalPoints)
+  }
+
+  def languageSkill(
+      language: LanguageSkillName,
+      occupationPoints: Int,
+      personalPoints: Int
+  ): BasicSkill = {
+    new BasicSkill(
+      language,
+      1,
+      occupationPoints,
+      personalPoints,
+      Seq(LanguageOther)
+    )
+  }
+
+  def languageSkill(
+      education: Education,
+      language: LanguageSkillName,
+      occupationPoints: Int,
+      personalPoints: Int
+  ): BasicSkill = {
+    new BasicSkill(
+      language,
+      education.value(),
+      occupationPoints,
+      personalPoints,
+      Seq(LanguageOwn)
+    )
   }
 }
