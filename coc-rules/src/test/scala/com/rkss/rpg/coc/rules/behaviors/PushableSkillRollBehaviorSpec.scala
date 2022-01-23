@@ -7,13 +7,14 @@ import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.helpers.dice.HundredSidedDice
 import com.rkss.rpg.coc.rules.testing._
 import com.rkss.rpg.coc.rules.testing.fakes._
+import com.rkss.rpg.coc.concepts.skill._
 
 final class PushableSkillRollBehaviorSpec extends AnyFunSpec with Matchers {
   describe("Pushing a skill roll") {
     describe("when no previous skill roll was made") {
       it("return no result") {
         val pushableSkillRollBehavior =
-          FakePushableSkillRoll(60)
+          FakePushableSkillRoll(Whip, 60)
 
         val hundredSidedDice = HundredSidedDice(
           TestingProps.fakeRng(Seq(40))
@@ -36,7 +37,7 @@ final class PushableSkillRollBehaviorSpec extends AnyFunSpec with Matchers {
         describe(s"when previous roll was $result") {
           it("return no result") {
             val pushableSkillRollBehavior =
-              FakePushableSkillRoll(60)
+              FakePushableSkillRoll(Appraise, 60)
 
             rollSkill(pushableSkillRollBehavior, Seq(rolled))
 
@@ -55,7 +56,7 @@ final class PushableSkillRollBehaviorSpec extends AnyFunSpec with Matchers {
     describe(s"when previous roll was a Failure") {
       it("return a RegularSuccess") {
         val pushableSkillRollBehavior =
-          FakePushableSkillRoll(60)
+          FakePushableSkillRoll(AnimalHandling, 60)
 
         rollSkill(pushableSkillRollBehavior, Seq(80))
 
@@ -81,7 +82,7 @@ final class PushableSkillRollBehaviorSpec extends AnyFunSpec with Matchers {
       describe("when pushing an already pushed skill roll") {
         it("return no result") {
           val pushableSkillRollBehavior =
-            FakePushableSkillRoll(60)
+            FakePushableSkillRoll(Medicine, 60)
 
           rollSkill(pushableSkillRollBehavior, Seq(80))
 

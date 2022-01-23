@@ -1,4 +1,4 @@
-package com.rkss.rpg.coc.foundations
+package com.rkss.rpg.coc.foundations.attributes
 
 import com.rkss.rpg.coc.concepts.EntityWithBasicRoll
 import com.rkss.rpg.coc.concepts.EntityWithBaseValue

@@ -7,10 +7,11 @@ import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.helpers.dice.HundredSidedDice
 import com.rkss.rpg.coc.rules.testing.fakes._
 import com.rkss.rpg.coc.rules.testing._
+import com.rkss.rpg.coc.concepts.skill._
 
 final class SkillRollBehaviorSpec extends AnyFunSpec with Matchers {
   describe("Skill roll behavior") {
-    val skill = new FakeSkill(40)
+    val skill = new FakeSkill(ComputerUse, 40)
 
     describe("Skill roll") {
       describe("when making a skill roll") {

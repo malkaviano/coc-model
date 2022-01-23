@@ -8,11 +8,12 @@ import com.rkss.rpg.helpers.dice._
 import com.rkss.rpg.coc.rules.testing.TestingProps
 import com.rkss.rpg.coc.concepts.skill.improvement.SkillImproved
 import com.rkss.rpg.coc.concepts.skill.roll.SkillRollDiceResult
+import com.rkss.rpg.coc.concepts.skill._
 
 final class SkillImprovementBehaviorSpec extends AnyFunSpec with Matchers {
   describe("Skill improvement behavior") {
     describe("when skill used with success was false") {
-      val skill = FakeSkillImprovable(15, 20, 10)
+      val skill = FakeSkillImprovable(Pharmacy, 15, 20, 10)
 
       it should behave like improvementCheck(
         skill,
@@ -27,7 +28,7 @@ final class SkillImprovementBehaviorSpec extends AnyFunSpec with Matchers {
     }
 
     describe("when skill used with success was true") {
-      val skill = FakeSkillImprovable(15, 20, 10)
+      val skill = FakeSkillImprovable(Biology, 15, 20, 10)
 
       skill.checkUsedWithSuccess()
 

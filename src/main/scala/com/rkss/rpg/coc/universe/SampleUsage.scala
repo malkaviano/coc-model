@@ -1,75 +1,34 @@
 package com.rkss.rpg.script // Package is outside coc on purpose to check visibility
 
-import com.rkss.rpg.coc.foundations.characteristics._
 import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.coc.foundations.skills._
-import com.rkss.rpg.coc.concepts.skill.Skill
-import com.rkss.rpg.coc.concepts.skill.improvement.SkillWithImprovedValue
+import com.rkss.rpg.coc.concepts.skill._
+import com.rkss.rpg.coc.concepts.skill.improvement._
+import com.rkss.rpg.coc.foundations.characteristics._
 
 object SampleUsage extends App {
   import com.rkss.rpg.helpers.dice.Bag._
 
-  private def printSkillRollResult(skillRolled: SkillRolled): String = {
-    s"""
-      | Base value: ${skillRolled.rollable.baseValue}
-      | Roll value: ${skillRolled.rollable.value(skillRolled.difficulty)}
-      | Difficulty: ${skillRolled.difficulty}
-      | Bonus dice: ${skillRolled.bonusDice}
-      | Penalty dice: ${skillRolled.penaltyDice}
-      | Rolled: ${skillRolled.rolled}
-      | Roll result: ${skillRolled.rollResult}
-      | Pushed: ${skillRolled.pushed}
-    """.stripMargin
-  }
-
   private def printSkill(skill: Skill): Unit = {
-    println(s"""${skill.id}
+    println(s"""
+       | name: ${skill.name}
        | base value: ${skill.baseValue}
        | modified: ${skill.modificationValue}
        | regular: ${skill.value()}
        | hard: ${skill.value(HardDifficulty)}
        | extreme: ${skill.value(ExtremeDifficulty)}
+       | tags: ${skill.tags}
       """.stripMargin)
 
     if (skill.isInstanceOf[SkillWithImprovedValue])
-      println("improved:" + skill.asInstanceOf[SkillWithImprovedValue].improvedValue)
+      println(s"""
+       | improved: ${skill.asInstanceOf[SkillWithImprovedValue].improvedValue}
+      """.stripMargin)
   }
 
   println("Sample usage of foundations")
 
-  val strength = Strength(40)
-
-  strength.modify(10)
-
-  println(s"""${strength.id}
-              | regular: ${strength.value()}
-              | hard: ${strength.value(HardDifficulty)}
-              | extreme: ${strength.value(ExtremeDifficulty)}
-            """.stripMargin)
-
-  val strengthSkillRollResult =
-    strength.roll(RegularDifficulty, BonusDice(0), PenaltyDice(0))
-
-  println(s"Strength roll: ${printSkillRollResult(strengthSkillRollResult)}")
-
-  val pushedStrengthRoll = strength.pushRoll()
-
-  pushedStrengthRoll.foreach(p => {
-    println(s"Pushing the strength: ${printSkillRollResult(p)}")
-  })
-
-  val firstAid = FirstAid.create(10, 15)
-
-  val firstAidRollResult =
-    firstAid.roll(RegularDifficulty, BonusDice(1), PenaltyDice(0))
-
-  println(s"First Aid roll: ${printSkillRollResult(firstAidRollResult)}")
-
-  val pushedFirstAidRoll = firstAid.pushRoll(bonusDice = Option(BonusDice(0)))
-
-  pushedFirstAidRoll.foreach(p => {
-    println(s"Pushing the First Aid roll: ${printSkillRollResult(p)}")
-  })
+  val firstAid = SkillFactory.basicSkill(FirstAid, 10, 15)
 
   firstAid.checkUsedWithSuccess()
 
@@ -93,24 +52,27 @@ object SampleUsage extends App {
 
   printSkill(firstAid)
 
-  val accounting = Accounting.create(10, 15)
+  val rolled = firstAid.roll(RegularDifficulty, BonusDice(1))
 
-  accounting.modify(5)
+  println(rolled)
 
-  printSkill(accounting)
+  val pushed = firstAid.pushRoll(Some(HardDifficulty), penaltyDice = Some(PenaltyDice(1)))
 
-  val accountingRollResult =
-    accounting.roll(RegularDifficulty, BonusDice(0), PenaltyDice(0))
+  println(pushed)
 
-  println(s"Accounting roll: ${printSkillRollResult(accountingRollResult)}")
+  val brawl = SkillFactory.combatSkill(Brawl, 20, 5)
 
-  val pushedAccountingRoll = accounting.pushRoll()
+  printSkill(brawl)
 
-  pushedAccountingRoll.foreach(p => {
-    println(s"Pushing the Accounting roll: ${printSkillRollResult(p)}")
-  })
+  val dodge = SkillFactory.dodgeSkill(Dexterity(50), 10, 15)
 
-  val cr = CreditRating.create(10, 15)
+  printSkill(dodge)
 
-  printSkill(cr)
+  val portugueseLanguage = SkillFactory.languageSkill(PortugueseLanguage, 10, 15)
+
+  printSkill(portugueseLanguage)
+
+  val japaneseLanguage = SkillFactory.languageSkill(Education(55), JapaneseLanguage, 0, 0)
+
+  printSkill(japaneseLanguage)
 }

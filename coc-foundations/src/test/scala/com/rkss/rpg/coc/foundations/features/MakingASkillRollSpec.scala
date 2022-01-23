@@ -7,8 +7,9 @@ import org.scalatest.matchers.should.Matchers
 import com.rkss.rpg.coc.foundations.specs.scenarios.SkillRollScenario
 import com.rkss.rpg.coc.foundations.characteristics._
 import com.rkss.rpg.coc.concepts.skill.roll._
-import com.rkss.rpg.coc.foundations.specs.SkillRollSpec
-import com.rkss.rpg.coc.foundations.skills.Accounting
+import com.rkss.rpg.coc.foundations.specs._
+import com.rkss.rpg.coc.foundations.skills._
+import com.rkss.rpg.coc.concepts.skill._
 
 final class MakingASkillRollSpec
     extends AnyFeatureSpec
@@ -30,13 +31,40 @@ final class MakingASkillRollSpec
       SkillRollDiceResult(10)
     ),
     SkillRollSpec(
-      Accounting.create(20, 15),
+      SkillFactory.basicSkill(Accounting, 20, 15),
       RegularDifficulty,
       BonusDice(0),
       PenaltyDice(1),
       Seq(12, 15),
       HardSuccess,
       SkillRollDiceResult(15, Seq(12))
+    ),
+    SkillRollSpec(
+      SkillFactory.basicSkill(FirstAid, 20, 20),
+      HardDifficulty,
+      BonusDice(2),
+      PenaltyDice(0),
+      Seq(50, 40, 30),
+      RegularSuccess,
+      SkillRollDiceResult(30, Seq(40, 50))
+    ),
+    SkillRollSpec(
+      SkillFactory.combatSkill(SubmachineGun, 20, 20),
+      ExtremeDifficulty,
+      BonusDice(2),
+      PenaltyDice(0),
+      Seq(50, 40, 30),
+      Failure,
+      SkillRollDiceResult(30, Seq(40, 50))
+    ),
+    SkillRollSpec(
+      SkillFactory.dodgeSkill(Dexterity(40), 20, 20),
+      ExtremeDifficulty,
+      BonusDice(1),
+      PenaltyDice(1),
+      Seq(50),
+      Failure,
+      SkillRollDiceResult(50)
     )
   ).foreach(spec => ScenariosFor(makingASkillRoll(spec)))
 }

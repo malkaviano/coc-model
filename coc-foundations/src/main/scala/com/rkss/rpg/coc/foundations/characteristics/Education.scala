@@ -1,9 +1,9 @@
-package com.rkss.rpg.coc.rules.testing.fakes
+package com.rkss.rpg.coc.foundations.characteristics
 
-import com.rkss.rpg.coc.concepts._
+import com.rkss.rpg.coc.concepts.PrimaryCharacteristic
 import com.rkss.rpg.coc.rules.behaviors._
 
-final case class FakeCharacteristic(
+final case class Education(
     override val baseValue: Int
 ) extends PrimaryCharacteristic
     with WithModificationValueBehavior
