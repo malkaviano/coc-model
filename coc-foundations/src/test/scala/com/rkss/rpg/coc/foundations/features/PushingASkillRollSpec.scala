@@ -12,6 +12,7 @@ import com.rkss.rpg.helpers.dice.HundredSidedDice
 import com.rkss.rpg.coc.rules.testing.TestingProps
 import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.foundations.skills._
+import com.rkss.rpg.coc.concepts.characteristic._
 
 final class PushingASkillRollSpec
     extends AnyFeatureSpec
@@ -47,14 +48,14 @@ final class PushingASkillRollSpec
   criticalSuccess.roll()(HundredSidedDice(TestingProps.fakeRng(Seq(95))))
 
   val hardSuccess =
-    SkillFactory.languageSkill(Education(60), RussianLanguage, 10, 5)
+    SkillFactory.languageSkill(60, RussianLanguage, 10, 5)
 
   hardSuccess.roll()(HundredSidedDice(TestingProps.fakeRng(Seq(95))))
 
   Seq(
     // No previous roll
     PushSkillRollSpec(
-      Dexterity(50),
+      Characteristic(Dexterity, 50),
       Option(HardDifficulty),
       Option(BonusDice(1)),
       Option(PenaltyDice(2)),

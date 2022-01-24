@@ -10,6 +10,7 @@ import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.coc.foundations.specs._
 import com.rkss.rpg.coc.foundations.skills._
 import com.rkss.rpg.coc.concepts.skill._
+import com.rkss.rpg.coc.concepts.characteristic._
 
 final class MakingASkillRollSpec
     extends AnyFeatureSpec
@@ -22,7 +23,7 @@ final class MakingASkillRollSpec
 
   Seq(
     SkillRollSpec(
-      Strength(50),
+      Characteristic(Strength, 50),
       RegularDifficulty,
       BonusDice(0),
       PenaltyDice(0),
@@ -58,7 +59,7 @@ final class MakingASkillRollSpec
       SkillRollDiceResult(30, Seq(40, 50))
     ),
     SkillRollSpec(
-      SkillFactory.dodgeSkill(Dexterity(40), 20, 20),
+      SkillFactory.dodgeSkill(40, 20, 20),
       ExtremeDifficulty,
       BonusDice(1),
       PenaltyDice(1),

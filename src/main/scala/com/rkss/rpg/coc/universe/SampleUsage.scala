@@ -4,7 +4,8 @@ import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.coc.foundations.skills._
 import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.concepts.skill.improvement._
-import com.rkss.rpg.coc.foundations.characteristics._
+import com.rkss.rpg.coc.foundations.characteristics.Characteristic
+import com.rkss.rpg.coc.concepts.characteristic.Strength
 
 object SampleUsage extends App {
   import com.rkss.rpg.helpers.dice.Bag._
@@ -64,7 +65,7 @@ object SampleUsage extends App {
 
   printSkill(brawl)
 
-  val dodge = SkillFactory.dodgeSkill(Dexterity(50), 10, 15)
+  val dodge = SkillFactory.dodgeSkill(50, 10, 15)
 
   printSkill(dodge)
 
@@ -72,7 +73,11 @@ object SampleUsage extends App {
 
   printSkill(portugueseLanguage)
 
-  val japaneseLanguage = SkillFactory.languageSkill(Education(55), JapaneseLanguage, 0, 0)
+  val japaneseLanguage = SkillFactory.languageSkill(55, JapaneseLanguage, 0, 0)
 
   printSkill(japaneseLanguage)
+
+  val strength = Characteristic(Strength, 50)
+
+  println(strength.roll())
 }
