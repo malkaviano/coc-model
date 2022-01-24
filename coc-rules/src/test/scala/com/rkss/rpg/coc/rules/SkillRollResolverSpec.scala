@@ -7,13 +7,14 @@ import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.helpers.dice.HundredSidedDice
 import com.rkss.rpg.coc.rules.testing._
 import com.rkss.rpg.coc.rules.testing.fakes._
-import com.rkss.rpg.coc.concepts.EntityWithDifficultyValue
+import com.rkss.rpg.coc.concepts._
+import com.rkss.rpg.coc.concepts.characteristic._
 
 final class SkillRollResolverSpec
     extends AnyFunSpec
     with Matchers {
   describe("Resolving a skill roll") {
-    val someCharacteristic = FakeCharacteristic(50)
+    val someCharacteristic = FakeCharacteristic(Education, 50)
 
     it should behave like resolveSkillRoll(
       someCharacteristic,

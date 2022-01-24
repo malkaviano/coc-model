@@ -8,11 +8,12 @@ import com.rkss.rpg.coc.concepts._
 import com.rkss.rpg.helpers.dice._
 import com.rkss.rpg.coc.rules.testing.TestingProps
 import com.rkss.rpg.coc.concepts.skill._
+import com.rkss.rpg.coc.concepts.characteristic._
 
 final class WithDifficultyValueBehaviorSpec extends AnyFunSpec with Matchers {
   describe("Getting value based on difficulty") {
     describe("Characteristic value") {
-      val characteristic = FakeCharacteristic(70)
+      val characteristic = FakeCharacteristic(Constitution, 70)
 
       characteristic.modify(-20)
 
