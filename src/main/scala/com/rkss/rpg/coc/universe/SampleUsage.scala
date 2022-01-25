@@ -1,10 +1,10 @@
 package com.rkss.rpg.script // Package is outside coc on purpose to check visibility
 
 import com.rkss.rpg.coc.concepts.skill.roll._
-import com.rkss.rpg.coc.foundations.skills._
+import com.rkss.rpg.coc.fundamentals.skills._
 import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.concepts.skill.improvement._
-import com.rkss.rpg.coc.foundations.characteristics.Characteristic
+import com.rkss.rpg.coc.fundamentals.characteristics.Characteristic
 import com.rkss.rpg.coc.concepts.characteristic.Strength
 
 object SampleUsage extends App {
