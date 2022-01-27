@@ -4,8 +4,8 @@ import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.coc.fundamentals.skills._
 import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.concepts.skill.improvement._
-import com.rkss.rpg.coc.fundamentals.characteristics.Characteristic
-import com.rkss.rpg.coc.concepts.characteristic.Strength
+import com.rkss.rpg.coc.fundamentals.characteristics._
+import com.rkss.rpg.coc.concepts.characteristic._
 
 object SampleUsage extends App {
   import com.rkss.rpg.helpers.dice.Bag._
@@ -27,7 +27,7 @@ object SampleUsage extends App {
       """.stripMargin)
   }
 
-  println("Sample usage of foundations")
+  println("Sample usage of fundamentals")
 
   val firstAid = SkillFactory.basicSkill(FirstAid, 10, 15)
 
@@ -80,4 +80,6 @@ object SampleUsage extends App {
   val strength = Characteristic(Strength, 50)
 
   println(strength.roll())
+
+  println(strength.pushRoll(Some(HardDifficulty)))
 }

@@ -27,7 +27,7 @@ final class SkillRollBehaviorSpec extends AnyFunSpec with Matchers {
           SkillRollDiceResult(20)
         )
 
-        it("return a SkillRollResult") {
+        it("return a SkillRolled") {
           val result = skill.roll()(hundredSidedDice)
 
           result shouldBe expected

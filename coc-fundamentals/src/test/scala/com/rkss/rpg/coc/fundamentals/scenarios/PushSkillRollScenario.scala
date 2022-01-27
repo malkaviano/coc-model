@@ -1,4 +1,4 @@
-package com.rkss.rpg.coc.fundamentals.specs.scenarios
+package com.rkss.rpg.coc.fundamentals.scenarios
 
 import org.scalatest.featurespec.AnyFeatureSpec
 import org.scalatest.GivenWhenThen
