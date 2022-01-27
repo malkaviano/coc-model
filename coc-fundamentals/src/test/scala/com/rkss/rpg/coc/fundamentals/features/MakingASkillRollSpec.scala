@@ -4,7 +4,7 @@ import org.scalatest.featurespec.AnyFeatureSpec
 import org.scalatest.GivenWhenThen
 import org.scalatest.matchers.should.Matchers
 
-import com.rkss.rpg.coc.fundamentals.specs.scenarios.SkillRollScenario
+import com.rkss.rpg.coc.fundamentals.scenarios._
 import com.rkss.rpg.coc.fundamentals.characteristics._
 import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.coc.fundamentals.specs._
