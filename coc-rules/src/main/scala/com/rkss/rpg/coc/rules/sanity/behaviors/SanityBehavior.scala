@@ -7,6 +7,8 @@ trait SanityBehavior { self: Sanity =>
 
   private var _maximum: Int = 99
 
+  private var _previous: Int = 0
+
   override def current: Int = {
     _current
   }
@@ -15,23 +17,29 @@ trait SanityBehavior { self: Sanity =>
     _maximum
   }
 
-  override def loss(value: Int): Unit = {
-    _current -= decrease(value, _current)
+  override def loss(loss: SanityLoss): SanityLost = {
+    _previous = current
+
+    val decrease = if (loss.loss > current) current else loss.loss
+
+    _current -= decrease
+
+    SanityLost(decrease, current, _previous)
   }
 
-  override def gain(value: Int): Unit = {
-    _current += Math.abs(value)
+  override def gain(gain: SanityGain): SanityRecovered = {
+    _previous = current
 
-    if(current > maximum) _current = maximum
+    val delta = maximum - current
+
+    val increase = if (gain.gain > delta) delta else gain.gain
+
+    _current += increase
+
+    SanityRecovered(increase, current, _previous, maximum)
   }
 
   override def currentMythos(value: Int): Unit = {
-    _maximum -= decrease(value, _maximum)
-  }
-
-  private def decrease(value: Int, target: Int): Int = {
-    val abs = Math.abs(value)
-
-    if (abs > target) target else abs
+    _maximum = 99 - value
   }
 }

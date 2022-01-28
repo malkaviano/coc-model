@@ -9,9 +9,9 @@ trait Sanity {
 
   def maximum: Int
 
-  def loss(value: Int): Unit
+  def loss(loss: SanityLoss): SanityLost
 
-  def gain(value: Int): Unit
+  def gain(gain: SanityGain): SanityRecovered
 
   def currentMythos(value: Int): Unit
 
