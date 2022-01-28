@@ -25,7 +25,7 @@ final class SanityBehaviorSpec extends AnyFunSpec with Matchers {
     }
 
     describe("Sanity loss") {
-      Seq((10, 30), (-5, 35)).foreach {
+      Seq((10, 30), (-5, 35), (60, 0)).foreach {
         case (loss, expected) => {
           it(s"should decrease current sanity by ${Math.abs(loss)}") {
             val sanity = FakeSanity(initial)
@@ -38,11 +38,13 @@ final class SanityBehaviorSpec extends AnyFunSpec with Matchers {
       }
     }
 
-    describe("Sanity loss") {
-      Seq((10, 50), (-5, 45)).foreach {
+    describe("Sanity gain") {
+      Seq((10, 50), (-5, 45), (60, 80)).foreach {
         case (gain, expected) => {
           it(s"should increase current sanity by ${Math.abs(gain)}") {
             val sanity = FakeSanity(initial)
+
+            sanity.currentMythos(19)
 
             sanity.gain(gain)
 

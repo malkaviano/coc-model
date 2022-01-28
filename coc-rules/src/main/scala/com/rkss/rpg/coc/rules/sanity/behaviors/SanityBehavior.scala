@@ -16,14 +16,22 @@ trait SanityBehavior { self: Sanity =>
   }
 
   override def loss(value: Int): Unit = {
-    _current -= Math.abs(value)
+    _current -= decrease(value, _current)
   }
 
   override def gain(value: Int): Unit = {
     _current += Math.abs(value)
+
+    if(current > maximum) _current = maximum
   }
 
   override def currentMythos(value: Int): Unit = {
-    _maximum -= Math.abs(value)
+    _maximum -= decrease(value, _maximum)
+  }
+
+  private def decrease(value: Int, target: Int): Int = {
+    val abs = Math.abs(value)
+
+    if (abs > target) target else abs
   }
 }
