@@ -8,6 +8,5 @@ trait PrimaryCharacteristic
     with EntityWithModificationValue
     with ModifiableValue
     with SkillRollable
-    with SkillPushable {
-  def name: CharacteristicName
-}
+    with SkillPushable
+    with EntityWithNameTag

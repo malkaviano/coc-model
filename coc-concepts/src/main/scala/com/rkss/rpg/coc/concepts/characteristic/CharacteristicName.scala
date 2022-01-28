@@ -1,6 +1,8 @@
 package com.rkss.rpg.coc.concepts.characteristic
 
-sealed trait CharacteristicName
+import com.rkss.rpg.coc.concepts._
+
+sealed trait CharacteristicName extends NameTag
 
 case object Strength extends CharacteristicName
 case object Dexterity extends CharacteristicName
