@@ -1,4 +1,4 @@
-package com.rkss.rpg.coc.rules
+package com.rkss.rpg.coc.rules.skill
 
 import com.rkss.rpg.helpers.dice._
 import com.rkss.rpg.coc.concepts.skill.roll._

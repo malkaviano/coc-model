@@ -1,9 +1,9 @@
-package com.rkss.rpg.coc.rules.behaviors
+package com.rkss.rpg.coc.rules.skill.behaviors
 
 import com.rkss.rpg.coc.concepts._
 import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.helpers.dice.HundredSidedDice
-import com.rkss.rpg.coc.rules._
+import com.rkss.rpg.coc.rules.skill._
 
 private[coc] trait PushableSkillRollBehavior extends SkillRollBehavior {
   self: EntityWithDifficultyValue with SkillRollable with SkillPushable =>

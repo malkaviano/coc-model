@@ -1,10 +1,10 @@
-package com.rkss.rpg.coc.rules.behaviors
+package com.rkss.rpg.coc.rules.skill.behaviors
 
 import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.concepts.skill.improvement._
 import com.rkss.rpg.coc.concepts.skill.check._
 import com.rkss.rpg.helpers.dice._
-import com.rkss.rpg.coc.rules._
+import com.rkss.rpg.coc.rules.skill._
 import com.rkss.rpg.coc.concepts.skill.roll.SkillRollDiceResult
 
 private[coc] trait SkillImprovementBehavior

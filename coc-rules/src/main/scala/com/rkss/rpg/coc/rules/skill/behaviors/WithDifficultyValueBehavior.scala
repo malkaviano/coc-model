@@ -1,8 +1,8 @@
-package com.rkss.rpg.coc.rules.behaviors
+package com.rkss.rpg.coc.rules.skill.behaviors
 
 import com.rkss.rpg.coc.concepts.EntityWithDifficultyValue
 import com.rkss.rpg.coc.concepts.skill.roll.SkillRollDifficultyLevel
-import com.rkss.rpg.coc.rules.SkillRollValue
+import com.rkss.rpg.coc.rules.skill._
 import com.rkss.rpg.coc.concepts.skill.roll.RegularDifficulty
 import com.rkss.rpg.coc.concepts.skill.improvement.SkillWithImprovedValue
 import com.rkss.rpg.coc.concepts.skill.allocation.SkillWithPointsAllocation
