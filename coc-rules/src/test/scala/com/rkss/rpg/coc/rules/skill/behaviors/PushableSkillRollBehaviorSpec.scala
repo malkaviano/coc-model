@@ -67,7 +67,8 @@ final class PushableSkillRollBehaviorSpec extends AnyFunSpec with Matchers {
         val result = pushableSkillRollBehavior.pushRoll()(hundredSidedDice)
 
         val expected = SkillRolled(
-          pushableSkillRollBehavior,
+          pushableSkillRollBehavior.name,
+          pushableSkillRollBehavior.value(),
           RegularDifficulty,
           BonusDice(0),
           PenaltyDice(0),

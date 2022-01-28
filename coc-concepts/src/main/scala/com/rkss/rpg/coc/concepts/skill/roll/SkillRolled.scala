@@ -1,9 +1,10 @@
 package com.rkss.rpg.coc.concepts.skill.roll
 
-import com.rkss.rpg.coc.concepts.EntityWithDifficultyValue
+import com.rkss.rpg.coc.concepts._
 
 final case class SkillRolled(
-    val rollable: EntityWithDifficultyValue,
+    val name: NameTag,
+    val value: Int,
     val difficulty: SkillRollDifficultyLevel,
     val bonusDice: BonusDice,
     val penaltyDice: PenaltyDice,

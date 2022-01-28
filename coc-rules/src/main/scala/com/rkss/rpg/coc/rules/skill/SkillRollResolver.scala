@@ -2,11 +2,11 @@ package com.rkss.rpg.coc.rules.skill
 
 import com.rkss.rpg.helpers.dice.HundredSidedDice
 import com.rkss.rpg.coc.concepts.skill.roll._
-import com.rkss.rpg.coc.concepts.EntityWithDifficultyValue
+import com.rkss.rpg.coc.concepts._
 
 private class SkillRollResolver private () {
   def roll(
-      rollable: EntityWithDifficultyValue,
+      rollable: EntityWithDifficultyValue with EntityWithNameTag,
       difficulty: SkillRollDifficultyLevel,
       bonusDice: BonusDice,
       penaltyDice: PenaltyDice
@@ -28,7 +28,7 @@ private class SkillRollResolver private () {
       case _                                   => Failure
     }
 
-    SkillRolled(rollable, difficulty, bonusDice, penaltyDice, result, rolled)
+    SkillRolled(rollable.name, regular, difficulty, bonusDice, penaltyDice, result, rolled)
   }
 
   private def rollDice(bonusDice: BonusDice, penaltyDice: PenaltyDice)(implicit

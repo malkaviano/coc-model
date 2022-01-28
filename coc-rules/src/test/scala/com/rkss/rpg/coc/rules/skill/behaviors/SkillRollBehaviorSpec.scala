@@ -19,7 +19,8 @@ final class SkillRollBehaviorSpec extends AnyFunSpec with Matchers {
           HundredSidedDice(TestingProps.fakeRng(Seq(20)))
 
         val expected = SkillRolled(
-          skill,
+          skill.name,
+          skill.value(),
           RegularDifficulty,
           BonusDice(0),
           PenaltyDice(0),

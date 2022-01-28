@@ -97,7 +97,8 @@ final class PushingASkillRollSpec
       SkillRollDiceResult(12, Seq(10)),
       Some(
         SkillRolled(
-          failure,
+          failure.name,
+          failure.value(),
           RegularDifficulty,
           BonusDice(0),
           PenaltyDice(1),
@@ -117,7 +118,8 @@ final class PushingASkillRollSpec
       SkillRollDiceResult(55, Seq(12)),
       Some(
         SkillRolled(
-          failure2,
+          failure2.name,
+          failure2.value(),
           RegularDifficulty,
           BonusDice(1),
           PenaltyDice(2),
@@ -137,7 +139,8 @@ final class PushingASkillRollSpec
       SkillRollDiceResult(1),
       Some(
         SkillRolled(
-          criticalSuccess,
+          criticalSuccess.name,
+          criticalSuccess.value(),
           RegularDifficulty,
           BonusDice(0),
           PenaltyDice(0),
@@ -157,7 +160,8 @@ final class PushingASkillRollSpec
       SkillRollDiceResult(25),
       Some(
         SkillRolled(
-          hardSuccess,
+          hardSuccess.name,
+          hardSuccess.value(),
           RegularDifficulty,
           BonusDice(0),
           PenaltyDice(0),

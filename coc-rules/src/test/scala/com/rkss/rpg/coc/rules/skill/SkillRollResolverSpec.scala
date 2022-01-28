@@ -20,7 +20,8 @@ final class SkillRollResolverSpec
       someCharacteristic,
       Seq(48),
       SkillRolled(
-        someCharacteristic,
+        Education,
+        someCharacteristic.value(),
         RegularDifficulty,
         BonusDice(0),
         PenaltyDice(0),
@@ -33,7 +34,8 @@ final class SkillRollResolverSpec
       someCharacteristic,
       Seq(60),
       SkillRolled(
-        someCharacteristic,
+        Education,
+        someCharacteristic.value(),
         RegularDifficulty,
         BonusDice(0),
         PenaltyDice(0),
@@ -46,7 +48,8 @@ final class SkillRollResolverSpec
       someCharacteristic,
       Seq(100),
       SkillRolled(
-        someCharacteristic,
+        Education,
+        someCharacteristic.value(),
         RegularDifficulty,
         BonusDice(0),
         PenaltyDice(0),
@@ -59,7 +62,8 @@ final class SkillRollResolverSpec
       someCharacteristic,
       Seq(20),
       SkillRolled(
-        someCharacteristic,
+        Education,
+        someCharacteristic.value(),
         RegularDifficulty,
         BonusDice(0),
         PenaltyDice(0),
@@ -72,7 +76,8 @@ final class SkillRollResolverSpec
       someCharacteristic,
       Seq(6),
       SkillRolled(
-        someCharacteristic,
+        Education,
+        someCharacteristic.value(),
         RegularDifficulty,
         BonusDice(0),
         PenaltyDice(0),
@@ -85,7 +90,8 @@ final class SkillRollResolverSpec
       someCharacteristic,
       Seq(1),
       SkillRolled(
-        someCharacteristic,
+        Education,
+        someCharacteristic.value(),
         RegularDifficulty,
         BonusDice(0),
         PenaltyDice(0),
@@ -98,7 +104,8 @@ final class SkillRollResolverSpec
       someCharacteristic,
       Seq(20),
       SkillRolled(
-        someCharacteristic,
+        Education,
+        someCharacteristic.value(HardDifficulty),
         HardDifficulty,
         BonusDice(0),
         PenaltyDice(0),
@@ -112,7 +119,8 @@ final class SkillRollResolverSpec
       someCharacteristic,
       Seq(6),
       SkillRolled(
-        someCharacteristic,
+        Education,
+        someCharacteristic.value(HardDifficulty),
         HardDifficulty,
         BonusDice(0),
         PenaltyDice(0),
@@ -126,7 +134,8 @@ final class SkillRollResolverSpec
       someCharacteristic,
       Seq(6),
       SkillRolled(
-        someCharacteristic,
+        Education,
+        someCharacteristic.value(ExtremeDifficulty),
         ExtremeDifficulty,
         BonusDice(0),
         PenaltyDice(0),
@@ -140,7 +149,8 @@ final class SkillRollResolverSpec
       someCharacteristic,
       Seq(97),
       SkillRolled(
-        someCharacteristic,
+        Education,
+        someCharacteristic.value(),
         RegularDifficulty,
         BonusDice(0),
         PenaltyDice(0),
@@ -154,7 +164,8 @@ final class SkillRollResolverSpec
       someCharacteristic,
       Seq(97),
       SkillRolled(
-        someCharacteristic,
+        Education,
+        someCharacteristic.value(HardDifficulty),
         HardDifficulty,
         BonusDice(0),
         PenaltyDice(0),
@@ -168,7 +179,8 @@ final class SkillRollResolverSpec
       someCharacteristic,
       Seq(48, 20),
       SkillRolled(
-        someCharacteristic,
+        Education,
+        someCharacteristic.value(),
         RegularDifficulty,
         BonusDice(2),
         PenaltyDice(1),
@@ -184,7 +196,8 @@ final class SkillRollResolverSpec
       someCharacteristic,
       Seq(48, 100),
       SkillRolled(
-        someCharacteristic,
+        Education,
+        someCharacteristic.value(),
         RegularDifficulty,
         BonusDice(0),
         PenaltyDice(1),
@@ -198,7 +211,7 @@ final class SkillRollResolverSpec
   }
 
   private def resolveSkillRoll(
-      rollable: EntityWithDifficultyValue,
+      rollable: EntityWithDifficultyValue with EntityWithNameTag,
       diceResults: Seq[Int],
       expected: SkillRolled,
       difficulty: SkillRollDifficultyLevel= RegularDifficulty,
