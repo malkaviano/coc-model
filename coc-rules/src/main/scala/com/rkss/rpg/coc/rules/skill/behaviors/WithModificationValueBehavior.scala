@@ -1,4 +1,4 @@
-package com.rkss.rpg.coc.rules.behaviors
+package com.rkss.rpg.coc.rules.skill.behaviors
 
 import com.rkss.rpg.coc.concepts._
 

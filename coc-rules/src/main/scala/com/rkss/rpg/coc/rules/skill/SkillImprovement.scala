@@ -1,4 +1,4 @@
-package com.rkss.rpg.coc.rules
+package com.rkss.rpg.coc.rules.skill
 
 import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.concepts.skill.improvement._

@@ -1,7 +1,7 @@
 package com.rkss.rpg.coc.rules.testing.fakes
 
 import com.rkss.rpg.coc.concepts.skill.check._
-import com.rkss.rpg.coc.rules.behaviors._
+import com.rkss.rpg.coc.rules.skill.behaviors._
 import com.rkss.rpg.coc.concepts.skill.improvement._
 import com.rkss.rpg.coc.concepts.skill._
 
