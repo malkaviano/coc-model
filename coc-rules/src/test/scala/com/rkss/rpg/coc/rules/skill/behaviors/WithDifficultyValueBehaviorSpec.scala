@@ -15,7 +15,7 @@ final class WithDifficultyValueBehaviorSpec extends AnyFunSpec with Matchers {
     describe("Characteristic value") {
       val characteristic = FakeGenericCharacteristic(Constitution, 70)
 
-      characteristic.modify(ValueModification(Constitution, -20))
+      characteristic.modify(ValueModificationDecrease(Constitution, 20))
 
       it should behave like getDifficultyValue(
         characteristic,

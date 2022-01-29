@@ -1,3 +1,13 @@
 package com.rkss.rpg.coc.concepts
 
-final case class ValueModification[A](val nameTag: A, val value: Int)
+sealed trait ValueModification[A]
+
+final case class ValueModificationDecrease[A <: NameTag](
+    val nameTag: A,
+    val value: Int
+) extends ValueModification[A]
+
+final case class ValueModificationIncrease[A <: NameTag](
+    val nameTag: A,
+    val value: Int
+) extends ValueModification[A]

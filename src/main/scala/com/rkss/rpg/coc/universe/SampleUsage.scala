@@ -6,7 +6,7 @@ import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.concepts.skill.improvement._
 import com.rkss.rpg.coc.fundamentals.characteristics._
 import com.rkss.rpg.coc.concepts.characteristic._
-import com.rkss.rpg.coc.concepts.ValueModification
+import com.rkss.rpg.coc.concepts._
 
 object SampleUsage extends App {
   import com.rkss.rpg.helpers.dice.Bag._
@@ -94,7 +94,7 @@ object SampleUsage extends App {
 
   println(education.roll())
 
-  education.modify(ValueModification(Education, 10))
+  education.modify(ValueModificationIncrease(Education, 10))
 
   println(education.value())
 

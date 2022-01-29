@@ -8,7 +8,12 @@ private[coc] trait WithGenericModificationValueBehavior[A] {
   private var _modification: Int = 0
 
   override def modify(modification: ValueModification[A]): Unit = {
-    _modification += modification.value
+    modification match {
+      case ValueModificationIncrease(_, value) =>
+        _modification += Math.abs(value)
+      case ValueModificationDecrease(_, value) =>
+        _modification -= Math.abs(value)
+    }
   }
 
   override def modificationValue: Int = {

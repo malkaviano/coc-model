@@ -4,7 +4,7 @@ import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 import com.rkss.rpg.coc.rules.testing.fakes._
 import com.rkss.rpg.coc.concepts.characteristic._
-import com.rkss.rpg.coc.concepts.ValueModification
+import com.rkss.rpg.coc.concepts._
 
 final class WithGenericModificationValueBehaviorSpec
     extends AnyFunSpec
@@ -16,13 +16,20 @@ final class WithGenericModificationValueBehaviorSpec
       fake.modificationValue shouldBe 0
     }
 
-    describe("Modifying an entity with 10") {
-      it("should have modification value 10") {
-        val modification = ValueModification(Appearance, 10)
+    Seq(
+      (ValueModificationIncrease(Appearance, 10), 10),
+      (ValueModificationDecrease(Appearance, 5), -5)
+    ).foreach {
+      case (modification, expected) => {
+        describe(s"Modifying an entity with $modification") {
+          it(s"should have modification value $expected") {
+            val fake = FakeGenericCharacteristic(Appearance, 10)
 
-        fake.modify(modification)
+            fake.modify(modification)
 
-        fake.modificationValue shouldBe 10
+            fake.modificationValue shouldBe expected
+          }
+        }
       }
     }
   }
