@@ -3,6 +3,7 @@ package com.rkss.rpg.coc.rules.sanity.behaviors
 import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 import com.rkss.rpg.coc.rules.testing.fakes.FakeSanity
+import com.rkss.rpg.coc.concepts.sanity._
 
 final class SanityBehaviorSpec extends AnyFunSpec with Matchers {
   describe("Sanity Behavior") {
@@ -25,30 +26,32 @@ final class SanityBehaviorSpec extends AnyFunSpec with Matchers {
     }
 
     describe("Sanity loss") {
-      Seq((10, 30), (-5, 35), (60, 0)).foreach {
+      Seq(
+        (SanityLoss(10), SanityLost(10, 30, 40)),
+        (SanityLoss(60), SanityLost(40, 0, 40))
+      ).foreach {
         case (loss, expected) => {
-          it(s"should decrease current sanity by ${Math.abs(loss)}") {
+          it(s"should decrease current sanity by ${loss}") {
             val sanity = FakeSanity(initial)
 
-            sanity.loss(loss)
-
-            sanity.current shouldBe expected
+            sanity.loss(loss) shouldBe expected
           }
         }
       }
     }
 
     describe("Sanity gain") {
-      Seq((10, 50), (-5, 45), (60, 80)).foreach {
+      Seq(
+        (SanityGain(10), SanityRecovered(10, 50, 40, 80)),
+        (SanityGain(60), SanityRecovered(40, 80, 40, 80))
+      ).foreach {
         case (gain, expected) => {
-          it(s"should increase current sanity by ${Math.abs(gain)}") {
+          it(s"should increase current sanity by ${gain}") {
             val sanity = FakeSanity(initial)
 
             sanity.currentMythos(19)
 
-            sanity.gain(gain)
-
-            sanity.current shouldBe expected
+            sanity.gain(gain) shouldBe expected
           }
         }
       }
