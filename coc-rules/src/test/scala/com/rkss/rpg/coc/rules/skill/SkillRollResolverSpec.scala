@@ -14,7 +14,7 @@ final class SkillRollResolverSpec
     extends AnyFunSpec
     with Matchers {
   describe("Resolving a skill roll") {
-    val someCharacteristic = FakeCharacteristic(Education, 50)
+    val someCharacteristic = FakeGenericCharacteristic(Education, 50)
 
     it should behave like resolveSkillRoll(
       someCharacteristic,

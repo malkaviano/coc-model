@@ -6,6 +6,7 @@ import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.concepts.skill.improvement._
 import com.rkss.rpg.coc.fundamentals.characteristics._
 import com.rkss.rpg.coc.concepts.characteristic._
+import com.rkss.rpg.coc.concepts.ValueModification
 
 object SampleUsage extends App {
   import com.rkss.rpg.helpers.dice.Bag._
@@ -82,4 +83,20 @@ object SampleUsage extends App {
   println(strength.roll())
 
   println(strength.pushRoll(Some(HardDifficulty)))
+
+  val education = Characteristic(Education, 60)
+
+  println(education)
+
+  println(education.value())
+
+  println(education.modificationValue)
+
+  println(education.roll())
+
+  education.modify(ValueModification(Education, 10))
+
+  println(education.value())
+
+  println(education.modificationValue)
 }
