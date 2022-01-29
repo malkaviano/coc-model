@@ -7,13 +7,13 @@ import com.rkss.rpg.coc.concepts.skill.improvement._
 import com.rkss.rpg.coc.concepts.skill.check._
 import com.rkss.rpg.coc.concepts.skill.allocation._
 
-final class BasicSkill private[coc](
+final class BasicSkill[A <: SkillName] private[coc](
     override val name: SkillName,
     override val baseValue: Int,
     override val occupationPoints: Int,
     override val personalPoints: Int,
     override val tags: Seq[SkillTag] = Seq.empty[SkillTag]
-) extends Skill
+) extends Skill[A]
     with SkillWithPointsAllocation
     with SkillSuccessCheck
     with SkillSuccessCheckable
@@ -25,4 +25,4 @@ final class BasicSkill private[coc](
     with PushableSkillRollBehavior
     with SkillImprovementBehavior
     with WithDifficultyValueBehavior
-    with WithModificationValueBehavior
+    with WithGenericModificationValueBehavior[A]

@@ -11,7 +11,7 @@ import com.rkss.rpg.coc.concepts._
 object SampleUsage extends App {
   import com.rkss.rpg.helpers.dice.Bag._
 
-  private def printSkill(skill: Skill): Unit = {
+  private def printSkill(skill: Skill[_]): Unit = {
     println(s"""
        | name: ${skill.name}
        | base value: ${skill.baseValue}
@@ -31,6 +31,8 @@ object SampleUsage extends App {
   println("Sample usage of fundamentals")
 
   val firstAid = SkillFactory.basicSkill(FirstAid, 10, 15)
+
+  firstAid.modify(ValueModificationIncrease(FirstAid, 20))
 
   firstAid.checkUsedWithSuccess()
 
@@ -66,7 +68,9 @@ object SampleUsage extends App {
 
   printSkill(brawl)
 
-  val dodge = SkillFactory.dodgeSkill(50, 10, 15)
+  val dodge = SkillFactory.combatSkill(Dodge, 50, 10, 15)
+
+  dodge.modify(ValueModificationIncrease(Dodge, 20))
 
   printSkill(dodge)
 

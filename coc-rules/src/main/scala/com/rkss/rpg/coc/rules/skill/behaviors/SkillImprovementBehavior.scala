@@ -9,7 +9,7 @@ import com.rkss.rpg.coc.concepts.skill.roll.SkillRollDiceResult
 
 private[coc] trait SkillImprovementBehavior
     extends SkillSuccessfullyUsedBehavior {
-  self: Skill
+  self: Skill[_]
     with SkillSuccessCheck
     with SkillSuccessCheckable
     with SkillWithImprovedValue
@@ -33,7 +33,7 @@ private[coc] trait SkillImprovementBehavior
 
         result
       }
-      case _ => SkillImproved(this, 0, Option.empty[SkillRollDiceResult], false)
+      case _ => SkillImproved(0, Option.empty[SkillRollDiceResult], false)
     }
   }
 }

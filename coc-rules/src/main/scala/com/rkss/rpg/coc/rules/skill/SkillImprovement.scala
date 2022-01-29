@@ -6,7 +6,7 @@ import com.rkss.rpg.coc.concepts.skill.check._
 import com.rkss.rpg.helpers.dice.{HundredSidedDice, TenSidedDice}
 
 private final case class SkillImprovement(
-    val skill: Skill with SkillSuccessCheck
+    val skill: Skill[_] with SkillSuccessCheck
 )(implicit
     hundredSidedDice: HundredSidedDice,
     tenSidedDice: TenSidedDice

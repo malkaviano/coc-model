@@ -16,7 +16,7 @@ final class SkillImprovementCheckSpec extends AnyFunSpec with Matchers {
       val skill = FakeSkillWithSuccessCheck(Anthropology, 30)
 
       val expected =
-        SkillImproved(skill, 0, Option(SkillRollDiceResult(10)), false)
+        SkillImproved(0, Option(SkillRollDiceResult(10)), false)
 
       it should behave like improvementCheck(skill, Seq(10), Seq(8), expected)
     }
@@ -25,7 +25,7 @@ final class SkillImprovementCheckSpec extends AnyFunSpec with Matchers {
       val skill = FakeSkillWithSuccessCheck(Handgun, 30)
 
       val expected =
-        SkillImproved(skill, 8, Option(SkillRollDiceResult(90)), false)
+        SkillImproved(8, Option(SkillRollDiceResult(90)), false)
 
       it should behave like improvementCheck(skill, Seq(90), Seq(8), expected)
 
@@ -33,7 +33,7 @@ final class SkillImprovementCheckSpec extends AnyFunSpec with Matchers {
         val skill = FakeSkillWithSuccessCheck(Axe, 30, 50, 21)
 
         val expected =
-          SkillImproved(skill, 6, Option(SkillRollDiceResult(98)), false)
+          SkillImproved(6, Option(SkillRollDiceResult(98)), false)
 
         it should behave like improvementCheck(skill, Seq(98), Seq(6), expected)
       }
@@ -42,7 +42,7 @@ final class SkillImprovementCheckSpec extends AnyFunSpec with Matchers {
         val skill = FakeSkillWithSuccessCheck(Brawl, 30, 50, 6)
 
         val expected =
-          SkillImproved(skill, 4, Option(SkillRollDiceResult(100)), true)
+          SkillImproved(4, Option(SkillRollDiceResult(100)), true)
 
         it should behave like improvementCheck(skill, Seq(100), Seq(4), expected)
       }

@@ -100,7 +100,7 @@ object SkillFactory {
       name: A,
       occupationPoints: Int,
       personalPoints: Int
-  ): BasicSkill = {
+  ): BasicSkill[A] = {
     val SkillInfo(baseValue, tags) = basicSkills(name)
 
     new BasicSkill(name, baseValue, occupationPoints, personalPoints, tags)
@@ -110,25 +110,26 @@ object SkillFactory {
       name: A,
       occupationPoints: Int,
       personalPoints: Int
-  ): CombatSkill = {
+  ): CombatSkill[A] = {
     val SkillInfo(baseValue, tags) = combatSkills(name)
 
     new CombatSkill(name, baseValue, occupationPoints, personalPoints, tags)
   }
 
-  def dodgeSkill(
+  def combatSkill[A <: DexterityCombatSkill](
+      name: A,
       dexterity: Int,
       occupationPoints: Int,
       personalPoints: Int
-  ): CombatSkill = {
+  ): CombatSkill[A] = {
     new CombatSkill(Dodge, dexterity, occupationPoints, personalPoints)
   }
 
-  def languageSkill(
-      language: LanguageSkillName,
+  def languageSkill[A <: LanguageSkillName](
+      language: A,
       occupationPoints: Int,
       personalPoints: Int
-  ): BasicSkill = {
+  ): BasicSkill[A] = {
     new BasicSkill(
       language,
       1,
@@ -138,12 +139,12 @@ object SkillFactory {
     )
   }
 
-  def languageSkill(
+  def languageSkill[A <: LanguageSkillName](
       education: Int,
-      language: LanguageSkillName,
+      language: A,
       occupationPoints: Int,
       personalPoints: Int
-  ): BasicSkill = {
+  ): BasicSkill[A] = {
     new BasicSkill(
       language,
       education,

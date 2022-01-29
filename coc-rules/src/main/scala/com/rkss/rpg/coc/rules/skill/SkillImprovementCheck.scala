@@ -6,7 +6,7 @@ import com.rkss.rpg.coc.concepts.skill.improvement._
 import com.rkss.rpg.coc.concepts.skill.roll.SkillRollDiceResult
 
 private final class SkillImprovementCheck private () {
-  def improvementCheck(skill: Skill)(implicit
+  def improvementCheck(skill: Skill[_])(implicit
       hundredSidedDice: HundredSidedDice,
       tenSidedDice: TenSidedDice
   ): SkillImproved = {
@@ -17,12 +17,11 @@ private final class SkillImprovementCheck private () {
     rolled match {
       case x if x > skillValue || x > 95 =>
         SkillImproved(
-          skill,
           increment,
           Option(SkillRollDiceResult(rolled)),
           skillValue < 90 && skillValue + increment >= 90
         )
-      case _ => SkillImproved(skill, 0, Option(SkillRollDiceResult(rolled)), false)
+      case _ => SkillImproved(0, Option(SkillRollDiceResult(rolled)), false)
     }
   }
 }

@@ -17,7 +17,7 @@ final class SkillImprovementBehaviorSpec extends AnyFunSpec with Matchers {
 
       it should behave like improvementCheck(
         skill,
-        SkillImproved(skill, 0, Option.empty[SkillRollDiceResult], false),
+        SkillImproved(0, Option.empty[SkillRollDiceResult], false),
         Seq(95),
         Seq(9)
       )
@@ -34,7 +34,7 @@ final class SkillImprovementBehaviorSpec extends AnyFunSpec with Matchers {
 
       it should behave like improvementCheck(
         skill,
-        SkillImproved(skill, 9, Option(SkillRollDiceResult(95)), false),
+        SkillImproved(9, Option(SkillRollDiceResult(95)), false),
         Seq(95),
         Seq(9)
       )

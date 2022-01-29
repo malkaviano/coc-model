@@ -6,7 +6,6 @@ sealed trait SkillName extends NameTag
 
 case object CreditRating extends SkillName
 case object CthulhuMythos extends SkillName
-case object Dodge extends SkillName
 
 sealed trait SimpleSkillName extends SkillName
 
@@ -115,6 +114,10 @@ case object Flamethrower extends Firearms
 case object MachineGun extends Firearms
 case object RifleAndShotgun extends Firearms
 case object SubmachineGun extends Firearms
+
+sealed trait DexterityCombatSkill extends CombatSkillName
+
+case object Dodge extends DexterityCombatSkill
 
 sealed trait LanguageSkillName extends SkillName
 
