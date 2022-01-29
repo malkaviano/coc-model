@@ -17,17 +17,21 @@ final class WithGenericModificationValueBehaviorSpec
     }
 
     Seq(
-      (ValueModificationIncrease(Appearance, 10), 10),
-      (ValueModificationDecrease(Appearance, 5), -5)
+      (
+        ValueModificationDecrease(Appearance, 5),
+        ValueModified(Appearance, -5, -5, 0)
+      ),
+      (
+        ValueModificationIncrease(Appearance, 10),
+        ValueModified(Appearance, 10, 5, -5)
+      ),
     ).foreach {
       case (modification, expected) => {
         describe(s"Modifying an entity with $modification") {
           it(s"should have modification value $expected") {
-            val fake = FakeGenericCharacteristic(Appearance, 10)
+            val result = fake.modify(modification)
 
-            fake.modify(modification)
-
-            fake.modificationValue shouldBe expected
+            result shouldBe expected
           }
         }
       }
