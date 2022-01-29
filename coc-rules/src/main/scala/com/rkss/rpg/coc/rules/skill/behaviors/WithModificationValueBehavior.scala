@@ -3,7 +3,7 @@ package com.rkss.rpg.coc.rules.skill.behaviors
 import com.rkss.rpg.coc.concepts._
 
 private[coc] trait WithModificationValueBehavior {
-  self: EntityWithModificationValue with ModifiableValue =>
+  self: EntityWithModificationValue with EntityWithModifiableValue =>
 
   private var _modification: Int = 0
 

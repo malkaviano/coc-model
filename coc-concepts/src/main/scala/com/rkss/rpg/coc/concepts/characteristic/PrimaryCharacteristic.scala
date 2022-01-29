@@ -6,7 +6,7 @@ import com.rkss.rpg.coc.concepts._
 trait PrimaryCharacteristic
     extends EntityWithDifficultyValue
     with EntityWithModificationValue
-    with ModifiableValue
+    with EntityWithModifiableValue
     with SkillRollable
     with SkillPushable
     with EntityWithNameTag
