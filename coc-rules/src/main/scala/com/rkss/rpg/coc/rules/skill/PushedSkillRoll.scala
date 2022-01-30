@@ -21,7 +21,7 @@ private final case class PushedSkillRoll(
   }
 
   private def canPush: Boolean = {
-    entity.isInstanceOf[SkillPushable] && skillRolled.rollResult == Failure
+    entity.isInstanceOf[SkillPushable] && skillRolled.result == Failure
   }
 
   private def roll: SkillRolled = SkillRollResolver.instance.roll(

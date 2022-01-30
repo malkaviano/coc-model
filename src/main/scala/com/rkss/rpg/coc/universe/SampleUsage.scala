@@ -60,7 +60,8 @@ object SampleUsage extends App {
 
   println(rolled)
 
-  val pushed = firstAid.pushRoll(Some(HardDifficulty), penaltyDice = Some(PenaltyDice(1)))
+  val pushed =
+    firstAid.pushRoll(Some(HardDifficulty), penaltyDice = Some(PenaltyDice(1)))
 
   println(pushed)
 
@@ -74,7 +75,8 @@ object SampleUsage extends App {
 
   printSkill(dodge)
 
-  val portugueseLanguage = SkillFactory.languageSkill(PortugueseLanguage, 10, 15)
+  val portugueseLanguage =
+    SkillFactory.languageSkill(PortugueseLanguage, 10, 15)
 
   printSkill(portugueseLanguage)
 
