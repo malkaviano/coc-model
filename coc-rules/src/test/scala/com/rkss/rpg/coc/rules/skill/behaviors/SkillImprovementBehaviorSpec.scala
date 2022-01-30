@@ -51,8 +51,8 @@ final class SkillImprovementBehaviorSpec extends AnyFunSpec with Matchers {
     }
   }
 
-  private def improvementCheck(
-      skill: FakeSkillImprovable,
+  private def improvementCheck[A <: SkillName](
+      skill: FakeSkillImprovable[A],
       expected: SkillImproved,
       rolled: Seq[Int],
       improved: Seq[Int]
@@ -72,7 +72,9 @@ final class SkillImprovementBehaviorSpec extends AnyFunSpec with Matchers {
     }
   }
 
-  private def markUsedWithSuccess(skill: FakeSkillImprovable): Unit = {
+  private def markUsedWithSuccess[A <: SkillName](
+      skill: FakeSkillImprovable[A]
+  ): Unit = {
     describe("Used with success") {
       it("returns false") {
         skill.wasSuccessfullyUsed shouldBe false
@@ -80,8 +82,8 @@ final class SkillImprovementBehaviorSpec extends AnyFunSpec with Matchers {
     }
   }
 
-  private def improvedValue(
-      skill: FakeSkillImprovable,
+  private def improvedValue[A <: SkillName](
+      skill: FakeSkillImprovable[A],
       expected: Int
   ): Unit = {
     describe("Improved value") {

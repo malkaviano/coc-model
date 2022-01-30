@@ -7,9 +7,9 @@ import com.rkss.rpg.helpers.dice._
 import com.rkss.rpg.coc.rules.skill._
 import com.rkss.rpg.coc.concepts.skill.roll._
 
-private[coc] trait SkillImprovementBehavior
+private[coc] trait SkillImprovementBehavior[A <: SkillName]
     extends SkillSuccessfullyUsedBehavior {
-  self: Skill[_]
+  self: Skill[A]
     with SkillSuccessMark
     with SkillSuccessMarkable
     with SkillWithImprovement

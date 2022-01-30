@@ -9,5 +9,5 @@ final case class FakeGenericCharacteristic[A <: CharacteristicName](
 ) extends GenericCharacteristic[A]
     with WithGenericModificationValueBehavior[A]
     with WithDifficultyValueBehavior
-    with SkillRollBehavior
-    with PushableSkillRollBehavior
+    with SkillRollBehavior[A]
+    with PushableSkillRollBehavior[A]

@@ -5,25 +5,25 @@ import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.helpers.dice.HundredSidedDice
 import com.rkss.rpg.coc.rules.skill._
 
-private[coc] trait PushableSkillRollBehavior extends SkillRollBehavior {
+private[coc] trait PushableSkillRollBehavior[A <: NameTag] extends SkillRollBehavior[A] {
   self: EntityWithDifficultyValue
-    with SkillRollable
-    with SkillPushable
-    with EntityWithNameTag =>
+    with SkillRollable[A]
+    with SkillPushable[A]
+    with EntityWithNameTag[A] =>
 
   override def pushRoll(
       difficulty: Option[SkillRollDifficultyLevel] = None,
       bonusDice: Option[BonusDice] = None,
       penaltyDice: Option[PenaltyDice] = None
-  )(implicit hundredSidedDice: HundredSidedDice): Option[SkillRolled] = {
+  )(implicit hundredSidedDice: HundredSidedDice): Option[SkillRolled[A]] = {
     lastSkillRolled match {
-      case Some(skillRolled) =>
-        if (skillRolled.pushed) {
-          Option.empty[SkillRolled]
+      case skillRolled: Option[SkillRolled[A]] if skillRolled.isDefined =>
+        if (skillRolled.get.pushed) {
+          Option.empty[SkillRolled[A]]
         } else {
-          PushedSkillRoll(
+          PushedSkillRoll[A](
             this,
-            skillRolled,
+            skillRolled.get,
             difficulty,
             bonusDice,
             penaltyDice
@@ -35,11 +35,12 @@ private[coc] trait PushableSkillRollBehavior extends SkillRollBehavior {
 
               lastSkillRolled
             }
-            case None => Option.empty[SkillRolled]
+            case None => Option.empty[SkillRolled[A]]
           }
         }
       case None =>
-        Option.empty[SkillRolled]
+        Option.empty[SkillRolled[A]]
+      case Some(_) => ???
     }
   }
 }

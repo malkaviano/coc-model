@@ -8,9 +8,9 @@ import com.rkss.rpg.coc.fundamentals.scenarios._
 import com.rkss.rpg.coc.fundamentals.characteristics._
 import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.coc.fundamentals.specs._
-import com.rkss.rpg.coc.fundamentals.skills._
-import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.concepts.characteristic._
+import com.rkss.rpg.coc.concepts.skill._
+import com.rkss.rpg.coc.fundamentals.skills._
 
 final class MakingASkillRollSpec
     extends AnyFeatureSpec

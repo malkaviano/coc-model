@@ -12,6 +12,6 @@ class FakeSkill[A <: SkillName](
     override val tags: Seq[SkillTag] = Seq.empty[SkillTag]
 ) extends Skill[A]
     with WithDifficultyValueBehavior
-    with SkillRollBehavior
+    with SkillRollBehavior[A]
     with SkillWithPointsAllocation
     with WithGenericModificationValueBehavior[A]

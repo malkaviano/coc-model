@@ -3,8 +3,8 @@ package com.rkss.rpg.coc.fundamentals.specs
 import com.rkss.rpg.coc.concepts._
 import com.rkss.rpg.coc.concepts.skill.roll._
 
-final case class SkillRollSpec(
-    val entity: SkillRollable with EntityWithDifficultyValue with EntityWithNameTag,
+final case class SkillRollSpec[A <: NameTag](
+    val entity: SkillRollable[A] with EntityWithDifficultyValue with EntityWithNameTag[A],
     val difficulty: SkillRollDifficultyLevel,
     val bonusDice: BonusDice,
     val penaltyDice: PenaltyDice,
@@ -12,7 +12,7 @@ final case class SkillRollSpec(
     val rolledResult: SkillRollResult,
     val rollDiceResult: SkillRollDiceResult
 ) {
-  lazy val expected: SkillRolled = SkillRolled(
+  lazy val expected: SkillRolled[A] = SkillRolled(
     entity.name,
     entity.value(difficulty),
     difficulty,

@@ -5,12 +5,12 @@ import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.coc.concepts._
 
 private class SkillRollResolver private () {
-  def roll(
-      rollable: EntityWithDifficultyValue with EntityWithNameTag,
+  def roll[A <: NameTag](
+      rollable: EntityWithDifficultyValue with EntityWithNameTag[A],
       difficulty: SkillRollDifficultyLevel,
       bonusDice: BonusDice,
       penaltyDice: PenaltyDice
-  )(implicit hundredSidedDice: HundredSidedDice): SkillRolled = {
+  )(implicit hundredSidedDice: HundredSidedDice): SkillRolled[A] = {
     val regular = rollable.value(difficulty)
     val hard = regular / 2
     val extreme = regular / 5
@@ -28,7 +28,15 @@ private class SkillRollResolver private () {
       case _                                   => Failure
     }
 
-    SkillRolled(rollable.name, regular, difficulty, bonusDice, penaltyDice, result, rolled)
+    SkillRolled[A](
+      rollable.name,
+      regular,
+      difficulty,
+      bonusDice,
+      penaltyDice,
+      result,
+      rolled
+    )
   }
 
   private def rollDice(bonusDice: BonusDice, penaltyDice: PenaltyDice)(implicit

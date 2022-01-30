@@ -6,7 +6,7 @@ import com.rkss.rpg.coc.concepts.skill.improvement._
 import com.rkss.rpg.coc.concepts.skill.roll.SkillRollDiceResult
 
 private final class SkillImprovementCheck private () {
-  def improvementCheck(skill: Skill[_])(implicit
+  def improvementCheck[A <: SkillName](skill: Skill[A])(implicit
       hundredSidedDice: HundredSidedDice,
       tenSidedDice: TenSidedDice
   ): SkillImproved = {

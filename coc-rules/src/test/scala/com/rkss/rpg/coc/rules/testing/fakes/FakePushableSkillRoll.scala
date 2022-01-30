@@ -4,12 +4,12 @@ import com.rkss.rpg.coc.rules.skill.behaviors._
 import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.coc.concepts.skill._
 
-final case class FakePushableSkillRoll(
-    override val name: SkillName,
+final case class FakePushableSkillRoll[A <: SkillName](
+    override val name: A,
     override val baseValue: Int,
     override val occupationPoints: Int = 0,
     override val personalPoints: Int = 0
 ) extends FakeSkill(name, baseValue, occupationPoints, personalPoints)
-    with SkillRollBehavior
-    with SkillPushable
-    with PushableSkillRollBehavior
+    with SkillRollBehavior[A]
+    with SkillPushable[A]
+    with PushableSkillRollBehavior[A]

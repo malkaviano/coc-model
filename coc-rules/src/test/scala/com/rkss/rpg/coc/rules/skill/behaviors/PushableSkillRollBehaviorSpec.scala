@@ -8,6 +8,7 @@ import com.rkss.rpg.helpers.dice.HundredSidedDice
 import com.rkss.rpg.coc.rules.testing._
 import com.rkss.rpg.coc.rules.testing.fakes._
 import com.rkss.rpg.coc.concepts.skill._
+import com.rkss.rpg.coc.concepts.NameTag
 
 final class PushableSkillRollBehaviorSpec extends AnyFunSpec with Matchers {
   describe("Pushing a skill roll") {
@@ -22,7 +23,7 @@ final class PushableSkillRollBehaviorSpec extends AnyFunSpec with Matchers {
 
         val result = pushableSkillRollBehavior.pushRoll()(hundredSidedDice)
 
-        result shouldBe Option.empty[SkillRolled]
+        result shouldBe Option.empty[SkillRolled[Whip.type]]
       }
     }
 
@@ -47,7 +48,7 @@ final class PushableSkillRollBehaviorSpec extends AnyFunSpec with Matchers {
 
             val result = pushableSkillRollBehavior.pushRoll()(hundredSidedDice)
 
-            result shouldBe Option.empty[SkillRolled]
+            result shouldBe Option.empty[SkillRolled[Appraise.type]]
           }
         }
       }
@@ -95,14 +96,14 @@ final class PushableSkillRollBehaviorSpec extends AnyFunSpec with Matchers {
 
           val result = pushableSkillRollBehavior.pushRoll()(hundredSidedDice)
 
-          result shouldBe Option.empty[SkillRolled]
+          result shouldBe Option.empty[SkillRolled[Medicine.type]]
         }
       }
     }
   }
 
-  private def rollSkill(
-      pushableSkillRollBehavior: PushableSkillRollBehavior,
+  private def rollSkill[A <: NameTag](
+      pushableSkillRollBehavior: PushableSkillRollBehavior[A],
       rolledTest: Seq[Int]
   ): Unit = {
     val hundredSidedDice = HundredSidedDice(

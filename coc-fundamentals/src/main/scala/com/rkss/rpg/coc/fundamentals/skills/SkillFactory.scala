@@ -122,7 +122,7 @@ object SkillFactory {
       occupationPoints: Int,
       personalPoints: Int
   ): CombatSkill[A] = {
-    new CombatSkill(Dodge, dexterity, occupationPoints, personalPoints)
+    new CombatSkill(name, dexterity, occupationPoints, personalPoints)
   }
 
   def languageSkill[A <: LanguageSkillName](

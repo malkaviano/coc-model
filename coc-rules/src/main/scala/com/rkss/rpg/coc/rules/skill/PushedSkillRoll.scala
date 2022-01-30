@@ -4,14 +4,14 @@ import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.helpers.dice.HundredSidedDice
 import com.rkss.rpg.coc.concepts._
 
-private final case class PushedSkillRoll(
-    private val entity: EntityWithDifficultyValue with EntityWithNameTag,
-    private val skillRolled: SkillRolled,
+private final case class PushedSkillRoll[A <: NameTag](
+    private val entity: EntityWithDifficultyValue with EntityWithNameTag[A],
+    private val skillRolled: SkillRolled[A],
     private val pushedDifficulty: Option[SkillRollDifficultyLevel] = None,
     private val pushedBonusDice: Option[BonusDice] = None,
     private val pushedPenaltyDice: Option[PenaltyDice] = None
 )(implicit private val hundredSidedDice: HundredSidedDice) {
-  lazy val result: Option[SkillRolled] = {
+  lazy val result: Option[SkillRolled[A]] = {
     canPush match {
       case true => {
         Some(roll)
@@ -21,10 +21,10 @@ private final case class PushedSkillRoll(
   }
 
   private def canPush: Boolean = {
-    entity.isInstanceOf[SkillPushable] && skillRolled.result == Failure
+    entity.isInstanceOf[SkillPushable[_]] && skillRolled.result == Failure
   }
 
-  private def roll: SkillRolled = SkillRollResolver.instance.roll(
+  private def roll: SkillRolled[A] = SkillRollResolver.instance.roll(
     entity,
     pushedDifficulty.getOrElse(skillRolled.difficulty),
     pushedBonusDice.getOrElse(skillRolled.bonusDice),

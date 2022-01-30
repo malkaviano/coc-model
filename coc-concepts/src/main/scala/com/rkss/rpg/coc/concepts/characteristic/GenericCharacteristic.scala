@@ -7,6 +7,6 @@ trait GenericCharacteristic[A <: CharacteristicName]
     extends EntityWithDifficultyValue
     with EntityWithModificationValue
     with GenericEntityWithModifiableValue[A]
-    with SkillRollable
-    with SkillPushable
-    with EntityWithNameTag
+    with SkillRollable[A]
+    with SkillPushable[A]
+    with EntityWithNameTag[A]
