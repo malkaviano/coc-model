@@ -15,5 +15,5 @@ final case class FakeSkillImprovable[A <: SkillName](
     with SkillSuccessMarkable
     with SkillSuccessfullyUsedBehavior
     with SkillWithImprovement
-    with SkillImprovable
+    with SkillImprovable[A]
     with SkillImprovementBehavior[A]

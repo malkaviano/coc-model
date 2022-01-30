@@ -17,7 +17,7 @@ final class CombatSkill[A <: CombatSkillName] private[coc](
     with SkillSuccessMark
     with SkillSuccessMarkable
     with SkillWithImprovement
-    with SkillImprovable
+    with SkillImprovable[A]
     with SkillRollBehavior[A]
     with SkillSuccessfullyUsedBehavior
     with SkillImprovementBehavior[A]

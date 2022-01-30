@@ -13,7 +13,7 @@ private[coc] trait SkillImprovementBehavior[A <: SkillName]
     with SkillSuccessMark
     with SkillSuccessMarkable
     with SkillWithImprovement
-    with SkillImprovable =>
+    with SkillImprovable[A] =>
 
   private var _improvement = 0
 
@@ -22,7 +22,7 @@ private[coc] trait SkillImprovementBehavior[A <: SkillName]
   override def improvementCheck(implicit
       hundredSidedDice: HundredSidedDice,
       tenSidedDice: TenSidedDice
-  ): SkillImproved = {
+  ): SkillImproved[A] = {
     wasSuccessfullyUsed match {
       case true => {
         _wasSuccessfullyUsed = false

@@ -11,7 +11,7 @@ private final case class SkillImprovement[A <: SkillName](
     hundredSidedDice: HundredSidedDice,
     tenSidedDice: TenSidedDice
 ) {
-  lazy val result: SkillImproved = {
+  lazy val result: SkillImproved[A] = {
     SkillImprovementCheck.instance.improvementCheck(skill)
   }
 }

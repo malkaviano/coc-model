@@ -53,7 +53,7 @@ final class SkillImprovementBehaviorSpec extends AnyFunSpec with Matchers {
 
   private def improvementCheck[A <: SkillName](
       skill: FakeSkillImprovable[A],
-      expected: SkillImproved,
+      expected: SkillImproved[A],
       rolled: Seq[Int],
       improved: Seq[Int]
   ): Unit = {

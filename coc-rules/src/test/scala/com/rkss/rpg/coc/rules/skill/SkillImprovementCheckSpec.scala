@@ -60,11 +60,11 @@ final class SkillImprovementCheckSpec extends AnyFunSpec with Matchers {
     }
   }
 
-  private def improvementCheck(
+  private def improvementCheck[A <: SkillName](
       skill: FakeSkillWithSuccessCheck,
       check: Seq[Int],
       improved: Seq[Int],
-      expected: SkillImproved
+      expected: SkillImproved[A]
   ) = {
     val hundredSidedDice = HundredSidedDice(
       TestingProps.fakeRng(check)

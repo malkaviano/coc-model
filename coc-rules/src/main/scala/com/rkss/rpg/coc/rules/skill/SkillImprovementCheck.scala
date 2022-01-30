@@ -9,7 +9,7 @@ private final class SkillImprovementCheck private () {
   def improvementCheck[A <: SkillName](skill: Skill[A])(implicit
       hundredSidedDice: HundredSidedDice,
       tenSidedDice: TenSidedDice
-  ): SkillImproved = {
+  ): SkillImproved[A] = {
     val increment = tenSidedDice.roll.value
     val skillValue = skill.value()
     val rolled = hundredSidedDice.roll.value
