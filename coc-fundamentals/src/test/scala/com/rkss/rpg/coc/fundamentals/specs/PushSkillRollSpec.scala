@@ -9,7 +9,7 @@ final case class PushSkillRollSpec(
     val bonusDice: Option[BonusDice],
     val penaltyDice: Option[PenaltyDice],
     val rolled: Seq[Int],
-    val rolledResult: SkillRolledResult,
+    val rolledResult: SkillRollResult,
     val rollDiceResult: SkillRollDiceResult,
     val expected: Option[SkillRolled]
 )

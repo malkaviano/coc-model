@@ -9,7 +9,7 @@ final case class SkillRollSpec(
     val bonusDice: BonusDice,
     val penaltyDice: PenaltyDice,
     val rolled: Seq[Int],
-    val rolledResult: SkillRolledResult,
+    val rolledResult: SkillRollResult,
     val rollDiceResult: SkillRollDiceResult
 ) {
   lazy val expected: SkillRolled = SkillRolled(
