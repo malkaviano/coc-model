@@ -33,7 +33,14 @@ private[coc] trait SkillImprovementBehavior
 
         result
       }
-      case _ => SkillImproved(0, Option.empty[SkillRollDiceResult], false)
+      case _ =>
+        SkillImproved(
+          this.name,
+          this.value(),
+          0,
+          Option.empty[SkillRollDiceResult],
+          false
+        )
     }
   }
 }

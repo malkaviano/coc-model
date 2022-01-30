@@ -17,11 +17,20 @@ private final class SkillImprovementCheck private () {
     rolled match {
       case x if x > skillValue || x > 95 =>
         SkillImproved(
+          skill.name,
+          skill.value(),
           increment,
           Option(SkillRollDiceResult(rolled)),
           skillValue < 90 && skillValue + increment >= 90
         )
-      case _ => SkillImproved(0, Option(SkillRollDiceResult(rolled)), false)
+      case _ =>
+        SkillImproved(
+          skill.name,
+          skill.value(),
+          0,
+          Option(SkillRollDiceResult(rolled)),
+          false
+        )
     }
   }
 }
