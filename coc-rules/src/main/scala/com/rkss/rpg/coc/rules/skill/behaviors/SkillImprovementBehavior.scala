@@ -10,8 +10,8 @@ import com.rkss.rpg.coc.concepts.skill.roll._
 private[coc] trait SkillImprovementBehavior
     extends SkillSuccessfullyUsedBehavior {
   self: Skill[_]
-    with SkillSuccessCheck
-    with SkillSuccessCheckable
+    with SkillSuccessMark
+    with SkillSuccessMarkable
     with SkillWithImprovement
     with SkillImprovable =>
 
@@ -23,9 +23,9 @@ private[coc] trait SkillImprovementBehavior
       hundredSidedDice: HundredSidedDice,
       tenSidedDice: TenSidedDice
   ): SkillImproved = {
-    successCheck match {
+    wasSuccessfullyUsed match {
       case true => {
-        _successCheck = false
+        _wasSuccessfullyUsed = false
 
         val result = SkillImprovement(this).result
 

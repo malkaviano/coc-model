@@ -5,7 +5,7 @@ import com.rkss.rpg.coc.concepts.skill.check._
 import com.rkss.rpg.helpers.dice._
 
 trait SkillImprovable {
-  self: Skill[_] with SkillSuccessCheck with SkillWithImprovement =>
+  self: Skill[_] with SkillSuccessMark with SkillWithImprovement =>
 
   def improvementCheck(implicit
       hundredSidedDice: HundredSidedDice,

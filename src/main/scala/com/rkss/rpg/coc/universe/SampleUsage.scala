@@ -34,7 +34,7 @@ object SampleUsage extends App {
 
   firstAid.modify(ValueModificationIncrease(FirstAid, 20))
 
-  firstAid.checkUsedWithSuccess()
+  firstAid.markUsedWithSuccess()
 
   val improvement = firstAid.improvementCheck
 
@@ -44,7 +44,7 @@ object SampleUsage extends App {
 
   println(improvement2)
 
-  firstAid.checkUsedWithSuccess()
+  firstAid.markUsedWithSuccess()
 
   val improvement3 = firstAid.improvementCheck
 

@@ -39,7 +39,7 @@ final class WithDifficultyValueBehaviorSpec extends AnyFunSpec with Matchers {
     describe("Skill value") {
       val skill = FakeSkillImprovable(Garrote, 40, 10)
 
-      skill.checkUsedWithSuccess()
+      skill.markUsedWithSuccess()
 
       val hundredSidedDice = HundredSidedDice(
         TestingProps.fakeRng(Seq(100))

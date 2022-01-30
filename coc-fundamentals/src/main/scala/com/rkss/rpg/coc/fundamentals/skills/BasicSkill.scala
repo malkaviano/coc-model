@@ -15,8 +15,8 @@ final class BasicSkill[A <: SkillName] private[coc](
     override val tags: Seq[SkillTag] = Seq.empty[SkillTag]
 ) extends Skill[A]
     with SkillWithPointsAllocation
-    with SkillSuccessCheck
-    with SkillSuccessCheckable
+    with SkillSuccessMark
+    with SkillSuccessMarkable
     with SkillWithImprovement
     with SkillImprovable
     with SkillRollBehavior

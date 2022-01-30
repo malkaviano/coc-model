@@ -11,8 +11,8 @@ final case class FakeSkillImprovable(
     override val occupationPoints: Int = 0,
     override val personalPoints: Int = 0
 ) extends FakeSkill(name, baseValue, occupationPoints, personalPoints)
-    with SkillSuccessCheck
-    with SkillSuccessCheckable
+    with SkillSuccessMark
+    with SkillSuccessMarkable
     with SkillSuccessfullyUsedBehavior
     with SkillWithImprovement
     with SkillImprovable

@@ -28,7 +28,7 @@ final class SkillImprovementBehaviorSpec extends AnyFunSpec with Matchers {
         Seq(9)
       )
 
-      it should behave like checkUsedWithSuccess(skill)
+      it should behave like markUsedWithSuccess(skill)
 
       it should behave like improvedValue(skill, 0)
     }
@@ -36,7 +36,7 @@ final class SkillImprovementBehaviorSpec extends AnyFunSpec with Matchers {
     describe("when skill used with success was true") {
       val skill = FakeSkillImprovable(Biology, 15, 20, 10)
 
-      skill.checkUsedWithSuccess()
+      skill.markUsedWithSuccess()
 
       it should behave like improvementCheck(
         skill,
@@ -45,7 +45,7 @@ final class SkillImprovementBehaviorSpec extends AnyFunSpec with Matchers {
         Seq(9)
       )
 
-      it should behave like checkUsedWithSuccess(skill)
+      it should behave like markUsedWithSuccess(skill)
 
       it should behave like improvedValue(skill, 9)
     }
@@ -72,10 +72,10 @@ final class SkillImprovementBehaviorSpec extends AnyFunSpec with Matchers {
     }
   }
 
-  private def checkUsedWithSuccess(skill: FakeSkillImprovable): Unit = {
+  private def markUsedWithSuccess(skill: FakeSkillImprovable): Unit = {
     describe("Used with success") {
       it("returns false") {
-        skill.successCheck shouldBe false
+        skill.wasSuccessfullyUsed shouldBe false
       }
     }
   }
