@@ -14,6 +14,6 @@ final case class FakeSkillImprovable(
     with SkillSuccessCheck
     with SkillSuccessCheckable
     with SkillSuccessfullyUsedBehavior
-    with SkillWithImprovedValue
+    with SkillWithImprovement
     with SkillImprovable
     with SkillImprovementBehavior

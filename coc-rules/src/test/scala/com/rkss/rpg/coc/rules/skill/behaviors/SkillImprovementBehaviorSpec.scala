@@ -80,7 +80,7 @@ final class SkillImprovementBehaviorSpec extends AnyFunSpec with Matchers {
   ): Unit = {
     describe("Improved value") {
       it(s"returns $expected") {
-        skill.improvedValue shouldBe expected
+        skill.improvement shouldBe expected
       }
     }
   }

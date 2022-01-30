@@ -5,19 +5,19 @@ import com.rkss.rpg.coc.concepts.skill.improvement._
 import com.rkss.rpg.coc.concepts.skill.check._
 import com.rkss.rpg.helpers.dice._
 import com.rkss.rpg.coc.rules.skill._
-import com.rkss.rpg.coc.concepts.skill.roll.SkillRollDiceResult
+import com.rkss.rpg.coc.concepts.skill.roll._
 
 private[coc] trait SkillImprovementBehavior
     extends SkillSuccessfullyUsedBehavior {
   self: Skill[_]
     with SkillSuccessCheck
     with SkillSuccessCheckable
-    with SkillWithImprovedValue
+    with SkillWithImprovement
     with SkillImprovable =>
 
-  private var _improvedValue = 0
+  private var _improvement = 0
 
-  override def improvedValue: Int = _improvedValue
+  override def improvement: Int = _improvement
 
   override def improvementCheck(implicit
       hundredSidedDice: HundredSidedDice,
@@ -29,7 +29,7 @@ private[coc] trait SkillImprovementBehavior
 
         val result = SkillImprovement(this).result
 
-        _improvedValue += result.improvedValue
+        _improvement += result.improvement
 
         result
       }

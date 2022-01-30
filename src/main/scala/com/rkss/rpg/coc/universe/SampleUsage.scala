@@ -22,9 +22,9 @@ object SampleUsage extends App {
        | tags: ${skill.tags}
       """.stripMargin)
 
-    if (skill.isInstanceOf[SkillWithImprovedValue])
+    if (skill.isInstanceOf[SkillWithImprovement])
       println(s"""
-       | improved: ${skill.asInstanceOf[SkillWithImprovedValue].improvedValue}
+       | improved: ${skill.asInstanceOf[SkillWithImprovement].improvement}
       """.stripMargin)
   }
 

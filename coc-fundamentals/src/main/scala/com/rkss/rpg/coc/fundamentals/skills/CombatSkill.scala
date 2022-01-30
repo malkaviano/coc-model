@@ -16,7 +16,7 @@ final class CombatSkill[A <: CombatSkillName] private[coc](
     with SkillWithPointsAllocation
     with SkillSuccessCheck
     with SkillSuccessCheckable
-    with SkillWithImprovedValue
+    with SkillWithImprovement
     with SkillImprovable
     with SkillRollBehavior
     with SkillSuccessfullyUsedBehavior
