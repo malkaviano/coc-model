@@ -6,8 +6,8 @@ import org.scalatest.matchers.should.Matchers
 import com.rkss.rpg.coc.rules.testing.fakes.FakeSkillImprovable
 import com.rkss.rpg.helpers.dice._
 import com.rkss.rpg.coc.rules.testing.TestingProps
-import com.rkss.rpg.coc.concepts.skill.improvement.SkillImproved
-import com.rkss.rpg.coc.concepts.skill.roll.SkillRollDiceResult
+import com.rkss.rpg.coc.concepts.skill.improvement._
+import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.coc.concepts.skill._
 
 final class SkillImprovementBehaviorSpec extends AnyFunSpec with Matchers {
