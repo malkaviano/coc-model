@@ -6,11 +6,12 @@ import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.concepts.skill.improvement._
 import com.rkss.rpg.coc.fundamentals.characteristics._
 import com.rkss.rpg.coc.concepts.characteristic._
+import com.rkss.rpg.coc.concepts._
 
 object SampleUsage extends App {
   import com.rkss.rpg.helpers.dice.Bag._
 
-  private def printSkill(skill: Skill): Unit = {
+  private def printSkill(skill: Skill[_]): Unit = {
     println(s"""
        | name: ${skill.name}
        | base value: ${skill.baseValue}
@@ -21,9 +22,9 @@ object SampleUsage extends App {
        | tags: ${skill.tags}
       """.stripMargin)
 
-    if (skill.isInstanceOf[SkillWithImprovedValue])
+    if (skill.isInstanceOf[SkillWithImprovement])
       println(s"""
-       | improved: ${skill.asInstanceOf[SkillWithImprovedValue].improvedValue}
+       | improved: ${skill.asInstanceOf[SkillWithImprovement].improvement}
       """.stripMargin)
   }
 
@@ -31,7 +32,9 @@ object SampleUsage extends App {
 
   val firstAid = SkillFactory.basicSkill(FirstAid, 10, 15)
 
-  firstAid.checkUsedWithSuccess()
+  firstAid.modify(ValueModificationIncrease(FirstAid, 20))
+
+  firstAid.markUsedWithSuccess()
 
   val improvement = firstAid.improvementCheck
 
@@ -41,7 +44,7 @@ object SampleUsage extends App {
 
   println(improvement2)
 
-  firstAid.checkUsedWithSuccess()
+  firstAid.markUsedWithSuccess()
 
   val improvement3 = firstAid.improvementCheck
 
@@ -57,7 +60,8 @@ object SampleUsage extends App {
 
   println(rolled)
 
-  val pushed = firstAid.pushRoll(Some(HardDifficulty), penaltyDice = Some(PenaltyDice(1)))
+  val pushed =
+    firstAid.pushRoll(Some(HardDifficulty), penaltyDice = Some(PenaltyDice(1)))
 
   println(pushed)
 
@@ -65,11 +69,14 @@ object SampleUsage extends App {
 
   printSkill(brawl)
 
-  val dodge = SkillFactory.dodgeSkill(50, 10, 15)
+  val dodge = SkillFactory.combatSkill(Dodge, 50, 10, 15)
+
+  dodge.modify(ValueModificationIncrease(Dodge, 20))
 
   printSkill(dodge)
 
-  val portugueseLanguage = SkillFactory.languageSkill(PortugueseLanguage, 10, 15)
+  val portugueseLanguage =
+    SkillFactory.languageSkill(PortugueseLanguage, 10, 15)
 
   printSkill(portugueseLanguage)
 
@@ -82,4 +89,20 @@ object SampleUsage extends App {
   println(strength.roll())
 
   println(strength.pushRoll(Some(HardDifficulty)))
+
+  val education = Characteristic(Education, 60)
+
+  println(education)
+
+  println(education.value())
+
+  println(education.modificationValue)
+
+  println(education.roll())
+
+  education.modify(ValueModificationIncrease(Education, 10))
+
+  println(education.value())
+
+  println(education.modificationValue)
 }

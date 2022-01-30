@@ -6,8 +6,8 @@ import org.scalatest.matchers.should.Matchers
 import com.rkss.rpg.coc.rules.testing.fakes.FakeSkillImprovable
 import com.rkss.rpg.helpers.dice._
 import com.rkss.rpg.coc.rules.testing.TestingProps
-import com.rkss.rpg.coc.concepts.skill.improvement.SkillImproved
-import com.rkss.rpg.coc.concepts.skill.roll.SkillRollDiceResult
+import com.rkss.rpg.coc.concepts.skill.improvement._
+import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.coc.concepts.skill._
 
 final class SkillImprovementBehaviorSpec extends AnyFunSpec with Matchers {
@@ -17,12 +17,18 @@ final class SkillImprovementBehaviorSpec extends AnyFunSpec with Matchers {
 
       it should behave like improvementCheck(
         skill,
-        SkillImproved(skill, 0, Option.empty[SkillRollDiceResult], false),
+        SkillImproved(
+          Pharmacy,
+          45,
+          0,
+          Option.empty[SkillRollDiceResult],
+          false
+        ),
         Seq(95),
         Seq(9)
       )
 
-      it should behave like checkUsedWithSuccess(skill)
+      it should behave like markUsedWithSuccess(skill)
 
       it should behave like improvedValue(skill, 0)
     }
@@ -30,24 +36,24 @@ final class SkillImprovementBehaviorSpec extends AnyFunSpec with Matchers {
     describe("when skill used with success was true") {
       val skill = FakeSkillImprovable(Biology, 15, 20, 10)
 
-      skill.checkUsedWithSuccess()
+      skill.markUsedWithSuccess()
 
       it should behave like improvementCheck(
         skill,
-        SkillImproved(skill, 9, Option(SkillRollDiceResult(95)), false),
+        SkillImproved(Biology, 45, 9, Option(SkillRollDiceResult(95)), false),
         Seq(95),
         Seq(9)
       )
 
-      it should behave like checkUsedWithSuccess(skill)
+      it should behave like markUsedWithSuccess(skill)
 
       it should behave like improvedValue(skill, 9)
     }
   }
 
-  private def improvementCheck(
-      skill: FakeSkillImprovable,
-      expected: SkillImproved,
+  private def improvementCheck[A <: SkillName](
+      skill: FakeSkillImprovable[A],
+      expected: SkillImproved[A],
       rolled: Seq[Int],
       improved: Seq[Int]
   ): Unit = {
@@ -66,21 +72,23 @@ final class SkillImprovementBehaviorSpec extends AnyFunSpec with Matchers {
     }
   }
 
-  private def checkUsedWithSuccess(skill: FakeSkillImprovable): Unit = {
+  private def markUsedWithSuccess[A <: SkillName](
+      skill: FakeSkillImprovable[A]
+  ): Unit = {
     describe("Used with success") {
       it("returns false") {
-        skill.successCheck shouldBe false
+        skill.wasSuccessfullyUsed shouldBe false
       }
     }
   }
 
-  private def improvedValue(
-      skill: FakeSkillImprovable,
+  private def improvedValue[A <: SkillName](
+      skill: FakeSkillImprovable[A],
       expected: Int
   ): Unit = {
     describe("Improved value") {
       it(s"returns $expected") {
-        skill.improvedValue shouldBe expected
+        skill.improvement shouldBe expected
       }
     }
   }

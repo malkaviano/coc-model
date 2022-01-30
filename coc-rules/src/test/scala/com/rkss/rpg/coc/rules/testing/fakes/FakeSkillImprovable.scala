@@ -5,15 +5,15 @@ import com.rkss.rpg.coc.rules.skill.behaviors._
 import com.rkss.rpg.coc.concepts.skill.improvement._
 import com.rkss.rpg.coc.concepts.skill._
 
-final case class FakeSkillImprovable(
-    override val name: SkillName,
+final case class FakeSkillImprovable[A <: SkillName](
+    override val name: A,
     override val baseValue: Int,
     override val occupationPoints: Int = 0,
     override val personalPoints: Int = 0
 ) extends FakeSkill(name, baseValue, occupationPoints, personalPoints)
-    with SkillSuccessCheck
-    with SkillSuccessCheckable
+    with SkillSuccessMark
+    with SkillSuccessMarkable
     with SkillSuccessfullyUsedBehavior
-    with SkillWithImprovedValue
-    with SkillImprovable
-    with SkillImprovementBehavior
+    with SkillWithImprovement
+    with SkillImprovable[A]
+    with SkillImprovementBehavior[A]

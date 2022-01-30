@@ -1,11 +1,12 @@
 package com.rkss.rpg.coc.concepts.skill.improvement
 
-import com.rkss.rpg.coc.concepts.skill.Skill
-import com.rkss.rpg.coc.concepts.skill.roll.SkillRollDiceResult
+import com.rkss.rpg.coc.concepts.skill.roll._
+import com.rkss.rpg.coc.concepts.skill._
 
-final case class SkillImproved(
-    val skillTested: Skill,
-    val improvedValue: Int,
+final case class SkillImproved[A <: SkillName](
+    val name: A,
+    val value: Int,
+    val improvement: Int,
     val rolled: Option[SkillRollDiceResult],
-    val sanityGained: Boolean
+    val isSanityGainEligible: Boolean
 )

@@ -6,20 +6,20 @@ import com.rkss.rpg.coc.concepts.skill.improvement._
 import com.rkss.rpg.coc.concepts.skill.check._
 import com.rkss.rpg.coc.concepts.skill.allocation._
 
-final class CombatSkill private[coc](
-    override val name: SkillName,
+final class CombatSkill[A <: CombatSkillName] private[coc](
+    override val name: A,
     override val baseValue: Int,
     override val occupationPoints: Int,
     override val personalPoints: Int,
     override val tags: Seq[SkillTag] = Seq.empty[SkillTag]
-) extends Skill
+) extends Skill[A]
     with SkillWithPointsAllocation
-    with SkillSuccessCheck
-    with SkillSuccessCheckable
-    with SkillWithImprovedValue
-    with SkillImprovable
-    with SkillRollBehavior
+    with SkillSuccessMark
+    with SkillSuccessMarkable
+    with SkillWithImprovement
+    with SkillImprovable[A]
+    with SkillRollBehavior[A]
     with SkillSuccessfullyUsedBehavior
-    with SkillImprovementBehavior
+    with SkillImprovementBehavior[A]
     with WithDifficultyValueBehavior
-    with WithModificationValueBehavior
+    with WithGenericModificationValueBehavior[A]

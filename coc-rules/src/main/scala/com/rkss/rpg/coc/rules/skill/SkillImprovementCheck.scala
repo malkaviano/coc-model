@@ -6,10 +6,10 @@ import com.rkss.rpg.coc.concepts.skill.improvement._
 import com.rkss.rpg.coc.concepts.skill.roll.SkillRollDiceResult
 
 private final class SkillImprovementCheck private () {
-  def improvementCheck(skill: Skill)(implicit
+  def improvementCheck[A <: SkillName](skill: Skill[A])(implicit
       hundredSidedDice: HundredSidedDice,
       tenSidedDice: TenSidedDice
-  ): SkillImproved = {
+  ): SkillImproved[A] = {
     val increment = tenSidedDice.roll.value
     val skillValue = skill.value()
     val rolled = hundredSidedDice.roll.value
@@ -17,12 +17,20 @@ private final class SkillImprovementCheck private () {
     rolled match {
       case x if x > skillValue || x > 95 =>
         SkillImproved(
-          skill,
+          skill.name,
+          skill.value(),
           increment,
           Option(SkillRollDiceResult(rolled)),
           skillValue < 90 && skillValue + increment >= 90
         )
-      case _ => SkillImproved(skill, 0, Option(SkillRollDiceResult(rolled)), false)
+      case _ =>
+        SkillImproved(
+          skill.name,
+          skill.value(),
+          0,
+          Option(SkillRollDiceResult(rolled)),
+          false
+        )
     }
   }
 }

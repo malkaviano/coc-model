@@ -5,35 +5,42 @@ import com.rkss.rpg.coc.concepts.skill.improvement._
 import com.rkss.rpg.coc.concepts.skill.check._
 import com.rkss.rpg.helpers.dice._
 import com.rkss.rpg.coc.rules.skill._
-import com.rkss.rpg.coc.concepts.skill.roll.SkillRollDiceResult
+import com.rkss.rpg.coc.concepts.skill.roll._
 
-private[coc] trait SkillImprovementBehavior
+private[coc] trait SkillImprovementBehavior[A <: SkillName]
     extends SkillSuccessfullyUsedBehavior {
-  self: Skill
-    with SkillSuccessCheck
-    with SkillSuccessCheckable
-    with SkillWithImprovedValue
-    with SkillImprovable =>
+  self: Skill[A]
+    with SkillSuccessMark
+    with SkillSuccessMarkable
+    with SkillWithImprovement
+    with SkillImprovable[A] =>
 
-  private var _improvedValue = 0
+  private var _improvement = 0
 
-  override def improvedValue: Int = _improvedValue
+  override def improvement: Int = _improvement
 
   override def improvementCheck(implicit
       hundredSidedDice: HundredSidedDice,
       tenSidedDice: TenSidedDice
-  ): SkillImproved = {
-    successCheck match {
+  ): SkillImproved[A] = {
+    wasSuccessfullyUsed match {
       case true => {
-        _successCheck = false
+        _wasSuccessfullyUsed = false
 
         val result = SkillImprovement(this).result
 
-        _improvedValue += result.improvedValue
+        _improvement += result.improvement
 
         result
       }
-      case _ => SkillImproved(this, 0, Option.empty[SkillRollDiceResult], false)
+      case _ =>
+        SkillImproved(
+          this.name,
+          this.value(),
+          0,
+          Option.empty[SkillRollDiceResult],
+          false
+        )
     }
   }
 }

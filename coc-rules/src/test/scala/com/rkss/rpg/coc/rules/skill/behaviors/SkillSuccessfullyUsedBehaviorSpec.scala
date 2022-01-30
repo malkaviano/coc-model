@@ -12,7 +12,7 @@ final class SkillSuccessfullyUsedBehaviorSpec extends AnyFunSpec with Matchers {
         it("returns false") {
           val skill = FakeSkillWithSuccessCheck(Cryptography, 20, 30, 10)
 
-          skill.successCheck shouldBe false
+          skill.wasSuccessfullyUsed shouldBe false
         }
       }
 
@@ -20,9 +20,9 @@ final class SkillSuccessfullyUsedBehaviorSpec extends AnyFunSpec with Matchers {
         it("returns true") {
           val skill = FakeSkillWithSuccessCheck(Disguise, 20, 30, 10)
 
-          skill.checkUsedWithSuccess()
+          skill.markUsedWithSuccess()
 
-          skill.successCheck shouldBe true
+          skill.wasSuccessfullyUsed shouldBe true
         }
       }
     }

@@ -7,11 +7,12 @@ import org.scalatest.matchers.should.Matchers
 import com.rkss.rpg.helpers.dice._
 import com.rkss.rpg.coc.rules.testing.TestingProps
 import com.rkss.rpg.coc.fundamentals.specs._
+import com.rkss.rpg.coc.concepts.NameTag
 
 trait PushSkillRollScenario {
   self: AnyFeatureSpec with GivenWhenThen with Matchers =>
 
-  def pushingASkillRoll(spec: PushSkillRollSpec): Unit = {
+  def pushingASkillRoll[A <: NameTag](spec: PushSkillRollSpec[A]): Unit = {
 
     val (difficulty, bonusDice, penaltyDice, rolled, expected, entity) =
       (

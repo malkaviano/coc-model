@@ -8,9 +8,9 @@ import com.rkss.rpg.coc.fundamentals.scenarios._
 import com.rkss.rpg.coc.fundamentals.characteristics._
 import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.coc.fundamentals.specs._
-import com.rkss.rpg.coc.fundamentals.skills._
-import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.concepts.characteristic._
+import com.rkss.rpg.coc.concepts.skill._
+import com.rkss.rpg.coc.fundamentals.skills._
 
 final class MakingASkillRollSpec
     extends AnyFeatureSpec
@@ -59,7 +59,7 @@ final class MakingASkillRollSpec
       SkillRollDiceResult(30, Seq(40, 50))
     ),
     SkillRollSpec(
-      SkillFactory.dodgeSkill(40, 20, 20),
+      SkillFactory.combatSkill(Dodge, 40, 20, 20),
       ExtremeDifficulty,
       BonusDice(1),
       PenaltyDice(1),

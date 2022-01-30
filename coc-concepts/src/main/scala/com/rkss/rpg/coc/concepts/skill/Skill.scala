@@ -3,11 +3,11 @@ package com.rkss.rpg.coc.concepts.skill
 import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.coc.concepts._
 
-trait Skill
+trait Skill[A <: SkillName]
     extends EntityWithDifficultyValue
-    with SkillRollable
+    with SkillRollable[A]
     with EntityWithModificationValue
-    with ModifiableValue
-    with EntityWithNameTag {
+    with GenericEntityWithModifiableValue[A]
+    with EntityWithNameTag[A] {
   def tags: Seq[SkillTag]
 }

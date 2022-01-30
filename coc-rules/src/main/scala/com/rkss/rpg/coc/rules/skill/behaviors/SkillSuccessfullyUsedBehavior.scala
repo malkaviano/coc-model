@@ -4,13 +4,13 @@ import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.concepts.skill.check._
 
 private[coc] trait SkillSuccessfullyUsedBehavior {
-  self: Skill with SkillSuccessCheck with SkillSuccessCheckable =>
+  self: Skill[_] with SkillSuccessMark with SkillSuccessMarkable =>
 
-  protected var _successCheck: Boolean = false
+  protected var _wasSuccessfullyUsed: Boolean = false
 
-  override def successCheck: Boolean = _successCheck
+  override def wasSuccessfullyUsed: Boolean = _wasSuccessfullyUsed
 
-  override def checkUsedWithSuccess(): Unit = {
-    _successCheck = true
+  override def markUsedWithSuccess(): Unit = {
+    _wasSuccessfullyUsed = true
   }
 }

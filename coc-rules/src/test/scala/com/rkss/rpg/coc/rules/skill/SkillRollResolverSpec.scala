@@ -14,7 +14,7 @@ final class SkillRollResolverSpec
     extends AnyFunSpec
     with Matchers {
   describe("Resolving a skill roll") {
-    val someCharacteristic = FakeCharacteristic(Education, 50)
+    val someCharacteristic = FakeGenericCharacteristic(Education, 50)
 
     it should behave like resolveSkillRoll(
       someCharacteristic,
@@ -210,10 +210,10 @@ final class SkillRollResolverSpec
     )
   }
 
-  private def resolveSkillRoll(
-      rollable: EntityWithDifficultyValue with EntityWithNameTag,
+  private def resolveSkillRoll[A <: NameTag](
+      rollable: EntityWithDifficultyValue with EntityWithNameTag[A],
       diceResults: Seq[Int],
-      expected: SkillRolled,
+      expected: SkillRolled[A],
       difficulty: SkillRollDifficultyLevel= RegularDifficulty,
       bonusDice: BonusDice = BonusDice(0),
       penaltyDice: PenaltyDice = PenaltyDice(0)

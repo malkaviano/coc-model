@@ -1,5 +1,5 @@
 package com.rkss.rpg.coc.concepts
 
-trait EntityWithNameTag {
-  def name: NameTag
+trait EntityWithNameTag[A <: NameTag] {
+  def name: A
 }
