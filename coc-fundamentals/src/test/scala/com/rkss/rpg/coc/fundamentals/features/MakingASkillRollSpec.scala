@@ -59,7 +59,7 @@ final class MakingASkillRollSpec
       SkillRollDiceResult(30, Seq(40, 50))
     ),
     SkillRollSpec(
-      SkillFactory.combatSkill(Dodge, 40, 20, 20),
+      SkillFactory.dodgeSkill(Characteristic(Dexterity, 40), 20, 20),
       ExtremeDifficulty,
       BonusDice(1),
       PenaltyDice(1),

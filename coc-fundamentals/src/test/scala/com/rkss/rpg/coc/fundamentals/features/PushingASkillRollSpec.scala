@@ -48,7 +48,7 @@ final class PushingASkillRollSpec
   criticalSuccess.roll()(HundredSidedDice(TestingProps.fakeRng(Seq(95))))
 
   val hardSuccess =
-    SkillFactory.languageSkill(60, RussianLanguage, 10, 5)
+    SkillFactory.languageSkill(Characteristic(Education, 60), RussianLanguage, 10, 5)
 
   hardSuccess.roll()(HundredSidedDice(TestingProps.fakeRng(Seq(95))))
 

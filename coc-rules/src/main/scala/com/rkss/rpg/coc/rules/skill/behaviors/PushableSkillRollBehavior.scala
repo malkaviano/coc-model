@@ -21,7 +21,7 @@ private[coc] trait PushableSkillRollBehavior[A <: NameTag] extends SkillRollBeha
         if (skillRolled.get.pushed) {
           Option.empty[SkillRolled[A]]
         } else {
-          PushedSkillRoll[A](
+          PushSkillRoll[A](
             this,
             skillRolled.get,
             difficulty,
