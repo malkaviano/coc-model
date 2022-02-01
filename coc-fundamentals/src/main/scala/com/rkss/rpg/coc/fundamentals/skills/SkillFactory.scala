@@ -1,6 +1,9 @@
 package com.rkss.rpg.coc.fundamentals.skills
 
 import com.rkss.rpg.coc.concepts.skill._
+import com.rkss.rpg.coc.fundamentals.characteristics.Characteristic
+import com.rkss.rpg.coc.concepts.characteristic.Dexterity
+import com.rkss.rpg.coc.concepts.characteristic.Education
 
 object SkillFactory {
   val basicSkills: Map[SimpleSkillName, SkillInfo] = Map(
@@ -116,13 +119,12 @@ object SkillFactory {
     new CombatSkill(name, baseValue, occupationPoints, personalPoints, tags)
   }
 
-  def combatSkill[A <: DexterityCombatSkill](
-      name: A,
-      dexterity: Int,
+  def dodgeSkill(
+      dexterity: Characteristic[Dexterity.type],
       occupationPoints: Int,
       personalPoints: Int
-  ): CombatSkill[A] = {
-    new CombatSkill(name, dexterity, occupationPoints, personalPoints)
+  ): CombatSkill[Dodge.type] = {
+    new CombatSkill(Dodge, dexterity.value() / 2, occupationPoints, personalPoints)
   }
 
   def languageSkill[A <: LanguageSkillName](
@@ -140,14 +142,14 @@ object SkillFactory {
   }
 
   def languageSkill[A <: LanguageSkillName](
-      education: Int,
+      education: Characteristic[Education.type],
       language: A,
       occupationPoints: Int,
       personalPoints: Int
   ): BasicSkill[A] = {
     new BasicSkill(
       language,
-      education,
+      education.value(),
       occupationPoints,
       personalPoints,
       Seq(LanguageOwn)

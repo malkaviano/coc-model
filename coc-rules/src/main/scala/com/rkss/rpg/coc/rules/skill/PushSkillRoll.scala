@@ -4,7 +4,7 @@ import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.helpers.dice.HundredSidedDice
 import com.rkss.rpg.coc.concepts._
 
-private final case class PushedSkillRoll[A <: NameTag](
+private final case class PushSkillRoll[A <: NameTag](
     private val entity: EntityWithDifficultyValue with EntityWithNameTag[A],
     private val skillRolled: SkillRolled[A],
     private val pushedDifficulty: Option[SkillRollDifficultyLevel] = None,

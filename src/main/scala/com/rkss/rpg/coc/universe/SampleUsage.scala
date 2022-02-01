@@ -69,7 +69,7 @@ object SampleUsage extends App {
 
   printSkill(brawl)
 
-  val dodge = SkillFactory.combatSkill(Dodge, 50, 10, 15)
+  val dodge = SkillFactory.dodgeSkill(Characteristic(Dexterity, 50), 10, 15)
 
   dodge.modify(ValueModificationIncrease(Dodge, 20))
 
@@ -80,7 +80,12 @@ object SampleUsage extends App {
 
   printSkill(portugueseLanguage)
 
-  val japaneseLanguage = SkillFactory.languageSkill(55, JapaneseLanguage, 0, 0)
+  val japaneseLanguage = SkillFactory.languageSkill(
+    Characteristic(Education, 55),
+    JapaneseLanguage,
+    0,
+    0
+  )
 
   printSkill(japaneseLanguage)
 
