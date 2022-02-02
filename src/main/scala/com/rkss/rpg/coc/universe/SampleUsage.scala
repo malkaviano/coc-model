@@ -1,7 +1,7 @@
 package com.rkss.rpg.script // Package is outside coc on purpose to check visibility
 
 import com.rkss.rpg.coc.concepts.skill.roll._
-import com.rkss.rpg.coc.fundamentals.skills._
+import com.rkss.rpg.coc.helpers.factories._
 import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.concepts.skill.improvement._
 import com.rkss.rpg.coc.fundamentals.characteristics._

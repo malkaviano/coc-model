@@ -27,6 +27,8 @@ lazy val root = (project in file("."))
   .dependsOn(fundamentals)
   .aggregate(rules)
   .dependsOn(rules)
+  .aggregate(helpers)
+  .dependsOn(helpers)
   .settings(
     name := "coc-universe",
     libraryDependencies ++= Seq(
@@ -60,6 +62,22 @@ lazy val fundamentals = (project in file("coc-fundamentals"))
   .dependsOn(rules % "compile->compile;test->test")
   .settings(
     name := "coc-fundamentals",
+    libraryDependencies ++= Seq(
+      scalaTest % Test,
+      scalaTestPlus % Test,
+      scalaMock % Test
+    )
+  )
+
+lazy val helpers = (project in file("coc-helpers"))
+  .aggregate(fundamentals)
+  .dependsOn(fundamentals)
+  .aggregate(concepts)
+  .dependsOn(concepts)
+  .aggregate(rules)
+  .dependsOn(rules % "compile->compile;test->test")
+  .settings(
+    name := "coc-helpers",
     libraryDependencies ++= Seq(
       scalaTest % Test,
       scalaTestPlus % Test,
