@@ -18,11 +18,11 @@ final class WithGenericModificationValueBehaviorSpec
 
     Seq(
       (
-        ValueModificationDecrease(Appearance, 5),
+        ValueModification(Appearance, -5),
         ValueModified(Appearance, -5, -5, 0)
       ),
       (
-        ValueModificationIncrease(Appearance, 10),
+        ValueModification(Appearance, 10),
         ValueModified(Appearance, 10, 5, -5)
       ),
     ).foreach {

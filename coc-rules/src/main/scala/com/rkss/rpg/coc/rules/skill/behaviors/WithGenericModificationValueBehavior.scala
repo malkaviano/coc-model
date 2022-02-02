@@ -10,16 +10,11 @@ private[coc] trait WithGenericModificationValueBehavior[A <: NameTag] {
   override def modify(modification: ValueModification[A]): ValueModified = {
     val previous = _modification
 
-    val (name, modified) = modification match {
-      case ValueModificationIncrease(name, value) =>
-        (name, Math.abs(value))
-      case ValueModificationDecrease(name, value) =>
-        (name, -Math.abs(value))
-    }
+    val ValueModification(name, value) = modification
 
-    _modification += modified
+    _modification += value
 
-    ValueModified(name, modified, _modification, previous)
+    ValueModified(name, value, _modification, previous)
   }
 
   override def modificationValue: Int = {
