@@ -6,7 +6,7 @@ import com.rkss.rpg.coc.concepts.skill.improvement._
 import com.rkss.rpg.coc.concepts.skill.check._
 import com.rkss.rpg.coc.concepts.skill.allocation._
 
-final class CombatSkill[A <: CombatSkillName] private[coc](
+final case class CombatSkill[A <: CombatSkillName](
     override val name: A,
     override val baseValue: Int,
     override val occupationPoints: Int,

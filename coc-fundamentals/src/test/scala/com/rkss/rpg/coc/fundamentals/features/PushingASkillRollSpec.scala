@@ -23,32 +23,32 @@ final class PushingASkillRollSpec
   info("As a player I want to push a skill roll")
   info("So I can try to succeeded my previous failed roll")
 
-  val fumble = SkillFactory.basicSkill(Track, 10, 0)
+  val fumble = BasicSkill(Track, 10, 10, 0)
 
   fumble.roll()(HundredSidedDice(TestingProps.fakeRng(Seq(100))))
 
-  val success = SkillFactory.basicSkill(Disguise, 30, 15)
+  val success = BasicSkill(Disguise, 5, 30, 15)
 
   success.roll()(HundredSidedDice(TestingProps.fakeRng(Seq(1))))
 
-  val failure = SkillFactory.basicSkill(MechanicalRepair, 20, 14)
+  val failure = BasicSkill(MechanicalRepair, 10, 20, 14)
 
   failure.roll(penaltyDice = PenaltyDice(1))(
     HundredSidedDice(TestingProps.fakeRng(Seq(95, 80)))
   )
 
-  val failure2 = SkillFactory.basicSkill(History, 20, 14)
+  val failure2 = BasicSkill(History, 5, 20, 14)
 
   failure2.roll(bonusDice = BonusDice(1))(
     HundredSidedDice(TestingProps.fakeRng(Seq(95, 80)))
   )
 
-  val criticalSuccess = SkillFactory.languageSkill(SpanishLanguage, 10, 5)
+  val criticalSuccess = BasicSkill(SpanishLanguage, 1,10, 5, Seq(LanguageOther))
 
   criticalSuccess.roll()(HundredSidedDice(TestingProps.fakeRng(Seq(95))))
 
   val hardSuccess =
-    SkillFactory.languageSkill(Characteristic(Education, 60), RussianLanguage, 10, 5)
+    BasicSkill(RussianLanguage, 60, 10, 5, Seq(LanguageOwn))
 
   hardSuccess.roll()(HundredSidedDice(TestingProps.fakeRng(Seq(95))))
 

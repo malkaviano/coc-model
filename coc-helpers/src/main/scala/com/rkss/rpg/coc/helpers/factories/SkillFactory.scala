@@ -1,9 +1,10 @@
-package com.rkss.rpg.coc.fundamentals.skills
+package com.rkss.rpg.coc.helpers.factories
 
 import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.fundamentals.characteristics.Characteristic
 import com.rkss.rpg.coc.concepts.characteristic.Dexterity
 import com.rkss.rpg.coc.concepts.characteristic.Education
+import com.rkss.rpg.coc.fundamentals.skills._
 
 object SkillFactory {
   val basicSkills: Map[SimpleSkillName, SkillInfo] = Map(
@@ -106,7 +107,7 @@ object SkillFactory {
   ): BasicSkill[A] = {
     val SkillInfo(baseValue, tags) = basicSkills(name)
 
-    new BasicSkill(name, baseValue, occupationPoints, personalPoints, tags)
+    BasicSkill(name, baseValue, occupationPoints, personalPoints, tags)
   }
 
   def combatSkill[A <: CombatSkillName](
@@ -116,7 +117,7 @@ object SkillFactory {
   ): CombatSkill[A] = {
     val SkillInfo(baseValue, tags) = combatSkills(name)
 
-    new CombatSkill(name, baseValue, occupationPoints, personalPoints, tags)
+    CombatSkill(name, baseValue, occupationPoints, personalPoints, tags)
   }
 
   def dodgeSkill(
@@ -124,7 +125,7 @@ object SkillFactory {
       occupationPoints: Int,
       personalPoints: Int
   ): CombatSkill[Dodge.type] = {
-    new CombatSkill(Dodge, dexterity.value() / 2, occupationPoints, personalPoints)
+    CombatSkill(Dodge, dexterity.value() / 2, occupationPoints, personalPoints)
   }
 
   def languageSkill[A <: LanguageSkillName](
@@ -132,7 +133,7 @@ object SkillFactory {
       occupationPoints: Int,
       personalPoints: Int
   ): BasicSkill[A] = {
-    new BasicSkill(
+    BasicSkill(
       language,
       1,
       occupationPoints,
@@ -147,7 +148,7 @@ object SkillFactory {
       occupationPoints: Int,
       personalPoints: Int
   ): BasicSkill[A] = {
-    new BasicSkill(
+    BasicSkill(
       language,
       education.value(),
       occupationPoints,
