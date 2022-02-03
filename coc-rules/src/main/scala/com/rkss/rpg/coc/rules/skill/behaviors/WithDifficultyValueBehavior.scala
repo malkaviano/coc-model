@@ -12,7 +12,10 @@ private[coc] trait WithDifficultyValueBehavior {
       difficulty: SkillRollDifficultyLevel = RegularDifficulty
   ): Int = {
     SkillRollValue(baseValue + allocated + improved + modification)
-      .value(difficulty)
+      .value(difficulty) match {
+      case value if value >= 0 => value
+      case _                   => 0
+    }
   }
 
   private def allocated: Int = self match {
