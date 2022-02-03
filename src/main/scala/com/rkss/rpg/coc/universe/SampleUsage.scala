@@ -6,7 +6,7 @@ import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.concepts.skill.improvement._
 import com.rkss.rpg.coc.fundamentals.characteristics._
 import com.rkss.rpg.coc.concepts.characteristic._
-import com.rkss.rpg.coc.concepts._
+import com.rkss.rpg.coc.fundamentals.skills.CthulhuMythosSkill
 
 object SampleUsage extends App {
   import com.rkss.rpg.helpers.dice.Bag._
@@ -32,7 +32,7 @@ object SampleUsage extends App {
 
   val firstAid = SkillFactory.basicSkill(FirstAid, 10, 15)
 
-  firstAid.modify(ValueModification(FirstAid, 20))
+  // firstAid.modify(ValueModification(FirstAid, 20))
 
   firstAid.markUsedWithSuccess()
 
@@ -71,7 +71,7 @@ object SampleUsage extends App {
 
   val dodge = SkillFactory.dodgeSkill(PrimaryCharacteristic(Dexterity, 50), 10, 15)
 
-  dodge.modify(ValueModification(Dodge, 20))
+  // dodge.modify(ValueModification(Dodge, 20))
 
   printSkill(dodge)
 
@@ -105,9 +105,13 @@ object SampleUsage extends App {
 
   println(education.roll())
 
-  education.modify(ValueModification(Education, 10))
+  // education.modify(ValueModification(Education, 10))
 
   println(education.value())
 
   println(education.modificationValue)
+
+  val mythos = CthulhuMythosSkill()
+
+  printSkill(mythos)
 }
