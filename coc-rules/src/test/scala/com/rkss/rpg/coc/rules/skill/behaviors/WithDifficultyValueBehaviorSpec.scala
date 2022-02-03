@@ -34,6 +34,18 @@ final class WithDifficultyValueBehaviorSpec extends AnyFunSpec with Matchers {
         10,
         ExtremeDifficulty
       )
+
+      describe("when value is negative") {
+        val nonNegativeChar = FakeGenericCharacteristic(Size, 40)
+
+        nonNegativeChar.modify(ValueModification(Size, -50))
+
+        it should behave like getDifficultyValue(
+          nonNegativeChar,
+          0,
+          RegularDifficulty
+        )
+      }
     }
 
     describe("Skill value") {
