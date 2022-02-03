@@ -8,6 +8,8 @@ import com.rkss.rpg.coc.fundamentals.scenarios._
 import com.rkss.rpg.coc.concepts.sanity._
 import com.rkss.rpg.coc.fundamentals.attributes._
 import com.rkss.rpg.coc.fundamentals.specs._
+import com.rkss.rpg.coc.fundamentals.characteristics._
+import com.rkss.rpg.coc.concepts.characteristic._
 
 final class MakingASanityRollSpec
     extends AnyFeatureSpec
@@ -20,12 +22,12 @@ final class MakingASanityRollSpec
 
   Seq(
     SanityRollSpec(
-      InvestigatorSanity(50),
+      InvestigatorSanity(PrimaryCharacteristic(Power, 50)),
       10,
       SuccessResult,
     ),
     SanityRollSpec(
-      InvestigatorSanity(55),
+      InvestigatorSanity(PrimaryCharacteristic(Power, 55)),
       100,
       Fumble,
     )

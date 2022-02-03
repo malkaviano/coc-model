@@ -3,7 +3,7 @@ package com.rkss.rpg.coc.rules.sanity.behaviors
 import com.rkss.rpg.coc.concepts.sanity._
 
 trait SanityBehavior { self: Sanity =>
-  private var _current: Int = self.initial
+  private var _current: Int = self.initial.value()
 
   private var _maximum: Int = 99
 

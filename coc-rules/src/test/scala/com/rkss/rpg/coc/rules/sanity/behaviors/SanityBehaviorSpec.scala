@@ -4,16 +4,18 @@ import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 import com.rkss.rpg.coc.rules.testing.fakes.FakeSanity
 import com.rkss.rpg.coc.concepts.sanity._
+import com.rkss.rpg.coc.concepts.characteristic._
+import com.rkss.rpg.coc.rules.testing.fakes._
 
 final class SanityBehaviorSpec extends AnyFunSpec with Matchers {
   describe("Sanity Behavior") {
-    val initial = 40
+    val initial = FakeGenericCharacteristic(Power, 40)
 
     describe("Initial value") {
       it(s"should be ${initial}") {
         val sanity = FakeSanity(initial)
 
-        sanity.current shouldBe initial
+        sanity.current shouldBe initial.value()
       }
     }
 
@@ -21,7 +23,7 @@ final class SanityBehaviorSpec extends AnyFunSpec with Matchers {
       it(s"should be ${initial}") {
         val sanity = FakeSanity(initial)
 
-        sanity.current shouldBe initial
+        sanity.current shouldBe initial.value()
       }
     }
 
