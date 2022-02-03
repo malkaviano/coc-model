@@ -52,6 +52,10 @@ final class PushingASkillRollSpec
 
   hardSuccess.roll()(HundredSidedDice(TestingProps.fakeRng(Seq(95))))
 
+  val creditRating = CreditRatingSkill(15, 10, 5)
+
+  creditRating.roll()(HundredSidedDice(TestingProps.fakeRng(Seq(1))))
+
   Seq(
     // No previous roll
     PushSkillRollSpec(
@@ -170,6 +174,16 @@ final class PushingASkillRollSpec
           true
         )
       )
+    ),
+    PushSkillRollSpec(
+      creditRating,
+      None,
+      Option(BonusDice(0)),
+      Option(PenaltyDice(0)),
+      Seq(25),
+      HardSuccess,
+      SkillRollDiceResult(25),
+      None
     )
   ).foreach(spec => ScenariosFor(pushingASkillRoll(spec)))
 }

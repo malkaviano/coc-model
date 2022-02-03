@@ -6,7 +6,6 @@ import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.concepts.skill.improvement._
 import com.rkss.rpg.coc.fundamentals.characteristics._
 import com.rkss.rpg.coc.concepts.characteristic._
-import com.rkss.rpg.coc.concepts._
 
 object SampleUsage extends App {
   import com.rkss.rpg.helpers.dice.Bag._
@@ -31,8 +30,6 @@ object SampleUsage extends App {
   println("Sample usage of fundamentals")
 
   val firstAid = SkillFactory.basicSkill(FirstAid, 10, 15)
-
-  firstAid.modify(ValueModification(FirstAid, 20))
 
   firstAid.markUsedWithSuccess()
 
@@ -71,16 +68,14 @@ object SampleUsage extends App {
 
   val dodge = SkillFactory.dodgeSkill(PrimaryCharacteristic(Dexterity, 50), 10, 15)
 
-  dodge.modify(ValueModification(Dodge, 20))
-
   printSkill(dodge)
 
   val portugueseLanguage =
-    SkillFactory.languageSkill(PortugueseLanguage, 10, 15)
+    SkillFactory.languageOtherSkill(PortugueseLanguage, 10, 15)
 
   printSkill(portugueseLanguage)
 
-  val japaneseLanguage = SkillFactory.languageSkill(
+  val japaneseLanguage = SkillFactory.languageOwnSkill(
     PrimaryCharacteristic(Education, 55),
     JapaneseLanguage,
     0,
@@ -105,9 +100,15 @@ object SampleUsage extends App {
 
   println(education.roll())
 
-  education.modify(ValueModification(Education, 10))
-
   println(education.value())
 
   println(education.modificationValue)
+
+  val mythos = SkillFactory.cthulhuMythosSkill
+
+  printSkill(mythos)
+
+  val creditRating = SkillFactory.creditRatingSkill(20, 10, 0)
+
+  printSkill(creditRating)
 }

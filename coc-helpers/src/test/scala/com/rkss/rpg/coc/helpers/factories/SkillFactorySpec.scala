@@ -38,27 +38,55 @@ final class SkillFactorySpec extends AnyFunSpec with Matchers {
     describe("creating a language other skill") {
       it("should return the correct language other skill") {
         val japanese =
-          SkillFactory.languageSkill(
+          SkillFactory.languageOwnSkill(
             PrimaryCharacteristic(Education, 60),
             JapaneseLanguage,
             0,
             0
           )
 
-        japanese shouldBe BasicSkill(JapaneseLanguage, 60, 0, 0, Seq(LanguageOwn))
+        japanese shouldBe BasicSkill(
+          JapaneseLanguage,
+          60,
+          0,
+          0,
+          Seq(LanguageOwn)
+        )
       }
     }
 
     describe("creating a language own skill") {
       it("should return the correct language own skill") {
         val japanese =
-          SkillFactory.languageSkill(
+          SkillFactory.languageOtherSkill(
             RussianLanguage,
             0,
             0
           )
 
-        japanese shouldBe BasicSkill(RussianLanguage, 1, 0, 0, Seq(LanguageOther))
+        japanese shouldBe BasicSkill(
+          RussianLanguage,
+          1,
+          0,
+          0,
+          Seq(LanguageOther)
+        )
+      }
+    }
+
+    describe("creating a CthulhuMythos skill") {
+      it("should return a CthulhuMythos skill") {
+        SkillFactory.cthulhuMythosSkill shouldBe CthulhuMythosSkill()
+      }
+    }
+
+    describe("creating a CreditRating skill") {
+      it("should return a CreditRating skill") {
+        SkillFactory.creditRatingSkill(15, 10, 5) shouldBe CreditRatingSkill(
+          15,
+          10,
+          5
+        )
       }
     }
   }

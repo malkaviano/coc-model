@@ -11,6 +11,7 @@ import com.rkss.rpg.coc.fundamentals.characteristics._
 import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.fundamentals.skills._
 import com.rkss.rpg.coc.concepts.characteristic._
+import com.rkss.rpg.coc.concepts.ValueModification
 
 final class MakingASkillRollSpec
     extends AnyFeatureSpec
@@ -20,6 +21,10 @@ final class MakingASkillRollSpec
 
   info("As a player I want to make a skill roll")
   info("So I can check if I succeeded using my skill or characteristic")
+
+  val mythos = CthulhuMythosSkill()
+
+  mythos.modify(ValueModification(CthulhuMythos, 10))
 
   Seq(
     SkillRollSpec(
@@ -66,6 +71,15 @@ final class MakingASkillRollSpec
       Seq(50),
       Failure,
       SkillRollDiceResult(50)
+    ),
+    SkillRollSpec(
+      mythos,
+      RegularDifficulty,
+      BonusDice(1),
+      PenaltyDice(0),
+      Seq(50, 30),
+      Failure,
+      SkillRollDiceResult(30, Seq(50))
     )
   ).foreach(spec => ScenariosFor(makingASkillRoll(spec)))
 }
