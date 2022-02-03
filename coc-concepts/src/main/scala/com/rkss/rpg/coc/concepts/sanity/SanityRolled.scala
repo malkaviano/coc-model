@@ -5,6 +5,6 @@ import com.rkss.rpg.coc.concepts._
 final case class SanityRolled(
   val current: Int,
   val maximum: Int,
-  val result: SanityRolledResult,
+  val result: SanityRollResult,
   val rolled: RollDiceResult,
 )

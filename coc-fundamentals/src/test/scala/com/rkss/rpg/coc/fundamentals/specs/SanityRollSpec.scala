@@ -6,7 +6,7 @@ import com.rkss.rpg.coc.concepts.RollDiceResult
 final case class SanityRollSpec(
   val entity: Sanity,
   val rolled: Int,
-  val result: SanityRolledResult
+  val result: SanityRollResult
 ) {
   val expected: SanityRolled = SanityRolled(
     entity.current,

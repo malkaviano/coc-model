@@ -32,7 +32,7 @@ final class SanityRollBehaviorSpec extends AnyFunSpec with Matchers {
   private def sanityRoll(
       sanity: Sanity,
       rolled: Int,
-      result: SanityRolledResult
+      result: SanityRollResult
   ) = {
     describe(s"when sanity is ${sanity.current}") {
       describe(s"when rolling a ${rolled}") {
