@@ -34,7 +34,7 @@ object SkillFactory {
     CombatSkill(Dodge, dexterity.value() / 2, occupationPoints, personalPoints)
   }
 
-  def languageSkill[A <: LanguageSkillName](
+  def languageOtherSkill[A <: LanguageSkillName](
       language: A,
       occupationPoints: Int,
       personalPoints: Int
@@ -48,7 +48,7 @@ object SkillFactory {
     )
   }
 
-  def languageSkill[A <: LanguageSkillName](
+  def languageOwnSkill[A <: LanguageSkillName](
       education: Characteristic[Education.type],
       language: A,
       occupationPoints: Int,

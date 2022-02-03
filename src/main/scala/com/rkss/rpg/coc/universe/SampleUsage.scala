@@ -71,11 +71,11 @@ object SampleUsage extends App {
   printSkill(dodge)
 
   val portugueseLanguage =
-    SkillFactory.languageSkill(PortugueseLanguage, 10, 15)
+    SkillFactory.languageOtherSkill(PortugueseLanguage, 10, 15)
 
   printSkill(portugueseLanguage)
 
-  val japaneseLanguage = SkillFactory.languageSkill(
+  val japaneseLanguage = SkillFactory.languageOwnSkill(
     PrimaryCharacteristic(Education, 55),
     JapaneseLanguage,
     0,

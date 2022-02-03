@@ -38,7 +38,7 @@ final class SkillFactorySpec extends AnyFunSpec with Matchers {
     describe("creating a language other skill") {
       it("should return the correct language other skill") {
         val japanese =
-          SkillFactory.languageSkill(
+          SkillFactory.languageOwnSkill(
             PrimaryCharacteristic(Education, 60),
             JapaneseLanguage,
             0,
@@ -52,7 +52,7 @@ final class SkillFactorySpec extends AnyFunSpec with Matchers {
     describe("creating a language own skill") {
       it("should return the correct language own skill") {
         val japanese =
-          SkillFactory.languageSkill(
+          SkillFactory.languageOtherSkill(
             RussianLanguage,
             0,
             0
