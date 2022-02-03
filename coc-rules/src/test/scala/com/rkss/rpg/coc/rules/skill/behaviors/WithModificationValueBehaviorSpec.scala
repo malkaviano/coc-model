@@ -6,7 +6,7 @@ import com.rkss.rpg.coc.rules.testing.fakes._
 import com.rkss.rpg.coc.concepts.characteristic._
 import com.rkss.rpg.coc.concepts._
 
-final class WithGenericModificationValueBehaviorSpec
+final class WithModificationValueBehaviorSpec
     extends AnyFunSpec
     with Matchers {
   describe("With modification value behavior") {
@@ -18,11 +18,11 @@ final class WithGenericModificationValueBehaviorSpec
 
     Seq(
       (
-        ValueModificationDecrease(Appearance, 5),
+        ValueModification(Appearance, -5),
         ValueModified(Appearance, -5, -5, 0)
       ),
       (
-        ValueModificationIncrease(Appearance, 10),
+        ValueModification(Appearance, 10),
         ValueModified(Appearance, 10, 5, -5)
       ),
     ).foreach {

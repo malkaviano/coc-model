@@ -32,7 +32,7 @@ object SampleUsage extends App {
 
   val firstAid = SkillFactory.basicSkill(FirstAid, 10, 15)
 
-  firstAid.modify(ValueModificationIncrease(FirstAid, 20))
+  firstAid.modify(ValueModification(FirstAid, 20))
 
   firstAid.markUsedWithSuccess()
 
@@ -71,7 +71,7 @@ object SampleUsage extends App {
 
   val dodge = SkillFactory.dodgeSkill(Characteristic(Dexterity, 50), 10, 15)
 
-  dodge.modify(ValueModificationIncrease(Dodge, 20))
+  dodge.modify(ValueModification(Dodge, 20))
 
   printSkill(dodge)
 
@@ -105,7 +105,7 @@ object SampleUsage extends App {
 
   println(education.roll())
 
-  education.modify(ValueModificationIncrease(Education, 10))
+  education.modify(ValueModification(Education, 10))
 
   println(education.value())
 

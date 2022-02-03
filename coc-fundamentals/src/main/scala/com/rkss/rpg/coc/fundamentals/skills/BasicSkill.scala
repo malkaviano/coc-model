@@ -25,4 +25,4 @@ final case class BasicSkill[A <: SkillName](
     with PushableSkillRollBehavior[A]
     with SkillImprovementBehavior[A]
     with WithDifficultyValueBehavior
-    with WithGenericModificationValueBehavior[A]
+    with WithModificationValueBehavior[A]

@@ -22,4 +22,4 @@ final case class CombatSkill[A <: CombatSkillName](
     with SkillSuccessfullyUsedBehavior
     with SkillImprovementBehavior[A]
     with WithDifficultyValueBehavior
-    with WithGenericModificationValueBehavior[A]
+    with WithModificationValueBehavior[A]
