@@ -44,7 +44,11 @@ trait SanityBehavior { self: Sanity =>
   override def currentMythos(
       mythos: EntityWithDifficultyValue
         with EntityWithNameTag[CthulhuMythos.type]
-  ): Unit = {
+  ): SanityMaximumChanged = {
+    val previous = _maximum
+
     _maximum = 99 - mythos.value()
+
+    SanityMaximumChanged(previous, _maximum)
   }
 }

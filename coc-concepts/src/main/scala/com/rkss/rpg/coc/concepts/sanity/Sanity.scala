@@ -19,7 +19,7 @@ trait Sanity {
   def currentMythos(
       mythos: EntityWithDifficultyValue
         with EntityWithNameTag[CthulhuMythos.type]
-  ): Unit
+  ): SanityMaximumChanged
 
   def roll(implicit hundredSidedDice: HundredSidedDice): SanityRolled
 }

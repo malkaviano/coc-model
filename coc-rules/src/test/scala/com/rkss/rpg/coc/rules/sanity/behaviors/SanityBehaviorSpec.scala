@@ -70,16 +70,16 @@ final class SanityBehaviorSpec extends AnyFunSpec with Matchers {
       }
 
       describe(s"when current mythos change to 9") {
-        val expected = 90
+        val expected = SanityMaximumChanged(99, 90)
 
         it(s"should be $expected") {
           val sanity = FakeSanity(initial)
 
           val mythos = new FakeSkill(CthulhuMythos, 9)
 
-          sanity.currentMythos(mythos)
+          val result = sanity.currentMythos(mythos)
 
-          sanity.maximum shouldBe expected
+          result shouldBe expected
         }
       }
     }
