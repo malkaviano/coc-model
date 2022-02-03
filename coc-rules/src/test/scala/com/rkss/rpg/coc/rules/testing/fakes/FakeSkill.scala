@@ -14,4 +14,4 @@ class FakeSkill[A <: SkillName](
     with WithDifficultyValueBehavior
     with SkillRollBehavior[A]
     with SkillWithPointsAllocation
-    with WithGenericModificationValueBehavior[A]
+    with WithModificationValueBehavior[A]

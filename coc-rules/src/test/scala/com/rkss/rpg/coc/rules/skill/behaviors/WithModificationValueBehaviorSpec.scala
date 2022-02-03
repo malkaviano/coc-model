@@ -6,7 +6,7 @@ import com.rkss.rpg.coc.rules.testing.fakes._
 import com.rkss.rpg.coc.concepts.characteristic._
 import com.rkss.rpg.coc.concepts._
 
-final class WithGenericModificationValueBehaviorSpec
+final class WithModificationValueBehaviorSpec
     extends AnyFunSpec
     with Matchers {
   describe("With modification value behavior") {

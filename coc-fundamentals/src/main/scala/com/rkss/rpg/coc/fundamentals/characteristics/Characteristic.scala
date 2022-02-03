@@ -7,7 +7,7 @@ final case class Characteristic[A <: CharacteristicName](
     override val name: A,
     override val baseValue: Int
 ) extends GenericCharacteristic[A]
-    with WithGenericModificationValueBehavior[A]
+    with WithModificationValueBehavior[A]
     with WithDifficultyValueBehavior
     with SkillRollBehavior[A]
     with PushableSkillRollBehavior[A]

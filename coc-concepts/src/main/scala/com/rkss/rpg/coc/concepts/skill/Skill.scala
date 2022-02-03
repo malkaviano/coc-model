@@ -7,7 +7,7 @@ trait Skill[A <: SkillName]
     extends EntityWithDifficultyValue
     with SkillRollable[A]
     with EntityWithModificationValue
-    with GenericEntityWithModifiableValue[A]
+    with EntityWithModifiableValue[A]
     with EntityWithNameTag[A] {
   def tags: Seq[SkillTag]
 }

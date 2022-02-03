@@ -2,8 +2,8 @@ package com.rkss.rpg.coc.rules.skill.behaviors
 
 import com.rkss.rpg.coc.concepts._
 
-private[coc] trait WithGenericModificationValueBehavior[A <: NameTag] {
-  self: EntityWithModificationValue with GenericEntityWithModifiableValue[A] =>
+private[coc] trait WithModificationValueBehavior[A <: NameTag] {
+  self: EntityWithModificationValue with EntityWithModifiableValue[A] =>
 
   private var _modification: Int = 0
 
