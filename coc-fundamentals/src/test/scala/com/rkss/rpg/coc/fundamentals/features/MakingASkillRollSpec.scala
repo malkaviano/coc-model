@@ -5,12 +5,12 @@ import org.scalatest.GivenWhenThen
 import org.scalatest.matchers.should.Matchers
 
 import com.rkss.rpg.coc.fundamentals.scenarios._
-import com.rkss.rpg.coc.fundamentals.characteristics._
 import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.coc.fundamentals.specs._
-import com.rkss.rpg.coc.concepts.characteristic._
+import com.rkss.rpg.coc.fundamentals.characteristics._
 import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.fundamentals.skills._
+import com.rkss.rpg.coc.concepts.characteristic._
 
 final class MakingASkillRollSpec
     extends AnyFeatureSpec
@@ -23,7 +23,7 @@ final class MakingASkillRollSpec
 
   Seq(
     SkillRollSpec(
-      Characteristic(Strength, 50),
+      PrimaryCharacteristic(Strength, 50),
       RegularDifficulty,
       BonusDice(0),
       PenaltyDice(0),

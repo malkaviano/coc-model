@@ -1,4 +1,4 @@
-package com.rkss.rpg.coc.fundamentals.skills
+package com.rkss.rpg.coc.helpers.wrappers
 
 import com.rkss.rpg.coc.concepts.skill._
 
