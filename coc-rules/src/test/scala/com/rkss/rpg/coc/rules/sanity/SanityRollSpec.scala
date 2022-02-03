@@ -8,10 +8,11 @@ import com.rkss.rpg.coc.rules.testing.TestingProps
 import com.rkss.rpg.helpers.dice._
 import com.rkss.rpg.coc.concepts.sanity._
 import com.rkss.rpg.coc.concepts._
+import com.rkss.rpg.coc.concepts.characteristic._
 
 final class SanityRollSpec extends AnyFunSpec with should.Matchers {
   describe("Sanity Check") {
-    val sanity = FakeSanity(40)
+    val sanity = FakeSanity(FakeGenericCharacteristic(Power, 40))
 
     val expected =
       SanityRolled(

@@ -8,10 +8,11 @@ import com.rkss.rpg.coc.rules.testing.fakes._
 import com.rkss.rpg.coc.rules.testing._
 import com.rkss.rpg.coc.concepts.sanity._
 import com.rkss.rpg.coc.concepts._
+import com.rkss.rpg.coc.concepts.characteristic._
 
 final class SanityRollBehaviorSpec extends AnyFunSpec with Matchers {
   describe("Sanity roll behavior") {
-    val sanity = new FakeSanity(60)
+    val sanity = new FakeSanity(FakeGenericCharacteristic(Power, 60))
 
     describe("Sanity roll") {
       it should behave like sanityRoll(sanity, 100, Fumble)
@@ -20,14 +21,18 @@ final class SanityRollBehaviorSpec extends AnyFunSpec with Matchers {
 
       it should behave like sanityRoll(sanity, 97, FailureResult)
 
-      it should behave like sanityRoll(new FakeSanity(40), 97, Fumble)
+      it should behave like sanityRoll(
+        new FakeSanity(FakeGenericCharacteristic(Power, 40)),
+        97,
+        Fumble
+      )
     }
   }
 
   private def sanityRoll(
       sanity: Sanity,
       rolled: Int,
-      result: SanityRolledResult
+      result: SanityRollResult
   ) = {
     describe(s"when sanity is ${sanity.current}") {
       describe(s"when rolling a ${rolled}") {

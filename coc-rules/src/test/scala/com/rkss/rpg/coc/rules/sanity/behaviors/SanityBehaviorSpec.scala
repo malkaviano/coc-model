@@ -4,16 +4,19 @@ import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 import com.rkss.rpg.coc.rules.testing.fakes.FakeSanity
 import com.rkss.rpg.coc.concepts.sanity._
+import com.rkss.rpg.coc.concepts.characteristic._
+import com.rkss.rpg.coc.rules.testing.fakes._
+import com.rkss.rpg.coc.concepts.skill._
 
 final class SanityBehaviorSpec extends AnyFunSpec with Matchers {
   describe("Sanity Behavior") {
-    val initial = 40
+    val initial = FakeGenericCharacteristic(Power, 40)
 
     describe("Initial value") {
       it(s"should be ${initial}") {
         val sanity = FakeSanity(initial)
 
-        sanity.current shouldBe initial
+        sanity.current shouldBe initial.value()
       }
     }
 
@@ -21,7 +24,7 @@ final class SanityBehaviorSpec extends AnyFunSpec with Matchers {
       it(s"should be ${initial}") {
         val sanity = FakeSanity(initial)
 
-        sanity.current shouldBe initial
+        sanity.current shouldBe initial.value()
       }
     }
 
@@ -49,7 +52,9 @@ final class SanityBehaviorSpec extends AnyFunSpec with Matchers {
           it(s"should increase current sanity by ${gain}") {
             val sanity = FakeSanity(initial)
 
-            sanity.currentMythos(19)
+            val mythos = new FakeSkill(CthulhuMythos, 19)
+
+            sanity.currentMythos(mythos)
 
             sanity.gain(gain) shouldBe expected
           }
@@ -65,14 +70,16 @@ final class SanityBehaviorSpec extends AnyFunSpec with Matchers {
       }
 
       describe(s"when current mythos change to 9") {
-        val expected = 90
+        val expected = SanityMaximumChanged(99, 90)
 
         it(s"should be $expected") {
           val sanity = FakeSanity(initial)
 
-          sanity.currentMythos(9)
+          val mythos = new FakeSkill(CthulhuMythos, 9)
 
-          sanity.maximum shouldBe expected
+          val result = sanity.currentMythos(mythos)
+
+          result shouldBe expected
         }
       }
     }

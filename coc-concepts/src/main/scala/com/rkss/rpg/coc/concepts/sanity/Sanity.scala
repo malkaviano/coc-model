@@ -1,9 +1,12 @@
 package com.rkss.rpg.coc.concepts.sanity
 
 import com.rkss.rpg.helpers.dice.HundredSidedDice
+import com.rkss.rpg.coc.concepts.characteristic._
+import com.rkss.rpg.coc.concepts._
+import com.rkss.rpg.coc.concepts.skill._
 
 trait Sanity {
-  def initial: Int
+  def initial: Characteristic[Power.type]
 
   def current: Int
 
@@ -13,7 +16,10 @@ trait Sanity {
 
   def gain(gain: SanityGain): SanityRecovered
 
-  def currentMythos(value: Int): Unit
+  def currentMythos(
+      mythos: EntityWithDifficultyValue
+        with EntityWithNameTag[CthulhuMythos.type]
+  ): SanityMaximumChanged
 
   def roll(implicit hundredSidedDice: HundredSidedDice): SanityRolled
 }
