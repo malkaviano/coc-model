@@ -45,7 +45,13 @@ final class SkillFactorySpec extends AnyFunSpec with Matchers {
             0
           )
 
-        japanese shouldBe BasicSkill(JapaneseLanguage, 60, 0, 0, Seq(LanguageOwn))
+        japanese shouldBe BasicSkill(
+          JapaneseLanguage,
+          60,
+          0,
+          0,
+          Seq(LanguageOwn)
+        )
       }
     }
 
@@ -58,13 +64,29 @@ final class SkillFactorySpec extends AnyFunSpec with Matchers {
             0
           )
 
-        japanese shouldBe BasicSkill(RussianLanguage, 1, 0, 0, Seq(LanguageOther))
+        japanese shouldBe BasicSkill(
+          RussianLanguage,
+          1,
+          0,
+          0,
+          Seq(LanguageOther)
+        )
       }
     }
 
     describe("creating a CthulhuMythos skill") {
       it("should return a CthulhuMythos skill") {
         SkillFactory.cthulhuMythosSkill shouldBe CthulhuMythosSkill()
+      }
+    }
+
+    describe("creating a CreditRating skill") {
+      it("should return a CreditRating skill") {
+        SkillFactory.creditRatingSkill(15, 10, 5) shouldBe CreditRatingSkill(
+          15,
+          10,
+          5
+        )
       }
     }
   }

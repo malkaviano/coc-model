@@ -66,4 +66,12 @@ object SkillFactory {
   def cthulhuMythosSkill: CthulhuMythosSkill = {
     CthulhuMythosSkill()
   }
+
+  def creditRatingSkill(
+      baseValue: Int,
+      occupationPoints: Int,
+      personalPoints: Int
+  ): CreditRatingSkill = {
+    CreditRatingSkill(baseValue, occupationPoints, personalPoints)
+  }
 }

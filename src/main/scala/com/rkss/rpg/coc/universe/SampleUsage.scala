@@ -107,4 +107,8 @@ object SampleUsage extends App {
   val mythos = SkillFactory.cthulhuMythosSkill
 
   printSkill(mythos)
+
+  val creditRating = SkillFactory.creditRatingSkill(20, 10, 0)
+
+  printSkill(creditRating)
 }
