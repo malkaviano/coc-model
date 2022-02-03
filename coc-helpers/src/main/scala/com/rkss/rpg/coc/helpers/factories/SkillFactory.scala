@@ -1,9 +1,7 @@
 package com.rkss.rpg.coc.helpers.factories
 
 import com.rkss.rpg.coc.concepts.skill._
-import com.rkss.rpg.coc.fundamentals.characteristics.Characteristic
-import com.rkss.rpg.coc.concepts.characteristic.Dexterity
-import com.rkss.rpg.coc.concepts.characteristic.Education
+import com.rkss.rpg.coc.concepts.characteristic._
 import com.rkss.rpg.coc.fundamentals.skills._
 
 object SkillFactory {

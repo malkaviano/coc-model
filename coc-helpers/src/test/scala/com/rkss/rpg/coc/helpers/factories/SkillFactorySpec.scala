@@ -29,7 +29,7 @@ final class SkillFactorySpec extends AnyFunSpec with Matchers {
     describe("creating a dodge skill") {
       it("should return a dodge skill") {
         val dodge =
-          SkillFactory.dodgeSkill(Characteristic(Dexterity, 60), 0, 0)
+          SkillFactory.dodgeSkill(PrimaryCharacteristic(Dexterity, 60), 0, 0)
 
         dodge shouldBe CombatSkill(Dodge, 30, 0, 0)
       }
@@ -39,7 +39,7 @@ final class SkillFactorySpec extends AnyFunSpec with Matchers {
       it("should return the correct language other skill") {
         val japanese =
           SkillFactory.languageSkill(
-            Characteristic(Education, 60),
+            PrimaryCharacteristic(Education, 60),
             JapaneseLanguage,
             0,
             0

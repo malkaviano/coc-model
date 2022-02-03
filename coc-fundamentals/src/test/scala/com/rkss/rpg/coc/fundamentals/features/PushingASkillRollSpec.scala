@@ -55,7 +55,7 @@ final class PushingASkillRollSpec
   Seq(
     // No previous roll
     PushSkillRollSpec(
-      Characteristic(Dexterity, 50),
+      PrimaryCharacteristic(Dexterity, 50),
       Option(HardDifficulty),
       Option(BonusDice(1)),
       Option(PenaltyDice(2)),
