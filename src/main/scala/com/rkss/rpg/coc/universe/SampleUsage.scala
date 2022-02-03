@@ -6,7 +6,6 @@ import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.concepts.skill.improvement._
 import com.rkss.rpg.coc.fundamentals.characteristics._
 import com.rkss.rpg.coc.concepts.characteristic._
-import com.rkss.rpg.coc.fundamentals.skills.CthulhuMythosSkill
 
 object SampleUsage extends App {
   import com.rkss.rpg.helpers.dice.Bag._
@@ -111,7 +110,7 @@ object SampleUsage extends App {
 
   println(education.modificationValue)
 
-  val mythos = CthulhuMythosSkill()
+  val mythos = SkillFactory.cthulhuMythosSkill
 
   printSkill(mythos)
 }

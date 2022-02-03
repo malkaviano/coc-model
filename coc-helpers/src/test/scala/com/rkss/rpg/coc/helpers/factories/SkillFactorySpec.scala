@@ -61,5 +61,11 @@ final class SkillFactorySpec extends AnyFunSpec with Matchers {
         japanese shouldBe BasicSkill(RussianLanguage, 1, 0, 0, Seq(LanguageOther))
       }
     }
+
+    describe("creating a CthulhuMythos skill") {
+      it("should return a CthulhuMythos skill") {
+        SkillFactory.cthulhuMythosSkill shouldBe CthulhuMythosSkill()
+      }
+    }
   }
 }
