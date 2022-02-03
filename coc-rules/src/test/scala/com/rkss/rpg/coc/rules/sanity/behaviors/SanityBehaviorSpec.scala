@@ -6,6 +6,7 @@ import com.rkss.rpg.coc.rules.testing.fakes.FakeSanity
 import com.rkss.rpg.coc.concepts.sanity._
 import com.rkss.rpg.coc.concepts.characteristic._
 import com.rkss.rpg.coc.rules.testing.fakes._
+import com.rkss.rpg.coc.concepts.skill._
 
 final class SanityBehaviorSpec extends AnyFunSpec with Matchers {
   describe("Sanity Behavior") {
@@ -51,7 +52,9 @@ final class SanityBehaviorSpec extends AnyFunSpec with Matchers {
           it(s"should increase current sanity by ${gain}") {
             val sanity = FakeSanity(initial)
 
-            sanity.currentMythos(19)
+            val mythos = new FakeSkill(CthulhuMythos, 19)
+
+            sanity.currentMythos(mythos)
 
             sanity.gain(gain) shouldBe expected
           }
@@ -72,7 +75,9 @@ final class SanityBehaviorSpec extends AnyFunSpec with Matchers {
         it(s"should be $expected") {
           val sanity = FakeSanity(initial)
 
-          sanity.currentMythos(9)
+          val mythos = new FakeSkill(CthulhuMythos, 9)
+
+          sanity.currentMythos(mythos)
 
           sanity.maximum shouldBe expected
         }

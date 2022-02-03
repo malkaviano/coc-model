@@ -1,6 +1,8 @@
 package com.rkss.rpg.coc.rules.sanity.behaviors
 
 import com.rkss.rpg.coc.concepts.sanity._
+import com.rkss.rpg.coc.concepts.skill._
+import com.rkss.rpg.coc.concepts._
 
 trait SanityBehavior { self: Sanity =>
   private var _current: Int = self.initial.value()
@@ -39,7 +41,10 @@ trait SanityBehavior { self: Sanity =>
     SanityRecovered(increase, current, _previous, maximum)
   }
 
-  override def currentMythos(value: Int): Unit = {
-    _maximum = 99 - value
+  override def currentMythos(
+      mythos: EntityWithDifficultyValue
+        with EntityWithNameTag[CthulhuMythos.type]
+  ): Unit = {
+    _maximum = 99 - mythos.value()
   }
 }
