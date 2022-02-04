@@ -16,7 +16,7 @@ object SkillFactory {
     BasicSkill(name, baseValue, occupationPoints, personalPoints, tags)
   }
 
-  def combatSkill[A <: CombatSkillName](
+  def combatSkill[A <: AttackSkillName](
       name: A,
       occupationPoints: Int,
       personalPoints: Int

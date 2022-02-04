@@ -92,9 +92,11 @@ case object Sea extends Survival
 
 sealed trait CombatSkillName extends SkillName
 
-case object Throw extends CombatSkillName
+sealed trait AttackSkillName extends CombatSkillName
 
-sealed trait Fighting extends CombatSkillName
+case object Throw extends AttackSkillName
+
+sealed trait Fighting extends AttackSkillName
 
 case object Axe extends Fighting
 case object Brawl extends Fighting
@@ -105,7 +107,7 @@ case object Spear extends Fighting
 case object Sword extends Fighting
 case object Whip extends Fighting
 
-sealed trait Firearms extends CombatSkillName
+sealed trait Firearms extends AttackSkillName
 
 case object Bow extends Firearms
 case object Handgun extends Firearms
@@ -115,9 +117,9 @@ case object MachineGun extends Firearms
 case object RifleAndShotgun extends Firearms
 case object SubmachineGun extends Firearms
 
-sealed trait DexterityCombatSkill extends CombatSkillName
+sealed trait DefenseSkillName extends CombatSkillName
 
-case object Dodge extends DexterityCombatSkill
+case object Dodge extends DefenseSkillName
 
 sealed trait LanguageSkillName extends SkillName
 
