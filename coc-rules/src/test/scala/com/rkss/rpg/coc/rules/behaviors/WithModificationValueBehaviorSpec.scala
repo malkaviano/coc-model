@@ -1,4 +1,4 @@
-package com.rkss.rpg.coc.rules.skill.behaviors
+package com.rkss.rpg.coc.rules.behaviors
 
 import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
