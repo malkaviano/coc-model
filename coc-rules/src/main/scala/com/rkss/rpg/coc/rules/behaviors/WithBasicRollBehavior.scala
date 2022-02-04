@@ -1,4 +1,4 @@
-package com.rkss.rpg.coc.rules.skill.behaviors
+package com.rkss.rpg.coc.rules.behaviors
 
 import com.rkss.rpg.coc.concepts._
 import com.rkss.rpg.helpers.dice.HundredSidedDice

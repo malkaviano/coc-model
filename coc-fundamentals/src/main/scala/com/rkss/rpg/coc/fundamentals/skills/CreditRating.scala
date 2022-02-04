@@ -4,6 +4,7 @@ import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.rules.skill.behaviors._
 import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.coc.concepts.skill.allocation._
+import com.rkss.rpg.coc.rules.behaviors._
 
 final case class CreditRatingSkill(
     override val baseValue: Int,
