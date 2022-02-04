@@ -1,18 +1,21 @@
-package com.rkss.rpg.coc.rules.sanity.behaviors
+package com.rkss.rpg.coc.fundamentals.sanity
 
 import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 
 import com.rkss.rpg.helpers.dice.HundredSidedDice
-import com.rkss.rpg.coc.rules.testing.fakes._
 import com.rkss.rpg.coc.rules.testing._
 import com.rkss.rpg.coc.concepts.sanity._
 import com.rkss.rpg.coc.concepts._
 import com.rkss.rpg.coc.concepts.characteristic._
+import com.rkss.rpg.coc.fundamentals.attributes._
+import com.rkss.rpg.coc.fundamentals.characteristics._
+import com.rkss.rpg.coc.fundamentals.skills._
 
 final class SanityRollBehaviorSpec extends AnyFunSpec with Matchers {
   describe("Sanity roll behavior") {
-    val sanity = new FakeSanity(FakeGenericCharacteristic(Power, 60))
+    val sanity =
+      InvestigatorSanity(PrimaryCharacteristic(Power, 60), CthulhuMythosSkill())
 
     describe("Sanity roll") {
       it should behave like sanityRoll(sanity, 100, Fumble)
@@ -22,7 +25,10 @@ final class SanityRollBehaviorSpec extends AnyFunSpec with Matchers {
       it should behave like sanityRoll(sanity, 97, FailureResult)
 
       it should behave like sanityRoll(
-        new FakeSanity(FakeGenericCharacteristic(Power, 40)),
+        InvestigatorSanity(
+          PrimaryCharacteristic(Power, 40),
+          CthulhuMythosSkill()
+        ),
         97,
         Fumble
       )

@@ -10,6 +10,7 @@ import com.rkss.rpg.coc.fundamentals.attributes._
 import com.rkss.rpg.coc.fundamentals.specs._
 import com.rkss.rpg.coc.fundamentals.characteristics._
 import com.rkss.rpg.coc.concepts.characteristic._
+import com.rkss.rpg.coc.fundamentals.skills.CthulhuMythosSkill
 
 final class MakingASanityRollSpec
     extends AnyFeatureSpec
@@ -22,12 +23,12 @@ final class MakingASanityRollSpec
 
   Seq(
     SanityRollSpec(
-      InvestigatorSanity(PrimaryCharacteristic(Power, 50)),
+      InvestigatorSanity(PrimaryCharacteristic(Power, 50), CthulhuMythosSkill()),
       10,
       SuccessResult,
     ),
     SanityRollSpec(
-      InvestigatorSanity(PrimaryCharacteristic(Power, 55)),
+      InvestigatorSanity(PrimaryCharacteristic(Power, 55), CthulhuMythosSkill()),
       100,
       Fumble,
     )
