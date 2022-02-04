@@ -66,7 +66,11 @@ object SampleUsage extends App {
 
   printSkill(brawl)
 
-  val dodge = SkillFactory.dodgeSkill(PrimaryCharacteristic(Dexterity, 50), 10, 15)
+  val dodge = SkillFactory.dodgeSkill(
+    CharacteristicFactory.characteristic(Dexterity),
+    10,
+    15
+  )
 
   printSkill(dodge)
 
@@ -84,13 +88,13 @@ object SampleUsage extends App {
 
   printSkill(japaneseLanguage)
 
-  val strength = PrimaryCharacteristic(Strength, 50)
+  val strength = CharacteristicFactory.characteristic(Strength)
 
   println(strength.roll())
 
   println(strength.pushRoll(Some(HardDifficulty)))
 
-  val education = PrimaryCharacteristic(Education, 60)
+  val education = CharacteristicFactory.characteristic(Education)
 
   println(education)
 
