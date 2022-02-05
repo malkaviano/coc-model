@@ -14,7 +14,7 @@ private[behaviors] final case class SkillImprovement[A <: ImprovableSkillName](
 ) {
   lazy val result: SkillImproved[A] = {
     val ImprovementChecked(rolled, improved) =
-      ImprovementCheckExecutor.instance.improvementCheck(skill)
+      ImprovementCheckExecutor.instance.skillImprovementCheck(skill)
 
     val skillValue = skill.value()
 
