@@ -1,10 +1,10 @@
-package com.rkss.rpg.coc.behaviors.skill.executors
+package com.rkss.rpg.coc.behaviors.executors
 
 import com.rkss.rpg.helpers.dice.HundredSidedDice
 import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.coc.concepts._
 
-private[behaviors] class SkillRollExecutor private () {
+private[behaviors] class RollExecutor private () {
   def roll[A <: NameTag](
       rollable: EntityWithDifficultyValue with EntityWithNameTag[A],
       difficulty: SkillRollDifficultyLevel,
@@ -58,8 +58,8 @@ private[behaviors] class SkillRollExecutor private () {
   }
 }
 
-private[behaviors] object SkillRollExecutor {
-  lazy val instance: SkillRollExecutor = {
-    new SkillRollExecutor
+private[behaviors] object RollExecutor {
+  lazy val instance: RollExecutor = {
+    new RollExecutor
   }
 }
