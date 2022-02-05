@@ -1,11 +1,11 @@
-package com.rkss.rpg.coc.behaviors.skill.facts
+package com.rkss.rpg.coc.behaviors.skill.executors
 
 import com.rkss.rpg.helpers.dice._
 import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.concepts.skill.improvement._
 import com.rkss.rpg.coc.concepts.skill.roll.SkillRollDiceResult
 
-private[behaviors] final class SkillImprovementCheck private () {
+private[behaviors] final class SkillImprovementCheckExecutor private () {
   def improvementCheck[A <: SkillName](skill: Skill[A])(implicit
       hundredSidedDice: HundredSidedDice,
       tenSidedDice: TenSidedDice
@@ -35,8 +35,8 @@ private[behaviors] final class SkillImprovementCheck private () {
   }
 }
 
-private[behaviors] object SkillImprovementCheck {
-  lazy val instance: SkillImprovementCheck = {
-    new SkillImprovementCheck
+private[behaviors] object SkillImprovementCheckExecutor {
+  lazy val instance: SkillImprovementCheckExecutor = {
+    new SkillImprovementCheckExecutor
   }
 }
