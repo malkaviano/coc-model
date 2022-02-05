@@ -3,7 +3,7 @@ package com.rkss.rpg.coc.behaviors.skill
 import com.rkss.rpg.coc.concepts._
 import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.helpers.dice._
-import com.rkss.rpg.coc.behaviors.skill.facts._
+import com.rkss.rpg.coc.behaviors.results._
 
 private[coc] trait SkillRollBehavior[A <: NameTag] {
   self: EntityWithDifficultyValue with SkillRollable[A] with EntityWithNameTag[A] =>

@@ -6,65 +6,93 @@ import org.scalatest.matchers.should.Matchers
 import com.rkss.rpg.coc.behaviors.testing.fakes._
 import com.rkss.rpg.helpers.dice._
 import com.rkss.rpg.coc.behaviors.testing.TestingProps
-import com.rkss.rpg.coc.concepts.skill.improvement._
-import com.rkss.rpg.coc.concepts.skill.roll.SkillRollDiceResult
 import com.rkss.rpg.coc.concepts.skill._
+import com.rkss.rpg.coc.concepts._
+import com.rkss.rpg.coc.behaviors.results._
+import com.rkss.rpg.coc.concepts.characteristic._
 
 final class ImprovementCheckExecutorSpec extends AnyFunSpec with Matchers {
-  describe("Skill Improvement Check") {
-    describe("when skill fails the improvement check") {
-      val skill = FakeSkillWithSuccessCheck(Anthropology, 30)
-
+  describe("Improvement Check") {
+    describe("when failing a improvement check") {
       val expected =
-        SkillImproved(
-          Anthropology,
-          30,
-          0,
-          Option(SkillRollDiceResult(10)),
-          false
-        )
+        ImprovementChecked(RollDiceResult(10), 0)
 
-      it should behave like improvementCheck(skill, Seq(10), Seq(8), expected)
+      describe(s"when rolled value is ${expected.rolled}") {
+
+        val skill = new FakeSkill(Anthropology, 30)
+
+        describe(s"when entity to be tested is ${skill}") {
+          it should behave like skillImprovementCheck(
+            skill,
+            Seq(10),
+            Seq(8),
+            expected
+          )
+        }
+
+        val power = new FakeGenericCharacteristic(Power, 60)
+
+        describe(s"when entity to be tested is ${power}") {
+          it should behave like characteristicImprovementCheck(
+            power,
+            Seq(10),
+            Seq(8),
+            expected
+          )
+        }
+      }
     }
 
-    describe("when skill succeeds the improvement check") {
-      val skill = FakeSkillWithSuccessCheck(Handgun, 30)
+    describe("when passing a improvement check") {
+      describe("when rolling above entity value") {
+        val skill = new FakeSkill(Handgun, 30)
 
-      val expected =
-        SkillImproved(Handgun, 30, 8, Option(SkillRollDiceResult(90)), false)
+        it should behave like skillImprovementCheck(
+          skill,
+          Seq(90),
+          Seq(8),
+          ImprovementChecked(RollDiceResult(90), 8)
 
-      it should behave like improvementCheck(skill, Seq(90), Seq(8), expected)
+        )
 
-      describe("when skill value is 101") {
-        val skill = FakeSkillWithSuccessCheck(Axe, 30, 50, 21)
+        val power = new FakeGenericCharacteristic(Power, 60)
 
-        val expected =
-          SkillImproved(Axe, 101, 6, Option(SkillRollDiceResult(98)), false)
+        it should behave like characteristicImprovementCheck(
+          power,
+          Seq(91),
+          Seq(9),
+          ImprovementChecked(RollDiceResult(91), 9)
 
-        it should behave like improvementCheck(skill, Seq(98), Seq(6), expected)
+        )
       }
 
-      describe("when skill reaches 90%") {
-        val skill = FakeSkillWithSuccessCheck(Brawl, 30, 50, 6)
+      describe("when rolling above 95") {
+        val skill = new FakeSkill(Axe, 30, 50, 21)
 
-        val expected =
-          SkillImproved(Brawl, 86, 4, Option(SkillRollDiceResult(100)), true)
-
-        it should behave like improvementCheck(
+        it should behave like skillImprovementCheck(
           skill,
+          Seq(98),
+          Seq(6),
+          ImprovementChecked(RollDiceResult(98), 6)
+        )
+
+        val power = new FakeGenericCharacteristic(Power, 100)
+
+        it should behave like characteristicImprovementCheck(
+          power,
           Seq(100),
-          Seq(4),
-          expected
+          Seq(7),
+          ImprovementChecked(RollDiceResult(100), 7)
         )
       }
     }
   }
 
-  private def improvementCheck[A <: SkillName](
-      skill: FakeSkillWithSuccessCheck,
+  private def skillImprovementCheck[A <: ImprovableSkillName](
+      skill: FakeSkill[A],
       check: Seq[Int],
       improved: Seq[Int],
-      expected: SkillImproved[A]
+      expected: ImprovementChecked
   ) = {
     val hundredSidedDice = HundredSidedDice(
       TestingProps.fakeRng(check)
@@ -77,7 +105,33 @@ final class ImprovementCheckExecutorSpec extends AnyFunSpec with Matchers {
     it(s"return $expected") {
       val skillImprovementCheck = ImprovementCheckExecutor.instance
 
-      val result = skillImprovementCheck.improvementCheck(skill)(
+      val result = skillImprovementCheck.skillImprovementCheck(skill)(
+        hundredSidedDice,
+        tenSidedDice
+      )
+
+      result shouldBe expected
+    }
+  }
+
+  private def characteristicImprovementCheck[A <: ImprovableCharacteristicName](
+      characteristic: FakeGenericCharacteristic[A],
+      check: Seq[Int],
+      improved: Seq[Int],
+      expected: ImprovementChecked
+  ) = {
+    val hundredSidedDice = HundredSidedDice(
+      TestingProps.fakeRng(check)
+    )
+
+    val tenSidedDice = TenSidedDice(
+      TestingProps.fakeRng(improved)
+    )
+
+    it(s"return $expected") {
+      val skillImprovementCheck = ImprovementCheckExecutor.instance
+
+      val result = skillImprovementCheck.characteristicCheck(characteristic)(
         hundredSidedDice,
         tenSidedDice
       )

@@ -8,7 +8,7 @@ import com.rkss.rpg.coc.concepts.skill.check._
 import com.rkss.rpg.coc.concepts.skill.allocation._
 import com.rkss.rpg.coc.behaviors._
 
-final case class BasicSkill[A <: SkillName](
+final case class BasicSkill[A <: ImprovableSkillName](
     override val name: A,
     override val baseValue: Int,
     override val occupationPoints: Int,

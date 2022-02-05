@@ -2,36 +2,44 @@ package com.rkss.rpg.coc.behaviors.executors
 
 import com.rkss.rpg.helpers.dice._
 import com.rkss.rpg.coc.concepts.skill._
-import com.rkss.rpg.coc.concepts.skill.improvement._
-import com.rkss.rpg.coc.concepts.skill.roll.SkillRollDiceResult
+import com.rkss.rpg.coc.behaviors.results._
+import com.rkss.rpg.coc.concepts._
+import com.rkss.rpg.coc.concepts.characteristic._
 
 private[behaviors] final class ImprovementCheckExecutor private () {
-  def improvementCheck[A <: SkillName](skill: Skill[A])(implicit
+  def skillImprovementCheck[A <: ImprovableSkillName](skill: Skill[A])(implicit
       hundredSidedDice: HundredSidedDice,
       tenSidedDice: TenSidedDice
-  ): SkillImproved[A] = {
-    val increment = tenSidedDice.roll.value
-    val skillValue = skill.value()
+  ): ImprovementChecked = {
     val rolled = hundredSidedDice.roll.value
+    val skillValue = skill.value()
 
-    rolled match {
-      case x if x > skillValue || x > 95 =>
-        SkillImproved(
-          skill.name,
-          skill.value(),
-          increment,
-          Option(SkillRollDiceResult(rolled)),
-          skillValue < 90 && skillValue + increment >= 90
-        )
+    improvementCheck(rolled, skillValue)
+  }
+
+  def characteristicCheck[A <: ImprovableCharacteristicName](
+      characteristic: Characteristic[A]
+  )(implicit
+      hundredSidedDice: HundredSidedDice,
+      tenSidedDice: TenSidedDice
+  ): ImprovementChecked = {
+    val rolled = hundredSidedDice.roll.value
+    val value = characteristic.value()
+
+    improvementCheck(rolled, value)
+  }
+
+  private def improvementCheck(rolled: Int, value: Int)(implicit
+      tenSidedDice: TenSidedDice
+  ): ImprovementChecked = {
+    val improved = rolled match {
+      case x if x > value || x > 95 =>
+        tenSidedDice.roll.value
       case _ =>
-        SkillImproved(
-          skill.name,
-          skill.value(),
-          0,
-          Option(SkillRollDiceResult(rolled)),
-          false
-        )
+        0
     }
+
+    ImprovementChecked(RollDiceResult(rolled), improved)
   }
 }
 

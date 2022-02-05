@@ -5,7 +5,7 @@ import com.rkss.rpg.coc.behaviors.skill._
 import com.rkss.rpg.coc.concepts.skill.improvement._
 import com.rkss.rpg.coc.concepts.skill._
 
-final case class FakeSkillImprovable[A <: SkillName](
+final case class FakeSkillImprovable[A <: ImprovableSkillName](
     override val name: A,
     override val baseValue: Int,
     override val occupationPoints: Int = 0,

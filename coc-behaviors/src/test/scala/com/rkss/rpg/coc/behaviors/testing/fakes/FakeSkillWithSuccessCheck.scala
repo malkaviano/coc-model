@@ -5,7 +5,7 @@ import com.rkss.rpg.coc.behaviors.skill._
 import com.rkss.rpg.coc.concepts.skill._
 
 final case class FakeSkillWithSuccessCheck(
-    override val name: SkillName,
+    override val name: ImprovableSkillName,
     override val baseValue: Int,
     override val occupationPoints: Int = 0,
     override val personalPoints: Int = 0

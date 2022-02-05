@@ -5,10 +5,10 @@ import com.rkss.rpg.coc.concepts.skill.improvement._
 import com.rkss.rpg.coc.concepts.skill.check._
 import com.rkss.rpg.helpers.dice._
 import com.rkss.rpg.coc.behaviors.skill._
-import com.rkss.rpg.coc.behaviors.skill.facts._
-import com.rkss.rpg.coc.concepts.skill.roll._
+import com.rkss.rpg.coc.behaviors.results._
+import com.rkss.rpg.coc.concepts._
 
-private[coc] trait SkillImprovementBehavior[A <: SkillName]
+private[coc] trait SkillImprovementBehavior[A <: ImprovableSkillName]
     extends SkillSuccessfullyUsedBehavior {
   self: Skill[A]
     with SkillSuccessMark
@@ -39,7 +39,7 @@ private[coc] trait SkillImprovementBehavior[A <: SkillName]
           this.name,
           this.value(),
           0,
-          Option.empty[SkillRollDiceResult],
+          Option.empty[RollDiceResult],
           false
         )
     }
