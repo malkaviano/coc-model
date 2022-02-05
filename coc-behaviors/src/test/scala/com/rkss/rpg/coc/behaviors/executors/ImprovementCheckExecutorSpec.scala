@@ -6,23 +6,17 @@ import org.scalatest.matchers.should.Matchers
 import com.rkss.rpg.coc.behaviors.testing.fakes._
 import com.rkss.rpg.helpers.dice._
 import com.rkss.rpg.coc.behaviors.testing.TestingProps
-import com.rkss.rpg.coc.concepts.skill.improvement._
-import com.rkss.rpg.coc.concepts.skill.roll.SkillRollDiceResult
 import com.rkss.rpg.coc.concepts.skill._
+import com.rkss.rpg.coc.concepts._
+import com.rkss.rpg.coc.behaviors.results._
 
 final class ImprovementCheckExecutorSpec extends AnyFunSpec with Matchers {
-  describe("Skill Improvement Check") {
+  describe("Improvement Check") {
     describe("when skill fails the improvement check") {
       val skill = FakeSkillWithSuccessCheck(Anthropology, 30)
 
       val expected =
-        SkillImproved(
-          Anthropology,
-          30,
-          0,
-          Option(SkillRollDiceResult(10)),
-          false
-        )
+        ImprovementChecked(RollDiceResult(10), 0)
 
       it should behave like improvementCheck(skill, Seq(10), Seq(8), expected)
     }
@@ -31,7 +25,7 @@ final class ImprovementCheckExecutorSpec extends AnyFunSpec with Matchers {
       val skill = FakeSkillWithSuccessCheck(Handgun, 30)
 
       val expected =
-        SkillImproved(Handgun, 30, 8, Option(SkillRollDiceResult(90)), false)
+        ImprovementChecked(RollDiceResult(90), 8)
 
       it should behave like improvementCheck(skill, Seq(90), Seq(8), expected)
 
@@ -39,7 +33,7 @@ final class ImprovementCheckExecutorSpec extends AnyFunSpec with Matchers {
         val skill = FakeSkillWithSuccessCheck(Axe, 30, 50, 21)
 
         val expected =
-          SkillImproved(Axe, 101, 6, Option(SkillRollDiceResult(98)), false)
+          ImprovementChecked(RollDiceResult(98), 6)
 
         it should behave like improvementCheck(skill, Seq(98), Seq(6), expected)
       }
@@ -48,7 +42,7 @@ final class ImprovementCheckExecutorSpec extends AnyFunSpec with Matchers {
         val skill = FakeSkillWithSuccessCheck(Brawl, 30, 50, 6)
 
         val expected =
-          SkillImproved(Brawl, 86, 4, Option(SkillRollDiceResult(100)), true)
+          ImprovementChecked(RollDiceResult(100), 4)
 
         it should behave like improvementCheck(
           skill,
@@ -64,7 +58,7 @@ final class ImprovementCheckExecutorSpec extends AnyFunSpec with Matchers {
       skill: FakeSkillWithSuccessCheck,
       check: Seq[Int],
       improved: Seq[Int],
-      expected: SkillImproved[A]
+      expected: ImprovementChecked
   ) = {
     val hundredSidedDice = HundredSidedDice(
       TestingProps.fakeRng(check)

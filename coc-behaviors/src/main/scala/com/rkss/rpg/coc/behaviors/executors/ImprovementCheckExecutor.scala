@@ -2,36 +2,25 @@ package com.rkss.rpg.coc.behaviors.executors
 
 import com.rkss.rpg.helpers.dice._
 import com.rkss.rpg.coc.concepts.skill._
-import com.rkss.rpg.coc.concepts.skill.improvement._
-import com.rkss.rpg.coc.concepts.skill.roll.SkillRollDiceResult
+import com.rkss.rpg.coc.behaviors.results._
+import com.rkss.rpg.coc.concepts._
 
 private[behaviors] final class ImprovementCheckExecutor private () {
   def improvementCheck[A <: SkillName](skill: Skill[A])(implicit
       hundredSidedDice: HundredSidedDice,
       tenSidedDice: TenSidedDice
-  ): SkillImproved[A] = {
-    val increment = tenSidedDice.roll.value
-    val skillValue = skill.value()
+  ): ImprovementChecked = {
     val rolled = hundredSidedDice.roll.value
+    val skillValue = skill.value()
 
-    rolled match {
+    val improved = rolled match {
       case x if x > skillValue || x > 95 =>
-        SkillImproved(
-          skill.name,
-          skill.value(),
-          increment,
-          Option(SkillRollDiceResult(rolled)),
-          skillValue < 90 && skillValue + increment >= 90
-        )
+          tenSidedDice.roll.value
       case _ =>
-        SkillImproved(
-          skill.name,
-          skill.value(),
-          0,
-          Option(SkillRollDiceResult(rolled)),
-          false
-        )
+          0
     }
+
+    ImprovementChecked(RollDiceResult(rolled), improved)
   }
 }
 
