@@ -1,6 +1,6 @@
-package com.rkss.rpg.coc.behaviors.skill
+package com.rkss.rpg.coc.behaviors
 
-import com.rkss.rpg.coc.behaviors.skill.facts._
+import com.rkss.rpg.coc.behaviors.extractor._
 import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.coc.concepts.skill.improvement._
 import com.rkss.rpg.coc.concepts.skill.allocation._
@@ -11,7 +11,7 @@ private[coc] trait WithDifficultyValueBehavior {
   def value(
       difficulty: SkillRollDifficultyLevel = RegularDifficulty
   ): Int = {
-    SkillRollValue(baseValue + allocated + improved + modification)
+    DifficultyValueExtractor(baseValue + allocated + improved + modification)
       .value(difficulty) match {
       case value if value >= 0 => value
       case _                   => 0

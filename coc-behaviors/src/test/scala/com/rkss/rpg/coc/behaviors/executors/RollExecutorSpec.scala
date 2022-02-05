@@ -1,4 +1,4 @@
-package com.rkss.rpg.coc.behaviors.skill
+package com.rkss.rpg.coc.behaviors.executors
 
 import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
@@ -9,9 +9,8 @@ import com.rkss.rpg.coc.behaviors.testing._
 import com.rkss.rpg.coc.behaviors.testing.fakes._
 import com.rkss.rpg.coc.concepts._
 import com.rkss.rpg.coc.concepts.characteristic._
-import com.rkss.rpg.coc.behaviors.skill.executors._
 
-final class SkillRollExecutorSpec
+final class RollExecutorSpec
     extends AnyFunSpec
     with Matchers {
   describe("Resolving a skill roll") {
@@ -226,7 +225,7 @@ final class SkillRollExecutorSpec
     )
 
     val skillRollResolver =
-      SkillRollExecutor.instance
+      RollExecutor.instance
 
     describe(s"when difficulty is $difficulty") {
       describe(

@@ -1,4 +1,4 @@
-package com.rkss.rpg.coc.behaviors.skill
+package com.rkss.rpg.coc.behaviors.executors
 
 import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
@@ -9,9 +9,8 @@ import com.rkss.rpg.coc.behaviors.testing.TestingProps
 import com.rkss.rpg.coc.concepts.skill.improvement._
 import com.rkss.rpg.coc.concepts.skill.roll.SkillRollDiceResult
 import com.rkss.rpg.coc.concepts.skill._
-import com.rkss.rpg.coc.behaviors.skill.facts._
 
-final class SkillImprovementCheckSpec extends AnyFunSpec with Matchers {
+final class ImprovementCheckExecutorSpec extends AnyFunSpec with Matchers {
   describe("Skill Improvement Check") {
     describe("when skill fails the improvement check") {
       val skill = FakeSkillWithSuccessCheck(Anthropology, 30)
@@ -76,7 +75,7 @@ final class SkillImprovementCheckSpec extends AnyFunSpec with Matchers {
     )
 
     it(s"return $expected") {
-      val skillImprovementCheck = SkillImprovementCheck.instance
+      val skillImprovementCheck = ImprovementCheckExecutor.instance
 
       val result = skillImprovementCheck.improvementCheck(skill)(
         hundredSidedDice,

@@ -1,8 +1,8 @@
-package com.rkss.rpg.coc.behaviors.skill.facts
+package com.rkss.rpg.coc.behaviors.extractor
 
 import com.rkss.rpg.coc.concepts.skill.roll._
 
-private[behaviors] final case class SkillRollValue(val value: Int) {
+private[behaviors] final case class DifficultyValueExtractor(val value: Int) {
   def value(
       difficulty: SkillRollDifficultyLevel
   ): Int = {
