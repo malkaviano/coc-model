@@ -6,7 +6,7 @@ import com.rkss.rpg.coc.behaviors.results._
 import com.rkss.rpg.coc.concepts._
 
 private[behaviors] final class ImprovementCheckExecutor private () {
-  def improvementCheck[A <: SkillName](skill: Skill[A])(implicit
+  def improvementCheck[A <: ImprovableSkillName](skill: Skill[A])(implicit
       hundredSidedDice: HundredSidedDice,
       tenSidedDice: TenSidedDice
   ): ImprovementChecked = {

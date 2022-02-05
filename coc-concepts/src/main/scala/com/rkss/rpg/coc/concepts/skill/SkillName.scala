@@ -7,7 +7,9 @@ sealed trait SkillName extends NameTag
 case object CreditRating extends SkillName
 case object CthulhuMythos extends SkillName
 
-sealed trait SimpleSkillName extends SkillName
+sealed trait ImprovableSkillName extends SkillName
+
+sealed trait SimpleSkillName extends ImprovableSkillName
 
 case object Accounting extends SimpleSkillName
 case object AnimalHandling extends SimpleSkillName
@@ -58,7 +60,6 @@ case object FineArt extends ArtAndCraft
 case object Forgery extends ArtAndCraft
 case object Photography extends ArtAndCraft
 
-
 sealed trait Lore extends SimpleSkillName
 
 case object DreamLore extends Lore
@@ -90,7 +91,7 @@ case object Arctic extends Survival
 case object Desert extends Survival
 case object Sea extends Survival
 
-sealed trait CombatSkillName extends SkillName
+sealed trait CombatSkillName extends ImprovableSkillName
 
 sealed trait AttackSkillName extends CombatSkillName
 
@@ -121,7 +122,7 @@ sealed trait DefenseSkillName extends CombatSkillName
 
 case object Dodge extends DefenseSkillName
 
-sealed trait LanguageSkillName extends SkillName
+sealed trait LanguageSkillName extends ImprovableSkillName
 
 case object ArabicLanguage extends LanguageSkillName
 case object ChineseLanguage extends LanguageSkillName

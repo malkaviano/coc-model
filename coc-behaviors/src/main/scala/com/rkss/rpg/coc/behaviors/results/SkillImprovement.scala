@@ -6,7 +6,7 @@ import com.rkss.rpg.coc.concepts.skill.check._
 import com.rkss.rpg.coc.behaviors.executors._
 import com.rkss.rpg.helpers.dice.{HundredSidedDice, TenSidedDice}
 
-private[behaviors] final case class SkillImprovement[A <: SkillName](
+private[behaviors] final case class SkillImprovement[A <: ImprovableSkillName](
     val skill: Skill[A] with SkillSuccessMark
 )(implicit
     hundredSidedDice: HundredSidedDice,

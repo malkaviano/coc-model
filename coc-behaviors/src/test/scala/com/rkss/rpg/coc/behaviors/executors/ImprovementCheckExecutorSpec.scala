@@ -54,7 +54,7 @@ final class ImprovementCheckExecutorSpec extends AnyFunSpec with Matchers {
     }
   }
 
-  private def improvementCheck[A <: SkillName](
+  private def improvementCheck[A <: ImprovableSkillName](
       skill: FakeSkillWithSuccessCheck,
       check: Seq[Int],
       improved: Seq[Int],
