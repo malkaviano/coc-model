@@ -5,7 +5,6 @@ import com.rkss.rpg.coc.concepts.skill.improvement._
 import com.rkss.rpg.coc.concepts.skill.check._
 import com.rkss.rpg.coc.behaviors.executors._
 import com.rkss.rpg.helpers.dice.{HundredSidedDice, TenSidedDice}
-import com.rkss.rpg.coc.concepts.skill.roll.SkillRollDiceResult
 
 private[behaviors] final case class SkillImprovement[A <: SkillName](
     val skill: Skill[A] with SkillSuccessMark
@@ -25,7 +24,7 @@ private[behaviors] final case class SkillImprovement[A <: SkillName](
       skill.name,
       skillValue,
       improved,
-      Some(SkillRollDiceResult(rolled.value)),
+      Some(rolled),
       sanityGainEligible
     )
   }

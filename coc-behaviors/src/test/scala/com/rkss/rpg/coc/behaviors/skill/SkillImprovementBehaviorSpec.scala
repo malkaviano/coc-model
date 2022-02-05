@@ -7,8 +7,8 @@ import com.rkss.rpg.coc.behaviors.testing.fakes.FakeSkillImprovable
 import com.rkss.rpg.helpers.dice._
 import com.rkss.rpg.coc.behaviors.testing.TestingProps
 import com.rkss.rpg.coc.concepts.skill.improvement._
-import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.coc.concepts.skill._
+import com.rkss.rpg.coc.concepts._
 
 final class SkillImprovementBehaviorSpec extends AnyFunSpec with Matchers {
   describe("Skill improvement behavior") {
@@ -21,7 +21,7 @@ final class SkillImprovementBehaviorSpec extends AnyFunSpec with Matchers {
           Pharmacy,
           45,
           0,
-          Option.empty[SkillRollDiceResult],
+          Option.empty[RollDiceResult],
           false
         ),
         Seq(95),
@@ -40,7 +40,7 @@ final class SkillImprovementBehaviorSpec extends AnyFunSpec with Matchers {
 
       it should behave like improvementCheck(
         skill,
-        SkillImproved(Biology, 45, 9, Option(SkillRollDiceResult(95)), false),
+        SkillImproved(Biology, 45, 9, Option(RollDiceResult(95)), false),
         Seq(95),
         Seq(9)
       )
