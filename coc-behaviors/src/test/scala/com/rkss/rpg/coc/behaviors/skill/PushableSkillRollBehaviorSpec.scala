@@ -13,18 +13,12 @@ import com.rkss.rpg.coc.concepts.NameTag
 final class PushableSkillRollBehaviorSpec extends AnyFunSpec with Matchers {
   describe("Pushing a skill roll") {
     describe("when no previous skill roll was made") {
-      it("return no result") {
-        val pushableSkillRollBehavior =
-          FakePushableSkillRoll(Whip, 60)
-
-        val hundredSidedDice = HundredSidedDice(
-          TestingProps.fakeRng(Seq(40))
-        )
-
-        val result = pushableSkillRollBehavior.pushRoll()(hundredSidedDice)
-
-        result shouldBe Option.empty[SkillRolled[Whip.type]]
-      }
+      it should behave like pushSkillRoll(
+        FakePushableSkillRoll(Whip, 60),
+        Seq(40),
+        Option.empty[SkillRolled[Whip.type]],
+        false
+      )
     }
 
     Map(
@@ -36,69 +30,68 @@ final class PushableSkillRollBehaviorSpec extends AnyFunSpec with Matchers {
     ).foreach {
       case ((result, rolled)) => {
         describe(s"when previous roll was $result") {
-          it("return no result") {
-            val pushableSkillRollBehavior =
-              FakePushableSkillRoll(Appraise, 60)
-
-            rollSkill(pushableSkillRollBehavior, Seq(rolled))
-
-            val hundredSidedDice = HundredSidedDice(
-              TestingProps.fakeRng(Seq(40))
-            )
-
-            val result = pushableSkillRollBehavior.pushRoll()(hundredSidedDice)
-
-            result shouldBe Option.empty[SkillRolled[Appraise.type]]
-          }
+          it should behave like pushSkillRoll(
+            FakePushableSkillRoll(Appraise, 60),
+            Seq(40),
+            Option.empty[SkillRolled[Appraise.type]],
+            true,
+            rolled
+          )
         }
       }
     }
 
     describe(s"when previous roll was a Failure") {
-      it("return a RegularSuccess") {
-        val pushableSkillRollBehavior =
-          FakePushableSkillRoll(AnimalHandling, 60)
+      val pushableSkillRollBehavior = FakePushableSkillRoll(AnimalHandling, 60)
 
-        rollSkill(pushableSkillRollBehavior, Seq(80))
+      val expected = SkillRolled(
+        pushableSkillRollBehavior.name,
+        pushableSkillRollBehavior.value(),
+        RegularDifficulty,
+        BonusDice(0),
+        PenaltyDice(0),
+        RegularSuccess,
+        SkillRollDiceResult(40),
+        true
+      )
 
-        val hundredSidedDice = HundredSidedDice(
-          TestingProps.fakeRng(Seq(40))
-        )
-
-        val result = pushableSkillRollBehavior.pushRoll()(hundredSidedDice)
-
-        val expected = SkillRolled(
-          pushableSkillRollBehavior.name,
-          pushableSkillRollBehavior.value(),
-          RegularDifficulty,
-          BonusDice(0),
-          PenaltyDice(0),
-          RegularSuccess,
-          SkillRollDiceResult(40),
-          true
-        )
-
-        result shouldBe Option(expected)
-      }
+      it should behave like pushSkillRoll(
+        pushableSkillRollBehavior,
+        Seq(40),
+        Some(expected)
+      )
 
       describe("when pushing an already pushed skill roll") {
-        it("return no result") {
-          val pushableSkillRollBehavior =
-            FakePushableSkillRoll(Medicine, 60)
-
-          rollSkill(pushableSkillRollBehavior, Seq(80))
-
-          val hundredSidedDice = HundredSidedDice(
-            TestingProps.fakeRng(Seq(40, 50))
-          )
-
-          pushableSkillRollBehavior.pushRoll()(hundredSidedDice)
-
-          val result = pushableSkillRollBehavior.pushRoll()(hundredSidedDice)
-
-          result shouldBe Option.empty[SkillRolled[Medicine.type]]
-        }
+        it should behave like pushSkillRoll(
+          FakePushableSkillRoll(Medicine, 60),
+          Seq(40, 50),
+          Option.empty[SkillRolled[Medicine.type]],
+          pushTwice = true
+        )
       }
+    }
+  }
+
+  private def pushSkillRoll[A <: SkillName](
+      pushableSkillRollBehavior: FakePushableSkillRoll[A],
+      rolled: Seq[Int],
+      expected: Option[SkillRolled[A]],
+      makeRoll: Boolean = true,
+      rollResult: Int = 95,
+      pushTwice: Boolean = false
+  ): Unit = {
+    it(s"return $expected") {
+      if (makeRoll) rollSkill(pushableSkillRollBehavior, Seq(rollResult))
+
+      val hundredSidedDice = HundredSidedDice(
+        TestingProps.fakeRng(rolled)
+      )
+
+      if (pushTwice) pushableSkillRollBehavior.pushRoll()(hundredSidedDice)
+
+      val result = pushableSkillRollBehavior.pushRoll()(hundredSidedDice)
+
+      result shouldBe expected
     }
   }
 
