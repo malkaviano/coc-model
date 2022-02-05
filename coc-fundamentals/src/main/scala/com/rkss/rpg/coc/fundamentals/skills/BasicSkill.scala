@@ -2,11 +2,11 @@ package com.rkss.rpg.coc.fundamentals.skills
 
 import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.coc.concepts.skill._
-import com.rkss.rpg.coc.rules.skill.behaviors._
+import com.rkss.rpg.coc.behaviors.skill._
 import com.rkss.rpg.coc.concepts.skill.improvement._
 import com.rkss.rpg.coc.concepts.skill.check._
 import com.rkss.rpg.coc.concepts.skill.allocation._
-import com.rkss.rpg.coc.rules.behaviors._
+import com.rkss.rpg.coc.behaviors._
 
 final case class BasicSkill[A <: SkillName](
     override val name: A,

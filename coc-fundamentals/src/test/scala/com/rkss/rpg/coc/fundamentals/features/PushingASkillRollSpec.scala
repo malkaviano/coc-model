@@ -9,7 +9,7 @@ import com.rkss.rpg.coc.fundamentals.characteristics._
 import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.coc.fundamentals.specs._
 import com.rkss.rpg.helpers.dice.HundredSidedDice
-import com.rkss.rpg.coc.rules.testing.TestingProps
+import com.rkss.rpg.coc.behaviors.testing.TestingProps
 import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.fundamentals.skills._
 import com.rkss.rpg.coc.concepts.characteristic._
