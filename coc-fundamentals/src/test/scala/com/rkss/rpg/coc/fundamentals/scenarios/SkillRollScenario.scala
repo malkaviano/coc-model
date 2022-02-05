@@ -5,7 +5,7 @@ import org.scalatest.GivenWhenThen
 import org.scalatest.matchers.should.Matchers
 
 import com.rkss.rpg.helpers.dice._
-import com.rkss.rpg.coc.rules.testing.TestingProps
+import com.rkss.rpg.coc.behaviors.testing.TestingProps
 import com.rkss.rpg.coc.fundamentals.specs.SkillRollSpec
 import com.rkss.rpg.coc.concepts._
 

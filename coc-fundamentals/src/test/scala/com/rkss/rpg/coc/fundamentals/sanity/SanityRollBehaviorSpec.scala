@@ -4,7 +4,7 @@ import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 
 import com.rkss.rpg.helpers.dice.HundredSidedDice
-import com.rkss.rpg.coc.rules.testing._
+import com.rkss.rpg.coc.behaviors.testing._
 import com.rkss.rpg.coc.concepts.sanity._
 import com.rkss.rpg.coc.concepts._
 import com.rkss.rpg.coc.concepts.characteristic._
