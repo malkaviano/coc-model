@@ -6,6 +6,7 @@ import org.scalatest.matchers.should.Matchers
 import com.rkss.rpg.coc.fundamentals.attributes._
 import com.rkss.rpg.helpers.dice._
 import com.rkss.rpg.coc.behaviors.testing._
+import com.rkss.rpg.coc.concepts.characteristic._
 
 final class AttributeFactorySpec extends AnyFunSpec with Matchers {
   describe("Attribute Factory") {
@@ -35,5 +36,19 @@ final class AttributeFactorySpec extends AnyFunSpec with Matchers {
       }
     }
 
+    describe("creating Sanity attribute") {
+      val power = CharacteristicFactory.characteristic(Power, 60)
+      val mythos = SkillFactory.cthulhuMythosSkill
+
+      describe(s"when $power") {
+        val expected = InvestigatorSanity(power, mythos)
+
+        it(s"should return Luck(${expected})") {
+          val sanity = AttributeFactory.createSanity(power, mythos)
+
+          sanity shouldBe expected
+        }
+      }
+    }
   }
 }
