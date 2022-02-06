@@ -1,7 +1,7 @@
 package com.rkss.rpg.coc.concepts.skill
 
 import com.rkss.rpg.coc.concepts.skill.roll._
-import com.rkss.rpg.coc.concepts._
+import com.rkss.rpg.coc.concepts.commons._
 
 trait Skill[A <: SkillName]
     extends EntityWithDifficultyValue

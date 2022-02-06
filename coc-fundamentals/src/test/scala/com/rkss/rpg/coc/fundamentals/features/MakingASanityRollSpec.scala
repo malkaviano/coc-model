@@ -5,7 +5,7 @@ import org.scalatest.GivenWhenThen
 import org.scalatest.matchers.should.Matchers
 
 import com.rkss.rpg.coc.fundamentals.scenarios._
-import com.rkss.rpg.coc.concepts.sanity._
+import com.rkss.rpg.coc.concepts.results._
 import com.rkss.rpg.coc.fundamentals.attributes._
 import com.rkss.rpg.coc.fundamentals.specs._
 import com.rkss.rpg.coc.fundamentals.characteristics._
@@ -25,12 +25,12 @@ final class MakingASanityRollSpec
     SanityRollSpec(
       InvestigatorSanity(PrimaryCharacteristic(Power, 50), CthulhuMythosSkill()),
       10,
-      SuccessResult,
+      SanityRollSuccessResult,
     ),
     SanityRollSpec(
       InvestigatorSanity(PrimaryCharacteristic(Power, 55), CthulhuMythosSkill()),
       100,
-      Fumble,
+      SanityRollFumble,
     )
   ).foreach(spec => ScenariosFor(makingASanityRoll(spec)))
 }

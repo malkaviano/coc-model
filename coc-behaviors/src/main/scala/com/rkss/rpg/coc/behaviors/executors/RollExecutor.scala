@@ -2,10 +2,11 @@ package com.rkss.rpg.coc.behaviors.executors
 
 import com.rkss.rpg.helpers.dice.HundredSidedDice
 import com.rkss.rpg.coc.concepts.skill.roll._
-import com.rkss.rpg.coc.concepts._
+import com.rkss.rpg.coc.concepts.commons._
+import com.rkss.rpg.coc.concepts.results._
 
 private[behaviors] class RollExecutor private () {
-  def roll[A <: NameTag](
+  def roll[A <: Naming](
       rollable: EntityWithDifficultyValue with EntityWithNameTag[A],
       difficulty: SkillRollDifficultyLevel,
       bonusDice: BonusDice,
@@ -20,12 +21,12 @@ private[behaviors] class RollExecutor private () {
     val rolled = rollDice(bonusDice, penaltyDice)
 
     val result = rolled.value match {
-      case 1                                   => CriticalSuccess
-      case diceResult if diceResult >= fumble  => Fumble
-      case diceResult if diceResult <= extreme => ExtremeSuccess
-      case diceResult if diceResult <= hard    => HardSuccess
-      case diceResult if diceResult <= regular => RegularSuccess
-      case _                                   => Failure
+      case 1                                   => SkillRollCriticalSuccess
+      case diceResult if diceResult >= fumble  => SkillRollFumble
+      case diceResult if diceResult <= extreme => SkillRollExtremeSuccess
+      case diceResult if diceResult <= hard    => SkillRollHardSuccess
+      case diceResult if diceResult <= regular => SkillRollRegularSuccess
+      case _                                   => SkillRollFailure
     }
 
     SkillRolled[A](

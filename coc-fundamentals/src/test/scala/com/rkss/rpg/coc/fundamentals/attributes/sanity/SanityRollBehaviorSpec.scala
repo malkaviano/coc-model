@@ -5,11 +5,12 @@ import org.scalatest.matchers.should.Matchers
 
 import com.rkss.rpg.helpers.dice.HundredSidedDice
 import com.rkss.rpg.coc.behaviors.testing._
-import com.rkss.rpg.coc.concepts.sanity._
-import com.rkss.rpg.coc.concepts._
+import com.rkss.rpg.coc.concepts.attributes.sanity._
+import com.rkss.rpg.coc.concepts.commons._
 import com.rkss.rpg.coc.concepts.characteristic._
 import com.rkss.rpg.coc.fundamentals.characteristics._
 import com.rkss.rpg.coc.fundamentals.skills._
+import com.rkss.rpg.coc.concepts.results._
 
 final class SanityRollBehaviorSpec extends AnyFunSpec with Matchers {
   describe("Sanity roll behavior") {
@@ -17,11 +18,11 @@ final class SanityRollBehaviorSpec extends AnyFunSpec with Matchers {
       InvestigatorSanity(PrimaryCharacteristic(Power, 60), CthulhuMythosSkill())
 
     describe("Sanity roll") {
-      it should behave like sanityRoll(sanity, 100, Fumble)
+      it should behave like sanityRoll(sanity, 100, SanityRollFumble)
 
-      it should behave like sanityRoll(sanity, 20, SuccessResult)
+      it should behave like sanityRoll(sanity, 20, SanityRollSuccessResult)
 
-      it should behave like sanityRoll(sanity, 97, FailureResult)
+      it should behave like sanityRoll(sanity, 97, SanityRollFailureResult)
 
       it should behave like sanityRoll(
         InvestigatorSanity(
@@ -29,7 +30,7 @@ final class SanityRollBehaviorSpec extends AnyFunSpec with Matchers {
           CthulhuMythosSkill()
         ),
         97,
-        Fumble
+        SanityRollFumble
       )
     }
   }
@@ -48,7 +49,7 @@ final class SanityRollBehaviorSpec extends AnyFunSpec with Matchers {
           sanity.current,
           sanity.maximum,
           result,
-          RollDiceResult(rolled)
+          DiceRolled(rolled)
         )
 
         it(s"return ${expected}") {

@@ -2,11 +2,11 @@ package com.rkss.rpg.coc.fundamentals.attributes
 
 import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
-import com.rkss.rpg.coc.concepts.sanity._
+import com.rkss.rpg.coc.concepts.attributes.sanity._
 import com.rkss.rpg.coc.concepts.characteristic._
 import com.rkss.rpg.coc.fundamentals.characteristics._
 import com.rkss.rpg.coc.fundamentals.skills.CthulhuMythosSkill
-import com.rkss.rpg.coc.concepts.ValueModification
+import com.rkss.rpg.coc.concepts.commons._
 import com.rkss.rpg.coc.concepts.skill.CthulhuMythos
 
 final class SanityBehaviorSpec extends AnyFunSpec with Matchers {

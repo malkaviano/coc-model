@@ -11,7 +11,8 @@ import com.rkss.rpg.coc.fundamentals.characteristics._
 import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.fundamentals.skills._
 import com.rkss.rpg.coc.concepts.characteristic._
-import com.rkss.rpg.coc.concepts.ValueModification
+import com.rkss.rpg.coc.concepts.commons._
+import com.rkss.rpg.coc.concepts.results._
 
 final class MakingASkillRollSpec
     extends AnyFeatureSpec
@@ -33,7 +34,7 @@ final class MakingASkillRollSpec
       BonusDice(0),
       PenaltyDice(0),
       Seq(10),
-      ExtremeSuccess,
+      SkillRollExtremeSuccess,
       SkillRollDiceResult(10)
     ),
     SkillRollSpec(
@@ -42,7 +43,7 @@ final class MakingASkillRollSpec
       BonusDice(0),
       PenaltyDice(1),
       Seq(12, 15),
-      HardSuccess,
+      SkillRollHardSuccess,
       SkillRollDiceResult(15, Seq(12))
     ),
     SkillRollSpec(
@@ -51,7 +52,7 @@ final class MakingASkillRollSpec
       BonusDice(2),
       PenaltyDice(0),
       Seq(50, 40, 30),
-      RegularSuccess,
+      SkillRollRegularSuccess,
       SkillRollDiceResult(30, Seq(40, 50))
     ),
     SkillRollSpec(
@@ -60,7 +61,7 @@ final class MakingASkillRollSpec
       BonusDice(2),
       PenaltyDice(0),
       Seq(50, 40, 30),
-      Failure,
+      SkillRollFailure,
       SkillRollDiceResult(30, Seq(40, 50))
     ),
     SkillRollSpec(
@@ -69,7 +70,7 @@ final class MakingASkillRollSpec
       BonusDice(1),
       PenaltyDice(1),
       Seq(50),
-      Failure,
+      SkillRollFailure,
       SkillRollDiceResult(50)
     ),
     SkillRollSpec(
@@ -78,7 +79,7 @@ final class MakingASkillRollSpec
       BonusDice(1),
       PenaltyDice(0),
       Seq(50, 30),
-      Failure,
+      SkillRollFailure,
       SkillRollDiceResult(30, Seq(50))
     )
   ).foreach(spec => ScenariosFor(makingASkillRoll(spec)))

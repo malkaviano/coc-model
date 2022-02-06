@@ -3,7 +3,7 @@ package com.rkss.rpg.coc.behaviors.executors
 import com.rkss.rpg.helpers.dice._
 import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.behaviors.results._
-import com.rkss.rpg.coc.concepts._
+import com.rkss.rpg.coc.concepts.commons._
 import com.rkss.rpg.coc.concepts.characteristic._
 
 private[behaviors] final class ImprovementCheckExecutor private () {
@@ -39,7 +39,7 @@ private[behaviors] final class ImprovementCheckExecutor private () {
         0
     }
 
-    ImprovementChecked(RollDiceResult(rolled), improved)
+    ImprovementChecked(DiceRolled(rolled), improved)
   }
 }
 

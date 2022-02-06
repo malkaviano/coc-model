@@ -1,7 +1,9 @@
 package com.rkss.rpg.coc.fundamentals.attributes
 
-import com.rkss.rpg.coc.concepts._
+import com.rkss.rpg.coc.concepts.commons._
 import com.rkss.rpg.helpers.dice._
+import com.rkss.rpg.coc.concepts.results._
+import com.rkss.rpg.coc.concepts.attributes._
 
 final case class Luck(override val baseValue: Int)
     extends EntityWithBaseValue
@@ -9,10 +11,10 @@ final case class Luck(override val baseValue: Int)
   override def roll(implicit
       hundredSidedDice: HundredSidedDice
   ): LuckRolled = {
-    val rollDiceResult = RollDiceResult(hundredSidedDice.roll.value)
+    val rollDiceResult = DiceRolled(hundredSidedDice.roll.value)
 
     val rollResult = rollDiceResult match {
-      case RollDiceResult(x) if x <= baseValue => SuccessRoll
+      case DiceRolled(x) if x <= baseValue => SuccessRoll
       case _                                   => FailureRoll
     }
 
