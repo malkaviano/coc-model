@@ -21,7 +21,7 @@ final class CharacteristicFactorySpec extends AnyFunSpec with Matchers {
       (Size, 90, Seq(6, 6)),
     ).foreach {
       case (name, expected, rolled) => {
-        describe("creating strength characteristic") {
+        describe(s"creating $name characteristic") {
           describe("when base value is informed") {
             it(s"should return ${name}(${expected})") {
               val char = CharacteristicFactory.characteristic(name, expected)
