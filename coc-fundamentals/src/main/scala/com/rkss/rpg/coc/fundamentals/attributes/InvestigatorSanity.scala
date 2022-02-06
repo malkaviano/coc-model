@@ -1,10 +1,11 @@
 package com.rkss.rpg.coc.fundamentals.attributes
 
-import com.rkss.rpg.coc.concepts.sanity._
+import com.rkss.rpg.coc.concepts.attributes.sanity._
 import com.rkss.rpg.coc.concepts.characteristic._
 import com.rkss.rpg.coc.fundamentals.skills._
 import com.rkss.rpg.helpers.dice.HundredSidedDice
-import com.rkss.rpg.coc.concepts._
+import com.rkss.rpg.coc.concepts.commons._
+import com.rkss.rpg.coc.concepts.results._
 
 final case class InvestigatorSanity(
     private val power: Characteristic[Power.type],
@@ -56,16 +57,16 @@ final case class InvestigatorSanity(
     val fumble = if (this.current < 50) 96 else 100
 
     val result = rolled match {
-      case diceResult if diceResult >= fumble       => Fumble
-      case diceResult if diceResult <= this.current => SuccessResult
-      case _                                        => FailureResult
+      case diceResult if diceResult >= fumble       => SanityRollFumble
+      case diceResult if diceResult <= this.current => SanityRollSuccessResult
+      case _                                        => SanityRollFailureResult
     }
 
     SanityRolled(
       this.current,
       this.maximum,
       result,
-      RollDiceResult(rolled)
+      DiceRolled(rolled)
     )
   }
 }

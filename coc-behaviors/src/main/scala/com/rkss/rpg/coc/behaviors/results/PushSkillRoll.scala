@@ -2,10 +2,11 @@ package com.rkss.rpg.coc.behaviors.results
 
 import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.helpers.dice.HundredSidedDice
-import com.rkss.rpg.coc.concepts._
+import com.rkss.rpg.coc.concepts.commons._
 import com.rkss.rpg.coc.behaviors.executors._
+import com.rkss.rpg.coc.concepts.results._
 
-private[behaviors] final case class PushSkillRoll[A <: NameTag](
+private[behaviors] final case class PushSkillRoll[A <: Naming](
     private val entity: EntityWithDifficultyValue with EntityWithNameTag[A],
     private val skillRolled: SkillRolled[A],
     private val pushedDifficulty: Option[SkillRollDifficultyLevel] = None,
@@ -22,7 +23,7 @@ private[behaviors] final case class PushSkillRoll[A <: NameTag](
   }
 
   private def canPush: Boolean = {
-    entity.isInstanceOf[SkillPushable[_]] && skillRolled.result == Failure
+    entity.isInstanceOf[SkillPushable[_]] && skillRolled.result == SkillRollFailure
   }
 
   private def roll: SkillRolled[A] = RollExecutor.instance.roll(

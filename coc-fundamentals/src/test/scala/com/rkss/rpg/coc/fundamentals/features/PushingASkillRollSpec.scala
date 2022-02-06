@@ -13,6 +13,7 @@ import com.rkss.rpg.coc.behaviors.testing.TestingProps
 import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.fundamentals.skills._
 import com.rkss.rpg.coc.concepts.characteristic._
+import com.rkss.rpg.coc.concepts.results._
 
 final class PushingASkillRollSpec
     extends AnyFeatureSpec
@@ -47,10 +48,10 @@ final class PushingASkillRollSpec
 
   criticalSuccess.roll()(HundredSidedDice(TestingProps.fakeRng(Seq(95))))
 
-  val hardSuccess =
+  val SkillRollhardSuccess =
     BasicSkill(RussianLanguage, 60, 10, 5, Seq(LanguageOwn))
 
-  hardSuccess.roll()(HundredSidedDice(TestingProps.fakeRng(Seq(95))))
+  SkillRollhardSuccess.roll()(HundredSidedDice(TestingProps.fakeRng(Seq(95))))
 
   val creditRating = CreditRatingSkill(15, 10, 5)
 
@@ -64,7 +65,7 @@ final class PushingASkillRollSpec
       Option(BonusDice(1)),
       Option(PenaltyDice(2)),
       Seq(10),
-      ExtremeSuccess,
+      SkillRollExtremeSuccess,
       SkillRollDiceResult(10),
       None
     ),
@@ -75,7 +76,7 @@ final class PushingASkillRollSpec
       None,
       None,
       Seq(10),
-      ExtremeSuccess,
+      SkillRollExtremeSuccess,
       SkillRollDiceResult(10),
       None
     ),
@@ -86,7 +87,7 @@ final class PushingASkillRollSpec
       Option(BonusDice(2)),
       None,
       Seq(10),
-      ExtremeSuccess,
+      SkillRollExtremeSuccess,
       SkillRollDiceResult(10),
       None
     ),
@@ -97,7 +98,7 @@ final class PushingASkillRollSpec
       None,
       None,
       Seq(10, 12),
-      HardSuccess,
+      SkillRollHardSuccess,
       SkillRollDiceResult(12, Seq(10)),
       Some(
         SkillRolled(
@@ -106,7 +107,7 @@ final class PushingASkillRollSpec
           RegularDifficulty,
           BonusDice(0),
           PenaltyDice(1),
-          HardSuccess,
+          SkillRollHardSuccess,
           SkillRollDiceResult(12, Seq(10)),
           true
         )
@@ -118,7 +119,7 @@ final class PushingASkillRollSpec
       Option(BonusDice(1)),
       Option(PenaltyDice(2)),
       Seq(55, 12),
-      Failure,
+      SkillRollFailure,
       SkillRollDiceResult(55, Seq(12)),
       Some(
         SkillRolled(
@@ -127,7 +128,7 @@ final class PushingASkillRollSpec
           RegularDifficulty,
           BonusDice(1),
           PenaltyDice(2),
-          Failure,
+          SkillRollFailure,
           SkillRollDiceResult(55, Seq(12)),
           true
         )
@@ -139,7 +140,7 @@ final class PushingASkillRollSpec
       Option(BonusDice(0)),
       Option(PenaltyDice(0)),
       Seq(1),
-      Failure,
+      SkillRollFailure,
       SkillRollDiceResult(1),
       Some(
         SkillRolled(
@@ -148,28 +149,28 @@ final class PushingASkillRollSpec
           RegularDifficulty,
           BonusDice(0),
           PenaltyDice(0),
-          CriticalSuccess,
+          SkillRollCriticalSuccess,
           SkillRollDiceResult(1),
           true
         )
       )
     ),
     PushSkillRollSpec(
-      hardSuccess,
+      SkillRollhardSuccess,
       None,
       Option(BonusDice(0)),
       Option(PenaltyDice(0)),
       Seq(25),
-      HardSuccess,
+      SkillRollHardSuccess,
       SkillRollDiceResult(25),
       Some(
         SkillRolled(
-          hardSuccess.name,
-          hardSuccess.value(),
+          SkillRollhardSuccess.name,
+          SkillRollhardSuccess.value(),
           RegularDifficulty,
           BonusDice(0),
           PenaltyDice(0),
-          HardSuccess,
+          SkillRollHardSuccess,
           SkillRollDiceResult(25),
           true
         )
@@ -181,7 +182,7 @@ final class PushingASkillRollSpec
       Option(BonusDice(0)),
       Option(PenaltyDice(0)),
       Seq(25),
-      HardSuccess,
+      SkillRollHardSuccess,
       SkillRollDiceResult(25),
       None
     )

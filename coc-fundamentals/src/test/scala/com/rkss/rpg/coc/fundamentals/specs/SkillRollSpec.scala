@@ -1,9 +1,10 @@
 package com.rkss.rpg.coc.fundamentals.specs
 
-import com.rkss.rpg.coc.concepts._
+import com.rkss.rpg.coc.concepts.commons._
 import com.rkss.rpg.coc.concepts.skill.roll._
+import com.rkss.rpg.coc.concepts.results._
 
-final case class SkillRollSpec[A <: NameTag](
+final case class SkillRollSpec[A <: Naming](
     val entity: SkillRollable[A] with EntityWithDifficultyValue with EntityWithNameTag[A],
     val difficulty: SkillRollDifficultyLevel,
     val bonusDice: BonusDice,

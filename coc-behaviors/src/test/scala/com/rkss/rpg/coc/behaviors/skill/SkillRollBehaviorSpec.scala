@@ -8,6 +8,7 @@ import com.rkss.rpg.helpers.dice.HundredSidedDice
 import com.rkss.rpg.coc.behaviors.testing.fakes._
 import com.rkss.rpg.coc.behaviors.testing._
 import com.rkss.rpg.coc.concepts.skill._
+import com.rkss.rpg.coc.concepts.results._
 
 final class SkillRollBehaviorSpec extends AnyFunSpec with Matchers {
   describe("Skill roll behavior") {
@@ -24,7 +25,7 @@ final class SkillRollBehaviorSpec extends AnyFunSpec with Matchers {
           RegularDifficulty,
           BonusDice(0),
           PenaltyDice(0),
-          HardSuccess,
+          SkillRollHardSuccess,
           SkillRollDiceResult(20)
         )
 

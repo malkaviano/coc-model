@@ -8,7 +8,8 @@ import com.rkss.rpg.helpers.dice.HundredSidedDice
 import com.rkss.rpg.coc.behaviors.testing._
 import com.rkss.rpg.coc.behaviors.testing.fakes._
 import com.rkss.rpg.coc.concepts.skill._
-import com.rkss.rpg.coc.concepts.NameTag
+import com.rkss.rpg.coc.concepts.commons._
+import com.rkss.rpg.coc.concepts.results._
 
 final class PushableSkillRollBehaviorSpec extends AnyFunSpec with Matchers {
   describe("Pushing a skill roll") {
@@ -22,11 +23,11 @@ final class PushableSkillRollBehaviorSpec extends AnyFunSpec with Matchers {
     }
 
     Map(
-      Fumble -> 100,
-      RegularSuccess -> 60,
-      HardSuccess -> 30,
-      ExtremeSuccess -> 12,
-      CriticalSuccess -> 1
+      SkillRollFumble -> 100,
+      SkillRollRegularSuccess -> 60,
+      SkillRollHardSuccess -> 30,
+      SkillRollExtremeSuccess -> 12,
+      SkillRollCriticalSuccess -> 1
     ).foreach {
       case ((result, rolled)) => {
         describe(s"when previous roll was $result") {
@@ -50,7 +51,7 @@ final class PushableSkillRollBehaviorSpec extends AnyFunSpec with Matchers {
         RegularDifficulty,
         BonusDice(0),
         PenaltyDice(0),
-        RegularSuccess,
+        SkillRollRegularSuccess,
         SkillRollDiceResult(40),
         true
       )
@@ -95,7 +96,7 @@ final class PushableSkillRollBehaviorSpec extends AnyFunSpec with Matchers {
     }
   }
 
-  private def rollSkill[A <: NameTag](
+  private def rollSkill[A <: Naming](
       pushableSkillRollBehavior: PushableSkillRollBehavior[A],
       rolledTest: Seq[Int]
   ): Unit = {

@@ -5,11 +5,12 @@ import com.rkss.rpg.helpers.dice._
 import com.rkss.rpg.coc.helpers.generators._
 import com.rkss.rpg.coc.concepts.characteristic._
 import com.rkss.rpg.coc.fundamentals.skills._
-import com.rkss.rpg.coc.concepts.sanity._
+import com.rkss.rpg.coc.concepts.attributes.sanity._
+import com.rkss.rpg.coc.concepts.attributes.luck._
 
 object AttributeFactory {
   def createLuck(value: Int): Luck = {
-    Luck(value)
+    InvestigatorLuck(value)
   }
 
   def createLuck(implicit

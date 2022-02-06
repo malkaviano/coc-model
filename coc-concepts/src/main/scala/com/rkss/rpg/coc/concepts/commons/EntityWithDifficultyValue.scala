@@ -1,4 +1,4 @@
-package com.rkss.rpg.coc.concepts
+package com.rkss.rpg.coc.concepts.commons
 
 import com.rkss.rpg.coc.concepts.skill.roll.SkillRollDifficultyLevel
 import com.rkss.rpg.coc.concepts.skill.roll.RegularDifficulty

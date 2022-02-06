@@ -4,7 +4,7 @@ import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 import com.rkss.rpg.coc.behaviors.testing.fakes._
 import com.rkss.rpg.coc.concepts.characteristic._
-import com.rkss.rpg.coc.concepts._
+import com.rkss.rpg.coc.concepts.commons._
 
 final class WithModificationValueBehaviorSpec
     extends AnyFunSpec

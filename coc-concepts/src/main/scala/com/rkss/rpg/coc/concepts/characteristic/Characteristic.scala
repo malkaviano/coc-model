@@ -1,7 +1,7 @@
 package com.rkss.rpg.coc.concepts.characteristic
 
 import com.rkss.rpg.coc.concepts.skill.roll._
-import com.rkss.rpg.coc.concepts._
+import com.rkss.rpg.coc.concepts.commons._
 
 trait Characteristic[A <: CharacteristicName]
     extends EntityWithDifficultyValue

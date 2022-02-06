@@ -7,8 +7,9 @@ import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.helpers.dice.HundredSidedDice
 import com.rkss.rpg.coc.behaviors.testing._
 import com.rkss.rpg.coc.behaviors.testing.fakes._
-import com.rkss.rpg.coc.concepts._
+import com.rkss.rpg.coc.concepts.commons._
 import com.rkss.rpg.coc.concepts.characteristic._
+import com.rkss.rpg.coc.concepts.results._
 
 final class RollExecutorSpec
     extends AnyFunSpec
@@ -25,7 +26,7 @@ final class RollExecutorSpec
         RegularDifficulty,
         BonusDice(0),
         PenaltyDice(0),
-        RegularSuccess,
+        SkillRollRegularSuccess,
         SkillRollDiceResult(48)
       )
     )
@@ -39,7 +40,7 @@ final class RollExecutorSpec
         RegularDifficulty,
         BonusDice(0),
         PenaltyDice(0),
-        Failure,
+        SkillRollFailure,
         SkillRollDiceResult(60)
       )
     )
@@ -53,7 +54,7 @@ final class RollExecutorSpec
         RegularDifficulty,
         BonusDice(0),
         PenaltyDice(0),
-        Fumble,
+        SkillRollFumble,
         SkillRollDiceResult(100)
       )
     )
@@ -67,7 +68,7 @@ final class RollExecutorSpec
         RegularDifficulty,
         BonusDice(0),
         PenaltyDice(0),
-        HardSuccess,
+        SkillRollHardSuccess,
         SkillRollDiceResult(20)
       )
     )
@@ -81,7 +82,7 @@ final class RollExecutorSpec
         RegularDifficulty,
         BonusDice(0),
         PenaltyDice(0),
-        ExtremeSuccess,
+        SkillRollExtremeSuccess,
         SkillRollDiceResult(6)
       )
     )
@@ -95,7 +96,7 @@ final class RollExecutorSpec
         RegularDifficulty,
         BonusDice(0),
         PenaltyDice(0),
-        CriticalSuccess,
+        SkillRollCriticalSuccess,
         SkillRollDiceResult(1)
       )
     )
@@ -109,7 +110,7 @@ final class RollExecutorSpec
         HardDifficulty,
         BonusDice(0),
         PenaltyDice(0),
-        RegularSuccess,
+        SkillRollRegularSuccess,
         SkillRollDiceResult(20)
       ),
       HardDifficulty
@@ -124,7 +125,7 @@ final class RollExecutorSpec
         HardDifficulty,
         BonusDice(0),
         PenaltyDice(0),
-        HardSuccess,
+        SkillRollHardSuccess,
         SkillRollDiceResult(6)
       ),
       HardDifficulty
@@ -139,7 +140,7 @@ final class RollExecutorSpec
         ExtremeDifficulty,
         BonusDice(0),
         PenaltyDice(0),
-        RegularSuccess,
+        SkillRollRegularSuccess,
         SkillRollDiceResult(6)
       ),
       ExtremeDifficulty
@@ -154,7 +155,7 @@ final class RollExecutorSpec
         RegularDifficulty,
         BonusDice(0),
         PenaltyDice(0),
-        Failure,
+        SkillRollFailure,
         SkillRollDiceResult(97)
       ),
       RegularDifficulty
@@ -169,7 +170,7 @@ final class RollExecutorSpec
         HardDifficulty,
         BonusDice(0),
         PenaltyDice(0),
-        Fumble,
+        SkillRollFumble,
         SkillRollDiceResult(97)
       ),
       HardDifficulty
@@ -184,7 +185,7 @@ final class RollExecutorSpec
         RegularDifficulty,
         BonusDice(2),
         PenaltyDice(1),
-        HardSuccess,
+        SkillRollHardSuccess,
         SkillRollDiceResult(20, Seq(48))
       ),
       RegularDifficulty,
@@ -201,7 +202,7 @@ final class RollExecutorSpec
         RegularDifficulty,
         BonusDice(0),
         PenaltyDice(1),
-        Fumble,
+        SkillRollFumble,
         SkillRollDiceResult(100, Seq(48))
       ),
       RegularDifficulty,
@@ -210,7 +211,7 @@ final class RollExecutorSpec
     )
   }
 
-  private def resolveSkillRoll[A <: NameTag](
+  private def resolveSkillRoll[A <: Naming](
       rollable: EntityWithDifficultyValue with EntityWithNameTag[A],
       diceResults: Seq[Int],
       expected: SkillRolled[A],

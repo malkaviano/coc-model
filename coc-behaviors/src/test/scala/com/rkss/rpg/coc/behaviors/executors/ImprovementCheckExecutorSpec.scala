@@ -7,7 +7,7 @@ import com.rkss.rpg.coc.behaviors.testing.fakes._
 import com.rkss.rpg.helpers.dice._
 import com.rkss.rpg.coc.behaviors.testing.TestingProps
 import com.rkss.rpg.coc.concepts.skill._
-import com.rkss.rpg.coc.concepts._
+import com.rkss.rpg.coc.concepts.commons._
 import com.rkss.rpg.coc.behaviors.results._
 import com.rkss.rpg.coc.concepts.characteristic._
 
@@ -15,7 +15,7 @@ final class ImprovementCheckExecutorSpec extends AnyFunSpec with Matchers {
   describe("Improvement Check") {
     describe("when failing a improvement check") {
       val expected =
-        ImprovementChecked(RollDiceResult(10), 0)
+        ImprovementChecked(DiceRolled(10), 0)
 
       describe(s"when rolled value is ${expected.rolled}") {
 
@@ -51,7 +51,7 @@ final class ImprovementCheckExecutorSpec extends AnyFunSpec with Matchers {
           skill,
           Seq(90),
           Seq(8),
-          ImprovementChecked(RollDiceResult(90), 8)
+          ImprovementChecked(DiceRolled(90), 8)
 
         )
 
@@ -61,7 +61,7 @@ final class ImprovementCheckExecutorSpec extends AnyFunSpec with Matchers {
           power,
           Seq(91),
           Seq(9),
-          ImprovementChecked(RollDiceResult(91), 9)
+          ImprovementChecked(DiceRolled(91), 9)
 
         )
       }
@@ -73,7 +73,7 @@ final class ImprovementCheckExecutorSpec extends AnyFunSpec with Matchers {
           skill,
           Seq(98),
           Seq(6),
-          ImprovementChecked(RollDiceResult(98), 6)
+          ImprovementChecked(DiceRolled(98), 6)
         )
 
         val power = new FakeGenericCharacteristic(Power, 100)
@@ -82,7 +82,7 @@ final class ImprovementCheckExecutorSpec extends AnyFunSpec with Matchers {
           power,
           Seq(100),
           Seq(7),
-          ImprovementChecked(RollDiceResult(100), 7)
+          ImprovementChecked(DiceRolled(100), 7)
         )
       }
     }

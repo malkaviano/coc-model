@@ -1,10 +1,9 @@
 package com.rkss.rpg.coc.concepts.skill.roll
 
 import com.rkss.rpg.helpers.dice.HundredSidedDice
-import com.rkss.rpg.coc.concepts.EntityWithDifficultyValue
-import com.rkss.rpg.coc.concepts.NameTag
+import com.rkss.rpg.coc.concepts.commons._
 
-trait SkillRollable[A <: NameTag] { self: EntityWithDifficultyValue =>
+trait SkillRollable[A <: Naming] { self: EntityWithDifficultyValue =>
   def roll(
       difficulty: SkillRollDifficultyLevel,
       bonusDice: BonusDice,

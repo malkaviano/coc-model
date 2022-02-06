@@ -1,8 +1,8 @@
 package com.rkss.rpg.coc.behaviors.results
 
-import com.rkss.rpg.coc.concepts._
+import com.rkss.rpg.coc.concepts.commons._
 
 private[behaviors] final case class ImprovementChecked(
-    rolled: RollDiceResult,
+    rolled: DiceRolled,
     improved: Int
 )
