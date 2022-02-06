@@ -5,7 +5,7 @@ import org.scalatest.matchers.should.Matchers
 import com.rkss.rpg.coc.concepts.attributes.sanity._
 import com.rkss.rpg.coc.concepts.characteristic._
 import com.rkss.rpg.coc.fundamentals.characteristics._
-import com.rkss.rpg.coc.fundamentals.skills.CthulhuMythosSkill
+import com.rkss.rpg.coc.fundamentals.skills._
 import com.rkss.rpg.coc.concepts.commons._
 import com.rkss.rpg.coc.concepts.skill.CthulhuMythos
 
@@ -15,7 +15,7 @@ final class SanityBehaviorSpec extends AnyFunSpec with Matchers {
 
     describe("Initial value") {
       it(s"should be ${initial}") {
-        val sanity = InvestigatorSanity(initial, CthulhuMythosSkill())
+        val sanity = InvestigatorSanity(initial, CthulhuMythosSkillImpl())
 
         sanity.current shouldBe initial.value()
       }
@@ -23,14 +23,14 @@ final class SanityBehaviorSpec extends AnyFunSpec with Matchers {
 
     describe("Current value") {
       it(s"should be ${initial}") {
-        val sanity = InvestigatorSanity(initial, CthulhuMythosSkill())
+        val sanity = InvestigatorSanity(initial, CthulhuMythosSkillImpl())
 
         sanity.current shouldBe initial.value()
       }
 
       describe("when maximum drops bellow current") {
         it("should reduce current to the maximum") {
-          val mythos = CthulhuMythosSkill()
+          val mythos = CthulhuMythosSkillImpl()
 
           val sanity = InvestigatorSanity(initial, mythos)
 
@@ -48,7 +48,7 @@ final class SanityBehaviorSpec extends AnyFunSpec with Matchers {
       ).foreach {
         case (loss, expected) => {
           it(s"should decrease current sanity by ${loss}") {
-            val sanity = InvestigatorSanity(initial, CthulhuMythosSkill())
+            val sanity = InvestigatorSanity(initial, CthulhuMythosSkillImpl())
 
             sanity.loss(loss) shouldBe expected
           }
@@ -58,8 +58,8 @@ final class SanityBehaviorSpec extends AnyFunSpec with Matchers {
 
     describe("Sanity gain") {
       Seq(
-        (SanityGain(10), CthulhuMythosSkill(), SanityRecovered(10, 50, 40, 80)),
-        (SanityGain(60), CthulhuMythosSkill(), SanityRecovered(40, 80, 40, 80))
+        (SanityGain(10), CthulhuMythosSkillImpl(), SanityRecovered(10, 50, 40, 80)),
+        (SanityGain(60), CthulhuMythosSkillImpl(), SanityRecovered(40, 80, 40, 80))
       ).foreach {
         case (gain, mythos, expected) => {
           it(s"should increase current sanity by ${gain}") {
@@ -75,7 +75,7 @@ final class SanityBehaviorSpec extends AnyFunSpec with Matchers {
 
     describe("Maximum value") {
       it("should be 99") {
-        val mythos = CthulhuMythosSkill()
+        val mythos = CthulhuMythosSkillImpl()
 
         val sanity = InvestigatorSanity(initial, mythos)
 
@@ -84,7 +84,7 @@ final class SanityBehaviorSpec extends AnyFunSpec with Matchers {
 
       describe(s"when current mythos change to 9") {
         it(s"should be 90") {
-          val mythos = CthulhuMythosSkill()
+          val mythos = CthulhuMythosSkillImpl()
 
           val sanity = InvestigatorSanity(initial, mythos)
 

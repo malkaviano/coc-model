@@ -6,11 +6,11 @@ import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.coc.concepts.skill.allocation._
 import com.rkss.rpg.coc.behaviors._
 
-final case class CreditRatingSkill(
+final case class CreditRatingSkillImpl(
     override val baseValue: Int,
     override val occupationPoints: Int,
     override val personalPoints: Int
-) extends Skill[CreditRating.type]
+) extends SystemSkill[CreditRating.type]
     with SkillRollBehavior[CreditRating.type]
     with SkillPushable[CreditRating.type]
     with PushableSkillRollBehavior[CreditRating.type]

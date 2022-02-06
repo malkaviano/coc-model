@@ -14,7 +14,7 @@ final class SkillFactorySpec extends AnyFunSpec with Matchers {
       it("should return the correct basic skill") {
         val firstAid = SkillFactory.basicSkill(FirstAid, 0, 0)
 
-        firstAid shouldBe BasicSkill(FirstAid, 30, 0, 0)
+        firstAid shouldBe BasicSkillImpl(FirstAid, 30, 0, 0)
       }
     }
 
@@ -22,7 +22,7 @@ final class SkillFactorySpec extends AnyFunSpec with Matchers {
       it("should return the correct combat skill") {
         val handgun = SkillFactory.combatSkill(Handgun, 0, 0)
 
-        handgun shouldBe CombatSkill(Handgun, 20, 0, 0)
+        handgun shouldBe CombatSkillImpl(Handgun, 20, 0, 0)
       }
     }
 
@@ -31,7 +31,7 @@ final class SkillFactorySpec extends AnyFunSpec with Matchers {
         val dodge =
           SkillFactory.dodgeSkill(PrimaryCharacteristic(Dexterity, 60), 0, 0)
 
-        dodge shouldBe CombatSkill(Dodge, 30, 0, 0)
+        dodge shouldBe CombatSkillImpl(Dodge, 30, 0, 0)
       }
     }
 
@@ -45,7 +45,7 @@ final class SkillFactorySpec extends AnyFunSpec with Matchers {
             0
           )
 
-        japanese shouldBe BasicSkill(
+        japanese shouldBe BasicSkillImpl(
           JapaneseLanguage,
           60,
           0,
@@ -64,7 +64,7 @@ final class SkillFactorySpec extends AnyFunSpec with Matchers {
             0
           )
 
-        japanese shouldBe BasicSkill(
+        japanese shouldBe BasicSkillImpl(
           RussianLanguage,
           1,
           0,
@@ -76,13 +76,13 @@ final class SkillFactorySpec extends AnyFunSpec with Matchers {
 
     describe("creating a CthulhuMythos skill") {
       it("should return a CthulhuMythos skill") {
-        SkillFactory.cthulhuMythosSkill shouldBe CthulhuMythosSkill()
+        SkillFactory.cthulhuMythosSkill shouldBe CthulhuMythosSkillImpl()
       }
     }
 
     describe("creating a CreditRating skill") {
       it("should return a CreditRating skill") {
-        SkillFactory.creditRatingSkill(15, 10, 5) shouldBe CreditRatingSkill(
+        SkillFactory.creditRatingSkill(15, 10, 5) shouldBe CreditRatingSkillImpl(
           15,
           10,
           5

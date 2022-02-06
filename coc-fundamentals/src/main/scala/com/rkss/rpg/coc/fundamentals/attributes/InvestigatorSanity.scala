@@ -2,14 +2,14 @@ package com.rkss.rpg.coc.fundamentals.attributes
 
 import com.rkss.rpg.coc.concepts.attributes.sanity._
 import com.rkss.rpg.coc.concepts.characteristic._
-import com.rkss.rpg.coc.fundamentals.skills._
 import com.rkss.rpg.helpers.dice.HundredSidedDice
 import com.rkss.rpg.coc.concepts.commons._
 import com.rkss.rpg.coc.concepts.results._
+import com.rkss.rpg.coc.concepts.skill._
 
 final case class InvestigatorSanity(
     private val power: Characteristic[Power.type],
-    private val mythos: CthulhuMythosSkill
+    private val mythos: Skill[CthulhuMythos.type]
 ) extends Sanity {
   private var _current: Int = power.value()
 

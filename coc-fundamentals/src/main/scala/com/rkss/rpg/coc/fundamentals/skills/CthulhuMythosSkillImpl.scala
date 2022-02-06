@@ -5,8 +5,8 @@ import com.rkss.rpg.coc.behaviors.skill._
 import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.coc.behaviors._
 
-final case class CthulhuMythosSkill()
-    extends Skill[CthulhuMythos.type]
+final case class CthulhuMythosSkillImpl()
+    extends SystemSkill[CthulhuMythos.type]
     with SkillRollBehavior[CthulhuMythos.type]
     with SkillPushable[CthulhuMythos.type]
     with PushableSkillRollBehavior[CthulhuMythos.type]

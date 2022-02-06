@@ -24,36 +24,36 @@ final class PushingASkillRollSpec
   info("As a player I want to push a skill roll")
   info("So I can try to succeeded my previous failed roll")
 
-  val fumble = BasicSkill(Track, 10, 10, 0)
+  val fumble = BasicSkillImpl(Track, 10, 10, 0)
 
   fumble.roll()(HundredSidedDice(TestingProps.fakeRng(Seq(100))))
 
-  val success = BasicSkill(Disguise, 5, 30, 15)
+  val success = BasicSkillImpl(Disguise, 5, 30, 15)
 
   success.roll()(HundredSidedDice(TestingProps.fakeRng(Seq(1))))
 
-  val failure = BasicSkill(MechanicalRepair, 10, 20, 14)
+  val failure = BasicSkillImpl(MechanicalRepair, 10, 20, 14)
 
   failure.roll(penaltyDice = PenaltyDice(1))(
     HundredSidedDice(TestingProps.fakeRng(Seq(95, 80)))
   )
 
-  val failure2 = BasicSkill(History, 5, 20, 14)
+  val failure2 = BasicSkillImpl(History, 5, 20, 14)
 
   failure2.roll(bonusDice = BonusDice(1))(
     HundredSidedDice(TestingProps.fakeRng(Seq(95, 80)))
   )
 
-  val criticalSuccess = BasicSkill(SpanishLanguage, 1,10, 5, Seq(LanguageOther))
+  val criticalSuccess = BasicSkillImpl(SpanishLanguage, 1,10, 5, Seq(LanguageOther))
 
   criticalSuccess.roll()(HundredSidedDice(TestingProps.fakeRng(Seq(95))))
 
   val SkillRollhardSuccess =
-    BasicSkill(RussianLanguage, 60, 10, 5, Seq(LanguageOwn))
+    BasicSkillImpl(RussianLanguage, 60, 10, 5, Seq(LanguageOwn))
 
   SkillRollhardSuccess.roll()(HundredSidedDice(TestingProps.fakeRng(Seq(95))))
 
-  val creditRating = CreditRatingSkill(15, 10, 5)
+  val creditRating = CreditRatingSkillImpl(15, 10, 5)
 
   creditRating.roll()(HundredSidedDice(TestingProps.fakeRng(Seq(1))))
 
