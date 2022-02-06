@@ -7,11 +7,11 @@ import com.rkss.rpg.coc.behaviors.testing.TestingProps
 import com.rkss.rpg.helpers.dice.HundredSidedDice
 import com.rkss.rpg.coc.concepts.commons._
 import com.rkss.rpg.coc.concepts.results._
-import com.rkss.rpg.coc.concepts.attributes._
+import com.rkss.rpg.coc.concepts.attributes.luck._
 
 final class LuckRollBehaviorSpec extends AnyFunSpec with Matchers {
   describe("Roll behavior") {
-    val luck = Luck(60)
+    val luck = InvestigatorLuck(60)
 
     describe("when rolling above the base value") {
       val expected = LuckRolled(

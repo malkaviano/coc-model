@@ -17,7 +17,7 @@ final class AttributeFactorySpec extends AnyFunSpec with Matchers {
         it(s"should return Luck(${expected})") {
           val luck = AttributeFactory.createLuck(expected)
 
-          luck shouldBe Luck(expected)
+          luck shouldBe InvestigatorLuck(expected)
         }
       }
 
@@ -31,7 +31,7 @@ final class AttributeFactorySpec extends AnyFunSpec with Matchers {
             SixSidedDice(dice)
           )
 
-          luck shouldBe Luck(expected)
+          luck shouldBe InvestigatorLuck(expected)
         }
       }
     }
