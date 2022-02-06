@@ -23,7 +23,7 @@ final class MakingASkillRollSpec
   info("As a player I want to make a skill roll")
   info("So I can check if I succeeded using my skill or characteristic")
 
-  val mythos = CthulhuMythosSkill()
+  val mythos = CthulhuMythosSkillImpl()
 
   mythos.modify(ValueModification(CthulhuMythos, 10))
 
@@ -38,7 +38,7 @@ final class MakingASkillRollSpec
       SkillRollDiceResult(10)
     ),
     SkillRollSpec(
-      BasicSkill(Accounting, 5, 20, 15),
+      BasicSkillImpl(Accounting, 5, 20, 15),
       RegularDifficulty,
       BonusDice(0),
       PenaltyDice(1),
@@ -47,7 +47,7 @@ final class MakingASkillRollSpec
       SkillRollDiceResult(15, Seq(12))
     ),
     SkillRollSpec(
-      BasicSkill(FirstAid, 30, 20, 20),
+      BasicSkillImpl(FirstAid, 30, 20, 20),
       HardDifficulty,
       BonusDice(2),
       PenaltyDice(0),
@@ -56,7 +56,7 @@ final class MakingASkillRollSpec
       SkillRollDiceResult(30, Seq(40, 50))
     ),
     SkillRollSpec(
-      CombatSkill(SubmachineGun, 15, 20, 20),
+      CombatSkillImpl(SubmachineGun, 15, 20, 20),
       ExtremeDifficulty,
       BonusDice(2),
       PenaltyDice(0),
@@ -65,7 +65,7 @@ final class MakingASkillRollSpec
       SkillRollDiceResult(30, Seq(40, 50))
     ),
     SkillRollSpec(
-      CombatSkill(Dodge, 20, 20, 20),
+      CombatSkillImpl(Dodge, 20, 20, 20),
       ExtremeDifficulty,
       BonusDice(1),
       PenaltyDice(1),

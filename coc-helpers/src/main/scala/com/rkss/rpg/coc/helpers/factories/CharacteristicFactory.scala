@@ -12,7 +12,7 @@ object CharacteristicFactory {
   def characteristic[A <: CharacteristicName](
       name: A,
       baseValue: Int
-  ): PrimaryCharacteristic[A] = {
+  ): Characteristic[A] = {
     PrimaryCharacteristic(name, baseValue)
   }
 
@@ -20,7 +20,7 @@ object CharacteristicFactory {
       name: A
   )(implicit
       sixSidedDice: SixSidedDice
-  ): PrimaryCharacteristic[A] = {
+  ): Characteristic[A] = {
     val rolled = name match {
       case Strength => RngValuesGenerator.creationValue(rule1._1, rule1._2, rule1._3)
       case Dexterity => RngValuesGenerator.creationValue(rule1._1, rule1._2, rule1._3)

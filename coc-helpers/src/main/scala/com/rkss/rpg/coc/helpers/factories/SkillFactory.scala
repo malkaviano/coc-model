@@ -13,7 +13,7 @@ object SkillFactory {
   ): BasicSkill[A] = {
     val SkillInfo(baseValue, tags) = SkillInfo.basicSkills(name)
 
-    BasicSkill(name, baseValue, occupationPoints, personalPoints, tags)
+    BasicSkillImpl(name, baseValue, occupationPoints, personalPoints, tags)
   }
 
   def combatSkill[A <: AttackSkillName](
@@ -23,7 +23,7 @@ object SkillFactory {
   ): CombatSkill[A] = {
     val SkillInfo(baseValue, tags) = SkillInfo.combatSkills(name)
 
-    CombatSkill(name, baseValue, occupationPoints, personalPoints, tags)
+    CombatSkillImpl(name, baseValue, occupationPoints, personalPoints, tags)
   }
 
   def dodgeSkill(
@@ -31,7 +31,7 @@ object SkillFactory {
       occupationPoints: Int,
       personalPoints: Int
   ): CombatSkill[Dodge.type] = {
-    CombatSkill(Dodge, dexterity.value() / 2, occupationPoints, personalPoints)
+    CombatSkillImpl(Dodge, dexterity.value() / 2, occupationPoints, personalPoints)
   }
 
   def languageOtherSkill[A <: LanguageSkillName](
@@ -39,7 +39,7 @@ object SkillFactory {
       occupationPoints: Int,
       personalPoints: Int
   ): BasicSkill[A] = {
-    BasicSkill(
+    BasicSkillImpl(
       language,
       1,
       occupationPoints,
@@ -54,7 +54,7 @@ object SkillFactory {
       occupationPoints: Int,
       personalPoints: Int
   ): BasicSkill[A] = {
-    BasicSkill(
+    BasicSkillImpl(
       language,
       education.value(),
       occupationPoints,
@@ -63,15 +63,16 @@ object SkillFactory {
     )
   }
 
-  def cthulhuMythosSkill: CthulhuMythosSkill = {
-    CthulhuMythosSkill()
+  def cthulhuMythosSkill
+      : SystemSkill[CthulhuMythos.type] = {
+    CthulhuMythosSkillImpl()
   }
 
   def creditRatingSkill(
       baseValue: Int,
       occupationPoints: Int,
       personalPoints: Int
-  ): CreditRatingSkill = {
-    CreditRatingSkill(baseValue, occupationPoints, personalPoints)
+  ): SystemSkill[CreditRating.type] = {
+    CreditRatingSkillImpl(baseValue, occupationPoints, personalPoints)
   }
 }

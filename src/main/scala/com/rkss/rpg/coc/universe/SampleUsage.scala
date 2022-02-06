@@ -64,6 +64,10 @@ object SampleUsage extends App {
 
   val brawl = SkillFactory.combatSkill(Brawl, 20, 5)
 
+  brawl.markUsedWithSuccess()
+
+  println(brawl.improvementCheck)
+
   printSkill(brawl)
 
   val dodge = SkillFactory.dodgeSkill(
