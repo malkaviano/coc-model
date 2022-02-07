@@ -7,11 +7,18 @@ import com.rkss.rpg.coc.concepts.results._
 import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.behaviors.attributes._
 import com.rkss.rpg.coc.concepts.attributes._
+import com.rkss.rpg.coc.concepts.characteristic._
+
+import com.rkss.rpg.coc.concepts.characteristic.Power
 
 final case class InvestigatorSanity(
-    override val baseValue: Int,
+    private val power: Characteristic[Power.type],
     private val mythos: Skill[CthulhuMythos.type]
-) extends Sanity with AttributeWithValueChangeBehavior[SanityAttribute.type] {
+) extends Sanity
+    with AttributeWithValueChangeBehavior[SanityAttribute.type] {
+
+  override def initial: Int = power.value()
+
   override def maximum: Int = {
     99 - mythos.value()
   }

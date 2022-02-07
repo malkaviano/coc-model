@@ -2,20 +2,29 @@ package com.rkss.rpg.coc.fundamentals.attributes
 
 import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
-
 import com.rkss.rpg.coc.fundamentals.skills._
 import com.rkss.rpg.coc.concepts.commons._
-import com.rkss.rpg.coc.concepts.skill.CthulhuMythos
+import com.rkss.rpg.coc.concepts.skill._
+import com.rkss.rpg.coc.concepts.characteristic._
+import com.rkss.rpg.coc.fundamentals.characteristics._
 
 final class SanityBehaviorSpec extends AnyFunSpec with Matchers {
   describe("Sanity Behavior") {
-    val initial = 40
+    val initial = PrimaryCharacteristic(Power, 40)
+
+    describe("Initial value") {
+      it(s"should be ${initial}") {
+        val sanity = InvestigatorSanity(initial, CthulhuMythosSkillImpl())
+
+        sanity.current shouldBe initial.value()
+      }
+    }
 
     describe("Current value") {
       it(s"should be ${initial}") {
         val sanity = InvestigatorSanity(initial, CthulhuMythosSkillImpl())
 
-        sanity.current shouldBe initial
+        sanity.current shouldBe initial.value()
       }
 
       describe("when maximum drops bellow current") {

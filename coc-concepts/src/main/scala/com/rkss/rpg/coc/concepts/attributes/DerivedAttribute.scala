@@ -1,8 +1,6 @@
 package com.rkss.rpg.coc.concepts.attributes
 
-import com.rkss.rpg.coc.concepts.commons.EntityWithBaseValue
-
-trait DerivedAttribute[A <: AttributeName] extends EntityWithBaseValue {
+trait DerivedAttribute[A <: AttributeName] {
   def current: Int
 
   def maximum: Int

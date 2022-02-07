@@ -8,6 +8,8 @@ import com.rkss.rpg.coc.fundamentals.scenarios._
 import com.rkss.rpg.coc.concepts.results._
 import com.rkss.rpg.coc.fundamentals.attributes._
 import com.rkss.rpg.coc.fundamentals.specs._
+import com.rkss.rpg.coc.fundamentals.characteristics._
+import com.rkss.rpg.coc.concepts.characteristic._
 import com.rkss.rpg.coc.fundamentals.skills._
 
 final class MakingASanityRollSpec
@@ -21,12 +23,12 @@ final class MakingASanityRollSpec
 
   Seq(
     SanityRollSpec(
-      InvestigatorSanity(50, CthulhuMythosSkillImpl()),
+      InvestigatorSanity(PrimaryCharacteristic(Power, 50), CthulhuMythosSkillImpl()),
       10,
       SanityRollSuccessResult,
     ),
     SanityRollSpec(
-      InvestigatorSanity(55, CthulhuMythosSkillImpl()),
+      InvestigatorSanity(PrimaryCharacteristic(Power, 55), CthulhuMythosSkillImpl()),
       100,
       SanityRollFumble,
     )

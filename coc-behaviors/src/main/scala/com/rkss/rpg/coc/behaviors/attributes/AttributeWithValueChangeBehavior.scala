@@ -3,7 +3,9 @@ package com.rkss.rpg.coc.behaviors.attributes
 import com.rkss.rpg.coc.concepts.attributes._
 
 trait AttributeWithValueChangeBehavior[A <: AttributeName] { self: DerivedAttribute[A] =>
-  private var _current: Int = baseValue
+  def initial: Int
+
+  private var _current: Int = initial
 
   override def current: Int = {
     if (_current > maximum) _current = maximum
