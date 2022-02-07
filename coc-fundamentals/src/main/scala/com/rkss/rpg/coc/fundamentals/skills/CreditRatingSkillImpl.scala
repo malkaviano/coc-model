@@ -15,7 +15,7 @@ final case class CreditRatingSkillImpl(
     with SkillPushable[CreditRating.type]
     with PushableSkillRollBehavior[CreditRating.type]
     with WithDifficultyValueBehavior
-    with WithModificationValueBehavior[CreditRating.type]
+    with WithValueModificationBehavior[CreditRating.type]
     with SkillWithPointsAllocation {
   override val name = CreditRating
   override val tags: Seq[SkillTag] = Seq.empty[SkillTag]
