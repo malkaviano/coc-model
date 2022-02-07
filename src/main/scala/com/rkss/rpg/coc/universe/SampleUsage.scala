@@ -6,6 +6,7 @@ import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.concepts.skill.improvement._
 import com.rkss.rpg.coc.fundamentals.characteristics._
 import com.rkss.rpg.coc.concepts.characteristic._
+import com.rkss.rpg.coc.concepts.attributes._
 
 object SampleUsage extends App {
   import com.rkss.rpg.helpers.dice.Bag._
@@ -119,4 +120,19 @@ object SampleUsage extends App {
   val creditRating = SkillFactory.creditRatingSkill(20, 10, 0)
 
   printSkill(creditRating)
+
+  val hp = AttributeFactory.createHitPoints(
+    CharacteristicFactory.characteristic(Size, 70),
+    CharacteristicFactory.characteristic(Constitution, 60)
+  )
+
+  println(hp.current)
+
+  println(hp.loss(AttributeValueLoss(HitPointsAttribute, 40)))
+
+  println(hp.current)
+
+  println(hp.gain(AttributeValueGain(HitPointsAttribute, 40)))
+
+  println(hp.current)
 }

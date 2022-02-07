@@ -7,6 +7,7 @@ import com.rkss.rpg.coc.concepts.characteristic._
 import com.rkss.rpg.coc.concepts.attributes.sanity._
 import com.rkss.rpg.coc.concepts.attributes.luck._
 import com.rkss.rpg.coc.concepts.skill._
+import com.rkss.rpg.coc.concepts.attributes._
 
 object AttributeFactory {
   def createLuck(value: Int): Luck = {
@@ -21,7 +22,21 @@ object AttributeFactory {
     createLuck(value)
   }
 
-  def createSanity(power: Characteristic[Power.type], mythos: Skill[CthulhuMythos.type]): Sanity = {
+  def createSanity(
+      power: Characteristic[Power.type],
+      mythos: Skill[CthulhuMythos.type]
+  ): Sanity = {
     InvestigatorSanity(power, mythos)
+  }
+
+  def createMagicPoints(power: Characteristic[Power.type]): MagicPoints = {
+    InvestigatorMagicPoints(power)
+  }
+
+  def createHitPoints(
+      size: Characteristic[Size.type],
+      constitution: Characteristic[Constitution.type]
+  ): HitPoints = {
+    InvestigatorHitPoints(size, constitution)
   }
 }
