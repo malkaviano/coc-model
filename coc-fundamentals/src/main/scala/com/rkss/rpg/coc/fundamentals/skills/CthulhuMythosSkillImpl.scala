@@ -11,7 +11,7 @@ final case class CthulhuMythosSkillImpl()
     with SkillPushable[CthulhuMythos.type]
     with PushableSkillRollBehavior[CthulhuMythos.type]
     with WithDifficultyValueBehavior
-    with WithModificationValueBehavior[CthulhuMythos.type] {
+    with WithValueModificationBehavior[CthulhuMythos.type] {
   override val name = CthulhuMythos
   override val baseValue: Int = 0
   override val tags: Seq[SkillTag] = Seq.empty[SkillTag]

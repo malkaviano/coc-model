@@ -2,6 +2,7 @@ package com.rkss.rpg.coc.behaviors
 
 import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
+
 import com.rkss.rpg.coc.behaviors.testing.fakes._
 import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.coc.concepts.commons._

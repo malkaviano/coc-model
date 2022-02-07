@@ -2,12 +2,12 @@ package com.rkss.rpg.coc.fundamentals.attributes
 
 import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
-import com.rkss.rpg.coc.concepts.attributes.sanity._
-import com.rkss.rpg.coc.concepts.characteristic._
-import com.rkss.rpg.coc.fundamentals.characteristics._
+
 import com.rkss.rpg.coc.fundamentals.skills._
 import com.rkss.rpg.coc.concepts.commons._
-import com.rkss.rpg.coc.concepts.skill.CthulhuMythos
+import com.rkss.rpg.coc.concepts.skill._
+import com.rkss.rpg.coc.concepts.characteristic._
+import com.rkss.rpg.coc.fundamentals.characteristics._
 
 final class SanityBehaviorSpec extends AnyFunSpec with Matchers {
   describe("Sanity Behavior") {
@@ -37,38 +37,6 @@ final class SanityBehaviorSpec extends AnyFunSpec with Matchers {
           mythos.modify(ValueModification(CthulhuMythos, 69))
 
           sanity.current shouldBe 30
-        }
-      }
-    }
-
-    describe("Sanity loss") {
-      Seq(
-        (SanityLoss(10), SanityLost(10, 30, 40)),
-        (SanityLoss(60), SanityLost(40, 0, 40))
-      ).foreach {
-        case (loss, expected) => {
-          it(s"should decrease current sanity by ${loss}") {
-            val sanity = InvestigatorSanity(initial, CthulhuMythosSkillImpl())
-
-            sanity.loss(loss) shouldBe expected
-          }
-        }
-      }
-    }
-
-    describe("Sanity gain") {
-      Seq(
-        (SanityGain(10), CthulhuMythosSkillImpl(), SanityRecovered(10, 50, 40, 80)),
-        (SanityGain(60), CthulhuMythosSkillImpl(), SanityRecovered(40, 80, 40, 80))
-      ).foreach {
-        case (gain, mythos, expected) => {
-          it(s"should increase current sanity by ${gain}") {
-            mythos.modify(ValueModification(CthulhuMythos, 19))
-
-            val sanity = InvestigatorSanity(initial, mythos)
-
-            sanity.gain(gain) shouldBe expected
-          }
         }
       }
     }
