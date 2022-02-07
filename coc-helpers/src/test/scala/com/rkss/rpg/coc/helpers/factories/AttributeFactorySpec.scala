@@ -41,7 +41,7 @@ final class AttributeFactorySpec extends AnyFunSpec with Matchers {
       val mythos = SkillFactory.cthulhuMythosSkill
 
       describe(s"when $power") {
-        val expected = InvestigatorSanity(power, mythos)
+        val expected = InvestigatorSanity(60, mythos)
 
         it(s"should return Luck(${expected})") {
           val sanity = AttributeFactory.createSanity(power, mythos)

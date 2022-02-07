@@ -7,15 +7,13 @@ import com.rkss.rpg.helpers.dice.HundredSidedDice
 import com.rkss.rpg.coc.behaviors.testing._
 import com.rkss.rpg.coc.concepts.attributes.sanity._
 import com.rkss.rpg.coc.concepts.commons._
-import com.rkss.rpg.coc.concepts.characteristic._
-import com.rkss.rpg.coc.fundamentals.characteristics._
 import com.rkss.rpg.coc.fundamentals.skills._
 import com.rkss.rpg.coc.concepts.results._
 
 final class SanityRollBehaviorSpec extends AnyFunSpec with Matchers {
   describe("Sanity roll behavior") {
     val sanity =
-      InvestigatorSanity(PrimaryCharacteristic(Power, 60), CthulhuMythosSkillImpl())
+      InvestigatorSanity(60, CthulhuMythosSkillImpl())
 
     describe("Sanity roll") {
       it should behave like sanityRoll(sanity, 100, SanityRollFumble)
@@ -26,7 +24,7 @@ final class SanityRollBehaviorSpec extends AnyFunSpec with Matchers {
 
       it should behave like sanityRoll(
         InvestigatorSanity(
-          PrimaryCharacteristic(Power, 40),
+          40,
           CthulhuMythosSkillImpl()
         ),
         97,

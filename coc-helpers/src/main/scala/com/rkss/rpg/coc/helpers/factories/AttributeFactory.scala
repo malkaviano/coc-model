@@ -22,6 +22,6 @@ object AttributeFactory {
   }
 
   def createSanity(power: Characteristic[Power.type], mythos: Skill[CthulhuMythos.type]): Sanity = {
-    InvestigatorSanity(power, mythos)
+    InvestigatorSanity(power.value(), mythos)
   }
 }
