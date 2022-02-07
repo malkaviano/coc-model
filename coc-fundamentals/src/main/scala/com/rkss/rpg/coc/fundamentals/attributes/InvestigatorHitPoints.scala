@@ -12,5 +12,5 @@ final case class InvestigatorHitPoints(
 
   override def initial: Int = (size.value() + constitution.value()) / 10
 
-  override val maximum: Int = initial
+  override def maximum: Int = initial
 }
