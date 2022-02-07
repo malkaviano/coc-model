@@ -10,6 +10,6 @@ trait DerivedAttribute[A <: AttributeName] {
   ): AttributeValueGained[A]
 
   def loss(
-      gain: AttributeValueLoss[A]
+      loss: AttributeValueLoss[A]
   ): AttributeValueLost[A]
 }

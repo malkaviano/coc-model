@@ -50,5 +50,34 @@ final class AttributeFactorySpec extends AnyFunSpec with Matchers {
         }
       }
     }
+
+    describe("creating HitPoints attribute") {
+      val size = CharacteristicFactory.characteristic(Size, 60)
+      val constitution = CharacteristicFactory.characteristic(Constitution, 50)
+
+      describe(s"when $size and $constitution") {
+        val expected = InvestigatorHitPoints(size, constitution)
+
+        it(s"should return Luck(${expected})") {
+          val hp = AttributeFactory.createHitPoints(size, constitution)
+
+          hp shouldBe expected
+        }
+      }
+    }
+
+    describe("creating MagicPoints attribute") {
+      val power = CharacteristicFactory.characteristic(Power, 60)
+
+      describe(s"when $power") {
+        val expected = InvestigatorMagicPoints(power)
+
+        it(s"should return Luck(${expected})") {
+          val mp = AttributeFactory.createMagicPoints(power)
+
+          mp shouldBe expected
+        }
+      }
+    }
   }
 }
