@@ -9,3 +9,5 @@ final case class FakeAttribute[A <: AttributeName](
     override val maximum: Int
 ) extends DerivedAttribute[A]
     with AttributeWithValueChangeBehavior[A]
+    with AttributeWithCurrentValue
+    with AttributeWithMaximumValue
