@@ -13,7 +13,7 @@ final class InvestigatorMagicPointsSpec extends AnyFunSpec with Matchers {
       it(s"should be 12") {
         val power = PrimaryCharacteristic(Power, 60)
 
-        val mp = InvestigatorMagicPoints(power)
+        val mp = MagicPointsImpl(power)
 
         mp.current shouldBe 12
       }
@@ -22,7 +22,7 @@ final class InvestigatorMagicPointsSpec extends AnyFunSpec with Matchers {
         it("should reduce current to the maximum") {
           val power = PrimaryCharacteristic(Power, 60)
 
-          val mp = InvestigatorMagicPoints(power)
+          val mp = MagicPointsImpl(power)
 
           power.modify(ValueModification(Power, -10))
 
@@ -35,7 +35,7 @@ final class InvestigatorMagicPointsSpec extends AnyFunSpec with Matchers {
       it("should be 12") {
         val power = PrimaryCharacteristic(Power, 60)
 
-        val mp = InvestigatorMagicPoints(power)
+        val mp = MagicPointsImpl(power)
 
         mp.maximum shouldBe 12
       }
@@ -44,7 +44,7 @@ final class InvestigatorMagicPointsSpec extends AnyFunSpec with Matchers {
         it(s"should be 16") {
           val power = PrimaryCharacteristic(Power, 60)
 
-          val mp = InvestigatorMagicPoints(power)
+          val mp = MagicPointsImpl(power)
 
           power.modify(ValueModification(Power, 20))
 

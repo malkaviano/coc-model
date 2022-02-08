@@ -11,7 +11,7 @@ import com.rkss.rpg.coc.concepts.attributes._
 
 object AttributeFactory {
   def createLuck(value: Int): Luck = {
-    InvestigatorLuck(value)
+    LuckImpl(value)
   }
 
   def createLuck(implicit
@@ -26,17 +26,17 @@ object AttributeFactory {
       power: Characteristic[Power.type],
       mythos: Skill[CthulhuMythos.type]
   ): Sanity = {
-    InvestigatorSanity(power, mythos)
+    SanityImpl(power, mythos)
   }
 
   def createMagicPoints(power: Characteristic[Power.type]): MagicPoints = {
-    InvestigatorMagicPoints(power)
+    MagicPointsImpl(power)
   }
 
   def createHitPoints(
       size: Characteristic[Size.type],
       constitution: Characteristic[Constitution.type]
   ): HitPoints = {
-    InvestigatorHitPoints(size, constitution)
+    HitPointsImpl(size, constitution)
   }
 }

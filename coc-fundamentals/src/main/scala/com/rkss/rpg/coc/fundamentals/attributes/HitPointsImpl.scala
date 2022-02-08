@@ -4,7 +4,7 @@ import com.rkss.rpg.coc.concepts.attributes._
 import com.rkss.rpg.coc.behaviors.attributes._
 import com.rkss.rpg.coc.concepts.characteristic._
 
-final case class InvestigatorHitPoints(
+final case class HitPointsImpl(
     private val size: Characteristic[Size.type],
     private val constitution: Characteristic[Constitution.type]
 ) extends HitPoints

@@ -9,9 +9,7 @@ import com.rkss.rpg.coc.behaviors.attributes._
 import com.rkss.rpg.coc.concepts.attributes._
 import com.rkss.rpg.coc.concepts.characteristic._
 
-import com.rkss.rpg.coc.concepts.characteristic.Power
-
-final case class InvestigatorSanity(
+final case class SanityImpl(
     private val power: Characteristic[Power.type],
     private val mythos: Skill[CthulhuMythos.type]
 ) extends Sanity

@@ -23,12 +23,12 @@ final class MakingASanityRollSpec
 
   Seq(
     SanityRollSpec(
-      InvestigatorSanity(PrimaryCharacteristic(Power, 50), CthulhuMythosSkillImpl()),
+      SanityImpl(PrimaryCharacteristic(Power, 50), CthulhuMythosSkillImpl()),
       10,
       SanityRollSuccessResult,
     ),
     SanityRollSpec(
-      InvestigatorSanity(PrimaryCharacteristic(Power, 55), CthulhuMythosSkillImpl()),
+      SanityImpl(PrimaryCharacteristic(Power, 55), CthulhuMythosSkillImpl()),
       100,
       SanityRollFumble,
     )

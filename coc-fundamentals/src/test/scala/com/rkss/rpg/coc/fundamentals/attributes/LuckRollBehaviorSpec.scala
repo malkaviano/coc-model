@@ -11,7 +11,7 @@ import com.rkss.rpg.coc.concepts.attributes.luck._
 
 final class LuckRollBehaviorSpec extends AnyFunSpec with Matchers {
   describe("Roll behavior") {
-    val luck = InvestigatorLuck(60)
+    val luck = LuckImpl(60)
 
     describe("when rolling above the base value") {
       val expected = LuckRolled(
