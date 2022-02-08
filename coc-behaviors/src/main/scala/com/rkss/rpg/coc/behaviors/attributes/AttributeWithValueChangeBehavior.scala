@@ -2,7 +2,10 @@ package com.rkss.rpg.coc.behaviors.attributes
 
 import com.rkss.rpg.coc.concepts.attributes._
 
-trait AttributeWithValueChangeBehavior[A <: AttributeName] { self: DerivedAttribute[A] =>
+trait AttributeWithValueChangeBehavior[A <: AttributeName] {
+  self: DerivedAttribute[A]
+    with AttributeWithCurrentValue
+    with AttributeWithMaximumValue =>
   def initial: Int
 
   private var _current: Int = initial
