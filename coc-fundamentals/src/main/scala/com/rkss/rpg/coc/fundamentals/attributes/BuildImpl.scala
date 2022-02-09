@@ -6,7 +6,7 @@ import com.rkss.rpg.coc.concepts.attributes._
 final case class BuildImpl(
     private val strength: Characteristic[Strength.type],
     private val size: Characteristic[Size.type]
-) extends DamageBonus {
+) extends Build {
   override def current: Int = {
     strength.value() + size.value() match {
       case x if x < 65  => -2

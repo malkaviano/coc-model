@@ -14,7 +14,7 @@ final class InvestigatorHitPointsSpec extends AnyFunSpec with Matchers {
         val size = PrimaryCharacteristic(Size, 40)
         val constitution = PrimaryCharacteristic(Constitution, 40)
 
-        val hp = InvestigatorHitPoints(size, constitution)
+        val hp = HitPointsImpl(size, constitution)
 
         hp.current shouldBe 8
       }
@@ -24,7 +24,7 @@ final class InvestigatorHitPointsSpec extends AnyFunSpec with Matchers {
           val size = PrimaryCharacteristic(Size, 40)
           val constitution = PrimaryCharacteristic(Constitution, 40)
 
-          val hp = InvestigatorHitPoints(size, constitution)
+          val hp = HitPointsImpl(size, constitution)
 
           constitution.modify(ValueModification(Constitution, -20))
 
@@ -38,7 +38,7 @@ final class InvestigatorHitPointsSpec extends AnyFunSpec with Matchers {
         val size = PrimaryCharacteristic(Size, 40)
         val constitution = PrimaryCharacteristic(Constitution, 40)
 
-        val hp = InvestigatorHitPoints(size, constitution)
+        val hp = HitPointsImpl(size, constitution)
 
         hp.maximum shouldBe 8
       }
@@ -48,7 +48,7 @@ final class InvestigatorHitPointsSpec extends AnyFunSpec with Matchers {
           val size = PrimaryCharacteristic(Size, 40)
           val constitution = PrimaryCharacteristic(Constitution, 40)
 
-          val hp = InvestigatorHitPoints(size, constitution)
+          val hp = HitPointsImpl(size, constitution)
 
           constitution.modify(ValueModification(Constitution, 20))
 
