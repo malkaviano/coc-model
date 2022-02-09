@@ -8,6 +8,7 @@ import com.rkss.rpg.coc.concepts.attributes.sanity._
 import com.rkss.rpg.coc.concepts.attributes.luck._
 import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.concepts.attributes._
+import com.rkss.rpg.coc.fundamentals.BuildImpl
 
 object AttributeFactory {
   def createLuck(value: Int): Luck = {
@@ -38,5 +39,34 @@ object AttributeFactory {
       constitution: Characteristic[Constitution.type]
   ): HitPoints = {
     HitPointsImpl(size, constitution)
+  }
+
+  def createAge(age: Int, maximumAge: Int = 100): Age = {
+    HumanAge(age, maximumAge)
+  }
+
+  def createBuild(
+      strength: Characteristic[Strength.type],
+      size: Characteristic[Size.type]
+  ): Build = {
+    BuildImpl(strength, size)
+  }
+
+  def createDamageBonus(
+      strength: Characteristic[Strength.type],
+      size: Characteristic[Size.type]
+  )(implicit
+      fourSidedDice: FourSidedDice,
+      sixSidedDice: SixSidedDice
+  ): DamageBonus = {
+    DamageBonusImpl(strength, size)
+  }
+
+  def createMovementRate(
+      strength: Characteristic[Strength.type],
+      dexterity: Characteristic[Dexterity.type],
+      size: Characteristic[Size.type]
+  ): MovementRate = {
+    HumanMovementRate(strength, dexterity, size)
   }
 }
