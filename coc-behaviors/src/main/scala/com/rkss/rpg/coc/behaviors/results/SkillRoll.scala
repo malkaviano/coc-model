@@ -13,7 +13,7 @@ private[behaviors] final case class SkillRoll[A <: Naming](
 )(implicit private val hundredSidedDice: HundredSidedDice) {
   lazy val result: SkillRolled[A] = roll
 
-  private def roll: SkillRolled[A] = RollExecutor.instance.roll(
+  private def roll: SkillRolled[A] = SkillRollExecutor.instance.roll(
     rollable,
     difficulty,
     bonusDice,

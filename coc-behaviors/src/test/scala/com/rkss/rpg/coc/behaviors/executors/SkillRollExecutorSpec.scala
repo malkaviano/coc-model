@@ -11,7 +11,7 @@ import com.rkss.rpg.coc.concepts.commons._
 import com.rkss.rpg.coc.concepts.characteristic._
 import com.rkss.rpg.coc.concepts.results._
 
-final class RollExecutorSpec
+final class SkillRollExecutorSpec
     extends AnyFunSpec
     with Matchers {
   describe("Resolving a skill roll") {
@@ -226,7 +226,7 @@ final class RollExecutorSpec
     )
 
     val skillRollResolver =
-      RollExecutor.instance
+      SkillRollExecutor.instance
 
     describe(s"when difficulty is $difficulty") {
       describe(
