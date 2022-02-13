@@ -9,9 +9,9 @@ import com.rkss.rpg.coc.concepts.skill.check._
 import com.rkss.rpg.coc.concepts.results._
 import com.rkss.rpg.coc.foundations.results._
 
-final class SkillRollChecker(implicit val hundredSidedDice: HundredSidedDice) {
+final class SkillRollAction private(implicit val hundredSidedDice: HundredSidedDice) {
   private def markWithSuccess(
-      skill: Skill[_],
+      skill: SkillRollCheckable[_],
       bonusDice: BonusDice,
       penaltyDice: PenaltyDice
   ): Unit = {
@@ -23,18 +23,18 @@ final class SkillRollChecker(implicit val hundredSidedDice: HundredSidedDice) {
     }
   }
 
-  def skillRollCheck[A <: SkillName](
-      skill: Skill[A],
+  def check[A <: SkillRollNaming](
+      checkable: SkillRollCheckable[A],
       difficulty: SkillRollDifficultyLevel,
       bonusDice: BonusDice,
       penaltyDice: PenaltyDice
   ): SkillRollChecked[A] = {
-    val roll = skill.roll(difficulty, bonusDice, penaltyDice)
+    val roll = checkable.roll(difficulty, bonusDice, penaltyDice)
 
     val passed = roll.result.isInstanceOf[SkillRollSuccessResult]
 
     if (passed) {
-      markWithSuccess(skill, bonusDice, penaltyDice)
+      markWithSuccess(checkable, bonusDice, penaltyDice)
     }
 
     SkillRollChecked(
@@ -43,13 +43,13 @@ final class SkillRollChecker(implicit val hundredSidedDice: HundredSidedDice) {
     )
   }
 
-  def skillRollCheck[A <: SkillName](
-      skills: Seq[Skill[A]],
+  def check(
+      skills: Seq[SkillRollCheckable[SkillRollNaming]],
       difficulty: SkillRollDifficultyLevel,
       bonusDice: BonusDice,
       penaltyDice: PenaltyDice,
       allMustPass: Boolean
-  ): CombinedSkillRollChecked[A] = {
+  ): CombinedSkillRollChecked[SkillRollNaming] = {
     val rolls = skills.map(_.roll(difficulty, bonusDice, penaltyDice))
 
     val passed = allMustPass match {
@@ -82,7 +82,7 @@ final class SkillRollChecker(implicit val hundredSidedDice: HundredSidedDice) {
     )
   }
 
-  def skillRollCheck[A <: SkillName, B <: SkillName](
+  def check[A <: SkillName, B <: SkillName](
       skill: Skill[A],
       bonusDice: BonusDice,
       penaltyDice: PenaltyDice,
@@ -101,14 +101,14 @@ final class SkillRollChecker(implicit val hundredSidedDice: HundredSidedDice) {
       case _           => ExtremeDifficulty
     }
 
-    val SkillRollChecked(successful, check) =
-      skillRollCheck(skill, difficulty, bonusDice, penaltyDice)
+    val SkillRollChecked(successful, checked) =
+      check(skill, difficulty, bonusDice, penaltyDice)
 
-    AidedSkillRollChecked(successful, check, contributing, opposing, opposingValue)
+    AidedSkillRollChecked(successful, checked, contributing, opposing, opposingValue)
   }
 
   @tailrec
-  def skillRollCheck[
+  def check[
       A <: SkillName,
       B <: SkillName
   ](
@@ -151,7 +151,7 @@ final class SkillRollChecker(implicit val hundredSidedDice: HundredSidedDice) {
       case true
           if result.attacker.checked.result
             .isInstanceOf[SkillRollSuccessResult] =>
-        skillRollCheck(
+        check(
           skill,
           bonusDice,
           penaltyDice,
@@ -169,5 +169,11 @@ final class SkillRollChecker(implicit val hundredSidedDice: HundredSidedDice) {
         result
       }
     }
+  }
+}
+
+object SkillRollAction {
+  def apply(implicit hundredSidedDice: HundredSidedDice): SkillRollAction = {
+    new SkillRollAction
   }
 }

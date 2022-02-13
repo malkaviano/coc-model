@@ -9,10 +9,10 @@ import com.rkss.rpg.coc.concepts.skill.roll._
 object SampleUsage extends App {
   import com.rkss.rpg.helpers.dice.Bag._
 
-  val skillRollChecker = new SkillRollChecker
+  val skillRollChecker = SkillRollAction(hundredSidedDice)
 
   println(
-    skillRollChecker.skillRollCheck(
+    skillRollChecker.check(
       SkillFactory.basicSkill(FirstAid, 0, 0),
       RegularDifficulty,
       BonusDice(0),
@@ -23,27 +23,29 @@ object SampleUsage extends App {
   val education = CharacteristicFactory.characteristic(Education)
 
   println(
-    skillRollChecker.skillRollCheck(
+    skillRollChecker.check(
       SkillFactory.languageOwnSkill(education, PortugueseLanguage, 0, 0),
       BonusDice(0),
       PenaltyDice(0),
       SkillFactory.basicSkill(Charm, 40, 10),
       Seq(
         SkillFactory.languageOtherSkill(SpanishLanguage, 10, 0),
-        SkillFactory.basicSkill(Archaeology, 10, 0),
+        SkillFactory.basicSkill(Archaeology, 10, 0)
       )
     )
   )
 
-  val skills: Seq[Skill[SkillName]] = Seq(
-    SkillFactory.basicSkill(FirstAid, 0, 0).asInstanceOf[Skill[SkillName]],
+  val skills: Seq[SkillRollCheckable[SkillRollNaming]] = Seq(
+    SkillFactory
+      .basicSkill(FirstAid, 0, 0)
+      .asInstanceOf[SkillRollCheckable[SkillRollNaming]],
     SkillFactory
       .languageOwnSkill(education, PortugueseLanguage, 0, 0)
-      .asInstanceOf[Skill[SkillName]]
+      .asInstanceOf[SkillRollCheckable[SkillRollNaming]]
   )
 
   println(
-    skillRollChecker.skillRollCheck(
+    skillRollChecker.check(
       skills,
       RegularDifficulty,
       BonusDice(0),
@@ -55,7 +57,7 @@ object SampleUsage extends App {
   val dexterity = CharacteristicFactory.characteristic(Dexterity)
 
   println(
-    skillRollChecker.skillRollCheck(
+    skillRollChecker.check(
       SkillFactory.combatSkill(Brawl, 0, 0),
       BonusDice(0),
       PenaltyDice(0),
