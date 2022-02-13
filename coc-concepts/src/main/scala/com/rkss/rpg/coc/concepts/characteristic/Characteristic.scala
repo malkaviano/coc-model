@@ -1,12 +1,7 @@
 package com.rkss.rpg.coc.concepts.characteristic
 
 import com.rkss.rpg.coc.concepts.skill.roll._
-import com.rkss.rpg.coc.concepts.commons._
 
 trait Characteristic[A <: CharacteristicName]
-    extends EntityWithDifficultyValue
-    with EntityWithModificationValue
-    with EntityWithModifiableValue[A]
-    with SkillRollable[A]
+    extends SkillRollCheckable[A]
     with SkillPushable[A]
-    with EntityWithNameTag[A]
