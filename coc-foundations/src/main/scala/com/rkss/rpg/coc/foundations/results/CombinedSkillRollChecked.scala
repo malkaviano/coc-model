@@ -5,6 +5,6 @@ import com.rkss.rpg.coc.concepts.skill.roll._
 
 final case class CombinedSkillRollChecked[A <: SkillName](
       successful: Boolean,
-      check: Seq[SkillRolled[A]],
+      checked: Seq[SkillRolled[A]],
       requiredAllToPass: Boolean
   )

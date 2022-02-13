@@ -149,7 +149,7 @@ final class SkillRollChecker(implicit val hundredSidedDice: HundredSidedDice) {
 
     result.attacker.successful == result.defender.successful match {
       case true
-          if result.attacker.check.result
+          if result.attacker.checked.result
             .isInstanceOf[SkillRollSuccessResult] =>
         skillRollCheck(
           skill,

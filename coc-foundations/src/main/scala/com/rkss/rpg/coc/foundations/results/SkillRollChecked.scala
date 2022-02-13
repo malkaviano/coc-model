@@ -5,5 +5,5 @@ import com.rkss.rpg.coc.concepts.skill.roll._
 
 final case class SkillRollChecked[A <: SkillName](
     successful: Boolean,
-    check: SkillRolled[A]
+    checked: SkillRolled[A]
 )
