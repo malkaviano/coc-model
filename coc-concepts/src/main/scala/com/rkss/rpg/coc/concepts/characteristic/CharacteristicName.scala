@@ -1,8 +1,8 @@
 package com.rkss.rpg.coc.concepts.characteristic
 
-import com.rkss.rpg.coc.concepts.commons._
+import com.rkss.rpg.coc.concepts.skill.roll._
 
-sealed trait CharacteristicName extends Naming
+sealed trait CharacteristicName extends SkillRollNaming
 
 sealed trait ImprovableCharacteristicName extends CharacteristicName
 
