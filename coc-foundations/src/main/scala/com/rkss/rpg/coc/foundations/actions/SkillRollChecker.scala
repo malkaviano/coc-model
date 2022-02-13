@@ -77,7 +77,8 @@ final class SkillRollChecker(implicit val hundredSidedDice: HundredSidedDice) {
 
     CombinedSkillRollChecked(
       passed,
-      rolls
+      rolls,
+      allMustPass
     )
   }
 
@@ -87,11 +88,12 @@ final class SkillRollChecker(implicit val hundredSidedDice: HundredSidedDice) {
       penaltyDice: PenaltyDice,
       opposing: Skill[B],
       contributing: Seq[Skill[_]]
-  ): SkillRollChecked[A] = {
+  ): AidedSkillRollChecked[A, B] = {
+    val reduction =
+      contributing.foldLeft(0)((acc, skill) => acc + skill.value())
+
     val opposingValue =
-      opposing.value() - contributing.foldLeft(0)((acc, skill) =>
-        acc + skill.value()
-      )
+      opposing.value() - reduction
 
     val difficulty = opposingValue match {
       case x if x < 50 => RegularDifficulty
@@ -99,7 +101,10 @@ final class SkillRollChecker(implicit val hundredSidedDice: HundredSidedDice) {
       case _           => ExtremeDifficulty
     }
 
-    skillRollCheck(skill, difficulty, bonusDice, penaltyDice)
+    val SkillRollChecked(successful, check) =
+      skillRollCheck(skill, difficulty, bonusDice, penaltyDice)
+
+    AidedSkillRollChecked(successful, check, contributing, opposing, opposingValue)
   }
 
   @tailrec

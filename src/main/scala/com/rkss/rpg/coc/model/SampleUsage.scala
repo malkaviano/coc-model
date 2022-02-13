@@ -11,25 +11,30 @@ object SampleUsage extends App {
 
   val skillRollChecker = new SkillRollChecker
 
-  skillRollChecker.skillRollCheck(
-    SkillFactory.basicSkill(FirstAid, 0, 0),
-    RegularDifficulty,
-    BonusDice(0),
-    PenaltyDice(0)
+  println(
+    skillRollChecker.skillRollCheck(
+      SkillFactory.basicSkill(FirstAid, 0, 0),
+      RegularDifficulty,
+      BonusDice(0),
+      PenaltyDice(0)
+    )
   )
 
-  // Opposed skill roll NPC, non combat
   val education = CharacteristicFactory.characteristic(Education)
 
-  skillRollChecker.skillRollCheck(
-    SkillFactory.languageOwnSkill(education, PortugueseLanguage, 0, 0),
-    BonusDice(0),
-    PenaltyDice(0),
-    SkillFactory.cthulhuMythosSkill,
-    Seq.empty[Skill[_]]
+  println(
+    skillRollChecker.skillRollCheck(
+      SkillFactory.languageOwnSkill(education, PortugueseLanguage, 0, 0),
+      BonusDice(0),
+      PenaltyDice(0),
+      SkillFactory.basicSkill(Charm, 40, 10),
+      Seq(
+        SkillFactory.languageOtherSkill(SpanishLanguage, 10, 0),
+        SkillFactory.basicSkill(Archaeology, 10, 0),
+      )
+    )
   )
 
-  // Combined skill rolls
   val skills: Seq[Skill[SkillName]] = Seq(
     SkillFactory.basicSkill(FirstAid, 0, 0).asInstanceOf[Skill[SkillName]],
     SkillFactory
@@ -37,19 +42,26 @@ object SampleUsage extends App {
       .asInstanceOf[Skill[SkillName]]
   )
 
-  skillRollChecker.skillRollCheck(
-    skills,
-    RegularDifficulty,
-    BonusDice(0),
-    PenaltyDice(0),
-    true
+  println(
+    skillRollChecker.skillRollCheck(
+      skills,
+      RegularDifficulty,
+      BonusDice(0),
+      PenaltyDice(0),
+      true
+    )
   )
 
-  // val dexterity = CharacteristicFactory.characteristic(Dexterity)
+  val dexterity = CharacteristicFactory.characteristic(Dexterity)
 
-  // skillRollCheck(SkillFactory.dodgeSkill(dexterity, 0, 0))
-
-  // skillRollCheck(
-  //   SkillFactory.combatSkill(Brawl, 0, 0)
-  // )
+  println(
+    skillRollChecker.skillRollCheck(
+      SkillFactory.combatSkill(Brawl, 0, 0),
+      BonusDice(0),
+      PenaltyDice(0),
+      SkillFactory.dodgeSkill(dexterity, 0, 0),
+      BonusDice(0),
+      PenaltyDice(0)
+    )
+  )
 }
