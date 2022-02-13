@@ -30,7 +30,7 @@ lazy val root = (project in file("."))
   .aggregate(helpers)
   .dependsOn(helpers)
   .settings(
-    name := "coc-universe",
+    name := "coc-model",
     libraryDependencies ++= Seq(
       scalaTest % Test,
       scalaTestPlus % Test,
