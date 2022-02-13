@@ -8,7 +8,6 @@ import com.rkss.rpg.helpers.dice.HundredSidedDice
 import com.rkss.rpg.coc.behaviors.testing._
 import com.rkss.rpg.coc.behaviors.testing.fakes._
 import com.rkss.rpg.coc.concepts.skill._
-import com.rkss.rpg.coc.concepts.commons._
 import com.rkss.rpg.coc.concepts.results._
 
 final class PushableSkillRollBehaviorSpec extends AnyFunSpec with Matchers {
@@ -96,7 +95,7 @@ final class PushableSkillRollBehaviorSpec extends AnyFunSpec with Matchers {
     }
   }
 
-  private def rollSkill[A <: Naming](
+  private def rollSkill[A <: SkillRollNaming](
       pushableSkillRollBehavior: PushableSkillRollBehavior[A],
       rolledTest: Seq[Int]
   ): Unit = {

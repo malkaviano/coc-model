@@ -6,7 +6,8 @@ import com.rkss.rpg.helpers.dice.HundredSidedDice
 import com.rkss.rpg.coc.behaviors.skill._
 import com.rkss.rpg.coc.behaviors.results._
 
-private[coc] trait PushableSkillRollBehavior[A <: Naming] extends SkillRollBehavior[A] {
+private[coc] trait PushableSkillRollBehavior[A <: SkillRollNaming]
+    extends SkillRollBehavior[A] {
   self: EntityWithDifficultyValue
     with SkillRollable[A]
     with SkillPushable[A]
