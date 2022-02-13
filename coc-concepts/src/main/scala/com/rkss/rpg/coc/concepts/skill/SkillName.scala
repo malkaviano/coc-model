@@ -1,8 +1,8 @@
 package com.rkss.rpg.coc.concepts.skill
 
-import com.rkss.rpg.coc.concepts.commons._
+import com.rkss.rpg.coc.concepts.skill.roll._
 
-sealed trait SkillName extends Naming
+sealed trait SkillName extends SkillRollNaming
 
 case object CreditRating extends SkillName
 case object CthulhuMythos extends SkillName
