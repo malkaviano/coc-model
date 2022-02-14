@@ -14,15 +14,16 @@ import com.rkss.rpg.helpers.dice._
 trait SkillRollCheckScenario {
   self: AnyFeatureSpec with GivenWhenThen with Matchers =>
 
-  def makingASkillRollCheck[A <: SkillRollNaming](
-      spec: SkillRollCheckSpec[A]
+  def makingASkillRollCheck[A <: SkillRollNaming, B <: SkillRollNaming](
+      spec: SkillRollCheckSpec[A, B]
   ): Unit = {
 
     val SkillRollCheckSpec(
       checkable,
       rolled,
       expected,
-      markUsedWithSuccess
+      markUsedWithSuccess,
+      opposing
     ) = spec
 
     Scenario(s"Making a skill roll check ${checkable.name}") {
@@ -46,12 +47,24 @@ trait SkillRollCheckScenario {
         hundredSidedDice
       )
 
-      checker.check(
-        checkable,
-        difficulty,
-        bonusDice,
-        penaltyDice
-      ) shouldBe expected
+      val result = opposing match {
+        case Some(value) =>
+          checker.check(
+            checkable,
+            bonusDice,
+            penaltyDice,
+            value
+          )
+        case None =>
+          checker.check(
+            checkable,
+            difficulty,
+            bonusDice,
+            penaltyDice
+          )
+      }
+
+      result shouldBe expected
 
       checkMarkedWithSuccess(checkable) shouldBe markUsedWithSuccess
     }
@@ -61,6 +74,6 @@ trait SkillRollCheckScenario {
       checkable: SkillRollCheckable[_]
   ): Boolean = {
     checkable.isInstanceOf[SkillSuccessMark] &&
-      checkable.asInstanceOf[SkillSuccessMark].wasSuccessfullyUsed
+    checkable.asInstanceOf[SkillSuccessMark].wasSuccessfullyUsed
   }
 }

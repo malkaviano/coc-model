@@ -21,7 +21,7 @@ final class SkillRollCheckFeature
 
   info("I want to execute an action")
   info("The keeper asks for a skill roll")
-  info("The keeper decides the difficulty")
+  info("The keeper decides the difficulty or the NPC skill opposing")
   info("The keeper decides the bonus and penalty dice")
   info("I do a skill roll to check if the action was successful")
   info(
@@ -96,6 +96,24 @@ final class SkillRollCheckFeature
         )
       ),
       false
+    ),
+    SkillRollCheckSpec(
+      SkillFactory.basicSkill(ReadLips, 10, 5),
+      Seq(40),
+      SkillRollChecked(
+        false,
+        SkillRolled(
+          ReadLips,
+          8,
+          HardDifficulty,
+          BonusDice(0),
+          PenaltyDice(0),
+          SkillRollFailure,
+          SkillRollDiceResult(40)
+        )
+      ),
+      false,
+      Some(SkillFactory.basicSkill(SpotHidden, 30, 15))
     )
   ).foreach(spec => ScenariosFor(makingASkillRollCheck(spec)))
 }

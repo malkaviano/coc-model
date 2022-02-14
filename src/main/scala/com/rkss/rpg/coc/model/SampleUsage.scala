@@ -27,11 +27,7 @@ object SampleUsage extends App {
       SkillFactory.languageOwnSkill(education, PortugueseLanguage, 0, 0),
       BonusDice(0),
       PenaltyDice(0),
-      SkillFactory.basicSkill(Charm, 40, 10),
-      Seq(
-        SkillFactory.languageOtherSkill(SpanishLanguage, 10, 0),
-        SkillFactory.basicSkill(Archaeology, 10, 0)
-      )
+      SkillFactory.basicSkill(Charm, 40, 10)
     )
   )
 

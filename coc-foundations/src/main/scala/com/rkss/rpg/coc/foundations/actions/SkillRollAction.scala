@@ -55,8 +55,8 @@ final class SkillRollAction private (implicit
     val roll = skills.head.roll(difficulty, bonusDice, penaltyDice)
 
     val rolls = roll +: skills.tail.map(
-        _.roll(difficulty, bonusDice, penaltyDice, roll.rolled)
-      )
+      _.roll(difficulty, bonusDice, penaltyDice, roll.rolled)
+    )
 
     val passed = allMustPass match {
       case true =>
@@ -88,18 +88,14 @@ final class SkillRollAction private (implicit
     )
   }
 
-  def check[A <: SkillName, B <: SkillName](
-      skill: Skill[A],
+  def check[A <: SkillRollNaming, B <: SkillRollNaming](
+      skill: SkillRollCheckable[A],
       bonusDice: BonusDice,
       penaltyDice: PenaltyDice,
-      opposing: Skill[B],
-      contributing: Seq[Skill[_]]
-  ): AidedSkillRollChecked[A, B] = {
-    val reduction =
-      contributing.foldLeft(0)((acc, skill) => acc + skill.value())
-
+      opposing: SkillRollCheckable[B]
+  ): SkillRollChecked[A] = {
     val opposingValue =
-      opposing.value() - reduction
+      opposing.value()
 
     val difficulty = opposingValue match {
       case x if x < 50 => RegularDifficulty
@@ -110,12 +106,9 @@ final class SkillRollAction private (implicit
     val SkillRollChecked(successful, checked) =
       check(skill, difficulty, bonusDice, penaltyDice)
 
-    AidedSkillRollChecked(
+    SkillRollChecked(
       successful,
-      checked,
-      contributing,
-      opposing,
-      opposingValue
+      checked
     )
   }
 
