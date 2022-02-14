@@ -31,5 +31,5 @@ private[behaviors] final case class PushSkillRoll[A <: Naming](
     pushedDifficulty.getOrElse(skillRolled.difficulty),
     pushedBonusDice.getOrElse(skillRolled.bonusDice),
     pushedPenaltyDice.getOrElse(skillRolled.penaltyDice)
-  )
+  )(Right(hundredSidedDice))
 }
