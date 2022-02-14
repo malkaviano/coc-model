@@ -9,6 +9,7 @@ import com.rkss.rpg.coc.behaviors.testing.fakes._
 import com.rkss.rpg.coc.behaviors.testing._
 import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.concepts.results._
+import com.rkss.rpg.coc.concepts.commons.DiceRolled
 
 final class SkillRollBehaviorSpec extends AnyFunSpec with Matchers {
   describe("Skill roll behavior") {
@@ -31,6 +32,29 @@ final class SkillRollBehaviorSpec extends AnyFunSpec with Matchers {
 
         it("return a SkillRolled") {
           val result = skill.roll()(hundredSidedDice)
+
+          result shouldBe expected
+        }
+      }
+
+      describe("when using a pre made dice roll") {
+        val expected = SkillRolled(
+          skill.name,
+          skill.value(),
+          RegularDifficulty,
+          BonusDice(0),
+          PenaltyDice(0),
+          SkillRollHardSuccess,
+          SkillRollDiceResult(20)
+        )
+
+        it("return a SkillRolled") {
+          val result = skill.roll(
+            RegularDifficulty,
+            BonusDice(0),
+            PenaltyDice(0),
+            DiceRolled(20)
+          )
 
           result shouldBe expected
         }

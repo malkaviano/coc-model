@@ -9,4 +9,11 @@ trait SkillRollable[A <: Naming] { self: EntityWithDifficultyValue =>
       bonusDice: BonusDice = BonusDice(0),
       penaltyDice: PenaltyDice = PenaltyDice(0)
   )(implicit hundredSidedDice: HundredSidedDice): SkillRolled[A]
+
+  def roll(
+      difficulty: SkillRollDifficultyLevel,
+      bonusDice: BonusDice,
+      penaltyDice: PenaltyDice,
+      diceRolled: DiceRolled
+  ): SkillRolled[A]
 }
