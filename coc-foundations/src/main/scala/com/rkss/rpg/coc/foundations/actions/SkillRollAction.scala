@@ -3,12 +3,12 @@ package com.rkss.rpg.coc.foundations.actions
 import scala.annotation.tailrec
 
 import com.rkss.rpg.helpers.dice._
-import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.coc.concepts.skill.check._
 import com.rkss.rpg.coc.concepts.results._
 import com.rkss.rpg.coc.foundations.results._
 import com.rkss.rpg.coc.concepts.characteristic._
+import com.rkss.rpg.coc.concepts.skill._
 
 final class SkillRollAction private (implicit
     val hundredSidedDice: HundredSidedDice
@@ -31,6 +31,38 @@ final class SkillRollAction private (implicit
       case x if x < 50 => RegularDifficulty
       case x if x < 90 => HardDifficulty
       case _           => ExtremeDifficulty
+    }
+  }
+
+  private def activeResistanceRoll[
+      A <: SkillRollNaming,
+      B <: SkillRollNaming
+  ](
+      attackerRoll: SkillRolled[A],
+      defenderRoll: SkillRolled[B],
+      skillValue: Int,
+      opposingValue: Int
+  ) = {
+    val attackerRollResult =
+      attackerRoll.result.value > defenderRoll.result.value
+    val defenderRollResult =
+      attackerRoll.result.value < defenderRoll.result.value
+
+    val successTie =
+      (attackerRollResult == defenderRollResult) && attackerRoll.result
+        .isInstanceOf[SkillRollSuccessResult]
+
+    successTie match {
+      case true =>
+        defenderRoll.name match {
+          case name: DefenseSkillName =>
+            (false, true)
+          case name: AttackSkillName =>
+            (true, false)
+          case _ =>
+            (skillValue > opposingValue, skillValue < opposingValue)
+        }
+      case _ => (attackerRollResult, defenderRollResult)
     }
   }
 
@@ -146,32 +178,23 @@ final class SkillRollAction private (implicit
 
   @tailrec
   def check[
-      A <: SkillName,
-      B <: SkillName
+      A <: SkillRollNaming,
+      B <: SkillRollNaming
   ](
-      skill: Skill[A],
+      skill: SkillRollCheckable[A],
       bonusDice: BonusDice,
       penaltyDice: PenaltyDice,
-      opposing: Skill[B],
+      opposing: SkillRollCheckable[B],
       opposingBonusDice: BonusDice,
       opposingPenaltyDice: PenaltyDice
   ): OpposedSkillRollChecked[A, B] = {
     val attackerRoll = skill.roll(RegularDifficulty, bonusDice, penaltyDice)
 
     val defenderRoll =
-      opposing.roll(RegularDifficulty, bonusDice, penaltyDice)
-
-    val attackerRollResult =
-      attackerRoll.result.value > defenderRoll.result.value
-    val defenderRollResult =
-      attackerRoll.result.value < defenderRoll.result.value
+      opposing.roll(RegularDifficulty, opposingBonusDice, opposingPenaltyDice)
 
     val (attackerResult, defenderResult) =
-      attackerRollResult == defenderRollResult match {
-        case true =>
-          (skill.value() > opposing.value(), skill.value() < opposing.value())
-        case _ => (attackerRollResult, defenderRollResult)
-      }
+      activeResistanceRoll(attackerRoll, defenderRoll, skill.value(), opposing.value())
 
     val result = OpposedSkillRollChecked(
       SkillRollChecked(
@@ -186,7 +209,7 @@ final class SkillRollAction private (implicit
 
     result.attacker.successful == result.defender.successful match {
       case true
-          if result.attacker.checked.result
+          if attackerRoll.result
             .isInstanceOf[SkillRollSuccessResult] =>
         check(
           skill,

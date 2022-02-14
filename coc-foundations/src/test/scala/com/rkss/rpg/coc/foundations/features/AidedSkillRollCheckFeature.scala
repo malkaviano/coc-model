@@ -12,7 +12,7 @@ import com.rkss.rpg.coc.foundations.results._
 import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.coc.concepts.results._
 
-class AidedSkillRollCheckFeature
+final class AidedSkillRollCheckFeature
     extends AnyFeatureSpec
     with GivenWhenThen
     with Matchers

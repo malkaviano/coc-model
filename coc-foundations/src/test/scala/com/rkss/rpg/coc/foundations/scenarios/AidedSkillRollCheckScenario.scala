@@ -32,7 +32,7 @@ trait AidedSkillRollCheckScenario {
       helping
     ) = spec
 
-    Scenario(s"Making a skill roll check ${checkable.name}") {
+    Scenario(s"Making skill roll check ${checkable.name} above human limits") {
       Given(s"My Skill / Characteristic value is ${checkable.value()}")
 
       And(s"Opposing value is ${opposing.value()}")
