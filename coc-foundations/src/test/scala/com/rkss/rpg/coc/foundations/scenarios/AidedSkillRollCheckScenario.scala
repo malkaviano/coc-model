@@ -39,14 +39,14 @@ trait AidedSkillRollCheckScenario {
 
       And(s"Helping value is ${helping.map(_.value()).mkString(", ")}")
 
-      val difficulty = expected.checked.difficulty
-      And(s"The difficulty is ${difficulty}")
+      val penaltyDice = expected.checked.penaltyDice
+      And(s"The penalty dice is ${penaltyDice}")
 
       val bonusDice = expected.checked.bonusDice
       And(s"The bonus dice is ${bonusDice}")
 
-      val penaltyDice = expected.checked.penaltyDice
-      And(s"The penalty dice is ${penaltyDice}")
+      val difficulty = expected.checked.difficulty
+      And(s"The difficulty is ${difficulty}")
 
       When(s"I roll a ${rolled.mkString(", ")} in the hundred dice")
       val hundredSidedDice = HundredSidedDice(TestingProps.fakeRng(rolled))
