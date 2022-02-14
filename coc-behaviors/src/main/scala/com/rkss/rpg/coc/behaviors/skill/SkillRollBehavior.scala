@@ -32,7 +32,7 @@ private[coc] trait SkillRollBehavior[A <: Naming] {
       difficulty: SkillRollDifficultyLevel,
       bonusDice: BonusDice,
       penaltyDice: PenaltyDice,
-      diceRolled: DiceRolled
+      diceRolled: SkillRollDiceResult
   ): SkillRolled[A] = {
     lastSkillRolled = Option(
       SkillRollExecutor.instance.roll(

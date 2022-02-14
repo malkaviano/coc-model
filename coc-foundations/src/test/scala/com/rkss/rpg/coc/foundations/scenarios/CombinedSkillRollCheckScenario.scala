@@ -15,14 +15,13 @@ trait CombinedSkillRollCheckScenario {
   self: AnyFeatureSpec with GivenWhenThen with Matchers =>
 
   def makingACombinedSkillRollCheck(
-      spec: CombinedSkillRollCheckSpec[SkillRollNaming]
+      spec: CombinedSkillRollCheckSpec
   ): Unit = {
 
     val CombinedSkillRollCheckSpec(
       checkables,
       rolled,
       expected,
-      allMustPass,
       markUsedWithSuccess
     ) = spec
 
@@ -56,7 +55,7 @@ trait CombinedSkillRollCheckScenario {
         difficulty,
         bonusDice,
         penaltyDice,
-        allMustPass
+        expected.requiredAllToPass
       ) shouldBe expected
 
       checkables.zip(markUsedWithSuccess).foreach { case (skill, marked) =>

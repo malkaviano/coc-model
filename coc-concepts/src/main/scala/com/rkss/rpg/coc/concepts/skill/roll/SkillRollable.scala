@@ -14,6 +14,6 @@ trait SkillRollable[A <: Naming] { self: EntityWithDifficultyValue =>
       difficulty: SkillRollDifficultyLevel,
       bonusDice: BonusDice,
       penaltyDice: PenaltyDice,
-      diceRolled: DiceRolled
+      diceRolled: SkillRollDiceResult
   ): SkillRolled[A]
 }

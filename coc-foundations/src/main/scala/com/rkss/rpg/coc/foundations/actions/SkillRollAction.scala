@@ -9,7 +9,9 @@ import com.rkss.rpg.coc.concepts.skill.check._
 import com.rkss.rpg.coc.concepts.results._
 import com.rkss.rpg.coc.foundations.results._
 
-final class SkillRollAction private(implicit val hundredSidedDice: HundredSidedDice) {
+final class SkillRollAction private (implicit
+    val hundredSidedDice: HundredSidedDice
+) {
   private def markWithSuccess(
       skill: SkillRollCheckable[_],
       bonusDice: BonusDice,
@@ -50,7 +52,11 @@ final class SkillRollAction private(implicit val hundredSidedDice: HundredSidedD
       penaltyDice: PenaltyDice,
       allMustPass: Boolean
   ): CombinedSkillRollChecked[SkillRollNaming] = {
-    val rolls = skills.map(_.roll(difficulty, bonusDice, penaltyDice))
+    val roll = skills.head.roll(difficulty, bonusDice, penaltyDice)
+
+    val rolls = roll +: skills.tail.map(
+        _.roll(difficulty, bonusDice, penaltyDice, roll.rolled)
+      )
 
     val passed = allMustPass match {
       case true =>
@@ -104,7 +110,13 @@ final class SkillRollAction private(implicit val hundredSidedDice: HundredSidedD
     val SkillRollChecked(successful, checked) =
       check(skill, difficulty, bonusDice, penaltyDice)
 
-    AidedSkillRollChecked(successful, checked, contributing, opposing, opposingValue)
+    AidedSkillRollChecked(
+      successful,
+      checked,
+      contributing,
+      opposing,
+      opposingValue
+    )
   }
 
   @tailrec

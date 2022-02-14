@@ -9,7 +9,6 @@ import com.rkss.rpg.coc.behaviors.testing.fakes._
 import com.rkss.rpg.coc.behaviors.testing._
 import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.concepts.results._
-import com.rkss.rpg.coc.concepts.commons.DiceRolled
 
 final class SkillRollBehaviorSpec extends AnyFunSpec with Matchers {
   describe("Skill roll behavior") {
@@ -53,7 +52,7 @@ final class SkillRollBehaviorSpec extends AnyFunSpec with Matchers {
             RegularDifficulty,
             BonusDice(0),
             PenaltyDice(0),
-            DiceRolled(20)
+            SkillRollDiceResult(20)
           )
 
           result shouldBe expected
