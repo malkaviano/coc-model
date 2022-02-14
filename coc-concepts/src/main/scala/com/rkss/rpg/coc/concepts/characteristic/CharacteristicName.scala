@@ -6,10 +6,12 @@ sealed trait CharacteristicName extends SkillRollNaming
 
 sealed trait ImprovableCharacteristicName extends CharacteristicName
 
-case object Strength extends CharacteristicName
-case object Dexterity extends CharacteristicName
+sealed trait PhysicalCharacteristicName extends CharacteristicName
+
+case object Strength extends PhysicalCharacteristicName
+case object Dexterity extends PhysicalCharacteristicName
+case object Size extends PhysicalCharacteristicName
 case object Constitution extends CharacteristicName
-case object Size extends CharacteristicName
 case object Appearance extends CharacteristicName
 case object Education extends CharacteristicName
 case object Intelligence extends CharacteristicName

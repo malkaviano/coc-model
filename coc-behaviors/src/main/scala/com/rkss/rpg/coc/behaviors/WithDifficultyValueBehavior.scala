@@ -11,8 +11,10 @@ private[coc] trait WithDifficultyValueBehavior {
   def value(
       difficulty: SkillRollDifficultyLevel = RegularDifficulty
   ): Int = {
-    DifficultyValueExtractor(baseValue + allocated + improved + modification)
-      .value(difficulty) match {
+    DifficultyValueExtractor.value(
+      baseValue + allocated + improved + modification,
+      difficulty
+    ) match {
       case value if value >= 0 => value
       case _                   => 0
     }

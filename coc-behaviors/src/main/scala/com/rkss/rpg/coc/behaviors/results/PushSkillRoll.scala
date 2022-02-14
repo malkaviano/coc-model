@@ -26,7 +26,7 @@ private[behaviors] final case class PushSkillRoll[A <: Naming](
     entity.isInstanceOf[SkillPushable[_]] && skillRolled.result == SkillRollFailure
   }
 
-  private def roll: SkillRolled[A] = RollExecutor.instance.roll(
+  private def roll: SkillRolled[A] = SkillRollExecutor.instance.roll(
     entity,
     pushedDifficulty.getOrElse(skillRolled.difficulty),
     pushedBonusDice.getOrElse(skillRolled.bonusDice),

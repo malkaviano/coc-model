@@ -17,7 +17,7 @@ private[coc] trait SkillRollBehavior[A <: Naming] {
       penaltyDice: PenaltyDice = PenaltyDice(0)
   )(implicit hundredSidedDice: HundredSidedDice): SkillRolled[A] = {
     lastSkillRolled = Option(
-      RollExecutor.instance.roll(
+      SkillRollExecutor.instance.roll(
         this,
         difficulty,
         bonusDice,
@@ -32,10 +32,10 @@ private[coc] trait SkillRollBehavior[A <: Naming] {
       difficulty: SkillRollDifficultyLevel,
       bonusDice: BonusDice,
       penaltyDice: PenaltyDice,
-      diceRolled: DiceRolled
+      diceRolled: SkillRollDiceResult
   ): SkillRolled[A] = {
     lastSkillRolled = Option(
-      RollExecutor.instance.roll(
+      SkillRollExecutor.instance.roll(
         this,
         difficulty,
         bonusDice,

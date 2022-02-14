@@ -5,13 +5,13 @@ import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.coc.concepts.commons._
 import com.rkss.rpg.coc.concepts.results._
 
-private[behaviors] class RollExecutor private () {
+private[behaviors] class SkillRollExecutor private () {
   def roll[A <: Naming](
       rollable: EntityWithDifficultyValue with EntityWithNameTag[A],
       difficulty: SkillRollDifficultyLevel,
       bonusDice: BonusDice,
       penaltyDice: PenaltyDice
-  )(rng: Either[DiceRolled, HundredSidedDice]): SkillRolled[A] = {
+  )(rng: Either[SkillRollDiceResult, HundredSidedDice]): SkillRolled[A] = {
     val regular = rollable.value(difficulty)
     val hard = regular / 2
     val extreme = regular / 5
@@ -19,7 +19,7 @@ private[behaviors] class RollExecutor private () {
     val fumble = if (regular < 50) 96 else 100
 
     val rolled = rng match {
-      case Left(diceRolled) => SkillRollDiceResult(diceRolled.value)
+      case Left(diceRolled) => diceRolled
       case Right(hundredSidedDice) =>
         rollDice(bonusDice, penaltyDice)(hundredSidedDice)
     }
@@ -63,8 +63,8 @@ private[behaviors] class RollExecutor private () {
   }
 }
 
-private[behaviors] object RollExecutor {
-  lazy val instance: RollExecutor = {
-    new RollExecutor
+private[behaviors] object SkillRollExecutor {
+  lazy val instance: SkillRollExecutor = {
+    new SkillRollExecutor
   }
 }
