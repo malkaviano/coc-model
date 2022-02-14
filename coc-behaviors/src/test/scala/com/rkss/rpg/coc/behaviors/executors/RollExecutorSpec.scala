@@ -239,7 +239,7 @@ final class RollExecutorSpec
               difficulty,
               bonusDice,
               penaltyDice
-            ) shouldBe expected
+            )(Right(mockedDice)) shouldBe expected
           }
         }
       }
