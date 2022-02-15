@@ -11,4 +11,3 @@ final case class PrimaryCharacteristic[A <: CharacteristicName](
     with WithValueModificationBehavior[A]
     with WithDifficultyValueBehavior
     with SkillRollBehavior[A]
-    with PushableSkillRollBehavior[A]

@@ -11,4 +11,3 @@ final case class FakeGenericCharacteristic[A <: CharacteristicName](
     with WithValueModificationBehavior[A]
     with WithDifficultyValueBehavior
     with SkillRollBehavior[A]
-    with PushableSkillRollBehavior[A]
