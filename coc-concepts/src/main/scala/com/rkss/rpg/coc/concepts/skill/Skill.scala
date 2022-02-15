@@ -10,7 +10,6 @@ trait Skill[A <: SkillName] extends SkillRollCheckable[A] {
 
 trait BasicSkill[A <: SkillName]
     extends Skill[A]
-    with SkillPushable[A]
     with SkillSuccessMarkable
     with SkillWithImprovement
     with SkillSuccessMark
@@ -23,4 +22,4 @@ trait CombatSkill[A <: SkillName]
     with SkillSuccessMark
     with SkillImprovable[A]
 
-trait SystemSkill[A <: SkillName] extends Skill[A] with SkillPushable[A]
+trait SystemSkill[A <: SkillName] extends Skill[A]

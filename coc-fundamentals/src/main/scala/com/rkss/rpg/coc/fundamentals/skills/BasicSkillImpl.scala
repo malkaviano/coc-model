@@ -15,7 +15,6 @@ final case class BasicSkillImpl[A <: ImprovableSkillName](
     with SkillWithPointsAllocation
     with SkillRollBehavior[A]
     with SkillSuccessfullyUsedBehavior
-    with PushableSkillRollBehavior[A]
     with SkillImprovementBehavior[A]
     with WithDifficultyValueBehavior
     with WithValueModificationBehavior[A]
