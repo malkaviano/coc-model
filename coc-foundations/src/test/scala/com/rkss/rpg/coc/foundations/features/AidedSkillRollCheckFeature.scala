@@ -39,7 +39,7 @@ final class AidedSkillRollCheckFeature
           ExtremeDifficulty,
           BonusDice(0),
           PenaltyDice(0),
-          SkillRollRegularSuccess,
+          SkillRollExtremeSuccess,
           SkillRollDiceResult(10)
         )
       ),

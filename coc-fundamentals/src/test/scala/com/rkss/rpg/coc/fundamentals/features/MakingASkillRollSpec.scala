@@ -52,7 +52,7 @@ final class MakingASkillRollSpec
       BonusDice(2),
       PenaltyDice(0),
       Seq(50, 40, 30),
-      SkillRollRegularSuccess,
+      SkillRollHardSuccess,
       SkillRollDiceResult(30, Seq(40, 50))
     ),
     SkillRollSpec(

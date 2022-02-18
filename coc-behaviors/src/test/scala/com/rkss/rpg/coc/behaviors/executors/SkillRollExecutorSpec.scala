@@ -110,7 +110,7 @@ final class SkillRollExecutorSpec
         HardDifficulty,
         BonusDice(0),
         PenaltyDice(0),
-        SkillRollRegularSuccess,
+        SkillRollHardSuccess,
         SkillRollDiceResult(20)
       ),
       HardDifficulty
@@ -125,7 +125,7 @@ final class SkillRollExecutorSpec
         HardDifficulty,
         BonusDice(0),
         PenaltyDice(0),
-        SkillRollHardSuccess,
+        SkillRollExtremeSuccess,
         SkillRollDiceResult(6)
       ),
       HardDifficulty
@@ -140,7 +140,7 @@ final class SkillRollExecutorSpec
         ExtremeDifficulty,
         BonusDice(0),
         PenaltyDice(0),
-        SkillRollRegularSuccess,
+        SkillRollExtremeSuccess,
         SkillRollDiceResult(6)
       ),
       ExtremeDifficulty
