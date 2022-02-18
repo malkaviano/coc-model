@@ -12,11 +12,13 @@ private[behaviors] class SkillRollExecutor private () {
       bonusDice: BonusDice,
       penaltyDice: PenaltyDice
   )(rng: Either[SkillRollDiceResult, HundredSidedDice]): SkillRolled[A] = {
-    val regular = rollable.value(difficulty)
+    val required = rollable.value(difficulty)
+
+    val regular = rollable.value()
     val hard = regular / 2
     val extreme = regular / 5
 
-    val fumble = if (regular < 50) 96 else 100
+    val fumble = if (required < 50) 96 else 100
 
     val rolled = rng match {
       case Left(diceRolled) => diceRolled
@@ -27,15 +29,15 @@ private[behaviors] class SkillRollExecutor private () {
     val result = rolled.value match {
       case 1                                   => SkillRollCriticalSuccess
       case diceResult if diceResult >= fumble  => SkillRollFumble
+      case diceResult if diceResult > required => SkillRollFailure
       case diceResult if diceResult <= extreme => SkillRollExtremeSuccess
       case diceResult if diceResult <= hard    => SkillRollHardSuccess
       case diceResult if diceResult <= regular => SkillRollRegularSuccess
-      case _                                   => SkillRollFailure
     }
 
     SkillRolled[A](
       rollable.name,
-      regular,
+      required,
       difficulty,
       bonusDice,
       penaltyDice,

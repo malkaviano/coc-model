@@ -57,7 +57,7 @@ final class SkillRollCheckFeature
           HardDifficulty,
           BonusDice(1),
           PenaltyDice(0),
-          SkillRollHardSuccess,
+          SkillRollExtremeSuccess,
           SkillRollDiceResult(10, Seq(40))
         )
       ),
