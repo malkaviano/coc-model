@@ -4,9 +4,7 @@ import org.scalatest.featurespec.AnyFeatureSpec
 import org.scalatest.GivenWhenThen
 import org.scalatest.matchers.should.Matchers
 
-import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.coc.foundations.actions._
-import com.rkss.rpg.coc.concepts.skill.check._
 import com.rkss.rpg.coc.behaviors.testing._
 import com.rkss.rpg.helpers.dice._
 import com.rkss.rpg.coc.foundations.specifications._
@@ -16,11 +14,10 @@ trait AidedSkillRollCheckScenario {
   self: AnyFeatureSpec with GivenWhenThen with Matchers =>
 
   def makingAnAidedSkillRollCheck[
-      A <: SkillRollNaming,
-      B <: PhysicalCharacteristicName,
-      C <: PhysicalCharacteristicName
+      A <: PhysicalCharacteristicName,
+      B <: PhysicalCharacteristicName
   ](
-      spec: AidedSkillRollCheckSpec[A, B, C]
+      spec: AidedSkillRollCheckSpec[A, B]
   ): Unit = {
 
     val AidedSkillRollCheckSpec(
@@ -66,15 +63,6 @@ trait AidedSkillRollCheckScenario {
       )
 
       result shouldBe expected
-
-      checkMarkedWithSuccess(checkable) shouldBe markUsedWithSuccess
     }
-  }
-
-  private def checkMarkedWithSuccess(
-      checkable: SkillRollCheckable[_]
-  ): Boolean = {
-    checkable.isInstanceOf[SkillSuccessMark] &&
-    checkable.asInstanceOf[SkillSuccessMark].wasSuccessfullyUsed
   }
 }

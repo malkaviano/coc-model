@@ -20,7 +20,7 @@ final class AidedSkillRollCheckFeature
   info("I want to execute an action")
   info("But the value is beyond human limits")
   info("So others contribute to diminish to humanly possible")
-  info("The NPC skill opposing after diminished sets the difficulty")
+  info("The characteristic opposing after diminishing sets the difficulty")
   info("The keeper decides the bonus and penalty dice")
   info("I do a skill roll to check if the action was successful")
   info(

@@ -15,11 +15,4 @@ trait BasicSkill[A <: SkillName]
     with SkillSuccessMark
     with SkillImprovable[A]
 
-trait CombatSkill[A <: SkillName]
-    extends Skill[A]
-    with SkillSuccessMarkable
-    with SkillWithImprovement
-    with SkillSuccessMark
-    with SkillImprovable[A]
-
 trait SystemSkill[A <: SkillName] extends Skill[A]

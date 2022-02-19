@@ -13,25 +13,25 @@ object SkillFactory {
   ): BasicSkill[A] = {
     val SkillInfo(baseValue, tags) = SkillInfo.basicSkills(name)
 
-    BasicSkillImpl(name, baseValue, occupationPoints, personalPoints, tags)
+    SkillImpl(name, baseValue, occupationPoints, personalPoints, tags)
   }
 
   def combatSkill[A <: AttackSkillName](
       name: A,
       occupationPoints: Int,
       personalPoints: Int
-  ): CombatSkill[A] = {
+  ): BasicSkill[A] = {
     val SkillInfo(baseValue, tags) = SkillInfo.combatSkills(name)
 
-    CombatSkillImpl(name, baseValue, occupationPoints, personalPoints, tags)
+    SkillImpl(name, baseValue, occupationPoints, personalPoints, tags)
   }
 
   def dodgeSkill(
       dexterity: Characteristic[Dexterity.type],
       occupationPoints: Int,
       personalPoints: Int
-  ): CombatSkill[Dodge.type] = {
-    CombatSkillImpl(Dodge, dexterity.value() / 2, occupationPoints, personalPoints)
+  ): BasicSkill[Dodge.type] = {
+    SkillImpl(Dodge, dexterity.value() / 2, occupationPoints, personalPoints)
   }
 
   def languageOtherSkill[A <: LanguageSkillName](
@@ -39,7 +39,7 @@ object SkillFactory {
       occupationPoints: Int,
       personalPoints: Int
   ): BasicSkill[A] = {
-    BasicSkillImpl(
+    SkillImpl(
       language,
       1,
       occupationPoints,
@@ -54,7 +54,7 @@ object SkillFactory {
       occupationPoints: Int,
       personalPoints: Int
   ): BasicSkill[A] = {
-    BasicSkillImpl(
+    SkillImpl(
       language,
       education.value(),
       occupationPoints,
