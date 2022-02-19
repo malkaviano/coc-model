@@ -14,7 +14,7 @@ final class SkillFactorySpec extends AnyFunSpec with Matchers {
       it("should return the correct basic skill") {
         val firstAid = SkillFactory.basicSkill(FirstAid, 0, 0)
 
-        firstAid shouldBe BasicSkillImpl(FirstAid, 30, 0, 0)
+        firstAid shouldBe SkillImpl(FirstAid, 30, 0, 0)
       }
     }
 
@@ -22,7 +22,7 @@ final class SkillFactorySpec extends AnyFunSpec with Matchers {
       it("should return the correct combat skill") {
         val handgun = SkillFactory.combatSkill(Handgun, 0, 0)
 
-        handgun shouldBe CombatSkillImpl(Handgun, 20, 0, 0)
+        handgun shouldBe SkillImpl(Handgun, 20, 0, 0)
       }
     }
 
@@ -31,7 +31,7 @@ final class SkillFactorySpec extends AnyFunSpec with Matchers {
         val dodge =
           SkillFactory.dodgeSkill(PrimaryCharacteristic(Dexterity, 60), 0, 0)
 
-        dodge shouldBe CombatSkillImpl(Dodge, 30, 0, 0)
+        dodge shouldBe SkillImpl(Dodge, 30, 0, 0)
       }
     }
 
@@ -45,7 +45,7 @@ final class SkillFactorySpec extends AnyFunSpec with Matchers {
             0
           )
 
-        japanese shouldBe BasicSkillImpl(
+        japanese shouldBe SkillImpl(
           JapaneseLanguage,
           60,
           0,
@@ -64,7 +64,7 @@ final class SkillFactorySpec extends AnyFunSpec with Matchers {
             0
           )
 
-        japanese shouldBe BasicSkillImpl(
+        japanese shouldBe SkillImpl(
           RussianLanguage,
           1,
           0,

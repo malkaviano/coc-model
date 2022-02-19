@@ -38,7 +38,7 @@ final class MakingASkillRollSpec
       SkillRollDiceResult(10)
     ),
     SkillRollSpec(
-      BasicSkillImpl(Accounting, 5, 20, 15),
+      SkillImpl(Accounting, 5, 20, 15),
       RegularDifficulty,
       BonusDice(0),
       PenaltyDice(1),
@@ -47,7 +47,7 @@ final class MakingASkillRollSpec
       SkillRollDiceResult(15, Seq(12))
     ),
     SkillRollSpec(
-      BasicSkillImpl(FirstAid, 30, 20, 20),
+      SkillImpl(FirstAid, 30, 20, 20),
       HardDifficulty,
       BonusDice(2),
       PenaltyDice(0),
@@ -56,7 +56,7 @@ final class MakingASkillRollSpec
       SkillRollDiceResult(30, Seq(40, 50))
     ),
     SkillRollSpec(
-      CombatSkillImpl(SubmachineGun, 15, 20, 20),
+      SkillImpl(SubmachineGun, 15, 20, 20),
       ExtremeDifficulty,
       BonusDice(2),
       PenaltyDice(0),
@@ -65,7 +65,7 @@ final class MakingASkillRollSpec
       SkillRollDiceResult(30, Seq(40, 50))
     ),
     SkillRollSpec(
-      CombatSkillImpl(Dodge, 20, 20, 20),
+      SkillImpl(Dodge, 20, 20, 20),
       ExtremeDifficulty,
       BonusDice(1),
       PenaltyDice(1),
