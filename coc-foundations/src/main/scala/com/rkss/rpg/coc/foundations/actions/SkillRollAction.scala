@@ -150,15 +150,14 @@ final class SkillRollAction private (implicit
   }
 
   def check[
-      A <: SkillRollNaming,
-      B <: PhysicalCharacteristicName,
-      C <: PhysicalCharacteristicName
+      A <: PhysicalCharacteristicName,
+      B <: PhysicalCharacteristicName
   ](
-      skill: SkillRollCheckable[A],
+      skill: Characteristic[A],
       bonusDice: BonusDice,
       penaltyDice: PenaltyDice,
       opposing: Characteristic[B],
-      helping: Seq[Characteristic[C]]
+      helping: Seq[Characteristic[A]]
   ): SkillRollChecked[A] = {
     val helpingValue = helping.foldLeft(0)((acc, char) => acc + char.value())
 
