@@ -2,7 +2,6 @@ package com.rkss.rpg.script // Package is outside coc on purpose to check visibi
 
 import com.rkss.rpg.coc.helpers.factories._
 import com.rkss.rpg.coc.concepts.skill._
-import com.rkss.rpg.coc.concepts.characteristic._
 import com.rkss.rpg.coc.foundations.actions._
 import com.rkss.rpg.coc.concepts.skill.roll._
 
@@ -11,55 +10,81 @@ object SampleUsage extends App {
 
   val skillRollChecker = SkillRollAction(hundredSidedDice)
 
-  println(
-    skillRollChecker.check(
-      SkillFactory.basicSkill(FirstAid, 0, 0),
-      RegularDifficulty,
-      BonusDice(0),
-      PenaltyDice(0)
-    )
+  val harveySpotHidden = SkillFactory.basicSkill(
+    SpotHidden,
+    tenSidedDice.roll.value,
+    sixSidedDice.roll.value
+  )
+  val harveyPsychology = SkillFactory.basicSkill(
+    Psychology,
+    tenSidedDice.roll.value,
+    sixSidedDice.roll.value
   )
 
-  val education = CharacteristicFactory.characteristic(Education)
-
-  println(
-    skillRollChecker.check(
-      SkillFactory.languageOwnSkill(education, PortugueseLanguage, 0, 0),
-      BonusDice(0),
-      PenaltyDice(0),
-      SkillFactory.basicSkill(Charm, 40, 10)
-    )
+  val result = skillRollChecker.check(
+    harveyPsychology,
+    harveySpotHidden,
+    RegularDifficulty,
+    BonusDice(0),
+    PenaltyDice(0),
+    false
   )
 
-  val skills: Seq[SkillRollCheckable[SkillRollNaming]] = Seq(
-    SkillFactory
-      .basicSkill(FirstAid, 0, 0)
-      .asInstanceOf[SkillRollCheckable[SkillRollNaming]],
-    SkillFactory
-      .languageOwnSkill(education, PortugueseLanguage, 0, 0)
-      .asInstanceOf[SkillRollCheckable[SkillRollNaming]]
+  val sceneResult = if (result.successful) {
+    "anticipated"
+  } else {
+    "did not anticipate"
+  }
+
+  val scene1 = s"""
+    | A deranged cultist suddenly draws a gun on Harvey.
+    | The Keeper asks for either a Spot Hidden(${harveySpotHidden.value()}) roll
+    | or a Psychology(${harveyPsychology.value()}) roll from Harvey.
+    | A success on either will allow Harvey to anticipate the attacker's action,
+    | and perhaps give Harvey a chance to act first.
+    | A successful Spot Hidden would allow him to see the gun being drawn by the cultist,
+    | while a successful Psychology would allow Harvey to anticipate the cultist's aggressive intent.
+    | Harvey rolled ${result.checked1.rolled.value}
+    | Harvey $sceneResult the cultist's intent
+ """.stripMargin
+
+  println(scene1)
+
+  val harveyMechanicalRepair = SkillFactory.basicSkill(
+    MechanicalRepair,
+    tenSidedDice.roll.value,
+    sixSidedDice.roll.value
+  )
+  val harveyElectricalRepair = SkillFactory.basicSkill(
+    ElectricalRepair,
+    tenSidedDice.roll.value,
+    sixSidedDice.roll.value
   )
 
-  println(
-    skillRollChecker.check(
-      skills,
-      RegularDifficulty,
-      BonusDice(0),
-      PenaltyDice(0),
-      true
-    )
+  val result2 = skillRollChecker.check(
+    harveyMechanicalRepair,
+    harveyElectricalRepair,
+    RegularDifficulty,
+    BonusDice(0),
+    PenaltyDice(0),
+    true
   )
 
-  val dexterity = CharacteristicFactory.characteristic(Dexterity)
+  val sceneResult2 = if (result2.successful) {
+    "repaired"
+  } else {
+    "did not repair"
+  }
 
-  println(
-    skillRollChecker.check(
-      SkillFactory.combatSkill(Brawl, 0, 0),
-      BonusDice(0),
-      PenaltyDice(0),
-      SkillFactory.dodgeSkill(dexterity, 0, 0),
-      BonusDice(0),
-      PenaltyDice(0)
-    )
-  )
+  val scene2 = s"""
+    | Later, Harvey attempts to repair an electric turbine.
+    | The item is both mechanical and electrical,
+    | so the Keeper asks for a combined Mechanical Repair(${harveyMechanicalRepair.value()})
+    | and Electrical Repair(${harveyElectricalRepair.value()}) roll.
+    | And both should pass.
+    | Harvey rolled ${result2.checked1.rolled.value}
+    | Harvey $sceneResult2 the turbine
+  """.stripMargin
+
+  println(scene2)
 }

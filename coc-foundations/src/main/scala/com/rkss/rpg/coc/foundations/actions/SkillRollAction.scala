@@ -86,45 +86,43 @@ final class SkillRollAction private (implicit
     )
   }
 
-  def check(
-      skills: Seq[SkillRollCheckable[SkillRollNaming]],
+  def check[A <: SkillRollNaming, B <: SkillRollNaming](
+      skill1: SkillRollCheckable[A],
+      skill2: SkillRollCheckable[B],
       difficulty: SkillRollDifficultyLevel,
       bonusDice: BonusDice,
       penaltyDice: PenaltyDice,
       allMustPass: Boolean
-  ): CombinedSkillRollChecked[SkillRollNaming] = {
-    val roll = skills.head.roll(difficulty, bonusDice, penaltyDice)
+  ): CombinedSkillRollChecked[A, B] = {
+    val roll1 = skill1.roll(difficulty, bonusDice, penaltyDice)
 
-    val rolls = roll +: skills.tail.map(
-      _.roll(difficulty, bonusDice, penaltyDice, roll.rolled)
-    )
+    val roll2 = skill2.roll(difficulty, bonusDice, penaltyDice, roll1.rolled)
 
     val passed = allMustPass match {
       case true =>
-        rolls.foldLeft(true)((acc, roll) =>
-          acc && roll.result
-            .isInstanceOf[SkillRollSuccessResult]
-        )
+        roll1.result
+          .isInstanceOf[SkillRollSuccessResult] && roll2.result
+          .isInstanceOf[SkillRollSuccessResult]
       case _ =>
-        rolls.foldLeft(false)((acc, roll) =>
-          acc || roll.result
-            .isInstanceOf[SkillRollSuccessResult]
-        )
+        roll1.result
+          .isInstanceOf[SkillRollSuccessResult] || roll2.result
+          .isInstanceOf[SkillRollSuccessResult]
     }
 
     if (passed) {
-      rolls
-        .filter(_.result.isInstanceOf[SkillRollSuccessResult])
-        .foreach(roll => {
-          skills
-            .find(_.name == roll.name)
-            .foreach(markWithSuccess(_, bonusDice, penaltyDice))
-        })
+      if (roll1.result.isInstanceOf[SkillRollSuccessResult]) {
+        markWithSuccess(skill1, bonusDice, penaltyDice)
+      }
+
+      if (roll2.result.isInstanceOf[SkillRollSuccessResult]) {
+        markWithSuccess(skill2, bonusDice, penaltyDice)
+      }
     }
 
     CombinedSkillRollChecked(
       passed,
-      rolls,
+      roll1,
+      roll2,
       allMustPass
     )
   }
@@ -193,7 +191,12 @@ final class SkillRollAction private (implicit
       opposing.roll(RegularDifficulty, opposingBonusDice, opposingPenaltyDice)
 
     val (attackerResult, defenderResult) =
-      activeResistanceRoll(attackerRoll, defenderRoll, skill.value(), opposing.value())
+      activeResistanceRoll(
+        attackerRoll,
+        defenderRoll,
+        skill.value(),
+        opposing.value()
+      )
 
     val result = OpposedSkillRollChecked(
       SkillRollChecked(
