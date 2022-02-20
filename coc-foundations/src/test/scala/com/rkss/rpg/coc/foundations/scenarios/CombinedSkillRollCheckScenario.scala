@@ -19,27 +19,35 @@ trait CombinedSkillRollCheckScenario {
   ): Unit = {
 
     val CombinedSkillRollCheckSpec(
-      checkables,
+      checkable1,
+      checkable2,
       rolled,
       expected,
       markUsedWithSuccess
     ) = spec
 
-    val names = checkables.map(_.name).mkString(", ")
+    val values = Seq(checkable1.value(), checkable2.value())
 
-    val values = checkables.map(_.value())
-
-    Scenario(s"Making a skill roll check $names") {
+    Scenario(
+      s"Making a skill roll check ${checkable1.name} and ${checkable2.name}"
+    ) {
       Given(s"My Skill / Characteristic value is $values")
 
-      val difficulty = expected.checked.head.difficulty
+      val difficulty = expected.checked1.difficulty
       And(s"The difficulty is ${difficulty}")
 
-      val bonusDice = expected.checked.head.bonusDice
+      val bonusDice = expected.checked1.bonusDice
       And(s"The bonus dice is ${bonusDice}")
 
-      val penaltyDice = expected.checked.head.penaltyDice
+      val penaltyDice = expected.checked1.penaltyDice
       And(s"The penalty dice is ${penaltyDice}")
+
+      val bothShouldPass = if (expected.requiredAllToPass) {
+        "Both should pass"
+      } else {
+        "Only one needs to pass"
+      }
+      And(s"$bothShouldPass")
 
       When(s"I roll a ${rolled.mkString(", ")} in the hundred dice")
       val hundredSidedDice = HundredSidedDice(TestingProps.fakeRng(rolled))
@@ -51,16 +59,16 @@ trait CombinedSkillRollCheckScenario {
       )
 
       checker.check(
-        checkables,
+        checkable1,
+        checkable2,
         difficulty,
         bonusDice,
         penaltyDice,
         expected.requiredAllToPass
       ) shouldBe expected
 
-      checkables.zip(markUsedWithSuccess).foreach { case (skill, marked) =>
-        checkMarkedWithSuccess(skill) shouldBe marked
-      }
+      checkMarkedWithSuccess(checkable1) shouldBe markUsedWithSuccess(0)
+      checkMarkedWithSuccess(checkable2) shouldBe markUsedWithSuccess(1)
     }
   }
 
@@ -68,6 +76,6 @@ trait CombinedSkillRollCheckScenario {
       checkable: SkillRollCheckable[_]
   ): Boolean = {
     checkable.isInstanceOf[SkillSuccessMark] &&
-      checkable.asInstanceOf[SkillSuccessMark].wasSuccessfullyUsed
+    checkable.asInstanceOf[SkillSuccessMark].wasSuccessfullyUsed
   }
 }
