@@ -9,7 +9,8 @@ import com.rkss.rpg.coc.concepts.results._
 import com.rkss.rpg.coc.foundations.results._
 import com.rkss.rpg.coc.concepts.characteristic._
 import com.rkss.rpg.coc.concepts.skill._
-import com.rkss.rpg.coc.helpers.transforms._
+import com.rkss.rpg.coc.helpers.converters._
+
 
 final class SkillRollAction private (implicit
     val hundredSidedDice: HundredSidedDice
@@ -135,7 +136,7 @@ final class SkillRollAction private (implicit
     val opposingValue =
       opposing.value() - helpingValue
 
-    val difficulty = DifficultyTransformer.fromValue(opposingValue)
+    val difficulty = DifficultyConverter.fromValue(opposingValue)
 
     check(skill, difficulty, bonusDice, penaltyDice)
   }

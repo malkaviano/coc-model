@@ -10,7 +10,8 @@ import com.rkss.rpg.coc.foundations.actions._
 import com.rkss.rpg.coc.concepts.skill.check._
 import com.rkss.rpg.coc.behaviors.testing._
 import com.rkss.rpg.helpers.dice._
-import com.rkss.rpg.coc.helpers.transforms.DifficultyTransformer
+import com.rkss.rpg.coc.helpers.converters._
+
 
 trait SkillRollCheckScenario {
   self: AnyFeatureSpec with GivenWhenThen with Matchers =>
@@ -30,7 +31,7 @@ trait SkillRollCheckScenario {
       Given(s"My Skill / Characteristic value is ${checkable.value()}")
 
       val difficulty = opposing match {
-        case Some(value) => DifficultyTransformer.fromSkills(value)
+        case Some(value) => DifficultyConverter.fromSkills(value)
         case None        => expected.checked.difficulty
       }
       And(s"The difficulty is ${difficulty}")

@@ -28,7 +28,7 @@ final class SkillRollCheckFeature
     "And in case of success I mark my skill with a tick if no bonus dice was used"
   )
 
-  import com.rkss.rpg.coc.helpers.transforms.SkillConversion.implicits._
+  import com.rkss.rpg.coc.helpers.converters.SkillConversion.implicits._
 
   val spotHidden = skillToSkillRollCheckable(
     SkillFactory.basicSkill(SpotHidden, 30, 15)

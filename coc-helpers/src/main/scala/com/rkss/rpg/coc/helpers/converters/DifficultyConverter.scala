@@ -1,8 +1,8 @@
-package com.rkss.rpg.coc.helpers.transforms
+package com.rkss.rpg.coc.helpers.converters
 
 import com.rkss.rpg.coc.concepts.skill.roll._
 
-object DifficultyTransformer {
+object DifficultyConverter {
   def fromSkills(
       opposingSkills: SkillRollCheckable[SkillRollNaming]*
   ): SkillRollDifficultyLevel = {

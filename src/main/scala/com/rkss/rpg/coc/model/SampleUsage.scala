@@ -5,7 +5,8 @@ import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.foundations.actions._
 import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.coc.concepts.characteristic._
-import com.rkss.rpg.coc.helpers.transforms._
+import com.rkss.rpg.coc.helpers.converters._
+
 
 object SampleUsage extends App {
   import com.rkss.rpg.helpers.dice.Bag._
@@ -109,9 +110,9 @@ object SampleUsage extends App {
     sixSidedDice.roll.value
   )
 
-  import com.rkss.rpg.coc.helpers.transforms.SkillConversion.implicits._
+  import com.rkss.rpg.coc.helpers.converters.SkillConversion.implicits._
 
-  val scene3Difficulty = DifficultyTransformer.fromSkills(
+  val scene3Difficulty = DifficultyConverter.fromSkills(
    librarianPersuade,
    librarianPsychology
   )
