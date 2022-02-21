@@ -230,7 +230,9 @@ object SampleUsage extends App {
       BonusDice(0),
       PenaltyDice(0),
       rafterSize,
-      harveyStrength, cecilStrength, martinStrength
+      harveyStrength,
+      cecilStrength,
+      martinStrength
     )
 
     val sceneResult = if (result.successful) {
@@ -276,4 +278,56 @@ object SampleUsage extends App {
 
     println(scene)
   }
+
+  val malcolmCham = SkillFactory.basicSkill(
+    Charm,
+    tenSidedDice.roll.value,
+    sixSidedDice.roll.value
+  )
+
+  val hughCham = SkillFactory.basicSkill(
+    Charm,
+    tenSidedDice.roll.value,
+    sixSidedDice.roll.value
+  )
+
+  val result5 =
+    skillRollChecker.check(
+      malcolmCham,
+      BonusDice(1),
+      PenaltyDice(0),
+      hughCham,
+      BonusDice(0),
+      PenaltyDice(0)
+    )
+
+  val sceneResult5 = if (result5.attacker.successful) {
+    "Malcolm"
+  } else if (result5.defender.successful) {
+    "Hugh"
+  } else {
+    "No"
+  }
+
+  val scene5 = s"""
+  | Two rival investigators, Malcolm and Hugh,
+  | are vying for the affection of Lady Greene.
+  | Only one can gain her hand in marriage,
+  | thus the Keeper determines that an opposed roll is needed
+  | to determine the outcome of their wooing.
+  | It is decided that each should make an opposed Charm roll.
+  | The Keeper reviews the events of the scenario so far:
+  | Malcolm has visited Lady Greene twice,
+  | each time lavishing expensive gifts upon her,
+  | while Hugh has only visited once and brought no gifts at all.
+  | The Keeper states that Malcolm has an advantage
+  | and will get a bonus die in the opposed roll.
+  | Malcolm ${Charm} is ${malcolmCham.value()}
+  | Hugh ${Charm} is ${hughCham.value()}
+  | Malcolm rolled ${result5.attacker.checked.rolled.value} ${result5.attacker.checked.result}
+  | Hugh rolled ${result5.defender.checked.rolled.value} ${result5.defender.checked.result}
+  | $sceneResult5 proposal of marriage to Lady Greene is accepted.
+  """.stripMargin
+
+  println(scene5)
 }
