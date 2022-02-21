@@ -7,7 +7,6 @@ import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.coc.concepts.characteristic._
 import com.rkss.rpg.coc.helpers.converters._
 
-
 object SampleUsage extends App {
   import com.rkss.rpg.helpers.dice.Bag._
 
@@ -113,8 +112,8 @@ object SampleUsage extends App {
   import com.rkss.rpg.coc.helpers.converters.SkillConversion.implicits._
 
   val scene3Difficulty = DifficultyConverter.fromSkills(
-   librarianPersuade,
-   librarianPsychology
+    librarianPersuade,
+    librarianPsychology
   )
 
   val result3 = skillRollChecker.check(
@@ -175,6 +174,104 @@ object SampleUsage extends App {
       .value(HardDifficulty)} or below (half Harvey's STR).
     | Harvey rolled ${result.checked.rolled.value}
     | Harvey $sceneResult the back door.
+    """.stripMargin
+
+    println(scene)
+  }
+
+  val rafterSize = CharacteristicFactory.characteristic(Size, 150)
+  val cecilStrength = CharacteristicFactory.characteristic(Strength, 40)
+  val martinStrength = CharacteristicFactory.characteristic(Strength, 45)
+
+  val result4 = skillRollChecker.check(
+    martinStrength,
+    BonusDice(0),
+    PenaltyDice(0),
+    rafterSize,
+    cecilStrength
+  )
+
+  val sceneResult4 = if (result4.successful) {
+    "freed"
+  } else {
+    "failed to free"
+  }
+
+  val scene4 = s"""
+  | Cecil's fellow investigator, Rodger, is trapped beneath a fallen rafter.
+  | The Keeper rules that the rafter has a ${Size} of ${rafterSize
+    .value()}.
+  | Cecil's ${Strength} is only ${cecilStrength.value()},
+  | which is more than 100 below the rafter's ${Size},
+  | making it impossible for him to lift it on his own,
+  | according to the rule on physical human limits.
+  | Luckily, Martin (${Strength} ${martinStrength
+    .value()}) is there to help.
+  | Cecil's ${Strength} is lowest,
+  | so it is subtracted first from the rafter's ${Size},
+  | leaving the rafter's ${Size} at ${rafterSize
+    .value() - cecilStrength.value()} (${rafterSize
+    .value()}-${cecilStrength.value()}).
+  | This is over 90, but less than 100 points above Martin's ${Strength},
+  | so he can attempt a skill roll to move the rafter, requiring an Extreme success.
+  | Martin rolled ${result4.checked.rolled.value}
+  | Martin $sceneResult4 Rodger
+  """.stripMargin
+
+  println(scene4)
+
+  if (!result4.successful) {
+    val harveyStrength = CharacteristicFactory.characteristic(Strength, 20)
+    val helenStrength = CharacteristicFactory.characteristic(Strength, 60)
+    val belindaStrength = CharacteristicFactory.characteristic(Strength, 75)
+
+    val result = skillRollChecker.check(
+      belindaStrength,
+      BonusDice(0),
+      PenaltyDice(0),
+      rafterSize,
+      harveyStrength, cecilStrength, martinStrength
+    )
+
+    val sceneResult = if (result.successful) {
+      "freed"
+    } else {
+      "trapped"
+    }
+
+    val scene = s"""
+    | Cecil has ${Strength} ${cecilStrength
+      .value()}; the most he can attempt to lift is ${Size} ${cecilStrength
+      .value() + 100}.
+    | Martin has ${Strength} ${martinStrength
+      .value()}; the most he can attempt to lift is ${Size} ${martinStrength
+      .value() + 100}.
+    | At that moment the rest of the group arrive.
+    | There are now five investigators attempting to lift the rafter:
+    | Cecil (${Strength} ${cecilStrength.value()}),
+    | Harvey (${Strength} ${harveyStrength.value()}),
+    | Martin (${Strength} ${martinStrength.value()}),
+    | Helen (${Strength} ${helenStrength.value()})
+    | and Belinda (${Strength} ${belindaStrength.value()}).
+    | Harvey has ${Strength} ${harveyStrength.value()};
+    | the most he can attempt to lift is ${Size} ${harveyStrength
+      .value() + 100}.
+    | Helen has ${Strength} ${helenStrength.value()};
+    | the most she can attempt to lift is ${Size} 160.
+    | Belinda has ${Strength} ${belindaStrength.value() + 100};
+    | the most she can attempt to lift is ${Size} ${belindaStrength
+      .value() + 100}.
+    | Subtracting Harvey's ${Strength} from the rafter leaves ${Size} 130;
+    | deducting Cecil's ${Strength} then leaves ${Size} 90;
+    | finally, subtracting Martin's ${Strength} leaves ${Size} 45.
+    | This has reduced the difficulty level to ${result.checked.difficulty}.
+    | The Keeper rules that they can all lay hands on the rafter and attempt the lift,
+    | but since one attempt has already been made,
+    | that this will constitute a pushed skill roll.
+    | Neither Helen's nor Belinda's ${Strength} have been factored in yet,
+    | so they are both able to attempt the pushed skill roll to lift the rafter.
+    | Belinda rolls ${result.checked.rolled.value}
+    | Rodger is $sceneResult.
     """.stripMargin
 
     println(scene)

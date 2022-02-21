@@ -129,7 +129,7 @@ final class SkillRollAction private (implicit
       bonusDice: BonusDice,
       penaltyDice: PenaltyDice,
       opposing: Characteristic[B],
-      helping: Seq[Characteristic[A]]
+      helping: Characteristic[A]*
   ): SkillRollChecked[A] = {
     val helpingValue = helping.foldLeft(0)((acc, char) => acc + char.value())
 
