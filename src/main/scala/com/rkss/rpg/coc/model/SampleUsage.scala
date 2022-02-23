@@ -6,6 +6,7 @@ import com.rkss.rpg.coc.foundations.actions._
 import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.coc.concepts.characteristic._
 import com.rkss.rpg.coc.helpers.converters._
+import com.rkss.rpg.coc.concepts.skill.improvement._
 
 object SampleUsage extends App {
   import com.rkss.rpg.helpers.dice.Bag._
@@ -17,6 +18,7 @@ object SampleUsage extends App {
     tenSidedDice.roll.value,
     sixSidedDice.roll.value
   )
+
   val harveyPsychology = SkillFactory.basicSkill(
     Psychology,
     tenSidedDice.roll.value,
@@ -330,4 +332,34 @@ object SampleUsage extends App {
   """.stripMargin
 
   println(scene5)
+
+  val developmentPhaseResults = s"""
+  | A game has finished after a couple of sessions of play,
+  | and Harvey has checks against several skills.
+  | ${developmentPhase(harveyPsychology)}
+  | ${developmentPhase(harveyElectricalRepair)}
+  | ${developmentPhase(harveyMechanicalRepair)}
+  | ${developmentPhase(harveyPersuade)}
+  """.stripMargin
+
+  println(developmentPhaseResults)
+
+  def developmentPhase[A <: ImprovableSkillName](skill: SkillImprovable[A]): String = {
+    skill.improvementCheck match {
+    case SkillImproved(
+          name,
+          value,
+          improvement,
+          Some(diceRolled),
+          isSanityGainEligible
+        ) => s"${name}(${value}) improved by ${improvement} with a roll of ${diceRolled.value}"
+    case SkillImproved(
+          name,
+          value,
+          improvement,
+          None,
+          isSanityGainEligible
+        ) => s"${name}(${value}) was not used with success"
+  }
+  }
 }
