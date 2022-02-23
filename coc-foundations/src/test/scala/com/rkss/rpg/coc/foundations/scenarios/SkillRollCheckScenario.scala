@@ -10,14 +10,15 @@ import com.rkss.rpg.coc.foundations.actions._
 import com.rkss.rpg.coc.concepts.skill.check._
 import com.rkss.rpg.coc.behaviors.testing._
 import com.rkss.rpg.helpers.dice._
+import com.rkss.rpg.coc.helpers.converters._
+
 
 trait SkillRollCheckScenario {
   self: AnyFeatureSpec with GivenWhenThen with Matchers =>
 
-  def makingASkillRollCheck[A <: SkillRollNaming, B <: SkillRollNaming](
-      spec: SkillRollCheckSpec[A, B]
+  def makingASkillRollCheck[A <: SkillRollNaming](
+      spec: SkillRollCheckSpec[A]
   ): Unit = {
-
     val SkillRollCheckSpec(
       checkable,
       rolled,
@@ -29,7 +30,10 @@ trait SkillRollCheckScenario {
     Scenario(s"Making a skill roll check ${checkable.name}") {
       Given(s"My Skill / Characteristic value is ${checkable.value()}")
 
-      val difficulty = expected.checked.difficulty
+      val difficulty = opposing match {
+        case Some(value) => DifficultyConverter.fromSkills(value)
+        case None        => expected.checked.difficulty
+      }
       And(s"The difficulty is ${difficulty}")
 
       val bonusDice = expected.checked.bonusDice
@@ -47,22 +51,12 @@ trait SkillRollCheckScenario {
         hundredSidedDice
       )
 
-      val result = opposing match {
-        case Some(value) =>
-          checker.check(
-            checkable,
-            bonusDice,
-            penaltyDice,
-            value
-          )
-        case None =>
-          checker.check(
-            checkable,
-            difficulty,
-            bonusDice,
-            penaltyDice
-          )
-      }
+      val result = checker.check(
+        checkable,
+        difficulty,
+        bonusDice,
+        penaltyDice
+      )
 
       result shouldBe expected
 

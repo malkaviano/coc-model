@@ -59,7 +59,7 @@ trait AidedSkillRollCheckScenario {
         bonusDice,
         penaltyDice,
         opposing,
-        helping
+        helping:_*
       )
 
       result shouldBe expected

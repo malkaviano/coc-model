@@ -9,6 +9,8 @@ import com.rkss.rpg.coc.concepts.results._
 import com.rkss.rpg.coc.foundations.results._
 import com.rkss.rpg.coc.concepts.characteristic._
 import com.rkss.rpg.coc.concepts.skill._
+import com.rkss.rpg.coc.helpers.converters._
+
 
 final class SkillRollAction private (implicit
     val hundredSidedDice: HundredSidedDice
@@ -23,14 +25,6 @@ final class SkillRollAction private (implicit
         .isInstanceOf[SkillSuccessMarkable]
     ) {
       skill.asInstanceOf[SkillSuccessMarkable].markUsedWithSuccess()
-    }
-  }
-
-  private def difficultyValue(opposingValue: Int) = {
-    opposingValue match {
-      case x if x < 50 => RegularDifficulty
-      case x if x < 90 => HardDifficulty
-      case _           => ExtremeDifficulty
     }
   }
 
@@ -127,26 +121,6 @@ final class SkillRollAction private (implicit
     )
   }
 
-  def check[A <: SkillRollNaming, B <: SkillRollNaming](
-      skill: SkillRollCheckable[A],
-      bonusDice: BonusDice,
-      penaltyDice: PenaltyDice,
-      opposing: SkillRollCheckable[B]
-  ): SkillRollChecked[A] = {
-    val opposingValue =
-      opposing.value()
-
-    val difficulty = difficultyValue(opposingValue)
-
-    val SkillRollChecked(successful, checked) =
-      check(skill, difficulty, bonusDice, penaltyDice)
-
-    SkillRollChecked(
-      successful,
-      checked
-    )
-  }
-
   def check[
       A <: PhysicalCharacteristicName,
       B <: PhysicalCharacteristicName
@@ -155,22 +129,16 @@ final class SkillRollAction private (implicit
       bonusDice: BonusDice,
       penaltyDice: PenaltyDice,
       opposing: Characteristic[B],
-      helping: Seq[Characteristic[A]]
+      helping: Characteristic[A]*
   ): SkillRollChecked[A] = {
     val helpingValue = helping.foldLeft(0)((acc, char) => acc + char.value())
 
     val opposingValue =
       opposing.value() - helpingValue
 
-    val difficulty = difficultyValue(opposingValue)
+    val difficulty = DifficultyConverter.fromValue(opposingValue)
 
-    val SkillRollChecked(successful, checked) =
-      check(skill, difficulty, bonusDice, penaltyDice)
-
-    SkillRollChecked(
-      successful,
-      checked
-    )
+    check(skill, difficulty, bonusDice, penaltyDice)
   }
 
   @tailrec
