@@ -1,4 +1,4 @@
-package com.rkss.rpg.coc.fundamentals
+package com.rkss.rpg.coc.fundamentals.attributes
 
 import com.rkss.rpg.coc.concepts.characteristic._
 import com.rkss.rpg.coc.concepts.attributes._

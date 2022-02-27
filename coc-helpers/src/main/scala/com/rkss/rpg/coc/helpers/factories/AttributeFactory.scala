@@ -8,7 +8,6 @@ import com.rkss.rpg.coc.concepts.attributes.sanity._
 import com.rkss.rpg.coc.concepts.attributes.luck._
 import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.concepts.attributes._
-import com.rkss.rpg.coc.fundamentals.BuildImpl
 
 object AttributeFactory {
   def createLuck(value: Int): Luck = {
