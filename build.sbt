@@ -1,6 +1,6 @@
 import Dependencies._
 
-ThisBuild / scalaVersion := "2.13.7"
+ThisBuild / scalaVersion := "2.13.8"
 ThisBuild / version := "0.1.0-SNAPSHOT"
 ThisBuild / organization := "com.github.malkaviano"
 ThisBuild / organizationName := "rkss"
@@ -42,7 +42,13 @@ lazy val root = (project in file("."))
 
 lazy val concepts = (project in file("coc-concepts"))
   .settings(
-    name := "coc-concepts"
+    name := "coc-concepts",
+    libraryDependencies ++= Seq(
+      scalaTest % Test,
+      scalaTestPlus % Test,
+      scalaMock % Test,
+      "org.scala-lang" % "scala-reflect" % scalaVersion.value
+    )
   )
 
 lazy val behaviors = (project in file("coc-behaviors"))
