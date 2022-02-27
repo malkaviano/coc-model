@@ -3,7 +3,7 @@ package com.rkss.rpg.coc.foundations.actions
 import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.coc.foundations.results._
 
-final case class CombinedSkillRollCheckSpec(
+final case class CombinedSkillRollCheckSpecification(
   checkable1: SkillRollCheckable[SkillRollNaming],
   checkable2: SkillRollCheckable[SkillRollNaming],
   rolled: Seq[Int],

@@ -26,7 +26,7 @@ final class AidedSkillRollCheckFeature
   )
 
   Seq(
-    AidedSkillRollCheckSpec(
+    AidedSkillRollCheckSpecification(
       CharacteristicFactory.characteristic(Strength, 70),
       Seq(10),
       SkillRollChecked(

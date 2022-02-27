@@ -3,7 +3,7 @@ package com.rkss.rpg.coc.foundations.actions
 import com.rkss.rpg.coc.foundations.results._
 import com.rkss.rpg.coc.concepts.characteristic._
 
-final case class AidedSkillRollCheckSpec[
+final case class AidedSkillRollCheckSpecification[
     A <: PhysicalCharacteristicName,
     B <: PhysicalCharacteristicName
 ](

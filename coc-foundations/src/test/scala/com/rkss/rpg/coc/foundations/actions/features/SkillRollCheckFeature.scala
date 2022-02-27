@@ -33,7 +33,7 @@ final class SkillRollCheckFeature
   )
 
   Seq(
-    SkillRollCheckSpec(
+    SkillRollCheckSpecification(
       SkillFactory.basicSkill(ComputerUse, 10, 5),
       Seq(10, 5),
       SkillRollChecked(
@@ -50,7 +50,7 @@ final class SkillRollCheckFeature
       ),
       true
     ),
-    SkillRollCheckSpec(
+    SkillRollCheckSpecification(
       CharacteristicFactory.characteristic(Strength, 50),
       Seq(10, 40),
       SkillRollChecked(
@@ -67,7 +67,7 @@ final class SkillRollCheckFeature
       ),
       false
     ),
-    SkillRollCheckSpec(
+    SkillRollCheckSpecification(
       SkillFactory.combatSkill(Brawl, 10, 5),
       Seq(1, 15),
       SkillRollChecked(
@@ -84,7 +84,7 @@ final class SkillRollCheckFeature
       ),
       false
     ),
-    SkillRollCheckSpec(
+    SkillRollCheckSpecification(
       SkillFactory.languageOtherSkill(RussianLanguage, 10, 5),
       Seq(40, 80),
       SkillRollChecked(
@@ -101,7 +101,7 @@ final class SkillRollCheckFeature
       ),
       false
     ),
-    SkillRollCheckSpec(
+    SkillRollCheckSpecification(
       SkillFactory.basicSkill(ReadLips, 10, 5),
       Seq(40),
       SkillRollChecked(

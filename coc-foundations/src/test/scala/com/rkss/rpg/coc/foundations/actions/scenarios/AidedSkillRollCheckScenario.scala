@@ -16,10 +16,10 @@ trait AidedSkillRollCheckScenario {
       A <: PhysicalCharacteristicName,
       B <: PhysicalCharacteristicName
   ](
-      spec: AidedSkillRollCheckSpec[A, B]
+      spec: AidedSkillRollCheckSpecification[A, B]
   ): Unit = {
 
-    val AidedSkillRollCheckSpec(
+    val AidedSkillRollCheckSpecification(
       checkable,
       rolled,
       expected,

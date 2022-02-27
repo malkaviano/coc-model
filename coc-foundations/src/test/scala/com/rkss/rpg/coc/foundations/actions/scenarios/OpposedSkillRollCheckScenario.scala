@@ -14,10 +14,10 @@ trait OpposedSkillRollCheckScenario {
   self: AnyFeatureSpec with GivenWhenThen with Matchers =>
 
   def makingAnOpposedSkillRollCheck[A <: SkillRollNaming, B <: SkillRollNaming](
-      spec: OpposedSkillRollCheckSpec[A, B]
+      spec: OpposedSkillRollCheckSpecification[A, B]
   ): Unit = {
 
-    val OpposedSkillRollCheckSpec(
+    val OpposedSkillRollCheckSpecification(
       attacker,
       defender,
       attackerRolled,

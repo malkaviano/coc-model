@@ -16,9 +16,9 @@ trait SkillRollCheckScenario {
   self: AnyFeatureSpec with GivenWhenThen with Matchers =>
 
   def makingASkillRollCheck[A <: SkillRollNaming](
-      spec: SkillRollCheckSpec[A]
+      spec: SkillRollCheckSpecification[A]
   ): Unit = {
-    val SkillRollCheckSpec(
+    val SkillRollCheckSpecification(
       checkable,
       rolled,
       expected,

@@ -46,7 +46,7 @@ final class CombinedSkillRollCheckFeature
       .basicSkill(Intimidate, 0, 0)
 
   Seq(
-    CombinedSkillRollCheckSpec(
+    CombinedSkillRollCheckSpecification(
       computerUse,
       mathematics,
       Seq(10),
@@ -74,7 +74,7 @@ final class CombinedSkillRollCheckFeature
       ),
       Seq(true, true)
     ),
-    CombinedSkillRollCheckSpec(
+    CombinedSkillRollCheckSpecification(
       education,
       intimidate,
       Seq(100),

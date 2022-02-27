@@ -14,10 +14,10 @@ trait CombinedSkillRollCheckScenario {
   self: AnyFeatureSpec with GivenWhenThen with Matchers =>
 
   def makingACombinedSkillRollCheck(
-      spec: CombinedSkillRollCheckSpec
+      spec: CombinedSkillRollCheckSpecification
   ): Unit = {
 
-    val CombinedSkillRollCheckSpec(
+    val CombinedSkillRollCheckSpecification(
       checkable1,
       checkable2,
       rolled,
