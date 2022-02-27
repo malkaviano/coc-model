@@ -1,4 +1,4 @@
-package com.rkss.rpg.coc.foundations.specifications
+package com.rkss.rpg.coc.foundations.actions
 
 import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.coc.foundations.results._

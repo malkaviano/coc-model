@@ -1,11 +1,9 @@
-package com.rkss.rpg.coc.foundations.features
+package com.rkss.rpg.coc.foundations.actions
 
 import org.scalatest.featurespec.AnyFeatureSpec
 import org.scalatest.GivenWhenThen
 import org.scalatest.matchers.should.Matchers
 
-import com.rkss.rpg.coc.foundations.scenarios._
-import com.rkss.rpg.coc.foundations.specifications._
 import com.rkss.rpg.coc.helpers.factories._
 import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.concepts.characteristic._

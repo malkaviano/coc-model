@@ -1,4 +1,4 @@
-package com.rkss.rpg.coc.foundations.features
+package com.rkss.rpg.coc.foundations.actions
 
 import org.scalatest.featurespec.AnyFeatureSpec
 import org.scalatest.GivenWhenThen
@@ -9,8 +9,6 @@ import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.coc.concepts.results._
 import com.rkss.rpg.coc.foundations.results._
-import com.rkss.rpg.coc.foundations.specifications._
-import com.rkss.rpg.coc.foundations.scenarios._
 import com.rkss.rpg.coc.concepts.characteristic.Strength
 
 final class SkillRollCheckFeature
