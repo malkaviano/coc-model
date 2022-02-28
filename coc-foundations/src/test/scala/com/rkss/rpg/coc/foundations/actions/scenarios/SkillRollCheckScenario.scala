@@ -6,13 +6,11 @@ import org.scalatest.matchers.should.Matchers
 
 import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.coc.foundations.actions._
-import com.rkss.rpg.coc.concepts.skill.check._
 import com.rkss.rpg.coc.behaviors.testing._
 import com.rkss.rpg.helpers.dice._
 import com.rkss.rpg.coc.helpers.converters._
 
-
-trait SkillRollCheckScenario {
+trait SkillRollCheckScenario extends MarkedWithSuccessScenario {
   self: AnyFeatureSpec with GivenWhenThen with Matchers =>
 
   def makingASkillRollCheck[A <: SkillRollNaming](
@@ -61,12 +59,5 @@ trait SkillRollCheckScenario {
 
       checkMarkedWithSuccess(checkable) shouldBe markUsedWithSuccess
     }
-  }
-
-  private def checkMarkedWithSuccess(
-      checkable: SkillRollCheckable[_]
-  ): Boolean = {
-    checkable.isInstanceOf[SkillSuccessMark] &&
-    checkable.asInstanceOf[SkillSuccessMark].wasSuccessfullyUsed
   }
 }
