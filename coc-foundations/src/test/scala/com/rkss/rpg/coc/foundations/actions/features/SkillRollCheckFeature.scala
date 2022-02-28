@@ -26,12 +26,6 @@ final class SkillRollCheckFeature
     "And in case of success I mark my skill with a tick if no bonus dice was used"
   )
 
-  import com.rkss.rpg.coc.helpers.converters.SkillConversion.implicits._
-
-  val spotHidden = skillToSkillRollCheckable(
-    SkillFactory.basicSkill(SpotHidden, 30, 15)
-  )
-
   Seq(
     SkillRollCheckSpecification(
       SkillFactory.basicSkill(ComputerUse, 10, 5),
@@ -117,7 +111,7 @@ final class SkillRollCheckFeature
         )
       ),
       false,
-      Some(spotHidden)
+      Some(SkillFactory.basicSkill(SpotHidden, 30, 15))
     )
   ).foreach(spec => ScenariosFor(makingASkillRollCheck(spec)))
 }

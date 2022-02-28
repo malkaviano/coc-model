@@ -29,8 +29,6 @@ final class CombinedSkillRollCheckFeature
     "And in case of success I mark the skills that succeeded with a tick if no bonus dice was used"
   )
 
-  import com.rkss.rpg.coc.helpers.converters.SkillConversion.implicits._
-
   val computerUse = SkillFactory
     .basicSkill(ComputerUse, 10, 5)
 
