@@ -1,24 +1,22 @@
-package com.rkss.rpg.coc.foundations.scenarios
+package com.rkss.rpg.coc.foundations.actions
 
 import org.scalatest.featurespec.AnyFeatureSpec
 import org.scalatest.GivenWhenThen
 import org.scalatest.matchers.should.Matchers
 
 import com.rkss.rpg.coc.concepts.skill.roll._
-import com.rkss.rpg.coc.foundations.specifications._
 import com.rkss.rpg.helpers.dice._
 import com.rkss.rpg.coc.behaviors.testing._
 import com.rkss.rpg.coc.foundations.actions._
-import com.rkss.rpg.coc.concepts.skill.check._
 
-trait OpposedSkillRollCheckScenario {
+trait OpposedSkillRollCheckScenario extends MarkedWithSuccessScenario {
   self: AnyFeatureSpec with GivenWhenThen with Matchers =>
 
   def makingAnOpposedSkillRollCheck[A <: SkillRollNaming, B <: SkillRollNaming](
-      spec: OpposedSkillRollCheckSpec[A, B]
+      spec: OpposedSkillRollCheckSpecification[A, B]
   ): Unit = {
 
-    val OpposedSkillRollCheckSpec(
+    val OpposedSkillRollCheckSpecification(
       attacker,
       defender,
       attackerRolled,
@@ -28,7 +26,9 @@ trait OpposedSkillRollCheckScenario {
       defenderMarkUsedWithSuccess
     ) = spec
 
-    Scenario(s"Making an opposed skill roll check ${attacker.name} x ${defender.name}") {
+    Scenario(
+      s"Making an opposed skill roll check ${attacker.name} x ${defender.name}"
+    ) {
       Given(s"Attacker Skill / Characteristic value is ${attacker.value()}")
 
       Given(s"Defender Skill / Characteristic value is ${defender.value()}")
@@ -76,12 +76,5 @@ trait OpposedSkillRollCheckScenario {
 
       checkMarkedWithSuccess(defender) shouldBe defenderMarkUsedWithSuccess
     }
-  }
-
-  private def checkMarkedWithSuccess(
-      checkable: SkillRollCheckable[_]
-  ): Boolean = {
-    checkable.isInstanceOf[SkillSuccessMark] &&
-    checkable.asInstanceOf[SkillSuccessMark].wasSuccessfullyUsed
   }
 }

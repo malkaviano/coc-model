@@ -1,11 +1,9 @@
-package com.rkss.rpg.coc.foundations.features
+package com.rkss.rpg.coc.foundations.actions
 
 import org.scalatest.featurespec.AnyFeatureSpec
 import org.scalatest.GivenWhenThen
 import org.scalatest.matchers.should.Matchers
 
-import com.rkss.rpg.coc.foundations.specifications._
-import com.rkss.rpg.coc.foundations.scenarios._
 import com.rkss.rpg.coc.helpers.factories._
 import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.foundations.results._
@@ -31,8 +29,6 @@ final class CombinedSkillRollCheckFeature
     "And in case of success I mark the skills that succeeded with a tick if no bonus dice was used"
   )
 
-  import com.rkss.rpg.coc.helpers.converters.SkillConversion.implicits._
-
   val computerUse = SkillFactory
     .basicSkill(ComputerUse, 10, 5)
 
@@ -48,7 +44,7 @@ final class CombinedSkillRollCheckFeature
       .basicSkill(Intimidate, 0, 0)
 
   Seq(
-    CombinedSkillRollCheckSpec(
+    CombinedSkillRollCheckSpecification(
       computerUse,
       mathematics,
       Seq(10),
@@ -76,7 +72,7 @@ final class CombinedSkillRollCheckFeature
       ),
       Seq(true, true)
     ),
-    CombinedSkillRollCheckSpec(
+    CombinedSkillRollCheckSpecification(
       education,
       intimidate,
       Seq(100),

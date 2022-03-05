@@ -1,11 +1,9 @@
-package com.rkss.rpg.coc.foundations.features
+package com.rkss.rpg.coc.foundations.actions
 
 import org.scalatest.featurespec.AnyFeatureSpec
 import org.scalatest.GivenWhenThen
 import org.scalatest.matchers.should.Matchers
 
-import com.rkss.rpg.coc.foundations.scenarios._
-import com.rkss.rpg.coc.foundations.specifications._
 import com.rkss.rpg.coc.helpers.factories._
 import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.concepts.characteristic._
@@ -32,7 +30,7 @@ final class OpposedSkillRollCheckFeature
   info("The side that succeeded marks ticks the skill used")
 
   Seq(
-    OpposedSkillRollCheckSpec(
+    OpposedSkillRollCheckSpecification(
       SkillFactory.combatSkill(Chainsaw, 10, 5),
       SkillFactory.dodgeSkill(
         CharacteristicFactory.characteristic(Dexterity, 50),
@@ -70,7 +68,7 @@ final class OpposedSkillRollCheckFeature
       false,
       false
     ),
-    OpposedSkillRollCheckSpec(
+    OpposedSkillRollCheckSpecification(
       SkillFactory.combatSkill(Sword, 10, 5),
       SkillFactory.dodgeSkill(
         CharacteristicFactory.characteristic(Dexterity, 50),
@@ -108,7 +106,7 @@ final class OpposedSkillRollCheckFeature
       false,
       true
     ),
-    OpposedSkillRollCheckSpec(
+    OpposedSkillRollCheckSpecification(
       SkillFactory.combatSkill(Brawl, 10, 5),
       SkillFactory.dodgeSkill(
         CharacteristicFactory.characteristic(Dexterity, 50),
@@ -146,7 +144,7 @@ final class OpposedSkillRollCheckFeature
       false,
       false
     ),
-    OpposedSkillRollCheckSpec(
+    OpposedSkillRollCheckSpecification(
       SkillFactory.combatSkill(Sword, 10, 5),
       SkillFactory.combatSkill(Brawl, 10, 5),
       Seq(15),
@@ -180,7 +178,7 @@ final class OpposedSkillRollCheckFeature
       true,
       false
     ),
-    OpposedSkillRollCheckSpec(
+    OpposedSkillRollCheckSpecification(
       SkillFactory.basicSkill(Charm, 10, 5),
       SkillFactory.languageOtherSkill(SpanishLanguage, 14, 10),
       Seq(20),
@@ -214,7 +212,7 @@ final class OpposedSkillRollCheckFeature
       true,
       false
     ),
-    OpposedSkillRollCheckSpec(
+    OpposedSkillRollCheckSpecification(
       SkillFactory.languageOtherSkill(EnglishLanguage, 14, 10),
       SkillFactory.languageOtherSkill(EnglishLanguage, 14, 10),
       /*

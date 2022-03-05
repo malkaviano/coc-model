@@ -29,8 +29,6 @@ class DifficultyConverterSpec extends AnyFunSpec with Matchers {
     val computerUse = SkillFactory.basicSkill(ComputerUse, 0, 0)
     val charm = SkillFactory.basicSkill(Charm, 50, 40)
 
-    import com.rkss.rpg.coc.helpers.converters.SkillConversion.implicits._
-
     it should behave like fromSkills(HardDifficulty, computerUse, strength)
     it should behave like fromSkills(ExtremeDifficulty, computerUse, charm)
     it should behave like fromSkills(RegularDifficulty, computerUse)

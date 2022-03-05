@@ -7,7 +7,6 @@ import com.rkss.rpg.coc.fundamentals.attributes._
 import com.rkss.rpg.helpers.dice._
 import com.rkss.rpg.coc.behaviors.testing._
 import com.rkss.rpg.coc.concepts.characteristic._
-import com.rkss.rpg.coc.fundamentals.BuildImpl
 
 final class AttributeFactorySpec extends AnyFunSpec with Matchers {
   describe("Attribute Factory") {

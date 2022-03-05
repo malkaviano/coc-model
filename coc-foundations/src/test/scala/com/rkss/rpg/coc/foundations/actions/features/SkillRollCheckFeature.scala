@@ -1,4 +1,4 @@
-package com.rkss.rpg.coc.foundations.features
+package com.rkss.rpg.coc.foundations.actions
 
 import org.scalatest.featurespec.AnyFeatureSpec
 import org.scalatest.GivenWhenThen
@@ -9,8 +9,6 @@ import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.coc.concepts.results._
 import com.rkss.rpg.coc.foundations.results._
-import com.rkss.rpg.coc.foundations.specifications._
-import com.rkss.rpg.coc.foundations.scenarios._
 import com.rkss.rpg.coc.concepts.characteristic.Strength
 
 final class SkillRollCheckFeature
@@ -28,14 +26,8 @@ final class SkillRollCheckFeature
     "And in case of success I mark my skill with a tick if no bonus dice was used"
   )
 
-  import com.rkss.rpg.coc.helpers.converters.SkillConversion.implicits._
-
-  val spotHidden = skillToSkillRollCheckable(
-    SkillFactory.basicSkill(SpotHidden, 30, 15)
-  )
-
   Seq(
-    SkillRollCheckSpec(
+    SkillRollCheckSpecification(
       SkillFactory.basicSkill(ComputerUse, 10, 5),
       Seq(10, 5),
       SkillRollChecked(
@@ -52,7 +44,7 @@ final class SkillRollCheckFeature
       ),
       true
     ),
-    SkillRollCheckSpec(
+    SkillRollCheckSpecification(
       CharacteristicFactory.characteristic(Strength, 50),
       Seq(10, 40),
       SkillRollChecked(
@@ -69,7 +61,7 @@ final class SkillRollCheckFeature
       ),
       false
     ),
-    SkillRollCheckSpec(
+    SkillRollCheckSpecification(
       SkillFactory.combatSkill(Brawl, 10, 5),
       Seq(1, 15),
       SkillRollChecked(
@@ -86,7 +78,7 @@ final class SkillRollCheckFeature
       ),
       false
     ),
-    SkillRollCheckSpec(
+    SkillRollCheckSpecification(
       SkillFactory.languageOtherSkill(RussianLanguage, 10, 5),
       Seq(40, 80),
       SkillRollChecked(
@@ -103,7 +95,7 @@ final class SkillRollCheckFeature
       ),
       false
     ),
-    SkillRollCheckSpec(
+    SkillRollCheckSpecification(
       SkillFactory.basicSkill(ReadLips, 10, 5),
       Seq(40),
       SkillRollChecked(
@@ -119,7 +111,7 @@ final class SkillRollCheckFeature
         )
       ),
       false,
-      Some(spotHidden)
+      Some(SkillFactory.basicSkill(SpotHidden, 30, 15))
     )
   ).foreach(spec => ScenariosFor(makingASkillRollCheck(spec)))
 }

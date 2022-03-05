@@ -111,8 +111,6 @@ object SampleUsage extends App {
     sixSidedDice.roll.value
   )
 
-  import com.rkss.rpg.coc.helpers.converters.SkillConversion.implicits._
-
   val scene3Difficulty = DifficultyConverter.fromSkills(
     librarianPersuade,
     librarianPsychology
@@ -281,13 +279,13 @@ object SampleUsage extends App {
     println(scene)
   }
 
-  val malcolmCham = SkillFactory.basicSkill(
+  val malcolmCharm = SkillFactory.basicSkill(
     Charm,
     tenSidedDice.roll.value,
     sixSidedDice.roll.value
   )
 
-  val hughCham = SkillFactory.basicSkill(
+  val hughCharm = SkillFactory.basicSkill(
     Charm,
     tenSidedDice.roll.value,
     sixSidedDice.roll.value
@@ -295,10 +293,10 @@ object SampleUsage extends App {
 
   val result5 =
     skillRollChecker.check(
-      malcolmCham,
+      malcolmCharm,
       BonusDice(1),
       PenaltyDice(0),
-      hughCham,
+      hughCharm,
       BonusDice(0),
       PenaltyDice(0)
     )
@@ -324,8 +322,8 @@ object SampleUsage extends App {
   | while Hugh has only visited once and brought no gifts at all.
   | The Keeper states that Malcolm has an advantage
   | and will get a bonus die in the opposed roll.
-  | Malcolm ${Charm} is ${malcolmCham.value()}
-  | Hugh ${Charm} is ${hughCham.value()}
+  | Malcolm ${Charm} is ${malcolmCharm.value()}
+  | Hugh ${Charm} is ${hughCharm.value()}
   | Malcolm rolled ${result5.attacker.checked.rolled.value} ${result5.attacker.checked.result}
   | Hugh rolled ${result5.defender.checked.rolled.value} ${result5.defender.checked.result}
   | $sceneResult5 proposal of marriage to Lady Greene is accepted.
@@ -344,22 +342,26 @@ object SampleUsage extends App {
 
   println(developmentPhaseResults)
 
-  def developmentPhase[A <: ImprovableSkillName](skill: SkillImprovable[A]): String = {
+  def developmentPhase[A <: ImprovableSkillName](
+      skill: SkillImprovable[A]
+  ): String = {
     skill.improvementCheck match {
-    case SkillImproved(
-          name,
-          value,
-          improvement,
-          Some(diceRolled),
-          isSanityGainEligible
-        ) => s"${name}(${value}) improved by ${improvement} with a roll of ${diceRolled.value}"
-    case SkillImproved(
-          name,
-          value,
-          improvement,
-          None,
-          isSanityGainEligible
-        ) => s"${name}(${value}) was not used with success"
-  }
+      case SkillImproved(
+            name,
+            value,
+            improvement,
+            Some(diceRolled),
+            isSanityGainEligible
+          ) =>
+        s"${name}(${value}) improved by ${improvement} with a roll of ${diceRolled.value}"
+      case SkillImproved(
+            name,
+            value,
+            improvement,
+            None,
+            isSanityGainEligible
+          ) =>
+        s"${name}(${value}) was not used with success"
+    }
   }
 }
