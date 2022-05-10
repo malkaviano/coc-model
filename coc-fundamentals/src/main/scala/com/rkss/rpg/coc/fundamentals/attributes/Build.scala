@@ -3,10 +3,10 @@ package com.rkss.rpg.coc.fundamentals.attributes
 import com.rkss.rpg.coc.concepts.characteristic._
 import com.rkss.rpg.coc.concepts.attributes._
 
-final case class BuildImpl(
+final case class Build(
     private val strength: Characteristic[Strength.type],
     private val size: Characteristic[Size.type]
-) extends Build {
+) extends AttributeWithCurrentValue {
   override def current: Int = {
     strength.value() + size.value() match {
       case x if x < 65  => -2

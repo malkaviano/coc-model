@@ -4,9 +4,11 @@ import com.rkss.rpg.coc.concepts.attributes._
 import com.rkss.rpg.coc.behaviors.attributes._
 import com.rkss.rpg.coc.concepts.characteristic._
 
-final case class MagicPointsImpl(
+final case class InvestigatorMagicPoints(
     private val power: Characteristic[Power.type]
-) extends MagicPoints
+) extends DerivedAttribute[MagicPointsAttribute.type]
+    with AttributeWithCurrentValue
+    with AttributeWithMaximumValue
     with AttributeWithValueChangeBehavior[MagicPointsAttribute.type] {
 
   override def initial: Int = power.value() / 5

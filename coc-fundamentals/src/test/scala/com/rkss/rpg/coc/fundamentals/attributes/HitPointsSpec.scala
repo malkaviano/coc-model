@@ -7,14 +7,14 @@ import com.rkss.rpg.coc.concepts.internal._
 import com.rkss.rpg.coc.concepts.characteristic._
 import com.rkss.rpg.coc.fundamentals.characteristics._
 
-final class InvestigatorHitPointsSpec extends AnyFunSpec with Matchers {
+final class HitPointsSpec extends AnyFunSpec with Matchers {
   describe("Hit Points Behavior") {
     describe("Current value") {
       it(s"should be 8") {
         val size = PrimaryCharacteristic(Size, 40)
         val constitution = PrimaryCharacteristic(Constitution, 40)
 
-        val hp = HitPointsImpl(size, constitution)
+        val hp = HitPoints(size, constitution)
 
         hp.current shouldBe 8
       }
@@ -24,7 +24,7 @@ final class InvestigatorHitPointsSpec extends AnyFunSpec with Matchers {
           val size = PrimaryCharacteristic(Size, 40)
           val constitution = PrimaryCharacteristic(Constitution, 40)
 
-          val hp = HitPointsImpl(size, constitution)
+          val hp = HitPoints(size, constitution)
 
           constitution.modify(ValueModification(Constitution, -20))
 
@@ -38,7 +38,7 @@ final class InvestigatorHitPointsSpec extends AnyFunSpec with Matchers {
         val size = PrimaryCharacteristic(Size, 40)
         val constitution = PrimaryCharacteristic(Constitution, 40)
 
-        val hp = HitPointsImpl(size, constitution)
+        val hp = HitPoints(size, constitution)
 
         hp.maximum shouldBe 8
       }
@@ -48,7 +48,7 @@ final class InvestigatorHitPointsSpec extends AnyFunSpec with Matchers {
           val size = PrimaryCharacteristic(Size, 40)
           val constitution = PrimaryCharacteristic(Constitution, 40)
 
-          val hp = HitPointsImpl(size, constitution)
+          val hp = HitPoints(size, constitution)
 
           constitution.modify(ValueModification(Constitution, 20))
 

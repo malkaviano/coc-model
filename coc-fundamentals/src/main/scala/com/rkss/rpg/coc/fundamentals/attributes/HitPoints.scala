@@ -4,10 +4,12 @@ import com.rkss.rpg.coc.concepts.attributes._
 import com.rkss.rpg.coc.behaviors.attributes._
 import com.rkss.rpg.coc.concepts.characteristic._
 
-final case class HitPointsImpl(
+final case class HitPoints(
     private val size: Characteristic[Size.type],
     private val constitution: Characteristic[Constitution.type]
-) extends HitPoints
+) extends DerivedAttribute[HitPointsAttribute.type]
+    with AttributeWithCurrentValue
+    with AttributeWithMaximumValue
     with AttributeWithValueChangeBehavior[HitPointsAttribute.type] {
 
   override def initial: Int = (size.value() + constitution.value()) / 10

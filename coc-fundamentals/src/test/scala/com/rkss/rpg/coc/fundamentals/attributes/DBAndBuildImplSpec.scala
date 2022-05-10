@@ -76,7 +76,7 @@ final class DBAndBuildImplSpec extends AnyFunSpec with Matchers {
         case (strength, size, expectedDB, expectedBuild) => {
           describe(s"when $strength - $size") {
             it(s"should have Build $expectedBuild") {
-              val build = BuildImpl(strength, size)
+              val build = Build(strength, size)
 
               build.current shouldBe expectedBuild
             }
@@ -88,7 +88,8 @@ final class DBAndBuildImplSpec extends AnyFunSpec with Matchers {
               val sixSidedDice =
                 SixSidedDice(TestingProps.fakeRng(Seq(6, 6, 6, 6, 6, 6)))
 
-              val db = DamageBonusImpl(strength, size)(fourSidedDice, sixSidedDice)
+              val db =
+                DamageBonus(strength, size)(fourSidedDice, sixSidedDice)
 
               db.current shouldBe expectedDB
             }
