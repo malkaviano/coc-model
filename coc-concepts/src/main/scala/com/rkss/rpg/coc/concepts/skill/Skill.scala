@@ -9,7 +9,7 @@ trait Skill[+A <: SkillName] extends SkillRollCheckable[A] {
   def tags: Seq[SkillTag]
 }
 
-trait BasicSkill[A <: SkillName]
+trait BasicSkill[A <: ImprovableSkillName]
     extends Skill[A]
     with SkillSuccessMarkable
     with SkillWithImprovement
