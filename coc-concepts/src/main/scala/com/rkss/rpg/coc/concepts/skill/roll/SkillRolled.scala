@@ -1,6 +1,6 @@
 package com.rkss.rpg.coc.concepts.skill.roll
 
-import com.rkss.rpg.coc.concepts.commons._
+import com.rkss.rpg.coc.concepts.internal._
 import com.rkss.rpg.coc.concepts.results._
 
 final case class SkillRolled[+A <: Naming](

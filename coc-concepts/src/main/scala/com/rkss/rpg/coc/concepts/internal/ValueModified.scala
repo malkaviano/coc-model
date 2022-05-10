@@ -1,4 +1,4 @@
-package com.rkss.rpg.coc.concepts.commons
+package com.rkss.rpg.coc.concepts.internal
 
 final case class ValueModified(
     val name: Naming,

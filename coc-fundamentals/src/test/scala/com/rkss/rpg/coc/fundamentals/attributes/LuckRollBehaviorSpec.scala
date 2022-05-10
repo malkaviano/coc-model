@@ -5,7 +5,7 @@ import org.scalatest.matchers.should.Matchers
 
 import com.rkss.rpg.coc.behaviors.testing.TestingProps
 import com.rkss.rpg.helpers.dice.HundredSidedDice
-import com.rkss.rpg.coc.concepts.commons._
+import com.rkss.rpg.coc.concepts._
 import com.rkss.rpg.coc.concepts.results._
 import com.rkss.rpg.coc.concepts.attributes.luck._
 

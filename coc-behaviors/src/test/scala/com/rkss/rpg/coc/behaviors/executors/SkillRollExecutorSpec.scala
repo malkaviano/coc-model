@@ -7,13 +7,11 @@ import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.helpers.dice.HundredSidedDice
 import com.rkss.rpg.coc.behaviors.testing._
 import com.rkss.rpg.coc.behaviors.testing.fakes._
-import com.rkss.rpg.coc.concepts.commons._
+import com.rkss.rpg.coc.concepts.internal._
 import com.rkss.rpg.coc.concepts.characteristic._
 import com.rkss.rpg.coc.concepts.results._
 
-final class SkillRollExecutorSpec
-    extends AnyFunSpec
-    with Matchers {
+final class SkillRollExecutorSpec extends AnyFunSpec with Matchers {
   describe("Resolving a skill roll") {
     val someCharacteristic = FakeGenericCharacteristic(Education, 50)
 
@@ -212,10 +210,10 @@ final class SkillRollExecutorSpec
   }
 
   private def resolveSkillRoll[A <: Naming](
-      rollable: EntityWithDifficultyValue with EntityWithNameTag[A],
+      rollable: WithDifficultyValue with WithNaming[A],
       diceResults: Seq[Int],
       expected: SkillRolled[A],
-      difficulty: SkillRollDifficultyLevel= RegularDifficulty,
+      difficulty: SkillRollDifficultyLevel = RegularDifficulty,
       bonusDice: BonusDice = BonusDice(0),
       penaltyDice: PenaltyDice = PenaltyDice(0)
   ): Unit = {

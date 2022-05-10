@@ -4,10 +4,10 @@ import com.rkss.rpg.coc.behaviors.extractor._
 import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.coc.concepts.skill.improvement._
 import com.rkss.rpg.coc.concepts.skill.allocation._
-import com.rkss.rpg.coc.concepts.commons._
+import com.rkss.rpg.coc.concepts.internal._
 
 private[coc] trait WithDifficultyValueBehavior {
-  self: EntityWithDifficultyValue =>
+  self: WithDifficultyValue =>
   def value(
       difficulty: SkillRollDifficultyLevel = RegularDifficulty
   ): Int = {
@@ -33,7 +33,7 @@ private[coc] trait WithDifficultyValueBehavior {
   }
 
   private def modification: Int = self match {
-    case withModificationValue: EntityWithModificationValue =>
+    case withModificationValue: WithModificationValue =>
       withModificationValue.modificationValue
     case _ => 0
   }
