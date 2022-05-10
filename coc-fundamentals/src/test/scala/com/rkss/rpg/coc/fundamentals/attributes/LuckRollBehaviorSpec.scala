@@ -4,8 +4,7 @@ import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 
 import com.rkss.rpg.coc.behaviors.testing.TestingProps
-import com.rkss.rpg.helpers.dice.HundredSidedDice
-import com.rkss.rpg.coc.concepts._
+import com.rkss.rpg.helpers.dice._
 import com.rkss.rpg.coc.concepts.results._
 
 final class LuckRollBehaviorSpec extends AnyFunSpec with Matchers {

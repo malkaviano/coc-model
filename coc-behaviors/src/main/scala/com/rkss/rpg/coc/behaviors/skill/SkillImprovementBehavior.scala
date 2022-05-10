@@ -6,7 +6,7 @@ import com.rkss.rpg.coc.concepts.skill.check._
 import com.rkss.rpg.helpers.dice._
 import com.rkss.rpg.coc.behaviors.skill._
 import com.rkss.rpg.coc.behaviors.results._
-import com.rkss.rpg.coc.concepts._
+import com.rkss.rpg.coc.concepts.results._
 
 private[coc] trait SkillImprovementBehavior[A <: ImprovableSkillName]
     extends SkillSuccessfullyUsedBehavior {

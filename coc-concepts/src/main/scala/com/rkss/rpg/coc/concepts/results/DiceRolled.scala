@@ -1,4 +1,4 @@
-package com.rkss.rpg.coc.concepts
+package com.rkss.rpg.coc.concepts.results
 
 import com.rkss.rpg.helpers.traits._
 

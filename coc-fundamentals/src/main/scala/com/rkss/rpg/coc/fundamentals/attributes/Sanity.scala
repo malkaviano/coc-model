@@ -1,7 +1,6 @@
 package com.rkss.rpg.coc.fundamentals.attributes
 
 import com.rkss.rpg.helpers.dice.HundredSidedDice
-import com.rkss.rpg.coc.concepts._
 import com.rkss.rpg.coc.concepts.results._
 import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.behaviors.attributes._

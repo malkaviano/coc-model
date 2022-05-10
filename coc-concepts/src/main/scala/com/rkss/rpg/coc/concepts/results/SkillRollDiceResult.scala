@@ -1,6 +1,6 @@
-package com.rkss.rpg.coc.concepts.skill.roll
+package com.rkss.rpg.coc.concepts.results
 
-import com.rkss.rpg.helpers.traits.DiceResult
+import com.rkss.rpg.helpers.traits._
 
 final case class SkillRollDiceResult(
     override val value: Int,

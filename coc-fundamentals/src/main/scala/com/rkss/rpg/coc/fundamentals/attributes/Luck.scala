@@ -1,6 +1,5 @@
 package com.rkss.rpg.coc.fundamentals.attributes
 
-import com.rkss.rpg.coc.concepts._
 import com.rkss.rpg.helpers.dice._
 import com.rkss.rpg.coc.concepts.results._
 import com.rkss.rpg.coc.concepts.internal._
