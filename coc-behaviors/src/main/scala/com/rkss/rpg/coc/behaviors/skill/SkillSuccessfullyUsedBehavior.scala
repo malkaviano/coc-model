@@ -4,7 +4,9 @@ import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.concepts.skill.check._
 
 private[coc] trait SkillSuccessfullyUsedBehavior {
-  self: Skill[_] with SkillSuccessMark with SkillSuccessMarkable =>
+  self: Skill[ImprovableSkillName]
+    with SkillSuccessMark
+    with SkillSuccessMarkable =>
 
   protected var _wasSuccessfullyUsed: Boolean = false
 

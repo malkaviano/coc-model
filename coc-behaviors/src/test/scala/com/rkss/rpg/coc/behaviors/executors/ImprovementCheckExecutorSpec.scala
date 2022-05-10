@@ -65,7 +65,7 @@ final class ImprovementCheckExecutorSpec extends AnyFunSpec with Matchers {
       }
 
       describe("when rolling above 95") {
-        val skill = new FakeSkill(Axe, 30, 50, 21)
+        val skill = new FakeSkillWithAllocation(Axe, 30, 50, 21)
 
         it should behave like skillImprovementCheck(
           skill,
