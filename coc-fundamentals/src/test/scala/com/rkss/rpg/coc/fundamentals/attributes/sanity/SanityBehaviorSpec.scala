@@ -15,7 +15,7 @@ final class SanityBehaviorSpec extends AnyFunSpec with Matchers {
 
     describe("Initial value") {
       it(s"should be ${initial}") {
-        val sanity = SanityImpl(initial, CthulhuMythosSkillImpl())
+        val sanity = Sanity(initial, CthulhuMythosSkillImpl())
 
         sanity.current shouldBe initial.value()
       }
@@ -23,7 +23,7 @@ final class SanityBehaviorSpec extends AnyFunSpec with Matchers {
 
     describe("Current value") {
       it(s"should be ${initial}") {
-        val sanity = SanityImpl(initial, CthulhuMythosSkillImpl())
+        val sanity = Sanity(initial, CthulhuMythosSkillImpl())
 
         sanity.current shouldBe initial.value()
       }
@@ -32,7 +32,7 @@ final class SanityBehaviorSpec extends AnyFunSpec with Matchers {
         it("should reduce current to the maximum") {
           val mythos = CthulhuMythosSkillImpl()
 
-          val sanity = SanityImpl(initial, mythos)
+          val sanity = Sanity(initial, mythos)
 
           mythos.modify(ValueModification(CthulhuMythos, 69))
 
@@ -45,7 +45,7 @@ final class SanityBehaviorSpec extends AnyFunSpec with Matchers {
       it("should be 99") {
         val mythos = CthulhuMythosSkillImpl()
 
-        val sanity = SanityImpl(initial, mythos)
+        val sanity = Sanity(initial, mythos)
 
         sanity.maximum shouldBe 99
       }
@@ -54,7 +54,7 @@ final class SanityBehaviorSpec extends AnyFunSpec with Matchers {
         it(s"should be 90") {
           val mythos = CthulhuMythosSkillImpl()
 
-          val sanity = SanityImpl(initial, mythos)
+          val sanity = Sanity(initial, mythos)
 
           mythos.modify(ValueModification(CthulhuMythos, 9))
 

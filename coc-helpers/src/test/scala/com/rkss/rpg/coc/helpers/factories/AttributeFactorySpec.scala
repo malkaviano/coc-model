@@ -17,7 +17,7 @@ final class AttributeFactorySpec extends AnyFunSpec with Matchers {
         it(s"should return Luck(${expected})") {
           val luck = AttributeFactory.createLuck(expected)
 
-          luck shouldBe LuckImpl(expected)
+          luck shouldBe Luck(expected)
         }
       }
 
@@ -31,7 +31,7 @@ final class AttributeFactorySpec extends AnyFunSpec with Matchers {
             SixSidedDice(dice)
           )
 
-          luck shouldBe LuckImpl(expected)
+          luck shouldBe Luck(expected)
         }
       }
     }
@@ -41,7 +41,7 @@ final class AttributeFactorySpec extends AnyFunSpec with Matchers {
       val mythos = SkillFactory.cthulhuMythosSkill
 
       describe(s"when $power") {
-        val expected = SanityImpl(power, mythos)
+        val expected = Sanity(power, mythos)
 
         it(s"should return SAN(${expected.current})") {
           val sanity = AttributeFactory.createSanity(power, mythos)

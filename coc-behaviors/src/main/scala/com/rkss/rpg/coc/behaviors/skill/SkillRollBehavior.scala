@@ -4,6 +4,7 @@ import com.rkss.rpg.coc.concepts.internal._
 import com.rkss.rpg.coc.concepts.skill.roll._
 import com.rkss.rpg.helpers.dice._
 import com.rkss.rpg.coc.behaviors.executors._
+import com.rkss.rpg.coc.concepts.results._
 
 private[coc] trait SkillRollBehavior[A <: Naming] {
   self: WithDifficultyValue with SkillRollable[A] with WithNaming[A] =>

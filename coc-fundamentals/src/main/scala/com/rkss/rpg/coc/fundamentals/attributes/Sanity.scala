@@ -1,6 +1,5 @@
 package com.rkss.rpg.coc.fundamentals.attributes
 
-import com.rkss.rpg.coc.concepts.attributes.sanity._
 import com.rkss.rpg.helpers.dice.HundredSidedDice
 import com.rkss.rpg.coc.concepts._
 import com.rkss.rpg.coc.concepts.results._
@@ -9,10 +8,12 @@ import com.rkss.rpg.coc.behaviors.attributes._
 import com.rkss.rpg.coc.concepts.attributes._
 import com.rkss.rpg.coc.concepts.characteristic._
 
-final case class SanityImpl(
+final case class Sanity(
     private val power: Characteristic[Power.type],
     private val mythos: Skill[CthulhuMythos.type]
-) extends Sanity
+) extends DerivedAttribute[SanityAttribute.type]
+    with AttributeWithCurrentValue
+    with AttributeWithMaximumValue
     with AttributeWithValueChangeBehavior[SanityAttribute.type] {
 
   override def initial: Int = power.value()
@@ -21,7 +22,7 @@ final case class SanityImpl(
     99 - mythos.value()
   }
 
-  override def roll(implicit
+  def roll(implicit
       hundredSidedDice: HundredSidedDice
   ): SanityRolled = {
     val rolled = hundredSidedDice.roll.value

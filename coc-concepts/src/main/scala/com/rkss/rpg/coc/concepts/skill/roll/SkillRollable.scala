@@ -2,6 +2,7 @@ package com.rkss.rpg.coc.concepts.skill.roll
 
 import com.rkss.rpg.helpers.dice.HundredSidedDice
 import com.rkss.rpg.coc.concepts.internal._
+import com.rkss.rpg.coc.concepts.results._
 
 trait SkillRollable[+A <: Naming] { self: WithDifficultyValue =>
   def roll(

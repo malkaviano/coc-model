@@ -5,7 +5,6 @@ import org.scalatest.matchers.should.Matchers
 
 import com.rkss.rpg.helpers.dice.HundredSidedDice
 import com.rkss.rpg.coc.behaviors.testing._
-import com.rkss.rpg.coc.concepts.attributes.sanity._
 import com.rkss.rpg.coc.concepts._
 import com.rkss.rpg.coc.concepts.characteristic._
 import com.rkss.rpg.coc.fundamentals.characteristics._
@@ -15,7 +14,7 @@ import com.rkss.rpg.coc.concepts.results._
 final class SanityRollBehaviorSpec extends AnyFunSpec with Matchers {
   describe("Sanity roll behavior") {
     val sanity =
-      SanityImpl(PrimaryCharacteristic(Power, 60), CthulhuMythosSkillImpl())
+      Sanity(PrimaryCharacteristic(Power, 60), CthulhuMythosSkillImpl())
 
     describe("Sanity roll") {
       it should behave like sanityRoll(sanity, 100, SanityRollFumble)
@@ -25,7 +24,7 @@ final class SanityRollBehaviorSpec extends AnyFunSpec with Matchers {
       it should behave like sanityRoll(sanity, 97, SanityRollFailureResult)
 
       it should behave like sanityRoll(
-        SanityImpl(
+        Sanity(
           PrimaryCharacteristic(Power, 40),
           CthulhuMythosSkillImpl()
         ),

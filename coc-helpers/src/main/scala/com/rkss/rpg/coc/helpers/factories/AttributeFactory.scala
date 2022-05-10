@@ -4,14 +4,12 @@ import com.rkss.rpg.coc.fundamentals.attributes._
 import com.rkss.rpg.helpers.dice._
 import com.rkss.rpg.coc.helpers.generators._
 import com.rkss.rpg.coc.concepts.characteristic._
-import com.rkss.rpg.coc.concepts.attributes.sanity._
-import com.rkss.rpg.coc.concepts.attributes.luck._
 import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.concepts.attributes._
 
 object AttributeFactory {
   def createLuck(value: Int): Luck = {
-    LuckImpl(value)
+    Luck(value)
   }
 
   def createLuck(implicit
@@ -26,7 +24,7 @@ object AttributeFactory {
       power: Characteristic[Power.type],
       mythos: Skill[CthulhuMythos.type]
   ): Sanity = {
-    SanityImpl(power, mythos)
+    Sanity(power, mythos)
   }
 
   def createMagicPoints(power: Characteristic[Power.type]): MagicPoints = {

@@ -1,8 +1,8 @@
 package com.rkss.rpg.coc.fundamentals.specs
 
-import com.rkss.rpg.coc.concepts.attributes.sanity._
 import com.rkss.rpg.coc.concepts._
 import com.rkss.rpg.coc.concepts.results._
+import com.rkss.rpg.coc.fundamentals.attributes._
 
 final case class SanityRollSpec(
     val entity: Sanity,

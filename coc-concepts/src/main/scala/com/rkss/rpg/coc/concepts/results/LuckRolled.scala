@@ -1,6 +1,5 @@
-package com.rkss.rpg.coc.concepts.attributes.luck
+package com.rkss.rpg.coc.concepts.results
 
-import com.rkss.rpg.coc.concepts.results._
 import com.rkss.rpg.coc.concepts._
 
 final case class LuckRolled(
