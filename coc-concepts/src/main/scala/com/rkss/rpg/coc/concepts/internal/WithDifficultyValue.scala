@@ -1,7 +1,6 @@
 package com.rkss.rpg.coc.concepts.internal
 
-import com.rkss.rpg.coc.concepts.skill.roll.SkillRollDifficultyLevel
-import com.rkss.rpg.coc.concepts.skill.roll.RegularDifficulty
+import com.rkss.rpg.coc.concepts.skill.roll._
 
 trait WithDifficultyValue extends WithBaseValue {
   def value(

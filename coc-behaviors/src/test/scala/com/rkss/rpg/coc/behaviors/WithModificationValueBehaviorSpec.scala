@@ -5,6 +5,7 @@ import org.scalatest.matchers.should.Matchers
 import com.rkss.rpg.coc.behaviors.testing.fakes._
 import com.rkss.rpg.coc.concepts.characteristic._
 import com.rkss.rpg.coc.concepts.internal._
+import com.rkss.rpg.coc.concepts.results._
 
 final class WithModificationValueBehaviorSpec extends AnyFunSpec with Matchers {
   describe("With modification value behavior") {
