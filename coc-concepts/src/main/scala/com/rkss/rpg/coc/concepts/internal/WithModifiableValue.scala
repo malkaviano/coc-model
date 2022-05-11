@@ -4,5 +4,5 @@ import com.rkss.rpg.coc.concepts.results._
 import com.rkss.rpg.helpers.traits._
 
 trait WithModifiableValue[A <: GlobalNameTag] {
-  private[coc] def modify(modification: ValueModification[A]): ValueModified
+  private[coc] def modify(modification: ValueModification[A]): ValueModified[A]
 }
