@@ -4,7 +4,7 @@ import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 
 import com.rkss.rpg.coc.behaviors.testing.fakes._
-import com.rkss.rpg.coc.concepts.skill.roll._
+import com.rkss.rpg.coc.concepts.roll._
 import com.rkss.rpg.coc.concepts.internal._
 import com.rkss.rpg.helpers.dice._
 import com.rkss.rpg.coc.behaviors.testing.TestingProps

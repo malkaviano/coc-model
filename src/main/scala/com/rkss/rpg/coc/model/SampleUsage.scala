@@ -3,7 +3,7 @@ package com.rkss.rpg.script // Package is outside coc on purpose to check visibi
 import com.rkss.rpg.coc.helpers.factories._
 import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.foundations.actions._
-import com.rkss.rpg.coc.concepts.skill.roll._
+import com.rkss.rpg.coc.concepts.roll._
 import com.rkss.rpg.coc.concepts.characteristic._
 import com.rkss.rpg.coc.helpers.converters._
 import com.rkss.rpg.coc.concepts.skill.improvement._

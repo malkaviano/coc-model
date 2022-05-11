@@ -7,7 +7,7 @@ import org.scalatest.matchers.should.Matchers
 import com.rkss.rpg.coc.helpers.factories._
 import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.foundations.results._
-import com.rkss.rpg.coc.concepts.skill.roll._
+import com.rkss.rpg.coc.concepts.roll._
 import com.rkss.rpg.coc.concepts.results._
 import com.rkss.rpg.coc.concepts.characteristic._
 

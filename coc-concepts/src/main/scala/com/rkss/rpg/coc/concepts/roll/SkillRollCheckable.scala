@@ -1,4 +1,4 @@
-package com.rkss.rpg.coc.concepts.skill.roll
+package com.rkss.rpg.coc.concepts.roll
 
 import com.rkss.rpg.coc.concepts.internal._
 

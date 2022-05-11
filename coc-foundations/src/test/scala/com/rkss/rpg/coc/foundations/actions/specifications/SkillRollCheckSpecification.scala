@@ -1,6 +1,6 @@
 package com.rkss.rpg.coc.foundations.actions
 
-import com.rkss.rpg.coc.concepts.skill.roll._
+import com.rkss.rpg.coc.concepts.roll._
 import com.rkss.rpg.coc.foundations.results._
 
 final case class SkillRollCheckSpecification[A <: SkillRollNaming](

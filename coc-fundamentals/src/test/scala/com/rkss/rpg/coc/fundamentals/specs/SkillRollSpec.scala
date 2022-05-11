@@ -1,7 +1,7 @@
 package com.rkss.rpg.coc.fundamentals.specs
 
 import com.rkss.rpg.coc.concepts.internal._
-import com.rkss.rpg.coc.concepts.skill.roll._
+import com.rkss.rpg.coc.concepts.roll._
 import com.rkss.rpg.coc.concepts.results._
 
 final case class SkillRollSpec[A <: Naming](
