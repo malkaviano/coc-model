@@ -21,7 +21,7 @@ private[coc] trait WithValueModificationBehavior[A <: GlobalNameTag] {
     ValueModified(name, value, _modification, previous)
   }
 
-  override def modificationValue: Int = {
+  override private[coc] def modificationValue: Int = {
     _modification
   }
 }
