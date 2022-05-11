@@ -1,12 +1,13 @@
 package com.rkss.rpg.coc.behaviors.executors
 
-import com.rkss.rpg.helpers.dice.HundredSidedDice
+import com.rkss.rpg.helpers.dice._
 import com.rkss.rpg.coc.concepts.roll._
 import com.rkss.rpg.coc.concepts.internal._
 import com.rkss.rpg.coc.concepts.results._
+import com.rkss.rpg.helpers.traits._
 
 private[behaviors] class SkillRollExecutor private () {
-  def roll[A <: Naming](
+  def roll[A <: GlobalNameTag](
       rollable: WithDifficultyValue with WithNaming[A],
       difficulty: SkillRollDifficultyLevel,
       bonusDice: BonusDice,

@@ -2,8 +2,9 @@ package com.rkss.rpg.coc.behaviors
 
 import com.rkss.rpg.coc.concepts.internal._
 import com.rkss.rpg.coc.concepts.results._
+import com.rkss.rpg.helpers.traits._
 
-private[coc] trait WithValueModificationBehavior[A <: Naming] {
+private[coc] trait WithValueModificationBehavior[A <: GlobalNameTag] {
   self: WithModificationValue with WithModifiableValue[A] =>
 
   private var _modification: Int = 0
