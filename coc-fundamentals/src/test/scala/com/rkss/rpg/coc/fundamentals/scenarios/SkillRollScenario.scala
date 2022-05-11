@@ -7,7 +7,7 @@ import org.scalatest.matchers.should.Matchers
 import com.rkss.rpg.helpers.dice._
 import com.rkss.rpg.coc.behaviors.testing.TestingProps
 import com.rkss.rpg.coc.fundamentals.specs.SkillRollSpec
-import com.rkss.rpg.coc.concepts.commons._
+import com.rkss.rpg.coc.concepts.internal._
 
 trait SkillRollScenario {
   self: AnyFeatureSpec with GivenWhenThen with Matchers =>

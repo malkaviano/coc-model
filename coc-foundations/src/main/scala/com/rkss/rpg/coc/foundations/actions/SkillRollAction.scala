@@ -3,14 +3,13 @@ package com.rkss.rpg.coc.foundations.actions
 import scala.annotation.tailrec
 
 import com.rkss.rpg.helpers.dice._
-import com.rkss.rpg.coc.concepts.skill.roll._
+import com.rkss.rpg.coc.concepts.roll._
 import com.rkss.rpg.coc.concepts.skill.check._
 import com.rkss.rpg.coc.concepts.results._
 import com.rkss.rpg.coc.foundations.results._
 import com.rkss.rpg.coc.concepts.characteristic._
 import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.helpers.converters._
-
 
 final class SkillRollAction private (implicit
     val hundredSidedDice: HundredSidedDice

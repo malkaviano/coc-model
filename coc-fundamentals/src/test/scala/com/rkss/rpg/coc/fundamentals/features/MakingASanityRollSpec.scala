@@ -23,14 +23,14 @@ final class MakingASanityRollSpec
 
   Seq(
     SanityRollSpec(
-      SanityImpl(PrimaryCharacteristic(Power, 50), CthulhuMythosSkillImpl()),
+      Sanity(PrimaryCharacteristic(Power, 50), CthulhuMythosSkillImpl()),
       10,
-      SanityRollSuccessResult,
+      SanityRollSuccessResult
     ),
     SanityRollSpec(
-      SanityImpl(PrimaryCharacteristic(Power, 55), CthulhuMythosSkillImpl()),
+      Sanity(PrimaryCharacteristic(Power, 55), CthulhuMythosSkillImpl()),
       100,
-      SanityRollFumble,
+      SanityRollFumble
     )
   ).foreach(spec => ScenariosFor(makingASanityRoll(spec)))
 }

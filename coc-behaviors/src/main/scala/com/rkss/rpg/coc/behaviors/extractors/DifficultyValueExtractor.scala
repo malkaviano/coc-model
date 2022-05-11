@@ -1,6 +1,6 @@
 package com.rkss.rpg.coc.behaviors.extractor
 
-import com.rkss.rpg.coc.concepts.skill.roll._
+import com.rkss.rpg.coc.concepts.roll._
 
 private[behaviors] object DifficultyValueExtractor {
   def value(

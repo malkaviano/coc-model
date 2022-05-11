@@ -7,7 +7,7 @@ import com.rkss.rpg.coc.behaviors.testing.fakes._
 import com.rkss.rpg.helpers.dice._
 import com.rkss.rpg.coc.behaviors.testing.TestingProps
 import com.rkss.rpg.coc.concepts.skill._
-import com.rkss.rpg.coc.concepts.commons._
+import com.rkss.rpg.coc.concepts.results._
 import com.rkss.rpg.coc.behaviors.results._
 import com.rkss.rpg.coc.concepts.characteristic._
 
@@ -52,7 +52,6 @@ final class ImprovementCheckExecutorSpec extends AnyFunSpec with Matchers {
           Seq(90),
           Seq(8),
           ImprovementChecked(DiceRolled(90), 8)
-
         )
 
         val power = new FakeGenericCharacteristic(Power, 60)
@@ -62,12 +61,11 @@ final class ImprovementCheckExecutorSpec extends AnyFunSpec with Matchers {
           Seq(91),
           Seq(9),
           ImprovementChecked(DiceRolled(91), 9)
-
         )
       }
 
       describe("when rolling above 95") {
-        val skill = new FakeSkill(Axe, 30, 50, 21)
+        val skill = new FakeSkillWithAllocation(Axe, 30, 50, 21)
 
         it should behave like skillImprovementCheck(
           skill,

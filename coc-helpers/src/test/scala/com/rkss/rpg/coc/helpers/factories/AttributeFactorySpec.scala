@@ -17,7 +17,7 @@ final class AttributeFactorySpec extends AnyFunSpec with Matchers {
         it(s"should return Luck(${expected})") {
           val luck = AttributeFactory.createLuck(expected)
 
-          luck shouldBe LuckImpl(expected)
+          luck shouldBe Luck(expected)
         }
       }
 
@@ -31,7 +31,7 @@ final class AttributeFactorySpec extends AnyFunSpec with Matchers {
             SixSidedDice(dice)
           )
 
-          luck shouldBe LuckImpl(expected)
+          luck shouldBe Luck(expected)
         }
       }
     }
@@ -41,7 +41,7 @@ final class AttributeFactorySpec extends AnyFunSpec with Matchers {
       val mythos = SkillFactory.cthulhuMythosSkill
 
       describe(s"when $power") {
-        val expected = SanityImpl(power, mythos)
+        val expected = Sanity(power, mythos)
 
         it(s"should return SAN(${expected.current})") {
           val sanity = AttributeFactory.createSanity(power, mythos)
@@ -56,7 +56,7 @@ final class AttributeFactorySpec extends AnyFunSpec with Matchers {
       val constitution = CharacteristicFactory.characteristic(Constitution, 50)
 
       describe(s"when $size and $constitution") {
-        val expected = HitPointsImpl(size, constitution)
+        val expected = HitPoints(size, constitution)
 
         it(s"should return HP(${expected.current})") {
           val hp = AttributeFactory.createHitPoints(size, constitution)
@@ -70,7 +70,7 @@ final class AttributeFactorySpec extends AnyFunSpec with Matchers {
       val power = CharacteristicFactory.characteristic(Power, 60)
 
       describe(s"when $power") {
-        val expected = MagicPointsImpl(power)
+        val expected = InvestigatorMagicPoints(power)
 
         it(s"should return MP(${expected.current})") {
           val mp = AttributeFactory.createMagicPoints(power)
@@ -81,7 +81,7 @@ final class AttributeFactorySpec extends AnyFunSpec with Matchers {
     }
 
     describe("creating Age attribute") {
-      val expected = HumanAge(30)
+      val expected = Age(30)
 
       it(s"should return Age(${expected.current})") {
         val age = AttributeFactory.createAge(30)
@@ -112,7 +112,7 @@ final class AttributeFactorySpec extends AnyFunSpec with Matchers {
       val size = CharacteristicFactory.characteristic(Size, 60)
 
       describe(s"when $strength - $size") {
-        val expected = BuildImpl(strength, size)
+        val expected = Build(strength, size)
 
         it(s"should return Build(${expected.current})") {
           val mov =
@@ -134,7 +134,7 @@ final class AttributeFactorySpec extends AnyFunSpec with Matchers {
         implicit val sixSidedDice =
           SixSidedDice(TestingProps.fakeRng(Seq(6, 6, 6, 6, 6, 6)))
 
-        val expected = DamageBonusImpl(strength, size)
+        val expected = DamageBonus(strength, size)
 
         it(s"should return Damage Bonus(${expected.current})") {
 
