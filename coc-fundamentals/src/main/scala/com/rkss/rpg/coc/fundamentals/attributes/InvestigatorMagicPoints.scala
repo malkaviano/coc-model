@@ -10,9 +10,11 @@ final case class InvestigatorMagicPoints(
   private val internal: BasicIntFixture[MagicPointsAttribute.type] =
     BasicIntFixture(
       MagicPointsAttribute,
-      power.value() / 5,
-      minimum = 0,
-      maximum = power.value() / 5
+      BasicIntOptions(
+        power.value() / 5,
+        minimum = 0,
+        maximum = power.value() / 5
+      )
     )
 
   def gain(

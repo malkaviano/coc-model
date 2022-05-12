@@ -14,9 +14,11 @@ final case class Sanity(
   private val internal: BasicIntFixture[SanityAttribute.type] =
     BasicIntFixture(
       SanityAttribute,
-      power.value(),
-      minimum = 0,
-      maximum = 99 - mythos.value()
+      BasicIntOptions(
+        power.value(),
+        minimum = 0,
+        maximum = 99 - mythos.value()
+      )
     )
 
   def roll(implicit

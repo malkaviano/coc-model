@@ -10,9 +10,11 @@ final case class Age(
   private val internal: BasicIntFixture[AgeAttribute.type] =
     BasicIntFixture(
       AgeAttribute,
-      initial,
-      minimum = 0,
-      maximum = maximum
+      BasicIntOptions(
+        initial,
+        minimum = 0,
+        maximum = maximum
+      )
     )
 
   def gain(

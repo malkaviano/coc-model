@@ -11,9 +11,11 @@ final case class HitPoints(
   private val internal: BasicIntFixture[HitPointsAttribute.type] =
     BasicIntFixture(
       HitPointsAttribute,
-      (size.value() + constitution.value()) / 10,
-      minimum = 0,
-      maximum = (size.value() + constitution.value()) / 10
+      BasicIntOptions(
+        (size.value() + constitution.value()) / 10,
+        minimum = 0,
+        maximum = (size.value() + constitution.value()) / 10
+      )
     )
 
   def gain(
