@@ -81,10 +81,10 @@ final class AttributeFactorySpec extends AnyFunSpec with Matchers {
     }
 
     describe("creating Age attribute") {
-      val expected = Age(30)
+      val expected = Age(30, 100)
 
       it(s"should return Age(${expected.current})") {
-        val age = AttributeFactory.createAge(30)
+        val age = AttributeFactory.createAge(30, 100)
 
         age shouldBe expected
       }

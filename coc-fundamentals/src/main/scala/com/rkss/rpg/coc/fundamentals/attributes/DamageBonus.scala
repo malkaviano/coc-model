@@ -1,7 +1,6 @@
 package com.rkss.rpg.coc.fundamentals.attributes
 
 import com.rkss.rpg.coc.concepts.characteristic._
-import com.rkss.rpg.coc.concepts.attributes._
 import com.rkss.rpg.helpers.dice._
 
 final case class DamageBonus(
@@ -10,8 +9,8 @@ final case class DamageBonus(
 )(implicit
     private val fourSidedDice: FourSidedDice,
     private val sixSidedDice: SixSidedDice
-) extends AttributeWithCurrentValue {
-  override def current: Int = {
+) {
+  def current: Int = {
     strength.value() + size.value() match {
       case x if x < 65  => -2
       case x if x < 85  => -1

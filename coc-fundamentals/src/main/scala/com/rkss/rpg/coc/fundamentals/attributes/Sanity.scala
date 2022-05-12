@@ -11,16 +11,12 @@ final case class Sanity(
     private val power: Characteristic[Power.type],
     private val mythos: Skill[CthulhuMythos.type]
 ) {
-  def maximum: Int = {
-    99 - mythos.value()
-  }
-
   private val internal: BasicIntFixture[SanityAttribute.type] =
     BasicIntFixture(
       SanityAttribute,
       power.value(),
       minimum = 0,
-      maximum = maximum
+      maximum = 99 - mythos.value()
     )
 
   def roll(implicit
@@ -44,14 +40,19 @@ final case class Sanity(
     )
   }
 
-  def current: Int = {
-    val diff = internal.value - maximum
+  def current: Int = internal.value
 
-    if (diff > 0)
-      internal.minus(
-        BasicIntValue(SanityAttribute, diff)
-      )
+  def maximum: Int = internal.maximum
 
-    internal.value
+  def gain(
+      gain: BasicIntValue[SanityAttribute.type]
+  ): Unit = {
+    internal.plus(gain)
+  }
+
+  def loss(
+      loss: BasicIntValue[SanityAttribute.type]
+  ): Unit = {
+    internal.minus(loss)
   }
 }
