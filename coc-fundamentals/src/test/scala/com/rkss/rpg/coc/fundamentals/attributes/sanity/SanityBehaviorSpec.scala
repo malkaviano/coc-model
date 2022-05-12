@@ -4,14 +4,14 @@ import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 
 import com.rkss.rpg.coc.fundamentals.skills._
-import com.rkss.rpg.coc.concepts.internal._
 import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.concepts.characteristic._
 import com.rkss.rpg.coc.fundamentals.characteristics._
+import com.rkss.rpg.helpers.fixtures._
 
 final class SanityBehaviorSpec extends AnyFunSpec with Matchers {
   describe("Sanity Behavior") {
-    val initial = PrimaryCharacteristic(Power, 40)
+    val initial = Characteristic(Power, 40)
 
     describe("Initial value") {
       it(s"should be ${initial}") {
@@ -34,7 +34,7 @@ final class SanityBehaviorSpec extends AnyFunSpec with Matchers {
 
           val sanity = Sanity(initial, mythos)
 
-          mythos.modify(ValueModification(CthulhuMythos, 69))
+          mythos.increase(BasicIntValue(CthulhuMythos, 69))
 
           sanity.current shouldBe 30
         }
@@ -56,7 +56,7 @@ final class SanityBehaviorSpec extends AnyFunSpec with Matchers {
 
           val sanity = Sanity(initial, mythos)
 
-          mythos.modify(ValueModification(CthulhuMythos, 9))
+          mythos.increase(BasicIntValue(CthulhuMythos, 9))
 
           sanity.maximum shouldBe 90
         }

@@ -1,6 +1,7 @@
 package com.rkss.rpg.coc.fundamentals.attributes
 
 import com.rkss.rpg.coc.concepts.characteristic._
+import com.rkss.rpg.coc.fundamentals.characteristics._
 import com.rkss.rpg.helpers.dice._
 
 final case class DamageBonus(

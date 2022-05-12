@@ -18,7 +18,7 @@ final class CharacteristicFactorySpec extends AnyFunSpec with Matchers {
       (Power, 80, Seq(5, 6, 5)),
       (Intelligence, 55, Seq(2, 3)),
       (Education, 65, Seq(5, 2)),
-      (Size, 90, Seq(6, 6)),
+      (Size, 90, Seq(6, 6))
     ).foreach {
       case (name, expected, rolled) => {
         describe(s"creating $name characteristic") {
@@ -26,7 +26,7 @@ final class CharacteristicFactorySpec extends AnyFunSpec with Matchers {
             it(s"should return ${name}(${expected})") {
               val char = CharacteristicFactory.characteristic(name, expected)
 
-              char shouldBe PrimaryCharacteristic(name, expected)
+              char shouldBe Characteristic(name, expected)
             }
           }
 
@@ -38,7 +38,7 @@ final class CharacteristicFactorySpec extends AnyFunSpec with Matchers {
                 SixSidedDice(dice)
               )
 
-              char shouldBe PrimaryCharacteristic(name, expected)
+              char shouldBe Characteristic(name, expected)
             }
           }
         }

@@ -3,6 +3,7 @@ package com.rkss.rpg.coc.fundamentals.attributes
 import com.rkss.rpg.coc.concepts.attributes._
 import com.rkss.rpg.helpers.fixtures._
 import com.rkss.rpg.coc.concepts.characteristic._
+import com.rkss.rpg.coc.fundamentals.characteristics._
 
 final case class InvestigatorMagicPoints(
     private val power: Characteristic[Power.type]

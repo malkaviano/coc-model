@@ -2,12 +2,9 @@ package com.rkss.rpg.coc.fundamentals.attributes
 
 import com.rkss.rpg.helpers.dice._
 import com.rkss.rpg.coc.concepts.results._
-import com.rkss.rpg.coc.concepts.internal._
 
-final case class Luck(override val baseValue: Int)
-    extends WithBaseValue
-    with WithBasicRoll[LuckRolled] {
-  override def roll(implicit
+final case class Luck(val baseValue: Int) {
+  def roll(implicit
       hundredSidedDice: HundredSidedDice
   ): LuckRolled = {
     val rollDiceResult = DiceRolled(hundredSidedDice.roll.value)

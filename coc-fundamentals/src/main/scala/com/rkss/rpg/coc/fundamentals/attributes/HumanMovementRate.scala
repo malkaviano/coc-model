@@ -1,6 +1,7 @@
 package com.rkss.rpg.coc.fundamentals.attributes
 
 import com.rkss.rpg.coc.concepts.characteristic._
+import com.rkss.rpg.coc.fundamentals.characteristics._
 
 // TODO: Use age
 final case class HumanMovementRate(

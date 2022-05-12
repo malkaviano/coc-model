@@ -6,6 +6,7 @@ import com.rkss.rpg.coc.concepts.results._
 import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.concepts.attributes._
 import com.rkss.rpg.coc.concepts.characteristic._
+import com.rkss.rpg.coc.fundamentals.characteristics._
 
 final case class Sanity(
     private val power: Characteristic[Power.type],

@@ -1,7 +1,7 @@
 package com.rkss.rpg.coc.concepts.internal
 
-import com.rkss.rpg.helpers.traits._
+import com.rkss.rpg.coc.concepts.roll._
 
-trait WithNaming[+A <: GlobalNameTag] {
+trait WithNaming[+A <: SkillRollNaming] {
   def name: A
 }

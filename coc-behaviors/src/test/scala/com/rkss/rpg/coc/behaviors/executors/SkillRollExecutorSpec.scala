@@ -7,14 +7,12 @@ import com.rkss.rpg.coc.concepts.roll._
 import com.rkss.rpg.helpers.dice._
 import com.rkss.rpg.coc.behaviors.testing._
 import com.rkss.rpg.coc.behaviors.testing.fakes._
-import com.rkss.rpg.coc.concepts.internal._
 import com.rkss.rpg.coc.concepts.characteristic._
 import com.rkss.rpg.coc.concepts.results._
-import com.rkss.rpg.helpers.traits._
 
 final class SkillRollExecutorSpec extends AnyFunSpec with Matchers {
   describe("Resolving a skill roll") {
-    val someCharacteristic = FakeGenericCharacteristic(Education, 50)
+    val someCharacteristic = FakeRollCheckable(Education, 50)
 
     it should behave like resolveSkillRoll(
       someCharacteristic,
@@ -210,8 +208,8 @@ final class SkillRollExecutorSpec extends AnyFunSpec with Matchers {
     )
   }
 
-  private def resolveSkillRoll[A <: GlobalNameTag](
-      rollable: WithDifficultyValue with WithNaming[A],
+  private def resolveSkillRoll[A <: SkillRollNaming](
+      rollable: SkillRollCheckable[A],
       diceResults: Seq[Int],
       expected: SkillRolled[A],
       difficulty: SkillRollDifficultyLevel = RegularDifficulty,
