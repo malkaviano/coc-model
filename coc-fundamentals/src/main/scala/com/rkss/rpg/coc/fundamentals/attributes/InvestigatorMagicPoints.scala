@@ -14,9 +14,18 @@ final case class InvestigatorMagicPoints(
       BasicIntOptions(
         power.value() / 5,
         minimum = 0,
-        maximum = power.value() / 5
+        maximum = power.value() / 5,
+        equalizeOnValueSuperiorMaximum = true
       )
     )
+
+  private def onChanged(event: BasicIntChangeEvent): Unit = {
+    if (event.target == BasicIntTargetValue) {
+      internal.maximum = event.current / 5
+    }
+  }
+
+  power.onChange(onChanged)
 
   def gain(
       gain: BasicIntValue[MagicPointsAttribute.type]

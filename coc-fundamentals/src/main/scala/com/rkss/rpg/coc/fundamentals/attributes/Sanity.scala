@@ -3,14 +3,14 @@ package com.rkss.rpg.coc.fundamentals.attributes
 import com.rkss.rpg.helpers.dice._
 import com.rkss.rpg.helpers.fixtures._
 import com.rkss.rpg.coc.concepts.results._
-import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.concepts.attributes._
 import com.rkss.rpg.coc.concepts.characteristic._
 import com.rkss.rpg.coc.fundamentals.characteristics._
+import com.rkss.rpg.coc.fundamentals.skills._
 
 final case class Sanity(
     private val power: Characteristic[Power.type],
-    private val mythos: Skill[CthulhuMythos.type]
+    private val mythos: CthulhuMythosSkillImpl
 ) {
   private val internal: BasicIntFixture[SanityAttribute.type] =
     BasicIntFixture(
@@ -18,9 +18,17 @@ final case class Sanity(
       BasicIntOptions(
         power.value(),
         minimum = 0,
-        maximum = 99 - mythos.value()
+        maximum = 99 - mythos.value(),
+        equalizeOnValueSuperiorMaximum = true
       )
     )
+
+  private def mythosChanged(event: BasicIntChangeEvent): Unit = {
+    if (event.target == BasicIntTargetValue)
+      internal.maximum = 99 - event.current
+  }
+
+  mythos.onChange(mythosChanged)
 
   def roll(implicit
       hundredSidedDice: HundredSidedDice

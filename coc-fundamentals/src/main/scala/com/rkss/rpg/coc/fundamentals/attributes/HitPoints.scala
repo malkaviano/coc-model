@@ -15,9 +15,25 @@ final case class HitPoints(
       BasicIntOptions(
         (size.value() + constitution.value()) / 10,
         minimum = 0,
-        maximum = (size.value() + constitution.value()) / 10
+        maximum = (size.value() + constitution.value()) / 10,
+        equalizeOnValueSuperiorMaximum = true
       )
     )
+
+  private def onChanged(event: BasicIntChangeEvent): Unit = {
+    if (event.target == BasicIntTargetValue) {
+      event.name match {
+        case Size =>
+          internal.maximum = (event.current + constitution.value()) / 10
+        case _ =>
+          internal.maximum = (size.value() + event.current) / 10
+      }
+    }
+  }
+
+  size.onChange(onChanged)
+
+  constitution.onChange(onChanged)
 
   def gain(
       gain: BasicIntValue[HitPointsAttribute.type]

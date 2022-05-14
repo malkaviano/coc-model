@@ -18,6 +18,10 @@ abstract class BaseRollable[A <: SkillRollNaming](
       BasicIntOptions(initial = baseValue, minimum = minimum, maximum = maximum)
     )
 
+  def onChange(callback: (BasicIntChangeEvent) => Unit): Unit = {
+    internalState.addChangeListener(callback)
+  }
+
   override def value(difficulty: SkillRollDifficultyLevel): Int = {
     DifficultyValueExtractor.value(
       internalState.value,

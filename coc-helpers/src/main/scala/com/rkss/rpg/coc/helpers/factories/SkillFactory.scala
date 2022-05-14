@@ -64,7 +64,7 @@ object SkillFactory {
     )
   }
 
-  def cthulhuMythosSkill: SystemSkill[CthulhuMythos.type] = {
+  def cthulhuMythosSkill: CthulhuMythosSkillImpl = {
     CthulhuMythosSkillImpl()
   }
 
