@@ -11,8 +11,8 @@ import com.rkss.rpg.coc.fundamentals.characteristics._
 import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.fundamentals.skills._
 import com.rkss.rpg.coc.concepts.characteristic._
-import com.rkss.rpg.coc.concepts.internal._
 import com.rkss.rpg.coc.concepts.results._
+import com.rkss.rpg.helpers.fixtures._
 
 final class MakingASkillRollSpec
     extends AnyFeatureSpec
@@ -25,11 +25,11 @@ final class MakingASkillRollSpec
 
   val mythos = CthulhuMythosSkillImpl()
 
-  mythos.modify(ValueModification(CthulhuMythos, 10))
+  mythos.increase(BasicIntValue(CthulhuMythos, 10))
 
   Seq(
     SkillRollSpec(
-      PrimaryCharacteristic(Strength, 50),
+      Characteristic(Strength, 50),
       RegularDifficulty,
       BonusDice(0),
       PenaltyDice(0),

@@ -1,5 +1,7 @@
 package com.rkss.rpg.coc.concepts.internal
 
-trait WithNaming[+A <: Naming] {
+import com.rkss.rpg.coc.concepts.roll._
+
+trait WithNaming[+A <: SkillRollNaming] {
   def name: A
 }

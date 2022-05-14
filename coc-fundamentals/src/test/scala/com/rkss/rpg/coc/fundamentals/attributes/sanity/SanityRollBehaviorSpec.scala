@@ -13,7 +13,7 @@ import com.rkss.rpg.coc.concepts.results._
 final class SanityRollBehaviorSpec extends AnyFunSpec with Matchers {
   describe("Sanity roll behavior") {
     val sanity =
-      Sanity(PrimaryCharacteristic(Power, 60), CthulhuMythosSkillImpl())
+      Sanity(Characteristic(Power, 60), CthulhuMythosSkillImpl())
 
     describe("Sanity roll") {
       it should behave like sanityRoll(sanity, 100, SanityRollFumble)
@@ -24,7 +24,7 @@ final class SanityRollBehaviorSpec extends AnyFunSpec with Matchers {
 
       it should behave like sanityRoll(
         Sanity(
-          PrimaryCharacteristic(Power, 40),
+          Characteristic(Power, 40),
           CthulhuMythosSkillImpl()
         ),
         97,

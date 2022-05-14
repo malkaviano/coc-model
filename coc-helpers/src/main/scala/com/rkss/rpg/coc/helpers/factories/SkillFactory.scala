@@ -4,6 +4,7 @@ import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.concepts.characteristic._
 import com.rkss.rpg.coc.fundamentals.skills._
 import com.rkss.rpg.coc.helpers.wrappers._
+import com.rkss.rpg.coc.fundamentals.characteristics.Characteristic
 
 object SkillFactory {
   def basicSkill[A <: SimpleSkillName](
@@ -63,8 +64,7 @@ object SkillFactory {
     )
   }
 
-  def cthulhuMythosSkill
-      : SystemSkill[CthulhuMythos.type] = {
+  def cthulhuMythosSkill: CthulhuMythosSkillImpl = {
     CthulhuMythosSkillImpl()
   }
 

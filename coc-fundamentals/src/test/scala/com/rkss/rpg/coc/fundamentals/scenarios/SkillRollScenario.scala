@@ -6,13 +6,13 @@ import org.scalatest.matchers.should.Matchers
 
 import com.rkss.rpg.helpers.dice._
 import com.rkss.rpg.coc.behaviors.testing.TestingProps
-import com.rkss.rpg.coc.fundamentals.specs.SkillRollSpec
-import com.rkss.rpg.coc.concepts.internal._
+import com.rkss.rpg.coc.fundamentals.specs._
+import com.rkss.rpg.coc.concepts.roll._
 
 trait SkillRollScenario {
   self: AnyFeatureSpec with GivenWhenThen with Matchers =>
 
-  def makingASkillRoll[A <: Naming](spec: SkillRollSpec[A]): Unit = {
+  def makingASkillRoll[A <: SkillRollNaming](spec: SkillRollSpec[A]): Unit = {
 
     val (difficulty, bonusDice, penaltyDice, rolled, expected, entity) =
       (

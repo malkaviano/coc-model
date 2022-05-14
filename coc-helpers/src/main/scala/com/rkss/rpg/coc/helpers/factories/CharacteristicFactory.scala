@@ -13,7 +13,7 @@ object CharacteristicFactory {
       name: A,
       baseValue: Int
   ): Characteristic[A] = {
-    PrimaryCharacteristic(name, baseValue)
+    Characteristic(name, baseValue)
   }
 
   def characteristic[A <: CharacteristicName](
@@ -22,14 +22,22 @@ object CharacteristicFactory {
       sixSidedDice: SixSidedDice
   ): Characteristic[A] = {
     val rolled = name match {
-      case Strength => RngValuesGenerator.creationValue(rule1._1, rule1._2, rule1._3)
-      case Dexterity => RngValuesGenerator.creationValue(rule1._1, rule1._2, rule1._3)
-      case Constitution => RngValuesGenerator.creationValue(rule1._1, rule1._2, rule1._3)
-      case Appearance => RngValuesGenerator.creationValue(rule1._1, rule1._2, rule1._3)
-      case Power => RngValuesGenerator.creationValue(rule1._1, rule1._2, rule1._3)
-      case Education => RngValuesGenerator.creationValue(rule2._1, rule2._2, rule2._3)
-      case Intelligence => RngValuesGenerator.creationValue(rule2._1, rule2._2, rule2._3)
-      case Size => RngValuesGenerator.creationValue(rule2._1, rule2._2, rule2._3)
+      case Strength =>
+        RngValuesGenerator.creationValue(rule1._1, rule1._2, rule1._3)
+      case Dexterity =>
+        RngValuesGenerator.creationValue(rule1._1, rule1._2, rule1._3)
+      case Constitution =>
+        RngValuesGenerator.creationValue(rule1._1, rule1._2, rule1._3)
+      case Appearance =>
+        RngValuesGenerator.creationValue(rule1._1, rule1._2, rule1._3)
+      case Power =>
+        RngValuesGenerator.creationValue(rule1._1, rule1._2, rule1._3)
+      case Education =>
+        RngValuesGenerator.creationValue(rule2._1, rule2._2, rule2._3)
+      case Intelligence =>
+        RngValuesGenerator.creationValue(rule2._1, rule2._2, rule2._3)
+      case Size =>
+        RngValuesGenerator.creationValue(rule2._1, rule2._2, rule2._3)
     }
 
     characteristic(name, rolled)

@@ -13,62 +13,62 @@ final class DBAndBuildImplSpec extends AnyFunSpec with Matchers {
     describe("Current value") {
       Seq(
         (
-          PrimaryCharacteristic(Strength, 32),
-          PrimaryCharacteristic(Size, 32),
+          Characteristic(Strength, 32),
+          Characteristic(Size, 32),
           -2,
           -2
         ),
         (
-          PrimaryCharacteristic(Strength, 42),
-          PrimaryCharacteristic(Size, 42),
+          Characteristic(Strength, 42),
+          Characteristic(Size, 42),
           -1,
           -1
         ),
         (
-          PrimaryCharacteristic(Strength, 62),
-          PrimaryCharacteristic(Size, 62),
+          Characteristic(Strength, 62),
+          Characteristic(Size, 62),
           0,
           0
         ),
         (
-          PrimaryCharacteristic(Strength, 82),
-          PrimaryCharacteristic(Size, 82),
+          Characteristic(Strength, 82),
+          Characteristic(Size, 82),
           4,
           1
         ),
         (
-          PrimaryCharacteristic(Strength, 102),
-          PrimaryCharacteristic(Size, 102),
+          Characteristic(Strength, 102),
+          Characteristic(Size, 102),
           6,
           2
         ),
         (
-          PrimaryCharacteristic(Strength, 142),
-          PrimaryCharacteristic(Size, 142),
+          Characteristic(Strength, 142),
+          Characteristic(Size, 142),
           12,
           3
         ),
         (
-          PrimaryCharacteristic(Strength, 182),
-          PrimaryCharacteristic(Size, 182),
+          Characteristic(Strength, 182),
+          Characteristic(Size, 182),
           18,
           4
         ),
         (
-          PrimaryCharacteristic(Strength, 222),
-          PrimaryCharacteristic(Size, 222),
+          Characteristic(Strength, 222),
+          Characteristic(Size, 222),
           24,
           5
         ),
         (
-          PrimaryCharacteristic(Strength, 262),
-          PrimaryCharacteristic(Size, 262),
+          Characteristic(Strength, 262),
+          Characteristic(Size, 262),
           30,
           6
         ),
         (
-          PrimaryCharacteristic(Strength, 300),
-          PrimaryCharacteristic(Size, 300),
+          Characteristic(Strength, 300),
+          Characteristic(Size, 300),
           36,
           7
         )
