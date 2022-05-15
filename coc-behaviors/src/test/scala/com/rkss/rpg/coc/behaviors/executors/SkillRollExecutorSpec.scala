@@ -12,7 +12,7 @@ import com.rkss.rpg.coc.concepts.results._
 
 final class SkillRollExecutorSpec extends AnyFunSpec with Matchers {
   describe("Resolving a skill roll") {
-    val someCharacteristic = FakeRollCheckable(Education, 50)
+    val someCharacteristic = FakeCharacteristic(Education, 50)
 
     it should behave like resolveSkillRoll(
       someCharacteristic,

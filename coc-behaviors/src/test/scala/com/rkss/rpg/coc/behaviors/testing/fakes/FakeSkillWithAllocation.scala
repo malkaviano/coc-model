@@ -8,9 +8,8 @@ class FakeSkillWithAllocation[A <: AllocationSkillName](
     override val name: A,
     override val baseValue: Int,
     val occupationPoints: Int = 0,
-    val personalPoints: Int = 0,
-    override val tags: Seq[SkillTag] = Seq.empty[SkillTag]
-) extends FakeSkill(name, baseValue, tags) {
+    val personalPoints: Int = 0
+) extends FakeSkill[A](name, baseValue) {
   override def value(difficulty: SkillRollDifficultyLevel): Int =
     DifficultyValueExtractor.value(
       baseValue + occupationPoints + personalPoints,
