@@ -11,5 +11,5 @@ final case class SkillImpl[A <: ImprovableSkillName](
     val personalPoints: Int,
     override val tags: Seq[SkillTag] = Seq.empty[SkillTag]
 ) extends BaseRollable[A](name, baseValue + occupationPoints + personalPoints)
-    with BasicSkill[A]
+    with Skill[A]
     with SkillRollBehavior[A]

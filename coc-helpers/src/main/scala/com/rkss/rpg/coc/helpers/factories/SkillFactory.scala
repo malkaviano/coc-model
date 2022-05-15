@@ -12,7 +12,7 @@ object SkillFactory {
       name: A,
       occupationPoints: Int,
       personalPoints: Int
-  ): BasicSkill[A] = {
+  ): BaseRollable[A] = {
     val SkillInfo(baseValue, tags) = SkillInfo.basicSkills(name)
 
     SkillImpl(name, baseValue, occupationPoints, personalPoints, tags)
@@ -22,7 +22,7 @@ object SkillFactory {
       name: A,
       occupationPoints: Int,
       personalPoints: Int
-  ): BasicSkill[A] = {
+  ): BaseRollable[A] = {
     val SkillInfo(baseValue, tags) = SkillInfo.combatSkills(name)
 
     SkillImpl(name, baseValue, occupationPoints, personalPoints, tags)
@@ -32,7 +32,7 @@ object SkillFactory {
       dexterity: Characteristic[Dexterity.type],
       occupationPoints: Int,
       personalPoints: Int
-  ): BasicSkill[Dodge.type] = {
+  ): BaseRollable[Dodge.type] = {
     SkillImpl(Dodge, dexterity.value() / 2, occupationPoints, personalPoints)
   }
 
@@ -40,7 +40,7 @@ object SkillFactory {
       language: A,
       occupationPoints: Int,
       personalPoints: Int
-  ): BasicSkill[A] = {
+  ): BaseRollable[A] = {
     SkillImpl(
       language,
       1,
@@ -55,7 +55,7 @@ object SkillFactory {
       language: A,
       occupationPoints: Int,
       personalPoints: Int
-  ): BasicSkill[A] = {
+  ): BaseRollable[A] = {
     SkillImpl(
       language,
       education.value(),
