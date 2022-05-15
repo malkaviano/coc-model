@@ -4,14 +4,14 @@ import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.concepts.characteristic._
 import com.rkss.rpg.coc.fundamentals.skills._
 import com.rkss.rpg.coc.helpers.wrappers._
-import com.rkss.rpg.coc.fundamentals.characteristics.Characteristic
+import com.rkss.rpg.coc.fundamentals.characteristics._
 
 object SkillFactory {
   def basicSkill[A <: SimpleSkillName](
       name: A,
       occupationPoints: Int,
       personalPoints: Int
-  ): BasicSkill[A] = {
+  ): Skill[A] = {
     val SkillInfo(baseValue, tags) = SkillInfo.basicSkills(name)
 
     SkillImpl(name, baseValue, occupationPoints, personalPoints, tags)
@@ -21,7 +21,7 @@ object SkillFactory {
       name: A,
       occupationPoints: Int,
       personalPoints: Int
-  ): BasicSkill[A] = {
+  ): Skill[A] = {
     val SkillInfo(baseValue, tags) = SkillInfo.combatSkills(name)
 
     SkillImpl(name, baseValue, occupationPoints, personalPoints, tags)
@@ -31,7 +31,7 @@ object SkillFactory {
       dexterity: Characteristic[Dexterity.type],
       occupationPoints: Int,
       personalPoints: Int
-  ): BasicSkill[Dodge.type] = {
+  ): Skill[Dodge.type] = {
     SkillImpl(Dodge, dexterity.value() / 2, occupationPoints, personalPoints)
   }
 
@@ -39,7 +39,7 @@ object SkillFactory {
       language: A,
       occupationPoints: Int,
       personalPoints: Int
-  ): BasicSkill[A] = {
+  ): Skill[A] = {
     SkillImpl(
       language,
       1,
@@ -54,7 +54,7 @@ object SkillFactory {
       language: A,
       occupationPoints: Int,
       personalPoints: Int
-  ): BasicSkill[A] = {
+  ): Skill[A] = {
     SkillImpl(
       language,
       education.value(),
@@ -64,7 +64,7 @@ object SkillFactory {
     )
   }
 
-  def cthulhuMythosSkill: CthulhuMythosSkillImpl = {
+  def cthulhuMythosSkill: Skill[CthulhuMythos.type] = {
     CthulhuMythosSkillImpl()
   }
 
@@ -72,7 +72,7 @@ object SkillFactory {
       baseValue: Int,
       occupationPoints: Int,
       personalPoints: Int
-  ): SystemSkill[CreditRating.type] = {
+  ): Skill[CreditRating.type] = {
     CreditRatingSkillImpl(baseValue, occupationPoints, personalPoints)
   }
 }

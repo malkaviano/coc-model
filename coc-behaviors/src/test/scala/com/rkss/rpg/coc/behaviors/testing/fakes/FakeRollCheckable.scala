@@ -5,7 +5,7 @@ import com.rkss.rpg.coc.concepts.characteristic._
 import com.rkss.rpg.coc.concepts.roll._
 import com.rkss.rpg.coc.behaviors.extractor._
 
-final case class FakeRollCheckable[A <: CharacteristicName](
+final case class FakeCharacteristic[A <: CharacteristicName](
     override val name: A,
     val baseValue: Int
 ) extends SkillRollCheckable[A]
