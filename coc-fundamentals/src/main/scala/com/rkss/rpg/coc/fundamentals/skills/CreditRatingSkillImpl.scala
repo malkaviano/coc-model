@@ -12,7 +12,7 @@ final case class CreditRatingSkillImpl(
       CreditRating,
       baseValue + occupationPoints + personalPoints
     )
-    with SystemSkill[CreditRating.type]
+    with Skill[CreditRating.type]
     with SkillRollBehavior[CreditRating.type] {
   override val tags: Seq[SkillTag] = Seq.empty[SkillTag]
 }

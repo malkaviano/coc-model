@@ -4,7 +4,8 @@ import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.concepts.characteristic._
 import com.rkss.rpg.coc.fundamentals.skills._
 import com.rkss.rpg.coc.helpers.wrappers._
-import com.rkss.rpg.coc.fundamentals.characteristics.Characteristic
+import com.rkss.rpg.coc.fundamentals.characteristics._
+import com.rkss.rpg.coc.fundamentals._
 
 object SkillFactory {
   def basicSkill[A <: SimpleSkillName](
@@ -64,7 +65,7 @@ object SkillFactory {
     )
   }
 
-  def cthulhuMythosSkill: CthulhuMythosSkillImpl = {
+  def cthulhuMythosSkill: BaseRollable[CthulhuMythos.type] = {
     CthulhuMythosSkillImpl()
   }
 
@@ -72,7 +73,7 @@ object SkillFactory {
       baseValue: Int,
       occupationPoints: Int,
       personalPoints: Int
-  ): SystemSkill[CreditRating.type] = {
+  ): Skill[CreditRating.type] = {
     CreditRatingSkillImpl(baseValue, occupationPoints, personalPoints)
   }
 }

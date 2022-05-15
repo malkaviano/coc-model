@@ -6,11 +6,12 @@ import com.rkss.rpg.coc.concepts.results._
 import com.rkss.rpg.coc.concepts.attributes._
 import com.rkss.rpg.coc.concepts.characteristic._
 import com.rkss.rpg.coc.fundamentals.characteristics._
-import com.rkss.rpg.coc.fundamentals.skills._
+import com.rkss.rpg.coc.fundamentals._
+import com.rkss.rpg.coc.concepts.skill._
 
 final case class Sanity(
     private val power: Characteristic[Power.type],
-    private val mythos: CthulhuMythosSkillImpl
+    private val mythos: BaseRollable[CthulhuMythos.type]
 ) {
   private val internal: BasicIntFixture[SanityAttribute.type] =
     BasicIntFixture(

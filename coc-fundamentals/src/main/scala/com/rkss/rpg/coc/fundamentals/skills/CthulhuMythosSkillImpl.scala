@@ -6,7 +6,7 @@ import com.rkss.rpg.coc.fundamentals._
 
 final case class CthulhuMythosSkillImpl()
     extends BaseRollable[CthulhuMythos.type](CthulhuMythos, 0)
-    with SystemSkill[CthulhuMythos.type]
+    with Skill[CthulhuMythos.type]
     with SkillRollBehavior[CthulhuMythos.type] {
   override val tags: Seq[SkillTag] = Seq.empty[SkillTag]
 }

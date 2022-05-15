@@ -7,5 +7,3 @@ trait Skill[+A <: SkillName] extends SkillRollCheckable[A] {
 }
 
 trait BasicSkill[A <: ImprovableSkillName] extends Skill[A]
-
-trait SystemSkill[A <: SkillName] extends Skill[A]
