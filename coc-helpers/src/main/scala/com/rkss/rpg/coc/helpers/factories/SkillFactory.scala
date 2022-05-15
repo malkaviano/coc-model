@@ -5,14 +5,13 @@ import com.rkss.rpg.coc.concepts.characteristic._
 import com.rkss.rpg.coc.fundamentals.skills._
 import com.rkss.rpg.coc.helpers.wrappers._
 import com.rkss.rpg.coc.fundamentals.characteristics._
-import com.rkss.rpg.coc.fundamentals._
 
 object SkillFactory {
   def basicSkill[A <: SimpleSkillName](
       name: A,
       occupationPoints: Int,
       personalPoints: Int
-  ): BaseRollable[A] = {
+  ): Skill[A] = {
     val SkillInfo(baseValue, tags) = SkillInfo.basicSkills(name)
 
     SkillImpl(name, baseValue, occupationPoints, personalPoints, tags)
@@ -22,7 +21,7 @@ object SkillFactory {
       name: A,
       occupationPoints: Int,
       personalPoints: Int
-  ): BaseRollable[A] = {
+  ): Skill[A] = {
     val SkillInfo(baseValue, tags) = SkillInfo.combatSkills(name)
 
     SkillImpl(name, baseValue, occupationPoints, personalPoints, tags)
@@ -32,7 +31,7 @@ object SkillFactory {
       dexterity: Characteristic[Dexterity.type],
       occupationPoints: Int,
       personalPoints: Int
-  ): BaseRollable[Dodge.type] = {
+  ): Skill[Dodge.type] = {
     SkillImpl(Dodge, dexterity.value() / 2, occupationPoints, personalPoints)
   }
 
@@ -40,7 +39,7 @@ object SkillFactory {
       language: A,
       occupationPoints: Int,
       personalPoints: Int
-  ): BaseRollable[A] = {
+  ): Skill[A] = {
     SkillImpl(
       language,
       1,
@@ -55,7 +54,7 @@ object SkillFactory {
       language: A,
       occupationPoints: Int,
       personalPoints: Int
-  ): BaseRollable[A] = {
+  ): Skill[A] = {
     SkillImpl(
       language,
       education.value(),
@@ -65,7 +64,7 @@ object SkillFactory {
     )
   }
 
-  def cthulhuMythosSkill: BaseRollable[CthulhuMythos.type] = {
+  def cthulhuMythosSkill: Skill[CthulhuMythos.type] = {
     CthulhuMythosSkillImpl()
   }
 
