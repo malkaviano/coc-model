@@ -1,4 +1,4 @@
-package com.rkss.rpg.coc.behaviors.skill
+package com.rkss.rpg.coc.behaviors.roll
 
 import com.rkss.rpg.coc.concepts.roll._
 import com.rkss.rpg.helpers.dice._
