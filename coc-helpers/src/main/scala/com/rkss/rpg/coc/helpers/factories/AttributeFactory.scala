@@ -30,8 +30,8 @@ object AttributeFactory {
 
   def createMagicPoints(
       power: Characteristic[Power.type]
-  ): InvestigatorMagicPoints = {
-    InvestigatorMagicPoints(power)
+  ): MagicPoints = {
+    MagicPoints(power)
   }
 
   def createHitPoints(

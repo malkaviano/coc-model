@@ -8,19 +8,13 @@ import com.rkss.rpg.helpers.fixtures._
 final case class HitPoints(
     private val size: Characteristic[Size.type],
     private val constitution: Characteristic[Constitution.type]
-) {
-  private val internal: BasicIntFixture[HitPointsAttribute.type] =
-    BasicIntFixture(
+) extends Attribute(
       HitPointsAttribute,
-      BasicIntOptions(
-        (size.value() + constitution.value()) / 10,
-        minimum = 0,
-        maximum = (size.value() + constitution.value()) / 10,
-        equalizeOnValueSuperiorMaximum = true
-      )
-    )
+      (size.value() + constitution.value()) / 10,
+      (size.value() + constitution.value()) / 10
+    ) {
 
-  private def onChanged(event: BasicIntChangeEvent): Unit = {
+  protected def onChanged(event: BasicIntChangeEvent): Unit = {
     if (event.target == BasicIntTargetValue) {
       event.name match {
         case Size =>
@@ -34,20 +28,4 @@ final case class HitPoints(
   size.onChange(onChanged)
 
   constitution.onChange(onChanged)
-
-  def gain(
-      gain: BasicIntValue[HitPointsAttribute.type]
-  ): Unit = {
-    internal.plus(gain)
-  }
-
-  def loss(
-      loss: BasicIntValue[HitPointsAttribute.type]
-  ): Unit = {
-    internal.minus(loss)
-  }
-
-  def current: Int = internal.value
-
-  def maximum: Int = internal.maximum
 }

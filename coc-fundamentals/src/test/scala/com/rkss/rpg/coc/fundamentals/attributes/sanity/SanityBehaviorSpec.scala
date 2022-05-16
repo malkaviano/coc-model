@@ -27,18 +27,6 @@ final class SanityBehaviorSpec extends AnyFunSpec with Matchers {
 
         sanity.current shouldBe initial.value()
       }
-
-      describe("when maximum drops bellow current") {
-        it("should reduce current to the maximum") {
-          val mythos = CthulhuMythosSkillImpl()
-
-          val sanity = Sanity(initial, mythos)
-
-          mythos.increase(BasicIntValue(CthulhuMythos, 69))
-
-          sanity.current shouldBe 30
-        }
-      }
     }
 
     describe("Maximum value") {

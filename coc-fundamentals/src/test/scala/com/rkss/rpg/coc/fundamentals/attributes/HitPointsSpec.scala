@@ -9,50 +9,35 @@ import com.rkss.rpg.helpers.fixtures._
 
 final class HitPointsSpec extends AnyFunSpec with Matchers {
   describe("Hit Points Behavior") {
-    describe("Current value") {
-      it(s"should be 8") {
-        val size = Characteristic(Size, 40)
-        val constitution = Characteristic(Constitution, 40)
+    describe("Constitution and Size are 40") {
+      describe("when constitution drops to 20") {
+        describe("current and maximum") {
+          it("should be 6") {
+            val size = Characteristic(Size, 40)
+            val constitution = Characteristic(Constitution, 40)
 
-        val hp = HitPoints(size, constitution)
+            val hp = HitPoints(size, constitution)
 
-        hp.current shouldBe 8
-      }
+            constitution.decrease(BasicIntValue(Constitution, 20))
 
-      describe("when maximum drops bellow current") {
-        it("should reduce current to the maximum") {
-          val size = Characteristic(Size, 40)
-          val constitution = Characteristic(Constitution, 40)
+            hp.current shouldBe 6
 
-          val hp = HitPoints(size, constitution)
-
-          constitution.decrease(BasicIntValue(Constitution, 20))
-
-          hp.current shouldBe 6
+            hp.maximum shouldBe 6
+          }
         }
       }
-    }
+      describe("when size increases to 60") {
+        describe("maximum value") {
+          it(s"should be 10") {
+            val size = Characteristic(Size, 40)
+            val constitution = Characteristic(Constitution, 40)
 
-    describe("Maximum value") {
-      it("should be 8") {
-        val size = Characteristic(Size, 40)
-        val constitution = Characteristic(Constitution, 40)
+            val hp = HitPoints(size, constitution)
 
-        val hp = HitPoints(size, constitution)
+            size.increase(BasicIntValue(Size, 20))
 
-        hp.maximum shouldBe 8
-      }
-
-      describe(s"when current constitution change to 60") {
-        it(s"should be 10") {
-          val size = Characteristic(Size, 40)
-          val constitution = Characteristic(Constitution, 40)
-
-          val hp = HitPoints(size, constitution)
-
-          constitution.increase(BasicIntValue(Constitution, 20))
-
-          hp.maximum shouldBe 10
+            hp.maximum shouldBe 10
+          }
         }
       }
     }
