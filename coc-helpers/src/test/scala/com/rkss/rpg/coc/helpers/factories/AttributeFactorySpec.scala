@@ -94,13 +94,14 @@ final class AttributeFactorySpec extends AnyFunSpec with Matchers {
       val strength = CharacteristicFactory.characteristic(Strength, 60)
       val dexterity = CharacteristicFactory.characteristic(Dexterity, 60)
       val size = CharacteristicFactory.characteristic(Size, 60)
+      val age = Age(30)
 
       describe(s"when $strength - $dexterity - $size") {
-        val expected = HumanMovementRate(strength, dexterity, size)
+        val expected = HumanMovementRate(strength, dexterity, size, age)
 
         it(s"should return MOV(${expected.current})") {
           val mov =
-            AttributeFactory.createMovementRate(strength, dexterity, size)
+            AttributeFactory.createMovementRate(strength, dexterity, size, age)
 
           mov shouldBe expected
         }
