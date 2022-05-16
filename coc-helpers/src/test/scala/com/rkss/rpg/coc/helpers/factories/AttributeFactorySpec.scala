@@ -70,7 +70,7 @@ final class AttributeFactorySpec extends AnyFunSpec with Matchers {
       val power = CharacteristicFactory.characteristic(Power, 60)
 
       describe(s"when $power") {
-        val expected = InvestigatorMagicPoints(power)
+        val expected = MagicPoints(power)
 
         it(s"should return MP(${expected.current})") {
           val mp = AttributeFactory.createMagicPoints(power)

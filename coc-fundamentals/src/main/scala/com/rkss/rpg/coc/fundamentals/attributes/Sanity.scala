@@ -12,18 +12,7 @@ import com.rkss.rpg.coc.concepts.skill._
 final case class Sanity(
     private val power: Characteristic[Power.type],
     private val mythos: BaseRollable[CthulhuMythos.type]
-) {
-  private val internal: BasicIntFixture[SanityAttribute.type] =
-    BasicIntFixture(
-      SanityAttribute,
-      BasicIntOptions(
-        power.value(),
-        minimum = 0,
-        maximum = 99 - mythos.value(),
-        equalizeOnValueSuperiorMaximum = true
-      )
-    )
-
+) extends Attribute(SanityAttribute, power.value(), 99 - mythos.value()) {
   private def mythosChanged(event: BasicIntChangeEvent): Unit = {
     if (event.target == BasicIntTargetValue)
       internal.maximum = 99 - event.current
@@ -50,21 +39,5 @@ final case class Sanity(
       result,
       DiceRolled(rolled)
     )
-  }
-
-  def current: Int = internal.value
-
-  def maximum: Int = internal.maximum
-
-  def gain(
-      gain: BasicIntValue[SanityAttribute.type]
-  ): Unit = {
-    internal.plus(gain)
-  }
-
-  def loss(
-      loss: BasicIntValue[SanityAttribute.type]
-  ): Unit = {
-    internal.minus(loss)
   }
 }
