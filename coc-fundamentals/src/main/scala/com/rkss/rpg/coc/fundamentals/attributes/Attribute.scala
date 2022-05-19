@@ -1,15 +1,15 @@
 package com.rkss.rpg.coc.fundamentals.attributes
 
 import com.rkss.rpg.coc.concepts.attributes._
-import com.rkss.rpg.helpers.fixtures._
+import com.rkss.rpg.helpers.basicint._
 
 abstract class Attribute[A <: AttributeName](
     val name: A,
     initial: Int,
     max: Int
 ) {
-  protected val internal: BasicIntFixture[A] =
-    BasicIntFixture(
+  protected val internal: BasicIntBehavior[A] =
+    BasicIntBehavior(
       name,
       BasicIntOptions(
         initial,
@@ -18,6 +18,8 @@ abstract class Attribute[A <: AttributeName](
         equalizeOnValueSuperiorMaximum = true
       )
     )
+
+  val id = internal.id
 
   def current: Int = internal.value
 

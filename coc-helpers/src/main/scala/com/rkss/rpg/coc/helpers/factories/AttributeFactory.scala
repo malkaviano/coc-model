@@ -65,8 +65,9 @@ object AttributeFactory {
   def createMovementRate(
       strength: Characteristic[Strength.type],
       dexterity: Characteristic[Dexterity.type],
-      size: Characteristic[Size.type]
+      size: Characteristic[Size.type],
+      age: Age
   ): HumanMovementRate = {
-    HumanMovementRate(strength, dexterity, size)
+    HumanMovementRate(strength, dexterity, size, age)
   }
 }

@@ -7,7 +7,8 @@ import com.rkss.rpg.coc.behaviors.extractor._
 
 final case class FakeCharacteristic[A <: CharacteristicName](
     override val name: A,
-    val baseValue: Int
+    val baseValue: Int,
+    override val id: String = "id"
 ) extends SkillRollCheckable[A]
     with SkillRollBehavior[A] {
   override def value(difficulty: SkillRollDifficultyLevel): Int =

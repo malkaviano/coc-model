@@ -3,7 +3,8 @@ package com.rkss.rpg.coc.fundamentals.attributes
 import com.rkss.rpg.coc.concepts.attributes._
 import com.rkss.rpg.coc.concepts.characteristic._
 import com.rkss.rpg.coc.fundamentals.characteristics._
-import com.rkss.rpg.helpers.fixtures._
+import com.rkss.rpg.helpers.basicint._
+import com.rkss.rpg.helpers._
 
 final case class HitPoints(
     private val size: Characteristic[Size.type],
@@ -14,7 +15,7 @@ final case class HitPoints(
       (size.value() + constitution.value()) / 10
     ) {
 
-  protected def onChanged(event: BasicIntChangeEvent): Unit = {
+  private def onChanged(event: BasicIntEvent): Unit = {
     if (event.target == BasicIntTargetValue) {
       event.name match {
         case Size =>
@@ -25,7 +26,6 @@ final case class HitPoints(
     }
   }
 
-  size.onChange(onChanged)
-
-  constitution.onChange(onChanged)
+  EventHub.addListener(size.id, this.id, onChanged)
+  EventHub.addListener(constitution.id, this.id, onChanged)
 }

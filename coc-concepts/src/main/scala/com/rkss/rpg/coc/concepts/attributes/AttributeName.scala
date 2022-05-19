@@ -1,6 +1,6 @@
 package com.rkss.rpg.coc.concepts.attributes
 
-import com.rkss.rpg.helpers.traits._
+import com.rkss.rpg.helpers._
 
 sealed trait AttributeName extends GlobalNameTag
 

@@ -12,7 +12,7 @@ import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.fundamentals.skills._
 import com.rkss.rpg.coc.concepts.characteristic._
 import com.rkss.rpg.coc.concepts.results._
-import com.rkss.rpg.helpers.fixtures._
+import com.rkss.rpg.helpers.basicint._
 
 final class MakingASkillRollSpec
     extends AnyFeatureSpec
