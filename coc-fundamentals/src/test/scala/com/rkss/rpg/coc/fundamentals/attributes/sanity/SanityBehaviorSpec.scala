@@ -7,7 +7,7 @@ import com.rkss.rpg.coc.fundamentals.skills._
 import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.concepts.characteristic._
 import com.rkss.rpg.coc.fundamentals.characteristics._
-import com.rkss.rpg.helpers.fixtures._
+import com.rkss.rpg.helpers.basicint._
 
 final class SanityBehaviorSpec extends AnyFunSpec with Matchers {
   describe("Sanity Behavior") {

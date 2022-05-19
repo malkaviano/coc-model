@@ -4,7 +4,7 @@ import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 
 import com.rkss.rpg.coc.concepts.attributes._
-import com.rkss.rpg.helpers.fixtures._
+import com.rkss.rpg.helpers.basicint._
 
 class AttributeSpec extends AnyFunSpec with Matchers {
   def fake =

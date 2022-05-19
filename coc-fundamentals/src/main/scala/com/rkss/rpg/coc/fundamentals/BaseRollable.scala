@@ -2,7 +2,7 @@ package com.rkss.rpg.coc.fundamentals
 
 import com.rkss.rpg.coc.concepts.roll._
 import com.rkss.rpg.coc.behaviors.roll._
-import com.rkss.rpg.helpers.fixtures._
+import com.rkss.rpg.helpers.basicint._
 import com.rkss.rpg.coc.behaviors.extractor._
 
 private[fundamentals] abstract class BaseRollable[A <: SkillRollNaming](
@@ -12,15 +12,13 @@ private[fundamentals] abstract class BaseRollable[A <: SkillRollNaming](
     maximum: Int = 100000
 ) extends SkillRollCheckable[A]
     with SkillRollBehavior[A] {
-  private val internalState: BasicIntFixture[A] =
-    BasicIntFixture(
+  private val internalState: BasicIntBehavior[A] =
+    BasicIntBehavior(
       name,
       BasicIntOptions(initial = initial, minimum = minimum, maximum = maximum)
     )
 
-  def onChange(callback: (BasicIntChangeEvent) => Unit): Unit = {
-    internalState.addChangeListener(callback)
-  }
+  val id = internalState.id
 
   override def value(difficulty: SkillRollDifficultyLevel): Int = {
     DifficultyValueExtractor.value(

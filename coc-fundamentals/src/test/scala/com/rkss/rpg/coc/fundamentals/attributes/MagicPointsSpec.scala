@@ -5,7 +5,7 @@ import org.scalatest.matchers.should.Matchers
 
 import com.rkss.rpg.coc.concepts.characteristic._
 import com.rkss.rpg.coc.fundamentals.characteristics._
-import com.rkss.rpg.helpers.fixtures._
+import com.rkss.rpg.helpers.basicint._
 
 final class MagicPointsSpec extends AnyFunSpec with Matchers {
   describe("Magic Points Behavior") {
