@@ -51,7 +51,6 @@ final class HitPointsSpec extends AnyFunSpec with Matchers {
           val hp = HitPoints(size, constitution)
 
           EventHub.shout(
-            size.id,
             BasicIntEvent(
               HitPointsAttribute,
               80,

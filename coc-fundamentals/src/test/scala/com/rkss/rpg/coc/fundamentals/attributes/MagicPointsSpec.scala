@@ -50,7 +50,6 @@ final class MagicPointsSpec extends AnyFunSpec with Matchers {
             val mp = MagicPoints(power)
 
             EventHub.shout(
-              power.id,
               BasicIntEvent(
                 MagicPointsAttribute,
                 100,

@@ -58,7 +58,6 @@ final class SanityBehaviorSpec extends AnyFunSpec with Matchers {
           val sanity = Sanity(initial, mythos)
 
           EventHub.shout(
-            mythos.id,
             BasicIntEvent(
               CthulhuMythos,
               100,
