@@ -6,6 +6,8 @@ import org.scalatest.matchers.should.Matchers
 import com.rkss.rpg.coc.concepts.characteristic._
 import com.rkss.rpg.coc.fundamentals.characteristics._
 import com.rkss.rpg.helpers.basicint._
+import com.rkss.rpg.helpers._
+import com.rkss.rpg.coc.concepts.attributes._
 
 final class HitPointsSpec extends AnyFunSpec with Matchers {
   describe("Hit Points Behavior") {
@@ -38,6 +40,28 @@ final class HitPointsSpec extends AnyFunSpec with Matchers {
 
             hp.maximum shouldBe 10
           }
+        }
+      }
+
+      describe(s"when size maximum change to 80") {
+        it(s"should keep same value") {
+          val size = Characteristic(Size, 40)
+          val constitution = Characteristic(Constitution, 40)
+
+          val hp = HitPoints(size, constitution)
+
+          EventHub.shout(
+            size.id,
+            BasicIntEvent(
+              HitPointsAttribute,
+              80,
+              80,
+              size.id,
+              BasicIntTargetMaximum
+            )
+          )
+
+          hp.maximum shouldBe 8
         }
       }
     }

@@ -6,6 +6,8 @@ import org.scalatest.matchers.should.Matchers
 import com.rkss.rpg.coc.concepts.characteristic._
 import com.rkss.rpg.coc.fundamentals.characteristics._
 import com.rkss.rpg.helpers.basicint._
+import com.rkss.rpg.helpers._
+import com.rkss.rpg.coc.concepts.attributes._
 
 final class MagicPointsSpec extends AnyFunSpec with Matchers {
   describe("Magic Points Behavior") {
@@ -38,6 +40,27 @@ final class MagicPointsSpec extends AnyFunSpec with Matchers {
             power.decrease(BasicIntValue(Power, 10))
 
             mp.maximum shouldBe 10
+          }
+        }
+
+        describe("when Power maximum change to 100") {
+          it("should return 10") {
+            val power = Characteristic(Power, 60)
+
+            val mp = MagicPoints(power)
+
+            EventHub.shout(
+              power.id,
+              BasicIntEvent(
+                MagicPointsAttribute,
+                100,
+                100,
+                power.id,
+                BasicIntTargetMaximum
+              )
+            )
+
+            mp.maximum shouldBe 12
           }
         }
       }
