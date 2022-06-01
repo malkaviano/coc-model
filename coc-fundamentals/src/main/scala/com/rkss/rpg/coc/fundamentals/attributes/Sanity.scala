@@ -9,6 +9,8 @@ import com.rkss.rpg.coc.concepts.characteristic._
 import com.rkss.rpg.coc.fundamentals.characteristics._
 import com.rkss.rpg.coc.fundamentals._
 import com.rkss.rpg.coc.concepts.skill._
+import com.rkss.rpg.coc.concepts.horror._
+import com.rkss.rpg.helpers.specificmemory._
 
 final case class Sanity(
     private val power: Characteristic[Power.type],
@@ -35,10 +37,47 @@ final case class Sanity(
     }
 
     SanityRolled(
-      internal.value,
+      this.current,
       this.maximum,
       result,
       DiceRolled(rolled)
     )
+  }
+
+  private case class SanityDamage(val name: HorrorName, taken: Int)
+
+  private val encountered: SpecificMemoryBehavior[SanityDamage] =
+    new SpecificMemoryBehavior[SanityDamage]
+
+  def horrorWitnessed(sanityHorror: SanityHorror)(implicit
+      hundredSidedDice: HundredSidedDice
+  ): SanityRolled = {
+    encountered.remember(sanityHorror.name)
+
+    val result = roll
+
+    val lost = result.result match {
+      case SanityRollSuccessResult => sanityHorror.success
+      case SanityRollFailureResult => sanityHorror.failure
+      case SanityRollFumble        => sanityHorror.maximum
+    }
+
+    val taken = encountered.remember(sanityHorror.name) match {
+      case None        => 0
+      case Some(value) => value.taken
+    }
+
+    val diminished = Math.min(sanityHorror.maximum - taken, lost)
+
+    encountered.acknowledge(SanityDamage(sanityHorror.name, diminished + taken))
+
+    loss(
+      BasicIntValue(
+        SanityAttribute,
+        diminished
+      )
+    )
+
+    result
   }
 }

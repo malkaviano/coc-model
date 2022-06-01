@@ -8,6 +8,7 @@ import com.rkss.rpg.coc.concepts.skill._
 import com.rkss.rpg.coc.concepts.characteristic._
 import com.rkss.rpg.coc.fundamentals.characteristics._
 import com.rkss.rpg.helpers.basicint._
+import com.rkss.rpg.helpers._
 
 final class SanityBehaviorSpec extends AnyFunSpec with Matchers {
   describe("Sanity Behavior") {
@@ -47,6 +48,26 @@ final class SanityBehaviorSpec extends AnyFunSpec with Matchers {
           mythos.increase(BasicIntValue(CthulhuMythos, 9))
 
           sanity.maximum shouldBe 90
+        }
+      }
+
+      describe(s"when maximum mythos change to 100") {
+        it(s"should keep same value") {
+          val mythos = CthulhuMythosSkillImpl()
+
+          val sanity = Sanity(initial, mythos)
+
+          EventHub.shout(
+            BasicIntEvent(
+              CthulhuMythos,
+              100,
+              100,
+              mythos.id,
+              BasicIntTargetMaximum
+            )
+          )
+
+          sanity.maximum shouldBe 99
         }
       }
     }
