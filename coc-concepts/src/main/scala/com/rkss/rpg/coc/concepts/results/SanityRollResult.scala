@@ -1,6 +1,6 @@
 package com.rkss.rpg.coc.concepts.results
 
-trait SanityRollResult
+sealed trait SanityRollResult
 
 case object SanityRollSuccessResult extends SanityRollResult
 

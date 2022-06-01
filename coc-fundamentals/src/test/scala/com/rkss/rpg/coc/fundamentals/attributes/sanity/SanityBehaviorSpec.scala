@@ -51,7 +51,7 @@ final class SanityBehaviorSpec extends AnyFunSpec with Matchers {
         }
       }
 
-      describe(s"when maximum mythos change to 80") {
+      describe(s"when maximum mythos change to 100") {
         it(s"should keep same value") {
           val mythos = CthulhuMythosSkillImpl()
 
